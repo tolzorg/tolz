@@ -1,0 +1,7 @@
+node_modules/
+.env
+server/bin/*.exe
+server/bin/yt-dlp
+server/bin/ffmpeg
+server/bin/ffprobe
+client/dist/

@@ -1,0 +1,6 @@
+node_modules/
+.env
+bin/*.exe
+bin/yt-dlp
+bin/ffmpeg
+bin/ffprobe
