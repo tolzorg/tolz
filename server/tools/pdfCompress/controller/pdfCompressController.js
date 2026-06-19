@@ -157,11 +157,9 @@ async function getGsPath() {
   for (const cmd of candidates) {
     try {
       await execFileP(cmd, ["--version"], { timeout: 4000 });
-      console.log("[pdfCompress] Ghostscript found:", cmd);
       return (_gsPath = cmd);
     } catch { /* try next */ }
   }
-  console.log("[pdfCompress] Ghostscript not found — using pdf-lib fallback");
   return (_gsPath = null);
 }
 
@@ -621,7 +619,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
         if (gsBestSize <= targetBytes) break;
       } catch (e) { console.error(`[pdfCompress] GS P1 @${dpi}dpi:`, e.message); }
     }
-    if (isDev) console.log(`[pdfCompress] After Phase 1: ${Math.round(gsBestSize / 1024)} KB`);
 
     // ── Phase 2: vector PDF, no font programs (-dNoOutputFonts) ──────────────
     // Removes embedded font data; viewer substitutes system fonts.
@@ -637,7 +634,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
           if (gsBestSize <= targetBytes) break;
         } catch (e) { console.error(`[pdfCompress] GS P2 @${dpi}dpi:`, e.message); }
       }
-      if (isDev) console.log(`[pdfCompress] After Phase 2: ${Math.round(gsBestSize / 1024)} KB`);
     }
 
     // ── Phase 3: rasterize → JPEG quality binary search ──────────────────────
@@ -652,9 +648,7 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
       const rDpi   = ratio < 0.04 ? 36 : ratio < 0.08 ? 50 : ratio < 0.15 ? 72 : 96;
 
       try {
-        if (isDev) console.log(`[pdfCompress] Phase 3: rasterizing at ${rDpi} DPI…`);
         const pages = await gsRasterizePages(originalBuffer, rDpi);
-        if (isDev) console.log(`[pdfCompress] Rasterized ${pages.length} page(s). Binary-searching quality…`);
 
         // Binary search: find the highest JPEG quality that still fits in targetBytes.
         // If target is unreachable even at quality 1, we still return the minimum.
@@ -665,7 +659,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
         for (let iter = 0; iter < 14 && lo <= hi; iter++) {
           const mid = Math.round((lo + hi) / 2);
           const pdf = await buildImagePdf(pages, mid);
-          if (isDev) console.log(`[pdfCompress] Raster q${mid}: ${Math.round(pdf.length / 1024)} KB`);
 
           if (pdf.length <= targetBytes) {
             // At or below target — record and try higher quality (bigger file, still ≤ target)
@@ -680,15 +673,12 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
 
         const rasterBest = bestBelow ?? bestAbove;
         if (rasterBest) trackBest(rasterBest);
-        if (isDev) console.log(`[pdfCompress] After Phase 3: ${Math.round(gsBestSize / 1024)} KB`);
       } catch (e) {
         console.error(`[pdfCompress] GS Phase 3 failed:`, e.message);
       }
     }
 
     if (gsBest) {
-      const hit = gsBestSize <= targetBytes ? "✓ target achieved" : "✗ best possible";
-      if (isDev) console.log(`[pdfCompress] GS final: ${Math.round(gsBestSize / 1024)} KB (${hit})`);
       return gsBest;
     }
   }
@@ -700,10 +690,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
   await stripUnneededData(pdfDocBase);
   await recompressContentStreams(pdfDocBase);
   const strippedBuffer = Buffer.from(await pdfDocBase.save({ useObjectStreams: true }));
-
-  const strippedKB = Math.round(strippedBuffer.length / 1024);
-  const targetKB   = Math.round(targetBytes / 1024);
-  if (isDev) console.log(`[pdfCompress] After strip: ${strippedKB} KB, target: ${targetKB} KB`);
 
   if (strippedBuffer.length <= targetBytes) return strippedBuffer;
 
@@ -719,17 +705,12 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
   })();
 
   const imageRatio = imgBytes / strippedBuffer.length;
-  if (isDev) console.log(`[pdfCompress] Compressible images: ${imgCount} streams, ${Math.round(imgBytes / 1024)} KB (${Math.round(imageRatio * 100)}% of stripped)`);
 
   // Step C: Maximum-intensity probe — determines the theoretical minimum size
   // achievable via pdf-lib. This costs one compression pass but saves up to
   // 15 wasted passes in the binary search when images can't help.
   const maxProbe = await pdfLibCompress(strippedBuffer, 100, false);
-  const maxProbeKB = Math.round(maxProbe.length / 1024);
-  if (isDev) console.log(`[pdfCompress] Max-intensity probe: ${maxProbeKB} KB`);
-
   if (maxProbe.length <= targetBytes) {
-    if (isDev) console.log("[pdfCompress] Target achieved at max intensity.");
     return maxProbe;
   }
 
@@ -737,8 +718,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
   // negligibly — the binary search will waste iterations for no gain.
   const probeImprovedSignificantly = maxProbe.length < strippedBuffer.length * 0.97;
   if (!probeImprovedSignificantly) {
-    if (isDev) console.log(`[pdfCompress] Image compression ineffective (<3% gain). Returning stripped buffer. ` +
-      `Minimum achievable: ${strippedKB} KB (target ${targetKB} KB unreachable via pdf-lib without Ghostscript).`);
     return strippedBuffer;
   }
 
@@ -774,7 +753,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
     // Early exit: if 3 consecutive iterations produce the same size, we're stuck
     if (comp.length === lastSize) {
       if (++stuckRuns >= 3) {
-        if (isDev) console.log("[pdfCompress] Binary search stuck — same output size. Exiting early.");
         break;
       }
     } else {
@@ -783,7 +761,6 @@ async function compressToTargetSize(originalBuffer, targetBytes) {
     lastSize = comp.length;
   }
 
-  if (isDev) console.log(`[pdfCompress] Binary search result: ${Math.round(best.length / 1024)} KB`);
   return best;
 }
 
