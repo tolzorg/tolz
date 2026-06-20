@@ -1,6 +1,11 @@
 import sharp from "sharp";
 import { PDFDocument } from "pdf-lib";
 import { createRequire } from "module";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const TESSDATA_PATH = join(__dirname, "..", "..", "..", "tessdata");
 
 const require = createRequire(import.meta.url);
 
@@ -284,6 +289,7 @@ export async function jpgToText(req, res) {
     const { createWorker } = await import("tesseract.js");
     worker = await createWorker("eng", 1, {
       logger: () => {},
+      langPath: TESSDATA_PATH,
     });
 
     const results = [];
