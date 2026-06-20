@@ -8,13 +8,6 @@ import { apiLimiter } from "./core/middleware/rateLimiter.js";
 const app = express();
 
 // ===============================
-// HEALTH CHECK (before CORS — Render's health checker has no Origin header)
-// ===============================
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
-
-// ===============================
 // SECURITY HEADERS
 // ===============================
 app.disable("x-powered-by");
@@ -52,8 +45,9 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 app.use(
   cors({
     origin: (origin, callback) => {
-      // allow requests with no origin (curl, Postman) only in dev
-      if (!origin && process.env.NODE_ENV !== "production") {
+      // no-origin requests are server-to-server (curl, Postman, Render health probes)
+      // CORS is browser-only — browsers always send Origin, so this is safe to allow
+      if (!origin) {
         return callback(null, true);
       }
       if (allowedOrigins.includes(origin)) {
@@ -76,6 +70,13 @@ app.use("/api", apiLimiter);
 // ROUTES
 // ===============================
 app.use("/api", routes);
+
+// ===============================
+// HEALTH CHECK
+// ===============================
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
 
 // ===============================
 // SHORT URL REDIRECTS (/s/:slug)
