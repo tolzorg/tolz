@@ -291,6 +291,7 @@ export async function jpgToText(req, res) {
       logger: () => {},
       langPath: TESSDATA_PATH,
       cacheMethod: "none",
+      gzip: false,
     });
 
     const results = [];
