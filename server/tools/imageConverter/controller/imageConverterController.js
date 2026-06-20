@@ -276,7 +276,7 @@ function extractTextFromRaw(raw) {
   return (raw || "")
     .split("\n")
     .map(l => l.trim())
-    .filter(l => (l.match(/[a-zA-Z]{3,}/g) || []).length >= 2)
+    .filter(l => (l.match(/[a-zA-Z]{3,}/g) || []).length >= 1)
     .join("\n")
     .trim();
 }
@@ -290,6 +290,7 @@ export async function jpgToText(req, res) {
     worker = await createWorker("eng", 1, {
       logger: () => {},
       langPath: TESSDATA_PATH,
+      cacheMethod: "none",
     });
 
     const results = [];
@@ -307,6 +308,7 @@ export async function jpgToText(req, res) {
 
         // ── Recognition ───────────────────────────────────────────────────
         const { data } = await worker.recognize(pngBuffer);
+        console.log(`[OCR] "${file.originalname}" words:${data.words?.length} text:`, JSON.stringify(data.text?.slice(0, 200)));
         const words = data.words || [];
 
         // ── Quality gate + output ─────────────────────────────────────────
