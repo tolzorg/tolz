@@ -8,6 +8,13 @@ import { apiLimiter } from "./core/middleware/rateLimiter.js";
 const app = express();
 
 // ===============================
+// HEALTH CHECK (before CORS — Render's health checker has no Origin header)
+// ===============================
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+// ===============================
 // SECURITY HEADERS
 // ===============================
 app.disable("x-powered-by");
@@ -69,13 +76,6 @@ app.use("/api", apiLimiter);
 // ROUTES
 // ===============================
 app.use("/api", routes);
-
-// ===============================
-// HEALTH CHECK
-// ===============================
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
 
 // ===============================
 // SHORT URL REDIRECTS (/s/:slug)
