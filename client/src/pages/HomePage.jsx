@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+﻿import { useState, useMemo } from "react";
 import { TOOLS, CATEGORIES } from "../utils/tools";
 import ToolCard from "../components/tools/ToolCard";
 import SEO from "../components/SEO";
@@ -22,7 +22,7 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Tolz",
-    url: "https://tolz.com",
+    url: "https://tolz.org",
     description: "Free online tools for images, PDFs, health calculators, URL shortener, QR codes and more.",
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
@@ -33,8 +33,8 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Tolz",
-    url: "https://tolz.com",
-    logo: "https://tolz.com/favicon.svg",
+    url: "https://tolz.org",
+    logo: "https://tolz.org/favicon.svg",
     sameAs: [],
   };
 

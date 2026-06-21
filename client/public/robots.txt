@@ -1,5 +1,5 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 Disallow: /s/
 
-Sitemap: https://tolz.com/sitemap.xml
+Sitemap: https://tolz.org/sitemap.xml

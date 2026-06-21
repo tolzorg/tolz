@@ -1,9 +1,9 @@
-// React 19 natively hoists <title>, <meta>, and <link> to <head> from anywhere in the tree.
+﻿// React 19 natively hoists <title>, <meta>, and <link> to <head> from anywhere in the tree.
 // No library needed — these render correctly for Googlebot (which executes JS).
 
 const SITE_NAME = "Tolz";
-const SITE_URL  = "https://tolz.com";
-const OG_IMAGE  = "https://tolz.com/og-image.png";
+const SITE_URL  = "https://tolz.org";
+const OG_IMAGE  = "https://tolz.org/og-image.png";
 
 export default function SEO({
   title,

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const Section = ({ title, children }) => (
@@ -175,10 +175,10 @@ export default function PrivacyPage() {
             <P>
               Questions about this privacy policy? Reach us at{" "}
               <a
-                href="mailto:privacy@tolz.com"
+                href="mailto:privacy@tolz.org"
                 style={{ color: "var(--accent)" }}
               >
-                privacy@tolz.com
+                privacy@tolz.org
               </a>
               .
             </P>

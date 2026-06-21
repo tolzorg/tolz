@@ -1,4 +1,4 @@
-# Render deployment configuration for Tolz
+﻿# Render deployment configuration for Tolz
 #
 # After first deploy, set these env vars manually in the Render dashboard:
 #   tolz-api    → ALLOWED_ORIGINS=https://<tolz-client-url>.onrender.com
@@ -23,7 +23,7 @@ services:
       - key: ALLOWED_ORIGINS
         sync: false   # set to your frontend URL after deploy
       - key: APP_BASE_URL
-        sync: false   # set to your backend URL, e.g. https://tolz.com (used by URL shortener)
+        sync: false   # set to your backend URL, e.g. https://tolz.org (used by URL shortener)
       - key: REDIS_URL
         sync: false   # optional: Render Redis URL for persistent URL shortener links
 
@@ -45,7 +45,7 @@ services:
       # Content Security Policy — update connect-src if using a custom API domain
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://tolz.com; script-src 'self'; connect-src 'self' https://*.onrender.com; frame-ancestors 'none'"
+        value: "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://tolz.org; script-src 'self'; connect-src 'self' https://*.onrender.com; frame-ancestors 'none'"
       # Long-lived cache for hashed assets
       - path: /assets/*
         name: Cache-Control

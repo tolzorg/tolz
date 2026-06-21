@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const Section = ({ title, children }) => (
@@ -192,10 +192,10 @@ export default function TermsPage() {
             <P>
               Questions about these terms? Contact us at{" "}
               <a
-                href="mailto:legal@tolz.com"
+                href="mailto:legal@tolz.org"
                 style={{ color: "var(--accent)" }}
               >
-                legal@tolz.com
+                legal@tolz.org
               </a>
               .
             </P>

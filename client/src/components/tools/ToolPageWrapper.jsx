@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import SEO from "../SEO";
 import JsonLd from "../JsonLd";
 
-const SITE_URL = "https://tolz.com";
+const SITE_URL = "https://tolz.org";
 
 export default function ToolPageWrapper({ tool, children }) {
   const toolSchema = tool

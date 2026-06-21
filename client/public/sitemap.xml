@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tolz.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/image-compressor</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/image-converter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/pdf-merge</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/pdf-compress</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/pdf-split</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/pdf-to-word</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/calorie-tracker</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/destiny-matrix</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/sleep-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/url-shortener</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/word-counter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/qr-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/unit-converter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/color-picker</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/tools/anniversary-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/about</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/contact</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/privacy</loc><changefreq>monthly</changefreq><priority>0.4</priority><lastmod>2026-06-14</lastmod></url>
-  <url><loc>https://tolz.com/terms</loc><changefreq>monthly</changefreq><priority>0.4</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/image-compressor</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/image-converter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/pdf-merge</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/pdf-compress</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/pdf-split</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/pdf-to-word</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/calorie-tracker</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/destiny-matrix</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/sleep-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/url-shortener</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/word-counter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/qr-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/unit-converter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/color-picker</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/tools/anniversary-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/about</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/contact</loc><changefreq>monthly</changefreq><priority>0.5</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/privacy</loc><changefreq>monthly</changefreq><priority>0.4</priority><lastmod>2026-06-14</lastmod></url>
+  <url><loc>https://tolz.org/terms</loc><changefreq>monthly</changefreq><priority>0.4</priority><lastmod>2026-06-14</lastmod></url>
 </urlset>

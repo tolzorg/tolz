@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const ContactCard = ({ icon, title, description, action, actionLabel }) => (
@@ -124,16 +124,16 @@ export default function ContactPage() {
           icon="✉️"
           title="General Enquiries"
           description="For anything else — partnerships, press, or general questions — drop us an email."
-          action="mailto:hello@tolz.com"
-          actionLabel="hello@tolz.com"
+          action="mailto:hello@tolz.org"
+          actionLabel="hello@tolz.org"
         />
 
         <ContactCard
           icon="⚖️"
           title="Legal & Privacy"
           description="Privacy questions, GDPR requests, or terms concerns? Use the dedicated legal inbox."
-          action="mailto:legal@tolz.com"
-          actionLabel="legal@tolz.com"
+          action="mailto:legal@tolz.org"
+          actionLabel="legal@tolz.org"
         />
 
         <div
