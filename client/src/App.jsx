@@ -23,6 +23,7 @@ const UnitConverterPage       = lazy(() => import("./pages/UnitConverterPage"));
 const ColorPickerPage              = lazy(() => import("./pages/ColorPickerPage"));
 const AnniversaryCalculatorPage   = lazy(() => import("./pages/AnniversaryCalculatorPage"));
 const BoardFootCalculatorPage     = lazy(() => import("./pages/BoardFootCalculatorPage"));
+const CubicYardCalculatorPage     = lazy(() => import("./pages/CubicYardCalculatorPage"));
 const PrivacyPage                  = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage                    = lazy(() => import("./pages/TermsPage"));
 const AboutPage                    = lazy(() => import("./pages/AboutPage"));
@@ -125,6 +126,7 @@ export default function App() {
                 <Route path="/tools/color-picker"                  element={<ColorPickerPage />} />
                 <Route path="/tools/anniversary-calculator"        element={<AnniversaryCalculatorPage />} />
                 <Route path="/tools/board-foot-calculator"         element={<BoardFootCalculatorPage />} />
+                <Route path="/tools/cubic-yard-calculator"         element={<CubicYardCalculatorPage />} />
                 <Route path="/privacy"                             element={<PrivacyPage />} />
                 <Route path="/terms"                               element={<TermsPage />} />
                 <Route path="/about"                               element={<AboutPage />} />
