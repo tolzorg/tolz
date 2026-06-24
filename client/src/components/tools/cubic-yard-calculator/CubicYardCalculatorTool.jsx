@@ -1,9 +1,10 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import {
-  SHAPES, DIMENSION_UNITS, MATERIALS, CURRENCIES, PRICE_UNITS,
-  toFeet, buildDimsInFeet, calcShape, calcCost, getDefaultDims, formatCY,
+  SHAPES, DIMENSION_UNITS, MATERIALS,
+  toFeet, buildDimsInFeet, calcShape, getDefaultDims, formatCY,
 } from "../../../utils/cubicYardCalc";
 import { SHAPE_DIAGRAMS } from "./ShapeDiagrams";
+import PriceCheckerCard from "../construction/PriceCheckerCard";
 
 // ── Design tokens ─────────────────────────────────────────────
 
@@ -164,10 +165,6 @@ export default function CubicYardCalculatorTool() {
   const [quantity, setQuantity] = useState("1");
   const [qTouched, setQTouched] = useState(false);
 
-  const [price,     setPrice]     = useState("");
-  const [priceUnit, setPriceUnit] = useState("per_yd3");
-  const [currency,  setCurrency]  = useState("USD");
-
   const [selectedMaterial, setSelectedMaterial] = useState("concrete");
 
   const [openSections, setOpenSections] = useState(DEFAULT_SECTIONS);
@@ -251,12 +248,6 @@ export default function CubicYardCalculatorTool() {
     }
   }, [!!result]);
 
-  const cost = useMemo(() => {
-    if (!result) return null;
-    return calcCost(result.totalCubicYards, price, priceUnit);
-  }, [result, price, priceUnit]);
-
-  const currencySymbol = CURRENCIES.find((c) => c.id === currency)?.symbol || "$";
   const material = MATERIALS.find((m) => m.id === selectedMaterial);
   const materialWeight = result && material ? material.lbsPerCuYd * result.totalCubicYards : null;
 
@@ -265,7 +256,6 @@ export default function CubicYardCalculatorTool() {
     setTouched({});
     setQuantity("1");
     setQTouched(false);
-    setPrice("");
     setCopied(false);
   }
 
@@ -279,7 +269,6 @@ export default function CubicYardCalculatorTool() {
       `Cubic Meters: ${formatCY(result.cubicMeters)} m³`,
       `Total Cubic Yards (×${quantity}): ${formatCY(result.totalCubicYards)} yd³`,
     ];
-    if (cost !== null) lines.push(`Estimated Cost: ${currencySymbol}${cost.toFixed(2)}`);
     navigator.clipboard.writeText(lines.join("\n")).then(() => {
       setCopied(true);
       clearTimeout(copyTimer.current);
@@ -421,57 +410,20 @@ export default function CubicYardCalculatorTool() {
         )}
       </SectionCard>
 
-      {/* ── Cost Calculation ── */}
-      <SectionCard id="cost" title="Cost Calculation" icon="💰" open={openSections.has("cost")} onToggle={toggleSection}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <div style={{ flex: "1 1 160px", minWidth: 0 }}>
-              <FieldGroup label="Material Price">
-                <input
-                  type="number" inputMode="decimal" min="0" step="any"
-                  value={price} placeholder="0.00"
-                  onChange={(e) => setPrice(e.target.value)}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
-                  style={{ ...INPUT }}
-                />
-              </FieldGroup>
-            </div>
-            <div style={{ flex: "1 1 140px", minWidth: 0 }}>
-              <FieldGroup label="Currency">
-                <select value={currency} onChange={(e) => setCurrency(e.target.value)} style={{ ...SELECT, width: "100%" }}>
-                  {CURRENCIES.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
-                </select>
-              </FieldGroup>
-            </div>
-            <div style={{ flex: "1 1 160px", minWidth: 0 }}>
-              <FieldGroup label="Per Unit">
-                <select value={priceUnit} onChange={(e) => setPriceUnit(e.target.value)} style={{ ...SELECT, width: "100%" }}>
-                  {PRICE_UNITS.map((u) => <option key={u.id} value={u.id}>{u.label}</option>)}
-                </select>
-              </FieldGroup>
-            </div>
-          </div>
-
-          {cost !== null ? (
-            <div className="card" style={{ padding: "16px 18px", background: "var(--accent-light)", border: "1.5px solid var(--accent)" }}>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 11, color: "var(--accent)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>
-                Estimated Total Cost
-              </div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(24px, 4vw, 36px)", color: "var(--accent)", letterSpacing: "-0.03em" }}>
-                {currencySymbol}{cost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </div>
-              <div style={{ fontSize: 12, color: "var(--accent)", fontFamily: "var(--font-display)", fontWeight: 500, marginTop: 4 }}>
-                {formatCY(result?.totalCubicYards)} yd³ × {currencySymbol}{parseFloat(price).toFixed(2)} {PRICE_UNITS.find(u => u.id === priceUnit)?.label}
-              </div>
-            </div>
-          ) : (
-            <p style={{ fontSize: 13, color: "var(--text-muted)", fontFamily: "var(--font-display)", fontWeight: 500 }}>
-              Enter a material price and calculate dimensions to see cost.
-            </p>
-          )}
-        </div>
-      </SectionCard>
+      {/* ── Price Checker ── */}
+      <PriceCheckerCard
+        quantities={{
+          cuyd: result?.totalCubicYards ?? null,
+          cuft: result?.totalCubicFeet  ?? null,
+          cum:  result?.totalCubicMeters ?? null,
+        }}
+        priceUnits={[
+          { id: "cuyd", label: "per yd³", display: "yd³" },
+          { id: "cuft", label: "per ft³", display: "ft³" },
+          { id: "cum",  label: "per m³",  display: "m³"  },
+        ]}
+        defaultPriceUnit="cuyd"
+      />
 
       {/* ── Material Estimator ── */}
       <SectionCard id="material" title="Material Estimator" icon="🏗️" open={openSections.has("material")} onToggle={toggleSection}>

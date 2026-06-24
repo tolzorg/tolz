@@ -6,6 +6,7 @@ import {
   WIDTH_UNITS,
   LENGTH_UNITS,
 } from "../../../utils/boardFootCalc";
+import PriceCheckerCard from "../construction/PriceCheckerCard";
 
 // ── Shared style constants ────────────────────────────────────
 
@@ -350,6 +351,13 @@ export default function BoardFootCalculatorTool() {
           </button>
         </>
       )}
+
+      {/* ── Price Checker ── */}
+      <PriceCheckerCard
+        quantities={{ bf: result?.total ?? null }}
+        priceUnits={[{ id: "bf", label: "per board foot", display: "BF" }]}
+        defaultPriceUnit="bf"
+      />
 
       {/* ── Formula card ── */}
       <div className="card animate-fadeUp delay-100" style={{ padding: "18px 20px" }}>

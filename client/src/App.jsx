@@ -24,6 +24,11 @@ const ColorPickerPage              = lazy(() => import("./pages/ColorPickerPage"
 const AnniversaryCalculatorPage   = lazy(() => import("./pages/AnniversaryCalculatorPage"));
 const BoardFootCalculatorPage     = lazy(() => import("./pages/BoardFootCalculatorPage"));
 const CubicYardCalculatorPage     = lazy(() => import("./pages/CubicYardCalculatorPage"));
+const GallonsCalculatorPage       = lazy(() => import("./pages/GallonsCalculatorPage"));
+const SizeToWeightCalculatorPage  = lazy(() => import("./pages/SizeToWeightCalculatorPage"));
+const SqftToCubicYardsPage           = lazy(() => import("./pages/SqftToCubicYardsPage"));
+const SquareFootageCalculatorPage    = lazy(() => import("./pages/SquareFootageCalculatorPage"));
+const SquareYardsCalculatorPage      = lazy(() => import("./pages/SquareYardsCalculatorPage"));
 const PrivacyPage                  = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage                    = lazy(() => import("./pages/TermsPage"));
 const AboutPage                    = lazy(() => import("./pages/AboutPage"));
@@ -127,6 +132,11 @@ export default function App() {
                 <Route path="/tools/anniversary-calculator"        element={<AnniversaryCalculatorPage />} />
                 <Route path="/tools/board-foot-calculator"         element={<BoardFootCalculatorPage />} />
                 <Route path="/tools/cubic-yard-calculator"         element={<CubicYardCalculatorPage />} />
+                <Route path="/tools/gallons-calculator"            element={<GallonsCalculatorPage />} />
+                <Route path="/tools/size-to-weight-calculator"    element={<SizeToWeightCalculatorPage />} />
+                <Route path="/tools/sqft-to-cubic-yards"          element={<SqftToCubicYardsPage />} />
+                <Route path="/tools/square-footage-calculator"    element={<SquareFootageCalculatorPage />} />
+                <Route path="/tools/square-yards-calculator"      element={<SquareYardsCalculatorPage />} />
                 <Route path="/privacy"                             element={<PrivacyPage />} />
                 <Route path="/terms"                               element={<TermsPage />} />
                 <Route path="/about"                               element={<AboutPage />} />
