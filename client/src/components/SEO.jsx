@@ -2,8 +2,8 @@
 // No library needed — these render correctly for Googlebot (which executes JS).
 
 const SITE_NAME = "Tolz";
-const SITE_URL  = "https://tolz.org";
-const OG_IMAGE  = "https://tolz.org/og-image.png";
+const SITE_URL  = "https://www.tolz.org";
+const OG_IMAGE  = "https://www.tolz.org/og-image.png";
 
 export default function SEO({
   title,

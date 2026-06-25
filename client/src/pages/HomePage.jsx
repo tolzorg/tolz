@@ -22,7 +22,7 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Tolz",
-    url: "https://tolz.org",
+    url: "https://www.tolz.org",
     description: "Free online tools for images, PDFs, health calculators, URL shortener, QR codes and more.",
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
@@ -33,8 +33,8 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Tolz",
-    url: "https://tolz.org",
-    logo: "https://tolz.org/favicon.svg",
+    url: "https://www.tolz.org",
+    logo: "https://www.tolz.org/favicon.svg",
     sameAs: [],
   };
 

@@ -69,7 +69,7 @@ export default function ImageConverterSubPage() {
     "@type": "SoftwareApplication",
     name: meta.label,
     description: meta.description,
-    url: `https://tolz.org/tools/image-converter/${toolId}`,
+    url: `https://www.tolz.org/tools/image-converter/${toolId}`,
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -79,9 +79,9 @@ export default function ImageConverterSubPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://tolz.org" },
-      { "@type": "ListItem", position: 2, name: "Image Converter", item: "https://tolz.org/tools/image-converter" },
-      { "@type": "ListItem", position: 3, name: meta.label, item: `https://tolz.org/tools/image-converter/${toolId}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.tolz.org" },
+      { "@type": "ListItem", position: 2, name: "Image Converter", item: "https://www.tolz.org/tools/image-converter" },
+      { "@type": "ListItem", position: 3, name: meta.label, item: `https://www.tolz.org/tools/image-converter/${toolId}` },
     ],
   };
 

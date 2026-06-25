@@ -2,7 +2,7 @@
 import SEO from "../SEO";
 import JsonLd from "../JsonLd";
 
-const SITE_URL = "https://tolz.org";
+const SITE_URL = "https://www.tolz.org";
 
 export default function ToolPageWrapper({ tool, children }) {
   const toolSchema = tool
