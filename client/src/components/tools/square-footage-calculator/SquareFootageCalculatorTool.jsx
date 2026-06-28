@@ -369,7 +369,7 @@ export default function SquareFootageCalculatorTool() {
       <SectionCard id="shape" title="Shape" icon="📐" open={open.has("shape")} onToggle={toggleSection}>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "flex-start" }}>
           <div style={{ flex: "1 1 200px", minWidth: 0 }}>
-            <FieldGroup label="Select shape">
+            <FieldGroup label="Select shape" hint="Choose the shape that matches your floor, roof, or land area. Relevant dimension inputs will appear below.">
               <select
                 value={shapeId}
                 onChange={(e) => handleShapeChange(e.target.value)}

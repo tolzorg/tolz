@@ -405,7 +405,7 @@ export default function SquareYardsCalculatorTool() {
       <SectionCard id="shape" title="Shape" icon="📐" open={open.has("shape")} onToggle={toggleSection}>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "flex-start" }}>
           <div style={{ flex: "1 1 200px", minWidth: 0 }}>
-            <FieldGroup label="Select shape">
+            <FieldGroup label="Select shape" hint="Choose the shape that best describes your area. The required dimension inputs will update automatically.">
               <select
                 value={shapeId}
                 onChange={(e) => handleShapeChange(e.target.value)}
@@ -629,7 +629,7 @@ export default function SquareYardsCalculatorTool() {
       {/* ── Material Estimator ── */}
       <SectionCard id="material" title="Material Estimator" icon="🏗️" open={open.has("material")} onToggle={toggleSection}>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <FieldGroup label="Material">
+          <FieldGroup label="Material" hint="Select a material to pre-fill its typical coverage rate. You can override the rate and waste factor below.">
             <select
               value={matId}
               onChange={(e) => setMatId(e.target.value)}
@@ -649,7 +649,7 @@ export default function SquareYardsCalculatorTool() {
 
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <div style={{ flex: "2 1 160px", minWidth: 0 }}>
-                  <FieldGroup label={`Coverage (yd² per ${coverageUnit || "unit"})`} hint="Edit to match your product's coverage rate">
+                  <FieldGroup label={`Coverage (yd² per ${coverageUnit || "unit"})`} hint="How many square yards one unit (bag, roll, or pallet) covers. Check your product label — the default is a common estimate.">
                     <input
                       type="number" inputMode="decimal" min="0.001" step="any"
                       value={coverageSqYd}

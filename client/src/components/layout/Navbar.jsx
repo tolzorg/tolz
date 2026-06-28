@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { TOOLS, CATEGORIES } from "../../utils/tools";
+import { CALCULATOR_CATEGORIES, getCategoryCalculators } from "../../utils/calculatorConfig";
 
 // Build category groups (only categories that have ≥1 available tool)
 function buildGroups() {
@@ -8,6 +9,10 @@ function buildGroups() {
   return CATEGORIES.filter((c) => c.id !== "all")
     .map((c) => {
       const tools = available.filter((t) => t.category === c.id);
+      // Calculators: dropdown shows category links, not individual tools
+      if (c.id === "utility") {
+        return { ...c, tools, categoryLinks: CALCULATOR_CATEGORIES };
+      }
       if (c.subCategories) {
         const groups = c.subCategories
           .map((sc) => ({ ...sc, tools: tools.filter((t) => t.subCategory === sc.id) }))
@@ -76,6 +81,40 @@ function DropdownPanel({ group, isOpen, location, onClose }) {
       </Link>
     );
   };
+
+  // Calculator categories: render category page links
+  if (group.categoryLinks) {
+    return (
+      <div role="menu" aria-hidden={!isOpen} style={{ ...panelStyle, minWidth: 268 }}>
+        <p style={sectionLabelStyle}>Browse by category</p>
+        {group.categoryLinks.map((cat) => {
+          const active = location.pathname.startsWith(cat.path);
+          return (
+            <Link
+              key={cat.id}
+              to={cat.path}
+              role="menuitem"
+              className={`nb-drop-item${active ? " nb-drop-active" : ""}`}
+              onClick={onClose}
+            >
+              <span className="nb-drop-icon" style={{ background: cat.iconBg }}>
+                {cat.icon}
+              </span>
+              <span className="nb-drop-text">
+                <span
+                  className="nb-drop-label"
+                  style={{ color: active ? "var(--accent)" : "var(--text-primary)" }}
+                >
+                  {cat.name}
+                </span>
+                <span className="nb-drop-tagline">{cat.tagline}</span>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    );
+  }
 
   // Multi-level: render sub-category section headers with tools beneath each
   if (group.groups) {
@@ -340,7 +379,9 @@ export default function Navbar() {
           >
             {GROUPS.map((group) => {
               const isOpen   = openDropdown === group.id;
-              const isActive = group.tools.some((t) => t.path === location.pathname);
+              const isActive = group.categoryLinks
+                ? location.pathname.startsWith("/calculators")
+                : group.tools.some((t) => t.path === location.pathname);
 
               return (
                 <div key={group.id} style={{ position: "relative" }}>
@@ -445,7 +486,9 @@ export default function Navbar() {
           >
             {GROUPS.map((group) => {
               const isExpanded = mobileExpanded === group.id;
-              const isActive   = group.tools.some((t) => t.path === location.pathname);
+              const isActive   = group.categoryLinks
+                ? location.pathname.startsWith("/calculators")
+                : group.tools.some((t) => t.path === location.pathname);
 
               return (
                 <div key={group.id}>
@@ -491,12 +534,43 @@ export default function Navbar() {
                   {/* Accordion body — max-height for smooth expand/collapse */}
                   <div style={{
                     maxHeight: isExpanded
-                      ? `${group.tools.length * 75 + (group.groups ? group.groups.length * 36 : 0)}px`
+                      ? group.categoryLinks
+                        ? `${group.categoryLinks.length * 76}px`
+                        : `${group.tools.length * 75 + (group.groups ? group.groups.length * 36 : 0)}px`
                       : 0,
                     overflow: "hidden",
                     transition: "max-height 0.28s ease",
                   }}>
-                    {group.groups ? (
+                    {group.categoryLinks ? (
+                      // Calculator categories: show category page links
+                      group.categoryLinks.map((cat) => {
+                        const active = location.pathname.startsWith(cat.path);
+                        return (
+                          <Link
+                            key={cat.id}
+                            to={cat.path}
+                            className={`nb-mob-tool${active ? " is-active" : ""}`}
+                            onClick={closeMobile}
+                          >
+                            <span style={{
+                              width: 32, height: 32, borderRadius: 8,
+                              background: cat.iconBg, flexShrink: 0,
+                              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16,
+                            }}>
+                              {cat.icon}
+                            </span>
+                            <span>
+                              <span style={{ display: "block", fontSize: 14, fontWeight: 600, lineHeight: 1.3 }}>
+                                {cat.name}
+                              </span>
+                              <span style={{ display: "block", fontSize: 11.5, color: "var(--text-muted)", marginTop: 2, lineHeight: 1.3 }}>
+                                {getCategoryCalculators(cat).length} calculators
+                              </span>
+                            </span>
+                          </Link>
+                        );
+                      })
+                    ) : group.groups ? (
                       // Grouped: sub-category headers with tools beneath each
                       group.groups.map((subGroup) => (
                         <div key={subGroup.id}>

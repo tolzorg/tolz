@@ -16,37 +16,11 @@ export default function ToolCard({ tool, animDelay = 0 }) {
         flexDirection: "column",
         gap: 14,
         transition: "all 0.18s ease",
+        width: "100%",
+        height: "100%",
+        boxSizing: "border-box",
       }}
     >
-      {/* Badge (top right) */}
-      {tool.badge && (
-        <span
-          style={{
-            position: "absolute",
-            top: 14,
-            right: 14,
-            padding: "2px 8px",
-            borderRadius: 99,
-            fontSize: 11,
-            fontWeight: 700,
-            fontFamily: "var(--font-display)",
-            background:
-              tool.badgeType === "red"
-                ? "#fff0f0"
-                : tool.badgeType === "green"
-                ? "#f0fdf4"
-                : "#f3f3f5",
-            color:
-              tool.badgeType === "red"
-                ? "#ff5a5f"
-                : tool.badgeType === "green"
-                ? "#22c55e"
-                : "#8888a0",
-          }}
-        >
-          {tool.badge}
-        </span>
-      )}
 
       {/* Icon + title row */}
       <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
@@ -150,7 +124,7 @@ export default function ToolCard({ tool, animDelay = 0 }) {
   if (!isAvailable) return card;
 
   return (
-    <Link to={tool.path} style={{ textDecoration: "none", display: "block" }}>
+    <Link to={tool.path} style={{ textDecoration: "none", display: "flex", height: "100%" }}>
       {card}
     </Link>
   );

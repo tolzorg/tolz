@@ -34,6 +34,10 @@ const TermsPage                    = lazy(() => import("./pages/TermsPage"));
 const AboutPage                    = lazy(() => import("./pages/AboutPage"));
 const ContactPage                  = lazy(() => import("./pages/ContactPage"));
 const NotFoundPage                 = lazy(() => import("./pages/NotFoundPage"));
+const CalculatorCategoryPage          = lazy(() => import("./pages/CalculatorCategoryPage"));
+const AluminumWeightCalculatorPage    = lazy(() => import("./pages/AluminumWeightCalculatorPage"));
+const RebarCalculatorPage             = lazy(() => import("./pages/RebarCalculatorPage"));
+const BalusterCalculatorPage          = lazy(() => import("./pages/BalusterCalculatorPage"));
 
 // Page loader
 function PageLoader() {
@@ -137,6 +141,27 @@ export default function App() {
                 <Route path="/tools/sqft-to-cubic-yards"          element={<SqftToCubicYardsPage />} />
                 <Route path="/tools/square-footage-calculator"    element={<SquareFootageCalculatorPage />} />
                 <Route path="/tools/square-yards-calculator"      element={<SquareYardsCalculatorPage />} />
+                <Route path="/tools/aluminum-weight-calculator"   element={<AluminumWeightCalculatorPage />} />
+                {/* ── Calculator category pages ─────────────────────────── */}
+                <Route path="/calculators/:categorySlug"                           element={<CalculatorCategoryPage />} />
+
+                {/* ── Individual calculator pages (new canonical URLs) ───── */}
+                <Route path="/calculators/health/calorie-tracker"                  element={<CalorieTrackerPage />} />
+                <Route path="/calculators/health/sleep-calculator"                 element={<SleepCalculatorPage />} />
+                <Route path="/calculators/everyday-life/anniversary"               element={<AnniversaryCalculatorPage />} />
+                <Route path="/calculators/everyday-life/destiny-matrix"            element={<DestinyMatrixPage />} />
+                <Route path="/calculators/construction/square-footage"             element={<SquareFootageCalculatorPage />} />
+                <Route path="/calculators/construction/square-yards"               element={<SquareYardsCalculatorPage />} />
+                <Route path="/calculators/construction/cubic-yard"                 element={<CubicYardCalculatorPage />} />
+                <Route path="/calculators/construction/sqft-to-cubic-yards"        element={<SqftToCubicYardsPage />} />
+                <Route path="/calculators/construction/gallons"                    element={<GallonsCalculatorPage />} />
+                <Route path="/calculators/construction/board-foot"                 element={<BoardFootCalculatorPage />} />
+                <Route path="/calculators/construction/size-to-weight"             element={<SizeToWeightCalculatorPage />} />
+                <Route path="/calculators/construction/aluminum-weight"            element={<AluminumWeightCalculatorPage />} />
+                <Route path="/calculators/construction-materials/aluminum-weight"  element={<AluminumWeightCalculatorPage />} />
+                <Route path="/calculators/construction/rebar"                      element={<RebarCalculatorPage />} />
+                <Route path="/calculators/construction/baluster"                   element={<BalusterCalculatorPage />} />
+
                 <Route path="/privacy"                             element={<PrivacyPage />} />
                 <Route path="/terms"                               element={<TermsPage />} />
                 <Route path="/about"                               element={<AboutPage />} />

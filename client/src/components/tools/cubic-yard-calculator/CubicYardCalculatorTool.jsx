@@ -91,10 +91,15 @@ function SectionCard({ id, title, icon, open, onToggle, children, noPad }) {
   );
 }
 
-function FieldGroup({ label, error, children }) {
+function FieldGroup({ label, error, hint, children }) {
   return (
     <div>
-      <label style={LBL}>{label}</label>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
+        <label style={{ ...LBL, marginBottom: 0 }}>{label}</label>
+        {hint && (
+          <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>ⓘ</span>
+        )}
+      </div>
       {children}
       {error && <p style={{ fontSize: 11.5, color: "var(--error)", fontFamily: "var(--font-display)", fontWeight: 500, marginTop: 5 }}>{error}</p>}
     </div>
@@ -286,7 +291,7 @@ export default function CubicYardCalculatorTool() {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
 
           {/* Shape selector */}
-          <FieldGroup label="Select Shape">
+          <FieldGroup label="Select Shape" hint="Choose the 3D shape of the area you're filling. Dimension inputs update automatically to match the selected shape.">
             <select value={shapeId} onChange={(e) => setShapeId(e.target.value)}
               style={{ ...SELECT, width: "100%" }}>
               {SHAPES.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
@@ -350,7 +355,7 @@ export default function CubicYardCalculatorTool() {
           </div>
 
           {/* Quantity */}
-          <FieldGroup label="Quantity" error={qTouched ? qError : null}>
+          <FieldGroup label="Quantity" hint="Number of identical sections or areas. Total volume = Volume per section × Quantity." error={qTouched ? qError : null}>
             <input
               type="number" inputMode="numeric" min="1" step="1"
               value={quantity} placeholder="1"
@@ -428,7 +433,7 @@ export default function CubicYardCalculatorTool() {
       {/* ── Material Estimator ── */}
       <SectionCard id="material" title="Material Estimator" icon="🏗️" open={openSections.has("material")} onToggle={toggleSection}>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <FieldGroup label="Select Material">
+          <FieldGroup label="Select Material" hint="Used to estimate the total weight of material needed. Density values are approximate — verify with your supplier.">
             <select value={selectedMaterial} onChange={(e) => setSelectedMaterial(e.target.value)} style={{ ...SELECT, width: "100%", maxWidth: 280 }}>
               {MATERIALS.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
             </select>

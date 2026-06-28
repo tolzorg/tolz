@@ -5,3 +5,4 @@ server/bin/yt-dlp
 server/bin/ffmpeg
 server/bin/ffprobe
 client/dist/
+.claude/

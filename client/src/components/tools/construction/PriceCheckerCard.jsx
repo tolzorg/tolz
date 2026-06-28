@@ -241,7 +241,7 @@ export default function PriceCheckerCard({
               {/* ── Inputs row ── */}
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <div style={{ flex: "2 1 160px", minWidth: 0 }}>
-                  <FieldGroup label="Unit Price" hint="Price per selected quantity unit" error={priceErr}>
+                  <FieldGroup label="Unit Price" hint="Cost for one unit of the selected quantity (e.g., price per kg or per yd²). Enter the price your supplier quotes." error={priceErr}>
                     <input
                       type="number" inputMode="decimal" min="0" step="any"
                       value={price} placeholder="0.00"
@@ -253,7 +253,7 @@ export default function PriceCheckerCard({
                   </FieldGroup>
                 </div>
                 <div style={{ flex: "1 1 130px", minWidth: 0 }}>
-                  <FieldGroup label="Currency">
+                  <FieldGroup label="Currency" hint="Display currency for the total cost estimate. No exchange rate is applied — enter prices already in your local currency.">
                     <select
                       value={currency}
                       onChange={(e) => setCurrency(e.target.value)}
@@ -266,7 +266,7 @@ export default function PriceCheckerCard({
                   </FieldGroup>
                 </div>
                 <div style={{ flex: "1 1 150px", minWidth: 0 }}>
-                  <FieldGroup label="Price Unit">
+                  <FieldGroup label="Price Unit" hint="The unit your supplier quotes the price in. The calculator uses the matching computed quantity to find the total cost.">
                     <select
                       value={resolvedUnit}
                       onChange={(e) => setPriceUnit(e.target.value)}

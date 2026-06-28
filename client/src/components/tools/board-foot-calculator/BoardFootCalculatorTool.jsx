@@ -51,10 +51,15 @@ const SELECT_BASE = {
 
 // ── Sub-components ────────────────────────────────────────────
 
-function FieldGroup({ label, error, children }) {
+function FieldGroup({ label, error, hint, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-      <label style={INPUT_LBL}>{label}</label>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
+        <label style={{ ...INPUT_LBL, marginBottom: 0 }}>{label}</label>
+        {hint && (
+          <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>ⓘ</span>
+        )}
+      </div>
       {children}
       {error && (
         <p style={{
@@ -229,6 +234,7 @@ export default function BoardFootCalculatorTool() {
             <div style={{ flex: "1 1 220px", minWidth: 0 }}>
               <FieldGroup
                 label="Thickness"
+                hint="Nominal thickness of each board (e.g., 1 in for a 1×4, 2 in for a 2×6). Board feet = T × W × L ÷ 12."
                 error={touched.thickness ? errors.thickness : null}
               >
                 <NumberAndUnit
@@ -247,6 +253,7 @@ export default function BoardFootCalculatorTool() {
             <div style={{ flex: "1 1 220px", minWidth: 0 }}>
               <FieldGroup
                 label="Width"
+                hint="Nominal width of each board (e.g., 4 in for a 2×4, 6 in for a 2×6). Use the actual measured width for precision."
                 error={touched.width ? errors.width : null}
               >
                 <NumberAndUnit
@@ -268,6 +275,7 @@ export default function BoardFootCalculatorTool() {
             <div style={{ flex: "1 1 220px", minWidth: 0 }}>
               <FieldGroup
                 label="Length"
+                hint="Actual length of each board. Common stock lengths are 8 ft, 10 ft, 12 ft, and 16 ft."
                 error={touched.length ? errors.length : null}
               >
                 <NumberAndUnit
@@ -286,6 +294,7 @@ export default function BoardFootCalculatorTool() {
             <div style={{ flex: "1 1 220px", minWidth: 0 }}>
               <FieldGroup
                 label="Quantity (boards)"
+                hint="Number of boards with these exact dimensions. Total board feet = Board feet per board × Quantity."
                 error={touched.quantity ? errors.quantity : null}
               >
                 <input

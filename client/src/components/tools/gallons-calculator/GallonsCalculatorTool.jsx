@@ -433,7 +433,7 @@ export default function GallonsCalculatorTool() {
             </div>
           </div>
         ) : (
-          <FieldGroup label="Area" error={dAreaErr}>
+          <FieldGroup label="Area" hint="Enter the surface area to be coated or filled. Switch to 'Length × Width' mode above to calculate from dimensions." error={dAreaErr}>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <input
                 type="number" inputMode="decimal" min="0" step="any"
@@ -475,7 +475,7 @@ export default function GallonsCalculatorTool() {
 
       {/* ── Height / Thickness ── */}
       <SectionCard id="height" title="Height / Thickness" icon="↕️" open={open.has("height")} onToggle={toggleSection}>
-        <FieldGroup label="Height / Thickness" hint="Liquid depth or coating thickness" error={heightErr}>
+        <FieldGroup label="Height / Thickness" hint="For coatings (paint, epoxy, sealer): the applied film thickness in mils or mm. For liquids (pond, pool): the water depth in inches or feet." error={heightErr}>
           <DimensionInput
             val={heightVal} setVal={setHeightVal}
             unit={heightUnit} setUnit={setHeightUnit}
