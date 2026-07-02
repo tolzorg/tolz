@@ -38,6 +38,8 @@ const CalculatorCategoryPage          = lazy(() => import("./pages/CalculatorCat
 const AluminumWeightCalculatorPage    = lazy(() => import("./pages/AluminumWeightCalculatorPage"));
 const RebarCalculatorPage             = lazy(() => import("./pages/RebarCalculatorPage"));
 const BalusterCalculatorPage          = lazy(() => import("./pages/BalusterCalculatorPage"));
+const RetainingWallCalculatorPage     = lazy(() => import("./pages/RetainingWallCalculatorPage"));
+const BoardAndBattenCalculatorPage    = lazy(() => import("./components/tools/board-and-batten-calculator/BoardAndBattenCalculatorPage"));
 
 // Page loader
 function PageLoader() {
@@ -161,6 +163,8 @@ export default function App() {
                 <Route path="/calculators/construction-materials/aluminum-weight"  element={<AluminumWeightCalculatorPage />} />
                 <Route path="/calculators/construction/rebar"                      element={<RebarCalculatorPage />} />
                 <Route path="/calculators/construction/baluster"                   element={<BalusterCalculatorPage />} />
+                <Route path="/calculators/construction/retaining-wall"            element={<RetainingWallCalculatorPage />} />
+                <Route path="/calculators/construction/board-and-batten"         element={<BoardAndBattenCalculatorPage />} />
 
                 <Route path="/privacy"                             element={<PrivacyPage />} />
                 <Route path="/terms"                               element={<TermsPage />} />
