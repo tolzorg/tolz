@@ -37,6 +37,9 @@ const NotFoundPage                 = lazy(() => import("./pages/NotFoundPage"));
 const CalculatorCategoryPage          = lazy(() => import("./pages/CalculatorCategoryPage"));
 const AluminumWeightCalculatorPage    = lazy(() => import("./pages/AluminumWeightCalculatorPage"));
 const RebarCalculatorPage             = lazy(() => import("./pages/RebarCalculatorPage"));
+const RipRapCalculatorPage            = lazy(() => import("./pages/RipRapCalculatorPage"));
+const BrickCalculatorPage             = lazy(() => import("./pages/BrickCalculatorPage"));
+const RiverRockCalculatorPage         = lazy(() => import("./pages/RiverRockCalculatorPage"));
 const BalusterCalculatorPage          = lazy(() => import("./pages/BalusterCalculatorPage"));
 const RetainingWallCalculatorPage     = lazy(() => import("./pages/RetainingWallCalculatorPage"));
 const BoardAndBattenCalculatorPage    = lazy(() => import("./components/tools/board-and-batten-calculator/BoardAndBattenCalculatorPage"));
@@ -162,6 +165,9 @@ export default function App() {
                 <Route path="/calculators/construction/aluminum-weight"            element={<AluminumWeightCalculatorPage />} />
                 <Route path="/calculators/construction-materials/aluminum-weight"  element={<AluminumWeightCalculatorPage />} />
                 <Route path="/calculators/construction/rebar"                      element={<RebarCalculatorPage />} />
+                <Route path="/calculators/construction/rip-rap"                   element={<RipRapCalculatorPage />} />
+                <Route path="/calculators/construction/brick"                     element={<BrickCalculatorPage />} />
+                <Route path="/calculators/construction/river-rock"               element={<RiverRockCalculatorPage />} />
                 <Route path="/calculators/construction/baluster"                   element={<BalusterCalculatorPage />} />
                 <Route path="/calculators/construction/retaining-wall"            element={<RetainingWallCalculatorPage />} />
                 <Route path="/calculators/construction/board-and-batten"         element={<BoardAndBattenCalculatorPage />} />
