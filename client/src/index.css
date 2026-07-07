@@ -388,3 +388,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 @media (min-width: 641px) {
   .mobile-only { display: none !important; }
 }
+
+/* ── Number inputs: hide spinner arrows site-wide ─────────────
+   Calculators rely on free-form typed values (including negative
+   numbers where valid); the browser's increment/decrement stepper
+   is purely cosmetic and doesn't affect the underlying input value. */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

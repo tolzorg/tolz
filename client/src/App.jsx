@@ -7,6 +7,7 @@ import { Spinner } from "./components/ui";
 // Lazy-loaded pages
 const HomePage                = lazy(() => import("./pages/HomePage"));
 const ImageCompressorPage     = lazy(() => import("./pages/ImageCompressorPage"));
+const IdPhotoGeneratorPage    = lazy(() => import("./pages/IdPhotoGeneratorPage"));
 const ImageConverterPage      = lazy(() => import("./pages/ImageConverterPage"));
 const ImageConverterSubPage   = lazy(() => import("./pages/ImageConverterSubPage"));
 const PdfMergePage            = lazy(() => import("./pages/PdfMergePage"));
@@ -43,6 +44,17 @@ const RiverRockCalculatorPage         = lazy(() => import("./pages/RiverRockCalc
 const BalusterCalculatorPage          = lazy(() => import("./pages/BalusterCalculatorPage"));
 const RetainingWallCalculatorPage     = lazy(() => import("./pages/RetainingWallCalculatorPage"));
 const BoardAndBattenCalculatorPage    = lazy(() => import("./components/tools/board-and-batten-calculator/BoardAndBattenCalculatorPage"));
+const DeckingCalculatorPage           = lazy(() => import("./pages/DeckingCalculatorPage"));
+const RollingOffsetCalculatorPage     = lazy(() => import("./pages/RollingOffsetCalculatorPage"));
+const DiyShedCostCalculatorPage       = lazy(() => import("./pages/DiyShedCostCalculatorPage"));
+const SagCalculatorPage               = lazy(() => import("./pages/SagCalculatorPage"));
+const DrywallCalculatorPage           = lazy(() => import("./pages/DrywallCalculatorPage"));
+const SandCalculatorPage              = lazy(() => import("./pages/SandCalculatorPage"));
+const FireGlassCalculatorPage         = lazy(() => import("./pages/FireGlassCalculatorPage"));
+const SealantCalculatorPage           = lazy(() => import("./pages/SealantCalculatorPage"));
+const FramingCalculatorPage           = lazy(() => import("./pages/FramingCalculatorPage"));
+const SonotubeCalculatorPage          = lazy(() => import("./pages/SonotubeCalculatorPage"));
+const FrenchDrainCalculatorPage       = lazy(() => import("./pages/FrenchDrainCalculatorPage"));
 
 // Page loader
 function PageLoader() {
@@ -124,6 +136,7 @@ export default function App() {
               <Routes>
                 <Route path="/"                                        element={<HomePage />} />
                 <Route path="/tools/image-compressor"              element={<ImageCompressorPage />} />
+                <Route path="/tools/id-photo-generator"             element={<IdPhotoGeneratorPage />} />
                 <Route path="/tools/image-converter"               element={<ImageConverterPage />} />
                 <Route path="/tools/image-converter/:toolId"       element={<ImageConverterSubPage />} />
                 <Route path="/tools/pdf-merge"                     element={<PdfMergePage />} />
@@ -171,6 +184,17 @@ export default function App() {
                 <Route path="/calculators/construction/baluster"                   element={<BalusterCalculatorPage />} />
                 <Route path="/calculators/construction/retaining-wall"            element={<RetainingWallCalculatorPage />} />
                 <Route path="/calculators/construction/board-and-batten"         element={<BoardAndBattenCalculatorPage />} />
+                <Route path="/calculators/construction/decking"                   element={<DeckingCalculatorPage />} />
+                <Route path="/calculators/construction/rolling-offset"           element={<RollingOffsetCalculatorPage />} />
+                <Route path="/calculators/construction/diy-shed-cost"            element={<DiyShedCostCalculatorPage />} />
+                <Route path="/calculators/construction/sag"                      element={<SagCalculatorPage />} />
+                <Route path="/calculators/construction/drywall"                  element={<DrywallCalculatorPage />} />
+                <Route path="/calculators/construction/sand"                     element={<SandCalculatorPage />} />
+                <Route path="/calculators/construction/fire-glass"               element={<FireGlassCalculatorPage />} />
+                <Route path="/calculators/construction/sealant"                  element={<SealantCalculatorPage />} />
+                <Route path="/calculators/construction/framing"                  element={<FramingCalculatorPage />} />
+                <Route path="/calculators/construction/sonotube"                 element={<SonotubeCalculatorPage />} />
+                <Route path="/calculators/construction/french-drain"             element={<FrenchDrainCalculatorPage />} />
 
                 <Route path="/privacy"                             element={<PrivacyPage />} />
                 <Route path="/terms"                               element={<TermsPage />} />

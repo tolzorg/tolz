@@ -1,11 +1,12 @@
 import { useState, useMemo, useRef } from "react";
 import {
-  ROCK_TYPES, LENGTH_UNITS, DEPTH_UNITS,
+  LENGTH_UNITS, DEPTH_UNITS,
   AREA_OUT_UNITS, VOLUME_OUT_UNITS, WEIGHT_OUT_UNITS, DENSITY_UNITS, CURRENCIES,
+  DEFAULT_DENSITY_KGM3,
   toLengthM, toDepthM, toDensityKgM3,
-  fromM2, fromM3, fromKgRR,
-  calcRiverRock, fmtRock,
-} from "../../../utils/riverRockCalc";
+  fromM2, fromM3, fromKgSand,
+  calcSand, fmtSand,
+} from "../../../utils/sandCalc";
 
 // ── Style tokens ──────────────────────────────────────────────────
 const FONT   = "var(--font-display)";
@@ -78,46 +79,32 @@ function CompoundField({
   placeholder = "0",
   hasError = false,
   isOutput = false,
-  unitLabel = null,
-  readOnlyInput = false,
 }) {
-  const actual_output = isOutput || readOnlyInput;
-  const borderColor = actual_output ? "#bfdbfe" : hasError ? "var(--error)" : BORDER;
+  const borderColor = isOutput ? "#bfdbfe" : hasError ? "var(--error)" : BORDER;
   return (
     <div style={{
       display: "flex", alignItems: "stretch",
       border: `1.5px solid ${borderColor}`, borderRadius: RADIUS, overflow: "hidden",
     }}>
       <input
-        type={actual_output ? "text" : "number"}
+        type={isOutput ? "text" : "number"}
         inputMode="decimal" step="any" min="0"
         value={value}
-        readOnly={actual_output}
+        readOnly={isOutput}
         placeholder={placeholder}
-        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
-        onBlur={!actual_output ? onBlur : undefined}
-        style={actual_output ? OUTPUT_BASE : INPUT_BASE}
+        onChange={onChange && !isOutput ? (e) => onChange(e.target.value) : undefined}
+        onBlur={!isOutput ? onBlur : undefined}
+        style={isOutput ? OUTPUT_BASE : INPUT_BASE}
       />
-      {unitLabel ? (
-        <span style={{
-          display: "flex", alignItems: "center",
+      <select value={unit} onChange={(e) => onUnitChange(e.target.value)}
+        style={{
+          ...SELECT_BASE,
           borderLeft: `1.5px solid ${borderColor}`,
-          padding: "0 13px",
-          background: actual_output ? "#eff6ff" : "var(--bg-muted)",
-          color: actual_output ? "#1d4ed8" : "var(--text-muted)",
-          fontFamily: FONT, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0,
-        }}>{unitLabel}</span>
-      ) : (
-        <select value={unit} onChange={(e) => onUnitChange(e.target.value)}
-          style={{
-            ...SELECT_BASE,
-            borderLeft: `1.5px solid ${borderColor}`,
-            backgroundColor: actual_output ? "#eff6ff" : "var(--bg-muted)",
-            color: actual_output ? "#1d4ed8" : "var(--text-primary)",
-          }}>
-          {(units || []).map((u) => <option key={u.id} value={u.id}>{u.label}</option>)}
-        </select>
-      )}
+          backgroundColor: isOutput ? "#eff6ff" : "var(--bg-muted)",
+          color: isOutput ? "#1d4ed8" : "var(--text-primary)",
+        }}>
+        {(units || []).map((u) => <option key={u.id} value={u.id}>{u.label}</option>)}
+      </select>
     </div>
   );
 }
@@ -214,12 +201,7 @@ const Divider = () => <div style={{ height: 1, background: BORDER, margin: "2px 
 // ════════════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ════════════════════════════════════════════════════════════════════
-export default function RiverRockCalculatorTool() {
-
-  // ── Rock specifications ───────────────────────────────────────────
-  const [rockTypeId,  setRockTypeId]  = useState("standard-river-rock");
-  const [densityStr,  setDensityStr]  = useState("1425");
-  const [densityUnit, setDensityUnit] = useState("kg/m3");
+export default function SandCalculatorTool() {
 
   // ── Coverage inputs ───────────────────────────────────────────────
   const [length,      setLength]      = useState("");
@@ -229,25 +211,26 @@ export default function RiverRockCalculatorTool() {
   const [areaOutUnit, setAreaOutUnit] = useState("m2");
   const [depth,       setDepth]       = useState("");
   const [depUnit,     setDepUnit]     = useState("cm");
-  const [volUnit,     setVolUnit]     = useState("m3");
-  const [wastage,     setWastage]     = useState("5");
   const [volNeedUnit, setVolNeedUnit] = useState("m3");
-  const [wgtUnit,     setWgtUnit]     = useState("t");
+
+  // ── Density ────────────────────────────────────────────────────────
+  const [densityStr,  setDensityStr]  = useState(String(DEFAULT_DENSITY_KGM3));
+  const [densityUnit, setDensityUnit] = useState("kg/m3");
+  const [wgtUnit,      setWgtUnit]    = useState("t");
 
   // ── Cost inputs ───────────────────────────────────────────────────
   const [priceMass,     setPriceMass]     = useState("");
-  const [priceMassCur,  setPriceMassCur]  = useState("USD");
+  const [priceMassCur,  setPriceMassCur]  = useState("PKR");
   const [priceMassUnit, setPriceMassUnit] = useState("t");
   const [priceVol,      setPriceVol]      = useState("");
-  const [priceVolCur,   setPriceVolCur]   = useState("USD");
+  const [priceVolCur,   setPriceVolCur]   = useState("PKR");
   const [priceVolUnit,  setPriceVolUnit]  = useState("m3");
-  const [costCur,       setCostCur]       = useState("USD");
+  const [costCur,       setCostCur]       = useState("PKR");
 
   // ── Section open state ────────────────────────────────────────────
-  const [specsOpen, setSpecsOpen] = useState(true);
-  const [needOpen,  setNeedOpen]  = useState(true);
-  const [costOpen,  setCostOpen]  = useState(true);
-  const [typesOpen, setTypesOpen] = useState(true);
+  const [needOpen, setNeedOpen] = useState(true);
+  const [costOpen, setCostOpen] = useState(true);
+  const [infoOpen, setInfoOpen] = useState(true);
 
   // ── Misc ──────────────────────────────────────────────────────────
   const [touched,  setTouched]  = useState({});
@@ -256,49 +239,28 @@ export default function RiverRockCalculatorTool() {
   const shareTimer = useRef(null);
   const touch = (k) => setTouched((p) => ({ ...p, [k]: true }));
 
-  // ── Rock type change — auto-fill density ──────────────────────────
-  const handleRockTypeChange = (id) => {
-    setRockTypeId(id);
-    const rt = ROCK_TYPES.find((r) => r.id === id);
-    if (rt?.densityKgM3 != null) {
-      setDensityStr(String(rt.densityKgM3));
-      setDensityUnit("kg/m3");
-    } else {
-      setDensityStr("");
-    }
-  };
-
-  const rockType     = useMemo(() => ROCK_TYPES.find((r) => r.id === rockTypeId), [rockTypeId]);
-  const isCustomRock = rockTypeId === "custom";
-
   // ── Derive SI values ──────────────────────────────────────────────
-  const densityKgM3 = useMemo(() => {
-    if (!isCustomRock && rockType?.densityKgM3 != null) return rockType.densityKgM3;
-    return toDensityKgM3(densityStr, densityUnit);
-  }, [isCustomRock, rockType, densityStr, densityUnit]);
-
-  const lengthM  = useMemo(() => toLengthM(length, lenUnit), [length, lenUnit]);
-  const widthM   = useMemo(() => toLengthM(width, widUnit),  [width, widUnit]);
-  const depthM   = useMemo(() => toDepthM(depth, depUnit),   [depth, depUnit]);
-  const wastePct = useMemo(() => { const v = parseFloat(wastage); return isFinite(v) && v >= 0 ? v : 0; }, [wastage]);
+  const lengthM     = useMemo(() => toLengthM(length, lenUnit), [length, lenUnit]);
+  const widthM      = useMemo(() => toLengthM(width, widUnit),  [width, widUnit]);
+  const depthM      = useMemo(() => toDepthM(depth, depUnit),   [depth, depUnit]);
+  const densityKgM3 = useMemo(() => toDensityKgM3(densityStr, densityUnit), [densityStr, densityUnit]);
 
   // ── Calculate ─────────────────────────────────────────────────────
-  const result = useMemo(() => calcRiverRock({
-    lengthM, widthM, depthM, densityKgM3, wastagePct: wastePct,
-  }), [lengthM, widthM, depthM, densityKgM3, wastePct]);
+  const result = useMemo(() => calcSand({
+    lengthM, widthM, depthM, densityKgM3,
+  }), [lengthM, widthM, depthM, densityKgM3]);
 
   // ── Display values ────────────────────────────────────────────────
-  const dispArea     = result ? fmtRock(fromM2(result.areaM2, areaOutUnit), 4)        : "";
-  const dispVol      = result ? fmtRock(fromM3(result.volumeM3, volUnit), 4)           : "";
-  const dispVolNeed  = result ? fmtRock(fromM3(result.volumeNeededM3, volNeedUnit), 4) : "";
-  const dispWgt      = result?.weightNeededKg != null
-    ? fmtRock(fromKgRR(result.weightNeededKg, wgtUnit), 3) : "";
+  const dispArea    = result ? fmtSand(fromM2(result.areaM2, areaOutUnit), 4)          : "";
+  const dispVolNeed = result ? fmtSand(fromM3(result.volumeNeededM3, volNeedUnit), 4)  : "";
+  const dispWgt     = result?.weightNeededKg != null
+    ? fmtSand(fromKgSand(result.weightNeededKg, wgtUnit), 3) : "";
 
   // ── Total cost ────────────────────────────────────────────────────
   const totalCost = useMemo(() => {
     const pm = parseFloat(priceMass);
     if (isFinite(pm) && pm > 0 && result?.weightNeededKg != null) {
-      const wInUnit = fromKgRR(result.weightNeededKg, priceMassUnit);
+      const wInUnit = fromKgSand(result.weightNeededKg, priceMassUnit);
       return wInUnit * pm;
     }
     const pv = parseFloat(priceVol);
@@ -309,7 +271,7 @@ export default function RiverRockCalculatorTool() {
     return null;
   }, [priceMass, priceMassUnit, priceVol, priceVolUnit, result]);
 
-  const dispCost = totalCost !== null ? fmtRock(totalCost, 2) : "";
+  const dispCost = totalCost !== null ? fmtSand(totalCost, 2) : "";
 
   // ── Validation ────────────────────────────────────────────────────
   const lenErr = touched.len && (length === "" || parseFloat(length) <= 0)
@@ -318,24 +280,24 @@ export default function RiverRockCalculatorTool() {
     ? "Please enter a positive value for the width." : null;
   const depErr = touched.dep && (depth === "" || parseFloat(depth) <= 0)
     ? "Please enter a positive value for the depth." : null;
-  const denErr = isCustomRock && touched.den && (densityStr === "" || parseFloat(densityStr) <= 0)
+  const denErr = touched.den && (densityStr === "" || parseFloat(densityStr) <= 0)
     ? "Please enter a positive density value." : null;
 
   // ── Actions ───────────────────────────────────────────────────────
   function handleClear() {
-    setLength(""); setWidth(""); setDepth(""); setWastage("5");
+    setLength(""); setWidth(""); setDepth("");
+    setDensityStr(String(DEFAULT_DENSITY_KGM3));
     setPriceMass(""); setPriceVol("");
     setTouched({}); setFeedback(null); setShared(false);
   }
   function handleReload() {
     handleClear();
-    setRockTypeId("custom"); setDensityStr(""); setDensityUnit("kg/m3");
+    setDensityUnit("kg/m3");
     setLenUnit("m"); setWidUnit("m"); setDepUnit("cm");
-    setAreaOutUnit("m2"); setVolUnit("m3"); setVolNeedUnit("m3"); setWgtUnit("t");
-    setPriceMassCur("USD"); setPriceMasUnit("t");
-    setPriceVolCur("USD"); setPriceVolUnit("m3"); setCostCur("USD");
+    setAreaOutUnit("m2"); setVolNeedUnit("m3"); setWgtUnit("t");
+    setPriceMassCur("PKR"); setPriceMassUnit("t");
+    setPriceVolCur("PKR"); setPriceVolUnit("m3"); setCostCur("PKR");
   }
-  function setPriceMasUnit(v) { setPriceMassUnit(v); }
   function handleShare() {
     navigator.clipboard.writeText(window.location.href).catch(() => {});
     setShared(true);
@@ -348,76 +310,17 @@ export default function RiverRockCalculatorTool() {
     <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
-          SECTION 1 — River rock specifications
-          ════════════════════════════════════════════════════════════ */}
-      <div className="card" style={{ overflow: "hidden" }}>
-        <SectionHeader open={specsOpen} onToggle={() => setSpecsOpen(!specsOpen)}
-          title="River rock specifications" />
-        {specsOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
-
-            {/* Rock type dropdown */}
-            <Field label="Rock type"
-              hint="Select a preset rock type to auto-fill its bulk density, or choose Custom to enter your own.">
-              <div style={{
-                display: "flex", alignItems: "stretch",
-                border: `1.5px solid ${BORDER}`, borderRadius: RADIUS, overflow: "hidden",
-              }}>
-                <select
-                  value={rockTypeId}
-                  onChange={(e) => handleRockTypeChange(e.target.value)}
-                  style={{
-                    ...SELECT_BASE,
-                    width: "100%", minWidth: 0, padding: "10px 32px 10px 12px",
-                    backgroundColor: "var(--bg-white)", color: "var(--text-primary)",
-                    fontFamily: FONT, fontWeight: 600, fontSize: 14,
-                  }}
-                >
-                  {ROCK_TYPES.map((r) => <option key={r.id} value={r.id}>{r.label}</option>)}
-                </select>
-              </div>
-            </Field>
-
-            <Divider />
-
-            {/* Density */}
-            <Field label="Density"
-              hint="Bulk density of the rock fill. Auto-filled for preset types; enter manually for Custom."
-              error={denErr}>
-              <CompoundField
-                value={densityStr}
-                onChange={isCustomRock ? setDensityStr : undefined}
-                onBlur={() => touch("den")}
-                unit={densityUnit}
-                onUnitChange={isCustomRock ? setDensityUnit : undefined}
-                units={DENSITY_UNITS}
-                placeholder="e.g. 1680"
-                isOutput={!isCustomRock}
-                hasError={!!denErr}
-              />
-              {!isCustomRock && rockType?.densityKgM3 != null && (
-                <span style={{ fontFamily: FONT, fontSize: 11.5, color: "#1d4ed8", fontWeight: 600 }}>
-                  Auto-filled from rock type: {rockType.densityKgM3} kg/m³
-                </span>
-              )}
-            </Field>
-
-          </div>
-        )}
-      </div>
-
-      {/* ════════════════════════════════════════════════════════════
-          SECTION 2 — How much river rock do you need?
+          SECTION 1 — How much sand do you need?
           ════════════════════════════════════════════════════════════ */}
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={needOpen} onToggle={() => setNeedOpen(!needOpen)}
-          title="How much river rock do you need?" />
+          title="How much sand do you need?" />
         {needOpen && (
           <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Length */}
             <Field label="Length"
-              hint="Length of the area to cover with river rock."
+              hint="Length of the area to cover with sand."
               error={lenErr}>
               <CompoundField
                 value={length} onChange={setLength} onBlur={() => touch("len")}
@@ -430,7 +333,6 @@ export default function RiverRockCalculatorTool() {
 
             {/* Width */}
             <Field label="Width"
-              hint="Width of the area. Together with length, this gives the coverage area."
               error={widErr}>
               <CompoundField
                 value={width} onChange={setWidth} onBlur={() => touch("wid")}
@@ -443,7 +345,7 @@ export default function RiverRockCalculatorTool() {
 
             {/* Area — output */}
             <Field label="Area"
-              hint="Computed as Length × Width. This is the surface area to cover."
+              hint="Computed as Length × Width."
               note={result === null ? "Enter length and width to compute area." : undefined}>
               <CompoundField
                 value={dispArea}
@@ -456,7 +358,7 @@ export default function RiverRockCalculatorTool() {
 
             {/* Depth */}
             <Field label="Depth"
-              hint="Thickness of the river rock layer. Recommended: 5–10 cm for paths, 10–15 cm for drainage."
+              hint="Thickness of the sand layer."
               error={depErr}>
               <CompoundField
                 value={depth} onChange={setDepth} onBlur={() => touch("dep")}
@@ -467,34 +369,10 @@ export default function RiverRockCalculatorTool() {
 
             <Divider />
 
-            {/* Volume — output */}
-            <Field label="Volume"
-              hint="Net volume = Area × Depth (before adding wastage)."
-              note={result === null ? "Enter length, width, and depth to compute volume." : undefined}>
-              <CompoundField
-                value={dispVol}
-                unit={volUnit} onUnitChange={setVolUnit} units={VOLUME_OUT_UNITS}
-                placeholder="—" isOutput
-              />
-            </Field>
-
-            <Divider />
-
-            {/* Wastage */}
-            <Field label="Wastage"
-              hint="Extra material to account for uneven surfaces, spillage, and settling. Typical: 5–15%.">
-              <CompoundField
-                value={wastage} onChange={setWastage} onBlur={() => {}}
-                unitLabel="%" placeholder="5"
-              />
-            </Field>
-
-            <Divider />
-
             {/* Volume needed — output */}
             <Field label="Volume needed"
-              hint="Volume to order = Volume × (1 + Wastage / 100)."
-              note={result === null ? "Enter all dimensions to compute volume needed." : undefined}>
+              hint="Volume needed = Area × Depth."
+              note={result === null ? "Enter length, width, and depth to compute volume." : undefined}>
               <CompoundField
                 value={dispVolNeed}
                 unit={volNeedUnit} onUnitChange={setVolNeedUnit} units={VOLUME_OUT_UNITS}
@@ -504,11 +382,24 @@ export default function RiverRockCalculatorTool() {
 
             <Divider />
 
+            {/* Density */}
+            <Field label="Density"
+              hint="Bulk density of the sand. Prefilled with a typical dry-sand value — edit it for wet sand or a different material."
+              error={denErr}>
+              <CompoundField
+                value={densityStr} onChange={setDensityStr} onBlur={() => touch("den")}
+                unit={densityUnit} onUnitChange={setDensityUnit} units={DENSITY_UNITS}
+                placeholder="e.g. 1602" hasError={!!denErr}
+              />
+            </Field>
+
+            <Divider />
+
             {/* Weight needed — output */}
             <Field label="Weight needed"
-              hint="Weight = Volume needed × Rock density. Requires density to be set."
+              hint="Weight needed = Volume needed × Density."
               note={result !== null && result.weightNeededKg == null
-                ? "Enter density above to compute weight." : undefined}>
+                ? "Enter a density above to compute weight." : undefined}>
               <CompoundField
                 value={dispWgt}
                 unit={wgtUnit} onUnitChange={setWgtUnit} units={WEIGHT_OUT_UNITS}
@@ -516,42 +407,22 @@ export default function RiverRockCalculatorTool() {
               />
             </Field>
 
-            {/* Result summary cards */}
-            {result && (
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                {[
-                  { lbl: "Area",          val: fmtRock(result.areaM2, 3)          + " m²" },
-                  { lbl: "Net volume",    val: fmtRock(result.volumeM3, 4)        + " m³" },
-                  { lbl: "Order volume",  val: fmtRock(result.volumeNeededM3, 4)  + " m³" },
-                  ...(result.weightNeededKg != null
-                    ? [{ lbl: "Weight", val: fmtRock(result.weightNeededKg / 1000, 3) + " t" }]
-                    : []),
-                ].map(({ lbl, val }) => (
-                  <div key={lbl} className="card"
-                    style={{ flex: "1 1 80px", minWidth: 0, padding: "8px 10px" }}>
-                    <div style={{ fontFamily: FONT, fontWeight: 600, fontSize: 10, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 2 }}>{lbl}</div>
-                    <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 13, color: "#1d4ed8" }}>{val}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-
           </div>
         )}
       </div>
 
       {/* ════════════════════════════════════════════════════════════
-          SECTION 3 — How much will the river rock cost you?
+          SECTION 2 — Sand cost
           ════════════════════════════════════════════════════════════ */}
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={costOpen} onToggle={() => setCostOpen(!costOpen)}
-          title="How much will the river rock cost you?" />
+          title="Sand cost" />
         {costOpen && (
           <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
 
-            {/* Price per unit of mass */}
-            <Field label="Price per one unit of mass"
-              hint="Enter the cost per unit of weight (e.g. price per tonne). Used to compute total cost from weight needed.">
+            {/* Price per weight */}
+            <Field label="Price per weight"
+              hint="Cost per unit of weight (e.g. price per tonne). Used to compute total cost from weight needed.">
               <PriceRow
                 value={priceMass}
                 onChange={setPriceMass}
@@ -565,9 +436,9 @@ export default function RiverRockCalculatorTool() {
 
             <Divider />
 
-            {/* Price per unit of volume */}
-            <Field label="Price per one unit of volume"
-              hint="Enter the cost per unit of volume (e.g. price per m³). Used if price per mass is not set.">
+            {/* Price per volume */}
+            <Field label="Price per volume"
+              hint="Cost per unit of volume (e.g. price per m³). Used if price per weight is not set.">
               <PriceRow
                 value={priceVol}
                 onChange={setPriceVol}
@@ -583,7 +454,7 @@ export default function RiverRockCalculatorTool() {
 
             {/* Total cost — output */}
             <Field label="Total cost"
-              hint="Total cost = Weight needed × Price per mass (preferred), or Volume needed × Price per volume."
+              hint="Total cost = Weight needed × Price per weight (preferred), or Volume needed × Price per volume."
               note={dispCost === "" ? "Enter dimensions and a price above to calculate cost." : undefined}>
               <div style={{
                 display: "flex", alignItems: "stretch",
@@ -618,7 +489,7 @@ export default function RiverRockCalculatorTool() {
               borderRadius: RADIUS, border: `1px solid ${BORDER}`,
             }}>
               <span style={{ fontFamily: FONT, fontWeight: 500, fontSize: 13, color: "var(--text-muted)", flex: "1 1 auto" }}>
-                Did we solve your problem?
+                Did we solve your problem today?
               </span>
               {[{ val: "yes", label: "👍 Yes" }, { val: "no", label: "👎 No" }].map(({ val, label }) => (
                 <button key={val} onClick={() => setFeedback(val)} style={{
@@ -642,73 +513,32 @@ export default function RiverRockCalculatorTool() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════
-          ROCK TYPE REFERENCE TABLE
+          INFO CARD — How is sand calculated?
           ════════════════════════════════════════════════════════════ */}
       <div className="card" style={{ overflow: "hidden" }}>
-        <SectionHeader open={typesOpen} onToggle={() => setTypesOpen(!typesOpen)}
-          title="Different types of river rocks" />
-        {typesOpen && (
+        <SectionHeader open={infoOpen} onToggle={() => setInfoOpen(!infoOpen)}
+          title="How do we calculate sand volume and weight?" />
+        {infoOpen && (
           <div style={{ padding: "16px 20px" }}>
-            <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 13.5, color: "var(--text-primary)", marginBottom: 12 }}>
-              How do we calculate river rock volume and weight?
-            </div>
-
-            {/* Formula box */}
             <div style={{
               background: "var(--bg-muted)", border: `1px solid ${BORDER}`,
               borderRadius: RADIUS, padding: "13px 15px", marginBottom: 10,
             }}>
               {[
                 "Area          = Length × Width",
-                "Volume        = Area × Depth",
-                "Volume needed = Volume × (1 + Wastage / 100)",
-                "Weight needed = Volume needed × Rock density",
+                "Volume needed = Area × Depth",
+                "Weight needed = Volume needed × Density",
+                "Total cost    = Weight needed × Price per weight, or Volume needed × Price per volume",
               ].map((l) => (
                 <div key={l} style={{ fontFamily: FONT, fontWeight: 700, fontSize: 12.5, color: "var(--accent)", marginBottom: 3 }}>{l}</div>
               ))}
             </div>
 
-            {/* Rock density table */}
-            <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 13 }}>
-                <thead>
-                  <tr style={{ background: "var(--bg-muted)" }}>
-                    {["Rock type", "Bulk density (kg/m³)", "Bulk density (lb/ft³)"].map((h) => (
-                      <th key={h} style={{
-                        padding: "7px 12px", textAlign: "left", fontWeight: 700, fontSize: 11,
-                        color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.07em",
-                        borderBottom: `1px solid ${BORDER}`,
-                      }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {ROCK_TYPES.filter((r) => r.id !== "custom").map((r, i, arr) => (
-                    <tr key={r.id}
-                      onClick={() => handleRockTypeChange(r.id)}
-                      style={{
-                        borderBottom: i < arr.length - 1 ? `1px solid ${BORDER}` : "none",
-                        background: rockTypeId === r.id ? "var(--accent-light)" : "transparent",
-                        cursor: "pointer", transition: "background var(--transition)",
-                      }}>
-                      <td style={{ padding: "6px 12px", fontWeight: 700, color: rockTypeId === r.id ? "var(--accent)" : "var(--text-primary)" }}>
-                        {r.label}
-                      </td>
-                      <td style={{ padding: "6px 12px", fontWeight: 600, color: "var(--text-primary)" }}>
-                        {r.densityKgM3}
-                      </td>
-                      <td style={{ padding: "6px 12px", fontWeight: 600, color: "var(--text-primary)" }}>
-                        {fmtRock(r.densityKgM3 / 16.0185, 1)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p style={{ fontFamily: FONT, fontSize: 12, color: "var(--text-muted)", fontWeight: 500, lineHeight: 1.6, margin: "12px 0 0 0" }}>
-              Densities are <strong>bulk (loose fill)</strong> values — actual in-place density varies by rock size and compaction.
-              Always over-order by at least <strong>5–10%</strong> to account for settling, waste, and uneven surfaces.
+            <p style={{ fontFamily: FONT, fontSize: 12, color: "var(--text-muted)", fontWeight: 500, lineHeight: 1.6, margin: 0 }}>
+              The default density (<strong>{fmtSand(DEFAULT_DENSITY_KGM3, 3)} kg/m³</strong>) is a typical value for
+              dry sand — actual density varies by sand type and moisture content. <strong>Wet sand is heavier</strong> than
+              dry sand of the same volume, since water fills the spaces between grains, so increase the density if your
+              sand is damp or wet. A standard sand bag typically holds <strong>30–40 kg (66–88 lb)</strong>.
             </p>
           </div>
         )}

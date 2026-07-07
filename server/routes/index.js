@@ -2,6 +2,7 @@ import express from "express";
 
 // 🔥 Tool routes
 import imageRoutes from "../tools/imageCompressor/routes/imageRoutes.js";
+import idPhotoRoutes from "../tools/idPhoto/routes/idPhotoRoutes.js";
 import imageConverterRoutes from "../tools/imageConverter/routes/imageConverterRoutes.js";
 import pdfMergeRoutes    from "../tools/pdfMerge/routes/pdfMergeRoutes.js";
 import pdfCompressRoutes from "../tools/pdfCompress/routes/pdfCompressRoutes.js";
@@ -17,6 +18,9 @@ const router = express.Router();
 
 // Image Compressor Tool
 router.use("/image", imageRoutes);
+
+// ID Photo Generator (Print Studio) Tool
+router.use("/id-photo", idPhotoRoutes);
 
 // Image Converter Tool
 router.use("/image-converter", imageConverterRoutes);
