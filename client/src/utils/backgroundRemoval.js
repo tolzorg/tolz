@@ -12,6 +12,7 @@
 // for the rest of the session.
 
 import { removeBackground as imglyRemoveBackground } from "@imgly/background-removal";
+import { refineCutout } from "./maskRefinement";
 
 // Use the full-precision "isnet" model rather than the quantized
 // "isnet_quint8" variant. Quantization shrinks the download but measurably
@@ -28,12 +29,22 @@ const REMOVAL_CONFIG = {
 // Detects the subject in `sourceCanvas` and composites it onto a solid
 // `backgroundColor` fill, replacing whatever background the photo actually
 // had (works on JPEGs and opaque PNGs, not just transparent ones).
+//
+// @imgly/background-removal returns the original RGB pixels completely
+// unblended plus a raw, un-refined alpha mask — no decontamination,
+// despeckling, or feathering. Compositing that directly would leak the
+// photo's real background color through every translucent edge pixel
+// (a visible halo around hair/shoulders) and leave stray misclassified
+// specks, so `refineCutout` cleans the matte up first. See
+// maskRefinement.js for the full explanation.
 export async function removeBackgroundToCanvas(sourceCanvas, backgroundColor) {
   const sourceBlob = await new Promise((resolve) => sourceCanvas.toBlob(resolve, "image/png"));
   if (!sourceBlob) throw new Error("Could not prepare the image for background removal.");
 
   const cutoutBlob = await imglyRemoveBackground(sourceBlob, REMOVAL_CONFIG);
   const cutoutBitmap = await createImageBitmap(cutoutBlob);
+  const refinedCutout = refineCutout(cutoutBitmap);
+  if (cutoutBitmap.close) cutoutBitmap.close();
 
   const out = document.createElement("canvas");
   out.width = sourceCanvas.width;
@@ -41,8 +52,7 @@ export async function removeBackgroundToCanvas(sourceCanvas, backgroundColor) {
   const ctx = out.getContext("2d");
   ctx.fillStyle = backgroundColor || "#ffffff";
   ctx.fillRect(0, 0, out.width, out.height);
-  ctx.drawImage(cutoutBitmap, 0, 0, out.width, out.height);
+  ctx.drawImage(refinedCutout, 0, 0, out.width, out.height);
 
-  if (cutoutBitmap.close) cutoutBitmap.close();
   return out;
 }

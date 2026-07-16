@@ -5,10 +5,10 @@ const FONT = "var(--font-display)";
 const RADIUS = "var(--radius-md)";
 const BORDER = "var(--border)";
 
-function IconBtn({ onClick, title, children, active = false }) {
+function IconBtn({ onClick, title, children, active = false, size = 36 }) {
   return (
     <button type="button" onClick={onClick} title={title} style={{
-      width: 36, height: 36, borderRadius: RADIUS, display: "flex", alignItems: "center", justifyContent: "center",
+      width: size, height: size, borderRadius: RADIUS, display: "flex", alignItems: "center", justifyContent: "center",
       border: `1.5px solid ${active ? "var(--accent)" : BORDER}`,
       background: active ? "var(--accent-light)" : "var(--bg-white)",
       color: active ? "var(--accent)" : "var(--text-primary)",
@@ -18,6 +18,10 @@ function IconBtn({ onClick, title, children, active = false }) {
     </button>
   );
 }
+
+const ZOOM_MIN = 0.2;
+const ZOOM_MAX = 4;
+const ZOOM_STEP = 0.1;
 
 // Non-destructive crop/zoom/pan/rotate/flip editor. Renders the exact same
 // `renderCrop` composite used for final export, so preview === output.
@@ -63,6 +67,11 @@ export default function PhotoEditorCanvas({
 
   const handlePointerUp = useCallback(() => { dragState.current = null; }, []);
 
+  const stepZoom = useCallback((direction) => {
+    const next = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, Math.round((transform.zoom + direction * ZOOM_STEP) * 100) / 100));
+    onZoom(next);
+  }, [transform.zoom, onZoom]);
+
   const handleWheel = useCallback((e) => {
     e.preventDefault();
     const delta = e.deltaY > 0 ? -0.05 : 0.05;
@@ -90,11 +99,13 @@ export default function PhotoEditorCanvas({
 
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 600, color: "var(--text-muted)", width: 44 }}>Zoom</span>
+        <IconBtn size={26} title="Zoom out" onClick={() => stepZoom(-1)}>▼</IconBtn>
         <input
-          type="range" min="0.2" max="4" step="0.01" value={transform.zoom}
+          type="range" min={ZOOM_MIN} max={ZOOM_MAX} step="0.01" value={transform.zoom}
           onChange={(e) => onZoom(parseFloat(e.target.value))}
           style={{ flex: 1, accentColor: "var(--accent)" }}
         />
+        <IconBtn size={26} title="Zoom in" onClick={() => stepZoom(1)}>▲</IconBtn>
         <span style={{ fontFamily: FONT, fontSize: 12, color: "var(--text-muted)", width: 42, textAlign: "right" }}>
           {Math.round(transform.zoom * 100)}%
         </span>

@@ -27,9 +27,8 @@ npm install
 npm run dev               # starts on port 5000
 ```
 
-> On Linux/macOS, run `bash bin/install.sh` once to download `yt-dlp` and `ffmpeg`
-> into `server/bin/`. On Windows, place `yt-dlp.exe`, `ffmpeg.exe`, and
-> `ffprobe.exe` in `server/bin/` manually.
+> On Linux/macOS, run `bash bin/install.sh` once to download the Tesseract
+> OCR language data into `server/tessdata/` (used by the Image → Text tool).
 
 ### Client
 
@@ -47,8 +46,8 @@ npm run dev               # Vite dev server on port 5173, proxies /api to port 5
    - `tolz-client` → `VITE_API_URL=https://<tolz-api-url>.onrender.com`
 3. Trigger a redeploy of **tolz-client** so `VITE_API_URL` is baked into the build.
 
-The `npm run build` step in `tolz-api` automatically downloads `yt-dlp` and
-`ffmpeg` Linux binaries via `server/bin/install.sh`.
+The `npm run build` step in `tolz-api` automatically downloads the Tesseract
+OCR language data via `server/bin/install.sh`.
 
 ## Running Tests
 

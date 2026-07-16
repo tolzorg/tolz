@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ToolPageWrapper from "../components/tools/ToolPageWrapper";
+import ImageConverterFaqSection from "../components/tools/image-converter/ImageConverterFaqSection";
 import { getToolById } from "../utils/tools";
 
 const SUB_TOOLS = [
@@ -65,7 +66,12 @@ export default function ImageConverterPage() {
   const tool = getToolById("image-converter");
 
   return (
-    <ToolPageWrapper tool={tool}>
+    <ToolPageWrapper
+      tool={tool}
+      seoTitle="Free Image Converter – Convert Images Online"
+      seoDescription="Convert images online for free with the Tolz Image Converter. Change PNG, JPG, WebP, HEIC and more formats in seconds — no signup, no watermark, secure."
+      footer={<ImageConverterFaqSection />}
+    >
       <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <p style={{ fontSize: 14, color: "var(--text-secondary)", fontFamily: "var(--font-display)", fontWeight: 500 }}>
           Choose a conversion tool below:

@@ -309,7 +309,12 @@ export async function jpgToText(req, res) {
 
         // ── Recognition ───────────────────────────────────────────────────
         const { data } = await worker.recognize(pngBuffer);
-        console.log(`[OCR] "${file.originalname}" words:${data.words?.length} text:`, JSON.stringify(data.text?.slice(0, 200)));
+        // Extracted text may contain sensitive/personal content (IDs, receipts,
+        // documents) — only log a text preview when explicitly debugging, and
+        // never by default in production server logs.
+        if (process.env.DEBUG_OCR === "true") {
+          console.log(`[OCR] "${file.originalname}" words:${data.words?.length} text:`, JSON.stringify(data.text?.slice(0, 200)));
+        }
         const words = data.words || [];
 
         // ── Quality gate + output ─────────────────────────────────────────

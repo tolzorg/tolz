@@ -42,10 +42,36 @@ services:
         source: /*
         destination: /index.html
     headers:
-      # Content Security Policy — update connect-src if using a custom API domain
+      # Content Security Policy — update connect-src if using a custom API domain.
+      # script-src includes 'wasm-unsafe-eval' and connect-src includes
+      # https://staticimgly.com so the ID Photo Generator's background-removal
+      # feature (@imgly/background-removal) can fetch and instantiate its
+      # WASM/ONNX model from imgly's CDN. worker-src covers the blob-URL
+      # worker that library spins up for off-main-thread inference.
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://tolz.org; script-src 'self'; connect-src 'self' https://*.onrender.com; frame-ancestors 'none'"
+        value: "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://tolz.org; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self' https://*.onrender.com https://staticimgly.com; frame-ancestors 'none'; base-uri 'none'; object-src 'none'"
+      # Clickjacking protection (redundant with frame-ancestors above for
+      # modern browsers, kept for older browser / defense-in-depth coverage)
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      # Stop browsers from MIME-sniffing responses away from the declared type
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      # Don't leak the full referring URL (path/query) to other origins
+      - path: /*
+        name: Referrer-Policy
+        value: no-referrer
+      # Force HTTPS on repeat visits (Render already serves over HTTPS only)
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains
+      # Disable browser features this site never uses
+      - path: /*
+        name: Permissions-Policy
+        value: geolocation=(), microphone=(), camera=()
       # Long-lived cache for hashed assets
       - path: /assets/*
         name: Cache-Control

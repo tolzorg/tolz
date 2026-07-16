@@ -234,8 +234,8 @@ export const TOOLS = [
   {
     id: "anniversary-calculator",
     label: "Anniversary Calculator",
-    tagline: "Milestones, countdowns & calendar export",
-    description: "Track relationship or event anniversaries with a live countdown, elapsed time breakdown, milestone tracker, traditional anniversary names, and one-click calendar export (.ics).",
+    tagline: "Exact dates, countdowns, milestones & gifts",
+    description: "Calculate exact anniversary time in years, months, weeks and days for weddings, relationships, work and more — with live countdown, milestone tracker, traditional & modern gift guide, timeline, statistics, and calendar export (.ics).",
     icon: "💑",
     iconBg: "#fff0f5",
     iconColor: "#e11d48",

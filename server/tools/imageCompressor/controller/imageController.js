@@ -9,6 +9,12 @@ const RESIZE_PRESETS = {
   "twitter-post":    { width: 1200, height: 675  },
 };
 
+// Matches the client's own input cap (ResizeControls.jsx: max="8000"). The UI
+// never lets a user request more than this, so clamping here changes nothing
+// for legitimate use — it only stops a direct API call from requesting
+// arbitrary dimensions and forcing sharp to allocate unbounded memory.
+const MAX_RESIZE_DIM = 8000;
+
 // ── Apply optional resize before compression ──────────────────
 // Returns { buffer, wasResized } — buffer is unchanged if resize is not needed.
 async function applyResize(buffer, body) {
@@ -25,8 +31,8 @@ async function applyResize(buffer, body) {
     resizeOpts = { width: newWidth };
 
   } else if (mode === "dimensions") {
-    const w = parseInt(body.resizeWidth)  || 0;
-    const h = parseInt(body.resizeHeight) || 0;
+    const w = Math.min(MAX_RESIZE_DIM, parseInt(body.resizeWidth)  || 0);
+    const h = Math.min(MAX_RESIZE_DIM, parseInt(body.resizeHeight) || 0);
     if (!w && !h) return { buffer, wasResized: false };
     const lock = body.lockAspect !== "false";
     resizeOpts = {};

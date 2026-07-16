@@ -46,14 +46,14 @@ export const ID_PHOTO_TEMPLATES = [
   },
   {
     id: "passport-us-2x2", name: "US Passport Photo (2×2 in)", category: "passport",
-    country: "United States", widthMM: 50.8, heightMM: 50.8, dpi: 300,
+    country: "United States, Philippines", widthMM: 50.8, heightMM: 50.8, dpi: 300,
     headPosition: { topOffsetMM: 3, eyeLineOffsetMM: 19, faceBoxRatio: 0.61 },
     backgroundColor: "#ffffff", ...mkResolutions(50.8, 50.8),
     version: 1, authority: "U.S. Department of State", specificationUrl: "https://travel.state.gov/content/travel/en/passports/how-apply/photos.html", lastVerified: "2026-01-01",
   },
   {
     id: "passport-uk-35x45", name: "UK Passport Photo (35×45mm)", category: "passport",
-    country: "United Kingdom", widthMM: 35, heightMM: 45, dpi: 300,
+    country: "United Kingdom, India, Australia, Europe, Pakistan", widthMM: 35, heightMM: 45, dpi: 300,
     headPosition: { topOffsetMM: 4, eyeLineOffsetMM: 17, faceBoxRatio: 0.72 },
     backgroundColor: "#f0f0f0", ...mkResolutions(35, 45),
     version: 1, authority: "UK Government (HM Passport Office)", specificationUrl: "https://www.gov.uk/photos-for-passports", lastVerified: "2026-01-01",

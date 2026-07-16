@@ -8,8 +8,9 @@ export default defineConfig({
   server: {
     proxy: {
       // All /api routes go to the Express server.
-      // proxyTimeout / timeout are 10 minutes because yt-dlp + ffmpeg
-      // can take several minutes to download and encode a video.
+      // proxyTimeout / timeout are generous (10 minutes) to comfortably
+      // cover the slowest tool requests (PDF compression via Ghostscript,
+      // OCR) without the dev proxy cutting them off mid-request.
       "/api": {
         target: "http://localhost:5000",
         changeOrigin: true,

@@ -356,6 +356,65 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   padding: 40px 24px 80px;
 }
 
+/* Thin breadcrumb-only bar used by ToolPageWrapper, above the two-column
+   grid below (kept separate from .tool-page-header, which some standalone
+   pages still use for a full-size header block). */
+.tool-page-breadcrumb-bar {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+
+/* Sidebar (icon/title/description + related tools) beside the tool itself.
+   Deliberately flexbox, not CSS Grid: an earlier version used
+   grid-template-areas with "children" spanning two rows shared with the
+   sidebar's two separate blocks — Grid distributes a tall spanning item's
+   extra height into the *first* spanned row, which inflated the row
+   containing the header and pushed the related-tools card far down for any
+   tool taller than its own header (i.e. almost every tool). Flexbox with
+   the header+related-tools nested inside one sidebar column sidesteps this
+   entirely: the sidebar's height is never coupled to the tool column's
+   height. The "children" column keeps the same 640px width every tool was
+   already designed against — only the surrounding layout changes, not any
+   tool's own content width. Collapses to a single stacked column on narrow
+   viewports: header, then related tools, then the tool itself (the sidebar
+   stays one block so its internal order is the same at every width). */
+.tool-page-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 40px 24px 0;
+}
+.tool-page-sidebar {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+.tool-page-grid-children {
+  flex: 1 1 0%;
+  max-width: 640px;
+  min-width: 0;
+}
+.tool-page-grid-footer-wrap {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 24px 0;
+}
+
+@media (max-width: 960px) {
+  .tool-page-columns {
+    flex-direction: column;
+    max-width: 640px;
+  }
+  .tool-page-sidebar { width: 100%; }
+  .tool-page-grid-children { max-width: 100%; width: 100%; }
+  .tool-page-grid-footer-wrap { max-width: 640px; }
+}
+
 /* ── Hero section ──────────────────────────────────────────── */
 .hero-section {
   background: var(--bg-white);
