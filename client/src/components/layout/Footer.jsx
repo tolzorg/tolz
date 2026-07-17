@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 
 const FOOTER_LINKS = {
+  Categories: [
+    { label: "Image Tools", href: "/tools/image" },
+    { label: "PDF Tools", href: "/tools/pdf" },
+    { label: "Converters", href: "/tools/converters" },
+    { label: "Calculators", href: "/calculators" },
+    { label: "URL Tools", href: "/tools/url-tools" },
+    { label: "Text Tools", href: "/tools/text-tools" },
+    { label: "Design Tools", href: "/tools/design-tools" },
+  ],
   Tools: [
     { label: "Image Compressor", href: "/tools/image-compressor" },
     { label: "PDF Merge", href: "/tools/pdf-merge" },

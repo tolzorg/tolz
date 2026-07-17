@@ -2,6 +2,7 @@ import { lazy, Suspense, Component, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import { Spinner } from "./components/ui";
 
 // Lazy-loaded pages
@@ -36,6 +37,8 @@ const AboutPage                    = lazy(() => import("./pages/AboutPage"));
 const ContactPage                  = lazy(() => import("./pages/ContactPage"));
 const NotFoundPage                 = lazy(() => import("./pages/NotFoundPage"));
 const CalculatorCategoryPage          = lazy(() => import("./pages/CalculatorCategoryPage"));
+const CalculatorsHubPage              = lazy(() => import("./pages/CalculatorsHubPage"));
+const ToolsCategoryPage               = lazy(() => import("./pages/ToolsCategoryPage"));
 const AluminumWeightCalculatorPage    = lazy(() => import("./pages/AluminumWeightCalculatorPage"));
 const RebarCalculatorPage             = lazy(() => import("./pages/RebarCalculatorPage"));
 const RipRapCalculatorPage            = lazy(() => import("./pages/RipRapCalculatorPage"));
@@ -128,6 +131,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column" }}>
         <Navbar />
         <main style={{ flex: 1 }}>
@@ -160,7 +164,11 @@ export default function App() {
                 <Route path="/tools/square-footage-calculator"    element={<SquareFootageCalculatorPage />} />
                 <Route path="/tools/square-yards-calculator"      element={<SquareYardsCalculatorPage />} />
                 <Route path="/tools/aluminum-weight-calculator"   element={<AluminumWeightCalculatorPage />} />
-                {/* ── Calculator category pages ─────────────────────────── */}
+                {/* ── Tool category landing pages (Image, PDF, Converters, URL, Text, Design) ── */}
+                <Route path="/tools/:categorySlug"                 element={<ToolsCategoryPage />} />
+
+                {/* ── Calculators hub + category pages ──────────────────── */}
+                <Route path="/calculators"                                         element={<CalculatorsHubPage />} />
                 <Route path="/calculators/:categorySlug"                           element={<CalculatorCategoryPage />} />
 
                 {/* ── Individual calculator pages (new canonical URLs) ───── */}

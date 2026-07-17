@@ -2,20 +2,23 @@ import { TOOLS } from "./tools";
 
 // Human-facing label/emoji/link for each grouping key a tool can match on —
 // either its `subCategory` (tight match) or its `category` (broader match).
-// "handy" is the last-resort fallback for tools that are the only member of
-// their category (e.g. Color Picker) and have no closer peers at all.
+// "handy" is the last-resort fallback label for tools that are the only
+// member of their category (e.g. Color Picker, Word Counter) and would
+// otherwise have zero related tools to show; its link still routes to the
+// viewed tool's own category page (never a generic/homepage catch-all).
 const GROUP_META = {
   "health-calc":            { label: "health calculators",              emoji: "💪",  path: "/calculators/health" },
   everyday:                 { label: "everyday life calculators",       emoji: "🌅",  path: "/calculators/everyday-life" },
   "construction-calc":      { label: "construction converters",         emoji: "📐",  path: "/calculators/construction" },
   "construction-materials": { label: "construction materials calculators", emoji: "🧱", path: "/calculators/construction" },
-  image:                    { label: "image tools",                     emoji: "🖼️", path: "/#tools" },
-  pdf:                      { label: "PDF tools",                       emoji: "📄",  path: "/#tools" },
-  "url-tools":               { label: "URL & QR tools",                  emoji: "🔗",  path: "/#tools" },
-  "text-tools":              { label: "text tools",                      emoji: "📝",  path: "/#tools" },
-  "design-tools":            { label: "design tools",                    emoji: "🎨",  path: "/#tools" },
-  converter:                 { label: "converter tools",                 emoji: "🔄",  path: "/#tools" },
-  handy:                     { label: "handy tools",                     emoji: "🧰",  path: "/#tools" },
+  image:                    { label: "image tools",                     emoji: "🖼️", path: "/tools/image" },
+  pdf:                      { label: "PDF tools",                       emoji: "📄",  path: "/tools/pdf" },
+  "url-tools":               { label: "URL & QR tools",                  emoji: "🔗",  path: "/tools/url-tools" },
+  "text-tools":              { label: "text tools",                      emoji: "📝",  path: "/tools/text-tools" },
+  "design-tools":            { label: "design tools",                    emoji: "🎨",  path: "/tools/design-tools" },
+  converter:                 { label: "converter tools",                 emoji: "🔄",  path: "/tools/converters" },
+  utility:                   { label: "calculators",                     emoji: "🧮",  path: "/calculators" },
+  handy:                     { label: "handy tools",                     emoji: "🧰",  path: null },
 };
 
 function candidatesByKey(tool, key, value) {
@@ -40,8 +43,8 @@ function humanizeKey(key) {
 //   1. same subCategory (e.g. "construction-calc" — 6 peers)
 //   2. same category (e.g. "image" — 2 peers)
 //   3. "handy" fallback: every non-calculator tool, for the few tools that
-//      are the sole member of their category (e.g. Color Picker) and would
-//      otherwise have zero related tools to show.
+//      are the sole member of their category (e.g. Color Picker) and have
+//      no closer peers at all.
 export function getRelatedTools(tool, limit = 8) {
   if (!tool) return null;
 
@@ -69,13 +72,18 @@ export function getRelatedTools(tool, limit = 8) {
   const meta = GROUP_META[groupKey] || {
     label: humanizeKey(groupKey),
     emoji: "🔧",
-    path: "/#tools",
+    path: "/",
   };
+  // The "handy" bucket has no page of its own — send the click to the
+  // viewed tool's own category page instead of the (removed) homepage anchor.
+  const familyPath = groupKey === "handy"
+    ? GROUP_META[tool.category]?.path || "/"
+    : meta.path;
 
   return {
     familyLabel: meta.label,
     familyEmoji: meta.emoji,
-    familyPath: meta.path,
+    familyPath,
     poolSize: pool.length,
     items: scored.slice(0, limit).map((s) => s.tool),
   };

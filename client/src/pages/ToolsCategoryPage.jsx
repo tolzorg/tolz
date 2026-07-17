@@ -2,7 +2,8 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import SEO from "../components/SEO";
 import JsonLd from "../components/JsonLd";
 import ToolCard from "../components/tools/ToolCard";
-import { getCategoryBySlug, getCategoryCalculators } from "../utils/calculatorConfig";
+import { getToolCategoryBySlug, TOOL_CATEGORY_PAGES } from "../utils/toolCategoryConfig";
+import { getToolsByCategory } from "../utils/tools";
 
 const SITE_URL = "https://www.tolz.org";
 
@@ -13,20 +14,32 @@ const linkStyle = {
   transition: "color var(--transition)",
 };
 
-export default function CalculatorCategoryPage() {
+const h2Style = {
+  fontFamily: "var(--font-display)",
+  fontWeight: 800,
+  fontSize: 17,
+  color: "var(--text-primary)",
+  letterSpacing: "-0.02em",
+  marginBottom: 10,
+};
+
+const pStyle = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 10 };
+
+export default function ToolsCategoryPage() {
   const { categorySlug } = useParams();
-  const category = getCategoryBySlug(categorySlug);
+  const category = getToolCategoryBySlug(categorySlug);
 
   if (!category) return <Navigate to="/" replace />;
 
-  const allCalcs = getCategoryCalculators(category);
+  const tools = getToolsByCategory(category.categoryId).filter((t) => t.available);
+  const otherCategories = TOOL_CATEGORY_PAGES.filter((c) => c.slug !== category.slug);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Calculators", item: `${SITE_URL}/calculators` },
+      { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/#tools` },
       { "@type": "ListItem", position: 3, name: category.name, item: `${SITE_URL}${category.path}` },
     ],
   };
@@ -35,23 +48,19 @@ export default function CalculatorCategoryPage() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: category.name,
-    description: category.description,
+    description: category.seoDescription,
     url: `${SITE_URL}${category.path}`,
-    itemListElement: allCalcs.map((calc, i) => ({
+    itemListElement: tools.map((tool, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: calc.label,
-      url: `${SITE_URL}${calc.path}`,
+      name: tool.label,
+      url: `${SITE_URL}${tool.path}`,
     })),
   };
 
   return (
     <article style={{ minHeight: "calc(100vh - 60px)" }}>
-      <SEO
-        title={`${category.name} — Free Online Calculators`}
-        description={category.description}
-        path={category.path}
-      />
+      <SEO title={category.seoTitle} description={category.seoDescription} path={category.path} />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={collectionSchema} />
 
@@ -79,7 +88,14 @@ export default function CalculatorCategoryPage() {
               Home
             </Link>
             <span aria-hidden="true" style={{ opacity: 0.4 }}>›</span>
-            <span style={{ color: "var(--text-muted)", fontWeight: 500 }}>Calculators</span>
+            <Link
+              to="/#tools"
+              style={linkStyle}
+              onMouseEnter={(e) => (e.target.style.color = "var(--text-primary)")}
+              onMouseLeave={(e) => (e.target.style.color = "var(--text-muted)")}
+            >
+              Tools
+            </Link>
             <span aria-hidden="true" style={{ opacity: 0.4 }}>›</span>
             <span aria-current="page" style={{ color: "var(--text-secondary)", fontWeight: 600 }}>
               {category.name}
@@ -120,60 +136,34 @@ export default function CalculatorCategoryPage() {
               </h1>
               <p
                 className="animate-fadeUp delay-100"
-                style={{ color: "var(--text-secondary)", fontSize: 15, maxWidth: 520 }}
+                style={{ color: "var(--text-secondary)", fontSize: 15, maxWidth: 560 }}
               >
-                {category.description}
+                {category.tagline}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Calculator grid — flat or grouped */}
-      <section aria-label={`${category.name} tools`} style={{ padding: "56px 0 80px" }}>
-        <div className="container">
-          {category.groups ? (
-            category.groups.map((group, gi) => (
-              <div
-                key={group.id}
-                id={group.id}
-                style={{
-                  marginBottom: gi < category.groups.length - 1 ? 64 : 0,
-                  scrollMarginTop: 80,
-                }}
+      <section style={{ padding: "40px 0 80px" }}>
+        <div className="container" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+
+          {/* Intro */}
+          <div className="card" style={{ padding: "20px 20px" }}>
+            <h2 style={h2Style}>{category.introHeading}</h2>
+            {category.introParagraphs.map((para, i) => (
+              <p
+                key={i}
+                style={i === category.introParagraphs.length - 1 ? { ...pStyle, marginBottom: 0 } : pStyle}
               >
-                <h2
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: "clamp(16px, 2.5vw, 20px)",
-                    color: "var(--text-primary)",
-                    letterSpacing: "-0.02em",
-                    marginBottom: 24,
-                    paddingBottom: 12,
-                    borderBottom: "1px solid var(--border)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                  }}
-                >
-                  <span>{group.icon}</span>
-                  {group.name}
-                </h2>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-                    gap: 20,
-                  }}
-                >
-                  {group.calculators.map((calc, i) => (
-                    <ToolCard key={calc.id} tool={calc} animDelay={i * 60} hideDescription />
-                  ))}
-                </div>
-              </div>
-            ))
-          ) : (
+                {para}
+              </p>
+            ))}
+          </div>
+
+          {/* Tool grid */}
+          <div>
+            <h2 style={{ ...h2Style, marginBottom: 18 }}>{category.name} Available</h2>
             <div
               style={{
                 display: "grid",
@@ -181,11 +171,38 @@ export default function CalculatorCategoryPage() {
                 gap: 20,
               }}
             >
-              {allCalcs.map((calc, i) => (
-                <ToolCard key={calc.id} tool={calc} animDelay={i * 60} hideDescription />
+              {tools.map((tool, i) => (
+                <ToolCard key={tool.id} tool={tool} animDelay={i * 60} />
               ))}
             </div>
-          )}
+          </div>
+
+          {/* Benefits */}
+          <div className="card" style={{ padding: "20px 20px" }}>
+            <h2 style={h2Style}>{category.benefitsHeading}</h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {category.benefits.map((b) => (
+                <p key={b.title} style={{ ...pStyle, marginBottom: 0 }}>
+                  <strong>{b.title}.</strong> {b.text}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Browse other categories */}
+          <div className="card" style={{ padding: "20px 20px" }}>
+            <h2 style={{ ...h2Style, marginBottom: 14 }}>Browse Other Categories</h2>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              <Link to="/calculators" className="filter-pill" style={{ textDecoration: "none" }}>
+                Calculators
+              </Link>
+              {otherCategories.map((c) => (
+                <Link key={c.slug} to={c.path} className="filter-pill" style={{ textDecoration: "none" }}>
+                  {c.name}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </article>

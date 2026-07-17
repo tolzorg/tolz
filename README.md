@@ -27,8 +27,12 @@ npm install
 npm run dev               # starts on port 5000
 ```
 
-> On Linux/macOS, run `bash bin/install.sh` once to download the Tesseract
-> OCR language data into `server/tessdata/` (used by the Image → Text tool).
+> The Image → Text (OCR) tool requires `server/tessdata/eng.traineddata`.
+> On Linux/macOS, run `bash bin/install.sh` once to download it automatically.
+> On Windows, download it manually and place it at `server/tessdata/eng.traineddata`:
+> `curl -fsSL https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata -o server/tessdata/eng.traineddata`
+> Without this file, OCR requests fail with a clean error instead of the missing
+> file crashing the server, but the tool won't work until it's present.
 
 ### Client
 

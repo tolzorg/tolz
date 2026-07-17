@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { TOOLS, CATEGORIES } from "../../utils/tools";
 import { CALCULATOR_CATEGORIES, getCategoryCalculators } from "../../utils/calculatorConfig";
+import { TOOL_CATEGORY_PAGES } from "../../utils/toolCategoryConfig";
 
 // Build category groups (only categories that have ≥1 available tool)
 function buildGroups() {
@@ -11,15 +12,18 @@ function buildGroups() {
       const tools = available.filter((t) => t.category === c.id);
       // Calculators: dropdown shows category links, not individual tools
       if (c.id === "utility") {
-        return { ...c, tools, categoryLinks: CALCULATOR_CATEGORIES };
+        return { ...c, tools, categoryLinks: CALCULATOR_CATEGORIES, viewAllPath: "/calculators" };
       }
+      const categoryPage = TOOL_CATEGORY_PAGES.find((p) => p.categoryId === c.id);
+      const viewAllPath = categoryPage?.path;
+      const viewAllLabel = categoryPage?.name || c.label;
       if (c.subCategories) {
         const groups = c.subCategories
           .map((sc) => ({ ...sc, tools: tools.filter((t) => t.subCategory === sc.id) }))
           .filter((sc) => sc.tools.length > 0);
-        return { ...c, tools, groups };
+        return { ...c, tools, groups, viewAllPath, viewAllLabel };
       }
-      return { ...c, tools };
+      return { ...c, tools, viewAllPath, viewAllLabel };
     })
     .filter((c) => c.tools.length > 0);
 }
@@ -58,6 +62,29 @@ function DropdownPanel({ group, isOpen, location, onClose }) {
     letterSpacing: "0.1em",
     userSelect: "none",
   };
+
+  const viewAllLinkStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 8,
+    padding: "9px 10px",
+    marginTop: 4,
+    borderTop: "1px solid var(--border)",
+    textDecoration: "none",
+    fontFamily: "var(--font-display)",
+    fontWeight: 700,
+    fontSize: 12.5,
+    color: "var(--accent)",
+  };
+
+  const renderViewAllLink = (label) =>
+    group.viewAllPath && (
+      <Link to={group.viewAllPath} role="menuitem" style={viewAllLinkStyle} onClick={onClose}>
+        {label}
+        <span aria-hidden="true">→</span>
+      </Link>
+    );
 
   const renderToolLink = (tool) => {
     const active = location.pathname === tool.path;
@@ -112,6 +139,7 @@ function DropdownPanel({ group, isOpen, location, onClose }) {
             </Link>
           );
         })}
+        {renderViewAllLink("View all Calculators")}
       </div>
     );
   }
@@ -129,6 +157,7 @@ function DropdownPanel({ group, isOpen, location, onClose }) {
             {subGroup.tools.map(renderToolLink)}
           </div>
         ))}
+        {renderViewAllLink(`View all ${group.viewAllLabel}`)}
       </div>
     );
   }
@@ -138,6 +167,7 @@ function DropdownPanel({ group, isOpen, location, onClose }) {
     <div role="menu" aria-hidden={!isOpen} style={panelStyle}>
       <p style={sectionLabelStyle}>{group.label}</p>
       {group.tools.map(renderToolLink)}
+      {renderViewAllLink(`View all ${group.viewAllLabel}`)}
     </div>
   );
 }
@@ -535,8 +565,8 @@ export default function Navbar() {
                   <div style={{
                     maxHeight: isExpanded
                       ? group.categoryLinks
-                        ? `${group.categoryLinks.length * 76}px`
-                        : `${group.tools.length * 75 + (group.groups ? group.groups.length * 36 : 0)}px`
+                        ? `${group.categoryLinks.length * 76 + (group.viewAllPath ? 42 : 0)}px`
+                        : `${group.tools.length * 75 + (group.groups ? group.groups.length * 36 : 0) + (group.viewAllPath ? 42 : 0)}px`
                       : 0,
                     overflow: "hidden",
                     transition: "max-height 0.28s ease",
@@ -570,7 +600,25 @@ export default function Navbar() {
                           </Link>
                         );
                       })
-                    ) : group.groups ? (
+                    ) : null}
+                    {group.categoryLinks && group.viewAllPath && (
+                      <Link
+                        to={group.viewAllPath}
+                        onClick={closeMobile}
+                        style={{
+                          display: "block",
+                          padding: "11px 20px",
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 700,
+                          fontSize: 13,
+                          color: "var(--accent)",
+                          textDecoration: "none",
+                        }}
+                      >
+                        View all Calculators →
+                      </Link>
+                    )}
+                    {!group.categoryLinks && group.groups ? (
                       // Grouped: sub-category headers with tools beneath each
                       group.groups.map((subGroup) => (
                         <div key={subGroup.id}>
@@ -616,7 +664,7 @@ export default function Navbar() {
                           })}
                         </div>
                       ))
-                    ) : (
+                    ) : !group.categoryLinks ? (
                       // Flat: original single-level rendering
                       group.tools.map((tool) => {
                         const active = location.pathname === tool.path;
@@ -645,6 +693,23 @@ export default function Navbar() {
                           </Link>
                         );
                       })
+                    ) : null}
+                    {!group.categoryLinks && group.viewAllPath && (
+                      <Link
+                        to={group.viewAllPath}
+                        onClick={closeMobile}
+                        style={{
+                          display: "block",
+                          padding: "11px 20px",
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 700,
+                          fontSize: 13,
+                          color: "var(--accent)",
+                          textDecoration: "none",
+                        }}
+                      >
+                        View all {group.viewAllLabel} →
+                      </Link>
                     )}
                   </div>
                 </div>

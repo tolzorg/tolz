@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function ToolCard({ tool, animDelay = 0 }) {
+export default function ToolCard({ tool, animDelay = 0, hideDescription = false }) {
   const isAvailable = tool.available;
 
   const card = (
@@ -68,15 +68,17 @@ export default function ToolCard({ tool, animDelay = 0 }) {
       </div>
 
       {/* Description */}
-      <p
-        style={{
-          fontSize: 13,
-          color: "var(--text-secondary)",
-          lineHeight: 1.6,
-        }}
-      >
-        {tool.description}
-      </p>
+      {!hideDescription && (
+        <p
+          style={{
+            fontSize: 13,
+            color: "var(--text-secondary)",
+            lineHeight: 1.6,
+          }}
+        >
+          {tool.description}
+        </p>
+      )}
 
       {/* Arrow for available tools */}
       {isAvailable && (

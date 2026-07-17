@@ -5,12 +5,16 @@ const SITE_NAME = "Tolz";
 const SITE_URL  = "https://www.tolz.org";
 const OG_IMAGE  = "https://www.tolz.org/og-image.png";
 
+// Site-wide indexing is currently intentionally OFF (pre-launch). Flip this default to
+// "index, follow" — and re-check robots.txt — when the site is ready to go live in search.
+const DEFAULT_ROBOTS = "noindex, nofollow";
+
 export default function SEO({
   title,
   description,
   path = "/",
   image,
-  robots = "index, follow",
+  robots = DEFAULT_ROBOTS,
 }) {
   const fullTitle    = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Free Online Tools`;
   const canonicalUrl = `${SITE_URL}${path}`;

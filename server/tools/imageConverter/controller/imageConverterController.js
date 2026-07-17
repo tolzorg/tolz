@@ -3,9 +3,11 @@ import { PDFDocument } from "pdf-lib";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { existsSync } from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TESSDATA_PATH = join(__dirname, "..", "..", "..", "tessdata");
+const TESSDATA_FILE = join(TESSDATA_PATH, "eng.traineddata");
 
 const require = createRequire(import.meta.url);
 
@@ -284,6 +286,22 @@ function extractTextFromRaw(raw) {
 // ─── 6. JPG → Text (OCR) ────────────────────────────────────────────────────
 export async function jpgToText(req, res) {
   if (!req.files?.length) return res.status(400).json({ success: false, error: "No images uploaded" });
+
+  // tesseract.js loads its language model inside a worker_thread and does not
+  // attach an 'error' listener to it (see node_modules/tesseract.js/src/worker/node/spawnWorker.js).
+  // If that file is missing or unreadable, the resulting fs error is thrown
+  // inside the worker with nothing to catch it, which Node escalates to this
+  // process's uncaughtException handler — crashing the ENTIRE server for
+  // every user, not just this request. Checking existence up front turns that
+  // process-wide crash into an ordinary, isolated error response.
+  if (!existsSync(TESSDATA_FILE)) {
+    console.error(`[OCR] Missing language data at ${TESSDATA_FILE} — run bin/install.sh (or see README) to fetch it.`);
+    return res.status(500).json({
+      success: false,
+      error: "OCR is temporarily unavailable (missing language data). Please try again later.",
+    });
+  }
+
   let worker;
   try {
     const { createWorker } = await import("tesseract.js");
