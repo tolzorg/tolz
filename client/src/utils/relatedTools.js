@@ -45,7 +45,7 @@ function humanizeKey(key) {
 //   3. "handy" fallback: every non-calculator tool, for the few tools that
 //      are the sole member of their category (e.g. Color Picker) and have
 //      no closer peers at all.
-export function getRelatedTools(tool, limit = 8) {
+export function getRelatedTools(tool, limit = 3) {
   if (!tool) return null;
 
   let pool = candidatesByKey(tool, "subCategory", tool.subCategory);
