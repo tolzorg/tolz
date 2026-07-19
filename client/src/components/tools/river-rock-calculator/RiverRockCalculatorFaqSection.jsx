@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -96,7 +97,7 @@ export default function RiverRockCalculatorFaqSection() {
           Planning a landscaping project with river rock is only half the battle, figuring out exactly how
           much to buy is where most people get stuck. Order too little and you're back at the supplier
           mid-project; order too much and you've wasted money on excess material sitting in your driveway.
-          The River Rock Calculator on Tolz removes the guesswork entirely. Enter the length, width, and depth
+          The River Rock Calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork entirely. Enter the length, width, and depth
           of the area you're covering, choose from 10 preset rock types with built-in bulk densities, and get
           an instant, accurate breakdown of the volume and weight you need, plus a cost estimate that accounts
           for material wastage.

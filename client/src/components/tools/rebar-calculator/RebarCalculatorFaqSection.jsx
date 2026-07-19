@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -99,7 +100,7 @@ export default function RebarCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Ordering the right amount of reinforcement steel is one of the easiest places for a construction
           budget to go wrong, too little rebar compromises structural integrity, while too much wastes money
-          on unused steel. The Rebar Calculator on Tolz removes the guesswork by instantly converting your
+          on unused steel. The Rebar Calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork by instantly converting your
           slab, footing, wall, column, or beam dimensions into precise rebar weight, total length, and
           estimated material cost. Whether you're a contractor pricing a job, an estimator double-checking a
           supplier's quote, or a homeowner planning a small foundation pour, this calculator gives you numbers

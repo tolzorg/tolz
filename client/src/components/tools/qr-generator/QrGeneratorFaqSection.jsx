@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -109,7 +110,7 @@ export default function QrGeneratorFaqSection() {
           A QR code generator gives you a fast, reliable way to turn a website link, a block of text, contact
           details, or Wi-Fi credentials into a scannable image that any smartphone camera can read in seconds.
           Whether you're printing a menu, adding a code to a business card, or sharing a link at an event,
-          this free QR code generator on Tolz lets you create a clean, high-quality QR code in moments, no
+          this free QR code generator on <Link to="/" className="inline-home-link">Tolz</Link> lets you create a clean, high-quality QR code in moments, no
           design software, no account creation, and no cost involved. It's built to be simple enough for a
           first-time user and flexible enough for someone generating codes regularly for business or
           marketing work.

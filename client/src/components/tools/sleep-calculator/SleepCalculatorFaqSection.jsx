@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -101,7 +102,7 @@ export default function SleepCalculatorFaqSection() {
           Most people think about sleep in terms of total hours, eight is the magic number, or so we're told.
           But the quality of your rest depends less on how long you're in bed and more on when you fall asleep
           and when you wake up relative to your natural sleep cycles. That's exactly what this sleep
-          calculator on Tolz is built to solve. Instead of guessing, you simply enter either your intended
+          calculator on <Link to="/" className="inline-home-link">Tolz</Link> is built to solve. Instead of guessing, you simply enter either your intended
           bedtime or your required wake-up time, and the tool works backward or forward through complete
           90-minute sleep cycles to suggest the healthiest, least groggy option. It's a small shift in
           approach that makes a noticeable difference in how rested you actually feel.

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -100,7 +101,7 @@ export default function AnniversaryFaqSection() {
           Every relationship carries a date worth remembering, a wedding, a first date, an engagement, or even
           a work milestone, and keeping accurate track of how much time has passed can be surprisingly tricky
           once you're counting across multiple years, leap years, and varying month lengths. The Anniversary
-          Calculator on Tolz removes the guesswork entirely. Simply enter the original date, and the tool
+          Calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork entirely. Simply enter the original date, and the tool
           instantly tells you exactly how many years, months, weeks, and days have passed, along with how many
           days remain until your next anniversary. It's built for anyone who wants a fast, reliable, and
           completely free way to calculate anniversary dates without doing manual math or relying on a

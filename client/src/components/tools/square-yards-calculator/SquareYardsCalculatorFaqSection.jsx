@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -99,7 +100,7 @@ export default function SquareYardsCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Whether you're laying new sod, ordering carpet, or estimating tile for a renovation, getting your
           area measurement right in square yards saves you money and prevents costly material shortages. The
-          square yards calculator on Tolz lets you work out the exact area of almost any space, from a simple
+          square yards calculator on <Link to="/" className="inline-home-link">Tolz</Link> lets you work out the exact area of almost any space, from a simple
           rectangular room to a curved garden bed, in seconds, without any manual formulas or unit
           conversions. It's built for homeowners, contractors, landscapers, and flooring installers who need a
           fast, accurate number they can trust before placing an order.

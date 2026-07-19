@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -102,7 +103,7 @@ export default function RipRapCalculatorFaqSection() {
           equation, it calculates the required median rock diameter (D₅₀) for a given flow velocity, then lets
           you estimate the volume, weight, and approximate cost of material needed for your project. Whether
           you're stabilizing a streambank, protecting a culvert outlet, or armoring a channel slope, this free
-          tool from Tolz removes the guesswork from riprap sizing.
+          tool from <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork from riprap sizing.
         </p>
       </div>
 

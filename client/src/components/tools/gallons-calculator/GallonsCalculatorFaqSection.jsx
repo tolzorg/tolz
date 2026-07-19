@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -106,7 +107,7 @@ export default function GallonsCalculatorFaqSection() {
           calculations that causes big headaches when it's wrong. Buy too little, and you're stuck
           mid-project waiting on a second trip to the store, hoping the new can matches the batch you already
           opened. Buy too much, and you've spent money on material that dries out in the garage. The Gallons
-          per Sq Ft Calculator on Tolz solves this by converting your surface area and desired coverage rate
+          per Sq Ft Calculator on <Link to="/" className="inline-home-link">Tolz</Link> solves this by converting your surface area and desired coverage rate
           into an exact gallon figure, so you order the right amount the first time, no guesswork, no rounding
           up "just in case."
         </p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -104,7 +105,7 @@ export default function ImageCompressorFaqSection() {
           This image compressor reduces the file size of your pictures while keeping them sharp enough for
           websites, emails, documents, and online forms. Upload a JPEG, PNG, or WebP file, choose how much
           compression you want, and download a smaller version in seconds — no account, no watermark, and no
-          cost. It is one of the free utilities on Tolz, a collection of online tools built to handle everyday
+          cost. It is one of the free utilities on <Link to="/" className="inline-home-link">Tolz</Link>, a collection of online tools built to handle everyday
           file and conversion tasks directly in your browser.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>

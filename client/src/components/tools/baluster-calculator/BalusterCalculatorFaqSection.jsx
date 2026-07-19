@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -96,7 +97,7 @@ export default function BalusterCalculatorFaqSection() {
           Building or replacing a railing sounds simple until you actually have to figure out how many
           balusters fit between two posts without violating local code. A single miscalculation means gaps
           that are too wide, spindles that look uneven, or a wasted trip back to the hardware store. This
-          baluster calculator on Tolz removes that guesswork entirely, it takes your railing length, baluster
+          baluster calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes that guesswork entirely, it takes your railing length, baluster
           width, and spacing preference, then returns the exact count, spacing, and layout you need, whether
           you're working on a straight deck railing or an angled stair run.
         </p>

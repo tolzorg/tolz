@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -99,7 +100,7 @@ export default function CalorieTrackerFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Keeping track of what your body actually needs each day is harder than it sounds, especially when
           generic advice ("eat less, move more") doesn't account for your age, weight, height, or activity
-          level. This calorie calculator on Tolz removes the guesswork by turning a few personal details into
+          level. This calorie calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork by turning a few personal details into
           a clear, personalized daily calorie target, whether your goal is losing fat, building muscle, or
           simply maintaining your current weight. It's built to give you a reliable starting point in
           seconds, without needing a nutrition degree or a subscription to a paid app.

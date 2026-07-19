@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -100,7 +101,7 @@ export default function PdfCompressFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Large PDF files are one of the most common everyday roadblocks: the document won't attach to an
           email, a portal rejects it for exceeding the upload limit, or a folder full of scanned reports
-          quietly eats up your storage. The Compress PDF tool from Tolz solves this in seconds by reducing the
+          quietly eats up your storage. The Compress PDF tool from <Link to="/" className="inline-home-link">Tolz</Link> solves this in seconds by reducing the
           size of any PDF while keeping it readable, printable, and professional. You upload your document,
           let the tool compress the PDF, and download a lighter version — no software installation, no
           account, and no cost. Whether you're dealing with a bloated 40 MB proposal or a stack of

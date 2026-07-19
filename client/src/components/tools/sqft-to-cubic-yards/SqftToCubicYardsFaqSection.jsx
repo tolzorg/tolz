@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -114,7 +115,7 @@ export default function SqftToCubicYardsFaqSection() {
           sq ft to cubic yards calculator takes your square footage and depth and instantly converts them into
           cubic yards, so you can order the right amount of material the first time. It's built for
           homeowners, contractors, and landscapers alike, and it's part of the free suite of construction and
-          measurement tools available on Tolz, where every calculator is designed to give you a fast, accurate
+          measurement tools available on <Link to="/" className="inline-home-link">Tolz</Link>, where every calculator is designed to give you a fast, accurate
           answer without extra steps.
         </p>
       </div>

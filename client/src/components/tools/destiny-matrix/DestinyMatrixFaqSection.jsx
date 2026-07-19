@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -98,7 +99,7 @@ export default function DestinyMatrixFaqSection() {
       <div className="card" style={cardStyle}>
         <p style={pStyle}>
           Your date of birth carries more information than most people realize. The Destiny Matrix Calculator
-          on Tolz turns that single piece of information into a complete personal chart in seconds — no birth
+          on <Link to="/" className="inline-home-link">Tolz</Link> turns that single piece of information into a complete personal chart in seconds — no birth
           time, no location, and no signup required. Just enter your birth date above, and the tool maps out
           your core numbers across every major area of your life, from your natural talents to your karmic
           patterns, love dynamics, and financial tendencies.

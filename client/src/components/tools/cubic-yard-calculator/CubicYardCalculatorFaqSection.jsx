@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -99,7 +100,7 @@ export default function CubicYardCalculatorFaqSection() {
           mistakes in any construction or landscaping project. Too little material means a second delivery
           and wasted labor; too much means paying for a product you'll never use. The cubic yard calculator
           above solves this problem in seconds by converting your project's length, width, and depth into an
-          exact volume in cubic yards, along with an estimated material weight. Built by Tolz, it's designed
+          exact volume in cubic yards, along with an estimated material weight. Built by <Link to="/" className="inline-home-link">Tolz</Link>, it's designed
           for homeowners, contractors, and landscapers who need dependable numbers before they call a supplier
           or place an order.
         </p>

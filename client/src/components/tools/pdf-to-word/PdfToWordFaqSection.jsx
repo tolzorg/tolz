@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -99,7 +100,7 @@ export default function PdfToWordFaqSection() {
           Editing a PDF that someone else created can feel impossible — the text is locked, the layout won't
           budge, and copying a single paragraph often scrambles the spacing. A PDF to Word converter solves
           that by turning a fixed PDF back into a fully editable document you can open in Microsoft Word,
-          Google Docs, or any word processor. The free PDF to Word converter on Tolz does exactly this: upload
+          Google Docs, or any word processor. The free PDF to Word converter on <Link to="/" className="inline-home-link">Tolz</Link> does exactly this: upload
           your file, and it rebuilds the content as a .docx you can rewrite, reformat, and reuse, with no
           software to install and no account to create.
         </p>

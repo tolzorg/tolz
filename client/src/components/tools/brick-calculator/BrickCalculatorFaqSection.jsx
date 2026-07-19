@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -96,7 +97,7 @@ export default function BrickCalculatorFaqSection() {
           Planning a construction project starts with knowing exactly what materials you need, and that's
           precisely what this brick calculator is built for. Whether you're a homeowner budgeting for a garden
           wall, a contractor quoting a client, or a student working through a masonry assignment, this tool
-          from Tolz removes the guesswork from brickwork estimation. Instead of manually working through area
+          from <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork from brickwork estimation. Instead of manually working through area
           formulas and mortar ratios, you enter your wall dimensions and get an instant, accurate breakdown of
           bricks, cement, sand, and water, along with an estimated total cost.
         </p>

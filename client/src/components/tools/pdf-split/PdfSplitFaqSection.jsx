@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -101,7 +102,7 @@ export default function PdfSplitFaqSection() {
       <div className="card" style={cardStyle}>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Working with one large document is convenient until you only need a few pages from it. The Split
-          PDF tool from Tolz lets you take a single file and break it into smaller, more manageable documents
+          PDF tool from <Link to="/" className="inline-home-link">Tolz</Link> lets you take a single file and break it into smaller, more manageable documents
           directly in your browser. Whether you want to pull out a single contract page, divide a long report
           into chapters, or turn a 200-page scan into separate files, you can split PDF documents in a few
           clicks without installing software or creating an account. Everything runs on the page above this

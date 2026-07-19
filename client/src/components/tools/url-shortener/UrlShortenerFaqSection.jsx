@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -106,7 +107,7 @@ export default function UrlShortenerFaqSection() {
       <div className="card" style={cardStyle}>
         <p style={pStyle}>
           Long, messy links are one of the small annoyances of using the internet, whether you're sharing a
-          product page, a blog post, or a document with someone else. Tolz's URL shortener takes any long web
+          product page, a blog post, or a document with someone else. <Link to="/" className="inline-home-link">Tolz</Link>'s URL shortener takes any long web
           address and turns it into a short, clean link you can share anywhere — on social media, in emails,
           in text messages, or in printed materials — without the clutter. There's no software to install and
           nothing to configure; you paste your link, click a button, and get a shorter version ready to use in

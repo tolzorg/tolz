@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -96,7 +97,7 @@ export default function ImageConverterFaqSection() {
       {/* Intro */}
       <div className="card" style={cardStyle}>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The Image Converter from Tolz lets you change any picture from one format to another directly in
+          The Image Converter from <Link to="/" className="inline-home-link">Tolz</Link> lets you change any picture from one format to another directly in
           your browser, with no software to install and no account to create. Whether you need to turn a HEIC
           photo from your iPhone into a shareable JPG, shrink a heavy PNG into a lightweight WebP, or prepare
           graphics for a website, this free image converter handles the job in a few clicks. Everything runs

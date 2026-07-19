@@ -214,6 +214,22 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .badge-muted { background: var(--bg-muted); color: var(--text-muted); }
 .badge-new { background: #dcfce7; color: #16a34a; }
 
+/* ── Inline "Tolz" home link (tool-page intro paragraphs) ─────── */
+.inline-home-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(59, 123, 252, 0.35);
+  text-underline-offset: 2px;
+}
+.inline-home-link:hover {
+  color: var(--accent-hover);
+}
+.inline-home-link:visited {
+  color: var(--cat-image);
+  text-decoration-color: rgba(139, 92, 246, 0.35);
+}
+
 /* ── Filter pills ──────────────────────────────────────────── */
 .filter-pill {
   display: inline-flex;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -100,7 +101,7 @@ export default function WordCounterFaqSection() {
           A word counter is a simple but essential writing tool that tells you exactly how many words,
           characters, sentences, and paragraphs are in a piece of text. Instead of manually counting or
           guessing, you paste or type your content into the tool and get an instant, accurate breakdown. The
-          Word Counter on Tolz does exactly this, it processes your text directly in your browser and returns
+          Word Counter on <Link to="/" className="inline-home-link">Tolz</Link> does exactly this, it processes your text directly in your browser and returns
           real-time counts as you type, with no waiting and no manual refreshing.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>

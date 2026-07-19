@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -99,7 +100,7 @@ export default function SquareFootageCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Measuring space accurately is one of those tasks that seems simple until you're standing in an
           oddly shaped room with a tape measure, trying to figure out how much flooring to order. This square
-          footage calculator, built by Tolz, removes the guesswork by letting you calculate the area of ten
+          footage calculator, built by <Link to="/" className="inline-home-link">Tolz</Link>, removes the guesswork by letting you calculate the area of ten
           different shapes, rectangle, square, circle, triangle, trapezoid, ellipse, semi-circle, L-shape,
           ring, and custom polygon, in seconds. Whether you're flooring a living room, fencing a garden,
           pricing out a construction project, or listing a property for sale, this tool gives you precise,

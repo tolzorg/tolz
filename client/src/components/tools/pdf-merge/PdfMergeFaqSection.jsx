@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -100,7 +101,7 @@ export default function PdfMergeFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Managing separate PDF documents quickly becomes messy — a signed contract split across three scans,
           an invoice here, a receipt there, chapters of a report saved as individual files. The Merge PDF tool
-          on Tolz solves this in seconds by joining all of those documents into one clean, ordered file you
+          on <Link to="/" className="inline-home-link">Tolz</Link> solves this in seconds by joining all of those documents into one clean, ordered file you
           can download, print, or send. There's no software to install and no account to create: you upload
           your files, arrange them the way you want, and merge PDF pages into a single document right inside
           your browser. Whether you're combining two files or twenty, the merge PDF process stays fast,

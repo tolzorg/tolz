@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -108,7 +109,7 @@ export default function UnitConverterFaqSection() {
           Whether you are adjusting a recipe measured in ounces, converting a travel distance from kilometers
           to miles, or double-checking a weight in a construction spec sheet, getting units right matters. A
           single misplaced decimal or wrong conversion factor can throw off a budget, a dosage, or a design.
-          This free unit converter on Tolz is built to remove that risk, you enter a value, choose your units,
+          This free unit converter on <Link to="/" className="inline-home-link">Tolz</Link> is built to remove that risk, you enter a value, choose your units,
           and get an accurate result immediately, without opening a spreadsheet or searching for a formula.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>

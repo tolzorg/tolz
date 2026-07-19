@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -104,7 +105,7 @@ export default function AluminumWeightCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Calculating the exact weight of aluminum stock used to mean digging up a density chart, converting
           units by hand, and hoping the math held up once the material reached the shop floor. The aluminum
-          weight calculator on Tolz removes that guesswork by handling the entire calculation for you,
+          weight calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes that guesswork by handling the entire calculation for you,
           instantly, accurately, and for free. Whether you're pricing out a fabrication job, ordering raw
           stock for a construction project, or simply trying to confirm how much a piece of aluminum will
           weigh before shipping it, this tool gives you a precise answer in seconds, without spreadsheets or

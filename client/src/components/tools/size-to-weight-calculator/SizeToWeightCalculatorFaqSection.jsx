@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -101,7 +102,7 @@ export default function SizeToWeightCalculatorFaqSection() {
           saves time, money, and guesswork. Whether you're a fabricator quoting a steel plate, a hobbyist
           calculating lumber weight for a project, or a logistics coordinator estimating shipping costs,
           knowing the exact weight of a rectangular solid before it arrives on-site changes how you plan. The
-          size to weight calculator on Tolz was built exactly for this, enter the dimensions of your material,
+          size to weight calculator on <Link to="/" className="inline-home-link">Tolz</Link> was built exactly for this, enter the dimensions of your material,
           pick the substance it's made from, and get an accurate weight in seconds, without needing a scale, a
           reference manual, or a calculator app full of conversion formulas.
         </p>

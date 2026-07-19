@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -101,7 +102,7 @@ export default function ColorPickerFaqSection() {
           Whether you're a designer trying to match a brand color, a developer pulling a value for CSS, or
           someone editing a photo who just wants to know what shade of blue is in the sky, you need a fast and
           accurate way to convert visual color into usable code. That's exactly what this tool does. Built as
-          part of the free utility collection on Tolz, the online color picker lets you select, extract, and
+          part of the free utility collection on <Link to="/" className="inline-home-link">Tolz</Link>, the online color picker lets you select, extract, and
           convert colors into HEX, RGB, and HSL formats in seconds, without installing any software or
           creating an account.
         </p>
