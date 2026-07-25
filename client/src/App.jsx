@@ -33,6 +33,8 @@ const SquareFootageCalculatorPage    = lazy(() => import("./pages/SquareFootageC
 const SquareYardsCalculatorPage      = lazy(() => import("./pages/SquareYardsCalculatorPage"));
 const PrivacyPage                  = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage                    = lazy(() => import("./pages/TermsPage"));
+const DisclaimerPage               = lazy(() => import("./pages/DisclaimerPage"));
+const CopyrightPage                = lazy(() => import("./pages/CopyrightPage"));
 const AboutPage                    = lazy(() => import("./pages/AboutPage"));
 const ContactPage                  = lazy(() => import("./pages/ContactPage"));
 const NotFoundPage                 = lazy(() => import("./pages/NotFoundPage"));
@@ -54,6 +56,7 @@ const SagCalculatorPage               = lazy(() => import("./pages/SagCalculator
 const DrywallCalculatorPage           = lazy(() => import("./pages/DrywallCalculatorPage"));
 const SandCalculatorPage              = lazy(() => import("./pages/SandCalculatorPage"));
 const FireGlassCalculatorPage         = lazy(() => import("./pages/FireGlassCalculatorPage"));
+const GlassWeightCalculatorPage       = lazy(() => import("./pages/GlassWeightCalculatorPage"));
 const SealantCalculatorPage           = lazy(() => import("./pages/SealantCalculatorPage"));
 const FramingCalculatorPage           = lazy(() => import("./pages/FramingCalculatorPage"));
 const SonotubeCalculatorPage          = lazy(() => import("./pages/SonotubeCalculatorPage"));
@@ -199,6 +202,7 @@ export default function App() {
                 <Route path="/calculators/construction/drywall"                  element={<DrywallCalculatorPage />} />
                 <Route path="/calculators/construction/sand"                     element={<SandCalculatorPage />} />
                 <Route path="/calculators/construction/fire-glass"               element={<FireGlassCalculatorPage />} />
+                <Route path="/calculators/construction/glass-weight"             element={<GlassWeightCalculatorPage />} />
                 <Route path="/calculators/construction/sealant"                  element={<SealantCalculatorPage />} />
                 <Route path="/calculators/construction/framing"                  element={<FramingCalculatorPage />} />
                 <Route path="/calculators/construction/sonotube"                 element={<SonotubeCalculatorPage />} />
@@ -206,6 +210,8 @@ export default function App() {
 
                 <Route path="/privacy"                             element={<PrivacyPage />} />
                 <Route path="/terms"                               element={<TermsPage />} />
+                <Route path="/disclaimer"                          element={<DisclaimerPage />} />
+                <Route path="/copyright"                           element={<CopyrightPage />} />
                 <Route path="/about"                               element={<AboutPage />} />
                 <Route path="/contact"                             element={<ContactPage />} />
                 <Route path="*"                                    element={<NotFoundPage />} />

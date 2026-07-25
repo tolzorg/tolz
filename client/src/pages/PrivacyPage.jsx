@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const Section = ({ title, children }) => (
@@ -23,6 +23,26 @@ const P = ({ children }) => (
   <p style={{ marginBottom: 12, fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)" }}>
     {children}
   </p>
+);
+
+const SubHeading = ({ children }) => (
+  <p
+    style={{
+      marginBottom: 8,
+      fontSize: 15,
+      fontWeight: 700,
+      fontFamily: "var(--font-display)",
+      color: "var(--text-primary)",
+    }}
+  >
+    {children}
+  </p>
+);
+
+const UL = ({ children }) => (
+  <ul style={{ marginBottom: 12, paddingLeft: 20, fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)" }}>
+    {children}
+  </ul>
 );
 
 export default function PrivacyPage() {
@@ -66,119 +86,190 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: 14, fontFamily: "var(--font-body)" }}>
-            Last updated: June 14, 2026
+            Last updated: July 2026
           </p>
         </div>
 
         <div>
           <Section title="Overview">
             <P>
-              Tolz is a collection of free, browser-based tools. We are committed to your privacy.
-              The short version: we do not store the files you upload, we do not sell your data, and
-              we do not require an account of any kind.
+              Welcome to <Link to="/" className="inline-home-link">Tolz</Link>. Your privacy matters
+              to us, and this Privacy Policy explains how we collect, use, and protect information
+              when you visit or use our website at{" "}
+              <Link to="/" className="inline-home-link">https://www.tolz.org/</Link> ("
+              <Link to="/" className="inline-home-link">Tolz</Link>," "we," "us," or "our").
+            </P>
+            <P>
+              Tolz provides a wide range of free online tools, including image tools, calculators,
+              converters, generators, text tools, developer tools, PDF tools, and more. Most of our
+              tools are designed to run directly in your browser, which means your files and inputs
+              are generally processed without being uploaded to our servers, unless otherwise stated
+              for a specific tool. This document explains our overall approach to data collection and
+              use across the website.
+            </P>
+            <P>
+              By using Tolz, you agree to the practices described in this Privacy Policy. If you do
+              not agree with any part of this policy, please discontinue use of our website.
             </P>
           </Section>
 
-          <Section title="Files You Upload">
+          <Section title="1. Information We Collect">
             <P>
-              Files uploaded to Tolz tools (PDFs, images, etc.) are processed entirely in server
-              memory and are never written to disk, stored in a database, or retained after your
-              request completes. Once the server sends back the processed result, your file data is
-              discarded.
+              We aim to collect as little personal information as possible while still being able to
+              operate and improve Tolz effectively.
             </P>
+            <SubHeading>1.1 Information You Provide Directly</SubHeading>
+            <P>In some cases, you may voluntarily provide information to us, such as:</P>
+            <UL>
+              <li>Your name and email address when contacting us through a contact form</li>
+              <li>Feedback, suggestions, or bug reports you submit</li>
+              <li>
+                Any content you choose to enter into our tools for processing (most of which stays in
+                your browser and is not transmitted to us)
+              </li>
+            </UL>
+            <SubHeading>1.2 Automatically Collected Information</SubHeading>
             <P>
-              We do not read, analyze, copy, share, or monetize the content of your files in any
-              way. Processing happens solely to fulfill the tool operation you requested.
+              Like most websites, Tolz may automatically collect certain technical information when
+              you visit, including:
             </P>
-          </Section>
-
-          <Section title="URL Shortener">
+            <UL>
+              <li>IP address and approximate location</li>
+              <li>Browser type and version</li>
+              <li>Device type and operating system</li>
+              <li>Pages visited, time spent on the site, and referring URLs</li>
+              <li>General usage patterns and interaction data</li>
+            </UL>
             <P>
-              When you create a short link, Tolz stores the slug-to-URL mapping so that redirect
-              requests can be served. This mapping includes the destination URL, creation
-              timestamp, optional expiry time, and a click counter. No personally identifiable
-              information is stored alongside the link.
+              This information is typically collected in aggregated or anonymized form and is used to
+              understand how our website is used and to improve performance.
             </P>
+            <SubHeading>1.3 Cookies and Similar Technologies</SubHeading>
             <P>
-              Short links may be deleted automatically when they expire (if an expiry was set) or
-              when the server is restarted (links without Redis persistence) or after extended
-              inactivity. Do not rely on Tolz short links for critical long-term use.
-            </P>
-          </Section>
-
-          <Section title="Server Logs">
-            <P>
-              Our hosting provider (Render) may automatically capture standard web server logs,
-              which can include IP addresses, request timestamps, HTTP method, path, and response
-              codes. These logs are used solely for debugging and security monitoring and are
-              subject to Render's own data retention policies.
-            </P>
-          </Section>
-
-          <Section title="Cookies and Local Storage">
-            <P>
-              Tolz does not set any tracking cookies. Some tools may save your preferences (such
-              as unit types or color history) in your browser's <code>localStorage</code> so your
-              session persists across page refreshes. This data never leaves your device.
+              Tolz may use cookies, local storage, and similar tracking technologies to enhance your
+              browsing experience, remember preferences, and analyze site traffic. For more details,
+              please refer to our separate Cookie Policy page.
             </P>
           </Section>
 
-          <Section title="Third-Party Services">
+          <Section title="2. How We Use Your Information">
+            <P>We may use the information we collect for purposes such as:</P>
+            <UL>
+              <li>Operating, maintaining, and improving the tools and features available on Tolz</li>
+              <li>Understanding usage trends to guide future development</li>
+              <li>Responding to inquiries, feedback, or support requests</li>
+              <li>Monitoring for security issues, abuse, or technical problems</li>
+              <li>Complying with applicable legal obligations</li>
+            </UL>
+            <P>We do not sell your personal information to third parties.</P>
+          </Section>
+
+          <Section title="3. How Our Tools Handle Your Data">
             <P>
-              Tolz loads fonts (Plus Jakarta Sans, Manrope) from Google Fonts. When your browser
-              fetches these fonts, Google may log the request per their own privacy policy. No
-              other third-party analytics, tracking pixels, or advertising scripts are loaded.
+              Many of the tools on Tolz, including image editors, converters, calculators, and
+              generators, are built to process data locally within your browser. This means that
+              files or text you input into these tools are generally not sent to or stored on our
+              servers.
             </P>
             <P>
-              Our infrastructure is hosted on{" "}
+              However, some tools may require server-side processing to function properly. Where this
+              is the case, we aim to:
+            </P>
+            <UL>
+              <li>Process data only for the purpose of delivering the requested tool functionality</li>
+              <li>Avoid retaining uploaded files or inputs longer than necessary</li>
+              <li>Delete temporary files automatically after processing, where technically applicable</li>
+            </UL>
+            <P>
+              If you have concerns about a specific tool's data handling, we encourage you to review
+              any tool-specific notices or contact us directly for clarification.
+            </P>
+          </Section>
+
+          <Section title="4. Sharing of Information">
+            <P>We may share information in limited circumstances, such as:</P>
+            <SubHeading>4.1 Service Providers</SubHeading>
+            <P>
+              We may work with third-party service providers (such as hosting providers or analytics
+              tools) who help us operate Tolz. These providers only access information necessary to
+              perform their functions and are expected to handle it responsibly.
+            </P>
+            <SubHeading>4.2 Legal Requirements</SubHeading>
+            <P>
+              We may disclose information if required by law, regulation, legal process, or
+              governmental request, or to protect the rights, property, or safety of Tolz, our users,
+              or the public.
+            </P>
+            <SubHeading>4.3 Business Transfers</SubHeading>
+            <P>
+              If Tolz undergoes a merger, acquisition, or sale of assets, user information may be
+              transferred as part of that transaction, subject to standard confidentiality practices.
+            </P>
+          </Section>
+
+          <Section title="5. Third-Party Advertising and Analytics">
+            <P>
+              Tolz may use third-party advertising and analytics services to support the operation of
+              the website. These providers may use cookies or similar technologies to collect
+              information about your visits to Tolz and other websites, in order to provide relevant
+              advertising and measure site performance. We do not control the practices of these
+              third parties, and we encourage you to review their respective privacy policies for
+              more information.
+            </P>
+          </Section>
+
+          <Section title="6. Data Security">
+            <P>
+              We take reasonable technical and organizational measures to help protect information
+              from unauthorized access, alteration, or disclosure. However, no method of transmission
+              or storage over the internet is completely secure, and we cannot guarantee absolute
+              security of any information you share with us.
+            </P>
+          </Section>
+
+          <Section title="7. Children's Privacy">
+            <P>
+              Tolz is not directed at children under the age of 13, and we do not knowingly collect
+              personal information from children. If you believe a child has provided us with
+              personal information, please contact us so we can take appropriate action.
+            </P>
+          </Section>
+
+          <Section title="8. Your Choices and Rights">
+            <P>
+              Depending on your location, you may have certain rights regarding your personal
+              information, such as the right to access, correct, or request deletion of your data.
+              You may also be able to manage cookie preferences through your browser settings.
+            </P>
+          </Section>
+
+          <Section title="9. International Users">
+            <P>
+              Tolz is accessible to users worldwide. By using our website, you understand that your
+              information may be processed in countries other than your own, which may have different
+              data protection laws than your home country.
+            </P>
+          </Section>
+
+          <Section title="10. Changes to This Privacy Policy">
+            <P>
+              We may update this Privacy Policy from time to time to reflect changes in our
+              practices, technology, legal requirements, or other factors. Any updates will be posted
+              on this page with a revised "Last updated" date. We encourage you to review this page
+              periodically.
+            </P>
+          </Section>
+
+          <Section title="11. Contact Us">
+            <P>
+              If you have any questions, concerns, or requests related to this Privacy Policy or how
+              Tolz handles your information, please contact us through the details provided on our
+              website at{" "}
               <a
-                href="https://render.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://www.tolz.org/"
                 style={{ color: "var(--accent)" }}
               >
-                Render
-              </a>
-              . Render may process certain request data as part of operating the platform.
-            </P>
-          </Section>
-
-          <Section title="Children's Privacy">
-            <P>
-              Tolz is not directed at children under 13. We do not knowingly collect personal
-              information from children. If you believe a child has provided personal data through
-              our service, please contact us and we will delete it promptly.
-            </P>
-          </Section>
-
-          <Section title="Your Rights (GDPR / CCPA)">
-            <P>
-              Because Tolz does not store personal data from file uploads, most GDPR and CCPA
-              data-subject rights (access, deletion, portability) are satisfied by design — there
-              is simply no data to access or delete after your request completes.
-            </P>
-            <P>
-              For any residual data held in server logs (managed by Render) or URL shortener
-              entries, you may contact us at the email below to request deletion.
-            </P>
-          </Section>
-
-          <Section title="Changes to This Policy">
-            <P>
-              We may update this policy from time to time. The "Last updated" date at the top of
-              this page will reflect any changes. Continued use of Tolz after changes are posted
-              constitutes acceptance of the revised policy.
-            </P>
-          </Section>
-
-          <Section title="Contact">
-            <P>
-              Questions about this privacy policy? Reach us at{" "}
-              <a
-                href="mailto:privacy@tolz.org"
-                style={{ color: "var(--accent)" }}
-              >
-                privacy@tolz.org
+                https://www.tolz.org/
               </a>
               .
             </P>
@@ -196,7 +287,13 @@ export default function PrivacyPage() {
           }}
         >
           <Link to="/terms" style={{ color: "var(--accent)", fontSize: 13 }}>
-            Terms of Service →
+            Terms and Conditions →
+          </Link>
+          <Link to="/disclaimer" style={{ color: "var(--text-muted)", fontSize: 13 }}>
+            Disclaimer
+          </Link>
+          <Link to="/copyright" style={{ color: "var(--text-muted)", fontSize: 13 }}>
+            Copyright Policy
           </Link>
           <Link to="/about" style={{ color: "var(--text-muted)", fontSize: 13 }}>
             About Tolz

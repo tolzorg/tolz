@@ -577,6 +577,22 @@ export const TOOLS = [
     available: true,
   },
   {
+    id: "glass-weight-calculator",
+    label: "Glass Weight Calculator",
+    tagline: "Weight by glass type, shape & dimensions",
+    description:
+      "Calculate the weight of a glass sheet or piece from its type, shape, and dimensions. Supports 19 glass types (annealed, tempered, laminated, and more) with reference densities, 8 shapes including rectangular, circular, and round rod, plus a quantity multiplier.",
+    icon: "🪟",
+    iconBg: "#eff6ff",
+    iconColor: "#1d4ed8",
+    category: "utility",
+    subCategory: "construction-materials",
+    badge: "New",
+    badgeType: "new",
+    path: "/calculators/construction/glass-weight",
+    available: true,
+  },
+  {
     id: "sealant-calculator",
     label: "Sealant Calculator",
     tagline: "Volume, packages & cost for caulk and sealant joints",

@@ -1,13 +1,14 @@
 import BoardAndBattenCalculatorTool from "./BoardAndBattenCalculatorTool";
+import BoardAndBattenCalculatorFaqSection from "./BoardAndBattenCalculatorFaqSection";
 import SEO from "../../SEO";
 
 export default function BoardAndBattenCalculatorPage() {
   return (
     <>
       <SEO
-        title="Board and Batten Calculator — Siding Material Estimator"
-        description="Calculate board and batten siding material quantities. Supports multiple walls, openings, 7 board profiles, lumber database, layout engine, trim, fasteners, and paint estimators."
-        canonicalUrl="https://www.tolz.org/calculators/construction/board-and-batten"
+        title="Free Board & Batten Calculator | Siding Estimator"
+        description="Calculate boards, battens, trim, fasteners & paint for board and batten siding. Free, no signup. Supports 7 profiles & multiple walls with openings."
+        path="/calculators/construction/board-and-batten"
       />
       <div style={{ paddingTop: 24, paddingBottom: 40 }}>
         <div className="container" style={{ maxWidth: 860, margin: "0 auto", padding: "0 16px 20px" }}>
@@ -20,6 +21,9 @@ export default function BoardAndBattenCalculatorPage() {
           </p>
         </div>
         <BoardAndBattenCalculatorTool />
+        <div className="container" style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 0" }}>
+          <BoardAndBattenCalculatorFaqSection />
+        </div>
       </div>
     </>
   );

@@ -34,6 +34,17 @@ const Highlight = ({ icon, label, description }) => (
   </div>
 );
 
+const h2Style = {
+  fontFamily: "var(--font-display)",
+  fontWeight: 700,
+  fontSize: 20,
+  color: "var(--text-primary)",
+  letterSpacing: "-0.015em",
+  marginBottom: 16,
+};
+const pStyle = { fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)", marginBottom: 12 };
+const ulStyle = { ...pStyle, paddingLeft: 20 };
+
 export default function AboutPage() {
   const liveCount = TOOLS.filter((t) => t.available).length;
 
@@ -104,44 +115,73 @@ export default function AboutPage() {
               maxWidth: 600,
             }}
           >
-            Tolz is a free collection of everyday utility tools — built for people who want
-            fast, reliable tools without accounts, paywalls, or watermarks.
+            Welcome to <Link to="/" className="inline-home-link">Tolz</Link>, your go-to destination
+            for free, fast, and reliable online tools. We built <Link to="/" className="inline-home-link">Tolz</Link> around
+            a simple idea: everyday digital tasks shouldn't require expensive software, complicated
+            installations, or technical expertise. Whether you need to resize an image, convert a
+            file, calculate a number, or generate content, <Link to="/" className="inline-home-link">Tolz</Link> gives
+            you a straightforward way to get it done, right in your browser.
           </p>
         </div>
 
-        {/* Values */}
+        {/* Who We Are */}
         <section style={{ marginBottom: 48 }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 20,
-              color: "var(--text-primary)",
-              letterSpacing: "-0.015em",
-              marginBottom: 16,
-            }}
-          >
-            Our principles
-          </h2>
+          <h2 style={h2Style}>Who We Are</h2>
+          <p style={pStyle}>
+            Tolz is a web-based platform offering a wide collection of online utilities designed for
+            students, professionals, freelancers, developers, and everyday internet users. Our toolkit
+            spans multiple categories, including:
+          </p>
+          <ul style={{ ...ulStyle, marginBottom: 12 }}>
+            <li style={{ marginBottom: 6 }}><strong>Image Tools</strong> – compress, resize, convert, and edit images</li>
+            <li style={{ marginBottom: 6 }}><strong>Calculators</strong> – handle everyday math, finance, and health calculations</li>
+            <li style={{ marginBottom: 6 }}><strong>Converters</strong> – switch between file formats, units, and measurements</li>
+            <li style={{ marginBottom: 6 }}><strong>Generators</strong> – create passwords, QR codes, text, and more</li>
+            <li style={{ marginBottom: 6 }}><strong>Text Tools</strong> – format, analyze, and transform written content</li>
+            <li style={{ marginBottom: 6 }}><strong>Developer Tools</strong> – simplify coding, testing, and formatting tasks</li>
+            <li style={{ marginBottom: 6 }}><strong>PDF Tools</strong> – merge, split, compress, and convert PDF files</li>
+            <li>And many more – with new tools added regularly</li>
+          </ul>
+          <p style={{ ...pStyle, marginBottom: 0 }}>
+            We designed Tolz to be a single, dependable hub where people can find the tools they need
+            without jumping between multiple websites or downloading unnecessary software.
+          </p>
+        </section>
+
+        {/* Our Mission */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={h2Style}>Our Mission</h2>
+          <p style={pStyle}>
+            Our mission is simple: make everyday digital tasks easier for everyone, everywhere.
+          </p>
+          <p style={pStyle}>
+            We believe that useful tools shouldn't come with a price tag, a login wall, or a steep
+            learning curve. That's why every tool on Tolz is built to be:
+          </p>
           <Highlight
-            icon="🔒"
-            label="Privacy first"
-            description="Files you upload are processed in memory and never stored, shared, or retained after your request completes."
+            icon="🆓"
+            label="Free to Use"
+            description="All tools on Tolz are completely free. There are no hidden fees, subscription plans, or premium tiers required to access core features. We want anyone, anywhere in the world, to be able to use our tools without financial barriers."
           />
           <Highlight
             icon="⚡"
-            label="No friction"
-            description={`No signup, no email verification, no subscription. Just open a tool and use it.`}
+            label="Fast and Efficient"
+            description="Speed matters. Our tools are optimized to process your files and requests quickly, so you can complete your tasks without unnecessary waiting or delays."
           />
           <Highlight
-            icon="🆓"
-            label="Free forever"
-            description="All tools are free with no hidden limits, no watermarks, and no bait-and-switch upgrades."
+            icon="✨"
+            label="Simple and User-Friendly"
+            description="We design every tool with clarity in mind. You shouldn't need a manual to figure out how to compress an image or convert a file. Our clean, intuitive interfaces are built for users of all technical backgrounds, from complete beginners to experienced professionals."
+          />
+          <Highlight
+            icon="🔒"
+            label="Secure and Privacy-Conscious"
+            description="We understand that your files and data matter to you. Tolz is built with user privacy and security in mind, and we work to ensure that your information is handled responsibly whenever you use our tools."
           />
           <Highlight
             icon="🌍"
-            label="Built for everyone"
-            description="Tools are designed to be intuitive enough for non-technical users and fast enough for power users."
+            label="Accessible Anywhere"
+            description="Because Tolz runs directly in your web browser, there's nothing to download or install. Our tools work across devices and operating systems, so you can access them from your desktop, laptop, tablet, or smartphone whenever you need them."
           />
         </section>
 
@@ -178,18 +218,89 @@ export default function AboutPage() {
           </Link>
         </div>
 
+        {/* Why We Built Tolz */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={h2Style}>Why We Built Tolz</h2>
+          <p style={pStyle}>
+            The idea behind Tolz came from a common frustration: needing a quick tool for a simple
+            task, only to find that it required downloading software, creating an account, or paying
+            for a subscription, just to use it once. We wanted to change that experience.
+          </p>
+          <p style={{ ...pStyle, marginBottom: 0 }}>
+            Tolz was created to bring together the most commonly needed online utilities in one clean,
+            organized platform. Instead of searching multiple websites for a converter here and a
+            calculator there, users can find what they need on Tolz and move on with their day.
+          </p>
+        </section>
+
+        {/* What Makes Tolz Different */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={h2Style}>What Makes Tolz Different</h2>
+          <Highlight
+            icon="📚"
+            label="A Growing Library of Tools"
+            description="We continuously expand our collection based on user needs and emerging trends. Our goal is to make Tolz a comprehensive resource that keeps pace with what people actually need in their daily digital lives."
+          />
+          <Highlight
+            icon="👥"
+            label="Built for Everyone"
+            description="Tolz isn't designed for a single type of user. Students use our calculators and converters for schoolwork. Professionals rely on our PDF and document tools for daily tasks. Developers use our coding utilities to save time. Content creators turn to our text and image tools to streamline their workflow. No matter who you are, there's likely a tool on Tolz that fits your needs."
+          />
+          <Highlight
+            icon="🚫"
+            label="No Unnecessary Barriers"
+            description="We keep the experience simple. There are no mandatory sign-ups, no complicated steps, and no confusing interfaces standing between you and the result you're looking for."
+          />
+          <Highlight
+            icon="🌐"
+            label="Global Reach"
+            description="Tolz serves a global audience. Our tools are built to be useful regardless of where you are or what device you're using, making digital tasks more accessible to people around the world."
+          />
+        </section>
+
+        {/* Our Commitment to Quality */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={h2Style}>Our Commitment to Quality</h2>
+          <p style={{ ...pStyle, marginBottom: 0 }}>
+            Every tool on Tolz goes through careful development to ensure it works reliably and
+            delivers accurate results. We regularly review and update our tools to maintain
+            performance, fix issues, and improve the overall user experience. Your feedback plays an
+            important role in this process, helping us identify what's working well and where we can
+            do better.
+          </p>
+        </section>
+
+        {/* Looking Ahead */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={h2Style}>Looking Ahead</h2>
+          <p style={{ ...pStyle, marginBottom: 0 }}>
+            Tolz is an evolving platform. As technology changes and new needs arise, we remain
+            committed to expanding our toolset, refining existing features, and staying true to our
+            core values of accessibility, simplicity, and reliability. We're not just building a
+            website, we're building a resource that people can return to, time and again, whenever
+            they need a quick and dependable solution.
+          </p>
+        </section>
+
+        {/* Thank You */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={h2Style}>Thank You for Choosing Tolz</h2>
+          <p style={pStyle}>
+            We're grateful that you've chosen Tolz for your online tool needs. Whether you're here for
+            a one-time task or you've made us part of your regular workflow, our goal is to make your
+            experience as smooth and helpful as possible. We'll keep working to bring you the tools you
+            need, built the way they should be: free, fast, simple, and secure.
+          </p>
+          <p style={{ ...pStyle, marginBottom: 0 }}>
+            If you have suggestions, feedback, or ideas for new tools, we'd love to hear from you. Tolz
+            exists because of users like you, and your input helps shape the platform we continue to
+            build.
+          </p>
+        </section>
+
         {/* Tech stack note */}
         <section style={{ marginBottom: 32 }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 20,
-              color: "var(--text-primary)",
-              letterSpacing: "-0.015em",
-              marginBottom: 12,
-            }}
-          >
+          <h2 style={h2Style}>
             How it works
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)", marginBottom: 12 }}>
@@ -230,7 +341,13 @@ export default function AboutPage() {
             Privacy Policy
           </Link>
           <Link to="/terms" style={{ color: "var(--text-muted)", fontSize: 13 }}>
-            Terms of Service
+            Terms and Conditions
+          </Link>
+          <Link to="/disclaimer" style={{ color: "var(--text-muted)", fontSize: 13 }}>
+            Disclaimer
+          </Link>
+          <Link to="/copyright" style={{ color: "var(--text-muted)", fontSize: 13 }}>
+            Copyright Policy
           </Link>
         </div>
       </div>

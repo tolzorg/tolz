@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
 const Section = ({ title, children }) => (
@@ -25,12 +25,32 @@ const P = ({ children }) => (
   </p>
 );
 
+const SubHeading = ({ children }) => (
+  <p
+    style={{
+      marginBottom: 8,
+      fontSize: 15,
+      fontWeight: 700,
+      fontFamily: "var(--font-display)",
+      color: "var(--text-primary)",
+    }}
+  >
+    {children}
+  </p>
+);
+
+const UL = ({ children }) => (
+  <ul style={{ marginBottom: 12, paddingLeft: 20, fontSize: 15, lineHeight: 1.75, color: "var(--text-secondary)" }}>
+    {children}
+  </ul>
+);
+
 export default function TermsPage() {
   return (
     <div style={{ background: "var(--bg-base)" }}>
       <SEO
-        title="Terms of Service"
-        description="Terms of Service for Tolz — free online tools. No account required, fair use policy, no warranties."
+        title="Terms and Conditions"
+        description="Terms and Conditions for Tolz — free online tools. No account required, fair use policy, no warranties."
         path="/terms"
       />
       <div className="container" style={{ maxWidth: 760, padding: "48px 24px 80px" }}>
@@ -63,141 +83,232 @@ export default function TermsPage() {
               marginBottom: 10,
             }}
           >
-            Terms of Service
+            Terms and Conditions
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: 14, fontFamily: "var(--font-body)" }}>
-            Last updated: June 14, 2026
+            Last Updated: July 22, 2026
           </p>
         </div>
 
         <div>
-          <Section title="Acceptance of Terms">
+          <Section title="Overview">
             <P>
-              By using Tolz ("the Service"), you agree to these Terms of Service. If you do not
-              agree, please do not use the Service. These terms may be updated at any time; your
-              continued use after changes are posted constitutes acceptance.
+              Welcome to <Link to="/" className="inline-home-link">Tolz</Link>. These Terms &
+              Conditions ("Terms") govern your access to and use of the website located at{" "}
+              <Link to="/" className="inline-home-link">https://www.tolz.org/</Link> (the "Website," "
+              <Link to="/" className="inline-home-link">Tolz</Link>," "we," "us," or "our"),
+              including all tools, features, and content offered through it (collectively, the
+              "Services").
+            </P>
+            <P>
+              By accessing or using Tolz, you agree to be bound by these Terms. If you do not agree
+              with any part of these Terms, please discontinue use of the Website immediately.
             </P>
           </Section>
 
-          <Section title="Description of Service">
+          <Section title="1. About Tolz">
             <P>
-              Tolz provides free, browser-based utility tools including image compression, PDF
-              processing, unit conversion, URL shortening, QR code generation, and health
-              calculators. All tools are provided free of charge and without requiring account
-              registration.
+              Tolz is a free online platform offering a wide variety of web-based utilities,
+              including image tools, calculators, converters, generators, text tools, developer
+              tools, PDF tools, and other browser-based utilities. Our goal is to provide fast,
+              simple, and user-friendly tools that work directly in your browser without requiring
+              any software installation or account registration.
             </P>
           </Section>
 
-          <Section title="Acceptable Use">
-            <P>You agree not to use the Service to:</P>
-            <ul
-              style={{
-                paddingLeft: 20,
-                marginBottom: 12,
-                fontSize: 15,
-                lineHeight: 1.75,
-                color: "var(--text-secondary)",
-              }}
-            >
-              <li style={{ marginBottom: 6 }}>
-                Upload, process, or distribute content that is illegal, infringing, or harmful
+          <Section title="2. Eligibility and Acceptable Use">
+            <SubHeading>2.1 Who Can Use Tolz</SubHeading>
+            <P>
+              Tolz is intended for general audiences. By using our Services, you confirm that you
+              have the legal capacity to enter into these Terms under the laws applicable in your
+              jurisdiction.
+            </P>
+            <SubHeading>2.2 Permitted Use</SubHeading>
+            <P>
+              You agree to use Tolz only for lawful purposes. You may use our tools for personal,
+              educational, or professional purposes, provided such use does not violate these Terms
+              or any applicable law.
+            </P>
+            <SubHeading>2.3 Prohibited Activities</SubHeading>
+            <P>While using Tolz, you agree not to:</P>
+            <UL>
+              <li>Use the Services for any unlawful, fraudulent, or harmful purpose.</li>
+              <li>
+                Upload or process content that infringes on the intellectual property, privacy, or
+                other rights of any third party.
               </li>
-              <li style={{ marginBottom: 6 }}>
-                Attempt to reverse-engineer, scrape, or overload the Service
+              <li>
+                Attempt to interfere with, disrupt, or compromise the security or functionality of
+                the Website.
               </li>
-              <li style={{ marginBottom: 6 }}>
-                Use the URL shortener to distribute malware, phishing links, or spam
+              <li>
+                Use automated systems (bots, scrapers, or crawlers) to access the Services in a
+                manner that imposes an unreasonable load on our infrastructure.
               </li>
-              <li style={{ marginBottom: 6 }}>
-                Circumvent rate limits or other protective measures
+              <li>
+                Reverse engineer, decompile, or attempt to extract the source code of any tool or
+                feature on the Website.
               </li>
-              <li style={{ marginBottom: 6 }}>
-                Use the Service in any way that violates applicable laws or regulations
+              <li>
+                Use Tolz to generate, distribute, or process illegal, defamatory, obscene, or
+                otherwise objectionable content.
               </li>
-            </ul>
+            </UL>
             <P>
-              We reserve the right to block access without notice for violations of these terms.
+              We reserve the right to restrict or terminate access to the Services for any user who
+              violates these provisions.
             </P>
           </Section>
 
-          <Section title="Your Content">
+          <Section title="3. User-Submitted Content">
+            <SubHeading>3.1 Ownership</SubHeading>
             <P>
-              You retain all rights to the files and content you upload. By using the Service,
-              you grant Tolz a temporary, limited license to process your content solely to
-              perform the requested tool operation. This license ends when the operation is
-              complete and your content has been returned to you.
+              Any files, text, images, or data you upload or input into our tools ("User Content")
+              remain your property. Tolz does not claim ownership over your User Content.
             </P>
+            <SubHeading>3.2 Responsibility</SubHeading>
             <P>
-              You represent that you have the right to upload the content and that it does not
-              violate any third-party rights or applicable law.
+              You are solely responsible for the legality, accuracy, and appropriateness of any User
+              Content you process through our tools. You must ensure you have the necessary rights or
+              permissions to use and upload such content.
             </P>
-          </Section>
-
-          <Section title="No Warranty">
+            <SubHeading>3.3 Processing of Content</SubHeading>
             <P>
-              The Service is provided "as is" and "as available" without warranties of any kind,
-              express or implied. We do not warrant that the Service will be uninterrupted,
-              error-free, or produce results of any particular accuracy or quality.
-            </P>
-            <P>
-              Tool outputs (compressed files, converted documents, calculated results) should be
-              verified by you before relying on them for critical purposes. Always keep backups
-              of your original files.
+              Many of our tools are designed to process files or data directly within your browser.
+              Where server-side processing is required, we aim to handle such content only as needed
+              to deliver the requested function, in accordance with our{" "}
+              <Link to="/privacy" className="inline-home-link">Privacy Policy</Link>.
             </P>
           </Section>
 
-          <Section title="Limitation of Liability">
+          <Section title="4. Intellectual Property Rights">
+            <SubHeading>4.1 Ownership of the Website</SubHeading>
             <P>
-              To the maximum extent permitted by law, Tolz and its operators shall not be liable
-              for any indirect, incidental, special, or consequential damages arising from your
-              use of or inability to use the Service, including loss of data, profits, or
-              goodwill.
+              All content, design elements, logos, graphics, source code, and branding associated
+              with Tolz are the property of Tolz or its licensors and are protected under applicable
+              intellectual property laws.
             </P>
+            <SubHeading>4.2 Limited License</SubHeading>
             <P>
-              Our total liability for any claim arising out of these terms or your use of the
-              Service shall not exceed USD $0, reflecting that the Service is provided entirely
-              free of charge.
-            </P>
-          </Section>
-
-          <Section title="URL Shortener Terms">
-            <P>
-              Short links created through the URL shortener are temporary. Links may be deleted
-              when the server restarts, when their expiry time passes, or at our discretion. Do
-              not use Tolz short links for critical or permanent use cases.
-            </P>
-            <P>
-              You may not use the URL shortener to redirect to illegal content, malware,
-              phishing pages, or other harmful destinations. We reserve the right to disable any
-              short link at any time without notice.
+              We grant you a limited, non-exclusive, non-transferable license to access and use the
+              Services for personal or internal business purposes, subject to compliance with these
+              Terms. This license does not permit you to copy, modify, distribute, sell, or lease any
+              part of our Services or included software.
             </P>
           </Section>
 
-          <Section title="Service Availability">
+          <Section title="5. Third-Party Links and Services">
             <P>
-              We make no guarantees about uptime or availability. The Service may be modified,
-              suspended, or discontinued at any time without notice. We are under no obligation
-              to maintain any particular feature or tool.
+              Tolz may contain links to third-party websites or services that are not owned or
+              controlled by us. We do not endorse and are not responsible for the content, privacy
+              practices, or accuracy of any third-party sites. Accessing such links is done at your
+              own risk.
             </P>
           </Section>
 
-          <Section title="Governing Law">
+          <Section title="6. No Warranties">
+            <SubHeading>6.1 "As Is" Basis</SubHeading>
             <P>
-              These terms are governed by applicable law. Any disputes shall be resolved through
-              binding arbitration or, where not enforceable, in a court of competent jurisdiction.
+              Tolz and all associated tools are provided on an "as is" and "as available" basis,
+              without warranties of any kind, whether express or implied, including but not limited
+              to warranties of merchantability, fitness for a particular purpose, or
+              non-infringement.
+            </P>
+            <SubHeading>6.2 Accuracy of Results</SubHeading>
+            <P>
+              While we strive to ensure that our tools function accurately and reliably, we do not
+              guarantee that results generated by any calculator, converter, generator, or other tool
+              will be error-free, complete, or suitable for every specific use case. Users should
+              independently verify results, especially for critical, financial, legal, or
+              professional decisions.
+            </P>
+            <SubHeading>6.3 Availability</SubHeading>
+            <P>
+              We do not guarantee uninterrupted or error-free access to the Website. Tolz may be
+              temporarily unavailable due to maintenance, technical issues, or circumstances beyond
+              our control.
             </P>
           </Section>
 
-          <Section title="Contact">
+          <Section title="7. Limitation of Liability">
             <P>
-              Questions about these terms? Contact us at{" "}
+              To the fullest extent permitted by applicable law, Tolz and its owners, operators, and
+              affiliates shall not be liable for any direct, indirect, incidental, consequential, or
+              special damages arising out of or related to your use of, or inability to use, the
+              Services. This includes, without limitation, loss of data, loss of profits, or business
+              interruption, even if we have been advised of the possibility of such damages.
+            </P>
+          </Section>
+
+          <Section title="8. Indemnification">
+            <P>
+              You agree to indemnify and hold harmless Tolz, its owners, and affiliates from any
+              claims, damages, losses, or expenses (including reasonable legal fees) arising from
+              your use of the Services, your violation of these Terms, or your infringement of any
+              third-party rights.
+            </P>
+          </Section>
+
+          <Section title="9. Changes to the Services and Terms">
+            <P>
+              We reserve the right to modify, suspend, or discontinue any part of the Services at any
+              time without prior notice. We may also revise these Terms periodically to reflect
+              changes in our practices or for legal and operational reasons. Updated Terms will be
+              posted on this page with a revised "Last Updated" date. Continued use of Tolz after
+              such changes constitutes your acceptance of the revised Terms.
+            </P>
+          </Section>
+
+          <Section title="10. Termination">
+            <P>
+              We reserve the right to suspend or terminate your access to the Services, without prior
+              notice, if we believe you have violated these Terms or engaged in conduct that may harm
+              Tolz, other users, or third parties.
+            </P>
+          </Section>
+
+          <Section title="11. Governing Law">
+            <P>
+              These Terms shall be governed by and interpreted in accordance with applicable laws,
+              without regard to conflict of law principles. Any disputes arising from these Terms or
+              your use of the Services shall be resolved through appropriate legal channels
+              applicable to your jurisdiction.
+            </P>
+          </Section>
+
+          <Section title="12. Severability">
+            <P>
+              If any provision of these Terms is found to be invalid or unenforceable, the remaining
+              provisions shall continue in full force and effect.
+            </P>
+          </Section>
+
+          <Section title="13. Contact Us">
+            <P>
+              If you have any questions, concerns, or feedback regarding these Terms & Conditions,
+              please feel free to reach out to us through the contact details available on our
+              website.
+            </P>
+            <P>
+              Website:{" "}
               <a
-                href="mailto:legal@tolz.org"
+                href="https://www.tolz.org/"
                 style={{ color: "var(--accent)" }}
               >
-                legal@tolz.org
+                https://www.tolz.org/
               </a>
-              .
+            </P>
+          </Section>
+
+          <Section title="Conclusion">
+            <P>
+              Thank you for choosing Tolz as your trusted destination for free, fast, and
+              easy-to-use online tools. These Terms & Conditions are designed to ensure a safe,
+              transparent, and reliable experience for everyone who uses our platform. We encourage
+              you to review this page periodically, as continued use of Tolz signifies your
+              acceptance of any updates. Your trust matters to us, and we remain committed to
+              providing quality tools while maintaining fair and clear terms of use for our global
+              community.
             </P>
           </Section>
         </div>
@@ -214,6 +325,12 @@ export default function TermsPage() {
         >
           <Link to="/privacy" style={{ color: "var(--accent)", fontSize: 13 }}>
             Privacy Policy →
+          </Link>
+          <Link to="/disclaimer" style={{ color: "var(--text-muted)", fontSize: 13 }}>
+            Disclaimer
+          </Link>
+          <Link to="/copyright" style={{ color: "var(--text-muted)", fontSize: 13 }}>
+            Copyright Policy
           </Link>
           <Link to="/about" style={{ color: "var(--text-muted)", fontSize: 13 }}>
             About Tolz
