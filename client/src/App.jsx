@@ -41,6 +41,7 @@ const NotFoundPage                 = lazy(() => import("./pages/NotFoundPage"));
 const CalculatorCategoryPage          = lazy(() => import("./pages/CalculatorCategoryPage"));
 const CalculatorsHubPage              = lazy(() => import("./pages/CalculatorsHubPage"));
 const ToolsCategoryPage               = lazy(() => import("./pages/ToolsCategoryPage"));
+const AllCategoriesPage               = lazy(() => import("./pages/AllCategoriesPage"));
 const AluminumWeightCalculatorPage    = lazy(() => import("./pages/AluminumWeightCalculatorPage"));
 const RebarCalculatorPage             = lazy(() => import("./pages/RebarCalculatorPage"));
 const RipRapCalculatorPage            = lazy(() => import("./pages/RipRapCalculatorPage"));
@@ -142,6 +143,7 @@ export default function App() {
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/"                                        element={<HomePage />} />
+                <Route path="/browsealltools"                          element={<AllCategoriesPage />} />
                 <Route path="/tools/image-compressor"              element={<ImageCompressorPage />} />
                 <Route path="/tools/id-photo-generator"             element={<IdPhotoGeneratorPage />} />
                 <Route path="/tools/image-converter"               element={<ImageConverterPage />} />

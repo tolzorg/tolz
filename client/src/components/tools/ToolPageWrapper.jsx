@@ -25,7 +25,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/#tools` },
+          { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/browsealltools` },
           { "@type": "ListItem", position: 3, name: tool.label, item: `${SITE_URL}${tool.path}` },
         ],
       }
@@ -74,7 +74,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
             </Link>
             <span aria-hidden="true" style={{ opacity: 0.4 }}>›</span>
             <Link
-              to="/#tools"
+              to="/browsealltools"
               style={{
                 color: "var(--text-muted)",
                 textDecoration: "none",

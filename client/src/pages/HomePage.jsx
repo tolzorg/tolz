@@ -1,4 +1,5 @@
 ﻿import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { TOOLS, CATEGORIES } from "../utils/tools";
 import ToolCard from "../components/tools/ToolCard";
 import SEO from "../components/SEO";
@@ -102,13 +103,13 @@ export default function HomePage() {
             className="animate-fadeUp delay-200"
             style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}
           >
-            <a
-              href="#tools"
+            <Link
+              to="/browsealltools"
               className="btn btn-primary"
               style={{ fontSize: 15, padding: "13px 24px" }}
             >
               Browse All Tools
-            </a>
+            </Link>
           </div>
 
           {/* Stats */}
@@ -406,69 +407,8 @@ export default function HomePage() {
                     {feat.desc}
                   </p>
                 </div>
-                <a
-                  href="#tools"
-                  style={{
-                    marginTop: "auto",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    fontFamily: "var(--font-display)",
-                    color: "var(--text-muted)",
-                    textDecoration: "none",
-                    transition: "color var(--transition)",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
-                >
-                  Explore tools
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Bottom CTA ── */}
-      <section style={{ padding: "72px 0 80px" }}>
-        <div className="container" style={{ textAlign: "center" }}>
-          <h2
-            className="animate-fadeUp"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "clamp(22px, 4vw, 32px)",
-              color: "var(--text-primary)",
-              marginBottom: 12,
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Start using Tolz today
-          </h2>
-          <p
-            style={{
-              color: "var(--text-secondary)",
-              fontSize: 15,
-              marginBottom: 28,
-              maxWidth: 420,
-              margin: "0 auto 28px",
-            }}
-          >
-            No account. No limit. Just pick a tool and get started.
-          </p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <a
-              href="#tools"
-              className="btn btn-primary"
-              style={{ fontSize: 15, padding: "13px 26px" }}
-            >
-              View All Tools
-            </a>
           </div>
         </div>
       </section>

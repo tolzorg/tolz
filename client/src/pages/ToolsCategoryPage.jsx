@@ -39,7 +39,7 @@ export default function ToolsCategoryPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/#tools` },
+      { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/browsealltools` },
       { "@type": "ListItem", position: 3, name: category.name, item: `${SITE_URL}${category.path}` },
     ],
   };
@@ -89,7 +89,7 @@ export default function ToolsCategoryPage() {
             </Link>
             <span aria-hidden="true" style={{ opacity: 0.4 }}>›</span>
             <Link
-              to="/#tools"
+              to="/browsealltools"
               style={linkStyle}
               onMouseEnter={(e) => (e.target.style.color = "var(--text-primary)")}
               onMouseLeave={(e) => (e.target.style.color = "var(--text-muted)")}
