@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const FOOTER_LINKS = {
   Categories: [
-    { label: "All Categories", href: "/browsealltools" },
+    { label: "All Categories", href: "/browse-all-tools" },
     { label: "Image Tools", href: "/tools/image" },
     { label: "PDF Tools", href: "/tools/pdf" },
     { label: "Converters", href: "/tools/converters" },

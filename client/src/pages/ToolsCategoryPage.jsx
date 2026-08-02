@@ -25,6 +25,20 @@ const h2Style = {
 
 const pStyle = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 10 };
 
+// Wraps the "Tolz" in "Tolz's" with a link to the homepage, matching the
+// inline-home-link pattern used elsewhere (About/Privacy/Terms pages, FAQ sections).
+function linkifyTolz(text) {
+  const idx = text.indexOf("Tolz's");
+  if (idx === -1) return text;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <Link to="/" className="inline-home-link">Tolz</Link>
+      {text.slice(idx + "Tolz".length)}
+    </>
+  );
+}
+
 export default function ToolsCategoryPage() {
   const { categorySlug } = useParams();
   const category = getToolCategoryBySlug(categorySlug);
@@ -39,7 +53,7 @@ export default function ToolsCategoryPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/browsealltools` },
+      { "@type": "ListItem", position: 2, name: "Tools", item: `${SITE_URL}/browse-all-tools` },
       { "@type": "ListItem", position: 3, name: category.name, item: `${SITE_URL}${category.path}` },
     ],
   };
@@ -89,7 +103,7 @@ export default function ToolsCategoryPage() {
             </Link>
             <span aria-hidden="true" style={{ opacity: 0.4 }}>›</span>
             <Link
-              to="/browsealltools"
+              to="/browse-all-tools"
               style={linkStyle}
               onMouseEnter={(e) => (e.target.style.color = "var(--text-primary)")}
               onMouseLeave={(e) => (e.target.style.color = "var(--text-muted)")}
@@ -156,7 +170,7 @@ export default function ToolsCategoryPage() {
                 key={i}
                 style={i === category.introParagraphs.length - 1 ? { ...pStyle, marginBottom: 0 } : pStyle}
               >
-                {para}
+                {i === 0 ? linkifyTolz(para) : para}
               </p>
             ))}
           </div>

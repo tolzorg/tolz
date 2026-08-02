@@ -4,7 +4,7 @@ import SEO from "../components/SEO";
 import JsonLd from "../components/JsonLd";
 import ToolCard from "../components/tools/ToolCard";
 import { TOOL_CATEGORY_PAGES } from "../utils/toolCategoryConfig";
-import { getToolsByCategory } from "../utils/tools";
+import { getToolsByCategory, getAvailableTools } from "../utils/tools";
 import { CALCULATOR_CATEGORIES, getAllCalculators } from "../utils/calculatorConfig";
 
 const SITE_URL = "https://www.tolz.org";
@@ -70,7 +70,7 @@ export default function AllCategoriesPage() {
   const categories = useMemo(() => buildCategoryCards(), []);
   const totalTools = useMemo(() => categories.reduce((sum, c) => sum + c.count, 0), [categories]);
 
-  const filtered = useMemo(() => {
+  const filteredCategories = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return categories;
     return categories.filter(
@@ -78,12 +78,30 @@ export default function AllCategoriesPage() {
     );
   }, [categories, query]);
 
+  // Matches individual tools (e.g. "image compressor") so the search isn't
+  // limited to category names — falls back to category matches when no
+  // specific tool matches the query.
+  const matchedTools = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return getAvailableTools().filter(
+      (t) =>
+        t.label.toLowerCase().includes(q) ||
+        t.tagline.toLowerCase().includes(q) ||
+        t.description.toLowerCase().includes(q)
+    );
+  }, [query]);
+
+  const hasQuery = query.trim().length > 0;
+  const showToolResults = hasQuery && matchedTools.length > 0;
+  const filtered = showToolResults ? matchedTools : filteredCategories;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "All Categories", item: `${SITE_URL}/browsealltools` },
+      { "@type": "ListItem", position: 2, name: "All Categories", item: `${SITE_URL}/browse-all-tools` },
     ],
   };
 
@@ -92,7 +110,7 @@ export default function AllCategoriesPage() {
     "@type": "ItemList",
     name: "All Tool Categories",
     description: "Every free tool and calculator category available on Tolz.",
-    url: `${SITE_URL}/browsealltools`,
+    url: `${SITE_URL}/browse-all-tools`,
     itemListElement: categories.map((cat, i) => ({
       "@type": "ListItem",
       position: i + 1,
@@ -106,7 +124,7 @@ export default function AllCategoriesPage() {
       <SEO
         title="Explore All Tool Categories"
         description="Browse every free tool and calculator category on Tolz — Image, PDF, Converters, Calculators, URL Tools, Text Tools, Design Tools and more. No signup required."
-        path="/browsealltools"
+        path="/browse-all-tools"
       />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={collectionSchema} />
@@ -202,7 +220,7 @@ export default function AllCategoriesPage() {
             style={{ maxWidth: 480, margin: "0 auto", position: "relative" }}
           >
             <label htmlFor="category-search" style={srOnly}>
-              Search categories
+              Search tools or categories
             </label>
             <svg
               width="18"
@@ -225,7 +243,7 @@ export default function AllCategoriesPage() {
               id="category-search"
               type="search"
               className="input"
-              placeholder="Search categories…"
+              placeholder="Search tools or categories…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               style={{
@@ -260,10 +278,12 @@ export default function AllCategoriesPage() {
                 color: "var(--text-primary)",
               }}
             >
-              {query.trim() ? `Results for "${query.trim()}"` : "All Categories"}
+              {hasQuery ? `Results for "${query.trim()}"` : "All Categories"}
             </h2>
             <span style={{ fontSize: 13, color: "var(--text-muted)", fontWeight: 500 }}>
-              {filtered.length} categor{filtered.length === 1 ? "y" : "ies"}
+              {showToolResults
+                ? `${filtered.length} tool${filtered.length === 1 ? "" : "s"}`
+                : `${filtered.length} categor${filtered.length === 1 ? "y" : "ies"}`}
             </span>
           </div>
 
@@ -275,14 +295,19 @@ export default function AllCategoriesPage() {
                 gap: 20,
               }}
             >
-              {filtered.map((cat, i) => (
-                <ToolCard key={cat.id} tool={cat} animDelay={i * 60} hideDescription />
+              {filtered.map((item, i) => (
+                <ToolCard
+                  key={item.id}
+                  tool={item}
+                  animDelay={i * 60}
+                  hideDescription={!showToolResults}
+                />
               ))}
             </div>
           ) : (
             <div className="card" style={{ padding: "40px 24px", textAlign: "center" }}>
               <p style={{ color: "var(--text-secondary)", fontSize: 14, marginBottom: 14 }}>
-                No categories match "{query.trim()}".
+                No tools or categories match "{query.trim()}".
               </p>
               <button type="button" className="btn btn-secondary" onClick={() => setQuery("")}>
                 Clear search

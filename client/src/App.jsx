@@ -1,5 +1,5 @@
 import { lazy, Suspense, Component, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -143,7 +143,8 @@ export default function App() {
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/"                                        element={<HomePage />} />
-                <Route path="/browsealltools"                          element={<AllCategoriesPage />} />
+                <Route path="/browse-all-tools"                         element={<AllCategoriesPage />} />
+                <Route path="/browsealltools"                          element={<Navigate to="/browse-all-tools" replace />} />
                 <Route path="/tools/image-compressor"              element={<ImageCompressorPage />} />
                 <Route path="/tools/id-photo-generator"             element={<IdPhotoGeneratorPage />} />
                 <Route path="/tools/image-converter"               element={<ImageConverterPage />} />

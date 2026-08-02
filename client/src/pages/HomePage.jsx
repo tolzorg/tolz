@@ -104,7 +104,7 @@ export default function HomePage() {
             style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}
           >
             <Link
-              to="/browsealltools"
+              to="/browse-all-tools"
               className="btn btn-primary"
               style={{ fontSize: 15, padding: "13px 24px" }}
             >
