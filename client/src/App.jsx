@@ -20,6 +20,7 @@ const DestinyMatrixPage       = lazy(() => import("./pages/DestinyMatrixPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
+const SentenceCounterPage     = lazy(() => import("./pages/SentenceCounterPage"));
 const QrGeneratorPage         = lazy(() => import("./pages/QrGeneratorPage"));
 const UnitConverterPage       = lazy(() => import("./pages/UnitConverterPage"));
 const ColorPickerPage              = lazy(() => import("./pages/ColorPickerPage"));
@@ -158,6 +159,7 @@ export default function App() {
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
+                <Route path="/tools/sentence-counter"              element={<SentenceCounterPage />} />
                 <Route path="/tools/qr-generator"                  element={<QrGeneratorPage />} />
                 <Route path="/tools/unit-converter"                element={<UnitConverterPage />} />
                 <Route path="/tools/color-picker"                  element={<ColorPickerPage />} />

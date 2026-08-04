@@ -1,16 +1,6 @@
 // Pure text analysis — all functions are stateless and side-effect free
 
-const STOP_WORDS = new Set([
-  "the","a","an","and","or","but","in","on","at","to","for","of","with",
-  "by","from","is","it","this","that","are","was","were","be","been",
-  "being","have","has","had","do","does","did","will","would","could",
-  "should","may","might","can","i","you","he","she","we","they","me",
-  "him","her","us","them","my","your","his","its","our","their","so",
-  "if","as","not","no","up","out","about","into","then","than","when",
-  "what","which","who","how","all","any","both","each","few","more",
-  "most","other","some","such","only","own","same","too","very","just",
-  "because","while","after","before","during","over","between","through",
-]);
+import { STOP_WORDS } from "./stopWords";
 
 // Average reading / speaking speeds (words per minute)
 const READ_WPM  = 238;
