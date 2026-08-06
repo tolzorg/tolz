@@ -30,6 +30,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/image-compressor",
     available: true,
+    keywords: ["compress image", "reduce image size", "shrink photo", "optimize image", "jpeg compressor", "png compressor", "reduce file size"],
   },
   {
     id: "id-photo-generator",
@@ -45,6 +46,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/id-photo-generator",
     available: true,
+    keywords: ["remove background", "background remover", "transparent background", "passport photo", "visa photo", "id photo maker", "photo print sheet"],
   },
   {
     id: "image-converter",
@@ -59,6 +61,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/image-converter",
     available: true,
+    keywords: ["convert image", "jpg to png", "png to jpg", "heic to jpg", "image to pdf", "ocr", "extract text from image"],
   },
   {
     id: "pdf-merge",
@@ -73,6 +76,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/pdf-merge",
     available: true,
+    keywords: ["pdf merge", "merge pdf", "combine pdf", "join pdf", "pdf merger", "pdf combiner"],
   },
   {
     id: "pdf-compress",
@@ -87,6 +91,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/pdf-compress",
     available: true,
+    keywords: ["compress pdf", "reduce pdf size", "shrink pdf", "pdf compressor", "pdf file size"],
   },
   {
     id: "pdf-split",
@@ -101,6 +106,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/pdf-split",
     available: true,
+    keywords: ["split pdf", "separate pdf pages", "extract pdf pages", "pdf splitter", "divide pdf"],
   },
   {
     id: "pdf-to-word",
@@ -115,6 +121,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/pdf-to-word",
     available: true,
+    keywords: ["pdf to word", "pdf to docx", "convert pdf to word", "pdf to doc", "editable pdf"],
   },
   {
     id: "calorie-tracker",
@@ -174,6 +181,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/url-shortener",
     available: true,
+    keywords: ["url shortener", "shorten link", "short url", "link shortener", "custom alias"],
   },
   {
     id: "word-counter",
@@ -188,6 +196,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/word-counter",
     available: true,
+    keywords: ["word counter", "word count", "character count", "count words", "text length"],
   },
   {
     id: "sentence-counter",
@@ -202,6 +211,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/sentence-counter",
     available: true,
+    keywords: ["sentence counter", "count sentences", "readability score", "flesch reading ease", "sentence length"],
   },
   {
     id: "qr-generator",
@@ -216,6 +226,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/qr-generator",
     available: true,
+    keywords: ["qr code", "qr code generator", "generate qr code", "wifi qr code", "make qr code"],
   },
   {
     id: "unit-converter",
@@ -230,6 +241,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/unit-converter",
     available: true,
+    keywords: ["unit converter", "convert units", "length converter", "temperature converter", "metric to imperial"],
   },
   {
     id: "color-picker",
@@ -244,6 +256,7 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/color-picker",
     available: true,
+    keywords: ["color picker", "hex to rgb", "color palette generator", "contrast checker", "eyedropper"],
   },
   {
     id: "anniversary-calculator",

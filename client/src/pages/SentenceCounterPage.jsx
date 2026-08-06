@@ -8,8 +8,8 @@ export default function SentenceCounterPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Free Sentence Counter Online | Sentence & Readability Analysis"
-      seoDescription="Count sentences, paragraphs, and words instantly with Tolz's free Sentence Counter. Get readability scores, sentence-length distribution, and writing insights. No signup."
+      seoTitle="Free Sentence Counter & Readability Checker Online"
+      seoDescription="Count sentences and paragraphs instantly and check Flesch, Fog, and SMOG readability scores free online. No signup needed. Try Tolz Sentence Counter now."
       footer={<SentenceCounterFaqSection />}
     >
       <SentenceCounterTool />
