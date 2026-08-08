@@ -5,9 +5,8 @@ const SITE_NAME = "Tolz";
 const SITE_URL  = "https://www.tolz.org";
 const OG_IMAGE  = "https://www.tolz.org/og-image.png";
 
-// Site-wide indexing is currently intentionally OFF (pre-launch). Flip this default to
-// "index, follow" — and re-check robots.txt — when the site is ready to go live in search.
-const DEFAULT_ROBOTS = "noindex, nofollow";
+// Site-wide indexing is ON — the site is live and crawlable (robots.txt allows it too).
+const DEFAULT_ROBOTS = "index, follow";
 
 export default function SEO({
   title,
