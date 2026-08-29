@@ -18,6 +18,8 @@
   <url><loc>https://www.tolz.org/tools/url-tools</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/tools/text-tools</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/tools/design-tools</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/gaming-tools</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/naming-tools</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://www.tolz.org/tools/image-compressor</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
   <url><loc>https://www.tolz.org/tools/id-photo-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://www.tolz.org/tools/image-converter</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-14</lastmod></url>
@@ -62,4 +64,6 @@
   <url><loc>https://www.tolz.org/calculators/construction/sonotube</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/construction/french-drain</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://www.tolz.org/tools/board-foot-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/cps-tester</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-27</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/japanese-name-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-29</lastmod></url>
 </urlset>

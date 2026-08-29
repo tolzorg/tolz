@@ -14,6 +14,8 @@ export const CATEGORIES = [
   { id: "url-tools",  label: "URL Tools" },
   { id: "text-tools",   label: "Text Tools" },
   { id: "design-tools", label: "Design Tools" },
+  { id: "gaming-tools", label: "Gaming Tools" },
+  { id: "naming-tools", label: "Naming Tools" },
 ];
 
 export const TOOLS = [
@@ -697,6 +699,42 @@ export const TOOLS = [
     badgeType: "new",
     path: "/tools/board-foot-calculator",
     available: true,
+  },
+  {
+    id: "cps-tester",
+    label: "CPS Tester",
+    tagline: "Test your clicks per second — free, accurate, instant",
+    description: "Measure your real clicking speed with an accurate CPS (Clicks Per Second) tester. Choose a preset duration or a custom one up to 5 minutes, see Peak CPS and click-interval stats, and track your personal best. No signup required.",
+    icon: "🖱️",
+    iconBg: "#fff0f0",
+    iconColor: "#ff5a5f",
+    category: "gaming-tools",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/cps-tester",
+    available: true,
+    keywords: [
+      "cps test", "clicks per second test", "click speed test", "cps tester",
+      "mouse click test", "minecraft cps test", "how many clicks per second",
+    ],
+  },
+  {
+    id: "japanese-name-generator",
+    label: "Japanese Name Generator",
+    tagline: "Real Japanese names with Kanji, readings, and meanings",
+    description: "Generate, search, and browse real Japanese girl names, boy names, and surnames A-Z with Kanji, Hiragana readings, and Hepburn romaji. Search by meaning, convert your name to Katakana, compare names, and save favorites. Free, no signup.",
+    icon: "🎎",
+    iconBg: "#fff0f5",
+    iconColor: "#e0578a",
+    category: "naming-tools",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/japanese-name-generator",
+    available: true,
+    keywords: [
+      "japanese name generator", "japanese girl names", "japanese boy names", "japanese surnames",
+      "japanese last names", "kanji name generator", "my name in japanese", "japanese name meaning",
+    ],
   },
 ];
 

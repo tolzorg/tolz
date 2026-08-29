@@ -150,6 +150,54 @@ export const TOOL_CATEGORY_PAGES = [
       { title: "Palette generation", text: "Generate complementary color palettes from any base color instantly." },
     ],
   },
+  {
+    slug: "gaming-tools",
+    categoryId: "gaming-tools",
+    path: "/tools/gaming-tools",
+    name: "Gaming Tools",
+    tagline: "Test your click speed — free, accurate, no signup.",
+    icon: "🖱️",
+    iconBg: "#fff0f0",
+    iconColor: "#ff5a5f",
+    seoTitle: "Free Gaming Tools – CPS (Clicks Per Second) Tester",
+    seoDescription:
+      "Free gaming tools starting with an accurate CPS tester: measure your real clicking speed across preset or custom-length tests (up to 5 minutes), see Peak CPS, and track your personal best. No signup.",
+    introHeading: "Test and Track Your Clicking Speed",
+    introParagraphs: [
+      "Whether you're warming up for Minecraft PvP, curious how your click speed stacks up, or just testing your mouse, Tolz's Gaming Tools give you a fast, accurate way to measure it. The CPS Tester counts your real click events using the browser's high-resolution timing API — never a simulated or estimated number — and reports your Average CPS, Peak CPS, and click-interval breakdown the instant your test ends.",
+      "Everything runs in your browser, your personal bests are tracked locally on your device, and there's no signup required.",
+    ],
+    benefitsHeading: "Why Use Tolz's Gaming Tools",
+    benefits: [
+      { title: "Real measurement, not estimation", text: "Every click is a real, trusted event — the tool never simulates or extrapolates results." },
+      { title: "Accurate timing", text: "Uses the browser's monotonic high-resolution clock, not simple timer ticks, for precise CPS and Peak CPS." },
+      { title: "Track your progress", text: "Personal bests and recent test history are saved locally, separated by mode and duration." },
+    ],
+  },
+  {
+    slug: "naming-tools",
+    categoryId: "naming-tools",
+    path: "/tools/naming-tools",
+    name: "Naming Tools",
+    tagline: "Real Japanese names with Kanji, readings, and meanings.",
+    icon: "🎎",
+    iconBg: "#fff0f5",
+    iconColor: "#e0578a",
+    seoTitle: "Free Naming Tools – Japanese Name Generator",
+    seoDescription:
+      "Free naming tools starting with a Japanese Name Generator: explore real Japanese given names and surnames with Kanji, Hiragana readings, and Hepburn romaji, search by meaning, and convert your own name to Katakana. No signup.",
+    introHeading: "Explore and Generate Real Japanese Names",
+    introParagraphs: [
+      "Tolz's Naming Tools start with a Japanese Name Generator built for accuracy over volume: every given name and surname carries its own documented Kanji, Hiragana reading, and Hepburn romaji, with meanings linked to the specific Kanji they belong to — not generic dictionary definitions. Generated full names are always clearly labeled as generated combinations, never presented as real, attested names.",
+      "Search by meaning or theme, compare names side by side, convert your own name into approximate Japanese phonetic transcription, and save favorites locally in your browser — no signup required.",
+    ],
+    benefitsHeading: "Why Use Tolz's Naming Tools",
+    benefits: [
+      { title: "Sourced, not guessed", text: "Every Kanji, reading, and meaning traces back to a documented record — nothing is fabricated." },
+      { title: "Clear factual vs. generated labeling", text: "Generated full-name combinations are always labeled as such, never shown as verified real names." },
+      { title: "Everything runs locally", text: "Search, generation, and favorites all happen in your browser — nothing you type is sent to a server." },
+    ],
+  },
 ];
 
 export function getToolCategoryBySlug(slug) {
