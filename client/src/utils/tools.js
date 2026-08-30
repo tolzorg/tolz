@@ -10,6 +10,7 @@ export const CATEGORIES = [
     { id: "health-calc",       label: "Health Calculators",          path: "/calculators/health" },
     { id: "everyday",          label: "Everyday Life Calculators",   path: "/calculators/everyday-life" },
     { id: "construction-calc", label: "Construction Calculators",    path: "/calculators/construction" },
+    { id: "garden-calc",       label: "Garden Calculators",          path: "/calculators/garden" },
   ]},
   { id: "url-tools",  label: "URL Tools" },
   { id: "text-tools",   label: "Text Tools" },
@@ -734,6 +735,25 @@ export const TOOLS = [
     keywords: [
       "japanese name generator", "japanese girl names", "japanese boy names", "japanese surnames",
       "japanese last names", "kanji name generator", "my name in japanese", "japanese name meaning",
+    ],
+  },
+  {
+    id: "grow-a-garden-calculator",
+    label: "Grow A Garden Calculator",
+    tagline: "Plant value, mutations, pet XP, egg hatch & pet ability",
+    description: "Calculate Grow a Garden plant/crop values with weight and mutations, pet XP growth time, egg hatch speed, pet weight by age, and pet ability stats — all in one free calculator.",
+    icon: "🌾",
+    iconBg: "#f0fdf4",
+    iconColor: "#22c55e",
+    category: "utility",
+    subCategory: "garden-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/grow-a-garden-calculator",
+    available: true,
+    keywords: [
+      "grow a garden calculator", "grow a garden value calculator", "grow a garden mutations",
+      "grow a garden pet xp", "grow a garden egg hatch", "roblox grow a garden",
     ],
   },
 ];

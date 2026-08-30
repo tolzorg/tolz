@@ -643,6 +643,37 @@ export const CALCULATOR_CATEGORIES = [
       },
     ],
   },
+  {
+    id: "garden",
+    name: "Garden Calculators",
+    slug: "garden",
+    path: "/calculators/garden",
+    tagline: "Grow a Garden plant values, pet XP, egg hatch & more",
+    description:
+      "Free calculators for the Grow a Garden Roblox game — plant/crop value with mutations, pet XP growth time, egg hatch speed, pet weight by age, and pet ability stats.",
+    icon: "🌾",
+    iconBg: "#f0fdf4",
+    iconColor: "#22c55e",
+    calculators: [
+      {
+        id: "grow-a-garden-calculator",
+        label: "Grow A Garden Calculator",
+        slug: "grow-a-garden-calculator",
+        tagline: "Plant value, mutations, pet XP, egg hatch & pet ability",
+        description:
+          "Calculate Grow a Garden plant/crop values with weight and mutations, pet XP growth time, egg hatch speed, pet weight by age, and pet ability stats — all in one free calculator.",
+        icon: "🌾",
+        iconBg: "#f0fdf4",
+        iconColor: "#22c55e",
+        path: "/calculators/garden/grow-a-garden-calculator",
+        legacyPath: "/tools/grow-a-garden-calculator",
+        keywords: ["grow a garden calculator", "grow a garden value calculator", "grow a garden mutations", "grow a garden pet xp", "grow a garden egg hatch", "roblox grow a garden"],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+    ],
+  },
 ];
 
 export function getCategoryBySlug(slug) {

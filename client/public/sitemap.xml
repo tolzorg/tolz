@@ -12,6 +12,7 @@
   <url><loc>https://www.tolz.org/calculators/health</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/everyday-life</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/construction</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://www.tolz.org/calculators/garden</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://www.tolz.org/tools/image</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/tools/pdf</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/tools/converters</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
@@ -66,4 +67,5 @@
   <url><loc>https://www.tolz.org/tools/board-foot-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-06-22</lastmod></url>
   <url><loc>https://www.tolz.org/tools/cps-tester</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-27</lastmod></url>
   <url><loc>https://www.tolz.org/tools/japanese-name-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/grow-a-garden-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-29</lastmod></url>
 </urlset>

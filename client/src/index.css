@@ -421,6 +421,18 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   padding: 24px 24px 0;
 }
 
+/* Opt-in wider layout (ToolPageWrapper's `wide` prop) for tools whose
+   content is grid/table-heavy and cramped at the default 640px column
+   width — e.g. Grow a Garden Calculator's plant/mutation grids. Every
+   other tool page is unaffected since this only applies with the
+   modifier class present. */
+.tool-page-columns--wide {
+  max-width: 1360px;
+}
+.tool-page-columns--wide .tool-page-grid-children {
+  max-width: 1000px;
+}
+
 @media (max-width: 960px) {
   .tool-page-columns {
     flex-direction: column;
@@ -429,6 +441,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
   .tool-page-sidebar { width: 100%; }
   .tool-page-grid-children { max-width: 100%; width: 100%; }
   .tool-page-grid-footer-wrap { max-width: 640px; }
+  .tool-page-columns--wide { max-width: 640px; }
 }
 
 /* ── Hero section ──────────────────────────────────────────── */

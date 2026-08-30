@@ -5,7 +5,7 @@ import RelatedTools from "./RelatedTools";
 
 const SITE_URL = "https://www.tolz.org";
 
-export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoDescription }) {
+export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoDescription, wide = false }) {
   const toolSchema = tool
     ? {
         "@context": "https://schema.org",
@@ -95,7 +95,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
       </div>
 
       {/* Sidebar + tool workspace, side by side */}
-      <div className="tool-page-columns">
+      <div className={`tool-page-columns${wide ? " tool-page-columns--wide" : ""}`}>
         {/* Sidebar: icon/title/description, then related tools directly
             below — nested in one flex column so its height is completely
             independent of the tool column's height (see index.css comment
