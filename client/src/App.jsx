@@ -22,6 +22,7 @@ const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage")
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
 const SentenceCounterPage     = lazy(() => import("./pages/SentenceCounterPage"));
+const WordFinderPage          = lazy(() => import("./pages/WordFinderPage"));
 const CpsTesterPage           = lazy(() => import("./pages/CpsTesterPage"));
 const JapaneseNameGeneratorPage = lazy(() => import("./pages/JapaneseNameGeneratorPage"));
 const QrGeneratorPage         = lazy(() => import("./pages/QrGeneratorPage"));
@@ -164,6 +165,7 @@ export default function App() {
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
                 <Route path="/tools/sentence-counter"              element={<SentenceCounterPage />} />
+                <Route path="/tools/word-finder"                   element={<WordFinderPage />} />
                 <Route path="/tools/cps-tester"                    element={<CpsTesterPage />} />
                 <Route path="/tools/japanese-name-generator"       element={<JapaneseNameGeneratorPage />} />
                 <Route path="/tools/qr-generator"                  element={<QrGeneratorPage />} />
