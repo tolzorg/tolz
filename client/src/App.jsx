@@ -18,6 +18,7 @@ const PdfToWordPage           = lazy(() => import("./pages/PdfToWordPage"));
 const CalorieTrackerPage      = lazy(() => import("./pages/CalorieTrackerPage"));
 const DestinyMatrixPage       = lazy(() => import("./pages/DestinyMatrixPage"));
 const GrowAGardenCalculatorPage = lazy(() => import("./pages/GrowAGardenCalculatorPage"));
+const SplitExcelPage          = lazy(() => import("./pages/SplitExcelPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
@@ -161,6 +162,7 @@ export default function App() {
                 <Route path="/tools/calorie-tracker"               element={<CalorieTrackerPage />} />
                 <Route path="/tools/destiny-matrix"               element={<DestinyMatrixPage />} />
                 <Route path="/tools/grow-a-garden-calculator"      element={<GrowAGardenCalculatorPage />} />
+                <Route path="/tools/split-excel"                   element={<SplitExcelPage />} />
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />

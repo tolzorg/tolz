@@ -17,6 +17,7 @@ export const CATEGORIES = [
   { id: "design-tools", label: "Design Tools" },
   { id: "gaming-tools", label: "Gaming Tools" },
   { id: "naming-tools", label: "Naming Tools" },
+  { id: "excel-tools", label: "Excel Tools" },
 ];
 
 export const TOOLS = [
@@ -770,6 +771,21 @@ export const TOOLS = [
       "grow a garden calculator", "grow a garden value calculator", "grow a garden mutations",
       "grow a garden pet xp", "grow a garden egg hatch", "roblox grow a garden",
     ],
+  },
+  {
+    id: "split-excel",
+    label: "Split Excel",
+    tagline: "Split a spreadsheet into smaller files by row count",
+    description: "Split a large Excel (XLS or XLSX) spreadsheet into several smaller files by row count. Free, no signup, no upload — runs entirely in your browser.",
+    icon: "✂️",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "excel-tools",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/split-excel",
+    available: true,
+    keywords: ["split excel", "split xlsx", "split spreadsheet", "excel splitter", "divide excel file", "excel row splitter"],
   },
 ];
 

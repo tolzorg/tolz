@@ -15,11 +15,13 @@
     "@imgly/background-removal": "^1.7.0",
     "@tailwindcss/vite": "^4.2.2",
     "axios": "^1.15.0",
+    "exceljs": "4.4.0",
     "jszip": "^3.10.1",
     "qrcode": "^1.5.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.6.0"
+    "react-router-dom": "^7.6.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-latest/xlsx-latest.tgz"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
