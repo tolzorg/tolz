@@ -676,6 +676,27 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "loan-calculator",
+        label: "Loan Calculator",
+        slug: "loan-calculator",
+        tagline: "Amortized loans, deferred payment loans & bond pricing",
+        description:
+          "Calculate amortized loan payments with any compound and pay-back frequency, deferred payment loans due in full at maturity, and bond present values from a known face value — with a full period-by-period schedule table.",
+        icon: "💵",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/loan-calculator",
+        legacyPath: "/tools/loan-calculator",
+        keywords: [
+          "loan calculator", "amortized loan calculator", "loan payment calculator",
+          "deferred payment loan", "bond calculator", "bond present value calculator",
+          "loan amortization schedule", "loan interest calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {

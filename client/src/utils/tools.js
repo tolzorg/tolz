@@ -808,6 +808,26 @@ export const TOOLS = [
       "biweekly mortgage calculator", "home loan calculator",
     ],
   },
+  {
+    id: "loan-calculator",
+    label: "Loan Calculator",
+    tagline: "Amortized loans, deferred payment loans & bond pricing",
+    description: "Calculate amortized loan payments with any compound and pay-back frequency, deferred payment loans due in full at maturity, and bond present values from a known face value — with a full period-by-period schedule table.",
+    icon: "💵",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/loan-calculator",
+    available: true,
+    keywords: [
+      "loan calculator", "amortized loan calculator", "loan payment calculator",
+      "deferred payment loan", "bond calculator", "bond present value calculator",
+      "loan amortization schedule", "loan interest calculator",
+    ],
+  },
 ];
 
 export function getToolById(id) {
