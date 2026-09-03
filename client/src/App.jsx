@@ -21,6 +21,7 @@ const GrowAGardenCalculatorPage = lazy(() => import("./pages/GrowAGardenCalculat
 const SplitExcelPage          = lazy(() => import("./pages/SplitExcelPage"));
 const MortgageCalculatorPage  = lazy(() => import("./pages/MortgageCalculatorPage"));
 const LoanCalculatorPage      = lazy(() => import("./pages/LoanCalculatorPage"));
+const AutoLoanCalculatorPage  = lazy(() => import("./pages/AutoLoanCalculatorPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
@@ -167,6 +168,7 @@ export default function App() {
                 <Route path="/tools/split-excel"                   element={<SplitExcelPage />} />
                 <Route path="/tools/mortgage-calculator"           element={<MortgageCalculatorPage />} />
                 <Route path="/tools/loan-calculator"               element={<LoanCalculatorPage />} />
+                <Route path="/tools/auto-loan-calculator"          element={<AutoLoanCalculatorPage />} />
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
@@ -201,6 +203,7 @@ export default function App() {
                 <Route path="/calculators/garden/grow-a-garden-calculator"          element={<GrowAGardenCalculatorPage />} />
                 <Route path="/calculators/financial/mortgage-calculator"           element={<MortgageCalculatorPage />} />
                 <Route path="/calculators/financial/loan-calculator"               element={<LoanCalculatorPage />} />
+                <Route path="/calculators/financial/auto-loan-calculator"          element={<AutoLoanCalculatorPage />} />
                 <Route path="/calculators/construction/square-footage"             element={<SquareFootageCalculatorPage />} />
                 <Route path="/calculators/construction/square-yards"               element={<SquareYardsCalculatorPage />} />
                 <Route path="/calculators/construction/cubic-yard"                 element={<CubicYardCalculatorPage />} />

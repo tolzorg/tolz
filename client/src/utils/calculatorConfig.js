@@ -697,6 +697,27 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "auto-loan-calculator",
+        label: "Auto Loan Calculator",
+        slug: "auto-loan-calculator",
+        tagline: "Monthly car payment, sales tax, trade-in & fees",
+        description:
+          "Calculate your monthly auto loan payment including sales tax, trade-in credit, cash incentives, and title/registration fees. Solve for price or payment, and view a full amortization schedule.",
+        icon: "🚗",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/auto-loan-calculator",
+        legacyPath: "/tools/auto-loan-calculator",
+        keywords: [
+          "auto loan calculator", "car loan calculator", "car payment calculator",
+          "auto loan payment", "vehicle loan calculator", "car loan sales tax calculator",
+          "trade-in loan calculator", "car finance calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
