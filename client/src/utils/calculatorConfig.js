@@ -644,6 +644,41 @@ export const CALCULATOR_CATEGORIES = [
     ],
   },
   {
+    id: "financial",
+    name: "Financial Calculators",
+    slug: "financial",
+    path: "/calculators/financial",
+    tagline: "Mortgage payments, amortization & loan payoff",
+    description:
+      "Free financial calculators — mortgage payment estimator with taxes, insurance, PMI, extra payments, and a full amortization schedule.",
+    icon: "💰",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    calculators: [
+      {
+        id: "mortgage-calculator",
+        label: "Mortgage Calculator",
+        slug: "mortgage-calculator",
+        tagline: "Monthly payment, taxes, PMI, extra payments & amortization",
+        description:
+          "Calculate your monthly mortgage payment including property taxes, home insurance, PMI, HOA fees, and other costs. Model extra payments and biweekly payoff, and view a full monthly or annual amortization schedule.",
+        icon: "🏠",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/mortgage-calculator",
+        legacyPath: "/tools/mortgage-calculator",
+        keywords: [
+          "mortgage calculator", "monthly mortgage payment", "amortization schedule",
+          "mortgage payoff calculator", "PMI calculator", "extra payment mortgage calculator",
+          "biweekly mortgage calculator", "home loan calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+    ],
+  },
+  {
     id: "garden",
     name: "Garden Calculators",
     slug: "garden",

@@ -13,6 +13,7 @@
   <url><loc>https://www.tolz.org/calculators/everyday-life</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/construction</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/garden</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://www.tolz.org/calculators/financial</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-09-02</lastmod></url>
   <url><loc>https://www.tolz.org/tools/image</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/tools/pdf</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/tools/converters</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
@@ -70,4 +71,5 @@
   <url><loc>https://www.tolz.org/tools/japanese-name-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://www.tolz.org/tools/grow-a-garden-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-08-29</lastmod></url>
   <url><loc>https://www.tolz.org/tools/split-excel</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-09-01</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/mortgage-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-09-02</lastmod></url>
 </urlset>
