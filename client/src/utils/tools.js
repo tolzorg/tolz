@@ -848,6 +848,26 @@ export const TOOLS = [
       "trade-in loan calculator", "car finance calculator",
     ],
   },
+  {
+    id: "interest-calculator",
+    label: "Interest Calculator",
+    tagline: "Compound interest, contributions & inflation-adjusted growth",
+    description: "Calculate compound interest growth on a lump-sum investment plus annual and monthly contributions, with any compounding frequency, tax rate, and inflation adjustment. View a full annual or monthly accumulation schedule.",
+    icon: "📈",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/interest-calculator",
+    available: true,
+    keywords: [
+      "interest calculator", "compound interest calculator", "investment growth calculator",
+      "savings calculator", "annual contribution calculator", "accumulation schedule",
+      "inflation adjusted return calculator", "compound growth calculator",
+    ],
+  },
 ];
 
 export function getToolById(id) {
