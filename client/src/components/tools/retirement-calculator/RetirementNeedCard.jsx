@@ -221,7 +221,7 @@ export default function RetirementNeedCard() {
                     </>
                   )}
 
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: 24, justifyContent: "center", marginBottom: 16, height: 130 }}>
+                  <div style={{ display: "flex", alignItems: "flex-end", gap: 40, justifyContent: "center", marginBottom: 20, height: 170 }}>
                     {[
                       { label: "You will have", value: result.amountWillHave, color: "#e8cf00", showPct: true },
                       { label: "You will need", value: result.amountNeeded, color: "#336699", showPct: false },
@@ -234,12 +234,21 @@ export default function RetirementNeedCard() {
                       // compare against.
                       const pctLabel = showPct && result.amountNeeded > 0 ? ` (${Math.round(result.haveRatio * 100)}%)` : "";
                       return (
-                        <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, width: 90 }}>
-                          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text-primary)" }}>
+                        <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 110, height: "100%" }}>
+                          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 6 }}>
                             ~{formatHeadlineMoney(value)}{pctLabel}
                           </span>
-                          <div style={{ width: 60, height: `${heightPct}%`, background: color, borderRadius: "3px 3px 0 0" }} />
-                          <span style={{ fontSize: 11.5, color: "var(--text-secondary)" }}>{label}</span>
+                          {/* This wrapper is the bar's DIRECT parent and
+                              the one that must carry a resolved pixel
+                              height — a percentage height on the bar
+                              itself, one level up from the fixed-height
+                              container, doesn't resolve in CSS and was
+                              rendering the bar at zero height (invisible)
+                              before this fix. */}
+                          <div style={{ flex: 1, width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                            <div style={{ width: "100%", height: `${heightPct}%`, background: color }} />
+                          </div>
+                          <span style={{ fontSize: 12.5, color: "var(--text-secondary)", marginTop: 6 }}>{label}</span>
                         </div>
                       );
                     })}
