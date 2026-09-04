@@ -5,12 +5,12 @@ import { FieldLabel, TextField, inputStyle } from "../mortgage-calculator/Mortga
 
 export { FieldLabel, TextField };
 
-export function SelectField({ value, onChange, options, disabled }) {
+export function SelectField({ value, onChange, options, disabled, style }) {
   return (
     <select
       value={value} disabled={disabled}
       onChange={(e) => onChange(e.target.value)}
-      style={{ ...inputStyle, cursor: disabled ? "not-allowed" : "pointer" }}
+      style={{ ...inputStyle, cursor: disabled ? "not-allowed" : "pointer", ...style }}
     >
       {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
     </select>

@@ -23,6 +23,8 @@ const MortgageCalculatorPage  = lazy(() => import("./pages/MortgageCalculatorPag
 const LoanCalculatorPage      = lazy(() => import("./pages/LoanCalculatorPage"));
 const AutoLoanCalculatorPage  = lazy(() => import("./pages/AutoLoanCalculatorPage"));
 const InterestCalculatorPage  = lazy(() => import("./pages/InterestCalculatorPage"));
+const PaymentCalculatorPage   = lazy(() => import("./pages/PaymentCalculatorPage"));
+const RetirementCalculatorPage = lazy(() => import("./pages/RetirementCalculatorPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
@@ -171,6 +173,8 @@ export default function App() {
                 <Route path="/tools/loan-calculator"               element={<LoanCalculatorPage />} />
                 <Route path="/tools/auto-loan-calculator"          element={<AutoLoanCalculatorPage />} />
                 <Route path="/tools/interest-calculator"           element={<InterestCalculatorPage />} />
+                <Route path="/tools/payment-calculator"            element={<PaymentCalculatorPage />} />
+                <Route path="/tools/retirement-calculator"         element={<RetirementCalculatorPage />} />
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
@@ -207,6 +211,8 @@ export default function App() {
                 <Route path="/calculators/financial/loan-calculator"               element={<LoanCalculatorPage />} />
                 <Route path="/calculators/financial/auto-loan-calculator"          element={<AutoLoanCalculatorPage />} />
                 <Route path="/calculators/financial/interest-calculator"           element={<InterestCalculatorPage />} />
+                <Route path="/calculators/financial/payment-calculator"            element={<PaymentCalculatorPage />} />
+                <Route path="/calculators/financial/retirement-calculator"         element={<RetirementCalculatorPage />} />
                 <Route path="/calculators/construction/square-footage"             element={<SquareFootageCalculatorPage />} />
                 <Route path="/calculators/construction/square-yards"               element={<SquareYardsCalculatorPage />} />
                 <Route path="/calculators/construction/cubic-yard"                 element={<CubicYardCalculatorPage />} />
