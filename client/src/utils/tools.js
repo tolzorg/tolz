@@ -908,6 +908,26 @@ export const TOOLS = [
       "how long will my money last calculator", "nest egg calculator",
     ],
   },
+  {
+    id: "amortization-calculator",
+    label: "Amortization Calculator",
+    tagline: "Monthly payment, payoff schedule, and extra-payment savings",
+    description: "Calculate your loan's monthly payment, total interest, and a full amortization schedule. See how extra monthly, yearly, or one-time payments can shorten your payoff time and save interest.",
+    icon: "📆",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/amortization-calculator",
+    available: true,
+    keywords: [
+      "amortization calculator", "loan amortization schedule", "monthly payment calculator",
+      "extra payment calculator", "loan payoff calculator", "amortization schedule",
+      "interest savings calculator", "mortgage amortization",
+    ],
+  },
 ];
 
 export function getToolById(id) {

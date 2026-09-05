@@ -6,11 +6,14 @@ const td = { textAlign: "right", padding: "7px 10px", fontSize: 13, color: "var(
 const tdLeft = { ...td, textAlign: "left", fontWeight: 600, color: "var(--text-primary)" };
 
 /** Shared period-by-period schedule table, reused across the Loan/Auto
- * Loan/Interest/Payment calculators. `columns` is an ordered list of
- * {key, label} pairs pulled from each row object (formatted as currency);
- * the first column's header defaults to "Period" but can be overridden
- * (e.g. "Month"/"Year") via `periodLabel` to match a reference site's own
- * schedule table exactly. */
+ * Loan/Interest/Payment/Amortization calculators. `columns` is an
+ * ordered list of {key, label, text?} pairs pulled from each row object
+ * — formatted as currency by default, or printed as plain text when
+ * `text: true` (e.g. a calendar-date column like the Amortization
+ * Calculator's "Sep. 2026", which the reference shows alongside the
+ * period number); the first column's header defaults to "Period" but
+ * can be overridden (e.g. "Month"/"Year") via `periodLabel` to match a
+ * reference site's own schedule table exactly. */
 export default function LoanScheduleTable({ title, schedule, columns, periodLabel = "Period" }) {
   return (
     <div className="card" style={{ padding: 24 }}>
@@ -29,7 +32,9 @@ export default function LoanScheduleTable({ title, schedule, columns, periodLabe
             {schedule.map((row) => (
               <tr key={row.period}>
                 <td style={tdLeft}>{row.period}</td>
-                {columns.map((c) => <td key={c.key} style={td}>{formatCurrency(row[c.key])}</td>)}
+                {columns.map((c) => (
+                  <td key={c.key} style={td}>{c.text ? row[c.key] : formatCurrency(row[c.key])}</td>
+                ))}
               </tr>
             ))}
           </tbody>

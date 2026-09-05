@@ -781,6 +781,27 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "amortization-calculator",
+        label: "Amortization Calculator",
+        slug: "amortization-calculator",
+        tagline: "Monthly payment, payoff schedule, and extra-payment savings",
+        description:
+          "Calculate your loan's monthly payment, total interest, and a full amortization schedule. See how extra monthly, yearly, or one-time payments can shorten your payoff time and save interest.",
+        icon: "📆",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/amortization-calculator",
+        legacyPath: "/tools/amortization-calculator",
+        keywords: [
+          "amortization calculator", "loan amortization schedule", "monthly payment calculator",
+          "extra payment calculator", "loan payoff calculator", "amortization schedule",
+          "interest savings calculator", "mortgage amortization",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
