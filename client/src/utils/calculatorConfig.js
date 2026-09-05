@@ -823,6 +823,27 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "currency-calculator",
+        label: "Currency Calculator",
+        slug: "currency-calculator",
+        tagline: "Live exchange rates, plus a custom-rate converter",
+        description:
+          "Convert between currencies using a live market exchange rate, or plug in your own custom rate for a quick offline conversion.",
+        icon: "💱",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/currency-calculator",
+        legacyPath: "/tools/currency-calculator",
+        keywords: [
+          "currency calculator", "currency converter", "exchange rate calculator",
+          "live exchange rate", "money converter", "forex calculator",
+          "usd to eur", "foreign exchange calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {

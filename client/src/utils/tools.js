@@ -948,6 +948,26 @@ export const TOOLS = [
       "how much to invest calculator", "investment growth calculator",
     ],
   },
+  {
+    id: "currency-calculator",
+    label: "Currency Calculator",
+    tagline: "Live exchange rates, plus a custom-rate converter",
+    description: "Convert between currencies using a live market exchange rate, or plug in your own custom rate for a quick offline conversion.",
+    icon: "💱",
+    iconBg: "#eff6ff",
+    iconColor: "#2563eb",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/currency-calculator",
+    available: true,
+    keywords: [
+      "currency calculator", "currency converter", "exchange rate calculator",
+      "live exchange rate", "money converter", "forex calculator",
+      "usd to eur", "foreign exchange calculator",
+    ],
+  },
 ];
 
 export function getToolById(id) {
