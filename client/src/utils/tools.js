@@ -928,6 +928,26 @@ export const TOOLS = [
       "interest savings calculator", "mortgage amortization",
     ],
   },
+  {
+    id: "investment-calculator",
+    label: "Investment Calculator",
+    tagline: "End amount, return rate, contribution, and more",
+    description: "Project how an investment will grow, or solve backward from a target for the contribution, return rate, starting amount, or time needed to reach it.",
+    icon: "📈",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/investment-calculator",
+    available: true,
+    keywords: [
+      "investment calculator", "compound growth calculator", "investment return calculator",
+      "investment goal calculator", "future value calculator", "accumulation schedule",
+      "how much to invest calculator", "investment growth calculator",
+    ],
+  },
 ];
 
 export function getToolById(id) {

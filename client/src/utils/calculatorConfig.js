@@ -802,6 +802,27 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "investment-calculator",
+        label: "Investment Calculator",
+        slug: "investment-calculator",
+        tagline: "End amount, return rate, contribution, and more",
+        description:
+          "Project how an investment will grow, or solve backward from a target for the contribution, return rate, starting amount, or time needed to reach it.",
+        icon: "📈",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/investment-calculator",
+        legacyPath: "/tools/investment-calculator",
+        keywords: [
+          "investment calculator", "compound growth calculator", "investment return calculator",
+          "investment goal calculator", "future value calculator", "accumulation schedule",
+          "how much to invest calculator", "investment growth calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
