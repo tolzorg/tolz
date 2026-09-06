@@ -89,24 +89,9 @@ export default function DeckingCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Decking Calculator",
-    url: "https://www.tolz.org/calculators/construction/decking",
-    description: "Free online decking calculator that estimates the number of decking boards, screws, nails or hidden clips, and total decking cost, with a built-in 10% waste factor. Supports standard board decking and square-profile decking tiles.",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

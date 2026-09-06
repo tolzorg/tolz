@@ -93,24 +93,9 @@ export default function FramingCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Framing Calculator",
-    url: "https://www.tolz.org/calculators/construction/framing",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any (Web-based)",
-    description: "A free online framing calculator that determines the number of wall studs needed based on wall length and on-center (OC) spacing (16\", 19.2\", or 24\"), including waste allowance and estimated material cost.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

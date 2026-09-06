@@ -85,24 +85,9 @@ export default function FireGlassCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Fire Glass Calculator",
-    url: "https://www.tolz.org/calculators/construction/fire-glass",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "All",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free online fire glass calculator to determine how much fire glass you need for round, square, rectangular, triangular, or trapezoidal fire pits, based on reflective, recycled, or custom glass density.",
-    isAccessibleForFree: true,
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

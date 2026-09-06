@@ -8,8 +8,8 @@ export default function AmortizationCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Amortization Calculator – Monthly Payment & Payoff Schedule"
-      seoDescription="Calculate your loan's monthly payment, total interest, and a full amortization schedule. See how extra monthly, yearly, or one-time payments can shorten your payoff time and save interest. Free, no signup."
+      seoTitle="Amortization Calculator - Free Loan Payment Schedule"
+      seoDescription="Calculate monthly payments, total interest, and your full amortization schedule free. See how extra payments cut your payoff time. No signup."
       footer={<AmortizationCalculatorFaqSection />}
       wide
     >

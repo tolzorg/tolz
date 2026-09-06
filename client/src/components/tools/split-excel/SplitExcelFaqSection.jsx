@@ -90,10 +90,35 @@ export default function SplitExcelFaqSection() {
 
       <div className="card" style={cardStyle}>
         <p style={pStyle}>
-          Split a large Excel spreadsheet into several smaller files by row count, free, right in your browser — no
-          signup, no upload. Set how many rows each file should have and download the results, either as a single
-          XLSX file or a zip of several. Built as part of <Link to="/" className="inline-home-link">Tolz</Link>'s
-          collection of free online utilities.
+          Most people don't search for a way to split an Excel file out of curiosity, they're stuck with one
+          specific problem, usually a spreadsheet that's grown too large to work with, share, or import
+          somewhere else. The Split Excel tool from <Link to="/" className="inline-home-link">Tolz</Link>{" "}
+          solves exactly that: it takes one large XLS or XLSX file and breaks it into several smaller ones by
+          row count, each with the header row included, so every output file is immediately usable on its
+          own. Everything runs directly in your browser, with no signup and no file upload to a server
+          required.
+        </p>
+      </div>
+
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Splitting a Large Spreadsheet by Row Count</h2>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          A common real-world case is a spreadsheet with hundreds of thousands of rows that's too large to
+          open smoothly, email, or import into another system all at once. Setting a row count and letting
+          the tool split the file handles this directly, for example, setting the row count to 50,000 on a
+          500,000-row file produces exactly ten output files, each with the header row preserved, so every
+          file remains usable and self-contained on its own.
+        </p>
+      </div>
+
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Data Privacy and Security: What Actually Happens to Your File</h2>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          Since spreadsheets often contain sensitive data, names, addresses, financial figures, it's worth
+          being specific about how your file is treated. Everything runs directly in your browser. Your
+          file is never uploaded to a remote server, so there's no server-side storage and nothing left
+          behind once you're finished, the entire process happens locally on your device. There's no
+          signup or account required, and the tool is free with no hidden charges or paywalled features.
         </p>
       </div>
 

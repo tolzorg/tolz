@@ -8,8 +8,8 @@ export default function WordFinderPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Word Finder – Unscramble Letters &amp; Solve Word Games"
-      seoDescription="Find words by starting letters, ending letters, included letters, or a fill-in-the-blanks pattern. Free word finder for Scrabble, Words With Friends, crosswords, and Wordle. No signup."
+      seoTitle="Word Finder - Find Words by Letters Free"
+      seoDescription="Find words by starting letters, ending letters, or pattern instantly. Free word finder for Scrabble, Words With Friends & Wordle. No signup."
       footer={<WordFinderFaqSection />}
     >
       <WordFinderTool />

@@ -86,23 +86,9 @@ export default function RetainingWallCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Retaining Wall Calculator",
-    url: "https://www.tolz.org/calculators/construction/retaining-wall",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free online retaining wall calculator to estimate materials and costs for poured concrete, CMU block, segmental, mortared stone, and dry-stack retaining walls, including footing, drainage, backfill, and conceptual rebar estimates.",
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

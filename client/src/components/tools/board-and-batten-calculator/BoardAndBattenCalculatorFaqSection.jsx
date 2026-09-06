@@ -90,24 +90,9 @@ export default function BoardAndBattenCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Board and Batten Calculator",
-    url: "https://www.tolz.org/calculators/construction/board-and-batten",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    description: "Free online board and batten calculator that estimates boards, battens, trim, fasteners, and paint needed for exterior or interior board and batten siding. Supports multiple walls, window and door openings, seven board profiles, and standard North American lumber sizing.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* What is */}
       <div className="card" style={cardStyle}>

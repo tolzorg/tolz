@@ -8,8 +8,8 @@ export default function AutoLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Auto Loan Calculator – Monthly Car Payment, Tax & Fees"
-      seoDescription="Calculate your monthly auto loan payment including sales tax, trade-in credit, cash incentives, and title/registration fees. Solve for price or payment. Free, no signup."
+      seoTitle="Auto Loan Calculator - Estimate Monthly Car Payments"
+      seoDescription="Calculate your monthly auto loan payment free online, including sales tax, trade-in credit, and fees, plus a full amortization schedule on Tolz."
       footer={<AutoLoanCalculatorFaqSection />}
       wide
     >

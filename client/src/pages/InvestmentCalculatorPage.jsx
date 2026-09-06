@@ -8,8 +8,8 @@ export default function InvestmentCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Investment Calculator – End Amount, Return Rate & More"
-      seoDescription="Project how an investment will grow, or solve backward from a target for the contribution, return rate, starting amount, or time needed to reach it. Free, no signup."
+      seoTitle="Investment Calculator - Free Online Growth & Goal Planner"
+      seoDescription="Calculate how your investments will grow over time, or find the contribution, rate, or time needed to hit your goal. Free, fast, and no signup required."
       footer={<InvestmentCalculatorFaqSection />}
       wide
     >

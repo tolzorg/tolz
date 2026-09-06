@@ -89,24 +89,9 @@ export default function DrywallCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Drywall Calculator",
-    url: "https://www.tolz.org/calculators/construction/drywall",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    description: "Free online drywall calculator that estimates the amount of drywall needed from room dimensions, sloped-wall areas, doors, and windows. Supports 9 standard panel sizes and instant cost estimation.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    provider: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

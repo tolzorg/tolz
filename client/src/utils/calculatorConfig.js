@@ -844,6 +844,27 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "inflation-calculator",
+        label: "Inflation Calculator",
+        slug: "inflation-calculator",
+        tagline: "U.S. CPI data from 1913 to present, plus flat-rate projections",
+        description:
+          "Find the equivalent value of a dollar amount between any two points in time using real U.S. CPI data, or project a flat inflation rate forward or backward.",
+        icon: "📉",
+        iconBg: "#fef2f2",
+        iconColor: "#b91c1c",
+        path: "/calculators/financial/inflation-calculator",
+        legacyPath: "/tools/inflation-calculator",
+        keywords: [
+          "inflation calculator", "cpi calculator", "consumer price index calculator",
+          "purchasing power calculator", "dollar value calculator", "inflation rate calculator",
+          "historical inflation calculator", "cost of living calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {

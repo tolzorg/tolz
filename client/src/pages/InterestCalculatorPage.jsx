@@ -8,8 +8,8 @@ export default function InterestCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Interest Calculator – Compound Interest, Contributions & Inflation"
-      seoDescription="Calculate compound interest growth on a lump-sum investment plus annual and monthly contributions, with any compounding frequency, tax rate, and inflation adjustment. Free, no signup."
+      seoTitle="Compound Interest Calculator - Free"
+      seoDescription="Calculate compound interest on a lump sum plus monthly or annual contributions. Adjust for taxes and inflation. Free, no signup, instant results."
       footer={<InterestCalculatorFaqSection />}
       wide
     >

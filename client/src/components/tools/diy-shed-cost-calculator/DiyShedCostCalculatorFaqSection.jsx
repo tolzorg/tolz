@@ -86,23 +86,9 @@ export default function DiyShedCostCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "DIY Shed Cost Calculator",
-    url: "https://www.tolz.org/calculators/construction/diy-shed-cost",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any (Web-based)",
-    description: "Free online tool to calculate the floor, wall, and roof area of a DIY shed and estimate total material cost. Supports slanted, flat, and gable roof types with rafter length and overhang.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

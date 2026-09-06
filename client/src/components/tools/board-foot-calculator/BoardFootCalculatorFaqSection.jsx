@@ -95,29 +95,9 @@ export default function BoardFootCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Board Foot Calculator",
-    url: "https://www.tolz.org/tools/board-foot-calculator",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any (Web-based)",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free online board foot calculator that instantly calculates board feet for any lumber size. Supports inches, millimeters, centimeters, feet, and meters. Enter thickness, width, length, and quantity to get per-piece and total board feet.",
-    featureList: [
-      "Instant board foot calculation",
-      "Supports inches, mm, cm, feet, and meters",
-      "Per-piece and total board foot results",
-      "No signup required",
-      "Free to use",
-    ],
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

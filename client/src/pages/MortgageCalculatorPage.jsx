@@ -8,8 +8,8 @@ export default function MortgageCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Mortgage Calculator – Monthly Payment, Amortization & More"
-      seoDescription="Calculate your monthly mortgage payment with taxes, insurance, PMI, HOA, extra payments, and a full amortization schedule. Free, no signup."
+      seoTitle="Free Mortgage Calculator - Estimate Monthly Payments"
+      seoDescription="Estimate your monthly mortgage payment free online, including taxes, insurance, PMI, and HOA fees. Model extra payments and biweekly payoff instantly."
       footer={<MortgageCalculatorFaqSection />}
       wide
     >

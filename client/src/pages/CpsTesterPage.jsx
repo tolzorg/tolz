@@ -8,8 +8,8 @@ export default function CpsTesterPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="CPS Test – Free Clicks Per Second Tester Online"
-      seoDescription="Test your clicking speed with a free, accurate CPS (Clicks Per Second) tester. Choose preset tests or a custom duration up to 5 minutes, see Peak CPS and click intervals, and track your personal best. No signup."
+      seoTitle="CPS Test | Free Online Click Speed Tester"
+      seoDescription="Test your clicks per second with this free CPS tester. Choose a preset or custom duration, track Peak CPS, and beat your personal best. No signup."
       footer={<CpsFaqSection />}
     >
       <CpsTesterTool />

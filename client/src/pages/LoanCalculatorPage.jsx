@@ -8,8 +8,8 @@ export default function LoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Loan Calculator – Amortized Loan, Deferred Payment & Bond"
-      seoDescription="Calculate loan payments, lump-sum payoffs, and bond present values — for amortized loans with regular payments, deferred loans due in full at maturity, and bonds priced back from a known face value. Free, no signup."
+      seoTitle="Free Loan Calculator Online | Amortization Schedule"
+      seoDescription="Calculate loan payments, amortization schedules, deferred loans, and bond present value free online. No signup, instant results, full payment breakdown."
       footer={<LoanCalculatorFaqSection />}
       wide
     >

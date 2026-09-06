@@ -8,8 +8,8 @@ export default function SplitExcelPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Split Excel File – Split XLS/XLSX by Row Count Free"
-      seoDescription="Split a large Excel (XLS or XLSX) spreadsheet into several smaller XLSX files by row count. Free, no signup, runs entirely in your browser."
+      seoTitle="Split Excel Files by Row Count - Free Online Tool"
+      seoDescription="Split large Excel (XLS or XLSX) files into smaller files by row count. Free, no signup, no upload — everything runs in your browser."
       footer={<SplitExcelFaqSection />}
     >
       <SplitExcelTool />

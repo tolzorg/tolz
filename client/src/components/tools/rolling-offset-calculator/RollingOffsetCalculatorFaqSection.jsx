@@ -91,24 +91,9 @@ export default function RollingOffsetCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Rolling Offset Calculator",
-    url: "https://www.tolz.org/calculators/construction/rolling-offset",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    description: "Free online rolling offset calculator that computes true offset, travel, and run for pipe fitting using roll and set distances, supporting 22½°, 45°, 60°, 90°, and custom fitting angles.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    provider: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

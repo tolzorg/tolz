@@ -8,8 +8,8 @@ export default function JapaneseNameGeneratorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Japanese Name Generator – Girl, Boy &amp; Surname Names with Kanji"
-      seoDescription="Generate, search, and browse real Japanese girl names, boy names, and surnames A-Z with Kanji, Hiragana readings, and Hepburn romaji. Search by meaning, convert your name to Katakana, and save favorites. Free, no signup."
+      seoTitle="Japanese Name Generator | Free Names with Kanji & Meaning"
+      seoDescription="Generate real Japanese names with Kanji, Hiragana, and Hepburn romaji. Search by meaning, convert to Katakana, compare names, free, no signup."
       footer={<JapaneseNameFaqSection />}
     >
       <JapaneseNameGeneratorTool />

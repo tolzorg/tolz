@@ -82,24 +82,9 @@ export default function SonotubeCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Sonotube Calculator",
-    url: "https://www.tolz.org/calculators/construction/sonotube",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    description: "Free online Sonotube calculator to estimate concrete volume, weight, bag count, mix ratio, and cost for round concrete forms based on diameter, height, and quantity.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    provider: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

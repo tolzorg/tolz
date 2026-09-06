@@ -8,8 +8,8 @@ export default function CurrencyCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Currency Calculator – Live Exchange Rate Converter"
-      seoDescription="Convert between currencies using a live market exchange rate, or plug in your own custom rate for a quick offline conversion. Free, no signup."
+      seoTitle="Free Currency Calculator - Live & Custom Exchange Rates"
+      seoDescription="Convert currencies instantly with live market rates or set your own custom rate. Free, no signup currency calculator with accurate, real-time results."
       footer={<CurrencyCalculatorFaqSection />}
       wide
     >

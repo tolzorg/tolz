@@ -8,8 +8,8 @@ export default function PaymentCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Payment Calculator – Monthly Payment or Loan Payoff Time"
-      seoDescription="Calculate the monthly payment for a fixed-term loan, or the time it takes to pay off a loan with a fixed monthly payment. View a full amortization schedule. Free, no signup."
+      seoTitle="Free Loan Payment Calculator | Monthly & Amortization"
+      seoDescription="Calculate your monthly loan payment instantly with our free loan payment calculator. View a full amortization schedule and payoff timeline. No signup needed."
       footer={<PaymentCalculatorFaqSection />}
       wide
     >

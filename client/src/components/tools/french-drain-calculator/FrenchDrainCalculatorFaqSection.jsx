@@ -89,24 +89,9 @@ export default function FrenchDrainCalculatorFaqSection() {
       acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
-
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "French Drain Calculator",
-    url: "https://www.tolz.org/calculators/construction/french-drain",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    description: "Free online French Drain Calculator to estimate trench volume, drain pipe length, and gravel needed. Supports Schedule 40 and SDR35 pipe, optional fabric filter, and instant cost estimation.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    isAccessibleForFree: true,
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={webAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

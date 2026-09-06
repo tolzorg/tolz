@@ -8,8 +8,8 @@ export default function RetirementCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Retirement Calculator – How Much You Need to Retire & Save"
-      seoDescription="Estimate how much you need to retire, build a savings plan to get there, project a sustainable withdrawal amount, and see how long your savings can last. Free, no signup."
+      seoTitle="Free Retirement Calculator: Plan Your Savings Goal"
+      seoDescription="Use our free retirement calculator to estimate how much you need to retire, build a savings plan, and see how long your money will last."
       footer={<RetirementCalculatorFaqSection />}
       wide
     >

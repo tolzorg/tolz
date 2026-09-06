@@ -968,6 +968,26 @@ export const TOOLS = [
       "usd to eur", "foreign exchange calculator",
     ],
   },
+  {
+    id: "inflation-calculator",
+    label: "Inflation Calculator",
+    tagline: "U.S. CPI data from 1913 to present, plus flat-rate projections",
+    description: "Find the equivalent value of a dollar amount between any two points in time using real U.S. CPI data, or project a flat inflation rate forward or backward.",
+    icon: "📉",
+    iconBg: "#fef2f2",
+    iconColor: "#b91c1c",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/inflation-calculator",
+    available: true,
+    keywords: [
+      "inflation calculator", "cpi calculator", "consumer price index calculator",
+      "purchasing power calculator", "dollar value calculator", "inflation rate calculator",
+      "historical inflation calculator", "cost of living calculator",
+    ],
+  },
 ];
 
 export function getToolById(id) {
