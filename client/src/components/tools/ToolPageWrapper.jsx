@@ -9,15 +9,13 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
   const toolSchema = tool
     ? {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
         name: tool.label,
         description: tool.description,
         url: `${SITE_URL}${tool.path}`,
-        applicationCategory: "UtilitiesApplication",
+        applicationCategory: "UtilityApplication",
         operatingSystem: "Any",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        isAccessibleForFree: true,
-        publisher: { "@type": "Organization", name: "Tolz", url: `${SITE_URL}/` },
       }
     : null;
 

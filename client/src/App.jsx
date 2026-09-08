@@ -29,6 +29,8 @@ const AmortizationCalculatorPage = lazy(() => import("./pages/AmortizationCalcul
 const InvestmentCalculatorPage = lazy(() => import("./pages/InvestmentCalculatorPage"));
 const CurrencyCalculatorPage = lazy(() => import("./pages/CurrencyCalculatorPage"));
 const InflationCalculatorPage = lazy(() => import("./pages/InflationCalculatorPage"));
+const FinanceCalculatorPage = lazy(() => import("./pages/FinanceCalculatorPage"));
+const MortgagePayoffCalculatorPage = lazy(() => import("./pages/MortgagePayoffCalculatorPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
@@ -183,6 +185,8 @@ export default function App() {
                 <Route path="/tools/investment-calculator"         element={<InvestmentCalculatorPage />} />
                 <Route path="/tools/currency-calculator"           element={<CurrencyCalculatorPage />} />
                 <Route path="/tools/inflation-calculator"          element={<InflationCalculatorPage />} />
+                <Route path="/tools/finance-calculator"            element={<FinanceCalculatorPage />} />
+                <Route path="/tools/mortgage-payoff-calculator"    element={<MortgagePayoffCalculatorPage />} />
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
@@ -225,6 +229,8 @@ export default function App() {
                 <Route path="/calculators/financial/investment-calculator"         element={<InvestmentCalculatorPage />} />
                 <Route path="/calculators/financial/currency-calculator"           element={<CurrencyCalculatorPage />} />
                 <Route path="/calculators/financial/inflation-calculator"          element={<InflationCalculatorPage />} />
+                <Route path="/calculators/financial/finance-calculator"            element={<FinanceCalculatorPage />} />
+                <Route path="/calculators/financial/mortgage-payoff-calculator"    element={<MortgagePayoffCalculatorPage />} />
                 <Route path="/calculators/construction/square-footage"             element={<SquareFootageCalculatorPage />} />
                 <Route path="/calculators/construction/square-yards"               element={<SquareYardsCalculatorPage />} />
                 <Route path="/calculators/construction/cubic-yard"                 element={<CubicYardCalculatorPage />} />
