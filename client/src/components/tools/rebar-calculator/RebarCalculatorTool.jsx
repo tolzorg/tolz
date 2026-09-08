@@ -304,7 +304,8 @@ export default function RebarCalculatorTool() {
   }, [needsQtyLen, needsSize, sizeId]);
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Calculation Mode ── */}
       <SectionCard id="mode" title="Calculation Mode" icon="⚙️"
@@ -499,7 +500,9 @@ export default function RebarCalculatorTool() {
           </div>
         </div>
       </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
       {/* ── Results ── */}
       <SectionCard id="results" title="Results" icon="📊"
         open={openSections.has("results")} onToggle={toggleSection}>
@@ -764,6 +767,7 @@ export default function RebarCalculatorTool() {
         </div>
       </SectionCard>
 
+      </div>
     </div>
   );
 }

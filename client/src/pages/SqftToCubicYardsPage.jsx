@@ -11,6 +11,7 @@ export default function SqftToCubicYardsPage() {
       seoTitle="Sq Ft to Cubic Yards Calculator | Free & Instant"
       seoDescription="Convert square feet to cubic yards instantly. Enter area or length×width, pick a material, and get accurate volume and weight. Free, no signup."
       footer={<SqftToCubicYardsFaqSection />}
+      wide
     >
       <SqftToCubicYardsTool />
     </ToolPageWrapper>

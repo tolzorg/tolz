@@ -11,6 +11,7 @@ export default function BoardFootCalculatorPage() {
       seoTitle="Board Foot Calculator | Free Online Lumber Tool"
       seoDescription="Calculate board feet instantly for any lumber size. Supports inches, mm, cm, feet & meters. Free, accurate, no signup required."
       footer={<BoardFootCalculatorFaqSection />}
+      wide
     >
       <BoardFootCalculatorTool />
     </ToolPageWrapper>

@@ -11,6 +11,7 @@ export default function DeckingCalculatorPage() {
       seoTitle="Decking Calculator | Free Boards, Screws & Cost Estimate"
       seoDescription="Free decking calculator to estimate boards, screws or clips, and total cost, with a 10% waste factor. Works for tiles and standard decking too."
       footer={<DeckingCalculatorFaqSection />}
+      wide
     >
       <DeckingCalculatorTool />
     </ToolPageWrapper>

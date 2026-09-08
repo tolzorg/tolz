@@ -269,7 +269,8 @@ export default function FramingCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Wall & studs
@@ -312,6 +313,10 @@ export default function FramingCalculatorTool() {
 
         </div>
       </div>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 2 — Stud cost
@@ -424,6 +429,7 @@ export default function FramingCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

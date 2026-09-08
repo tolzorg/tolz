@@ -11,6 +11,7 @@ export default function FrenchDrainCalculatorPage() {
       seoTitle="French Drain Calculator | Gravel, Pipe & Cost Estimate"
       seoDescription="Free French Drain Calculator to estimate trench volume, gravel, and pipe length. Supports Schedule 40 & SDR35 pipe with instant cost totals."
       footer={<FrenchDrainCalculatorFaqSection />}
+      wide
     >
       <FrenchDrainCalculatorTool />
     </ToolPageWrapper>

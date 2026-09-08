@@ -289,6 +289,8 @@ export default function SleepCalculatorTool() {
       {/* Hide scrollbars inside drum picker */}
       <style>{`.sleep-picker-col::-webkit-scrollbar { display: none; }`}</style>
 
+      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 20 }}>
       {/* ── Mode toggle ── */}
       <div className="card animate-fadeUp" style={{ padding: 6, display: "flex", gap: 4 }}>
         {[
@@ -365,9 +367,11 @@ export default function SleepCalculatorTool() {
           )}
         </div>
       </div>
+      </div>
 
       {/* ── Results ── */}
-      {results && (
+      <div style={{ flex: "1 1 340px", minWidth: 300 }}>
+      {results ? (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <div className="animate-fadeUp" style={{
             fontFamily: "var(--font-display)", fontWeight: 700,
@@ -382,7 +386,16 @@ export default function SleepCalculatorTool() {
             <ResultCard key={r.cycles} result={r} delay={i} mode={mode} />
           ))}
         </div>
+      ) : (
+        <div className="card" style={{ padding: "22px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 160, color: "var(--text-muted)" }}>
+          <div style={{ fontSize: 30, marginBottom: 8 }}>😴</div>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>
+            Results will appear here
+          </p>
+        </div>
       )}
+      </div>
+      </div>
 
       {/* ── Info note ── */}
       <div className="animate-fadeUp delay-200" style={{

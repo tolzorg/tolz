@@ -307,7 +307,8 @@ export default function SandCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — How much sand do you need?
@@ -410,6 +411,10 @@ export default function SandCalculatorTool() {
           </div>
         )}
       </div>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 2 — Sand cost
@@ -544,6 +549,7 @@ export default function SandCalculatorTool() {
         )}
       </div>
 
+      </div>
     </div>
   );
 }

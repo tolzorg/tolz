@@ -445,7 +445,8 @@ export default function GallonsCalculatorTool() {
 
       {/* ══════════ COVERAGE PLANNER ══════════ */}
       {calcMode === "coverage" && (
-        <>
+        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Material + Coverage Rate */}
           <div className="card" style={{ padding: "18px 20px" }}>
             <SectionLabel icon="🎨" text="Material & Coverage Rate" />
@@ -531,7 +532,9 @@ export default function GallonsCalculatorTool() {
               </div>
             </div>
           </div>
+        </div>
 
+        <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Coverage Results */}
           {gallonsTotal ? (
             <div className="card" style={{ padding: "18px 20px" }}>
@@ -625,12 +628,14 @@ export default function GallonsCalculatorTool() {
               defaultPriceUnit="usgal"
             />
           )}
-        </>
+        </div>
+        </div>
       )}
 
       {/* ══════════ VOLUME CALCULATOR ══════════ */}
       {calcMode === "volume" && (
-        <>
+        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Depth / Thickness */}
           <div className="card" style={{ padding: "18px 20px" }}>
             <SectionLabel icon="↕️" text="Depth / Thickness / Height" />
@@ -652,7 +657,9 @@ export default function GallonsCalculatorTool() {
               </p>
             )}
           </div>
+        </div>
 
+        <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Volume Results */}
           {usGal ? (
             <div className="card" style={{ padding: "18px 20px" }}>
@@ -759,7 +766,8 @@ export default function GallonsCalculatorTool() {
               defaultPriceUnit="usgal"
             />
           )}
-        </>
+        </div>
+        </div>
       )}
 
       {/* ── Formulas (shared) ── */}

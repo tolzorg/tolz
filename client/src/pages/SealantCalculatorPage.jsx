@@ -11,6 +11,7 @@ export default function SealantCalculatorPage() {
       seoTitle="Sealant Calculator | Free Online Sealant Quantity Tool"
       seoDescription="Calculate exactly how much sealant you need from joint length, width, and depth. Get cartridge counts and cost estimates instantly, free."
       footer={<SealantCalculatorFaqSection />}
+      wide
     >
       <SealantCalculatorTool />
     </ToolPageWrapper>

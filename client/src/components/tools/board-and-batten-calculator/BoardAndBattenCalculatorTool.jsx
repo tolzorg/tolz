@@ -431,7 +431,7 @@ export default function BoardAndBattenCalculatorTool() {
 
   // ── Render ─────────────────────────────────────────────────────
   return (
-    <div className="container" style={{ maxWidth: 860, margin: "0 auto", padding: "0 16px 60px" }}>
+    <div className="container" style={{ maxWidth: 1000, margin: "0 auto", padding: "0 16px 60px" }}>
 
       {/* Disclaimer */}
       <div style={{ background: "#fef3c7", border: "1.5px solid #f59e0b", borderRadius: "var(--radius-md)", padding: "14px 18px", marginBottom: 20 }}>
@@ -444,7 +444,8 @@ export default function BoardAndBattenCalculatorTool() {
         </p>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 420px", minWidth: 320, display: "flex", flexDirection: "column", gap: 16 }}>
 
         {/* ══ 1 · PROJECT SETUP ═══════════════════════════════════ */}
         <SectionCard id="setup" title="Project Setup" icon="🏗️" open={open.setup} onToggle={setOpen}>
@@ -1046,7 +1047,9 @@ export default function BoardAndBattenCalculatorTool() {
             </div>
           )}
         </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 380px", minWidth: 320, display: "flex", flexDirection: "column", gap: 16 }}>
         {/* ══ 12 · RESULTS ════════════════════════════════════════ */}
         <SectionCard id="results" title="Material Summary" icon="📋" open={open.results} onToggle={setOpen}>
           {!result ? (
@@ -1332,6 +1335,7 @@ export default function BoardAndBattenCalculatorTool() {
           </ul>
         </SectionCard>
 
+      </div>
       </div>
     </div>
   );

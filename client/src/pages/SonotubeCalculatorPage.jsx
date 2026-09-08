@@ -11,6 +11,7 @@ export default function SonotubeCalculatorPage() {
       seoTitle="Sonotube Calculator | Free Concrete Volume & Cost Tool"
       seoDescription="Calculate concrete volume, weight, and cost for Sonotube forms instantly. Get bag counts or mix ratios by diameter and height. Free, no signup."
       footer={<SonotubeCalculatorFaqSection />}
+      wide
     >
       <SonotubeCalculatorTool />
     </ToolPageWrapper>

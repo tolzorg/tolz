@@ -399,7 +399,8 @@ export default function SquareYardsCalculatorTool() {
   // ── Render ───────────────────────────────────────────────────
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Shape ── */}
       <SectionCard id="shape" title="Shape" icon="📐" open={open.has("shape")} onToggle={toggleSection}>
@@ -544,7 +545,9 @@ export default function SquareYardsCalculatorTool() {
           </div>
         )}
       </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
       {/* ── Results ── */}
       <SectionCard id="results" title="Results" icon="📊" open={open.has("results")} onToggle={toggleSection}>
         {!hasResults ? (
@@ -795,6 +798,7 @@ export default function SquareYardsCalculatorTool() {
         </ul>
       </SectionCard>
 
+      </div>
     </div>
   );
 }

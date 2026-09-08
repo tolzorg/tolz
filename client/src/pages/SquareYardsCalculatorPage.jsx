@@ -11,6 +11,7 @@ export default function SquareYardsCalculatorPage() {
       seoTitle="Square Yards Calculator | Free Area & Material Tool"
       seoDescription="Calculate square yards for any shape instantly. Free online tool with a built-in material estimator for sod, carpet, tile, mulch & gravel."
       footer={<SquareYardsCalculatorFaqSection />}
+      wide
     >
       <SquareYardsCalculatorTool />
     </ToolPageWrapper>

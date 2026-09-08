@@ -11,6 +11,7 @@ export default function CalorieTrackerPage() {
       seoTitle="Free Calorie Tracker & Calculator Online"
       seoDescription="Calculate daily calories, BMR & TDEE instantly with Tolz's free calorie tracker. No signup, no charges, just accurate results in seconds."
       footer={<CalorieTrackerFaqSection />}
+      wide
     >
       <CalorieTrackerTool />
     </ToolPageWrapper>

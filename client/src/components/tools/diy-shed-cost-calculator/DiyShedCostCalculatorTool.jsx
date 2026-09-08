@@ -337,7 +337,8 @@ export default function DiyShedCostCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Shed details
@@ -463,6 +464,10 @@ export default function DiyShedCostCalculatorTool() {
           </div>
         )}
       </div>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 2 — Output areas
@@ -647,6 +652,7 @@ export default function DiyShedCostCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

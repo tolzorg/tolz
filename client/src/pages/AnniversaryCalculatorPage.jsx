@@ -11,6 +11,7 @@ export default function AnniversaryCalculatorPage() {
       seoTitle="Anniversary Calculator | Free Online Tool"
       seoDescription="Calculate years, months, and days since any anniversary instantly. Free, accurate, no signup needed, try Tolz's Anniversary Calculator now."
       footer={<AnniversaryFaqSection />}
+      wide
     >
       <AnniversaryCalculatorTool />
     </ToolPageWrapper>

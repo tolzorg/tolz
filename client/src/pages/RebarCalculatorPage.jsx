@@ -11,6 +11,7 @@ export default function RebarCalculatorPage() {
       seoTitle="Rebar Calculator | Weight, Length & Cost Estimator"
       seoDescription="Calculate rebar weight, length, and material cost for slabs, footings, walls, and columns. Free rebar calculator with US and metric bar sizes."
       footer={<RebarCalculatorFaqSection />}
+      wide
     >
       <RebarCalculatorTool />
     </ToolPageWrapper>

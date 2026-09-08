@@ -11,6 +11,7 @@ export default function RiverRockCalculatorPage() {
       seoTitle="River Rock Calculator | Free Volume, Weight & Cost Tool"
       seoDescription="Calculate exactly how much river rock you need. Enter length, width & depth for instant volume, weight, and cost estimates. Free, no signup."
       footer={<RiverRockCalculatorFaqSection />}
+      wide
     >
       <RiverRockCalculatorTool />
     </ToolPageWrapper>

@@ -284,7 +284,8 @@ export default function CubicYardCalculatorTool() {
   const DiagramComponent = SHAPE_DIAGRAMS[shapeId];
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Shape & Dimensions ── */}
       <SectionCard id="shape" title="Shape & Dimensions" icon="📐" open={openSections.has("shape")} onToggle={toggleSection}>
@@ -390,6 +391,10 @@ export default function CubicYardCalculatorTool() {
           </div>
         </div>
       </SectionCard>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Yardage ── */}
       <SectionCard id="yardage" title="Yardage" icon="📦" open={openSections.has("yardage")} onToggle={toggleSection}>
@@ -530,6 +535,8 @@ export default function CubicYardCalculatorTool() {
           </ul>
         </div>
       </SectionCard>
+
+      </div>
     </div>
   );
 }

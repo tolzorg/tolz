@@ -262,7 +262,8 @@ export default function FireGlassCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Fire glass and pit details
@@ -424,6 +425,10 @@ export default function FireGlassCalculatorTool() {
         )}
       </div>
 
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
+
       {/* ════════════════════════════════════════════════════════════
           SECTION 3 — Final output
           ════════════════════════════════════════════════════════════ */}
@@ -520,6 +525,7 @@ export default function FireGlassCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

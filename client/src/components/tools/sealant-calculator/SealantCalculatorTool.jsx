@@ -303,7 +303,8 @@ export default function SealantCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Details of what needs sealing
@@ -380,6 +381,10 @@ export default function SealantCalculatorTool() {
           </div>
         )}
       </div>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 2 — Sealant needed
@@ -553,6 +558,7 @@ export default function SealantCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

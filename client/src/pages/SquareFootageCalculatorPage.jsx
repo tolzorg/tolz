@@ -11,6 +11,7 @@ export default function SquareFootageCalculatorPage() {
       seoTitle="Square Footage Calculator | Free Online Area Tool"
       seoDescription="Calculate square footage instantly for 10 shapes with our free square footage calculator. No signup, all units supported, accurate results."
       footer={<SquareFootageCalculatorFaqSection />}
+      wide
     >
       <SquareFootageCalculatorTool />
     </ToolPageWrapper>

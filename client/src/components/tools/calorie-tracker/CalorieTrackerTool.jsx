@@ -413,7 +413,8 @@ function BMITab({ form, onChange }) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Inputs */}
       <div style={S.card}>
         <p style={S.sectionTitle}>Your Details</p>
@@ -430,8 +431,15 @@ function BMITab({ form, onChange }) {
         Calculate BMI
       </button>
 
+      {/* Disclaimer */}
+      <p style={{ fontSize: 12, color: "var(--text-muted)", textAlign: "center", lineHeight: 1.5 }}>
+        BMI is a screening tool, not a diagnostic measure. Consult a healthcare provider for medical advice.
+      </p>
+    </div>
+
+    <div style={{ flex: "1 1 340px", minWidth: 300 }}>
       {/* Result */}
-      {result && (
+      {result ? (
         <div className="animate-fadeUp" style={S.card}>
           <p style={S.sectionTitle}>Your BMI Result</p>
 
@@ -509,12 +517,15 @@ function BMITab({ form, onChange }) {
             />
           </div>
         </div>
+      ) : (
+        <div style={{ ...S.card, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 160, color: "var(--text-muted)" }}>
+          <div style={{ fontSize: 30, marginBottom: 8 }}>⚖️</div>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>
+            Results will appear here
+          </p>
+        </div>
       )}
-
-      {/* Disclaimer */}
-      <p style={{ fontSize: 12, color: "var(--text-muted)", textAlign: "center", lineHeight: 1.5 }}>
-        BMI is a screening tool, not a diagnostic measure. Consult a healthcare provider for medical advice.
-      </p>
+    </div>
     </div>
   );
 }
@@ -581,7 +592,8 @@ function TDEETab({ form, onChange, onTdeeResult }) {
   ] : [];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={S.card}>
         <p style={S.sectionTitle}>Your Details</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -598,7 +610,13 @@ function TDEETab({ form, onChange, onTdeeResult }) {
         Calculate Daily Calories
       </button>
 
-      {result && (
+      <p style={{ fontSize: 12, color: "var(--text-muted)", textAlign: "center", lineHeight: 1.5 }}>
+        Mifflin-St Jeor Equation. Individual results may vary based on metabolism and other factors.
+      </p>
+    </div>
+
+    <div style={{ flex: "1 1 340px", minWidth: 300 }}>
+      {result ? (
         <div className="animate-fadeUp">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
             {calCards.map(c => (
@@ -642,11 +660,15 @@ function TDEETab({ form, onChange, onTdeeResult }) {
             />
           </div>
         </div>
+      ) : (
+        <div style={{ ...S.card, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 160, color: "var(--text-muted)" }}>
+          <div style={{ fontSize: 30, marginBottom: 8 }}>🔥</div>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>
+            Results will appear here
+          </p>
+        </div>
       )}
-
-      <p style={{ fontSize: 12, color: "var(--text-muted)", textAlign: "center", lineHeight: 1.5 }}>
-        Mifflin-St Jeor Equation. Individual results may vary based on metabolism and other factors.
-      </p>
+    </div>
     </div>
   );
 }
@@ -700,7 +722,8 @@ function MacrosTab({ form, onChange, tdeeCalories }) {
     : [];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={S.card}>
         <p style={S.sectionTitle}>Macro Settings</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -756,8 +779,10 @@ function MacrosTab({ form, onChange, tdeeCalories }) {
         onClick={calculate}>
         Calculate Macros
       </button>
+    </div>
 
-      {result && (
+    <div style={{ flex: "1 1 340px", minWidth: 300 }}>
+      {result ? (
         <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <div style={S.card}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
@@ -805,7 +830,15 @@ function MacrosTab({ form, onChange, tdeeCalories }) {
             />
           </div>
         </div>
+      ) : (
+        <div style={{ ...S.card, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 160, color: "var(--text-muted)" }}>
+          <div style={{ fontSize: 30, marginBottom: 8 }}>🍽️</div>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>
+            Results will appear here
+          </p>
+        </div>
       )}
+    </div>
     </div>
   );
 }
@@ -846,7 +879,8 @@ function WaterTab({ form, onChange }) {
   const waterPct = result ? Math.min(100, (result.liters / 5) * 100) : 0;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={S.card}>
         <p style={S.sectionTitle}>Your Details</p>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -879,8 +913,10 @@ function WaterTab({ form, onChange }) {
         onClick={calculate}>
         Calculate Water Intake
       </button>
+    </div>
 
-      {result && (
+    <div style={{ flex: "1 1 340px", minWidth: 300 }}>
+      {result ? (
         <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {/* Main result */}
           <div style={{ ...S.card, textAlign: "center", padding: "28px 20px",
@@ -945,7 +981,15 @@ function WaterTab({ form, onChange }) {
             />
           </div>
         </div>
+      ) : (
+        <div style={{ ...S.card, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 160, color: "var(--text-muted)" }}>
+          <div style={{ fontSize: 30, marginBottom: 8 }}>💧</div>
+          <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>
+            Results will appear here
+          </p>
+        </div>
       )}
+    </div>
     </div>
   );
 }
@@ -965,7 +1009,8 @@ function MealsTab() {
   const gc = goalColors[goal];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ flex: "1 1 300px", minWidth: 260, display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Goal selector */}
       <div style={S.card}>
         <p style={S.sectionTitle}>Select Your Goal</p>
@@ -988,7 +1033,9 @@ function MealsTab() {
           ))}
         </div>
       </div>
+    </div>
 
+    <div style={{ flex: "1 1 380px", minWidth: 300 }}>
       {/* Meal cards */}
       <div>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
@@ -1041,6 +1088,7 @@ function MealsTab() {
       <p style={{ fontSize: 12, color: "var(--text-muted)", textAlign: "center", lineHeight: 1.5 }}>
         Nutritional values are approximate. Actual values may vary based on preparation and portion size.
       </p>
+    </div>
     </div>
   );
 }

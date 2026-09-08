@@ -11,6 +11,7 @@ export default function SizeToWeightCalculatorPage() {
       seoTitle="Size to Weight Calculator | Free Online Tool"
       seoDescription="Calculate the exact weight of any rectangular material instantly. Supports 20+ materials and all unit systems. Free, accurate, and no signup required."
       footer={<SizeToWeightCalculatorFaqSection />}
+      wide
     >
       <SizeToWeightCalculatorTool />
     </ToolPageWrapper>

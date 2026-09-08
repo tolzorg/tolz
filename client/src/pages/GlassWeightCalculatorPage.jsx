@@ -11,6 +11,7 @@ export default function GlassWeightCalculatorPage() {
       seoTitle="Glass Weight Calculator | Free Online Tool"
       seoDescription="Calculate glass weight instantly by type, shape, and dimensions. 19 glass types, 8 shapes, all units, free and accurate."
       footer={<GlassWeightCalculatorFaqSection />}
+      wide
     >
       <GlassWeightCalculatorTool />
     </ToolPageWrapper>

@@ -11,6 +11,7 @@ export default function RipRapCalculatorPage() {
       seoTitle="Rip Rap Calculator | Free D50 Size & Cost Estimator"
       seoDescription="Calculate rip rap D50 size with the Isbash equation, plus volume, weight, and cost. Free, fast, no signup. Supports metric and imperial units."
       footer={<RipRapCalculatorFaqSection />}
+      wide
     >
       <RipRapCalculatorTool />
     </ToolPageWrapper>

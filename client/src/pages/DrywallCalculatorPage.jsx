@@ -11,6 +11,7 @@ export default function DrywallCalculatorPage() {
       seoTitle="Drywall Calculator | Free Sheet & Cost Estimator"
       seoDescription="Calculate exactly how much drywall you need by room size, including doors, windows, and sloped walls. Free, instant, no signup required."
       footer={<DrywallCalculatorFaqSection />}
+      wide
     >
       <DrywallCalculatorTool />
     </ToolPageWrapper>

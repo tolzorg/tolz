@@ -727,6 +727,8 @@ export default function AnniversaryCalculatorTool() {
         }
       `}</style>
 
+      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 20 }}>
       {/* ── Input card ── */}
       <div className="card anniv-no-print" style={{ padding: "20px 20px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -882,7 +884,9 @@ export default function AnniversaryCalculatorTool() {
           maxDate={maxDate}
         />
       </div>
+      </div>
 
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 20 }}>
       {/* ── Empty state ── */}
       {!startDateStr && (
         <div style={{ textAlign: "center", padding: "44px 20px", color: "var(--text-muted)" }}>
@@ -1089,6 +1093,8 @@ export default function AnniversaryCalculatorTool() {
           </div>
         </>
       )}
+      </div>
+      </div>
     </div>
   );
 }

@@ -460,7 +460,8 @@ export default function BalusterCalculatorTool() {
   const outLbl = BAL_OUT_UNITS.find((u) => u.id === outUnit)?.label || outUnit;
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Mode ── */}
       <SectionCard id="mode" title="Railing Mode" icon="🏗️"
@@ -795,7 +796,9 @@ export default function BalusterCalculatorTool() {
           )}
         </div>
       </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
       {/* ── Results ── */}
       <SectionCard id="results" title="Results" icon="📊"
         open={openSections.has("results")} onToggle={toggleSection}>
@@ -1077,6 +1080,7 @@ export default function BalusterCalculatorTool() {
         </div>
       </SectionCard>
 
+      </div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ export default function SandCalculatorPage() {
       seoTitle="Sand Calculator | Estimate Volume, Weight & Cost"
       seoDescription="Calculate how much sand you need from length, width, and depth. Get volume, weight, and instant cost estimates, free, fast, no signup."
       footer={<SandCalculatorFaqSection />}
+      wide
     >
       <SandCalculatorTool />
     </ToolPageWrapper>

@@ -336,7 +336,8 @@ export default function SizeToWeightCalculatorTool() {
   const densErr = touched.dens ? (!toDensityKgM3(densityInputVal, densityUnit) ? "Enter a valid positive density." : null) : null;
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Material ── */}
       <SectionCard id="material" title="Material" icon="🏗️" open={open.has("material")} onToggle={toggleSection}>
@@ -463,7 +464,9 @@ export default function SizeToWeightCalculatorTool() {
           </div>
         )}
       </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
       {/* ── Results ── */}
       <SectionCard id="results" title="Results" icon="📊" open={open.has("results")} onToggle={toggleSection}>
         {!hasResults ? (
@@ -605,6 +608,7 @@ export default function SizeToWeightCalculatorTool() {
         </ul>
       </SectionCard>
 
+      </div>
     </div>
   );
 }

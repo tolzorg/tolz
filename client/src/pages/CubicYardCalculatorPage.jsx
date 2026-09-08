@@ -11,6 +11,7 @@ export default function CubicYardCalculatorPage() {
       seoTitle="Cubic Yard Calculator | Free Volume & Weight Tool"
       seoDescription="Calculate cubic yards for concrete, gravel, sand, soil and mulch instantly. Free online tool with weight estimates, no signup required."
       footer={<CubicYardCalculatorFaqSection />}
+      wide
     >
       <CubicYardCalculatorTool />
     </ToolPageWrapper>

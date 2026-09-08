@@ -433,7 +433,8 @@ export default function SonotubeCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Requirements
@@ -483,6 +484,10 @@ export default function SonotubeCalculatorTool() {
           </div>
         )}
       </div>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 2 — Concrete materials needed
@@ -727,6 +732,7 @@ export default function SonotubeCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

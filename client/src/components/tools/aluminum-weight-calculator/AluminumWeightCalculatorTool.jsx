@@ -315,7 +315,8 @@ export default function AluminumWeightCalculatorTool() {
   }), [weightKg]);
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Shape & Dimensions ── */}
       <SectionCard id="shape" title="Shape & Dimensions" icon="📐"
@@ -502,7 +503,9 @@ export default function AluminumWeightCalculatorTool() {
           </div>
         </div>
       </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
       {/* ── Results ── */}
       <SectionCard id="results" title="Results" icon="⚖️"
         open={openSections.has("results")} onToggle={toggleSection}>
@@ -703,6 +706,7 @@ export default function AluminumWeightCalculatorTool() {
           </p>
         </div>
       </SectionCard>
+      </div>
     </div>
   );
 }

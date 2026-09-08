@@ -11,6 +11,7 @@ export default function RetainingWallCalculatorPage() {
       seoTitle="Retaining Wall Calculator | Free Cost & Material Estimator"
       seoDescription="Estimate retaining wall materials and costs free with Tolz's calculator. Covers concrete, block, segmental, and stone walls, plus footing and drainage."
       footer={<RetainingWallCalculatorFaqSection />}
+      wide
     >
       <RetainingWallCalculatorTool />
     </ToolPageWrapper>

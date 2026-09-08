@@ -11,6 +11,7 @@ export default function GallonsCalculatorPage() {
       seoTitle="Gallons per Sq Ft Calculator | Free Paint & Coverage Tool"
       seoDescription="Calculate gallons per square foot for paint, primer, epoxy, and sealers. Free coverage calculator with no signup, supports gallons, liters, and more."
       footer={<GallonsCalculatorFaqSection />}
+      wide
     >
       <GallonsCalculatorTool />
     </ToolPageWrapper>

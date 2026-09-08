@@ -303,7 +303,8 @@ export default function GlassWeightCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Glass type and shape
@@ -476,6 +477,10 @@ export default function GlassWeightCalculatorTool() {
         )}
       </div>
 
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
+
       {/* ════════════════════════════════════════════════════════════
           SECTION 3 — Final result
           ════════════════════════════════════════════════════════════ */}
@@ -574,6 +579,7 @@ export default function GlassWeightCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

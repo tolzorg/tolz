@@ -225,8 +225,9 @@ export default function BoardFootCalculatorTool() {
   return (
     <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
 
+      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
       {/* ── Input card ── */}
-      <div className="card" style={{ padding: "22px 20px" }}>
+      <div className="card" style={{ padding: "22px 20px", flex: "1 1 360px", minWidth: 300 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
 
           {/* Row 1: Thickness + Width */}
@@ -335,31 +336,41 @@ export default function BoardFootCalculatorTool() {
       </div>
 
       {/* ── Results ── */}
-      {result && (
-        <>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <ResultCard label="Board Feet per Piece" value={formatBF(result.perPiece)} />
-            <ResultCard label={`Total Board Feet (×${quantity})`} value={formatBF(result.total)} accent delay={100} />
-          </div>
+      <div style={{ flex: "1 1 300px", minWidth: 280, display: "flex", flexDirection: "column", gap: 12 }}>
+        {result ? (
+          <>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <ResultCard label="Board Feet per Piece" value={formatBF(result.perPiece)} />
+              <ResultCard label={`Total Board Feet (×${quantity})`} value={formatBF(result.total)} accent delay={100} />
+            </div>
 
-          {/* Copy button */}
-          <button
-            className="btn btn-secondary"
-            onClick={handleCopy}
-            style={{
-              alignSelf: "flex-start",
-              fontSize: 13,
-              padding: "8px 16px",
-              background: copied ? "#f0fdf4" : undefined,
-              color:      copied ? "#16a34a" : undefined,
-              borderColor: copied ? "#86efac" : undefined,
-              transition: "background 0.2s, color 0.2s, border-color 0.2s",
-            }}
-          >
-            {copied ? "✓ Copied!" : "📋 Copy Results"}
-          </button>
-        </>
-      )}
+            {/* Copy button */}
+            <button
+              className="btn btn-secondary"
+              onClick={handleCopy}
+              style={{
+                alignSelf: "flex-start",
+                fontSize: 13,
+                padding: "8px 16px",
+                background: copied ? "#f0fdf4" : undefined,
+                color:      copied ? "#16a34a" : undefined,
+                borderColor: copied ? "#86efac" : undefined,
+                transition: "background 0.2s, color 0.2s, border-color 0.2s",
+              }}
+            >
+              {copied ? "✓ Copied!" : "📋 Copy Results"}
+            </button>
+          </>
+        ) : (
+          <div className="card" style={{ padding: "22px 20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 160, color: "var(--text-muted)" }}>
+            <div style={{ fontSize: 30, marginBottom: 8 }}>🪵</div>
+            <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>
+              Results will appear here
+            </p>
+          </div>
+        )}
+      </div>
+      </div>
 
       {/* ── Price Checker ── */}
       <PriceCheckerCard

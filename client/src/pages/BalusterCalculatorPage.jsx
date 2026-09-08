@@ -11,6 +11,7 @@ export default function BalusterCalculatorPage() {
       seoTitle="Baluster Calculator | Free Spacing & Quantity Tool"
       seoDescription="Calculate exact baluster count and spacing for stairs or straight railings. Free, code-compliant tool with instant pricing. No signup needed."
       footer={<BalusterCalculatorFaqSection />}
+      wide
     >
       <BalusterCalculatorTool />
     </ToolPageWrapper>

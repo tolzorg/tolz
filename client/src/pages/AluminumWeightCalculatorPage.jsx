@@ -11,6 +11,7 @@ export default function AluminumWeightCalculatorPage() {
       seoTitle="Aluminum Weight Calculator | Free Online Tool"
       seoDescription="Calculate aluminum weight instantly for bars, pipes, tubes, sheets and beams. 12 alloys, 15 shapes, all units, free price estimates."
       footer={<AluminumWeightCalculatorFaqSection />}
+      wide
     >
       <AluminumWeightCalculatorTool />
     </ToolPageWrapper>

@@ -328,7 +328,8 @@ export default function SqftToCubicYardsTool() {
   const depthErr  = touched.depth   ? (isDimValid(depthVal, depthUnit, depthCompA, depthCompB) ? null : "Enter a positive depth.") : null;
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Area ── */}
       <SectionCard id="area" title="Surface Area" icon="📏" open={open.has("area")} onToggle={toggleSection}>
@@ -431,7 +432,9 @@ export default function SqftToCubicYardsTool() {
           </p>
         )}
       </SectionCard>
+      </div>
 
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
       {/* ── Results ── */}
       <SectionCard id="results" title="Results" icon="📊" open={open.has("results")} onToggle={toggleSection}>
         {!hasResults ? (
@@ -649,6 +652,7 @@ export default function SqftToCubicYardsTool() {
         </ul>
       </SectionCard>
 
+      </div>
     </div>
   );
 }

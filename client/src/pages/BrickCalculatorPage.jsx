@@ -11,6 +11,7 @@ export default function BrickCalculatorPage() {
       seoTitle="Brick Calculator | Free Online Wall & Mortar Estimator"
       seoDescription="Calculate bricks, cement, sand, and water needed for single or double walls instantly. Free brick calculator with cost estimate, no signup required."
       footer={<BrickCalculatorFaqSection />}
+      wide
     >
       <BrickCalculatorTool />
     </ToolPageWrapper>

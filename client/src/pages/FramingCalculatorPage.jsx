@@ -11,6 +11,7 @@ export default function FramingCalculatorPage() {
       seoTitle="Framing Calculator | Free Wall Stud & Spacing Tool"
       seoDescription="Calculate exact wall studs, OC spacing, waste, and lumber cost with our free framing calculator. No signup, instant results for any wall length."
       footer={<FramingCalculatorFaqSection />}
+      wide
     >
       <FramingCalculatorTool />
     </ToolPageWrapper>

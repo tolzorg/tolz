@@ -609,7 +609,8 @@ export default function BrickCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ══════════════════════════════════════════════════════════
           WALL DETAILS
@@ -771,6 +772,9 @@ export default function BrickCalculatorTool() {
         )}
       </div>
 
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
       {/* ══════════════════════════════════════════════════════════
           BRICKS REQUIRED
           ══════════════════════════════════════════════════════════ */}
@@ -1021,6 +1025,7 @@ export default function BrickCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }

@@ -517,7 +517,7 @@ export default function RetainingWallCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="container" style={{ maxWidth: 820, margin: "0 auto", padding: "0 16px 60px" }}>
+    <div className="container" style={{ maxWidth: 1000, margin: "0 auto", padding: "0 16px 60px" }}>
 
       {/* ── Disclaimer ── */}
       <div style={{ background: "#fef3c7", border: "1.5px solid #f59e0b", borderRadius: "var(--radius-md)", padding: "14px 18px", marginBottom: 20 }}>
@@ -531,7 +531,8 @@ export default function RetainingWallCalculatorTool() {
         </p>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 420px", minWidth: 320, display: "flex", flexDirection: "column", gap: 16 }}>
 
         {/* ══ 1 · WALL TYPE ══════════════════════════════════════════ */}
         <SectionCard id="wallType" title="Wall Type" icon="🏗️" open={open.wallType} onToggle={setOpen}>
@@ -1121,6 +1122,9 @@ export default function RetainingWallCalculatorTool() {
           </div>
         </SectionCard>
 
+      </div>
+
+      <div style={{ flex: "1 1 380px", minWidth: 320, display: "flex", flexDirection: "column", gap: 16 }}>
         {/* ══ 9 · DIAGRAM ════════════════════════════════════════════ */}
         <div className="card" style={{ padding: 20 }}>
           <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, color: "var(--text-primary)", marginBottom: 14, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -1505,6 +1509,7 @@ export default function RetainingWallCalculatorTool() {
           </div>
         </SectionCard>
 
+      </div>
       </div>
     </div>
   );

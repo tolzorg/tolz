@@ -392,7 +392,8 @@ export default function RipRapCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ── "I want to find the..." ──────────────────────────────── */}
       <div className="card" style={{ padding: "16px 20px" }}>
@@ -560,6 +561,10 @@ export default function RipRapCalculatorTool() {
           )}
         </div>
       )}
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 2 — Rip rap volume and weight
@@ -864,6 +869,7 @@ export default function RipRapCalculatorTool() {
         )}
       </div>
 
+      </div>
     </div>
   );
 }

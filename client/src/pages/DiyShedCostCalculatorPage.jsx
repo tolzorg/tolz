@@ -11,6 +11,7 @@ export default function DiyShedCostCalculatorPage() {
       seoTitle="DIY Shed Cost Calculator | Free Material & Build Cost"
       seoDescription="Estimate your shed's floor, wall, and roof area and total material cost free online. Supports gable, flat, and slanted roofs. No signup needed."
       footer={<DiyShedCostCalculatorFaqSection />}
+      wide
     >
       <DiyShedCostCalculatorTool />
     </ToolPageWrapper>

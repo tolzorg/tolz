@@ -333,7 +333,8 @@ export default function DeckingCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 1 — Size of your deck
@@ -464,6 +465,10 @@ export default function DeckingCalculatorTool() {
           </div>
         )}
       </div>
+
+      </div>
+
+      <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
           SECTION 3 — Results – Material estimations
@@ -661,6 +666,7 @@ export default function DeckingCalculatorTool() {
         </p>
       </div>
 
+      </div>
     </div>
   );
 }
