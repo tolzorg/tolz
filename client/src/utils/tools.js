@@ -1068,6 +1068,26 @@ export const TOOLS = [
       "salary converter", "wage calculator",
     ],
   },
+  {
+    id: "401k-calculator",
+    label: "401K Calculator",
+    tagline: "Project your 401(k) balance at retirement and its payout",
+    description: "Estimate a 401(k) balance at retirement and withdrawals afterward, plus early withdrawal costs and the contribution percentage that maximizes your employer match.",
+    icon: "🏦",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/401k-calculator",
+    available: true,
+    keywords: [
+      "401k calculator", "401(k) calculator", "retirement balance calculator",
+      "401k early withdrawal calculator", "employer match calculator", "401k contribution calculator",
+      "401k withdrawal calculator", "retirement savings calculator",
+    ],
+  },
 ];
 
 export function getToolById(id) {
