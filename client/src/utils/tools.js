@@ -1088,6 +1088,25 @@ export const TOOLS = [
       "401k withdrawal calculator", "retirement savings calculator",
     ],
   },
+  {
+    id: "interest-rate-calculator",
+    label: "Interest Rate Calculator",
+    tagline: "Find the interest rate implied by a loan and its payment",
+    description: "Find the interest rate implied by a loan amount, term, and fixed monthly payment, plus the total interest paid over the life of the loan.",
+    icon: "📈",
+    iconBg: "#f0fdf4",
+    iconColor: "#16a34a",
+    category: "utility",
+    subCategory: "financial-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/interest-rate-calculator",
+    available: true,
+    keywords: [
+      "interest rate calculator", "loan interest rate calculator", "find interest rate calculator",
+      "implied interest rate calculator", "loan rate calculator", "solve for interest rate",
+    ],
+  },
 ];
 
 export function getToolById(id) {

@@ -970,6 +970,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "interest-rate-calculator",
+        label: "Interest Rate Calculator",
+        slug: "interest-rate-calculator",
+        tagline: "Find the interest rate implied by a loan and its payment",
+        description:
+          "Find the interest rate implied by a loan amount, term, and fixed monthly payment, plus the total interest paid over the life of the loan.",
+        icon: "📈",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/interest-rate-calculator",
+        legacyPath: "/tools/interest-rate-calculator",
+        keywords: [
+          "interest rate calculator", "loan interest rate calculator", "find interest rate calculator",
+          "implied interest rate calculator", "loan rate calculator", "solve for interest rate",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {

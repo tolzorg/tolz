@@ -34,6 +34,7 @@ const MortgagePayoffCalculatorPage = lazy(() => import("./pages/MortgagePayoffCa
 const CompoundInterestCalculatorPage = lazy(() => import("./pages/CompoundInterestCalculatorPage"));
 const SalaryCalculatorPage = lazy(() => import("./pages/SalaryCalculatorPage"));
 const Four01kCalculatorPage = lazy(() => import("./pages/Four01kCalculatorPage"));
+const InterestRateCalculatorPage = lazy(() => import("./pages/InterestRateCalculatorPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
@@ -193,6 +194,7 @@ export default function App() {
                 <Route path="/tools/compound-interest-calculator"  element={<CompoundInterestCalculatorPage />} />
                 <Route path="/tools/salary-calculator"             element={<SalaryCalculatorPage />} />
                 <Route path="/tools/401k-calculator"               element={<Four01kCalculatorPage />} />
+                <Route path="/tools/interest-rate-calculator"      element={<InterestRateCalculatorPage />} />
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
@@ -240,6 +242,7 @@ export default function App() {
                 <Route path="/calculators/financial/compound-interest-calculator"  element={<CompoundInterestCalculatorPage />} />
                 <Route path="/calculators/financial/salary-calculator"             element={<SalaryCalculatorPage />} />
                 <Route path="/calculators/financial/401k-calculator"               element={<Four01kCalculatorPage />} />
+                <Route path="/calculators/financial/interest-rate-calculator"      element={<InterestRateCalculatorPage />} />
                 <Route path="/calculators/construction/square-footage"             element={<SquareFootageCalculatorPage />} />
                 <Route path="/calculators/construction/square-yards"               element={<SquareYardsCalculatorPage />} />
                 <Route path="/calculators/construction/cubic-yard"                 element={<CubicYardCalculatorPage />} />
