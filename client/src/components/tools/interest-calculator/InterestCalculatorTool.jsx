@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldLabel, TextField, SelectField, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
+import { FieldRow, TextField, SelectField, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
 import MortgagePieChart from "../mortgage-calculator/MortgagePieChart";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import { calculateInterest, formatCurrency, COMPOUND_OPTIONS, DEFAULT_COMPOUND } from "../../../utils/interestCalculatorEngine";
@@ -11,23 +11,22 @@ const DEFAULTS = {
   interestRate: "5", years: "5", months: "0", taxRate: "0", inflationRate: "3",
 };
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
 function DollarField({ value, onChange, placeholder }) {
   return (
-    <div style={{ position: "relative" }}>
-      <span style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>$</span>
-      <TextField value={value} onChange={onChange} placeholder={placeholder} style={{ paddingLeft: 22 }} />
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+      <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
+      <TextField value={value} onChange={onChange} placeholder={placeholder} style={{ paddingLeft: 19 }} />
     </div>
   );
 }
 
 function PercentField({ value, onChange, placeholder }) {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
       <TextField value={value} onChange={onChange} placeholder={placeholder} style={{ paddingRight: 26 }} />
-      <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
+      <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>%</span>
     </div>
   );
 }
@@ -70,8 +69,8 @@ export default function InterestCalculatorTool() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ padding: 24, flex: "1 1 340px", minWidth: 300 }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div className="card" style={{ padding: 18, flex: "1 1 340px", minWidth: 300 }}>
           <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
             <button
               type="button"
@@ -82,22 +81,19 @@ export default function InterestCalculatorTool() {
             </button>
           </div>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Initial investment</FieldLabel>
+          <FieldRow label="Initial investment">
             <DollarField value={initialInvestment} onChange={setInitialInvestment} placeholder={DEFAULTS.initialInvestment} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Annual contribution</FieldLabel>
+          <FieldRow label="Annual contribution">
             <DollarField value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Monthly contribution</FieldLabel>
+          <FieldRow label="Monthly contribution">
             <DollarField value={monthlyContribution} onChange={setMonthlyContribution} placeholder={DEFAULTS.monthlyContribution} />
-          </div>
+          </FieldRow>
 
-          <div style={{ ...fieldWrap, fontSize: 13.5, color: "var(--text-secondary)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 14, fontSize: 13.5, color: "var(--text-secondary)" }}>
             <span>Contribute at the</span>
             <div style={{ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap" }}>
               {[["beginning", "beginning"], ["end", "end"]].map(([value, label]) => (
@@ -114,45 +110,40 @@ export default function InterestCalculatorTool() {
             <span style={{ fontSize: 12, color: "var(--text-muted)" }}>of each compounding period</span>
           </div>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Interest rate</FieldLabel>
+          <FieldRow label="Interest rate">
             <PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Compound</FieldLabel>
+          <FieldRow label="Compound">
             <SelectField value={compound} onChange={setCompound} options={COMPOUND_OPTIONS} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Investment length</FieldLabel>
+          <FieldRow label="Investment length" fieldWidth={200}>
             <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel hint="Your marginal tax rate. Growth compounds tax-free throughout the term; this percentage is deducted from the total interest earned only once, at the end.">Tax rate</FieldLabel>
+          <FieldRow label="Tax rate" hint="Your marginal tax rate. Growth compounds tax-free throughout the term; this percentage is deducted from the total interest earned only once, at the end.">
             <PercentField value={taxRate} onChange={setTaxRate} placeholder={DEFAULTS.taxRate} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Inflation rate</FieldLabel>
+          <FieldRow label="Inflation rate">
             <PercentField value={inflationRate} onChange={setInflationRate} placeholder={DEFAULTS.inflationRate} />
-          </div>
+          </FieldRow>
 
           <div style={{ display: "flex", gap: 10 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Results
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the investment details and click <strong>Calculate</strong> to see your projected balance.

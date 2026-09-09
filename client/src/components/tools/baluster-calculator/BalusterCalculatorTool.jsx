@@ -77,7 +77,7 @@ function SectionCard({ id, title, icon, open, onToggle, children }) {
           <path d="M2 4.5l4.5 4.5 4.5-4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      {open && <div style={{ padding: "18px 20px" }}>{children}</div>}
+      {open && <div style={{ padding: "14px 16px" }}>{children}</div>}
     </div>
   );
 }
@@ -85,13 +85,15 @@ function SectionCard({ id, title, icon, open, onToggle, children }) {
 function FieldGroup({ label, error, hint, children }) {
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
-        <label style={{ ...LBL, marginBottom: 0 }}>{label}</label>
-        {hint && (
-          <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>
-        )}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <label style={{ ...LBL, marginBottom: 0 }}>{label}</label>
+          {hint && (
+            <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>
+          )}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <p style={{ fontSize: 11.5, color: "var(--error)", fontFamily: "var(--font-display)", fontWeight: 500, marginTop: 5 }}>
           {error}
@@ -460,7 +462,7 @@ export default function BalusterCalculatorTool() {
   const outLbl = BAL_OUT_UNITS.find((u) => u.id === outUnit)?.label || outUnit;
 
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
 
       {/* ── Mode ── */}

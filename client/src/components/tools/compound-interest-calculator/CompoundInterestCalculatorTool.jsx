@@ -27,10 +27,10 @@ export default function CompoundInterestCalculatorTool() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-        <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+        <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
           Result
         </div>
-        <div style={{ padding: "18px 20px" }}>
+        <div style={{ padding: "14px 16px" }}>
           {!result ? (
             <p style={{ fontSize: 13.5, color: "var(--text-muted)", margin: 0 }}>
               Fill in the details and click <strong>Calculate</strong> to see the equivalent rate.
@@ -45,7 +45,7 @@ export default function CompoundInterestCalculatorTool() {
         </div>
       </div>
 
-      <div className="card" style={{ padding: 24 }}>
+      <div className="card" style={{ padding: 18 }}>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 14, flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 140px", minWidth: 110 }}>
             <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-secondary)", marginBottom: 6, textAlign: "center" }}>Input Interest</div>
@@ -78,11 +78,11 @@ export default function CompoundInterestCalculatorTool() {
           </div>
         </div>
 
-        <div style={{ display: "flex", gap: 10, marginTop: 20, justifyContent: "center" }}>
-          <button type="button" onClick={calculate} style={{ padding: "12px 28px", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+        <div style={{ display: "flex", gap: 8, marginTop: 16, justifyContent: "center" }}>
+          <button type="button" onClick={calculate} style={{ padding: "9px 22px", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
             Calculate
           </button>
-          <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+          <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
         </div>
 
         {result && result.footnotes.length > 0 && (

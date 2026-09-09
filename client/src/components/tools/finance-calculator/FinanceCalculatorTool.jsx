@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldLabel, TextField } from "../loan-calculator/LoanFormControls";
+import { FieldRow, TextField } from "../loan-calculator/LoanFormControls";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import FinanceLineChart from "./FinanceLineChart";
 import {
@@ -29,7 +29,6 @@ const FIELD_DEFS = [
 
 const RESULT_LABELS = { fv: "FV", pmt: "PMT", iy: "I/Y", n: "N", pv: "PV" };
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
 // Allows a leading "-" through (the reference's own PMT/FV defaults are
@@ -56,13 +55,13 @@ function formatWithCommas(raw) {
 
 function DollarField({ value, onChange, placeholder }) {
   return (
-    <div style={{ position: "relative" }}>
-      <span style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>$</span>
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+      <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
       <TextField
         value={formatWithCommas(value)}
         onChange={(v) => onChange(stripToNumberString(v))}
         placeholder={placeholder ? formatWithCommas(placeholder) : undefined}
-        style={{ paddingLeft: 22 }}
+        style={{ paddingLeft: 19 }}
       />
     </div>
   );
@@ -70,9 +69,9 @@ function DollarField({ value, onChange, placeholder }) {
 
 function PercentField({ value, onChange, placeholder }) {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
       <TextField value={value} onChange={onChange} placeholder={placeholder} style={{ paddingRight: 26 }} />
-      <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
+      <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>%</span>
     </div>
   );
 }
@@ -177,7 +176,7 @@ export default function FinanceCalculatorTool() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div style={{ flex: "1 1 360px", minWidth: 320 }}>
           <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -199,10 +198,9 @@ export default function FinanceCalculatorTool() {
             ))}
           </div>
 
-          <div className="card" style={{ padding: 24, borderTopLeftRadius: 0, borderTopRightRadius: 0, marginTop: -1 }}>
+          <div className="card" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0, marginTop: -1 }}>
             {FIELD_DEFS.filter((f) => f.key !== activeTab).map((f) => (
-              <div key={f.key} style={fieldWrap}>
-                <FieldLabel>{f.label}</FieldLabel>
+              <FieldRow key={f.key} label={f.label}>
                 {f.kind === "dollar" && (
                   <DollarField value={fieldValues[f.key]} onChange={fieldSetters[f.key]} placeholder={DEFAULTS[f.key]} />
                 )}
@@ -212,7 +210,7 @@ export default function FinanceCalculatorTool() {
                 {f.kind === "number" && (
                   <TextField value={fieldValues[f.key]} onChange={fieldSetters[f.key]} placeholder={DEFAULTS[f.key]} />
                 )}
-              </div>
+              </FieldRow>
             ))}
 
             {!settingsOpen ? (
@@ -262,10 +260,10 @@ export default function FinanceCalculatorTool() {
             )}
 
             <div style={{ display: "flex", gap: 10 }}>
-              <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+              <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
                 Calculate
               </button>
-              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
             </div>
           </div>
         </div>
@@ -273,10 +271,10 @@ export default function FinanceCalculatorTool() {
         {/* ── Results ──────────────────────────────────────────── */}
         <div style={{ flex: "1 1 360px", minWidth: 320 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Results
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see the result.

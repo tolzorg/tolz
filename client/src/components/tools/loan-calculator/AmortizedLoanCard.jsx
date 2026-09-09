@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldLabel, TextField, SelectField, TermYearsMonthsField } from "./LoanFormControls";
+import { FieldRow, TextField, SelectField, TermYearsMonthsField } from "./LoanFormControls";
 import MortgagePieChart from "../mortgage-calculator/MortgagePieChart";
 import LoanScheduleTable from "./LoanScheduleTable";
 import {
@@ -11,8 +11,8 @@ import {
 // this follows) — fields start blank, and Calculate falls back to these
 // only when a field is left empty.
 const DEFAULTS = { loanAmount: "100000", years: "10", months: "0", interestRate: "6" };
-const cardStyle = { padding: 24 };
-const rowStyle = { display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
+const cardStyle = { padding: 18 };
+const rowStyle = { display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--border)", fontSize: 12 };
 
 export default function AmortizedLoanCard() {
   const [loanAmount, setLoanAmount] = useState("");
@@ -44,69 +44,55 @@ export default function AmortizedLoanCard() {
   return (
     <section aria-label="Amortized Loan calculator" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div>
-        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", marginBottom: 6 }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", marginBottom: 4 }}>
           Amortized Loan: Paying Back a Fixed Amount Periodically
         </h2>
-        <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 11.5, color: "var(--text-secondary)", lineHeight: 1.5 }}>
           Use this calculator for basic calculations of common loan types such as mortgages, auto loans, student
           loans, or personal loans — routine payments are made on principal and interest until the loan is fully
           paid off.
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ ...cardStyle, flex: "1 1 340px", minWidth: 300 }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div>
-              <FieldLabel>Loan Amount</FieldLabel>
-              <div style={{ position: "relative", marginTop: 6 }}>
-                <span style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>$</span>
-                <TextField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ paddingLeft: 22 }} />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <FieldRow label="Loan Amount">
+              <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+                <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
+                <TextField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ paddingLeft: 19 }} />
               </div>
-            </div>
+            </FieldRow>
 
-            <div>
-              <FieldLabel>Loan Term</FieldLabel>
-              <div style={{ marginTop: 6 }}>
-                <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
-              </div>
-            </div>
+            <FieldRow label="Loan Term" fieldWidth={200}>
+              <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
+            </FieldRow>
 
-            <div>
-              <FieldLabel>Interest Rate</FieldLabel>
-              <div style={{ position: "relative", marginTop: 6 }}>
-                <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={{ paddingRight: 26 }} />
-                <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
-              </div>
-            </div>
+            <FieldRow label="Interest Rate" suffix="%">
+              <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+            </FieldRow>
 
-            <div>
-              <FieldLabel>Compound</FieldLabel>
-              <div style={{ marginTop: 6 }}>
-                <SelectField value={compound} onChange={setCompound} options={COMPOUND_OPTIONS} />
-              </div>
-            </div>
+            <FieldRow label="Compound">
+              <SelectField value={compound} onChange={setCompound} options={COMPOUND_OPTIONS} />
+            </FieldRow>
 
-            <div>
-              <FieldLabel>Pay Back</FieldLabel>
-              <div style={{ marginTop: 6 }}>
-                <SelectField value={payback} onChange={setPayback} options={PAYBACK_OPTIONS} />
-              </div>
-            </div>
+            <FieldRow label="Pay Back">
+              <SelectField value={payback} onChange={setPayback} options={PAYBACK_OPTIONS} />
+            </FieldRow>
 
             <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
-              <button type="button" onClick={calculate} className="btn-primary" style={{ flex: 1, padding: "12px 0", fontSize: 14.5 }}>Calculate</button>
-              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+              <button type="button" onClick={calculate} className="btn-primary" style={{ flex: 1, padding: "9px 0", fontSize: 12.5 }}>Calculate</button>
+              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
             </div>
           </div>
         </div>
 
         <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Results:
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>Fill in the loan details and click <strong>Calculate</strong> to see your payment breakdown.</p>
               ) : (

@@ -1,9 +1,9 @@
 // Loan Calculator-specific form controls. FieldLabel/TextField/inputStyle
 // are generic (no mortgage-specific logic) and reused from the Mortgage
 // Calculator's shared control file rather than duplicated.
-import { FieldLabel, TextField, inputStyle } from "../mortgage-calculator/MortgageFormControls";
+import { FieldLabel, TextField, ValueUnitField, FieldRow, inputStyle } from "../mortgage-calculator/MortgageFormControls";
 
-export { FieldLabel, TextField };
+export { FieldLabel, TextField, ValueUnitField, FieldRow };
 
 export function SelectField({ value, onChange, options, disabled, style }) {
   return (

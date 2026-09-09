@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FieldLabel, DollarField, PercentField, RadioOption } from "./MortgagePayoffFormControls";
+import { FieldRow } from "../loan-calculator/LoanFormControls";
 import MortgagePayoffChart from "./MortgagePayoffChart";
 import MortgagePayoffAmortizationTable from "./MortgagePayoffAmortizationTable";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
@@ -13,7 +14,6 @@ const DEFAULTS = {
   extraMonthly: "500", extraYearly: "0", extraOneTime: "0",
 };
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
 function buildExtraDescription({ extraMonthly, extraYearly, extraOneTime }) {
@@ -83,22 +83,19 @@ export default function MortgagePayoffFromBalanceCard() {
         interest rate, and monthly payment values can be found in the monthly or quarterly mortgage statement.
       </p>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <div style={fieldWrap}>
-              <FieldLabel>Unpaid principal balance</FieldLabel>
-              <DollarField value={unpaidPrincipal} onChange={setUnpaidPrincipal} placeholder={DEFAULTS.unpaidPrincipal} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Monthly payment</FieldLabel>
-              <DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Interest rate</FieldLabel>
-              <PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} />
-            </div>
+          <div className="card" style={{ padding: 18 }}>
+            <FieldRow label="Unpaid principal balance">
+              <DollarField value={unpaidPrincipal} onChange={setUnpaidPrincipal} placeholder={DEFAULTS.unpaidPrincipal} style={{ width: "100%" }} />
+            </FieldRow>
+            <FieldRow label="Monthly payment">
+              <DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} style={{ width: "100%" }} />
+            </FieldRow>
+            <FieldRow label="Interest rate">
+              <PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} style={{ width: "100%" }} />
+            </FieldRow>
 
             <div style={{ marginBottom: 16 }}>
               <FieldLabel>Repayment options</FieldLabel>
@@ -125,10 +122,10 @@ export default function MortgagePayoffFromBalanceCard() {
             </div>
 
             <div style={{ display: "flex", gap: 10 }}>
-              <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+              <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
                 Calculate
               </button>
-              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
             </div>
           </div>
         </div>
@@ -136,12 +133,12 @@ export default function MortgagePayoffFromBalanceCard() {
         {/* ── Results ──────────────────────────────────────────── */}
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               {!result ? "Results"
                 : result.mode === "original" ? "Result"
                 : `Payoff in ${formatYearsAndMonths(result.newMonths)}`}
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see your payoff breakdown.

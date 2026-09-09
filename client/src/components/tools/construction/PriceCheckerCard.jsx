@@ -227,7 +227,7 @@ export default function PriceCheckerCard({
 
       {/* ── Body ── */}
       {isOpen && (
-        <div style={{ padding: "18px 20px" }}>
+        <div style={{ padding: "14px 16px" }}>
           {!hasData ? (
             <p style={{
               fontSize: 13, color: "var(--text-muted)", fontFamily: "var(--font-display)",

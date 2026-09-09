@@ -727,7 +727,7 @@ export default function AnniversaryCalculatorTool() {
         }
       `}</style>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 20 }}>
       {/* ── Input card ── */}
       <div className="card anniv-no-print" style={{ padding: "20px 20px" }}>
@@ -953,7 +953,7 @@ export default function AnniversaryCalculatorTool() {
           <LiveTotals startDate={startDate} endDate={referenceDate} live={isLiveReference} />
 
           {/* ── Anniversary number & weekday info ── */}
-          <div className="card animate-fadeUp delay-100" style={{ padding: "18px 20px" }}>
+          <div className="card animate-fadeUp delay-100" style={{ padding: "14px 16px" }}>
             <div style={SECTION_TITLE}>
               {prevAnnivNum > 0 ? `You're on the ${getOrdinal(prevAnnivNum)} anniversary` : "Before the 1st anniversary"}
             </div>
@@ -1002,7 +1002,7 @@ export default function AnniversaryCalculatorTool() {
           )}
 
           {/* ── Milestones ── */}
-          <div className="card animate-fadeUp delay-200" style={{ padding: "18px 20px" }}>
+          <div className="card animate-fadeUp delay-200" style={{ padding: "14px 16px" }}>
             <div style={SECTION_TITLE}>Milestones</div>
             <div>
               {milestones.map((m, i) => (
@@ -1019,7 +1019,7 @@ export default function AnniversaryCalculatorTool() {
 
           {/* ── Statistics dashboard ── */}
           {workingDays && (
-            <div className="card animate-fadeUp delay-300" style={{ padding: "18px 20px" }}>
+            <div className="card animate-fadeUp delay-300" style={{ padding: "14px 16px" }}>
               <div style={SECTION_TITLE}>Statistics</div>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
                 <ColorStatCard value={workingDays.weekdays.toLocaleString()} label="Weekdays" theme="blue" />

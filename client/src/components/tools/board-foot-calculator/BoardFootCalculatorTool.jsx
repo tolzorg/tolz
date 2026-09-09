@@ -54,13 +54,15 @@ const SELECT_BASE = {
 function FieldGroup({ label, error, hint, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
-        <label style={{ ...INPUT_LBL, marginBottom: 0 }}>{label}</label>
-        {hint && (
-          <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>ⓘ</span>
-        )}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <label style={{ ...INPUT_LBL, marginBottom: 0 }}>{label}</label>
+          {hint && (
+            <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>ⓘ</span>
+          )}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <p style={{
           fontSize: 11.5,
@@ -119,7 +121,7 @@ function ResultCard({ label, value, accent, delay }) {
   return (
     <div
       className={`card animate-fadeUp${delay ? ` delay-${delay}` : ""}`}
-      style={{ padding: "18px 20px", flex: "1 1 200px", minWidth: 0 }}
+      style={{ padding: "14px 16px", flex: "1 1 200px", minWidth: 0 }}
     >
       <div style={{
         fontFamily: "var(--font-display)",
@@ -225,7 +227,7 @@ export default function BoardFootCalculatorTool() {
   return (
     <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       {/* ── Input card ── */}
       <div className="card" style={{ padding: "22px 20px", flex: "1 1 360px", minWidth: 300 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -380,7 +382,7 @@ export default function BoardFootCalculatorTool() {
       />
 
       {/* ── Formula card ── */}
-      <div className="card animate-fadeUp delay-100" style={{ padding: "18px 20px" }}>
+      <div className="card animate-fadeUp delay-100" style={{ padding: "14px 16px" }}>
         <div style={{
           fontFamily: "var(--font-display)",
           fontWeight: 700,
@@ -423,7 +425,7 @@ export default function BoardFootCalculatorTool() {
       </div>
 
       {/* ── Example card ── */}
-      <div className="card animate-fadeUp delay-200" style={{ padding: "18px 20px" }}>
+      <div className="card animate-fadeUp delay-200" style={{ padding: "14px 16px" }}>
         <div style={{
           fontFamily: "var(--font-display)",
           fontWeight: 700,

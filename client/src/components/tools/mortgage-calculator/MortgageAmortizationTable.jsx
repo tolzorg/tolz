@@ -9,7 +9,7 @@ export default function MortgageAmortizationTable({ schedule, view, onViewChange
   const rows = view === "monthly" ? schedule.monthlyRows : schedule.annualRows;
 
   return (
-    <div className="card" style={{ padding: 24 }}>
+    <div className="card" style={{ padding: 18 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
         <p style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>Amortization Schedule</p>
         <div style={{ display: "flex", gap: 6 }}>

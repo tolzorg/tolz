@@ -378,7 +378,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .tool-page-breadcrumb-bar {
   background: var(--bg-white);
   border-bottom: 1px solid var(--border);
-  padding: 20px 0;
+  padding: 14px 0;
 }
 
 /* Sidebar (icon/title/description + related tools) beside the tool itself.
@@ -398,16 +398,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
 .tool-page-columns {
   display: flex;
   align-items: flex-start;
-  gap: 32px;
+  gap: 24px;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 40px 24px 0;
+  padding: 28px 24px 0;
 }
 .tool-page-sidebar {
-  flex: 0 0 300px;
+  flex: 0 0 260px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
   min-width: 0;
 }
 .tool-page-grid-children {

@@ -114,11 +114,13 @@ function CompoundField({
 function Field({ label, hint, error, note, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <div style={{ display: "flex", gap: 5, alignItems: "flex-start" }}>
           <span style={{ color: "var(--error)", fontSize: 12, flexShrink: 0 }}>⚠</span>
@@ -333,7 +335,7 @@ export default function DeckingCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
@@ -343,7 +345,7 @@ export default function DeckingCalculatorTool() {
         <SectionHeader open={sizeOpen} onToggle={() => setSizeOpen(!sizeOpen)}
           title="Size of your deck" />
         {sizeOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Length + Width side by side */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
@@ -387,7 +389,7 @@ export default function DeckingCalculatorTool() {
         <SectionHeader open={boardsOpen} onToggle={() => setBoardsOpen(!boardsOpen)}
           title="Size of decking boards" />
         {boardsOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Square profile checkbox */}
             <label style={{
@@ -477,7 +479,7 @@ export default function DeckingCalculatorTool() {
         <SectionHeader open={resultOpen} onToggle={() => setResultOpen(!resultOpen)}
           title="Results – Material estimations" />
         {resultOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Number of boards — output */}
             <Field label="Number of boards"
@@ -538,7 +540,7 @@ export default function DeckingCalculatorTool() {
         <SectionHeader open={costOpen} onToggle={() => setCostOpen(!costOpen)}
           title="Cost estimations" />
         {costOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Cost of one board */}
             <Field label="Enter cost of one board"

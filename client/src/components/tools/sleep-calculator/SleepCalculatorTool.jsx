@@ -184,7 +184,7 @@ function ResultCard({ result, delay, mode }) {
         border: isBest ? "2px solid #16a34a" : s.border,
         background: s.background,
         borderRadius: "var(--radius-lg)",
-        padding: "18px 20px",
+        padding: "14px 16px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -289,7 +289,7 @@ export default function SleepCalculatorTool() {
       {/* Hide scrollbars inside drum picker */}
       <style>{`.sleep-picker-col::-webkit-scrollbar { display: none; }`}</style>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 20 }}>
       {/* ── Mode toggle ── */}
       <div className="card animate-fadeUp" style={{ padding: 6, display: "flex", gap: 4 }}>

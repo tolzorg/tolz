@@ -564,7 +564,7 @@ export default function ColorPickerTool() {
       </div>
 
       {/* ── HSL Sliders ── */}
-      <div className="card animate-fadeUp delay-100" style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 18 }}>
+      <div className="card animate-fadeUp delay-100" style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 18 }}>
         <div style={{
           fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12,
           color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em",
@@ -596,7 +596,7 @@ export default function ColorPickerTool() {
       </div>
 
       {/* ── Color formats ── */}
-      <div className="card animate-fadeUp delay-100" style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div className="card animate-fadeUp delay-100" style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
         <div style={{
           fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12,
           color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em",
@@ -626,7 +626,7 @@ export default function ColorPickerTool() {
       </div>
 
       {/* ── Shades ── */}
-      <div className="card animate-fadeUp delay-200" style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="card animate-fadeUp delay-200" style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{
           fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12,
           color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em",
@@ -657,7 +657,7 @@ export default function ColorPickerTool() {
       </div>
 
       {/* ── Color harmonies ── */}
-      <div className="card animate-fadeUp delay-200" style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="card animate-fadeUp delay-200" style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{
           fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12,
           color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em",
@@ -701,7 +701,7 @@ export default function ColorPickerTool() {
       </div>
 
       {/* ── WCAG Contrast ── */}
-      <div className="card animate-fadeUp delay-300" style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="card animate-fadeUp delay-300" style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{
           fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12,
           color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em",
@@ -763,7 +763,7 @@ export default function ColorPickerTool() {
       </div>
 
       {/* ── Session Favorites ── */}
-      <div className="card animate-fadeUp delay-300" style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="card animate-fadeUp delay-300" style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{
             fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12,

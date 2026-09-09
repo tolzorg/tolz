@@ -21,7 +21,7 @@ export default function MortgagePayoffAmortizationTable({ oldSchedule, newSchedu
   const zero = { interest: 0, principal: 0, balance: 0 };
 
   return (
-    <div className="card" style={{ padding: 24 }}>
+    <div className="card" style={{ padding: 18 }}>
       <p style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-display)", marginBottom: 14 }}>
         Monthly Amortization Schedule
       </p>

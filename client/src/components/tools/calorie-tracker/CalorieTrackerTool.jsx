@@ -413,7 +413,7 @@ function BMITab({ form, onChange }) {
   };
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
     <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Inputs */}
       <div style={S.card}>
@@ -592,7 +592,7 @@ function TDEETab({ form, onChange, onTdeeResult }) {
   ] : [];
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
     <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={S.card}>
         <p style={S.sectionTitle}>Your Details</p>
@@ -722,7 +722,7 @@ function MacrosTab({ form, onChange, tdeeCalories }) {
     : [];
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
     <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={S.card}>
         <p style={S.sectionTitle}>Macro Settings</p>
@@ -879,7 +879,7 @@ function WaterTab({ form, onChange }) {
   const waterPct = result ? Math.min(100, (result.liters / 5) * 100) : 0;
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
     <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={S.card}>
         <p style={S.sectionTitle}>Your Details</p>
@@ -1009,7 +1009,7 @@ function MealsTab() {
   const gc = goalColors[goal];
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
     <div style={{ flex: "1 1 300px", minWidth: 260, display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Goal selector */}
       <div style={S.card}>

@@ -5,7 +5,7 @@
 
 export function FieldLabel({ children, hint }) {
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 13.5, color: "var(--text-secondary)", fontFamily: "var(--font-display)", fontWeight: 600 }}>
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 12, color: "var(--text-secondary)", fontFamily: "var(--font-display)", fontWeight: 600 }}>
       {children}
       {hint && (
         <span
@@ -13,8 +13,8 @@ export function FieldLabel({ children, hint }) {
           aria-label={hint}
           style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
-            width: 14, height: 14, borderRadius: "50%", border: "1px solid var(--text-muted)",
-            fontSize: 9.5, color: "var(--text-muted)", cursor: "help", flexShrink: 0,
+            width: 12.5, height: 12.5, borderRadius: "50%", border: "1px solid var(--text-muted)",
+            fontSize: 8.5, color: "var(--text-muted)", cursor: "help", flexShrink: 0,
           }}
         >
           ?
@@ -25,7 +25,7 @@ export function FieldLabel({ children, hint }) {
 }
 
 const inputStyle = {
-  width: "100%", padding: "9px 11px", fontSize: 14, borderRadius: "var(--radius-sm)",
+  width: "100%", padding: "7px 9px", fontSize: 13, borderRadius: "var(--radius-sm)",
   border: "1px solid var(--border)", fontFamily: "var(--font-display)", color: "var(--text-primary)",
 };
 
@@ -51,11 +51,30 @@ export function ValueUnitField({ value, unit, onValueChange, onUnitChange, disab
       <select
         value={unit} disabled={disabled}
         onChange={(e) => onUnitChange(e.target.value)}
-        style={{ ...inputStyle, width: 62, flexShrink: 0, cursor: disabled ? "not-allowed" : "pointer" }}
+        style={{ ...inputStyle, width: 54, flexShrink: 0, cursor: disabled ? "not-allowed" : "pointer" }}
       >
         {units.includes("percent") && <option value="percent">%</option>}
         {units.includes("dollar") && <option value="dollar">$</option>}
       </select>
+    </div>
+  );
+}
+
+const fieldRowStyle = { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 };
+
+/** A label-left, input-right row — the compact layout used across the
+ * site's calculator input cards (originated in the House Affordability
+ * Calculator). Cuts vertical space vs. stacking the label above the
+ * input, which is what makes a card packing many fields run tall enough
+ * to need scrolling. Purely a layout choice; no calculation logic here. */
+export function FieldRow({ label, hint, children, suffix, fieldWidth = 180 }) {
+  return (
+    <div style={fieldRowStyle}>
+      <div style={{ flex: "1 1 auto", minWidth: 0 }}><FieldLabel hint={hint}>{label}</FieldLabel></div>
+      <div style={{ flex: `0 0 ${fieldWidth}px`, display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{ flex: "1 1 auto", minWidth: 80, display: "flex" }}>{children}</div>
+        {suffix && <span style={{ fontSize: 11, color: "var(--text-muted)", flexShrink: 0, whiteSpace: "nowrap" }}>{suffix}</span>}
+      </div>
     </div>
   );
 }

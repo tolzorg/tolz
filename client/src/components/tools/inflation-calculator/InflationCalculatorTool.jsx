@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { FieldLabel, TextField, SelectField } from "../loan-calculator/LoanFormControls";
+import { FieldRow, TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import InflationCpiChart from "./InflationCpiChart";
 import {
   calculateCpiInflation, calculateForwardFlatRate, calculateBackwardFlatRate,
@@ -12,19 +12,18 @@ import { fetchRecentCpiWindow } from "../../../utils/cpiLiveUpdate";
 
 const DEFAULTS = { amount: "100", rate: "3", years: "10" };
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 
 function CalcButtons({ onCalculate, onClear }) {
   return (
     <div style={{ display: "flex", gap: 10 }}>
       <button type="button" onClick={onCalculate} style={{
-        flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)",
+        flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)",
         color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700,
         fontFamily: "var(--font-display)", cursor: "pointer",
       }}>
         Calculate
       </button>
-      <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+      <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
     </div>
   );
 }
@@ -32,10 +31,10 @@ function CalcButtons({ onCalculate, onClear }) {
 function ResultsCard({ children }) {
   return (
     <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-      <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+      <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
         Results
       </div>
-      <div style={{ padding: "18px 20px" }}>{children}</div>
+      <div style={{ padding: "14px 16px" }}>{children}</div>
     </div>
   );
 }
@@ -141,29 +140,26 @@ function CpiSection() {
         title="Inflation Calculator with U.S. CPI Data"
         description={`Calculates the equivalent value of the U.S. dollar in any month from 1913 to ${getLatestYear()}. Calculations are based on the average Consumer Price Index (CPI) data for all urban consumers in the U.S.`}
       />
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <div style={fieldWrap}>
-              <FieldLabel>Amount</FieldLabel>
+          <div className="card" style={{ padding: 18 }}>
+            <FieldRow label="Amount">
               <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
-            </div>
+            </FieldRow>
 
-            <div style={fieldWrap}>
-              <FieldLabel>in</FieldLabel>
-              <div style={{ display: "flex", gap: 8 }}>
+            <FieldRow label="in" fieldWidth={220}>
+              <div style={{ display: "flex", gap: 6, flex: 1, minWidth: 0 }}>
                 <SelectField value={fromMonth} onChange={(v) => setFromMonth(Number(v))} options={fromMonthOpts} style={{ flex: 1 }} />
                 <SelectField value={fromYear} onChange={handleFromYear} options={YEAR_OPTIONS} style={{ flex: 1 }} />
               </div>
-            </div>
+            </FieldRow>
 
-            <div style={fieldWrap}>
-              <FieldLabel>equals ? in</FieldLabel>
-              <div style={{ display: "flex", gap: 8 }}>
+            <FieldRow label="equals ? in" fieldWidth={220}>
+              <div style={{ display: "flex", gap: 6, flex: 1, minWidth: 0 }}>
                 <SelectField value={toMonth} onChange={handleToMonth} options={toMonthOpts} style={{ flex: 1 }} />
                 <SelectField value={toYear} onChange={handleToYear} options={YEAR_OPTIONS} style={{ flex: 1 }} />
               </div>
-            </div>
+            </FieldRow>
 
             <p style={{ fontSize: 11.5, color: "var(--text-muted)", marginBottom: 12 }}>
               {liveStatus === "checking" && "Checking for newer or revised CPI data…"}
@@ -236,27 +232,18 @@ function ForwardFlatRateSection() {
         title="Forward Flat Rate Inflation Calculator"
         description="Calculates an inflation based on a certain average inflation rate after some years."
       />
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <div style={fieldWrap}>
-              <FieldLabel>Amount</FieldLabel>
+          <div className="card" style={{ padding: 18 }}>
+            <FieldRow label="Amount">
               <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Inflation rate</FieldLabel>
-              <div style={{ position: "relative" }}>
-                <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} style={{ paddingRight: 26 }} />
-                <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
-              </div>
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>After</FieldLabel>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} style={{ flex: 1 }} />
-                <span style={{ fontSize: 13, color: "var(--text-muted)" }}>years</span>
-              </div>
-            </div>
+            </FieldRow>
+            <FieldRow label="Inflation rate" suffix="%">
+              <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+            </FieldRow>
+            <FieldRow label="After" suffix="years">
+              <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+            </FieldRow>
             <CalcButtons onCalculate={calculate} onClear={clear} />
           </div>
         </div>
@@ -301,27 +288,18 @@ function BackwardFlatRateSection() {
         title="Backward Flat Rate Inflation Calculator"
         description="Calculates the equivalent purchasing power of an amount some years ago based on a certain average inflation rate."
       />
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <div style={fieldWrap}>
-              <FieldLabel>Amount</FieldLabel>
+          <div className="card" style={{ padding: 18 }}>
+            <FieldRow label="Amount">
               <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Inflation rate</FieldLabel>
-              <div style={{ position: "relative" }}>
-                <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} style={{ paddingRight: 26 }} />
-                <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
-              </div>
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Years ago</FieldLabel>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} style={{ flex: 1 }} />
-                <span style={{ fontSize: 13, color: "var(--text-muted)" }}>years</span>
-              </div>
-            </div>
+            </FieldRow>
+            <FieldRow label="Inflation rate" suffix="%">
+              <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+            </FieldRow>
+            <FieldRow label="Years ago" suffix="years">
+              <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+            </FieldRow>
             <CalcButtons onCalculate={calculate} onClear={clear} />
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FieldLabel, TextField, DollarField, PercentField, YearsField, RadioOption } from "./MortgagePayoffFormControls";
+import { FieldLabel, DollarField, PercentField, YearsField, RadioOption } from "./MortgagePayoffFormControls";
+import { FieldRow, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
 import MortgagePayoffChart from "./MortgagePayoffChart";
 import MortgagePayoffAmortizationTable from "./MortgagePayoffAmortizationTable";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
@@ -14,7 +15,6 @@ const DEFAULTS = {
   extraMonthly: "500", extraYearly: "0", extraOneTime: "0",
 };
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
 /** "extra $500.00 per month and $1,200.00 annually at the year end and
@@ -96,30 +96,22 @@ export default function MortgagePayoffFromTermCard() {
         external payments.
       </p>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <div style={fieldWrap}>
-              <FieldLabel>Original loan amount</FieldLabel>
-              <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Original loan term</FieldLabel>
-              <YearsField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Interest rate</FieldLabel>
-              <PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Remaining term</FieldLabel>
-              <YearsField value={remainingYears} onChange={setRemainingYears} placeholder={DEFAULTS.remainingYears} />
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <TextField value={remainingMonths} onChange={setRemainingMonths} placeholder={DEFAULTS.remainingMonths} style={{ flex: 1, minWidth: 0 }} />
-                <span style={{ fontSize: 13, color: "var(--text-muted)", flexShrink: 0 }}>months</span>
-              </div>
-            </div>
+          <div className="card" style={{ padding: 18 }}>
+            <FieldRow label="Original loan amount">
+              <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ width: "100%" }} />
+            </FieldRow>
+            <FieldRow label="Original loan term">
+              <YearsField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={{ width: "100%" }} />
+            </FieldRow>
+            <FieldRow label="Interest rate">
+              <PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} style={{ width: "100%" }} />
+            </FieldRow>
+            <FieldRow label="Remaining term" fieldWidth={200}>
+              <TermYearsMonthsField years={remainingYears} months={remainingMonths} onYearsChange={setRemainingYears} onMonthsChange={setRemainingMonths} />
+            </FieldRow>
 
             <div style={{ marginBottom: 16 }}>
               <FieldLabel>Repayment options</FieldLabel>
@@ -147,10 +139,10 @@ export default function MortgagePayoffFromTermCard() {
             </div>
 
             <div style={{ display: "flex", gap: 10 }}>
-              <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+              <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
                 Calculate
               </button>
-              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
             </div>
           </div>
         </div>
@@ -158,13 +150,13 @@ export default function MortgagePayoffFromTermCard() {
         {/* ── Results ──────────────────────────────────────────── */}
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               {!result ? "Results"
                 : result.mode === "together" ? `Payoff Amount: ${formatCurrency(result.balance)}`
                 : result.mode === "original" ? "Result"
                 : `Payoff in ${formatYearsAndMonths(result.newMonths)}`}
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see your payoff breakdown.

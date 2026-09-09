@@ -19,7 +19,7 @@ const tdLeft = { ...td, textAlign: "left", fontWeight: 600, color: "var(--text-p
  * Calculator, whose reference shows negatives as "$-2,000.00" instead. */
 export default function LoanScheduleTable({ title, schedule, columns, periodLabel = "Period", formatValue = defaultFormatCurrency }) {
   return (
-    <div className="card" style={{ padding: 24 }}>
+    <div className="card" style={{ padding: 18 }}>
       <p style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-display)", marginBottom: 14 }}>
         {title}
       </p>

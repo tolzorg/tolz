@@ -151,16 +151,18 @@ function CompoundField({
 function Field({ label, hint, error, note, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && (
-          <span title={hint}
-            style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>
-            ⓘ
-          </span>
-        )}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && (
+            <span title={hint}
+              style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>
+              ⓘ
+            </span>
+          )}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <div style={{ display: "flex", alignItems: "flex-start", gap: 5 }}>
           <span style={{ color: "var(--error)", fontSize: 12, lineHeight: 1.2, flexShrink: 0 }}>⚠</span>
@@ -392,7 +394,7 @@ export default function RipRapCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ── "I want to find the..." ──────────────────────────────── */}
@@ -435,7 +437,7 @@ export default function RipRapCalculatorTool() {
             title="Rip rap specifications" />
 
           {specsOpen && (
-            <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
               {/* Diagram */}
               <div style={{
@@ -575,7 +577,7 @@ export default function RipRapCalculatorTool() {
             title="Rip rap volume and weight" />
 
           {volSecOpen && (
-            <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
               {/* Area */}
               <Field label="Area" hint="Total surface area to be covered with rip rap." error={areaErr}>
@@ -699,7 +701,7 @@ export default function RipRapCalculatorTool() {
           title="Rip rap cost" />
 
         {costOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Price checker */}
             <PriceCheckerCard

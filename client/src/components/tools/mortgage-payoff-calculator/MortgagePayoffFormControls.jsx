@@ -18,13 +18,13 @@ function formatWithCommas(raw) {
 
 export function DollarField({ value, onChange, placeholder, style }) {
   return (
-    <div style={{ position: "relative" }}>
-      <span style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>$</span>
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+      <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
       <TextField
         value={formatWithCommas(value)}
         onChange={(v) => onChange(stripToNumberString(v))}
         placeholder={placeholder ? formatWithCommas(placeholder) : undefined}
-        style={{ paddingLeft: 22, ...style }}
+        style={{ paddingLeft: 19, ...style }}
       />
     </div>
   );
@@ -32,18 +32,18 @@ export function DollarField({ value, onChange, placeholder, style }) {
 
 export function PercentField({ value, onChange, placeholder, style }) {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
       <TextField value={value} onChange={onChange} placeholder={placeholder} style={{ paddingRight: 26, ...style }} />
-      <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
+      <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>%</span>
     </div>
   );
 }
 
 export function YearsField({ value, onChange, placeholder, style }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
       <TextField value={value} onChange={onChange} placeholder={placeholder} style={{ flex: 1, minWidth: 0, ...style }} />
-      <span style={{ fontSize: 13, color: "var(--text-muted)", flexShrink: 0 }}>years</span>
+      <span style={{ fontSize: 12, color: "var(--text-muted)", flexShrink: 0 }}>years</span>
     </div>
   );
 }

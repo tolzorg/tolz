@@ -34,17 +34,17 @@ export default function EarlyWithdrawalCard() {
   return (
     <section aria-label="401K Early Withdrawal Costs Calculator" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div>
-        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", marginBottom: 6 }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", marginBottom: 4 }}>
           401(k) Early Withdrawal Costs Calculator
         </h2>
-        <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 11.5, color: "var(--text-secondary)", lineHeight: 1.5 }}>
           Early 401(k) withdrawals will result in a penalty. This calculation can determine the actual amount
           received if opting for an early withdrawal.
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ padding: 20, flex: "1 1 340px", minWidth: 300 }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div className="card" style={{ padding: 16, flex: "1 1 340px", minWidth: 300 }}>
           <DollarField label="Early withdrawal amount" value={withdrawalAmount} onChange={setWithdrawalAmount} placeholder={DEFAULTS.withdrawalAmount} />
           <PercentField label="Federal income tax rate" value={federalTaxPercent} onChange={setFederalTaxPercent} placeholder={DEFAULTS.federalTaxPercent} />
           <PercentField label="State income tax rate" value={stateTaxPercent} onChange={setStateTaxPercent} placeholder={DEFAULTS.stateTaxPercent} />
@@ -60,19 +60,19 @@ export default function EarlyWithdrawalCard() {
             hint="E.g. unreimbursed medical expenses, a qualified domestic relations order, or IRS levy." />
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
         <div style={{ flex: "1 1 300px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Result
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see the actual amount you'd receive.

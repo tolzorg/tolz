@@ -153,11 +153,13 @@ function Field({ label, hint, error, note, children }) {
   const errors = Array.isArray(error) ? error.filter(Boolean) : error ? [error] : [];
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {errors.map((e, i) => (
         <div key={i} style={{ display: "flex", gap: 5, alignItems: "flex-start" }}>
           <span style={{ color: "var(--error)", fontSize: 12, flexShrink: 0 }}>⚠</span>
@@ -531,7 +533,7 @@ export default function FrenchDrainCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
@@ -540,7 +542,7 @@ export default function FrenchDrainCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={detailsOpen} onToggle={() => setDetailsOpen(!detailsOpen)} title="French drain details" />
         {detailsOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             <CheckboxRow checked={usePipe} onToggle={handleUsePipeToggle} label="Use perforated drain pipe" />
 
@@ -626,7 +628,7 @@ export default function FrenchDrainCalculatorTool() {
         <div className="card" style={{ overflow: "hidden" }}>
           <SectionHeader open={pipeOpen} onToggle={() => setPipeOpen(!pipeOpen)} title="Drain pipe details" />
           {pipeOpen && (
-            <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
               <Field label="Pipe option">
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -733,7 +735,7 @@ export default function FrenchDrainCalculatorTool() {
         <div className="card" style={{ overflow: "hidden" }}>
           <SectionHeader open={pipesOpen} onToggle={() => setPipesOpen(!pipesOpen)} title="Drain pipes needed" />
           {pipesOpen && (
-            <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
               <Field label="Total drain pipe length"
                 hint="Total drain pipe length (Lp) = √(Trench length² + Pipe drop²) — accounts for the extra length needed to maintain the minimum slope across the trench."
@@ -780,7 +782,7 @@ export default function FrenchDrainCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={gravelOpen} onToggle={() => setGravelOpen(!gravelOpen)} title="Gravel needed" />
         {gravelOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             <Field label="Gravel volume"
               hint={usePipe
@@ -854,7 +856,7 @@ export default function FrenchDrainCalculatorTool() {
         <div className="card" style={{ overflow: "hidden" }}>
           <SectionHeader open={filterOpen} onToggle={() => setFilterOpen(!filterOpen)} title="Filter needed" />
           {filterOpen && (
-            <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
               <Field label="Width of needed filter fabric"
                 hint={fabricMode === "entire"
@@ -901,7 +903,7 @@ export default function FrenchDrainCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={costOpen} onToggle={() => setCostOpen(!costOpen)} title="Cost of materials needed" />
         {costOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             <Field label="Price per unit volume of gravel">
               <PriceRow

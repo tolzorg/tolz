@@ -17,10 +17,10 @@ export default function RelatedTools({ tool }) {
       <Link
         to={related.familyPath}
         style={{
-          display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap",
-          padding: "16px 20px", textDecoration: "none",
+          display: "flex", alignItems: "center", gap: 7, flexWrap: "wrap",
+          padding: "13px 16px", textDecoration: "none",
           background: "linear-gradient(135deg, rgb(255, 90, 95), rgb(255, 140, 105))",
-          fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15,
+          fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 13,
           color: "#fff", transition: "filter 0.2s ease, transform 0.2s ease",
         }}
         onMouseEnter={(e) => {
@@ -38,25 +38,25 @@ export default function RelatedTools({ tool }) {
         <span aria-hidden="true">{related.familyEmoji}</span>
       </Link>
 
-      <ul style={{ listStyle: "none", margin: 0, padding: "4px 20px" }}>
+      <ul style={{ listStyle: "none", margin: 0, padding: "3px 16px" }}>
         {related.items.map((item, i) => (
           <li key={item.id} style={{ borderTop: i === 0 ? "none" : "1px solid var(--border)" }}>
             <Link
               to={item.path}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
-                padding: "12px 2px", textDecoration: "none", color: "var(--text-primary)",
-                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
+                display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
+                padding: "9px 2px", textDecoration: "none", color: "var(--text-primary)",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12.5,
                 transition: "color var(--transition)",
               }}
               onMouseEnter={(e) => { e.currentTarget.style.color = "var(--accent)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-primary)"; }}
             >
-              <span style={{ display: "flex", alignItems: "center", gap: 9, minWidth: 0 }}>
+              <span style={{ display: "flex", alignItems: "center", gap: 7, minWidth: 0 }}>
                 <span aria-hidden="true" style={{ flexShrink: 0 }}>{item.icon}</span>
                 <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{item.label}</span>
               </span>
-              <span aria-hidden="true" style={{ fontSize: 16, color: "var(--accent)", flexShrink: 0 }}>→</span>
+              <span aria-hidden="true" style={{ fontSize: 14, color: "var(--accent)", flexShrink: 0 }}>→</span>
             </Link>
           </li>
         ))}

@@ -7,7 +7,7 @@ import {
 
 const DEFAULTS = { amount: "100", rate: "4", amount2: "100" };
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
+const fieldWrap = { display: "flex", flexDirection: "column", gap: 5, marginBottom: 10 };
 const rowStyle = { display: "flex", gap: 10 };
 
 function currencyOptions(list) {
@@ -25,10 +25,10 @@ function ResultLine({ children }) {
 function ResultsCard({ title, children, footer }) {
   return (
     <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-      <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+      <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
         {title}
       </div>
-      <div style={{ padding: "18px 20px" }}>
+      <div style={{ padding: "14px 16px" }}>
         {children}
         {footer}
       </div>
@@ -40,13 +40,13 @@ function CalcButtons({ onCalculate, onClear, disabled }) {
   return (
     <div style={{ display: "flex", gap: 10 }}>
       <button type="button" onClick={onCalculate} disabled={disabled} style={{
-        flex: 1, padding: "12px 0", fontSize: 14.5, background: disabled ? "var(--text-muted)" : "var(--success)",
+        flex: 1, padding: "9px 0", fontSize: 12.5, background: disabled ? "var(--text-muted)" : "var(--success)",
         color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700,
         fontFamily: "var(--font-display)", cursor: disabled ? "not-allowed" : "pointer",
       }}>
         Calculate
       </button>
-      <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+      <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
     </div>
   );
 }
@@ -130,9 +130,9 @@ function LiveRateSection() {
   const timestampLabel = formatRateTimestamp(ratesUpdatedAt);
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 320 }}>
-        <div className="card" style={{ padding: 24 }}>
+        <div className="card" style={{ padding: 18 }}>
           <div style={fieldWrap}>
             <FieldLabel>Amount</FieldLabel>
             <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
@@ -146,13 +146,13 @@ function LiveRateSection() {
             <SelectField value={visibleCodes.has(to) ? to : ""} onChange={setTo} options={currencyOptions(visibleCurrencies)} />
           </div>
 
-          <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, cursor: "pointer" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 12, cursor: "pointer" }}>
             <input
               type="checkbox" checked={popularOnly}
               onChange={(e) => handlePopularToggle(e.target.checked)}
-              style={{ width: 16, height: 16, accentColor: "var(--accent)" }}
+              style={{ width: 13, height: 13, accentColor: "var(--accent)" }}
             />
-            <span style={{ fontSize: 13.5, color: "var(--text-secondary)" }}>Show most popular currencies only</span>
+            <span style={{ fontSize: 11.5, color: "var(--text-secondary)" }}>Show most popular currencies only</span>
           </label>
 
           {rateError && (
@@ -174,7 +174,7 @@ function LiveRateSection() {
       <div style={{ flex: "1 1 360px", minWidth: 320 }}>
         <ResultsCard title="Results">
           {!result ? (
-            <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
+            <p style={{ fontSize: 11.5, color: "var(--text-muted)" }}>
               Fill in the details and click <strong>Calculate</strong> to convert at the live exchange rate.
             </p>
           ) : (
@@ -215,9 +215,9 @@ function CustomRateSection() {
   }
 
   return (
-    <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 320 }}>
-        <div className="card" style={{ padding: 24 }}>
+        <div className="card" style={{ padding: 18 }}>
           <div style={fieldWrap}>
             <FieldLabel>Exchange rate for currency A/B</FieldLabel>
             <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
@@ -234,7 +234,7 @@ function CustomRateSection() {
       <div style={{ flex: "1 1 360px", minWidth: 320 }}>
         <ResultsCard title="Results">
           {!result ? (
-            <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
+            <p style={{ fontSize: 11.5, color: "var(--text-muted)" }}>
               Fill in the details and click <strong>Calculate</strong> to convert using your own rate.
             </p>
           ) : (
@@ -257,13 +257,13 @@ export default function CurrencyCalculatorTool() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
       <div>
-        <p style={{ fontSize: 16, fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginBottom: 14 }}>
+        <p style={{ fontSize: 13.5, fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginBottom: 10 }}>
           With Live Exchange Rate
         </p>
         <LiveRateSection />
       </div>
       <div>
-        <p style={{ fontSize: 16, fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginBottom: 14 }}>
+        <p style={{ fontSize: 13.5, fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", marginBottom: 10 }}>
           Customized Currency Exchange Rate
         </p>
         <CustomRateSection />

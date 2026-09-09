@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldLabel, TextField, SelectField } from "../loan-calculator/LoanFormControls";
+import { FieldRow, TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import { calculateSalary, formatCurrency, UNIT_OPTIONS } from "../../../utils/salaryCalculatorEngine";
 
 const DEFAULTS = {
@@ -34,19 +34,17 @@ function formatWithCommas(raw) {
 
 function DollarField({ value, onChange, placeholder, style }) {
   return (
-    <div style={{ position: "relative" }}>
-      <span style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>$</span>
+    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+      <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
       <TextField
         value={formatWithCommas(value)}
         onChange={(v) => onChange(stripToNumberString(v))}
         placeholder={placeholder ? formatWithCommas(placeholder) : undefined}
-        style={{ paddingLeft: 22, ...style }}
+        style={{ paddingLeft: 19, ...style }}
       />
     </div>
   );
 }
-
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 
 export default function SalaryCalculatorTool() {
   const [amount, setAmount] = useState("");
@@ -76,40 +74,35 @@ export default function SalaryCalculatorTool() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div style={{ flex: "1 1 320px", minWidth: 300 }}>
-          <div className="card" style={{ padding: 24 }}>
-            <div style={fieldWrap}>
-              <FieldLabel>Salary amount</FieldLabel>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <DollarField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} style={{ flex: "1 1 110px", minWidth: 0 }} />
-                <span style={{ fontSize: 13, color: "var(--text-muted)", flexShrink: 0 }}>per</span>
-                <SelectField value={unit} onChange={setUnit} options={UNIT_OPTIONS} style={{ flex: "1 1 130px", minWidth: 0 }} />
+          <div className="card" style={{ padding: 18 }}>
+            <FieldRow label="Salary amount" fieldWidth={280}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, minWidth: 0 }}>
+                <DollarField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} style={{ flex: "1 1 100px", minWidth: 0 }} />
+                <span style={{ fontSize: 11.5, color: "var(--text-muted)", flexShrink: 0 }}>per</span>
+                <SelectField value={unit} onChange={setUnit} options={UNIT_OPTIONS} style={{ flex: "1 1 120px", minWidth: 0 }} />
               </div>
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Hours per week</FieldLabel>
+            </FieldRow>
+            <FieldRow label="Hours per week">
               <TextField value={hoursPerWeek} onChange={setHoursPerWeek} placeholder={DEFAULTS.hoursPerWeek} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Days per week</FieldLabel>
+            </FieldRow>
+            <FieldRow label="Days per week">
               <TextField value={daysPerWeek} onChange={setDaysPerWeek} placeholder={DEFAULTS.daysPerWeek} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Holidays per year</FieldLabel>
+            </FieldRow>
+            <FieldRow label="Holidays per year">
               <TextField value={holidaysPerYear} onChange={setHolidaysPerYear} placeholder={DEFAULTS.holidaysPerYear} />
-            </div>
-            <div style={fieldWrap}>
-              <FieldLabel>Vacation days per year</FieldLabel>
+            </FieldRow>
+            <FieldRow label="Vacation days per year">
               <TextField value={vacationDaysPerYear} onChange={setVacationDaysPerYear} placeholder={DEFAULTS.vacationDaysPerYear} />
-            </div>
+            </FieldRow>
 
             <div style={{ display: "flex", gap: 10 }}>
-              <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+              <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
                 Calculate
               </button>
-              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+              <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
             </div>
           </div>
         </div>
@@ -117,7 +110,7 @@ export default function SalaryCalculatorTool() {
         {/* ── Results ──────────────────────────────────────────── */}
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Result
             </div>
             <div style={{ padding: result ? 0 : "18px 20px" }}>

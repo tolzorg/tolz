@@ -29,34 +29,34 @@ export default function MoneyLongevityCard() {
   return (
     <section aria-label="How long can your money last calculator" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div>
-        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", marginBottom: 6 }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", marginBottom: 4 }}>
           How long can your money last?
         </h2>
-        <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 11.5, color: "var(--text-secondary)", lineHeight: 1.5 }}>
           This calculation estimates how long retirement savings can last given a fixed monthly withdrawal amount.
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ padding: 20, flex: "1 1 320px", minWidth: 300 }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
           <DollarField label="The amount you have" value={amountYouHave} onChange={setAmountYouHave} placeholder={DEFAULTS.amountYouHave} fieldWidth={140} />
           <DollarField label="Your planned monthly withdrawal" value={monthlyWithdraw} onChange={setMonthlyWithdraw} placeholder={DEFAULTS.monthlyWithdraw} fieldWidth={140} />
           <PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} fieldWidth={140} />
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
         <div style={{ flex: "1 1 320px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Result
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see how long your money can last.

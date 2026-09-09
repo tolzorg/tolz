@@ -32,7 +32,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
     : null;
 
   return (
-    <article style={{ minHeight: "calc(100vh - 60px)", paddingBottom: 80 }}>
+    <article style={{ minHeight: "calc(100vh - 60px)", paddingBottom: 56 }}>
       {tool && (
         <>
           <SEO
@@ -54,7 +54,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
               display: "flex",
               alignItems: "center",
               gap: 6,
-              fontSize: 13,
+              fontSize: 11.5,
               color: "var(--text-muted)",
               fontFamily: "var(--font-display)",
             }}
@@ -102,19 +102,19 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
             on .tool-page-columns for why that independence matters). */}
         <div className="tool-page-sidebar">
           <div>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 11 }}>
               {tool?.icon && (
                 <div
                   aria-hidden="true"
                   style={{
-                    width: 48,
-                    height: 48,
+                    width: 38,
+                    height: 38,
                     background: tool.iconBg || "#f3f3f5",
-                    borderRadius: 13,
+                    borderRadius: 10,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 22,
+                    fontSize: 18,
                     flexShrink: 0,
                     border: "1px solid rgba(0,0,0,0.06)",
                   }}
@@ -128,10 +128,10 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
                   style={{
                     fontFamily: "var(--font-display)",
                     fontWeight: 800,
-                    fontSize: "clamp(19px, 2.4vw, 23px)",
+                    fontSize: "clamp(15px, 1.9vw, 18px)",
                     color: "var(--text-primary)",
                     letterSpacing: "-0.02em",
-                    marginBottom: 6,
+                    marginBottom: 4,
                   }}
                 >
                   {tool?.label || "Tool"}
@@ -140,8 +140,8 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
                   className="animate-fadeUp delay-100"
                   style={{
                     color: "var(--text-secondary)",
-                    fontSize: 13.5,
-                    lineHeight: 1.55,
+                    fontSize: 11.5,
+                    lineHeight: 1.5,
                   }}
                 >
                   {tool?.description || ""}

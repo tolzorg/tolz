@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { FieldLabel, TextField, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
+import { FieldRow, TextField, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
 import InterestRateLineChart from "./InterestRateLineChart";
 import InterestRatePieChart from "./InterestRatePieChart";
 import {
   calculateInterestRate, validateInterestRateInputs, formatCurrency, formatPercent, DEFAULTS,
 } from "../../../utils/interestRateCalculatorEngine";
 
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
 // Live thousands-separator formatting on the DISPLAYED value only — state
@@ -93,37 +92,34 @@ export default function InterestRateCalculatorTool() {
 
   return (
     <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ padding: 20, flex: "1 1 320px", minWidth: 300 }}>
-          <div style={fieldWrap}>
-            <FieldLabel>Loan amount</FieldLabel>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
+          <FieldRow label="Loan amount">
             <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Loan term</FieldLabel>
+          <FieldRow label="Loan term" fieldWidth={200}>
             <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Monthly payment</FieldLabel>
+          <FieldRow label="Monthly payment">
             <DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} />
-          </div>
+          </FieldRow>
 
           <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
         <div style={{ flex: "1 1 320px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Results
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result && !error ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see the implied interest rate.
@@ -154,15 +150,15 @@ export default function InterestRateCalculatorTool() {
       </div>
 
       {result && !error && !result.noSolution && (
-        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-          <div className="card" style={{ padding: 20, flex: "1 1 340px", minWidth: 300 }}>
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+          <div className="card" style={{ padding: 16, flex: "1 1 340px", minWidth: 300 }}>
             <p style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", textAlign: "center", marginBottom: 14 }}>
               Loan Amortization Graph
             </p>
             <InterestRateLineChart series={result.annualSeries} loanAmount={loanAmountNum} />
           </div>
 
-          <div className="card" style={{ padding: 20, flex: "1 1 300px", minWidth: 280 }}>
+          <div className="card" style={{ padding: 16, flex: "1 1 300px", minWidth: 280 }}>
             <p style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", textAlign: "center", marginBottom: 14 }}>
               Payment Breakdown
             </p>

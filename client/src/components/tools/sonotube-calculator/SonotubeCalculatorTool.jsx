@@ -184,11 +184,13 @@ function PlainSelect({ value, onChange, options, placeholder }) {
 function Field({ label, hint, error, note, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <div style={{ display: "flex", gap: 5, alignItems: "flex-start" }}>
           <span style={{ color: "var(--error)", fontSize: 12, flexShrink: 0 }}>⚠</span>
@@ -433,7 +435,7 @@ export default function SonotubeCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
@@ -442,7 +444,7 @@ export default function SonotubeCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={reqOpen} onToggle={() => setReqOpen(!reqOpen)} title="Requirements" />
         {reqOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             <Field label="Sonotube® size" hint="Nominal inside diameter of the concrete form tube.">
               <PlainSelect value={sizeId} onChange={setSizeId} options={SONOTUBE_SIZES} />
@@ -495,7 +497,7 @@ export default function SonotubeCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={mixOpen} onToggle={() => setMixOpen(!mixOpen)} title="Concrete materials needed" />
         {mixOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             <Field label="Concrete mix">
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -631,7 +633,7 @@ export default function SonotubeCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={costOpen} onToggle={() => setCostOpen(!costOpen)} title="Material costs" />
         {costOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             <Field label={isPremixed ? "Price per bag" : "Price per m³ of concrete"}>
               <PriceRow

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldLabel, TextField, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
+import { FieldLabel, FieldRow, TextField, TermYearsMonthsField } from "../loan-calculator/LoanFormControls";
 import { MonthYearField } from "../mortgage-calculator/MortgageFormControls";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import AmortizationPieChart from "./AmortizationPieChart";
@@ -25,7 +25,6 @@ function emptyAdditionalPayments() {
 }
 
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
 const extraFieldWrap = { display: "flex", flexDirection: "column", gap: 4, marginBottom: 12 };
 
 // Live thousands-separator formatting on the DISPLAYED value only — state
@@ -142,26 +141,20 @@ export default function AmortizationCalculatorTool() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────── */}
-        <div className="card" style={{ padding: 24, flex: "1 1 340px", minWidth: 300 }}>
-          <div style={fieldWrap}>
-            <FieldLabel>Loan amount</FieldLabel>
+        <div className="card" style={{ padding: 18, flex: "1 1 340px", minWidth: 300 }}>
+          <FieldRow label="Loan amount">
             <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Loan term</FieldLabel>
+          <FieldRow label="Loan term" fieldWidth={200}>
             <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
-          </div>
+          </FieldRow>
 
-          <div style={fieldWrap}>
-            <FieldLabel>Interest rate</FieldLabel>
-            <div style={{ position: "relative" }}>
-              <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={{ paddingRight: 26 }} />
-              <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
-            </div>
-          </div>
+          <FieldRow label="Interest rate" suffix="%">
+            <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+          </FieldRow>
 
           <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", cursor: "pointer", marginBottom: extraEnabled ? 14 : 0 }}>
             <input type="checkbox" checked={extraEnabled} onChange={(e) => setExtraEnabled(e.target.checked)} style={{ width: 15, height: 15, cursor: "pointer" }} />
@@ -229,10 +222,10 @@ export default function AmortizationCalculatorTool() {
           )}
 
           <div style={{ display: "flex", gap: 10 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
@@ -245,7 +238,7 @@ export default function AmortizationCalculatorTool() {
               </span>
             </div>
 
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the loan details and click <strong>Calculate</strong> to see your payment breakdown.
@@ -320,7 +313,7 @@ export default function AmortizationCalculatorTool() {
             ))}
           </div>
 
-          <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
             <div style={{ flex: "1 1 400px", minWidth: 300 }}>
               <LoanScheduleTable
                 title={scheduleView === "annual" ? "Annual Schedule" : "Monthly Schedule"}
@@ -329,7 +322,7 @@ export default function AmortizationCalculatorTool() {
                 columns={scheduleColumns}
               />
             </div>
-            <div className="card" style={{ flex: "1 1 380px", minWidth: 320, padding: 20 }}>
+            <div className="card" style={{ flex: "1 1 380px", minWidth: 320, padding: 16 }}>
               <AmortizationLineChart series={buildCumulativeSeries(result.annualRows)} loanAmount={loanAmountNum} />
             </div>
           </div>

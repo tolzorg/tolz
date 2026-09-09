@@ -1,8 +1,8 @@
-import { FieldLabel, TextField, ValueUnitField, MonthYearField } from "./MortgageFormControls";
+import { FieldLabel, TextField, ValueUnitField, MonthYearField, FieldRow } from "./MortgageFormControls";
 import { MORTGAGE_PLACEHOLDERS } from "./useMortgageCalculator";
 
-const fieldWrapStyle = { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 };
-const increaseRowStyle = { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 10 };
+const fieldWrapStyle = { display: "flex", flexDirection: "column", gap: 5, marginBottom: 10 };
+const increaseRowStyle = { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 };
 
 export default function MortgageInputsPanel({
   inputs, setField,
@@ -16,7 +16,7 @@ export default function MortgageInputsPanel({
   onCalculate, onClear,
 }) {
   return (
-    <div className="card" style={{ padding: 24 }}>
+    <div className="card" style={{ padding: 18 }}>
       <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
         <button
           type="button"
@@ -29,89 +29,73 @@ export default function MortgageInputsPanel({
 
       <div style={{
         background: "var(--accent)", color: "#fff", borderRadius: "var(--radius-md)",
-        padding: "10px 16px", fontSize: 13, fontFamily: "var(--font-display)", fontWeight: 600,
-        marginBottom: 20, display: "flex", alignItems: "center", gap: 10,
+        padding: "8px 12px", fontSize: 11.5, fontFamily: "var(--font-display)", fontWeight: 600,
+        marginBottom: 14, display: "flex", alignItems: "center", gap: 8,
       }}>
         <span aria-hidden="true">ℹ️</span> Modify the values and click the Calculate button to use
       </div>
 
-      <div style={fieldWrapStyle}>
-        <FieldLabel>Home Price</FieldLabel>
-        <div style={{ position: "relative" }}>
-          <span style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>$</span>
-          <TextField value={inputs.homePrice} onChange={(v) => setField("homePrice", v)} placeholder={MORTGAGE_PLACEHOLDERS.homePrice} style={{ paddingLeft: 22 }} />
+      <FieldRow label="Home Price">
+        <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+          <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
+          <TextField value={inputs.homePrice} onChange={(v) => setField("homePrice", v)} placeholder={MORTGAGE_PLACEHOLDERS.homePrice} style={{ paddingLeft: 19 }} />
         </div>
-      </div>
+      </FieldRow>
 
-      <div style={fieldWrapStyle}>
-        <FieldLabel hint="How much you're putting down upfront, as a dollar amount or percent of the home price.">Down Payment</FieldLabel>
+      <FieldRow label="Down Payment" hint="How much you're putting down upfront, as a dollar amount or percent of the home price.">
         <ValueUnitField
           value={inputs.downPaymentValue} unit={inputs.downPaymentUnit} placeholder={MORTGAGE_PLACEHOLDERS.downPaymentValue}
           onValueChange={(v) => setField("downPaymentValue", v)} onUnitChange={(u) => setField("downPaymentUnit", u)}
         />
-      </div>
+      </FieldRow>
 
-      <div style={fieldWrapStyle}>
-        <FieldLabel hint="The length of the mortgage, in years.">Loan Term</FieldLabel>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <TextField value={inputs.loanTermYears} onChange={(v) => setField("loanTermYears", v)} placeholder={MORTGAGE_PLACEHOLDERS.loanTermYears} style={{ width: 100, flex: "none" }} />
-          <span style={{ fontSize: 13.5, color: "var(--text-muted)" }}>years</span>
-        </div>
-      </div>
+      <FieldRow label="Loan Term" hint="The length of the mortgage, in years." suffix="years">
+        <TextField value={inputs.loanTermYears} onChange={(v) => setField("loanTermYears", v)} placeholder={MORTGAGE_PLACEHOLDERS.loanTermYears} />
+      </FieldRow>
 
-      <div style={fieldWrapStyle}>
-        <FieldLabel hint="The annual interest rate for the loan.">Interest Rate</FieldLabel>
-        <div style={{ position: "relative" }}>
-          <TextField value={inputs.interestRate} onChange={(v) => setField("interestRate", v)} placeholder={MORTGAGE_PLACEHOLDERS.interestRate} style={{ paddingRight: 26 }} />
-          <span style={{ position: "absolute", right: 11, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 14, pointerEvents: "none" }}>%</span>
-        </div>
-      </div>
+      <FieldRow label="Interest Rate" hint="The annual interest rate for the loan." suffix="%">
+        <TextField value={inputs.interestRate} onChange={(v) => setField("interestRate", v)} placeholder={MORTGAGE_PLACEHOLDERS.interestRate} />
+      </FieldRow>
 
-      <div style={fieldWrapStyle}>
-        <FieldLabel>Start Date</FieldLabel>
+      <FieldRow label="Start Date" fieldWidth={190}>
         <MonthYearField
           month={inputs.startMonth} year={inputs.startYear}
           onMonthChange={(v) => setField("startMonth", v)} onYearChange={(v) => setField("startYear", v)}
         />
-      </div>
+      </FieldRow>
 
-      <label style={{ display: "flex", alignItems: "center", gap: 8, margin: "18px 0 14px", cursor: "pointer" }}>
+      <label style={{ display: "flex", alignItems: "center", gap: 7, margin: "14px 0 10px", cursor: "pointer" }}>
         <input
           type="checkbox" checked={inputs.includeTaxesAndCosts}
           onChange={(e) => setField("includeTaxesAndCosts", e.target.checked)}
-          style={{ width: 16, height: 16, accentColor: "var(--accent)" }}
+          style={{ width: 13, height: 13, accentColor: "var(--accent)" }}
         />
-        <span style={{ fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>
+        <span style={{ fontSize: 11.5, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>
           {inputs.includeTaxesAndCosts ? "Include Taxes & Costs Below" : "Include Taxes & Costs"}
         </span>
       </label>
 
       {inputs.includeTaxesAndCosts && (
-        <div style={{ borderTop: "1px solid var(--border)", paddingTop: 14 }}>
-          <p style={{ fontSize: 11.5, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 10 }}>
+        <div style={{ borderTop: "1px solid var(--border)", paddingTop: 10 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 8 }}>
             Annual Tax &amp; Cost
           </p>
 
-          <div style={fieldWrapStyle}>
-            <FieldLabel hint="Annual property tax, as a percent of home price or a flat yearly dollar amount.">Property Taxes</FieldLabel>
+          <FieldRow label="Property Taxes" hint="Annual property tax, as a percent of home price or a flat yearly dollar amount." suffix="per year">
             <ValueUnitField value={inputs.propertyTaxValue} unit={inputs.propertyTaxUnit} placeholder={MORTGAGE_PLACEHOLDERS.propertyTaxValue} onValueChange={(v) => setField("propertyTaxValue", v)} onUnitChange={(u) => setField("propertyTaxUnit", u)} />
-          </div>
-          <div style={fieldWrapStyle}>
-            <FieldLabel hint="Annual homeowner's insurance premium.">Home Insurance</FieldLabel>
+          </FieldRow>
+          <FieldRow label="Home Insurance" hint="Annual homeowner's insurance premium." suffix="per year">
             <ValueUnitField value={inputs.homeInsuranceValue} unit={inputs.homeInsuranceUnit} placeholder={MORTGAGE_PLACEHOLDERS.homeInsuranceValue} onValueChange={(v) => setField("homeInsuranceValue", v)} onUnitChange={(u) => setField("homeInsuranceUnit", u)} />
-          </div>
-          <div style={fieldWrapStyle}>
-            <FieldLabel hint="Private Mortgage Insurance, typically required below 20% down. Percent is based on the loan amount. Automatically stops once your balance reaches 78% of the home price, per federal law.">PMI Insurance</FieldLabel>
+          </FieldRow>
+          <FieldRow label="PMI Insurance" hint="Private Mortgage Insurance, typically required below 20% down. Percent is based on the loan amount. Automatically stops once your balance reaches 78% of the home price, per federal law." suffix="per year">
             <ValueUnitField value={inputs.pmiValue} unit={inputs.pmiUnit} placeholder={MORTGAGE_PLACEHOLDERS.pmiValue} onValueChange={(v) => setField("pmiValue", v)} onUnitChange={(u) => setField("pmiUnit", u)} />
-          </div>
-          <div style={fieldWrapStyle}>
-            <FieldLabel hint="Annual homeowners association fee, if applicable.">HOA Fee</FieldLabel>
+          </FieldRow>
+          <FieldRow label="HOA Fee" hint="Annual homeowners association fee, if applicable." suffix="per year">
             <ValueUnitField value={inputs.hoaValue} unit={inputs.hoaUnit} placeholder={MORTGAGE_PLACEHOLDERS.hoaValue} onValueChange={(v) => setField("hoaValue", v)} onUnitChange={(u) => setField("hoaUnit", u)} />
-          </div>
-          <div style={fieldWrapStyle}>
-            <FieldLabel hint="Any other annual homeownership costs — maintenance, utilities, etc.">Other Costs</FieldLabel>
+          </FieldRow>
+          <FieldRow label="Other Costs" hint="Any other annual homeownership costs — maintenance, utilities, etc." suffix="per year">
             <ValueUnitField value={inputs.otherCostsValue} unit={inputs.otherCostsUnit} placeholder={MORTGAGE_PLACEHOLDERS.otherCostsValue} onValueChange={(v) => setField("otherCostsValue", v)} onUnitChange={(u) => setField("otherCostsUnit", u)} />
-          </div>
+          </FieldRow>
         </div>
       )}
 
@@ -119,7 +103,7 @@ export default function MortgageInputsPanel({
         <button
           type="button"
           onClick={() => setShowMoreOptions((v) => !v)}
-          style={{ background: "none", border: "none", color: "var(--accent)", fontSize: 13.5, fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer", padding: "8px 0", display: "flex", alignItems: "center", gap: 4 }}
+          style={{ background: "none", border: "none", color: "var(--accent)", fontSize: 11.5, fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer", padding: "6px 0", display: "flex", alignItems: "center", gap: 4 }}
         >
           {showMoreOptions ? "− Fewer Options" : "+ More Options"}
         </button>
@@ -210,22 +194,22 @@ export default function MortgageInputsPanel({
             </div>
           )}
 
-          <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", marginTop: 10 }}>
-            <input type="checkbox" checked={showBiweekly} onChange={(e) => setShowBiweekly(e.target.checked)} style={{ width: 16, height: 16, accentColor: "var(--accent)" }} />
-            <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>Show Biweekly Payback Results</span>
+          <label style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", marginTop: 8 }}>
+            <input type="checkbox" checked={showBiweekly} onChange={(e) => setShowBiweekly(e.target.checked)} style={{ width: 13, height: 13, accentColor: "var(--accent)" }} />
+            <span style={{ fontSize: 11.5, color: "var(--text-secondary)" }}>Show Biweekly Payback Results</span>
           </label>
         </div>
       )}
 
-      <div style={{ display: "flex", gap: 10, marginTop: 22 }}>
-        <button type="button" onClick={onCalculate} className="btn-primary" style={{ flex: 1, padding: "13px 0", fontSize: 15 }}>
+      <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
+        <button type="button" onClick={onCalculate} className="btn-primary" style={{ flex: 1, padding: "9px 0", fontSize: 12.5 }}>
           Calculate
         </button>
-        <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "13px 22px", fontSize: 14 }}>
+        <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>
           Clear
         </button>
       </div>
-      <p style={{ fontSize: 11.5, color: "var(--text-muted)", marginTop: 10 }}>
+      <p style={{ fontSize: 10, color: "var(--text-muted)", marginTop: 8 }}>
         This calculator is for estimation purposes only and isn't financial advice.
       </p>
     </div>

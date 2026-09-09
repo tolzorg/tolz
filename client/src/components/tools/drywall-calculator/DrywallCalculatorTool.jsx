@@ -130,11 +130,13 @@ function CountField({ value, onChange, onBlur, placeholder = "0", hasError = fal
 function Field({ label, hint, error, note, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <div style={{ display: "flex", gap: 5, alignItems: "flex-start" }}>
           <span style={{ color: "var(--error)", fontSize: 12, flexShrink: 0 }}>⚠</span>
@@ -345,7 +347,7 @@ export default function DrywallCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
@@ -354,7 +356,7 @@ export default function DrywallCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={dimOpen} onToggle={() => setDimOpen(!dimOpen)} title="Room dimensions" />
         {dimOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
             <Field label="Room length" error={lenErr}>
               <CompoundField
                 value={roomLength} onChange={setRoomLength} onBlur={() => touch("len")}
@@ -392,7 +394,7 @@ export default function DrywallCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={slopeOpen} onToggle={() => setSlopeOpen(!slopeOpen)} title="Area under sloped walls" />
         {slopeOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
             <Field label="Number of triangular spaces"
               hint="How many sloped-wall (attic/dormer style) triangular sections your room has.">
               <CountField value={slopeCount} onChange={setSlopeCount} />
@@ -440,7 +442,7 @@ export default function DrywallCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={surfaceOpen} onToggle={() => setSurfaceOpen(!surfaceOpen)} title="Room surface area" />
         {surfaceOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
             <Field label="Include ceiling?" hint="Adds the ceiling area (length × width) to the gross room area.">
               <div style={{ display: "flex", gap: 16 }}>
                 {[{ val: true, label: "Yes" }, { val: false, label: "No" }].map(({ val, label }) => (
@@ -480,7 +482,7 @@ export default function DrywallCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={doorsOpen} onToggle={() => setDoorsOpen(!doorsOpen)} title="Doors" />
         {doorsOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
             <Field label="Number of doors">
               <CountField value={doorCount} onChange={setDoorCount} />
             </Field>
@@ -526,7 +528,7 @@ export default function DrywallCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={windowsOpen} onToggle={() => setWindowsOpen(!windowsOpen)} title="Windows" />
         {windowsOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
             <Field label="Number of windows">
               <CountField value={windowCount} onChange={setWindowCount} />
             </Field>
@@ -576,7 +578,7 @@ export default function DrywallCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={amountOpen} onToggle={() => setAmountOpen(!amountOpen)} title="Drywall amount" />
         {amountOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
             <Field label="Net room area" hint="Gross room area minus the total door and window area."
               note={result?.netAreaM2 == null ? "Complete the sections above to compute the net area." : undefined}>
               <CompoundField

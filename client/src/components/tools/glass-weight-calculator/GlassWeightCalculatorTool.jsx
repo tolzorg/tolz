@@ -133,11 +133,13 @@ function PlainField({ value, onChange, onBlur, placeholder = "1", hasError = fal
 function Field({ label, hint, error, note, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help" }}>ⓘ</span>}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <div style={{ display: "flex", gap: 5, alignItems: "flex-start" }}>
           <span style={{ color: "var(--error)", fontSize: 12, flexShrink: 0 }}>⚠</span>
@@ -303,7 +305,7 @@ export default function GlassWeightCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 360px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ════════════════════════════════════════════════════════════
@@ -313,7 +315,7 @@ export default function GlassWeightCalculatorTool() {
         <SectionHeader open={typeShapeOpen} onToggle={() => setTypeShapeOpen(!typeShapeOpen)}
           title="Glass type and shape" />
         {typeShapeOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Glass type */}
             <Field label="Glass type" hint="Select a preset glass type to auto-fill its density, or choose Custom to enter your own.">
@@ -397,7 +399,7 @@ export default function GlassWeightCalculatorTool() {
         <SectionHeader open={dimsOpen} onToggle={() => setDimsOpen(!dimsOpen)}
           title="Glass dimensions" />
         {dimsOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {shape.fields.map((f) => {
               const err = dimError(f);
@@ -488,7 +490,7 @@ export default function GlassWeightCalculatorTool() {
         <SectionHeader open={resultOpen} onToggle={() => setResultOpen(!resultOpen)}
           title="Final result" />
         {resultOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Total weight — output */}
             <Field label="Total weight"

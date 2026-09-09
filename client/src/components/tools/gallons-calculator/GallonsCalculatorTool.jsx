@@ -70,13 +70,15 @@ function SectionLabel({ icon, text }) {
 function FieldGroup({ label, hint, error, children }) {
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
-        <label style={{ ...LBL, marginBottom: 0 }}>{label}</label>
-        {hint && (
-          <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>ⓘ</span>
-        )}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <label style={{ ...LBL, marginBottom: 0 }}>{label}</label>
+          {hint && (
+            <span title={hint} style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>ⓘ</span>
+          )}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <p style={{ fontSize: 11.5, color: "var(--error)", fontFamily: "var(--font-display)", fontWeight: 500, marginTop: 5 }}>
           {error}
@@ -362,7 +364,7 @@ export default function GallonsCalculatorTool() {
       </div>
 
       {/* ── Surface Area (shared) ── */}
-      <div className="card" style={{ padding: "18px 20px" }}>
+      <div className="card" style={{ padding: "14px 16px" }}>
         <SectionLabel icon="📏" text="Surface Area" />
         <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
           {[{ id: "lw", label: "Length × Width" }, { id: "direct", label: "Enter Area Directly" }].map((opt) => (
@@ -445,10 +447,10 @@ export default function GallonsCalculatorTool() {
 
       {/* ══════════ COVERAGE PLANNER ══════════ */}
       {calcMode === "coverage" && (
-        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Material + Coverage Rate */}
-          <div className="card" style={{ padding: "18px 20px" }}>
+          <div className="card" style={{ padding: "14px 16px" }}>
             <SectionLabel icon="🎨" text="Material & Coverage Rate" />
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "flex-end" }}>
@@ -504,7 +506,7 @@ export default function GallonsCalculatorTool() {
           </div>
 
           {/* Coats & Waste */}
-          <div className="card" style={{ padding: "18px 20px" }}>
+          <div className="card" style={{ padding: "14px 16px" }}>
             <SectionLabel icon="🖌️" text="Coats & Waste Factor" />
             <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-end" }}>
               <div>
@@ -537,7 +539,7 @@ export default function GallonsCalculatorTool() {
         <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Coverage Results */}
           {gallonsTotal ? (
-            <div className="card" style={{ padding: "18px 20px" }}>
+            <div className="card" style={{ padding: "14px 16px" }}>
               <SectionLabel icon="✅" text="Results" />
 
               {/* Big primary result */}
@@ -611,7 +613,7 @@ export default function GallonsCalculatorTool() {
               </div>
             </div>
           ) : (areaSqFt || crSqFtGal) ? (
-            <div className="card" style={{ padding: "18px 20px" }}>
+            <div className="card" style={{ padding: "14px 16px" }}>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "18px 0", textAlign: "center" }}>
                 <span style={{ fontSize: 28 }}>💧</span>
                 <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13, color: "var(--text-muted)", margin: 0 }}>
@@ -634,10 +636,10 @@ export default function GallonsCalculatorTool() {
 
       {/* ══════════ VOLUME CALCULATOR ══════════ */}
       {calcMode === "volume" && (
-        <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 380px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Depth / Thickness */}
-          <div className="card" style={{ padding: "18px 20px" }}>
+          <div className="card" style={{ padding: "14px 16px" }}>
             <SectionLabel icon="↕️" text="Depth / Thickness / Height" />
             <FieldGroup
               label="Depth / Thickness / Height"
@@ -662,7 +664,7 @@ export default function GallonsCalculatorTool() {
         <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 14 }}>
           {/* Volume Results */}
           {usGal ? (
-            <div className="card" style={{ padding: "18px 20px" }}>
+            <div className="card" style={{ padding: "14px 16px" }}>
               <SectionLabel icon="📊" text="Results" />
 
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14, flexWrap: "wrap" }}>
@@ -742,7 +744,7 @@ export default function GallonsCalculatorTool() {
               </div>
             </div>
           ) : (areaSqFt || depthFt) ? (
-            <div className="card" style={{ padding: "18px 20px" }}>
+            <div className="card" style={{ padding: "14px 16px" }}>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "18px 0", textAlign: "center" }}>
                 <span style={{ fontSize: 28 }}>💧</span>
                 <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13, color: "var(--text-muted)", margin: 0 }}>
@@ -771,7 +773,7 @@ export default function GallonsCalculatorTool() {
       )}
 
       {/* ── Formulas (shared) ── */}
-      <div className="card" style={{ padding: "18px 20px" }}>
+      <div className="card" style={{ padding: "14px 16px" }}>
         <SectionLabel icon="🔢" text="Formulas" />
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.07em" }}>
@@ -791,7 +793,7 @@ export default function GallonsCalculatorTool() {
       </div>
 
       {/* ── Notes ── */}
-      <div className="card" style={{ padding: "18px 20px" }}>
+      <div className="card" style={{ padding: "14px 16px" }}>
         <SectionLabel icon="💡" text="Notes" />
         <ul style={{ margin: 0, padding: "0 0 0 16px", display: "flex", flexDirection: "column", gap: 8 }}>
           {[

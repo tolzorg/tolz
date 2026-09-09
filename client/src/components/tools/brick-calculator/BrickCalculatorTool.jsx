@@ -132,16 +132,18 @@ function CompoundField({
 function Field({ label, hint, error, note, children }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-        <span style={LABEL_STYLE}>{label}</span>
-        {hint && (
-          <span title={hint}
-            style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>
-            ⓘ
-          </span>
-        )}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: "1 1 140px", minWidth: 100 }}>
+          <span style={LABEL_STYLE}>{label}</span>
+          {hint && (
+            <span title={hint}
+              style={{ fontSize: 13, color: "var(--text-muted)", cursor: "help", lineHeight: 1 }}>
+              ⓘ
+            </span>
+          )}
+        </div>
+        <div style={{ flex: "1 1 180px", minWidth: 160 }}>{children}</div>
       </div>
-      {children}
       {error && (
         <div style={{ display: "flex", alignItems: "flex-start", gap: 5 }}>
           <span style={{ color: "var(--error)", fontSize: 12, flexShrink: 0 }}>⚠</span>
@@ -609,7 +611,7 @@ export default function BrickCalculatorTool() {
 
   // ── Render ────────────────────────────────────────────────────────
   return (
-    <div className="animate-fadeUp" style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
+    <div className="animate-fadeUp" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div style={{ flex: "1 1 340px", minWidth: 300, display: "flex", flexDirection: "column", gap: 12 }}>
 
       {/* ══════════════════════════════════════════════════════════
@@ -618,7 +620,7 @@ export default function BrickCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={wallOpen} onToggle={() => setWallOpen(!wallOpen)} title="Wall details" />
         {wallOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Type of wall */}
             <Field label="Type of wall"
@@ -698,7 +700,7 @@ export default function BrickCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={brickOpen} onToggle={() => setBrickOpen(!brickOpen)} title="Brick details" />
         {brickOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Brick length */}
             <Field label="Brick length (l)"
@@ -781,7 +783,7 @@ export default function BrickCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={reqOpen} onToggle={() => setReqOpen(!reqOpen)} title="Bricks required" />
         {reqOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Bricks needed */}
             <Field label="Bricks needed"
@@ -878,7 +880,7 @@ export default function BrickCalculatorTool() {
       <div className="card" style={{ overflow: "hidden" }}>
         <SectionHeader open={costOpen} onToggle={() => setCostOpen(!costOpen)} title="Cost of materials" />
         {costOpen && (
-          <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
 
             {/* Price per brick */}
             <Field label="Price per brick"

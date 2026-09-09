@@ -9,7 +9,7 @@ import { calculateHouseAffordability, validateHouseAffordabilityInputs, formatCu
  * of this calculator's validation/edge-case messages. */
 function ErrorPanel({ message }) {
   return (
-    <p style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, color: "#dc2626", fontWeight: 600, margin: 0 }}>
+    <p style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 11.5, color: "#dc2626", fontWeight: 600, margin: 0 }}>
       <span aria-hidden="true">⚠</span>
       {message}
     </p>
@@ -34,7 +34,7 @@ const DTI_OPTIONS = [
   { value: "40", label: "40%" }, { value: "45", label: "45%" }, { value: "50", label: "50%" },
 ];
 
-const smallInput = { width: "100%", padding: "7px 10px", fontSize: 14, borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", fontFamily: "var(--font-display)", color: "var(--text-primary)" };
+const smallInput = { width: "100%", padding: "6px 8px", fontSize: 13, borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", fontFamily: "var(--font-display)", color: "var(--text-primary)" };
 
 export default function MainAffordabilityCard() {
   const [annualIncome, setAnnualIncome] = useState("");
@@ -152,16 +152,16 @@ export default function MainAffordabilityCard() {
   return (
     <section aria-label="House Affordability Calculator" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div>
-        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", marginBottom: 3 }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", marginBottom: 3 }}>
           House Affordability Calculator
         </h2>
-        <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.4, margin: 0 }}>
+        <p style={{ fontSize: 11.5, color: "var(--text-secondary)", lineHeight: 1.4, margin: 0 }}>
           Estimates an affordable house purchase amount based on household income, debts, and lending guidelines.
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ padding: "12px 20px", flex: "0 1 420px", maxWidth: 420, minWidth: 300 }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div className="card" style={{ padding: "10px 16px", flex: "0 1 380px", maxWidth: 380, minWidth: 280 }}>
           <FieldRow label="Annual household income" hint="The entire before-tax income of the household, including salary, tips, commissions, bonuses, investment income, dividends, alimony received, and more." suffix="before tax">
             <DollarField value={annualIncome} onChange={setAnnualIncome} placeholder={DEFAULTS.annualIncome} />
           </FieldRow>
@@ -186,33 +186,33 @@ export default function MainAffordabilityCard() {
           <FieldRow label="Insurance" suffix="per year">
             <ValueUnitField value={insValue} unit={insUnit} onValueChange={setInsValue} onUnitChange={setInsUnit} placeholder={DEFAULTS.insValue} />
           </FieldRow>
-          <FieldRow label="Debt-to-income (DTI) ratio" fieldWidth={230}>
-            <SelectField value={dtiUnit} onChange={setDtiUnit} options={DTI_OPTIONS} style={{ width: "100%", padding: "7px 26px 7px 10px" }} />
+          <FieldRow label="Debt-to-income (DTI) ratio" fieldWidth={200}>
+            <SelectField value={dtiUnit} onChange={setDtiUnit} options={DTI_OPTIONS} style={{ width: "100%", padding: "6px 22px 6px 8px" }} />
           </FieldRow>
 
           {showPmiNote && (
-            <p style={{ fontSize: 11, color: "var(--text-muted)", lineHeight: 1.3, margin: "1px 0 6px" }}>
+            <p style={{ fontSize: 9.5, color: "var(--text-muted)", lineHeight: 1.3, margin: "1px 0 5px" }}>
               PMI insurance will automatically be added to monthly housing costs when the down payment is under 20%,
               since these are assumed to be calculations for conventional loans.
             </p>
           )}
 
-          <div style={{ display: "flex", gap: 10, marginTop: showPmiNote ? 0 : 6 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "10px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+          <div style={{ display: "flex", gap: 8, marginTop: showPmiNote ? 0 : 5 }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "8px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "10px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "8px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
-        <div style={{ flex: "0 1 380px", maxWidth: 380, minWidth: 300 }}>
+        <div style={{ flex: "0 1 340px", maxWidth: 340, minWidth: 280 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Results
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result && !error ? (
-                <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
+                <p style={{ fontSize: 11.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see the affordable house price.
                 </p>
               ) : error ? (
@@ -222,11 +222,11 @@ export default function MainAffordabilityCard() {
               ) : (
                 <>
                   {result.downTreatedAsDollar && (
-                    <p style={{ fontSize: 12.5, color: "var(--text-muted)", lineHeight: 1.5, marginBottom: 10 }}>
+                    <p style={{ fontSize: 10.5, color: "var(--text-muted)", lineHeight: 1.5, marginBottom: 8 }}>
                       The down payment was treated as a dollar amount instead of a percentage.
                     </p>
                   )}
-                  <p style={{ fontSize: 14, color: "var(--text-primary)", lineHeight: 1.6, marginBottom: 16 }}>{headline}</p>
+                  <p style={{ fontSize: 12, color: "var(--text-primary)", lineHeight: 1.6, marginBottom: 13 }}>{headline}</p>
                   <ResultTable columns={["", "Amount"]} rows={topRows} />
                   <ResultTable columns={["", "Amount"]} rows={bottomRows} />
                 </>

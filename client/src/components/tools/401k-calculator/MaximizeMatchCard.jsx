@@ -37,10 +37,10 @@ export default function MaximizeMatchCard() {
   return (
     <section aria-label="Maximize Employer 401K Match Calculator" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div>
-        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", marginBottom: 6 }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)", marginBottom: 4 }}>
           Maximize Employer 401(k) Match Calculator
         </h2>
-        <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 11.5, color: "var(--text-secondary)", lineHeight: 1.5 }}>
           Contribution percentages that are too low or too high may not take full advantage of employer matches. If
           the percentage is too high, contributions may reach the IRS limit before the end of the year. As a result,
           employers will not match for the rest of the year. This calculation can show the contribution percentage
@@ -48,8 +48,8 @@ export default function MaximizeMatchCard() {
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ padding: 20, flex: "1 1 320px", minWidth: 300 }}>
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
           <NumberField label="Current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} />
           <DollarField label="Current annual salary" value={currentSalary} onChange={setCurrentSalary} placeholder={DEFAULTS.currentSalary} />
           <PercentField label="Employer match 1" value={employerMatch1Percent} onChange={setEmployerMatch1Percent} placeholder={DEFAULTS.employerMatch1Percent} />
@@ -58,19 +58,19 @@ export default function MaximizeMatchCard() {
           <PercentField label="Employer match 2 limit" value={employerMatch2LimitPercent} onChange={setEmployerMatch2LimitPercent} placeholder={DEFAULTS.employerMatch2LimitPercent} />
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <button type="button" onClick={calculate} style={{ flex: 1, padding: "12px 0", fontSize: 14.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
+            <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "12px 20px", fontSize: 14 }}>Clear</button>
+            <button type="button" onClick={clear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
 
         <div style={{ flex: "1 1 300px", minWidth: 300 }}>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            <div style={{ background: "var(--success)", color: "#fff", padding: "14px 20px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+            <div style={{ background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-display)" }}>
               Result
             </div>
-            <div style={{ padding: "18px 20px" }}>
+            <div style={{ padding: "14px 16px" }}>
               {!result ? (
                 <p style={{ fontSize: 13.5, color: "var(--text-muted)" }}>
                   Fill in the details and click <strong>Calculate</strong> to see the contribution window that
