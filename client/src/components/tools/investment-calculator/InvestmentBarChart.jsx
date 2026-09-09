@@ -10,8 +10,11 @@ const PAD_RIGHT = 12;
 const PAD_TOP = 14;
 const PAD_BOTTOM = 40;
 
-export default function InvestmentBarChart({ barData }) {
+const DEFAULT_LABELS = { starting: "Starting Amount", contributions: "Contributions", interest: "Interest" };
+
+export default function InvestmentBarChart({ barData, labels }) {
   if (!barData.length) return null;
+  const lbl = { ...DEFAULT_LABELS, ...labels };
 
   const maxYear = Math.max(...barData.map((p) => p.year));
   const maxValue = Math.max(1, ...barData.map((p) => p.total));
@@ -83,15 +86,15 @@ export default function InvestmentBarChart({ barData }) {
       <div style={{ display: "flex", justifyContent: "center", gap: 18, marginTop: 8, fontSize: 12.5, flexWrap: "wrap" }}>
         <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
           <span style={{ width: 14, height: 3, background: "#2b7ddb", display: "inline-block", borderRadius: 2 }} />
-          Starting Amount
+          {lbl.starting}
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
           <span style={{ width: 14, height: 3, background: "#8bbc21", display: "inline-block", borderRadius: 2 }} />
-          Contributions
+          {lbl.contributions}
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
           <span style={{ width: 14, height: 3, background: "#910000", display: "inline-block", borderRadius: 2 }} />
-          Interest
+          {lbl.interest}
         </span>
       </div>
     </div>

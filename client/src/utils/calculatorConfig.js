@@ -824,6 +824,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "savings-calculator",
+        label: "Savings Calculator",
+        slug: "savings-calculator",
+        tagline: "Growing contributions, tax rate, and a full schedule",
+        description:
+          "Project how an initial deposit plus growing annual and monthly contributions will accumulate over time, including the effect of taxes on interest earned.",
+        icon: "🏦",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/savings-calculator",
+        legacyPath: "/tools/savings-calculator",
+        keywords: [
+          "savings calculator", "savings account calculator", "savings growth calculator",
+          "compound savings calculator", "how much will i save calculator", "savings plan calculator",
+          "accumulation schedule", "savings interest calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "currency-calculator",
         label: "Currency Calculator",
         slug: "currency-calculator",
