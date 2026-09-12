@@ -908,6 +908,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "pension-calculator",
+        label: "Pension Calculator",
+        slug: "pension-calculator",
+        tagline: "Lump sum vs. monthly income, and other pension decisions",
+        description:
+          "Compare a lump sum payout vs. monthly pension income, single-life vs. joint-and-survivor payout options, and whether working longer is worth it financially.",
+        icon: "🏦",
+        iconBg: "#eef2ff",
+        iconColor: "#4f46e5",
+        path: "/calculators/financial/pension-calculator",
+        legacyPath: "/tools/pension-calculator",
+        keywords: [
+          "pension calculator", "pension lump sum calculator", "lump sum vs pension calculator",
+          "single life vs joint survivor pension", "pension payout calculator", "should i take a lump sum or annuity",
+          "work longer for pension calculator", "pension income calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "currency-calculator",
         label: "Currency Calculator",
         slug: "currency-calculator",
