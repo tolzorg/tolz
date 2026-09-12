@@ -28,6 +28,8 @@ const RetirementCalculatorPage = lazy(() => import("./pages/RetirementCalculator
 const AmortizationCalculatorPage = lazy(() => import("./pages/AmortizationCalculatorPage"));
 const InvestmentCalculatorPage = lazy(() => import("./pages/InvestmentCalculatorPage"));
 const SavingsCalculatorPage = lazy(() => import("./pages/SavingsCalculatorPage"));
+const RentCalculatorPage = lazy(() => import("./pages/RentCalculatorPage"));
+const MarriageTaxCalculatorPage = lazy(() => import("./pages/MarriageTaxCalculatorPage"));
 const CurrencyCalculatorPage = lazy(() => import("./pages/CurrencyCalculatorPage"));
 const InflationCalculatorPage = lazy(() => import("./pages/InflationCalculatorPage"));
 const FinanceCalculatorPage = lazy(() => import("./pages/FinanceCalculatorPage"));
@@ -191,6 +193,8 @@ export default function App() {
                 <Route path="/tools/amortization-calculator"       element={<AmortizationCalculatorPage />} />
                 <Route path="/tools/investment-calculator"         element={<InvestmentCalculatorPage />} />
                 <Route path="/tools/savings-calculator"             element={<SavingsCalculatorPage />} />
+                <Route path="/tools/rent-calculator"                 element={<RentCalculatorPage />} />
+                <Route path="/tools/marriage-tax-calculator"         element={<MarriageTaxCalculatorPage />} />
                 <Route path="/tools/currency-calculator"           element={<CurrencyCalculatorPage />} />
                 <Route path="/tools/inflation-calculator"          element={<InflationCalculatorPage />} />
                 <Route path="/tools/finance-calculator"            element={<FinanceCalculatorPage />} />
@@ -242,6 +246,8 @@ export default function App() {
                 <Route path="/calculators/financial/amortization-calculator"       element={<AmortizationCalculatorPage />} />
                 <Route path="/calculators/financial/investment-calculator"         element={<InvestmentCalculatorPage />} />
                 <Route path="/calculators/financial/savings-calculator"             element={<SavingsCalculatorPage />} />
+                <Route path="/calculators/financial/rent-calculator"                 element={<RentCalculatorPage />} />
+                <Route path="/calculators/financial/marriage-tax-calculator"         element={<MarriageTaxCalculatorPage />} />
                 <Route path="/calculators/financial/currency-calculator"           element={<CurrencyCalculatorPage />} />
                 <Route path="/calculators/financial/inflation-calculator"          element={<InflationCalculatorPage />} />
                 <Route path="/calculators/financial/finance-calculator"            element={<FinanceCalculatorPage />} />
