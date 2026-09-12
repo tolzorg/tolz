@@ -887,6 +887,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "estate-tax-calculator",
+        label: "Estate Tax Calculator",
+        slug: "estate-tax-calculator",
+        tagline: "Estimate federal estate tax due on your assets",
+        description:
+          "Estimate federal estate tax due based on your assets, liabilities, and lifetime gifts, using the current year's federal lifetime exemption and tax rate.",
+        icon: "🏛️",
+        iconBg: "#f5f3ff",
+        iconColor: "#7c3aed",
+        path: "/calculators/financial/estate-tax-calculator",
+        legacyPath: "/tools/estate-tax-calculator",
+        keywords: [
+          "estate tax calculator", "federal estate tax calculator", "death tax calculator",
+          "estate tax exemption calculator", "inheritance tax calculator", "lifetime gift tax calculator",
+          "estate planning calculator", "estate tax 2026",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "currency-calculator",
         label: "Currency Calculator",
         slug: "currency-calculator",
