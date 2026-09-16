@@ -121,17 +121,19 @@ function approx(a, b, tolerance) {
 
 // ─────────────────────────────────────────────────────────────────
 // 6. Should you work longer — the reference's own screenshot scenario.
-//    Crossover age is defined here as the first integer age where the
-//    later-retirement option's PV overtakes the earlier one's — this
-//    matches our OWN chart exactly; the live reference's TEXT (86)
-//    disagrees by 1 year with its OWN chart data (which also crosses
-//    at 87, confirmed by reading its tooltip series directly) — a
-//    real inconsistency in the reference itself (see notes). We chose
-//    internal self-consistency (sentence always matches our own chart).
+//    Crossover age uses FLOOR-OF-LINEARLY-INTERPOLATED crossover (see
+//    growingAnnuityMath.js) — VERIFIED EXACT (86, matching the live
+//    reference's own text precisely). Originally implemented with plain
+//    first-integer-where-crossed (which gives 87, one year off) and
+//    mistakenly attributed the 1-year gap to a reference inconsistency
+//    between its own text and chart — a 2nd independent live reference
+//    (Social Security Calculator's "compare two ages") confirmed the
+//    floor-interpolated method is the real, correct rule instead.
 // ─────────────────────────────────────────────────────────────────
 {
   const r = calculateWorkLonger({ retirementAge1: 60, monthlyIncome1: 2500, retirementAge2: 65, monthlyIncome2: 3800, investmentReturn: 5, cola: 3.5 });
   ok("sentence kind = crossover", r.sentence.kind === "crossover", r.sentence);
+  ok("crossover age = 86 (matches live reference exactly)", r.crossoverAge === 86, r.crossoverAge);
   ok("laterAge = 65", r.sentence.laterAge === 65);
   ok("earlierAge = 60", r.sentence.earlierAge === 60);
   const p61 = r.points.find((p) => p.age === 61);

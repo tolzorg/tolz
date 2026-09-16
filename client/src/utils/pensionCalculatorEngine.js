@@ -28,28 +28,13 @@ function inRange(value, [min, max]) {
   return Number.isFinite(value) && value >= min && value <= max;
 }
 
-function monthlyRateFromAnnual(annualReturn) {
-  return Math.pow(1 + annualReturn, 1 / 12) - 1;
-}
-
 // ── Sub-calculator 1 & 3's chart curve: monthly compounding ─────────
-// PV of a monthly annuity (ORDINARY — payment at the END of each
-// month), with the COLA applied once every 12 months (flat for the
-// first 12 payments, then bumped each year). Verified against the
-// reference's own 56-point tooltip series (ages 66-121) to within
-// ~0.2% at every point — a small residual (see notes) that does not
-// change which integer age the crossover sentence reports.
-export function pvMonthlyGrowingAnnuity(monthlyPayment, months, annualReturn, colaAnnual) {
-  if (months <= 0 || monthlyPayment <= 0) return 0;
-  const r = monthlyRateFromAnnual(annualReturn);
-  let pv = 0;
-  for (let m = 0; m < months; m++) {
-    const yearIndex = Math.floor(m / 12);
-    const payment = monthlyPayment * Math.pow(1 + colaAnnual, yearIndex);
-    pv += payment / Math.pow(1 + r, m + 1);
-  }
-  return pv;
-}
+// Now lives in growingAnnuityMath.js (shared with the Social Security
+// Calculator, which uses the exact same underlying mechanics for its
+// own "compare two application ages" chart). Re-exported here so
+// nothing importing it from this file needs to change.
+export { pvMonthlyGrowingAnnuity, findFloorInterpolatedCrossoverAge } from "./growingAnnuityMath.js";
+import { pvMonthlyGrowingAnnuity, findFloorInterpolatedCrossoverAge } from "./growingAnnuityMath.js";
 
 // ── Sub-calculator 2's headline figures: ANNUAL compounding ─────────
 // (VERIFIED EXACT — solved to the exact dollar against 3 independent
@@ -232,12 +217,21 @@ export function calculateWorkLonger({ retirementAge1, monthlyIncome1, retirement
   const laterAge = laterIsOption2 ? r2 : r1;
   const earlierAge = laterIsOption2 ? r1 : r2;
 
-  let crossoverAge = null;
-  for (const p of points) {
-    const laterVal = laterIsOption2 ? p.option2 : p.option1;
-    const earlierVal = laterIsOption2 ? p.option1 : p.option2;
-    if (laterVal >= earlierVal) { crossoverAge = p.age; break; }
-  }
+  // Floor-of-linearly-interpolated crossover — VERIFIED EXACT: the raw
+  // "first integer age where the later option's value overtakes" (88
+  // wait, 87 here) is ONE HIGHER than what the reference's own sentence
+  // reports (86) for this exact scenario. Confirmed via a second,
+  // independent live reference (Social Security Calculator's "compare
+  // two ages", which reports 82 while its own chart's raw integer
+  // crossover is 83) that this ISN'T a reference inconsistency between
+  // its own text and chart — both calculators' TEXT genuinely uses this
+  // floor-interpolated method, distinct from the "lump sum vs. monthly"
+  // sub-calculator's plain first-integer method (see growingAnnuityMath.js).
+  const crossoverAge = findFloorInterpolatedCrossoverAge(
+    points,
+    (p) => (laterIsOption2 ? p.option1 : p.option2),
+    (p) => (laterIsOption2 ? p.option2 : p.option1),
+  );
 
   let sentence;
   if (crossoverAge === startAge) sentence = { kind: "alwaysLater", laterAge };

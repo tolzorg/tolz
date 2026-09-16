@@ -929,6 +929,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "social-security-calculator",
+        label: "Social Security Calculator",
+        slug: "social-security-calculator",
+        tagline: "Find the ideal age to apply for retirement benefits",
+        description:
+          "Find the ideal age to apply for Social Security retirement benefits, or compare the financial difference between two application ages.",
+        icon: "🪪",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/social-security-calculator",
+        legacyPath: "/tools/social-security-calculator",
+        keywords: [
+          "social security calculator", "social security benefits calculator", "when to apply for social security",
+          "social security ideal age calculator", "social security retirement calculator", "full retirement age calculator",
+          "social security claim age calculator", "delayed retirement credit calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "currency-calculator",
         label: "Currency Calculator",
         slug: "currency-calculator",
