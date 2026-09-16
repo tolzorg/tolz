@@ -780,7 +780,7 @@ export default function RipRapCalculatorTool() {
                       padding: "8px 12px", textAlign: "left",
                       fontWeight: 700, fontSize: 11, color: "var(--text-muted)",
                       textTransform: "uppercase", letterSpacing: "0.07em",
-                      borderBottom: `1px solid ${BORDER}`,
+                      borderBottom: `1px solid ${BORDER}`, whiteSpace: "nowrap",
                     }}>{h}</th>
                   ))}
                 </tr>

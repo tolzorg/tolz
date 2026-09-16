@@ -128,7 +128,7 @@ export function ResultTable({ title, columns, rows }) {
                 {columns.map((col, i) => (
                   <th
                     key={col || i}
-                    style={{ textAlign: i === 0 ? "left" : "right", padding: "8px 14px", fontWeight: 700, fontSize: 12 }}
+                    style={{ textAlign: i === 0 ? "left" : "right", padding: "8px 14px", fontWeight: 700, fontSize: 12, whiteSpace: "nowrap" }}
                   >
                     {col}
                   </th>

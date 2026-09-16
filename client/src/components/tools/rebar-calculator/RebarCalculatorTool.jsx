@@ -673,7 +673,7 @@ export default function RebarCalculatorTool() {
                   <th key={h} style={{
                     padding: "9px 12px", textAlign: "left", fontWeight: 700,
                     fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase",
-                    letterSpacing: "0.07em", borderBottom: "1px solid var(--border)",
+                    letterSpacing: "0.07em", borderBottom: "1px solid var(--border)", whiteSpace: "nowrap",
                   }}>{h}</th>
                 ))}
               </tr>

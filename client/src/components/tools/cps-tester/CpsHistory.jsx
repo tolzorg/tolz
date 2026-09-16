@@ -54,7 +54,7 @@ export default function CpsHistory({ history, personalBest, mode, durationSecond
               <thead>
                 <tr>
                   {["Date", "Mode", "Duration", "Clicks", "Avg CPS", "Peak CPS"].map((h) => (
-                    <th key={h} style={{ textAlign: "left", padding: "6px 8px", color: "var(--text-muted)", borderBottom: "1px solid var(--border)", fontFamily: "var(--font-display)" }}>
+                    <th key={h} style={{ textAlign: "left", padding: "6px 8px", color: "var(--text-muted)", borderBottom: "1px solid var(--border)", fontFamily: "var(--font-display)", whiteSpace: "nowrap" }}>
                       {h}
                     </th>
                   ))}

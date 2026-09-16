@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { formatCurrency } from "../../../utils/mortgagePayoffCalculatorEngine";
 
-const th = { textAlign: "right", padding: "8px 10px", fontSize: 11.5, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.02em", position: "sticky", top: 0, background: "var(--bg-white)", borderBottom: "1px solid var(--border)" };
+const th = { textAlign: "right", padding: "8px 10px", fontSize: 11.5, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.02em", position: "sticky", top: 0, background: "var(--bg-white)", borderBottom: "1px solid var(--border)", whiteSpace: "nowrap" };
 const thLeft = { ...th, textAlign: "left" };
-const td = { textAlign: "right", padding: "7px 10px", fontSize: 13, color: "var(--text-secondary)", borderBottom: "1px solid var(--border)" };
+const td = { textAlign: "right", padding: "7px 10px", fontSize: 13, color: "var(--text-secondary)", borderBottom: "1px solid var(--border)", whiteSpace: "nowrap" };
 const tdLeft = { ...td, textAlign: "left", fontWeight: 600, color: "var(--text-primary)" };
 
 /** The dual "Original (without payoff)" vs. "With payoff" amortization
@@ -25,7 +25,7 @@ export default function MortgagePayoffAmortizationTable({ oldSchedule, newSchedu
       <p style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-display)", marginBottom: 14 }}>
         Monthly Amortization Schedule
       </p>
-      <div style={{ maxHeight: 420, overflowY: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
+      <div style={{ maxHeight: 420, overflowY: "auto", overflowX: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>

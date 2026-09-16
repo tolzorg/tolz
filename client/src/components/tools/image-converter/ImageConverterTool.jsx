@@ -211,8 +211,11 @@ function PdfResult({ pdfData, name, size }) {
       }}>
         📄
       </div>
-      <div style={{ flex: 1 }}>
-        <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: "var(--text-primary)" }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p style={{
+          fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: "var(--text-primary)",
+          overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+        }} title={name}>
           {name}
         </p>
         <p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 2 }}>{formatBytes(size)}</p>

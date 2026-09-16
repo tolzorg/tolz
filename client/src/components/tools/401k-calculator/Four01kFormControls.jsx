@@ -138,7 +138,7 @@ export function ResultTable({ title, columns, rows }) {
             <thead>
               <tr style={{ background: "var(--success)", color: "#fff" }}>
                 {columns.map((col, i) => (
-                  <th key={col || i} style={{ textAlign: i === 0 ? "left" : "right", padding: "8px 14px", fontWeight: 700, fontSize: 12 }}>
+                  <th key={col || i} style={{ textAlign: i === 0 ? "left" : "right", padding: "8px 14px", fontWeight: 700, fontSize: 12, whiteSpace: "nowrap" }}>
                     {col}
                   </th>
                 ))}
@@ -197,9 +197,9 @@ export function ScheduleTable({ rows, columns }) {
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5 }}>
             <thead>
               <tr style={{ background: "var(--success)", color: "#fff", position: "sticky", top: 0 }}>
-                <th style={{ textAlign: "left", padding: "7px 12px", fontWeight: 700, fontSize: 11.5 }}>Age</th>
+                <th style={{ textAlign: "left", padding: "7px 12px", fontWeight: 700, fontSize: 11.5, whiteSpace: "nowrap" }}>Age</th>
                 {columns.map((c) => (
-                  <th key={c} style={{ textAlign: "right", padding: "7px 12px", fontWeight: 700, fontSize: 11.5 }}>{c}</th>
+                  <th key={c} style={{ textAlign: "right", padding: "7px 12px", fontWeight: 700, fontSize: 11.5, whiteSpace: "nowrap" }}>{c}</th>
                 ))}
               </tr>
             </thead>

@@ -248,6 +248,23 @@ export default function Navbar() {
           white-space: nowrap;
           line-height: 1;
         }
+        /* Shrink the category strip in graduated steps as the window
+           narrows, so it keeps fitting on one line instead of overflowing
+           the header — no hamburger swap until the real mobile breakpoint. */
+        @media (max-width: 1500px) {
+          .nb-trigger { padding: 6px 8px; font-size: 13px; gap: 4px; }
+        }
+        @media (max-width: 1300px) {
+          .nb-trigger { padding: 5px 6px; font-size: 12px; gap: 3px; }
+          .nb-free-badge { display: none; }
+        }
+        @media (max-width: 1120px) {
+          .nb-trigger { padding: 5px 4px; font-size: 11px; gap: 2px; }
+        }
+        @media (max-width: 1000px) {
+          .nb-trigger { padding: 4px 3px; font-size: 10.5px; gap: 1px; }
+          .nb-chevron { width: 8px; height: 8px; }
+        }
         .nb-trigger:hover,
         .nb-trigger.is-open {
           color: var(--text-primary);
@@ -373,8 +390,14 @@ export default function Navbar() {
         boxShadow: "0 1px 0 rgba(0,0,0,0.04)",
       }}>
         <div
-          className="container"
-          style={{ display: "flex", alignItems: "center", height: 60, gap: 8 }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            height: 60,
+            gap: 8,
+            width: "100%",
+            padding: "0 24px",
+          }}
         >
           {/* ── Logo ── */}
           <Link
@@ -436,6 +459,7 @@ export default function Navbar() {
 
                     {/* Chevron */}
                     <svg
+                      className="nb-chevron"
                       width="11" height="11" viewBox="0 0 11 11" fill="none"
                       style={{
                         transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
@@ -467,11 +491,12 @@ export default function Navbar() {
           {/* ── Right side ── */}
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
             <span
-              className="desktop-only"
+              className="desktop-only nb-free-badge"
               style={{
                 fontSize: 12, fontWeight: 600,
                 fontFamily: "var(--font-display)",
                 color: "var(--text-muted)", letterSpacing: "0.06em",
+                whiteSpace: "nowrap",
               }}
             >
               FREE · NO SIGNUP

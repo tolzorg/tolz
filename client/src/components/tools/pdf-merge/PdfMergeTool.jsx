@@ -272,8 +272,11 @@ export default function PdfMergeTool() {
             }}>
               📄
             </div>
-            <div style={{ flex: 1 }}>
-              <p style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--text-primary)" }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--text-primary)",
+                overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              }} title={result.name}>
                 {result.name}
               </p>
               <p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 3 }}>

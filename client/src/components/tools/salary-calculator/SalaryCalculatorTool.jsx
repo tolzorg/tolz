@@ -119,24 +119,26 @@ export default function SalaryCalculatorTool() {
                   Fill in the details and click <strong>Calculate</strong> to see every pay-frequency equivalent.
                 </p>
               ) : (
-                <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                  <thead>
-                    <tr>
-                      <th style={{ background: "var(--bg-muted)", padding: "10px 14px" }} />
-                      <th style={{ textAlign: "right", padding: "10px 14px", fontSize: 12.5, fontWeight: 700, color: "var(--text-primary)", background: "var(--bg-muted)" }}>Unadjusted</th>
-                      <th style={{ textAlign: "right", padding: "10px 14px", fontSize: 12.5, fontWeight: 700, color: "var(--text-primary)", background: "var(--bg-muted)" }}>Holidays &amp; vacation days adjusted</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {ROWS.map((row, i) => (
-                      <tr key={row.key} style={{ background: i % 2 === 0 ? "var(--bg-white)" : "var(--bg-muted)" }}>
-                        <td style={{ padding: "8px 14px", fontSize: 13.5, fontWeight: 600, color: "var(--text-primary)" }}>{row.label}</td>
-                        <td style={{ padding: "8px 14px", fontSize: 13.5, textAlign: "right", color: "var(--text-secondary)" }}>{formatCurrency(result.unadjusted[row.key], { decimals: row.decimals })}</td>
-                        <td style={{ padding: "8px 14px", fontSize: 13.5, textAlign: "right", color: "var(--text-secondary)" }}>{formatCurrency(result.adjusted[row.key], { decimals: row.decimals })}</td>
+                <div style={{ overflowX: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                    <thead>
+                      <tr>
+                        <th style={{ background: "var(--bg-muted)", padding: "10px 14px" }} />
+                        <th style={{ textAlign: "right", padding: "10px 14px", fontSize: 12.5, fontWeight: 700, color: "var(--text-primary)", background: "var(--bg-muted)", whiteSpace: "nowrap" }}>Unadjusted</th>
+                        <th style={{ textAlign: "right", padding: "10px 14px", fontSize: 12.5, fontWeight: 700, color: "var(--text-primary)", background: "var(--bg-muted)", whiteSpace: "nowrap" }}>Holidays &amp; vacation days adjusted</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {ROWS.map((row, i) => (
+                        <tr key={row.key} style={{ background: i % 2 === 0 ? "var(--bg-white)" : "var(--bg-muted)" }}>
+                          <td style={{ padding: "8px 14px", fontSize: 13.5, fontWeight: 600, color: "var(--text-primary)", whiteSpace: "nowrap" }}>{row.label}</td>
+                          <td style={{ padding: "8px 14px", fontSize: 13.5, textAlign: "right", color: "var(--text-secondary)", whiteSpace: "nowrap" }}>{formatCurrency(result.unadjusted[row.key], { decimals: row.decimals })}</td>
+                          <td style={{ padding: "8px 14px", fontSize: 13.5, textAlign: "right", color: "var(--text-secondary)", whiteSpace: "nowrap" }}>{formatCurrency(result.adjusted[row.key], { decimals: row.decimals })}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               )}
             </div>
           </div>

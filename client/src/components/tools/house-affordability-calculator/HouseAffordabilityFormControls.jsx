@@ -123,7 +123,7 @@ export function ResultTable({ title, columns, rows }) {
             <thead>
               <tr style={{ background: "var(--success)", color: "#fff" }}>
                 {columns.map((col, i) => (
-                  <th key={col || i} style={{ textAlign: i === 0 ? "left" : "right", padding: "6px 11px", fontWeight: 700, fontSize: 10.5 }}>
+                  <th key={col || i} style={{ textAlign: i === 0 ? "left" : "right", padding: "6px 11px", fontWeight: 700, fontSize: 10.5, whiteSpace: "nowrap" }}>
                     {col}
                   </th>
                 ))}
