@@ -845,6 +845,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "annuity-calculator",
+        label: "Annuity Calculator",
+        slug: "annuity-calculator",
+        tagline: "Starting principal, annual/monthly additions, and a full schedule",
+        description:
+          "Project how a starting principal plus annual and monthly additions will grow into an annuity, either as an annuity due or an ordinary annuity, with a full accumulation schedule.",
+        icon: "⏳",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/annuity-calculator",
+        legacyPath: "/tools/annuity-calculator",
+        keywords: [
+          "annuity calculator", "annuity due calculator", "ordinary annuity calculator",
+          "immediate annuity calculator", "future value of annuity calculator", "annuity growth calculator",
+          "accumulation schedule", "annuity accumulation calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
