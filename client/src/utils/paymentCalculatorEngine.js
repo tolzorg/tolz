@@ -24,7 +24,7 @@
 const MAX_TERM_YEARS = 100;
 const MAX_SCHEDULE_MONTHS = 1200;
 
-function monthlyRate(annualRatePercent) {
+export function monthlyRate(annualRatePercent) {
   return Math.max(0, (Number(annualRatePercent) || 0) / 100) / 12;
 }
 

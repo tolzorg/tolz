@@ -14,11 +14,17 @@ const PAD_BOTTOM = 40;
  * reference's own chart exactly, including its colors (#2b7ddb / #8bbc21,
  * the same palette as the accumulation Annuity Calculator's own charts).
  * Same structure as AmortizationLineChart, but with only 2 series (no
- * "Payment" line) and this calculator's own colors/labels. */
-export default function AnnuityPayoutLineChart({ lineData, startingPrincipal }) {
+ * "Payment" line) and this calculator's own colors/labels.
+ *
+ * `xKey`/`xLabel`/`interestLabel` are optional overrides (all default to
+ * the Annuity Payout Calculator's own "year"/"Year"/"Interest/return") —
+ * added so the Credit Card Calculator's identically-structured chart
+ * (month-granularity, "Interest" not "Interest/return") can reuse this
+ * component instead of duplicating it. */
+export default function AnnuityPayoutLineChart({ lineData, startingPrincipal, xKey = "year", xLabel = "Year", interestLabel = "Interest/return" }) {
   if (!lineData.length) return null;
 
-  const maxYear = Math.max(...lineData.map((p) => p.year));
+  const maxYear = Math.max(...lineData.map((p) => p[xKey]));
   const maxValue = Math.max(1, startingPrincipal, ...lineData.map((p) => Math.max(p.balance, p.interest)));
 
   const plotW = WIDTH - PAD_LEFT - PAD_RIGHT;
@@ -27,13 +33,21 @@ export default function AnnuityPayoutLineChart({ lineData, startingPrincipal }) 
   const x = (year) => PAD_LEFT + (year / Math.max(1, maxYear)) * plotW;
   const y = (value) => PAD_TOP + plotH - (value / maxValue) * plotH;
 
-  const toPath = (key) => lineData.map((p, i) => `${i === 0 ? "M" : "L"} ${x(p.year).toFixed(2)} ${y(p[key]).toFixed(2)}`).join(" ");
+  const toPath = (key) => lineData.map((p, i) => `${i === 0 ? "M" : "L"} ${x(p[xKey]).toFixed(2)} ${y(p[key]).toFixed(2)}`).join(" ");
 
   const yTicks = [0, 0.25, 0.5, 0.75, 1].map((f) => f * maxValue);
   const xStep = Math.max(1, Math.round(maxYear / 5));
   const xTicks = [];
   for (let yr = 0; yr <= maxYear; yr += xStep) xTicks.push(yr);
-  if (xTicks[xTicks.length - 1] !== maxYear) xTicks.push(maxYear);
+  // Append the exact final point only if it's far enough from the last
+  // regular tick to read cleanly — otherwise replace that tick instead of
+  // adding a second one right next to it (was overlapping into "6062" for
+  // a maxYear like 62 with an xStep of 12).
+  const lastTick = xTicks[xTicks.length - 1];
+  if (lastTick !== maxYear) {
+    if (maxYear - lastTick < xStep / 2) xTicks[xTicks.length - 1] = maxYear;
+    else xTicks.push(maxYear);
+  }
 
   return (
     <div>
@@ -52,7 +66,7 @@ export default function AnnuityPayoutLineChart({ lineData, startingPrincipal }) 
           </text>
         ))}
         <text x={(PAD_LEFT + WIDTH - PAD_RIGHT) / 2} y={HEIGHT - 6} fontSize="10.5" fill="var(--text-secondary)" textAnchor="middle">
-          Year
+          {xLabel}
         </text>
         <line x1={PAD_LEFT} y1={PAD_TOP + plotH} x2={WIDTH - PAD_RIGHT} y2={PAD_TOP + plotH} stroke="var(--text-muted)" strokeWidth="0.5" />
 
@@ -66,7 +80,7 @@ export default function AnnuityPayoutLineChart({ lineData, startingPrincipal }) 
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
           <span style={{ width: 14, height: 3, background: "#8bbc21", display: "inline-block", borderRadius: 2 }} />
-          Interest/return
+          {interestLabel}
         </span>
       </div>
     </div>

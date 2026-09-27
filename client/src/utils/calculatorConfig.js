@@ -887,6 +887,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "credit-card-calculator",
+        label: "Credit Card Calculator",
+        slug: "credit-card-calculator",
+        tagline: "Payoff time or required monthly payment",
+        description:
+          "Calculate how long it will take to pay off a credit card balance at a fixed monthly payment, or the monthly payment needed to pay it off within a certain timeframe.",
+        icon: "💳",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/credit-card-calculator",
+        legacyPath: "/tools/credit-card-calculator",
+        keywords: [
+          "credit card calculator", "credit card payoff calculator", "credit card interest calculator",
+          "credit card payment calculator", "how long to pay off credit card", "credit card debt calculator",
+          "minimum payment calculator", "credit card balance calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
