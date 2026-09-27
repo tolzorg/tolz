@@ -866,6 +866,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "annuity-payout-calculator",
+        label: "Annuity Payout Calculator",
+        slug: "annuity-payout-calculator",
+        tagline: "Fixed length or fixed payment, with a full balance schedule",
+        description:
+          "Calculate your annuity payout amount for a fixed length, or how long a fixed payment amount will last, with a full year-by-year balance schedule.",
+        icon: "📤",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/annuity-payout-calculator",
+        legacyPath: "/tools/annuity-payout-calculator",
+        keywords: [
+          "annuity payout calculator", "annuity withdrawal calculator", "fixed length annuity calculator",
+          "fixed payment annuity calculator", "annuity distribution calculator", "annuity payment calculator",
+          "annuity balances", "retirement payout calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
