@@ -929,6 +929,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "debt-payoff-calculator",
+        label: "Debt Payoff Calculator",
+        slug: "debt-payoff-calculator",
+        tagline: "Debt avalanche payoff schedule for any mix of debts",
+        description:
+          "Build a cost-efficient payoff schedule for multiple debts (loans, mortgages, credit cards) using the debt avalanche method, with optional extra monthly, yearly, and one-time payments.",
+        icon: "📉",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/debt-payoff-calculator",
+        legacyPath: "/tools/debt-payoff-calculator",
+        keywords: [
+          "debt payoff calculator", "debt avalanche calculator", "debt snowball calculator",
+          "multiple debt calculator", "loan payoff calculator", "debt payment schedule",
+          "pay off debt calculator", "debt reduction calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
