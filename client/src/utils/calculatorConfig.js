@@ -950,6 +950,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "debt-consolidation-calculator",
+        label: "Debt Consolidation Calculator",
+        slug: "debt-consolidation-calculator",
+        tagline: "Compare your debts' APR against a consolidation loan",
+        description:
+          "Compare the APR of your existing debts against a proposed consolidation loan, with a full side-by-side monthly payment, payoff length, and total cost breakdown.",
+        icon: "🏦",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/debt-consolidation-calculator",
+        legacyPath: "/tools/debt-consolidation-calculator",
+        keywords: [
+          "debt consolidation calculator", "consolidation loan calculator", "debt consolidation APR",
+          "loan consolidation calculator", "should i consolidate my debt", "consolidate credit card debt",
+          "debt consolidation comparison", "consolidation loan savings calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
