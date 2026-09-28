@@ -908,6 +908,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "credit-card-payoff-calculator",
+        label: "Credit Card Payoff Calculator",
+        slug: "credit-card-payoff-calculator",
+        tagline: "Debt avalanche payback schedule for multiple cards",
+        description:
+          "Build a cost-efficient payback schedule for multiple credit cards using the debt avalanche method, showing how long it takes and how much interest it costs to clear every balance.",
+        icon: "🧾",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/credit-card-payoff-calculator",
+        legacyPath: "/tools/credit-card-payoff-calculator",
+        keywords: [
+          "credit card payoff calculator", "debt avalanche calculator", "multiple credit card calculator",
+          "credit card debt payoff calculator", "debt payoff calculator", "credit card payment schedule",
+          "pay off multiple credit cards", "debt snowball calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

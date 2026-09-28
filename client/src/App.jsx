@@ -31,6 +31,7 @@ const SavingsCalculatorPage = lazy(() => import("./pages/SavingsCalculatorPage")
 const AnnuityCalculatorPage = lazy(() => import("./pages/AnnuityCalculatorPage"));
 const AnnuityPayoutCalculatorPage = lazy(() => import("./pages/AnnuityPayoutCalculatorPage"));
 const CreditCardCalculatorPage = lazy(() => import("./pages/CreditCardCalculatorPage"));
+const CreditCardPayoffCalculatorPage = lazy(() => import("./pages/CreditCardPayoffCalculatorPage"));
 const RentCalculatorPage = lazy(() => import("./pages/RentCalculatorPage"));
 const MarriageTaxCalculatorPage = lazy(() => import("./pages/MarriageTaxCalculatorPage"));
 const EstateTaxCalculatorPage = lazy(() => import("./pages/EstateTaxCalculatorPage"));
@@ -202,6 +203,7 @@ export default function App() {
                 <Route path="/tools/annuity-calculator"             element={<AnnuityCalculatorPage />} />
                 <Route path="/tools/annuity-payout-calculator"      element={<AnnuityPayoutCalculatorPage />} />
                 <Route path="/tools/credit-card-calculator"         element={<CreditCardCalculatorPage />} />
+                <Route path="/tools/credit-card-payoff-calculator"  element={<CreditCardPayoffCalculatorPage />} />
                 <Route path="/tools/rent-calculator"                 element={<RentCalculatorPage />} />
                 <Route path="/tools/marriage-tax-calculator"         element={<MarriageTaxCalculatorPage />} />
                 <Route path="/tools/estate-tax-calculator"           element={<EstateTaxCalculatorPage />} />
@@ -261,6 +263,7 @@ export default function App() {
                 <Route path="/calculators/financial/annuity-calculator"             element={<AnnuityCalculatorPage />} />
                 <Route path="/calculators/financial/annuity-payout-calculator"      element={<AnnuityPayoutCalculatorPage />} />
                 <Route path="/calculators/financial/credit-card-calculator"         element={<CreditCardCalculatorPage />} />
+                <Route path="/calculators/financial/credit-card-payoff-calculator"  element={<CreditCardPayoffCalculatorPage />} />
                 <Route path="/calculators/financial/rent-calculator"                 element={<RentCalculatorPage />} />
                 <Route path="/calculators/financial/marriage-tax-calculator"         element={<MarriageTaxCalculatorPage />} />
                 <Route path="/calculators/financial/estate-tax-calculator"           element={<EstateTaxCalculatorPage />} />
