@@ -4,10 +4,6 @@ import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
   {
-    q: "Is this word finder tool free to use?",
-    a: "Yes. The tool is completely free, with no signup, account creation, or hidden charges required to search or view results.",
-  },
-  {
     q: "Can I use this word finder for Scrabble and Words With Friends?",
     a: "Yes. Search by included letters to find valid words from your tile rack, and check word length and letter values to choose the highest-scoring option before playing your move.",
   },
@@ -17,7 +13,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Does the word finder check for real, valid words?",
-    a: "Yes. Results are matched against a standard dictionary word list (the ENABLE word list, over 172,000 entries), so every word returned is a genuine, spellable word rather than a random letter combination.",
+    a: "Yes. Results are matched against a standard dictionary word list, so every word returned is a genuine, spellable word rather than a random letter combination.",
   },
   {
     q: "Can I search by ending letters instead of starting letters?",
@@ -41,7 +37,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Can I search for words that start with one letter and end with another?",
-    a: "Yes. Use a pattern search with the known letters in place and blanks for the rest to find words that match both conditions at once — for example, a 5-letter pattern with the first and last letters filled in.",
+    a: "Yes. Combine the starting-letters and ending-letters filters, or use a pattern search with the known letters in place and blanks for the rest, to find words that match both conditions at once.",
   },
   {
     q: "How do I find words of a specific length, like 5-letter words?",
@@ -49,7 +45,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Does this word finder support blank tiles or wildcards?",
-    a: "Yes. Represent an unknown letter, such as a Scrabble blank tile, with an open slot in the pattern search, and the tool returns every word that fits regardless of which letter fills that spot.",
+    a: "Yes. Represent an unknown letter, such as a Scrabble blank tile, with a wildcard placeholder in the pattern search, and the tool returns every word that fits regardless of which letter fills that spot.",
   },
   {
     q: "Can I filter results by letter order or position?",
@@ -61,15 +57,15 @@ const FAQ_ITEMS = [
   },
   {
     q: "What dictionary does this tool use?",
-    a: "It draws on the ENABLE word list, a broad, standard public-domain dictionary built for word games, rather than a single official tournament list like TWL06 or SOWPODS, so for close competitive calls, double-check against your specific game's checker.",
+    a: "It draws on a broad, standard dictionary word list rather than a single official tournament list like TWL06, SOWPODS, or ENABLE, so for close competitive calls, double-check against your specific game's checker.",
   },
   {
     q: "How do I use wildcards or blank letters for Scrabble?",
-    a: "Enter your known letters and leave an open slot for the blank tile in the pattern search. The tool returns every valid word that fits, with the blank able to represent any letter.",
+    a: "Enter your known letters and use a wildcard placeholder for the blank tile in the pattern search. The tool returns every valid word that fits, with the blank able to represent any letter.",
   },
   {
     q: "What are the highest-scoring words I can make with my letters?",
-    a: "Search using all the letters on your rack, then sort results by Scrabble score to see the highest-scoring options first, since high-value letters like Q, Z, X, and J combined with a premium board square usually produce the biggest score.",
+    a: "Search using all the letters on your rack, then compare the results by length and by how many high-value letters, Q, Z, X, J, they use, since these combined with a premium board square usually produce the biggest score.",
   },
   {
     q: "What are the best 5-letter words to open Wordle with?",
@@ -77,12 +73,35 @@ const FAQ_ITEMS = [
   },
   {
     q: "What is the longest word I can make with these letters?",
-    a: "Search using every letter you're holding and sort by length; the longest valid word returned is generally your strongest play, especially if it uses all seven tiles in Scrabble for a bingo bonus.",
+    a: "Search using every letter you're holding; the longest valid word returned is generally your strongest play, especially if it uses all seven tiles in Scrabble for a bingo bonus.",
+  },
+  {
+    q: "How can I find words containing only vowels or only consonants?",
+    a: "The tool supports searching for words made up entirely of vowels or entirely of consonants, which is useful when a board position calls for a very specific letter mix.",
   },
   {
     q: "Are proper nouns, acronyms, or slang included in the results?",
     a: "No. Results are limited to standard dictionary entries, since proper nouns, acronyms, and slang are typically not valid plays in games like Scrabble or Words With Friends anyway.",
   },
+  {
+    q: "How do I find anagrams for a phrase or word?",
+    a: "Enter the word or phrase into the search, and the tool returns every valid rearrangement of those letters, not just the original spelling.",
+  },
+];
+
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "Is this word finder tool free to use?",
+    a: "Yes. The tool is completely free, with no signup, account creation, or hidden charges required to search or view results.",
+  },
+  ...FAQ_ITEMS.map((item) =>
+    item.q === "What are the highest-scoring words I can make with my letters?"
+      ? {
+          q: item.q,
+          a: "Search using all the letters on your rack, then compare results by length and by how many high-value letters, such as Q, Z, X, and J, they use, since these combined with a premium board square usually produce the biggest score.",
+        }
+      : item
+  ),
 ];
 
 const h2Style = {
@@ -130,7 +149,7 @@ export default function WordFinderFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -162,7 +181,7 @@ export default function WordFinderFaqSection() {
           blanks, and it returns the possible matches.
         </p>
         <p style={pStyle}>
-          This tool supports several core search methods, which cover nearly every situation a word game
+          This tool supports four core search methods, which cover nearly every situation a word game
           or puzzle can throw at you:
         </p>
         <ul style={ulStyle}>
@@ -186,12 +205,16 @@ export default function WordFinderFaqSection() {
           </li>
         </ul>
         <p style={{ ...pStyle, marginTop: 10 }}>
-          Beyond these core methods, you can also narrow results by word length, so if you specifically
+          Beyond these four core methods, you can also narrow results by word length, so if you specifically
           need five-letter words for Wordle or seven-letter words for a Scrabble bingo, you can filter
           straight to that length instead of scrolling past irrelevant matches. Letter order and position
           matter too: a pattern search respects the exact position of each known letter, while an
           included-letters search treats letters as unordered, the difference between asking whether a word
-          contains a T anywhere versus whether T is specifically the third letter.
+          contains a T anywhere versus whether T is specifically the third letter. If you're working with an
+          awkward rack, you can also search for words made up of only vowels or only consonants, which is a
+          niche but genuinely useful option when a board position calls for a very specific letter mix. And
+          for phrase-based wordplay, entering a full word or phrase and searching for anagrams surfaces every
+          valid rearrangement of those letters, not just the original spelling.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Behind each search is a standard dictionary reference, so results are real, playable words rather
@@ -265,11 +288,11 @@ export default function WordFinderFaqSection() {
           and can trigger bonus scoring if they use all seven tiles on your rack in Scrabble.
         </p>
         <p style={pStyle}>
-          If your rack includes a blank tile, you can represent it with an open slot in the pattern search,
-          leaving a blank in place of the unknown letter returns every word that fits regardless of which
-          letter fills that spot, mirroring exactly how a blank tile works at the table. This is also the
-          fastest way to find the highest-scoring word available to you: search using every letter on your
-          rack, including any blanks, then sort the results by Scrabble score and compare how many
+          If your rack includes a blank tile, you can represent it with a wildcard placeholder in the pattern
+          search, entering a blank in place of the unknown letter returns every word that fits regardless of
+          which letter fills that spot, mirroring exactly how a blank tile works at the table. This is also
+          the fastest way to find the highest-scoring word available to you: search using every letter on
+          your rack, including any blanks, then compare the results by length and by how many
           high-value letters, Q, Z, X, J, they use, since those combined with a premium square typically
           produce the biggest score. If you want to know the absolute ceiling for a given rack, the longest
           word returned that still fits your available letters is usually your strongest play, especially
@@ -277,10 +300,10 @@ export default function WordFinderFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           It's worth being upfront that this is an independent reference tool, not an official Scrabble or
-          Words With Friends product, and it isn't affiliated with either game's publisher. It draws on the
-          ENABLE word list, a broad, standard public-domain dictionary built for word games, rather than a
-          single official tournament word list such as TWL06 or SOWPODS, so because Words With
-          Friends and Scrabble also use slightly different official word lists from each other, it's good
+          Words With Friends product, and it isn't affiliated with either game's publisher. It draws on a
+          broad, standard dictionary rather than a single official tournament word list such as TWL06,
+          SOWPODS, or ENABLE, so because Words With Friends and Scrabble also use slightly different official
+          word lists from each other, it's good
           practice to double-check unusual or obscure results against your specific game's built-in checker
           before playing them, especially in ranked or competitive matches.
         </p>

@@ -8,8 +8,8 @@ export default function CalorieTrackerPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Free Calorie Tracker & Calculator Online"
-      seoDescription="Calculate daily calories, BMR & TDEE instantly with Tolz's free calorie tracker. No signup, no charges, just accurate results in seconds."
+      seoTitle="Free Calorie Calculator Online | BMI, TDEE & Macros"
+      seoDescription="Calculate your BMI, daily calorie needs (TDEE), macros, and water intake for free. Get personalized meal suggestions instantly, no signup required."
       footer={<CalorieTrackerFaqSection />}
       wide
     >

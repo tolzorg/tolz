@@ -44,6 +44,49 @@ const FAQ_ITEMS = [
   },
 ];
 
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "What is the difference between amortization and a regular loan payment?",
+    a: "Amortization describes how a fixed loan payment is internally split between interest and principal over time, and how that split changes as the balance goes down.",
+  },
+  {
+    q: "Does making extra payments always save money?",
+    a: "In most cases, yes, since extra payments reduce the principal balance that future interest is calculated on. If your rate is very low, the savings may be smaller than what that money could earn elsewhere.",
+  },
+  {
+    q: "Why does my early payment go mostly toward interest?",
+    a: "Interest is calculated on your current outstanding balance, which is highest at the start of the loan. As the balance shrinks, less interest accrues, so more of each payment shifts toward principal.",
+  },
+  {
+    q: "What is the tipping point or crossover point in an amortization schedule?",
+    a: "It's the point where the principal portion of a payment becomes larger than the interest portion. On a typical 30-year mortgage this lands around year 18-19; on a 15-year mortgage it arrives by year three or four.",
+  },
+  {
+    q: "Can I use this calculator for a mortgage, car loan, or personal loan?",
+    a: "Yes. The same amortization logic applies to any fixed-rate installment loan, including mortgages, auto loans, personal loans, and student loans.",
+  },
+  {
+    q: "How does an adjustable-rate loan (ARM) affect amortization?",
+    a: "After the initial fixed period ends, an ARM's rate adjusts with the market, and the lender builds a new amortization schedule using the current balance, the new rate, and the years remaining on the original term.",
+  },
+  {
+    q: "Should I refinance if I'm partway through my loan?",
+    a: "If you're still in the interest-heavy early years, a lower-rate refinance can save money. If you've already paid down significant principal, restarting the amortization clock can sometimes cost more in total interest.",
+  },
+  {
+    q: "How accurate is an online amortization calculator compared to my lender's numbers?",
+    a: "The calculation method mirrors standard lending formulas, so figures should closely match your lender's schedule as long as the loan amount, rate, and term entered are accurate.",
+  },
+  {
+    q: "Is this amortization calculator really free with no signup required?",
+    a: "Yes. There is no account creation, no payment information required, and no hidden fees.",
+  },
+  {
+    q: "What's the best extra payment strategy - monthly, yearly, or one-time?",
+    a: "It depends on cash flow. Consistent extra monthly payments tend to produce the most cumulative interest savings, while yearly lump sums or one-time payments can still meaningfully shorten a loan.",
+  },
+];
+
 const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
@@ -127,7 +170,7 @@ export default function AmortizationCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

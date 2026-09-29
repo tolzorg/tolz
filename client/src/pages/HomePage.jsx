@@ -1,9 +1,48 @@
 ﻿import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { TOOLS, CATEGORIES } from "../utils/tools";
+import { CALCULATOR_CATEGORIES } from "../utils/calculatorConfig";
 import ToolCard from "../components/tools/ToolCard";
 import SEO from "../components/SEO";
 import JsonLd from "../components/JsonLd";
+
+// Maps a calculator tool's own `subCategory` tag (from utils/tools.js) to the
+// top-level calculator category it belongs to in CALCULATOR_CATEGORIES, so the
+// "Calculators" filter can group results the same way the dedicated
+// /calculators/* hub pages do, instead of showing one flat grid.
+const SUBCATEGORY_TO_CALC_CATEGORY = {
+  "health-calc": "health",
+  "everyday": "everyday-life",
+  "construction-calc": "construction",
+  "construction-materials": "construction",
+  "garden-calc": "garden",
+  "financial-calc": "financial",
+};
+
+function groupByCalculatorCategory(tools) {
+  const groupsById = new Map();
+  const other = [];
+
+  for (const tool of tools) {
+    const catId = SUBCATEGORY_TO_CALC_CATEGORY[tool.subCategory];
+    if (!catId) {
+      other.push(tool);
+      continue;
+    }
+    if (!groupsById.has(catId)) groupsById.set(catId, []);
+    groupsById.get(catId).push(tool);
+  }
+
+  const groups = CALCULATOR_CATEGORIES
+    .filter((cat) => groupsById.has(cat.id))
+    .map((cat) => ({ id: cat.id, name: cat.name, icon: cat.icon, tools: groupsById.get(cat.id) }));
+
+  if (other.length > 0) {
+    groups.push({ id: "other", name: "Other Calculators", icon: "🧮", tools: other });
+  }
+
+  return groups;
+}
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -15,6 +54,11 @@ export default function HomePage() {
 
   const availableTools = filteredTools.filter((t) => t.available);
   const comingTools = filteredTools.filter((t) => !t.available);
+
+  const availableCalculatorGroups = useMemo(() => {
+    if (activeCategory !== "utility") return null;
+    return groupByCalculatorCategory(availableTools);
+  }, [activeCategory, availableTools]);
 
   const totalAvailable = TOOLS.filter((t) => t.available).length;
   const totalTools = TOOLS.length;
@@ -218,17 +262,53 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
-                  gap: 14,
-                }}
-              >
-                {availableTools.map((tool, i) => (
-                  <ToolCard key={tool.id} tool={tool} animDelay={i * 60} />
-                ))}
-              </div>
+              {availableCalculatorGroups ? (
+                <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+                  {availableCalculatorGroups.map((group) => (
+                    <div key={group.id}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+                        <span style={{ fontSize: 16 }} aria-hidden="true">{group.icon}</span>
+                        <div
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            fontWeight: 700,
+                            fontSize: 14,
+                            color: "var(--text-primary)",
+                          }}
+                        >
+                          {group.name}
+                        </div>
+                        <span style={{ fontSize: 11, opacity: 0.6, fontWeight: 600 }}>
+                          {group.tools.length}
+                        </span>
+                      </div>
+                      <div
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+                          gap: 14,
+                        }}
+                      >
+                        {group.tools.map((tool, i) => (
+                          <ToolCard key={tool.id} tool={tool} animDelay={i * 60} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+                    gap: 14,
+                  }}
+                >
+                  {availableTools.map((tool, i) => (
+                    <ToolCard key={tool.id} tool={tool} animDelay={i * 60} />
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

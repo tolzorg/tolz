@@ -99,22 +99,9 @@ export default function IdPhotoGeneratorFaqSection() {
     })),
   };
 
-  const softwareAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "ID Photo Generator (Print Studio)",
-    url: "https://www.tolz.org/tools/id-photo-generator",
-    applicationCategory: "PhotoEditingApplication",
-    operatingSystem: "Any (Web-based)",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free online passport photo maker and ID photo generator. Crop photos to official passport, visa, ID, or studio templates, lay out print sheets with safe/cut/bleed guides, and export as PDF, PNG, or JPEG.",
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={softwareAppSchema} />
 
       {/* Intro */}
       <div className="card" style={cardStyle}>

@@ -68,8 +68,8 @@ export default function ImageConverterPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Free Image Converter – Convert Images Online"
-      seoDescription="Convert images online for free with the Tolz Image Converter. Change PNG, JPG, WebP, HEIC and more formats in seconds — no signup, no watermark, secure."
+      seoTitle="Free Image Converter Online - JPG, PNG, PDF & OCR"
+      seoDescription="Convert images to JPG, PNG, PDF and more, or extract text with OCR. Free, fast, and secure image converter online, no signup required."
       footer={<ImageConverterFaqSection />}
     >
       <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 24 }}>

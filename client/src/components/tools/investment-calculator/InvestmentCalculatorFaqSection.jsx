@@ -41,6 +41,46 @@ const FAQ_ITEMS = [
   },
 ];
 
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "How accurate is an online investment calculator?",
+    a: "The math itself is exact, since future value calculations based on compound interest follow a fixed formula. The accuracy of the real-world outcome depends on how closely the assumed rate of return and contribution schedule match actual results, since markets don't grow at a constant rate every year.",
+  },
+  {
+    q: "What rate of return should I use for a realistic projection?",
+    a: "There is no single correct number, since it depends on the mix of investments held. Running the calculator at a conservative, moderate, and optimistic rate gives a range of outcomes rather than one figure that may not materialize.",
+  },
+  {
+    q: "Can this calculator account for monthly contributions instead of a single deposit?",
+    a: "Yes. You can enter a starting amount, a recurring contribution, and the contribution frequency, and the calculator compounds both the initial amount and each contribution based on the time remaining for each.",
+  },
+  {
+    q: "How is this different from a compound interest calculator?",
+    a: "A standard compound interest calculator usually shows growth on a single deposit. This tool also supports recurring contributions and can solve backward for the contribution amount, rate of return, or time needed to reach a target.",
+  },
+  {
+    q: "Does the calculator account for inflation?",
+    a: "Not automatically, since inflation assumptions vary. To approximate real purchasing power, subtract an estimated inflation rate from the expected return before entering it.",
+  },
+  {
+    q: "Is my financial information kept private when I use this tool?",
+    a: "Yes. Nothing entered into the calculator is stored or transmitted for storage, and no signup or personal information is required to use it.",
+  },
+  {
+    q: "How do I figure out how much to invest monthly to reach a specific goal?",
+    a: "Enter the target amount, current savings, expected rate of return, and time horizon, then set the calculator to solve for the required contribution instead of the future value.",
+  },
+  {
+    q: "What counts as additional contribution in an investment calculation?",
+    a: "It refers to money added to the investment on a recurring basis after the initial amount, sometimes called an annuity payment. It is optional, since a lump sum left alone will still grow, but regular contributions increase the end balance because each one compounds separately for whatever time remains.",
+  },
+  {
+    q: "Can I use this calculator for stocks, bonds, real estate, or gold, not just cash savings?",
+    a: "Yes. Any investment that can be described using a starting amount, a rate of return, and a length of time fits the calculator, including certificates of deposit, bonds, stocks or funds, rental property, or commodities such as gold. The main challenge with these assets is choosing a realistic return rate, since unlike a fixed-rate CD, returns on stocks, real estate, and commodities fluctuate and are usually based on historical averages or forecasts.",
+  },
+];
+
+
 const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
@@ -86,7 +126,7 @@ export default function InvestmentCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

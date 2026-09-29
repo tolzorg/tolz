@@ -8,7 +8,7 @@ export default function InterestCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Compound Interest Calculator - Free"
+      seoTitle="Compound Interest Calculator - Free| Tolz"
       seoDescription="Calculate compound interest on a lump sum plus monthly or annual contributions. Adjust for taxes and inflation. Free, no signup, instant results."
       footer={<InterestCalculatorFaqSection />}
       wide

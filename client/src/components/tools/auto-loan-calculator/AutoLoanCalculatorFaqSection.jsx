@@ -21,7 +21,54 @@ const FAQ_ITEMS = [
   },
   {
     q: "Are manufacturer rebates taxed?",
-    a: "It depends on the state. In many states, sales tax is calculated on the vehicle's price before the rebate is subtracted, so the rebate doesn't reduce your taxable amount. A number of other states, including Texas, Oregon, and Pennsylvania, don't tax rebates this way. Selecting your state in the calculator applies the right rule automatically.",
+    a: "It depends on the state. In many states, sales tax is calculated on the vehicle's price before the rebate is subtracted, so the rebate doesn't reduce your taxable amount. A number of other states, including Texas, Oregon, and Pennsylvania, don't tax rebates this way. Confirming your state's current treatment is worth doing before you finalize your budget.",
+  },
+  {
+    q: "What credit score do I need for the best auto loan rate?",
+    a: "Lenders generally reserve their lowest advertised APRs for borrowers with scores in the high 700s and above, though rates are offered across a range of credit tiers. Checking your score before applying helps you set a realistic rate expectation when using the calculator.",
+  },
+  {
+    q: "Is it better to choose a longer or shorter auto loan term?",
+    a: "A shorter term means a higher monthly payment but less total interest paid and faster equity buildup. A longer term lowers the monthly payment but increases total interest cost and raises the risk of owing more than the car is worth. The right choice depends on your monthly budget versus your total cost priorities.",
+  },
+  {
+    q: "How much should I put down on a car?",
+    a: "A down payment between 15% and 20% of the vehicle's total cost is a reasonable target for most buyers. Putting down more reduces your loan principal, your monthly payment, and your total interest cost, while also lowering the chance of ending up upside-down on the loan.",
+  },
+  {
+    q: "Is it better to pay cash or finance a car?",
+    a: "Paying cash avoids interest entirely and removes any risk of owing more than the car is worth, while financing can make sense if you can secure a very low rate and have a better use for your cash elsewhere, or if you're using the loan to build credit history through consistent on-time payments.",
+  },
+  {
+    q: "Can I pay off my auto loan early to save on interest?",
+    a: "In most cases, yes, paying extra toward principal or paying off the loan ahead of schedule reduces total interest paid. Some lenders include prepayment penalties or restrictions, though, so it's worth checking your loan agreement before counting on an early payoff.",
+  },
+  {
+    q: "Is this auto loan calculator really free with no signup required?",
+    a: "Yes. There's no account creation, no email requirement, and no hidden fees to use the calculator or view your full amortization schedule.",
+  },
+];
+
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "How accurate is an online auto loan calculator?",
+    a: "An auto loan calculator is highly accurate for the math itself, since it uses the same amortization formula lenders use. The variable that can shift your real-world payment is the exact APR a lender offers you, which depends on your credit profile and the lender's underwriting at the time of application.",
+  },
+  {
+    q: "Does a car loan calculator include sales tax?",
+    a: "Not all of them do, but this one does. You can enter your local sales tax rate so it's factored into your loan amount, which gives you a more realistic total cost than calculators that only account for the vehicle price and interest rate.",
+  },
+  {
+    q: "How does a trade-in affect my auto loan payment?",
+    a: "Your trade-in value is typically subtracted from the vehicle price before your loan amount is calculated, and in most states it also reduces the amount subject to sales tax. A handful of states, including California, Hawaii, and Virginia, don't offer this tax reduction, so it's worth checking your state's rule before assuming your trade-in will lower your tax bill.",
+  },
+  {
+    q: "What's the difference between dealership financing and direct lending?",
+    a: "Direct lending means securing a loan from a bank or credit union before you buy, then paying the dealer with those funds. Dealership financing means the loan is arranged through the dealer, often with a lender tied to the manufacturer. Direct lending generally gives buyers more negotiating leverage, while dealership financing is more convenient for buyers who'd rather not shop lenders themselves.",
+  },
+  {
+    q: "Are manufacturer rebates taxed?",
+    a: "It depends on the state. In many states, sales tax is calculated on the vehicle's price before the rebate is subtracted, so the rebate doesn't reduce your taxable amount. A number of other states, including Texas, Oregon, and Pennsylvania, don't tax rebates this way.",
   },
   {
     q: "What credit score do I need for the best auto loan rate?",
@@ -94,7 +141,7 @@ export default function AutoLoanCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -253,7 +300,6 @@ export default function AutoLoanCalculatorFaqSection() {
           Massachusetts, Minnesota, Missouri, Montana, Nebraska, New Hampshire, Oklahoma, Oregon,
           Pennsylvania, Rhode Island, Texas, Utah, Vermont, and Wyoming. Rules can change, so it's worth
           confirming current treatment with your state's tax authority before finalizing your numbers.
-          Selecting your state in the calculator applies the right rule for you automatically.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Rebates are also typically limited to new vehicles. A handful of used car dealers offer cash

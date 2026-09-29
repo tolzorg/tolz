@@ -8,8 +8,8 @@ export default function RentCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Rent Calculator - How Much Rent Can I Afford?"
-      seoDescription="Find out how much rent you can afford based on your income and monthly debt, using the same 28%/36% guidelines lenders use for mortgages. Free, fast, and no signup required."
+      seoTitle="Rent Calculator: How Much Rent Can I Afford? | Tolz"
+      seoDescription=" Use this free rent calculator to see how much rent you can afford based on gross income and monthly debt, using the 28/36 rule lenders rely on. No signup."
       footer={<RentCalculatorFaqSection />}
       wide
     >

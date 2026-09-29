@@ -8,7 +8,7 @@ export default function WordFinderPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Word Finder - Find Words by Letters Free"
+      seoTitle="Word Finder - Find Words by Letters Free | Tolz"
       seoDescription="Find words by starting letters, ending letters, or pattern instantly. Free word finder for Scrabble, Words With Friends & Wordle. No signup."
       footer={<WordFinderFaqSection />}
     >

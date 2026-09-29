@@ -8,8 +8,8 @@ export default function SavingsCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Savings Calculator - Free Online Savings Growth Projector"
-      seoDescription="Project how your savings will grow with an initial deposit plus growing annual and monthly contributions. See your end balance, interest earned, and a full accumulation schedule. Free, fast, and no signup required."
+      seoTitle="Savings Calculator -  Free Online Tool to Project Growth"
+      seoDescription="See how your savings grow over time with deposits, monthly contributions, interest, and taxes factored in. Free savings calculator, no signup needed."
       footer={<SavingsCalculatorFaqSection />}
       wide
     >

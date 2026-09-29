@@ -4,6 +4,61 @@ import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
   {
+    q: "Does this calculator handle loans where interest compounds more often than I make payments?",
+    a: "Yes. You can set compounding frequency and payment frequency independently, which reflects how many real loans are actually structured rather than assuming both are identical.",
+  },
+  {
+    q: "What is a deferred payment loan, and how is it different from a regular loan?",
+    a: "A deferred payment loan has no scheduled periodic payments. Interest accrues and compounds on the balance until a set maturity date, at which point the full principal and accumulated interest are due in one payment.",
+  },
+  {
+    q: "How does the bond present value calculation work?",
+    a: "It takes a bond's known face value, the time remaining until maturity, and a discount rate, then calculates what that future amount is worth in today's terms by discounting it back over the remaining period.",
+  },
+  {
+    q: "Can I see how much of each payment goes toward interest versus principal?",
+    a: "Yes. The tool generates a full period-by-period amortization schedule showing the interest portion, principal portion, and remaining balance for every payment period.",
+  },
+  {
+    q: "Is my financial information stored when I use this calculator?",
+    a: "No. Calculations are processed for your session only; no loan or personal financial details are saved or stored on a server.",
+  },
+  {
+    q: "Why does changing the compounding frequency change my total interest so much?",
+    a: "More frequent compounding means interest is calculated and added to the balance more often, which increases the amount interest is charged on over time, even if the nominal annual rate stays the same.",
+  },
+  {
+    q: "Can this calculator help me decide whether to refinance a loan?",
+    a: "Yes. By checking the remaining balance at a specific future period in the schedule, you can compare it against a new loan's terms to see whether refinancing at that point would reduce your total cost.",
+  },
+  {
+    q: "What's the difference between an amortized loan, a deferred payment loan, and a bond?",
+    a: "An amortized loan is paid off through regular fixed payments over time. A deferred payment loan has no payments until the full balance is due in one lump sum at maturity. A bond pays a predetermined face value at maturity and, depending on the type, may also pay periodic interest along the way.",
+  },
+  {
+    q: "What's the difference between a coupon bond and a zero-coupon bond?",
+    a: "A coupon bond pays the holder periodic interest based on a percentage of the face value, in addition to the face value at maturity. A zero-coupon bond pays no periodic interest; instead, it's sold at a discount to its face value, and the return comes from that gap when the face value is paid at maturity. This calculator is built for the zero-coupon case.",
+  },
+  {
+    q: "What's the difference between APR and APY?",
+    a: "APR (annual percentage rate) is typically used for loans and includes interest plus most fees. APY (annual percentage yield) is typically used for deposit accounts and reflects the effect of compounding on returns. They aren't directly comparable to each other without adjusting for what each one includes.",
+  },
+  {
+    q: "What's the difference between a secured and an unsecured loan?",
+    a: "A secured loan requires collateral, such as a home or vehicle, which the lender can claim if the borrower defaults. An unsecured loan has no collateral and relies on the borrower's credit profile instead, which typically means higher interest rates and stricter approval requirements.",
+  },
+  {
+    q: "What do lenders look at when evaluating an unsecured loan application?",
+    a: "Lenders commonly weigh five factors: character (credit and repayment history), capacity (ability to repay based on income versus debt), capital (other assets available), collateral (if applicable), and conditions (broader lending and economic factors).",
+  },
+  {
+    q: "Does a longer loan term always cost more?",
+    a: "A longer term lowers your individual payment amount but increases the total interest paid over the life of the loan, since interest has more time to accrue. A shorter term raises the payment but reduces total interest paid.",
+  },
+];
+
+const FAQ_SCHEMA_ITEMS = [
+  {
     q: "Is this loan calculator free to use?",
     a: "Yes. The calculator is completely free, with no signup, account creation, or hidden charges required to view results or the full amortization schedule.",
   },
@@ -106,7 +161,7 @@ export default function LoanCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

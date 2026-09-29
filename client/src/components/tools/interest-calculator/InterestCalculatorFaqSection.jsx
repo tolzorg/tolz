@@ -45,6 +45,45 @@ const FAQ_ITEMS = [
   },
 ];
 
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "How is compound interest different from simple interest?",
+    a: "Simple interest is calculated only on your original principal, so it grows at a constant amount each period. Compound interest is calculated on the principal plus any interest already earned, so the growth amount increases over time.",
+  },
+  {
+    q: "What is the Rule of 72?",
+    a: "It is a shortcut for estimating how long an investment takes to double: divide 72 by the annual interest rate. It is most accurate for rates between roughly 6% and 10%.",
+  },
+  {
+    q: "Does this calculator handle floating or variable interest rates?",
+    a: "No, this calculator is built for fixed interest rates that stay constant for the full term. Floating rates move with a reference benchmark and cannot be projected with a fixed growth formula.",
+  },
+  {
+    q: "Does it matter if contributions are added at the start or end of a period?",
+    a: "Yes, slightly. A contribution added at the start of a compounding period earns interest during that period, while one added at the end does not start earning interest until the next period.",
+  },
+  {
+    q: "How often should interest compound for the best return?",
+    a: "More frequent compounding, such as daily or monthly, produces a slightly higher effective return than less frequent compounding at the same nominal rate, because interest starts earning interest sooner.",
+  },
+  {
+    q: "Should I make monthly or annual contributions?",
+    a: "Monthly contributions typically produce a marginally higher balance than an equivalent annual contribution, since smaller amounts are added and start compounding sooner throughout the year.",
+  },
+  {
+    q: "Does this calculator account for taxes on interest?",
+    a: "Yes. Users can enter a tax rate, and the calculator reduces interest earned at each compounding period accordingly, producing an after-tax projection.",
+  },
+  {
+    q: "Is this compound interest calculator free to use?",
+    a: "Yes, the calculator is free to use with no signup or hidden charges required.",
+  },
+  {
+    q: "Is my financial data safe when I use this tool?",
+    a: "The figures entered are used only to run the calculation in the browser and are not stored or transmitted, keeping financial details private.",
+  },
+];
+
 const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
@@ -89,7 +128,7 @@ export default function InterestCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

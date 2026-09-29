@@ -8,8 +8,8 @@ export default function MarriageTaxCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Marriage Tax Calculator - Marriage Penalty or Bonus Estimator"
-      seoDescription="Estimate the financial impact of filing a joint tax return as a married couple vs. each spouse filing on their own, based on U.S. federal income tax brackets. Free, fast, and no signup required."
+      seoTitle="Marriage Tax Calculator - Free Joint vs Single Filing"
+      seoDescription="Estimate how marriage affects your taxes. Compare joint vs single filing using 2025 IRS brackets - free, instant, no signup required."
       footer={<MarriageTaxCalculatorFaqSection />}
       wide
     >

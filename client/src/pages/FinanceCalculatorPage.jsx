@@ -8,8 +8,8 @@ export default function FinanceCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Finance Calculator - Free Online TVM (N, I/Y, PV, PMT, FV) Calculator"
-      seoDescription="Solve for future value, payment, interest rate, number of periods, or present value with this free 5-key time-value-of-money calculator. Works like a BA II Plus or HP 12C."
+      seoTitle="Financial Calculator Online - Free TVM Calculator | Tolz"
+      seoDescription="Solve future value, present value, payment, rate, or periods free online. Same 5-key TVM logic as a BA II Plus or HP 12C. No signup needed."
       footer={<FinanceCalculatorFaqSection />}
       wide
     >

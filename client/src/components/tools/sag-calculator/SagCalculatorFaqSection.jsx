@@ -95,23 +95,9 @@ export default function SagCalculatorFaqSection() {
     })),
   };
 
-  const softwareAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "SAG Calculator",
-    url: "https://www.tolz.org/calculators/construction/sag",
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free online SAG calculator that solves for sagitta, radius of curvature, or diameter of a circular arc. Enter any two known values and the third is calculated instantly.",
-    isAccessibleForFree: true,
-    publisher: { "@type": "Organization", name: "Tolz", url: "https://www.tolz.org/" },
-  };
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
-      <JsonLd data={softwareAppSchema} />
 
       {/* What is sagitta */}
       <div className="card" style={cardStyle}>

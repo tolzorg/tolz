@@ -32,6 +32,53 @@ const FAQ_ITEMS = [
     a: "Live rate conversion requires a connection to fetch current market data. However, if you already know the exchange rate you want to use, the custom rate mode lets you calculate a conversion manually without needing live data.",
   },
   {
+    q: "Is my data stored when I use the currency calculator?",
+    a: "No personal data or conversion history is stored or linked to your identity. Each conversion is calculated instantly without saving a record tied to you.",
+  },
+  {
+    q: "Which currencies can I convert with this tool?",
+    a: "The calculator supports a wide range of major and commonly traded world currencies, letting you convert between virtually any currency pair you need for travel, business, or shopping.",
+  },
+  {
+    q: "Is it better to exchange money before I travel or after I arrive?",
+    a: "Generally, exchanging at least some money domestically before you leave works out better, since you'll have more time to compare rates and won't be under pressure in an unfamiliar location. Airport kiosks and tourist-area exchange counters typically offer the weakest rates and highest fees.",
+  },
+  {
+    q: "Can I use this to compare prices when shopping from an international website?",
+    a: "Yes. Entering the listed price and converting it to your home currency gives you a clear, real-time comparison before you complete a purchase.",
+  },
+];
+
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "Is this currency calculator free to use?",
+    a: "Yes. The tool is completely free, with no signup, subscription, or hidden fees required to convert between currencies.",
+  },
+  {
+    q: "Does this tool use real-time exchange rates?",
+    a: "Yes, by default it uses a live market exchange rate. You also have the option to enter a custom rate manually if you want to calculate using a specific rate instead of the current market one.",
+  },
+  {
+    q: "Why is the rate here different from what my bank offered me?",
+    a: "Banks and payment providers usually add a margin or spread on top of the real market rate. This calculator shows the mid-market rate, which is the benchmark rate before any provider markup is added.",
+  },
+  {
+    q: "What is a currency pair, and which currency comes first?",
+    a: "A currency pair shows the value of one currency against another, written as base currency/quote currency, for example EUR/USD. The base currency is always treated as one unit, and the quote shows how much of the second currency equals that one unit.",
+  },
+  {
+    q: "Why do exchange rates keep changing?",
+    a: "Exchange rates move because of continuous trading activity in the global forex market, influenced by inflation, interest rates, trade balances, political stability, and overall economic performance.",
+  },
+  {
+    q: "What's the difference between the bid price and the ask price?",
+    a: "The bid price is what a buyer is willing to pay for a currency, and the ask price is what a seller wants to receive. The gap between them, the bid-ask spread, is typically where banks and brokers build in their profit.",
+  },
+  {
+    q: "Can I use this currency calculator without an internet connection?",
+    a: "Live rate conversion requires a connection to fetch current market data. However, if you already know the exchange rate you want to use, the custom rate mode lets you calculate a conversion manually without needing live data.",
+  },
+  {
     q: "Do I need to create an account to use this tool?",
     a: "No. There is no signup or account creation required. You can use the calculator directly on the page at any time.",
   },
@@ -98,7 +145,7 @@ export default function CurrencyCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

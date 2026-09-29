@@ -53,6 +53,57 @@ const FAQ_ITEMS = [
   },
 ];
 
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "How much money do I need to retire comfortably?",
+    a: "A common starting estimate is about 25 times your expected annual retirement spending, based on a 4% withdrawal rate. The exact figure depends on your lifestyle, retirement age, other income sources, and how long retirement lasts.",
+  },
+  {
+    q: "What is the 4% rule in retirement planning?",
+    a: "The 4% rule estimates the nest egg needed to support a given level of annual spending in retirement by dividing expected annual spending by 4%. For example, $100,000 in annual spending points to a target of $2.5 million.",
+  },
+  {
+    q: "What is the 80% rule for retirement income?",
+    a: "It's a guideline suggesting most people can maintain their pre-retirement standard of living on roughly 70% to 80% of their pre-retirement income, since certain work-related expenses disappear after retiring.",
+  },
+  {
+    q: "How much of my income does Social Security actually replace?",
+    a: "In the U.S., Social Security is generally designed to replace about 40% of the average worker's pre-retirement income, so most plans treat it as a supplement rather than a sole source of income.",
+  },
+  {
+    q: "What information do I need to use this retirement calculator?",
+    a: "You typically need your current age, planned retirement age, current savings, expected monthly contribution, and an assumed annual rate of return.",
+  },
+  {
+    q: "Is this retirement calculator really free, and do I need to sign up?",
+    a: "Yes, the tool is completely free with no signup, account, or payment required.",
+  },
+  {
+    q: "How does the calculator estimate how long my savings will last?",
+    a: "It projects your balance year by year, subtracting your chosen withdrawal amount while accounting for continued growth, until funds are depleted or your target time horizon is reached.",
+  },
+  {
+    q: "What is a safe withdrawal rate in retirement?",
+    a: "A safe withdrawal rate is the percentage of savings you can withdraw annually with low risk of running out of money over a typical retirement, often referenced around 4% of the initial balance, adjusted for inflation.",
+  },
+  {
+    q: "Does this calculator account for inflation?",
+    a: "The calculator's projections are designed to reflect inflation-aware growth and withdrawal assumptions rather than nominal figures alone.",
+  },
+  {
+    q: "What's the difference between a traditional IRA and a Roth IRA?",
+    a: "Traditional IRA contributions are typically made pre-tax and taxed upon withdrawal, while Roth IRA contributions are made after-tax but withdrawn tax-free, including growth, when retirement rules are met.",
+  },
+  {
+    q: "Can I use this calculator if I'm already retired?",
+    a: "Yes, you can use the withdrawal projection to check how long your current balance will last at your planned monthly withdrawal amount.",
+  },
+  {
+    q: "How often should I recalculate my retirement plan?",
+    a: "At least once a year, or any time there's a significant change such as a raise, new expense, market downturn, or change in planned retirement age.",
+  },
+];
+
 const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
@@ -98,7 +149,7 @@ export default function RetirementCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

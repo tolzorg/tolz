@@ -5,7 +5,6 @@ export const CATEGORIES = [
   { id: "image",     label: "Image" },
   { id: "pdf",       label: "PDF" },
   { id: "converter", label: "Converters" },
-  { id: "health",    label: "Health" },
   { id: "utility",   label: "Calculators", subCategories: [
     { id: "health-calc",       label: "Health Calculators",          path: "/calculators/health" },
     { id: "everyday",          label: "Everyday Life Calculators",   path: "/calculators/everyday-life" },

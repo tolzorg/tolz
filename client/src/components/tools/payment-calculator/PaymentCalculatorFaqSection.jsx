@@ -53,6 +53,37 @@ const FAQ_ITEMS = [
   },
 ];
 
+const FAQ_SCHEMA_ITEMS = [
+  {
+    q: "How do I calculate my monthly loan payment?",
+    a: "Enter your loan amount, annual interest rate, and loan term into the calculator. It applies the standard amortization formula to return your fixed monthly payment, along with a full breakdown of principal and interest over time.",
+  },
+  {
+    q: "Can this tool tell me how long it will take to pay off my loan?",
+    a: "Yes. If you enter your loan amount, interest rate, and a fixed monthly payment, the calculator works backward to show how many months or years it will take to fully pay off the balance.",
+  },
+  {
+    q: "What if the monthly payment I enter isn't enough to pay off the loan?",
+    a: "If the payment is too low relative to the loan amount and interest rate, interest can accumulate faster than the payment reduces it, and no valid payoff timeline can be produced. Try a lower loan amount, higher payment, or lower interest rate.",
+  },
+  {
+    q: "What's the difference between interest rate and APR?",
+    a: "The interest rate is the base cost of borrowing the principal. APR includes the interest rate plus additional lender fees and closing costs spread over the life of the loan, giving a fuller picture of total cost.",
+  },
+  {
+    q: "Should I choose a fixed or variable interest rate?",
+    a: "A fixed rate keeps your payment the same for the entire term. A variable rate can rise or fall based on a financial benchmark, which can lower or raise your payment over time; many variable loans include a rate cap.",
+  },
+  {
+    q: "Is this loan payment calculator free to use?",
+    a: "Yes, it's completely free with no signup, subscription, or hidden charges.",
+  },
+  {
+    q: "Is my financial information stored when I use this calculator?",
+    a: "No. All calculations happen using the numbers you enter for that session only, and no loan or personal data is stored or shared.",
+  },
+];
+
 const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
@@ -97,7 +128,7 @@ export default function PaymentCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

@@ -8,8 +8,8 @@ export default function InflationCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Inflation Calculator – U.S. CPI Data 1913–Present"
-      seoDescription="Find the equivalent value of a dollar amount between any two points in time using real U.S. CPI data, or project a flat inflation rate forward or backward. Free, no signup."
+      seoTitle="Inflation Calculator - See What Your Money Is Worth"
+      seoDescription="Free inflation calculator using real U.S. CPI data. Check dollar value by year, project future inflation, and see what's driving today's inflation rate."
       footer={<InflationCalculatorFaqSection />}
       wide
     >

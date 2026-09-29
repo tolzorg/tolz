@@ -8,8 +8,8 @@ export default function PensionCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Pension Calculator - Lump Sum vs. Monthly Income"
-      seoDescription="Compare a lump sum payout vs. monthly pension income, single-life vs. joint-and-survivor payout options, and whether working longer is worth it financially. Free, fast, and no signup required."
+      seoTitle="Pension Calculator: Lump Sum vs Monthly Pension (Free)"
+      seoDescription="Free pension calculator to compare lump sum vs monthly pension, single-life vs joint-and-survivor payouts, and see if working longer is worth it."
       footer={<PensionCalculatorFaqSection />}
       wide
     >

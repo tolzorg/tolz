@@ -9,7 +9,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
   const toolSchema = tool
     ? {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "WebApplication",
         name: tool.label,
         description: tool.description,
         url: `${SITE_URL}${tool.path}`,

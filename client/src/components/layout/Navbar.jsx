@@ -256,7 +256,6 @@ export default function Navbar() {
         }
         @media (max-width: 1300px) {
           .nb-trigger { padding: 5px 6px; font-size: 12px; gap: 3px; }
-          .nb-free-badge { display: none; }
         }
         @media (max-width: 1120px) {
           .nb-trigger { padding: 5px 4px; font-size: 11px; gap: 2px; }
@@ -490,18 +489,6 @@ export default function Navbar() {
 
           {/* ── Right side ── */}
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-            <span
-              className="desktop-only nb-free-badge"
-              style={{
-                fontSize: 12, fontWeight: 600,
-                fontFamily: "var(--font-display)",
-                color: "var(--text-muted)", letterSpacing: "0.06em",
-                whiteSpace: "nowrap",
-              }}
-            >
-              FREE · NO SIGNUP
-            </span>
-
             {/* Mobile hamburger */}
             <button
               className="mobile-only btn btn-ghost"
