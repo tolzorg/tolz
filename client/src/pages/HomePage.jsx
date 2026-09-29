@@ -44,6 +44,22 @@ function groupByCalculatorCategory(tools) {
   return groups;
 }
 
+// Groups tools by their top-level category (the same categories shown as
+// filter pills), so the "All Tools" view shows a labeled section per
+// category instead of one flat, unsorted grid.
+function groupByTopCategory(tools) {
+  const groupsById = new Map();
+
+  for (const tool of tools) {
+    if (!groupsById.has(tool.category)) groupsById.set(tool.category, []);
+    groupsById.get(tool.category).push(tool);
+  }
+
+  return CATEGORIES
+    .filter((cat) => cat.id !== "all" && groupsById.has(cat.id))
+    .map((cat) => ({ id: cat.id, name: cat.label, icon: null, tools: groupsById.get(cat.id) }));
+}
+
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState("all");
 
@@ -56,8 +72,9 @@ export default function HomePage() {
   const comingTools = filteredTools.filter((t) => !t.available);
 
   const availableCalculatorGroups = useMemo(() => {
-    if (activeCategory !== "utility") return null;
-    return groupByCalculatorCategory(availableTools);
+    if (activeCategory === "utility") return groupByCalculatorCategory(availableTools);
+    if (activeCategory === "all") return groupByTopCategory(availableTools);
+    return null;
   }, [activeCategory, availableTools]);
 
   const totalAvailable = TOOLS.filter((t) => t.available).length;
@@ -267,7 +284,9 @@ export default function HomePage() {
                   {availableCalculatorGroups.map((group) => (
                     <div key={group.id}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                        <span style={{ fontSize: 16 }} aria-hidden="true">{group.icon}</span>
+                        {group.icon && (
+                          <span style={{ fontSize: 16 }} aria-hidden="true">{group.icon}</span>
+                        )}
                         <div
                           style={{
                             fontFamily: "var(--font-display)",
