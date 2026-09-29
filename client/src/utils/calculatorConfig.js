@@ -992,6 +992,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "student-loan-calculator",
+        label: "Student Loan Calculator",
+        slug: "student-loan-calculator",
+        tagline: "Payment, payoff with extra payments & post-graduation projection",
+        description:
+          "Solve for your student loan payment, term, rate, or balance, see how extra payments shorten payoff and save interest, and project what you'll owe after graduation.",
+        icon: "🎓",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/student-loan-calculator",
+        legacyPath: "/tools/student-loan-calculator",
+        keywords: [
+          "student loan calculator", "student loan payment calculator", "student loan payoff calculator",
+          "student loan repayment calculator", "student loan extra payment calculator", "student loan interest calculator",
+          "student loan projection calculator", "college loan calculator", "grace period calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
