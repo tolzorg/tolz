@@ -1013,6 +1013,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "college-cost-calculator",
+        label: "College Cost Calculator",
+        slug: "college-cost-calculator",
+        tagline: "Total college cost & the monthly saving to cover it",
+        description:
+          "Estimate the total cost of college with yearly tuition increases, its value in today's money, and how much to save each month to cover all or part of it.",
+        icon: "🏫",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/college-cost-calculator",
+        legacyPath: "/tools/college-cost-calculator",
+        keywords: [
+          "college cost calculator", "college savings calculator", "tuition cost calculator",
+          "how much does college cost", "college savings plan calculator", "529 savings calculator",
+          "future college cost calculator", "monthly college savings calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
