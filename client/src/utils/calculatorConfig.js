@@ -971,6 +971,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "repayment-calculator",
+        label: "Repayment Calculator",
+        slug: "repayment-calculator",
+        tagline: "Solve for the payment or the payoff time",
+        description:
+          "Solve for the loan payment given a fixed payoff time, or the payoff time given a fixed payment, with independent compounding and payment frequencies.",
+        icon: "🧮",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/repayment-calculator",
+        legacyPath: "/tools/repayment-calculator",
+        keywords: [
+          "repayment calculator", "loan repayment calculator", "loan payoff time calculator",
+          "fixed installment calculator", "loan payment calculator", "amortization calculator",
+          "compound frequency loan calculator", "pay back calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
