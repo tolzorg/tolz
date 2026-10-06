@@ -1034,6 +1034,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "simple-interest-calculator",
+        label: "Simple Interest Calculator",
+        slug: "simple-interest-calculator",
+        tagline: "Interest & end balance, or solve for principal, term or rate",
+        description:
+          "Calculate simple interest and the end balance with I = Prt, or solve for the principal, term, or interest rate, with calculation steps, a growth chart, and a full schedule.",
+        icon: "➗",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/simple-interest-calculator",
+        legacyPath: "/tools/simple-interest-calculator",
+        keywords: [
+          "simple interest calculator", "simple interest formula", "i = prt calculator",
+          "calculate simple interest", "simple interest rate calculator", "principal calculator",
+          "simple interest loan calculator", "end balance calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

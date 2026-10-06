@@ -12,9 +12,22 @@ const PAD_BOTTOM = 40;
 
 const DEFAULT_LABELS = { starting: "Starting Amount", contributions: "Contributions", interest: "Interest" };
 
-export default function InvestmentBarChart({ barData, labels }) {
+/**
+ * Optional props (all backward-compatible — omitted, the chart renders
+ * exactly as before):
+ *  - `labels.contributions: null` drops that series from the legend, for a
+ *    two-series chart (e.g. the Simple Interest Calculator's Principal /
+ *    Interest bars).
+ *  - `tickLabels`: one entry per bar (a string, or null for no label).
+ *    Bars are then spaced evenly by index instead of by `year` value, so a
+ *    fractional final period (e.g. 16.67 years) sits one slot after the
+ *    last whole year, and only the given labels are drawn.
+ *  - `xAxisLabel`: the axis title (default "Year").
+ */
+export default function InvestmentBarChart({ barData, labels, tickLabels, xAxisLabel = "Year" }) {
   if (!barData.length) return null;
   const lbl = { ...DEFAULT_LABELS, ...labels };
+  const categorical = Array.isArray(tickLabels);
 
   const maxYear = Math.max(...barData.map((p) => p.year));
   const maxValue = Math.max(1, ...barData.map((p) => p.total));
@@ -22,9 +35,14 @@ export default function InvestmentBarChart({ barData, labels }) {
   const plotW = WIDTH - PAD_LEFT - PAD_RIGHT;
   const plotH = HEIGHT - PAD_TOP - PAD_BOTTOM;
 
-  const x = (year) => PAD_LEFT + (year / Math.max(1, maxYear)) * plotW;
+  const slot = plotW / barData.length;
+  const x = categorical
+    ? (index) => PAD_LEFT + (index + 0.5) * slot
+    : (year) => PAD_LEFT + (year / Math.max(1, maxYear)) * plotW;
   const yFor = (value) => PAD_TOP + plotH - (value / maxValue) * plotH;
-  const barWidth = Math.max(2, Math.min(18, plotW / barData.length - 2));
+  const barWidth = categorical
+    ? Math.max(2, Math.min(22, slot * 0.55))
+    : Math.max(2, Math.min(18, plotW / barData.length - 2));
 
   const yTicks = [0, 0.25, 0.5, 0.75, 1].map((f) => f * maxValue);
   const xStep = Math.max(1, Math.round(maxYear / 5));
@@ -50,18 +68,24 @@ export default function InvestmentBarChart({ barData, labels }) {
             </text>
           </g>
         ))}
-        {xTicks.map((yr) => (
-          <text key={yr} x={x(yr)} y={HEIGHT - PAD_BOTTOM + 14} fontSize="10" fill="var(--text-muted)" textAnchor="middle">
-            {yr}
-          </text>
-        ))}
+        {categorical
+          ? tickLabels.map((label, i) => label !== null && (
+            <text key={i} x={x(i)} y={HEIGHT - PAD_BOTTOM + 14} fontSize="10" fill="var(--text-muted)" textAnchor="middle">
+              {label}
+            </text>
+          ))
+          : xTicks.map((yr) => (
+            <text key={yr} x={x(yr)} y={HEIGHT - PAD_BOTTOM + 14} fontSize="10" fill="var(--text-muted)" textAnchor="middle">
+              {yr}
+            </text>
+          ))}
         <text x={(PAD_LEFT + WIDTH - PAD_RIGHT) / 2} y={HEIGHT - 6} fontSize="10.5" fill="var(--text-secondary)" textAnchor="middle">
-          Year
+          {xAxisLabel}
         </text>
         <line x1={PAD_LEFT} y1={PAD_TOP + plotH} x2={WIDTH - PAD_RIGHT} y2={PAD_TOP + plotH} stroke="var(--text-muted)" strokeWidth="0.5" />
 
-        {barData.map((bar) => {
-          const bx = x(bar.year) - barWidth / 2;
+        {barData.map((bar, index) => {
+          const bx = x(categorical ? index : bar.year) - barWidth / 2;
           // Interest can be NEGATIVE (a Return Rate solve can legitimately
           // land on a negative annual rate — see investment-calculator-
           // notes.md) — SVG rejects a negative `height` outright, so each
@@ -78,7 +102,7 @@ export default function InvestmentBarChart({ barData, labels }) {
             <g key={bar.year}>
               <rect x={bx} y={baseY - startingH} width={barWidth} height={startingH} fill="#2b7ddb" />
               <rect x={bx} y={baseY - startingH - contribH} width={barWidth} height={contribH} fill="#8bbc21" />
-              <rect x={bx} y={baseY - startingH - contribH - interestH} width={barWidth} height={interestH} fill="#910000" />
+              <rect x={bx} y={baseY - startingH - contribH - interestH} width={barWidth} height={interestH} fill={lbl.contributions === null ? "#8bbc21" : "#910000"} />
             </g>
           );
         })}
@@ -88,12 +112,14 @@ export default function InvestmentBarChart({ barData, labels }) {
           <span style={{ width: 14, height: 3, background: "#2b7ddb", display: "inline-block", borderRadius: 2 }} />
           {lbl.starting}
         </span>
+        {lbl.contributions !== null && (
+          <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
+            <span style={{ width: 14, height: 3, background: "#8bbc21", display: "inline-block", borderRadius: 2 }} />
+            {lbl.contributions}
+          </span>
+        )}
         <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
-          <span style={{ width: 14, height: 3, background: "#8bbc21", display: "inline-block", borderRadius: 2 }} />
-          {lbl.contributions}
-        </span>
-        <span style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)" }}>
-          <span style={{ width: 14, height: 3, background: "#910000", display: "inline-block", borderRadius: 2 }} />
+          <span style={{ width: 14, height: 3, background: lbl.contributions === null ? "#8bbc21" : "#910000", display: "inline-block", borderRadius: 2 }} />
           {lbl.interest}
         </span>
       </div>
