@@ -95,6 +95,10 @@ export function calculateSavings({
   initialDeposit, annualContribution, annualContributionIncreasePercent,
   monthlyContribution, monthlyContributionIncreasePercent,
   interestRatePercent, compound, years, taxRatePercent,
+  // Optional cap on the simulated term. Defaults to this calculator's own
+  // 100-year limit; the CD Calculator passes Infinity because its reference
+  // computes terms up to 1000 years + 1000 months (see cdCalculatorEngine.js).
+  maxYears = MAX_YEARS,
 }) {
   const P = Number(initialDeposit) || 0;
   const annualC = Number(annualContribution) || 0;
@@ -103,14 +107,14 @@ export function calculateSavings({
   const monthlyGrowth = (Number(monthlyContributionIncreasePercent) || 0) / 100;
   const nominalRate = Math.max(0, (Number(interestRatePercent) || 0) / 100);
   const taxRate = Math.max(0, Math.min(1, (Number(taxRatePercent) || 0) / 100));
-  const totalYears = Math.min(MAX_YEARS, Math.max(0, Number(years) || 0));
+  const totalYears = Math.min(maxYears, Math.max(0, Number(years) || 0));
 
   const nominalEar = effectiveAnnualRate(nominalRate, compound);
   const nominalMonthlyRate = periodicRateFromEAR(nominalEar, 12);
 
   // Total months rounds UP, with the leftover fraction (if any) applied as
   // a prorated rate on the final month only — see finding #5 above.
-  const totalMonthsExact = Math.min(MAX_SCHEDULE_MONTHS, totalYears * 12);
+  const totalMonthsExact = Math.min(maxYears === MAX_YEARS ? MAX_SCHEDULE_MONTHS : Infinity, totalYears * 12);
   const flooredMonths = Math.floor(totalMonthsExact + EPS);
   const remainder = totalMonthsExact - flooredMonths;
   const totalMonths = remainder < EPS ? flooredMonths : flooredMonths + 1;

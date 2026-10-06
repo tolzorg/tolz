@@ -35,7 +35,12 @@ import { formatMoney as formatRawMoney } from "./studentLoanCalculatorEngine.js"
  * floats as …x.73499999 still rounds UP — confirmed live (Rate tab rows
  * landing exactly on a half cent show the reference rounding up). */
 export function roundCents(value) {
-  const cents = Math.round(Number((Math.abs(value) * 100).toPrecision(15)));
+  // Pre-round the VALUE itself to 15 significant digits first: multiplying
+  // by 100 before pre-rounding adds its own float error (89544.494999…952
+  // × 100 = 8954449.4999…44 stays below the half cent, but the CD
+  // Calculator's reference shows $89,544.50).
+  const pre = Number(Math.abs(value).toPrecision(15));
+  const cents = Math.round(Number((pre * 100).toPrecision(15)));
   return (Math.sign(value) * cents) / 100;
 }
 
@@ -62,7 +67,9 @@ export function cleanInput(value) {
   return String(value ?? "").replace(/,/g, "").trim();
 }
 
-function toNumber(text) {
+/** Strict number parse of an already-cleaned input: plain decimals and
+ * exponents only (no "$", "%", hex, or trailing text). NaN otherwise. */
+export function toNumber(text) {
   if (!NUMERIC.test(text)) return NaN;
   const n = Number(text);
   return Number.isFinite(n) ? n : NaN;

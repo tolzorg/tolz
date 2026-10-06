@@ -1055,6 +1055,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "cd-calculator",
+        label: "CD Calculator",
+        slug: "cd-calculator",
+        tagline: "Certificate of deposit end balance & interest earned",
+        description:
+          "Calculate a certificate of deposit's end balance and total interest with annual, monthly, or continuous compounding and an optional tax rate, with annual and monthly schedules.",
+        icon: "🏦",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/cd-calculator",
+        legacyPath: "/tools/cd-calculator",
+        keywords: [
+          "cd calculator", "certificate of deposit calculator", "cd interest calculator",
+          "cd rate calculator", "cd return calculator", "apy calculator",
+          "cd maturity calculator", "cd ladder calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
