@@ -1118,6 +1118,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "roth-ira-calculator",
+        label: "Roth IRA Calculator",
+        slug: "roth-ira-calculator",
+        tagline: "Roth IRA growth vs. a regular taxable account",
+        description:
+          "Project your Roth IRA balance at retirement and compare it with a regular taxable account, with 2026 contribution limits, a growth graph, and an annual schedule.",
+        icon: "🌱",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/roth-ira-calculator",
+        legacyPath: "/tools/roth-ira-calculator",
+        keywords: [
+          "roth ira calculator", "roth ira growth calculator", "roth vs taxable account",
+          "roth ira contribution calculator", "roth ira retirement calculator", "roth ira 2026 limit",
+          "tax-free retirement calculator", "roth ira savings calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

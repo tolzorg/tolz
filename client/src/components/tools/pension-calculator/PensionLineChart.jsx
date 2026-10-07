@@ -3,6 +3,8 @@ import { formatCompactCurrency } from "../amortization-calculator/chartFormat";
 // "Equivalent present value of the options" chart — matches the
 // reference's own 2-series line chart (colors #2b7ddb / #8bbc21, same
 // as its embedded tooltip markup), x-axis "Life expectancy (age)".
+// `xLabel` overrides the axis title (the Roth IRA Calculator uses "Age");
+// it defaults to the Pension text, so existing callers are unchanged.
 
 const WIDTH = 460;
 const HEIGHT = 260;
@@ -11,7 +13,7 @@ const PAD_RIGHT = 12;
 const PAD_TOP = 14;
 const PAD_BOTTOM = 30;
 
-export default function PensionLineChart({ series }) {
+export default function PensionLineChart({ series, xLabel = "Life expectancy (age)" }) {
   const allPoints = series.flatMap((s) => s.points);
   if (!allPoints.length) return null;
 
@@ -48,7 +50,7 @@ export default function PensionLineChart({ series }) {
           </text>
         ))}
         <text x={PAD_LEFT + plotW / 2} y={HEIGHT - 2} fontSize="11" fill="var(--text-secondary)" textAnchor="middle">
-          Life expectancy (age)
+          {xLabel}
         </text>
         {series.map((s) => (
           <path key={s.label} d={toPath(s.points)} fill="none" stroke={s.color} strokeWidth="2" />
