@@ -11,7 +11,9 @@ const STROKE = 32;
 const LABEL_RADIUS = RADIUS + STROKE / 2 + 15;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-export default function InvestmentPieChart({ segments }) {
+/** `labelText(segment, pct)` optionally replaces the default percent label
+ * (e.g. the VAT Calculator labels each slice with its amount). */
+export default function InvestmentPieChart({ segments, labelText }) {
   const total = segments.reduce((sum, s) => sum + Math.max(0, s.value), 0);
   let offset = 0;
   const arcs = [];
@@ -42,7 +44,7 @@ export default function InvestmentPieChart({ segments }) {
             fontSize: 12.5, fontWeight: 700, color: "var(--text-primary)", whiteSpace: "nowrap",
           }}
         >
-          {pct < 1 ? "<1%" : `${Math.round(pct)}%`}
+          {labelText ? labelText(s, pct) : pct < 1 ? "<1%" : `${Math.round(pct)}%`}
         </span>
       );
       offset += dash;

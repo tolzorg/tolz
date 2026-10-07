@@ -1181,6 +1181,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "vat-calculator",
+        label: "VAT Calculator",
+        slug: "vat-calculator",
+        tagline: "Add or remove VAT, net & gross price",
+        description:
+          "Calculate VAT from any two of the VAT rate, net price, gross price, and tax amount: add VAT, remove VAT from a gross price, or find the rate.",
+        icon: "🧾",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/vat-calculator",
+        legacyPath: "/tools/vat-calculator",
+        keywords: [
+          "vat calculator", "add vat calculator", "remove vat calculator",
+          "reverse vat calculator", "vat inclusive calculator", "net to gross calculator",
+          "gross to net calculator", "gst calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
