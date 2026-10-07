@@ -492,3 +492,35 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* ── Output data tables: full grid lines ──────────────────────
+   Calculator result/schedule tables get a line around every cell so
+   they read as proper tables. Purely visual: add `data-table` to the
+   <table>. Cell padding, alignment and colors stay as each table sets
+   them inline.
+   - `data-table--framed`: the table already sits inside a bordered,
+     rounded wrapper, so its own outer edge is hidden (no doubled line).
+   - `data-table-head`: shade header cells (only for tables whose header
+     has no background of its own, e.g. not the green 401(k) headers).
+   - An empty top-left corner header cell drops its outer edges, as
+     usual for a two-way table. */
+.data-table {
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+.data-table th,
+.data-table td {
+  border: 1px solid var(--border);
+  padding: 6px 10px; /* default only — inline padding still wins */
+}
+.data-table--framed {
+  border-style: hidden;
+}
+.data-table-head thead th {
+  background-color: var(--bg-muted);
+}
+.data-table thead tr:first-child th:first-child:empty {
+  border-top-style: hidden;
+  border-left-style: hidden;
+  background-color: transparent;
+}

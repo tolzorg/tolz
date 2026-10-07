@@ -133,7 +133,7 @@ export function ResultTable({ title, columns, rows }) {
     <div style={{ marginBottom: 16 }}>
       {title && <p style={tableTitleStyle}>{title}</p>}
       <div style={{ overflowX: "auto", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+        <table className="data-table data-table--framed" style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
           {columns && (
             <thead>
               <tr style={{ background: "var(--success)", color: "#fff" }}>
@@ -194,7 +194,7 @@ export function ScheduleTable({ rows, columns }) {
       </button>
       {open && (
         <div style={{ overflowX: "auto", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", maxHeight: 420, overflowY: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5 }}>
+          <table className="data-table data-table--framed" style={{ width: "100%", borderCollapse: "collapse", fontSize: 12.5 }}>
             <thead>
               <tr style={{ background: "var(--success)", color: "#fff", position: "sticky", top: 0 }}>
                 <th style={{ textAlign: "left", padding: "7px 12px", fontWeight: 700, fontSize: 11.5, whiteSpace: "nowrap" }}>Age</th>

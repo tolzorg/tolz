@@ -87,7 +87,7 @@ function PricingResult({ result }) {
     ["Interest accrued days:", String(result.accruedDays)],
   ];
   return (
-    <table style={{ borderCollapse: "collapse", fontSize: 13.5, border: "1px solid var(--border)" }}>
+    <table className="data-table" style={{ borderCollapse: "collapse", fontSize: 13.5, border: "1px solid var(--border)" }}>
       <tbody>
         {rows.map(([label, value], i) => (
           <tr key={label} style={{ background: i % 2 ? "var(--bg-muted)" : "transparent" }}>

@@ -33,7 +33,7 @@ export default function MortgageAmortizationTable({ schedule, view, onViewChange
       </div>
 
       <div style={{ maxHeight: 420, overflowY: "auto", overflowX: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="data-table data-table--framed" style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               <th style={thLeft}>{view === "monthly" ? "Date" : "Year"}</th>

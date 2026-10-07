@@ -1139,6 +1139,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "ira-calculator",
+        label: "IRA Calculator",
+        slug: "ira-calculator",
+        tagline: "Traditional vs. Roth IRA vs. taxable savings",
+        description:
+          "Compare a Traditional, SIMPLE, or SEP IRA with a Roth IRA and a regular taxable account, before and after tax, with a growth graph and an annual schedule.",
+        icon: "🏛️",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/ira-calculator",
+        legacyPath: "/tools/ira-calculator",
+        keywords: [
+          "ira calculator", "traditional ira calculator", "traditional vs roth ira",
+          "sep ira calculator", "simple ira calculator", "ira growth calculator",
+          "ira retirement calculator", "pre-tax vs after-tax savings",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

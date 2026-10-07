@@ -120,7 +120,7 @@ export default function SalaryCalculatorTool() {
                 </p>
               ) : (
                 <div style={{ overflowX: "auto" }}>
-                  <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                  <table className="data-table" style={{ width: "100%", borderCollapse: "collapse" }}>
                     <thead>
                       <tr>
                         <th style={{ background: "var(--bg-muted)", padding: "10px 14px" }} />

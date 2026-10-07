@@ -772,7 +772,7 @@ export default function RipRapCalculatorTool() {
             Click a row to fill the velocity field.
           </p>
           <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 13 }}>
+            <table className="data-table" style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 13 }}>
               <thead>
                 <tr style={{ background: "var(--bg-muted)" }}>
                   {["Velocity (m/s)", "Low turbulence D₅₀ (cm)", "High turbulence D₅₀ (cm)"].map((h) => (

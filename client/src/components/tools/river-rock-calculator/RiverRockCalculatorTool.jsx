@@ -677,7 +677,7 @@ export default function RiverRockCalculatorTool() {
 
             {/* Rock density table */}
             <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 13 }}>
+              <table className="data-table" style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: 13 }}>
                 <thead>
                   <tr style={{ background: "var(--bg-muted)" }}>
                     {["Rock type", "Bulk density (kg/m³)", "Bulk density (lb/ft³)"].map((h) => (

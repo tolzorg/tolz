@@ -1,23 +1,28 @@
 import { useState } from "react";
 import { FieldRow, TextField } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
-import { FieldLabel } from "../mortgage-calculator/MortgageFormControls";
 import PensionLineChart from "../pension-calculator/PensionLineChart";
-import GroupedScheduleTable from "./GroupedScheduleTable";
-import { calculateRothIra, DEFAULTS, formatDollars } from "../../../utils/rothIraCalculatorEngine";
+import GroupedScheduleTable from "../roth-ira-calculator/GroupedScheduleTable";
+import { calculateIra, DEFAULTS, formatDollars } from "../../../utils/iraCalculatorEngine";
 
-// Tooltips copied verbatim from the reference (including its own
-// inconsistent limit figures between the first two).
+// Tooltips copied verbatim from the reference.
 const HINTS = {
-  contribution: "The amount you plan to contribute to the Roth IRA account each year. The maximum contribution limit is $7,500 for individuals under the age of 50 and increases to $8,600 for individuals aged 50 and above.",
-  maximize: "Please select 'yes' if you plan to contribute the maximum allowed amount each year. The maximum contribution limit is $7,000 before the age of 50 and increases to $8,000 after the age of 50.",
+  contribution: "The before tax amount you plan to contribute to the IRA account each year. The maximum contribution limit is $7,000 for individuals under the age of 50 and increases to $8,000 for individuals aged 50 and above.",
   rate: "The expected average annual return you will earn on your money in the account.",
-  tax: "The tax rate you pay on additional income. Please includes the combined federal and state/local marginal tax rates, if applicable.",
+  taxNow: "The tax rate you pay on additional income. Please includes the combined federal and state/local marginal tax rates, if applicable.",
+  taxRetirement: "The expected income tax rate after your retirement. Please includes the combined federal and state/local tax rates, if applicable.",
 };
+
+const SCHEDULE_GROUPS = [
+  { label: "Traditional/SIMPLE/SEP IRA (Before Tax)", start: "beforeStart", end: "beforeEnd" },
+  { label: "Traditional, SIMPLE, or SEP IRA (After Tax)", start: "afterStart", end: "afterEnd" },
+  { label: "Roth IRA (After Tax)", start: "rothStart", end: "rothEnd" },
+  { label: "Regular Taxable Savings (After Tax)", start: "taxableStart", end: "taxableEnd" },
+];
 
 const resultBanner = { background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 12.5, fontWeight: 700, fontFamily: "var(--font-display)" };
 const sectionTitle = { fontSize: 18, fontWeight: 800, fontFamily: "var(--font-display)", color: "var(--text-primary)", margin: "0 0 10px" };
-const cell = { padding: "6px 10px", fontSize: 13, textAlign: "right", borderBottom: "1px solid var(--border)", whiteSpace: "nowrap", color: "var(--text-secondary)" };
+const cell = { padding: "6px 8px", fontSize: 13, textAlign: "right", borderBottom: "1px solid var(--border)", color: "var(--text-primary)" };
 
 function ErrorPanel({ messages }) {
   return (
@@ -34,26 +39,26 @@ function ErrorPanel({ messages }) {
 
 function ResultTable({ r }) {
   const rows = [
-    [`Balance at age ${r.retirementAge}`, r.roth.balance, r.taxable.balance, true],
-    ["Total principal", r.roth.principal, r.taxable.principal],
-    ["Total interest", r.roth.interest, r.taxable.interest],
-    ["Total tax", r.roth.tax, r.taxable.tax],
+    [`Balance at age ${r.retirementAge}`, r.balances, false],
+    [`Balance at age ${r.retirementAge} (after tax)`, r.afterTax, true],
   ];
   return (
-    <table className="data-table data-table-head" style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
+    <table className="data-table data-table-head" style={{ width: "100%", borderCollapse: "collapse" }}>
       <thead>
         <tr>
           <th />
-          <th style={{ ...cell, fontWeight: 700, color: "var(--text-primary)" }}>Roth IRA</th>
-          <th style={{ ...cell, fontWeight: 700, color: "var(--text-primary)" }}>Taxable account</th>
+          {["Traditional, SIMPLE, or SEP IRA", "Roth IRA", "Regular Taxable Savings"].map((h) => (
+            <th key={h} style={{ ...cell, fontWeight: 700, fontSize: 12.5, verticalAlign: "bottom" }}>{h}</th>
+          ))}
         </tr>
       </thead>
       <tbody>
-        {rows.map(([label, roth, taxable, strong]) => (
+        {rows.map(([label, values, strong]) => (
           <tr key={label}>
-            <td style={{ ...cell, textAlign: "left", fontWeight: strong ? 700 : 400, color: "var(--text-primary)" }}>{label}</td>
-            <td style={{ ...cell, fontWeight: strong ? 700 : 400, color: "var(--text-primary)" }}>{formatDollars(roth)}</td>
-            <td style={{ ...cell, fontWeight: strong ? 700 : 400, color: "var(--text-primary)" }}>{formatDollars(taxable)}</td>
+            <td style={{ ...cell, textAlign: "left", fontWeight: strong ? 700 : 400 }}>{label}</td>
+            {[values.traditional, values.roth, values.taxable].map((value, i) => (
+              <td key={i} style={{ ...cell, fontWeight: strong ? 700 : 400, whiteSpace: "nowrap" }}>{formatDollars(value)}</td>
+            ))}
           </tr>
         ))}
       </tbody>
@@ -61,37 +66,31 @@ function ResultTable({ r }) {
   );
 }
 
-const SCHEDULE_GROUPS = [
-  { label: "Principal", start: "principalStart", end: "principalEnd" },
-  { label: "Roth IRA", start: "rothStart", end: "rothEnd" },
-  { label: "Taxable account", start: "taxableStart", end: "taxableEnd" },
-];
-
-export default function RothIraCalculatorTool() {
+export default function IraCalculatorTool() {
   const [balance, setBalance] = useState("");
   const [contribution, setContribution] = useState("");
-  const [maximize, setMaximize] = useState(false);
   const [rate, setRate] = useState("");
   const [currentAge, setCurrentAge] = useState("");
   const [retirementAge, setRetirementAge] = useState("");
-  const [tax, setTax] = useState("");
+  const [taxNow, setTaxNow] = useState("");
+  const [taxRetirement, setTaxRetirement] = useState("");
   const [result, setResult] = useState(null);
 
   function calculate() {
-    setResult(calculateRothIra({
+    setResult(calculateIra({
       balance: balance || DEFAULTS.balance,
       contribution: contribution || DEFAULTS.contribution,
-      maximize,
       rate: rate || DEFAULTS.rate,
       currentAge: currentAge || DEFAULTS.currentAge,
       retirementAge: retirementAge || DEFAULTS.retirementAge,
-      tax: tax || DEFAULTS.tax,
+      taxNow: taxNow || DEFAULTS.taxNow,
+      taxRetirement: taxRetirement || DEFAULTS.taxRetirement,
     }));
   }
 
   function clear() {
-    setBalance(""); setContribution(""); setMaximize(false); setRate("");
-    setCurrentAge(""); setRetirementAge(""); setTax(""); setResult(null);
+    setBalance(""); setContribution(""); setRate(""); setCurrentAge("");
+    setRetirementAge(""); setTaxNow(""); setTaxRetirement(""); setResult(null);
   }
 
   const ok = result && !result.errors;
@@ -102,28 +101,12 @@ export default function RothIraCalculatorTool() {
         {/* ── Inputs ───────────────────────────────────────────────── */}
         <div className="card" style={{ flex: "1 1 360px", minWidth: 300, padding: 18 }}>
           <FieldRow label="Current balance"><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></FieldRow>
-          <FieldRow label="Annual contribution" hint={HINTS.contribution}>
-            {maximize
-              ? <span style={{ fontSize: 13.5, color: "var(--text-secondary)", padding: "8px 2px" }}>maxing out</span>
-              : <DollarField value={contribution} onChange={setContribution} placeholder={DEFAULTS.contribution} />}
-          </FieldRow>
-          <fieldset style={{ border: "none", padding: 0, margin: "0 0 12px" }}>
-            <legend style={{ padding: 0, marginBottom: 6 }}>
-              <FieldLabel hint={HINTS.maximize}>Maximize contributions?</FieldLabel>
-            </legend>
-            <div style={{ display: "flex", gap: 18, paddingLeft: 6 }}>
-              {[[true, "Yes"], [false, "No"]].map(([value, label]) => (
-                <label key={label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13.5, color: "var(--text-primary)", cursor: "pointer" }}>
-                  <input type="radio" name="rothMaximize" checked={maximize === value} onChange={() => setMaximize(value)} />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+          <FieldRow label="Annual before tax contribution" hint={HINTS.contribution}><DollarField value={contribution} onChange={setContribution} placeholder={DEFAULTS.contribution} /></FieldRow>
           <FieldRow label="Expected rate of return" hint={HINTS.rate}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></FieldRow>
           <FieldRow label="Current age"><TextField value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></FieldRow>
           <FieldRow label="Retirement age"><TextField value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} /></FieldRow>
-          <FieldRow label="Marginal tax rate" hint={HINTS.tax}><PercentField value={tax} onChange={setTax} placeholder={DEFAULTS.tax} /></FieldRow>
+          <FieldRow label="Current marginal tax rate" hint={HINTS.taxNow}><PercentField value={taxNow} onChange={setTaxNow} placeholder={DEFAULTS.taxNow} /></FieldRow>
+          <FieldRow label="Expected tax rate in retirement" hint={HINTS.taxRetirement}><PercentField value={taxRetirement} onChange={setTaxRetirement} placeholder={DEFAULTS.taxRetirement} /></FieldRow>
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
@@ -134,24 +117,20 @@ export default function RothIraCalculatorTool() {
         </div>
 
         {/* ── Results ──────────────────────────────────────────────── */}
-        <div className="card" style={{ flex: "1 1 400px", minWidth: 300, padding: 0, overflow: "hidden" }}>
+        <div className="card" style={{ flex: "1 1 420px", minWidth: 300, padding: 0, overflow: "hidden" }}>
           <div style={resultBanner}>Result</div>
           <div style={{ padding: "14px 18px" }} aria-live="polite">
             {!result ? (
               <p style={{ fontSize: 13.5, color: "var(--text-muted)", margin: 0 }}>
-                Enter your balance, contributions, expected return, ages and tax rate, then click <strong>Calculate</strong> to compare a Roth IRA with a regular taxable account.
+                Enter your balance, yearly contribution, expected return, ages and tax rates, then click <strong>Calculate</strong> to compare a Traditional IRA, a Roth IRA and a regular taxable account.
               </p>
             ) : result.errors ? (
               <ErrorPanel messages={result.errors} />
             ) : (
               <>
-                {result.notice && (
-                  <p style={{ fontSize: 13, color: "#dc2626", lineHeight: 1.5, margin: "0 0 12px" }}>{result.notice}</p>
-                )}
-                <ResultTable r={result} />
+                <div style={{ overflowX: "auto" }}><ResultTable r={result} /></div>
                 <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6, margin: "14px 0 0" }}>
-                  According to provided information, the Roth IRA account can accumulate{" "}
-                  <strong style={{ color: "var(--success)" }}>{formatDollars(result.advantage)}</strong> more than a regular taxable account by age {result.retirementAge}.
+                  {result.sentences.join(" ")}
                 </p>
               </>
             )}

@@ -36,13 +36,13 @@ const LIMIT_50_PLUS = 8600;
 const limitForAge = (age) => (age >= 50 ? LIMIT_50_PLUS : LIMIT_UNDER_50);
 
 const NUMERIC = /^[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i;
-function parse(value) {
+export function parseNumber(value) {
   const text = String(value ?? "").replace(/,/g, "").trim();
   const n = NUMERIC.test(text) ? Number(text) : NaN;
   return Number.isFinite(n) ? n : NaN;
 }
 /** PHP-style round half away from zero (ages are rounded before use). */
-const roundAge = (x) => Math.sign(x) * Math.round(Math.abs(x));
+export const roundAge = (x) => Math.sign(x) * Math.round(Math.abs(x));
 
 const MESSAGES = {
   balance: "Please provide a positive current balance.",
@@ -56,8 +56,8 @@ const MESSAGES = {
 
 export function calculateRothIra({ balance, contribution, maximize = false, rate, currentAge, retirementAge, tax }) {
   const v = {
-    balance: parse(balance), contribution: parse(contribution), rate: parse(rate),
-    currentAge: parse(currentAge), retirementAge: parse(retirementAge), tax: parse(tax),
+    balance: parseNumber(balance), contribution: parseNumber(contribution), rate: parseNumber(rate),
+    currentAge: parseNumber(currentAge), retirementAge: parseNumber(retirementAge), tax: parseNumber(tax),
   };
   const errors = [];
   if (!(v.balance >= 0)) errors.push(MESSAGES.balance);

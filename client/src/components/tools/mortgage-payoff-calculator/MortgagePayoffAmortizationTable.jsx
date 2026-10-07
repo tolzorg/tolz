@@ -26,7 +26,7 @@ export default function MortgagePayoffAmortizationTable({ oldSchedule, newSchedu
         Monthly Amortization Schedule
       </p>
       <div style={{ maxHeight: 420, overflowY: "auto", overflowX: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="data-table data-table--framed" style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               <th rowSpan={2} style={{ ...thLeft, verticalAlign: "bottom" }}>Month</th>

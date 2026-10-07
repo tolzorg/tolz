@@ -121,7 +121,7 @@ export function ResultTable({ title, columns, rows }) {
     <div style={{ marginBottom: 16 }}>
       {title && <p style={tableTitleStyle}>{title}</p>}
       <div style={{ overflowX: "auto", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+        <table className="data-table data-table--framed" style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
           {columns && (
             <thead>
               <tr style={{ background: "var(--success)", color: "#fff" }}>

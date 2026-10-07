@@ -221,7 +221,7 @@ export default function MortgagePayoffFromTermCard() {
                     />
                   </div>
 
-                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                  <table className="data-table data-table-head" style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                     <thead>
                       <tr>
                         <th></th>
@@ -231,13 +231,13 @@ export default function MortgagePayoffFromTermCard() {
                     </thead>
                     <tbody>
                       {result.showMonthlyPayRow && (
-                        <tr><td style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>Monthly pay</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.monthlyPay)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newMonthlyPay)}</td></tr>
+                        <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid var(--border)" }}>Monthly pay</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.monthlyPay)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newMonthlyPay)}</td></tr>
                       )}
-                      <tr><td style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>Total payments</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.originalTotalPayments)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newTotalPayments)}</td></tr>
-                      <tr><td style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>Total interest</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.originalTotalInterest)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newTotalInterest)}</td></tr>
-                      <tr><td style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>Remaining payments</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.remainingTotalPayments)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newRemainingPayments)}</td></tr>
-                      <tr><td style={{ padding: "6px 0", borderBottom: "1px solid var(--border)" }}>Remaining interest</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.remainingTotalInterest)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newRemainingInterest)}</td></tr>
-                      <tr><td style={{ padding: "6px 0" }}>Payoff in</td><td style={{ textAlign: "right" }}>{formatYearsMosShort(result.remainingTotalMonths)}</td><td style={{ textAlign: "right" }}>{formatYearsMosShort(result.newMonths)}</td></tr>
+                      <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid var(--border)" }}>Total payments</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.originalTotalPayments)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newTotalPayments)}</td></tr>
+                      <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid var(--border)" }}>Total interest</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.originalTotalInterest)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newTotalInterest)}</td></tr>
+                      <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid var(--border)" }}>Remaining payments</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.remainingTotalPayments)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newRemainingPayments)}</td></tr>
+                      <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid var(--border)" }}>Remaining interest</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.remainingTotalInterest)}</td><td style={{ textAlign: "right", borderBottom: "1px solid var(--border)" }}>{formatCurrency(result.newRemainingInterest)}</td></tr>
+                      <tr><td style={{ padding: "6px 10px" }}>Payoff in</td><td style={{ textAlign: "right" }}>{formatYearsMosShort(result.remainingTotalMonths)}</td><td style={{ textAlign: "right" }}>{formatYearsMosShort(result.newMonths)}</td></tr>
                     </tbody>
                   </table>
                 </>

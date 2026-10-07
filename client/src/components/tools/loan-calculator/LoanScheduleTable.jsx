@@ -24,7 +24,7 @@ export default function LoanScheduleTable({ title, schedule, columns, periodLabe
         {title}
       </p>
       <div style={{ maxHeight: 420, overflowY: "auto", overflowX: "auto", border: "1px solid var(--border)", borderRadius: "var(--radius-md)" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table className="data-table data-table--framed" style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               <th style={thLeft}>{periodLabel}</th>
