@@ -1160,6 +1160,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "rmd-calculator",
+        label: "RMD Calculator",
+        slug: "rmd-calculator",
+        tagline: "Required minimum distribution by age & IRS table",
+        description:
+          "Calculate your required minimum distribution with the IRS Uniform Lifetime and Joint Life tables, and project your RMDs and balance every year to age 120.",
+        icon: "📅",
+        iconBg: "#fef3c7",
+        iconColor: "#d97706",
+        path: "/calculators/financial/rmd-calculator",
+        legacyPath: "/tools/rmd-calculator",
+        keywords: [
+          "rmd calculator", "required minimum distribution calculator", "ira rmd calculator",
+          "401k rmd calculator", "rmd table", "uniform lifetime table",
+          "joint life expectancy table", "rmd age 73",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
