@@ -1097,6 +1097,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "mutual-fund-calculator",
+        label: "Mutual Fund Calculator",
+        slug: "mutual-fund-calculator",
+        tagline: "Ending value, fees & net IRR of a mutual fund",
+        description:
+          "Estimate a mutual fund's ending value and net return after sales charges, deferred charges, and operating expenses, plus the net IRR after all fees.",
+        icon: "📊",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/mutual-fund-calculator",
+        legacyPath: "/tools/mutual-fund-calculator",
+        keywords: [
+          "mutual fund calculator", "mutual fund return calculator", "mutual fund fee calculator",
+          "expense ratio calculator", "front-end load calculator", "sales charge calculator",
+          "mutual fund irr calculator", "mutual fund growth calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
