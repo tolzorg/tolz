@@ -1076,6 +1076,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "bond-calculator",
+        label: "Bond Calculator",
+        slug: "bond-calculator",
+        tagline: "Bond price, yield & coupon, plus clean/dirty pricing",
+        description:
+          "Solve for a bond's price, face value, yield, time to maturity, or coupon, and price bonds between coupon dates with dirty price, clean price, and accrued interest.",
+        icon: "📜",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/bond-calculator",
+        legacyPath: "/tools/bond-calculator",
+        keywords: [
+          "bond calculator", "bond price calculator", "bond yield calculator",
+          "yield to maturity calculator", "bond pricing calculator", "accrued interest calculator",
+          "clean price dirty price calculator", "coupon bond calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
