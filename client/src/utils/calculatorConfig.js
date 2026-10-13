@@ -1202,6 +1202,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "cash-back-or-low-interest-calculator",
+        label: "Cash Back or Low Interest Calculator",
+        slug: "cash-back-or-low-interest-calculator",
+        tagline: "Car rebate vs. low-rate financing: which saves more",
+        description:
+          "Compare a car's cash back rebate with its low-interest financing offer, including state sales tax rules, to see which deal costs less.",
+        icon: "🚘",
+        iconBg: "#fef2f2",
+        iconColor: "#dc2626",
+        path: "/calculators/financial/cash-back-or-low-interest-calculator",
+        legacyPath: "/tools/cash-back-or-low-interest-calculator",
+        keywords: [
+          "cash back or low interest calculator", "rebate vs low apr calculator", "car rebate calculator",
+          "0% financing vs cash back", "low interest vs cash back car", "auto rebate calculator",
+          "car incentive calculator", "dealer financing vs rebate",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

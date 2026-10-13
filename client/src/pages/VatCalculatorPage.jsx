@@ -8,8 +8,8 @@ export default function VatCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="VAT Calculator - Add or Remove VAT, Net & Gross Price"
-      seoDescription="Calculate VAT from any two of the VAT rate, net price, gross price, and tax amount: add VAT to a price, remove it from a gross price, or find the rate. Free, no signup."
+      seoTitle="VAT Calculator – Add or Remove VAT Online (Free)"
+      seoDescription="Free VAT calculator to add VAT, remove VAT from a gross price, or find the VAT rate. Enter any two values and get net, gross and tax amount instantly."
       footer={<VatCalculatorFaqSection />}
       wide
     >

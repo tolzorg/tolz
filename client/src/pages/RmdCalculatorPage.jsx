@@ -8,8 +8,8 @@ export default function RmdCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="RMD Calculator - Required Minimum Distribution by Age"
-      seoDescription="Calculate your required minimum distribution with the IRS Uniform Lifetime and Joint Life tables (Publication 590-B), and project your RMDs and balance every year to age 120. Free, no signup."
+      seoTitle="RMD Calculator - Free Required Minimum Distribution Tool"
+      seoDescription="Free RMD calculator using the IRS Uniform Lifetime and Joint Life tables. Get your required minimum distribution and see RMDs projected to age 120."
       footer={<RmdCalculatorFaqSection />}
       wide
     >

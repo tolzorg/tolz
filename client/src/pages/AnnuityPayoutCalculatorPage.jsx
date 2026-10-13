@@ -8,8 +8,8 @@ export default function AnnuityPayoutCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Annuity Payout Calculator - Free Fixed Length & Fixed Payment"
-      seoDescription="Calculate your annuity payout amount for a fixed length, or how long a fixed payment will last, with a full year-by-year balance schedule. Free, fast, and no signup required."
+      seoTitle="Annuity Payout Calculator – Free Online Tool"
+      seoDescription="Free annuity payout calculator: find your payment for a fixed length or see how long a set payment lasts, with a year-by-year schedule. No signup needed."
       footer={<AnnuityPayoutCalculatorFaqSection />}
       wide
     >

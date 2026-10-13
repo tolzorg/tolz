@@ -8,8 +8,8 @@ export default function CompoundInterestCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Compound Interest Calculator - Free APR to APY Rate Converter"
-      seoDescription="Convert or compare an interest rate between different compounding frequencies, annually, monthly, daily, continuously, and more. Free and instant."
+      seoTitle="Compound Interest Calculator – Compare Compounding Rates"
+      seoDescription="Free compound interest calculator to compare and convert rates across annual, monthly, daily, and continuous compounding. Instant results, no signup needed."
       footer={<CompoundInterestFaqSection />}
       wide
     >

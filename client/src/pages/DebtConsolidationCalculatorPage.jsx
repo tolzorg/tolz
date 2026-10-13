@@ -8,8 +8,8 @@ export default function DebtConsolidationCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Debt Consolidation Calculator - Free APR Comparison"
-      seoDescription="Compare the APR of your existing debts against a proposed consolidation loan, with a full side-by-side cost breakdown. Free, fast, and no signup required."
+      seoTitle="Debt Consolidation Calculator - Compare APR & Savings"
+      seoDescription="Use this free debt consolidation calculator to compare your current APRs with a new loan. See monthly payment, payoff time, and total cost side by side."
       footer={<DebtConsolidationCalculatorFaqSection />}
       wide
     >

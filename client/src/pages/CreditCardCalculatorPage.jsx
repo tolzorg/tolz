@@ -8,8 +8,8 @@ export default function CreditCardCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Credit Card Calculator - Free Payoff Time & Payment Calculator"
-      seoDescription="Calculate how long it will take to pay off a credit card balance, or the monthly payment needed to pay it off within a certain timeframe. Free, fast, and no signup required."
+      seoTitle="Free Credit Card Calculator: Payoff Time & Payment"
+      seoDescription="Free credit card calculator: see how long payoff takes at a fixed payment, or what monthly payment clears your balance by a set date. No signup needed."
       footer={<CreditCardCalculatorFaqSection />}
       wide
     >

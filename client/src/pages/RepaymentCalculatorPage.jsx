@@ -8,8 +8,8 @@ export default function RepaymentCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Repayment Calculator - Free Loan Payment & Payoff Time"
-      seoDescription="Solve for the loan payment given a fixed payoff time, or the payoff time given a fixed payment, with independent compounding and payment frequencies. Free, fast, and no signup required."
+      seoTitle="Repayment Calculator: Loan Payment & Payoff Time (Free)"
+      seoDescription="Free repayment calculator for loans, mortgages, and credit cards. Find your monthly payment or payoff date with custom compounding and payment schedules."
       footer={<RepaymentCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function CdCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="CD Calculator - Certificate of Deposit Interest & End Balance"
-      seoDescription="Calculate a certificate of deposit's end balance and interest with annual, monthly, or continuous compounding and an optional tax rate. Includes annual and monthly schedules. Free, no signup."
+      seoTitle="CD Calculator - Free Certificate of Deposit Calculator"
+      seoDescription="Free CD calculator: see your certificate of deposit's ending balance, total interest, and after-tax earnings with annual, monthly, or continuous compounding."
       footer={<CdCalculatorFaqSection />}
       wide
     >

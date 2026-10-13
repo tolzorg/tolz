@@ -8,8 +8,8 @@ export default function StudentLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Student Loan Calculator - Payment, Payoff & Projection"
-      seoDescription="Solve for your student loan payment, term, rate, or balance, see how extra payments shorten payoff and save interest, and project what you'll owe after graduation. Free, no signup."
+      seoTitle="Student Loan Calculator: Payment, Payoff & Interest"
+      seoDescription="Free student loan calculator. Find your payment, payoff date and interest, test extra payments, and check federal loan limits and rates for 2026-27."
       footer={<StudentLoanCalculatorFaqSection />}
       wide
     >

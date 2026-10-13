@@ -8,8 +8,8 @@ export default function MutualFundCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Mutual Fund Calculator - Ending Value, Fees & Net IRR"
-      seoDescription="Estimate a mutual fund's ending value and net return after sales charges, deferred charges, and operating expenses, plus the net IRR after all fees. Free, no signup."
+      seoTitle="Mutual Fund Calculator – Net Return, Fees & IRR"
+      seoDescription="Free mutual fund calculator to estimate ending value, net return, and net IRR after loads, deferred charges, and expenses. No signup needed."
       footer={<MutualFundCalculatorFaqSection />}
       wide
     >

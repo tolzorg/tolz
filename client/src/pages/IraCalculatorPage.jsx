@@ -8,8 +8,8 @@ export default function IraCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="IRA Calculator - Traditional vs. Roth IRA vs. Taxable Savings"
-      seoDescription="Compare a Traditional, SIMPLE, or SEP IRA with a Roth IRA and a regular taxable account, before and after tax, with a growth graph and a full annual schedule. Free, no signup."
+      seoTitle="IRA Calculator: Compare Traditional, Roth & Taxable Growth"
+      seoDescription="Free IRA calculator to compare Traditional, SIMPLE, SEP, Roth IRA and taxable accounts after tax, with a growth graph and a year-by-year schedule."
       footer={<IraCalculatorFaqSection />}
       wide
     >

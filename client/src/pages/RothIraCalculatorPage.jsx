@@ -8,8 +8,8 @@ export default function RothIraCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Roth IRA Calculator - Roth IRA vs. Taxable Account Growth"
-      seoDescription="Project your Roth IRA balance at retirement and compare it with a regular taxable account, with 2026 contribution limits, a growth graph, and a full annual schedule. Free, no signup."
+      seoTitle="Roth IRA Calculator - Free 2026 Growth Projection Tool"
+      seoDescription="Free Roth IRA calculator: project your retirement balance, compare it with a taxable account, and view 2026 limits, a growth graph and annual schedule."
       footer={<RothIraCalculatorFaqSection />}
       wide
     >

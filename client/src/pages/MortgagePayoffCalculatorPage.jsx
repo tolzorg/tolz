@@ -8,8 +8,8 @@ export default function MortgagePayoffCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Mortgage Payoff Calculator - Free Extra Payment & Biweekly Payoff Tool"
-      seoDescription="See how extra payments or biweekly payments can shorten your mortgage and save on interest, or find out exactly what it costs to pay off your loan today. Free and instant."
+      seoTitle="Mortgage Payoff Calculator - Free Early Payoff Tool"
+      seoDescription="Use our free mortgage payoff calculator to see how extra or biweekly payments cut your loan term and interest, or find your exact payoff amount today."
       footer={<MortgagePayoffFaqSection />}
       wide
     >

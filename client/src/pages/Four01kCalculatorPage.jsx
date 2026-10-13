@@ -8,8 +8,8 @@ export default function Four01kCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="401K Calculator - Free Retirement Balance & Withdrawal Estimator"
-      seoDescription="Estimate a 401(k) balance at retirement and withdrawals afterward, plus early withdrawal costs and the contribution percentage that maximizes your employer match. Free and instant."
+      seoTitle="Free 401k Calculator - Estimate Balance & Match"
+      seoDescription="Free 401k calculator to estimate your balance at retirement, plan withdrawals, see early withdrawal costs, and find the contribution that maxes your match."
       footer={<Four01kCalculatorFaqSection />}
       wide
     >

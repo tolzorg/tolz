@@ -8,8 +8,8 @@ export default function SocialSecurityCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Social Security Calculator - Ideal Application Age"
-      seoDescription="Find the ideal age to apply for Social Security retirement benefits, or compare the financial difference between two application ages. Free, fast, and no signup required."
+      seoTitle="Social Security Calculator - Best Age to Claim Benefits"
+      seoDescription="Free Social Security calculator to find your best age to claim retirement benefits or compare two claiming ages side by side. No signup, instant results."
       footer={<SocialSecurityCalculatorFaqSection />}
       wide
     >

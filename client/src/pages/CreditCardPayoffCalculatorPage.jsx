@@ -8,8 +8,8 @@ export default function CreditCardPayoffCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Credit Card Payoff Calculator - Free Debt Avalanche Schedule"
-      seoDescription="Build a cost-efficient payback schedule for multiple credit cards using the debt avalanche method. Free, fast, and no signup required."
+      seoTitle="Credit Card Payoff Calculator - Avalanche Method"
+      seoDescription="Free credit card payoff calculator using the debt avalanche method. Add multiple cards, see your payoff date and total interest, and clear debt faster."
       footer={<CreditCardPayoffCalculatorFaqSection />}
       wide
     >

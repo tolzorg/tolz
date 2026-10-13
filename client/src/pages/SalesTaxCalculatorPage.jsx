@@ -8,8 +8,8 @@ export default function SalesTaxCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Sales Tax Calculator - Free Before/After Tax Price & Rate Finder"
-      seoDescription="Solve for any one of before-tax price, sales tax rate, or after-tax price, given the other two. Free and instant."
+      seoTitle="Sales Tax Calculator: Free Before & After Tax Tool"
+      seoDescription="Free sales tax calculator. Find the price before tax, the tax rate, or the total after tax by entering any two. Works backward too. No signup needed."
       footer={<SalesTaxCalculatorFaqSection />}
       wide
     >

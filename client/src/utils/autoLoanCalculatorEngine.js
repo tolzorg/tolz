@@ -70,7 +70,7 @@ function buildSchedule(principal, i, n) {
  * treated accordingly. Verified directly against the reference site for
  * two configurations: no state selected (exempt) and Alabama (NOT
  * exempt, i.e. not in this set) — both matched to the penny. */
-const INCENTIVE_TAX_EXEMPT_STATES = new Set([
+export const INCENTIVE_TAX_EXEMPT_STATES = new Set([
   "Alaska", "Arizona", "Delaware", "Iowa", "Kansas", "Kentucky", "Louisiana",
   "Massachusetts", "Minnesota", "Missouri", "Montana", "Nebraska",
   "New Hampshire", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",

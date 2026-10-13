@@ -8,8 +8,8 @@ export default function DebtPayoffCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Debt Payoff Calculator - Free Debt Avalanche Schedule"
-      seoDescription="Build a cost-efficient payoff schedule for multiple debts using the debt avalanche method, with optional extra payments. Free, fast, and no signup required."
+      seoTitle="Debt Payoff Calculator - Free Avalanche Payoff Planner"
+      seoDescription="Free debt payoff calculator for credit cards, loans, and mortgages. See your avalanche payoff order, debt-free date, and interest saved with extra payments."
       footer={<DebtPayoffCalculatorFaqSection />}
       wide
     >

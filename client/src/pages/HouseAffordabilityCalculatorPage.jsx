@@ -8,8 +8,8 @@ export default function HouseAffordabilityCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="House Affordability Calculator - Free Home Buying Budget Estimator"
-      seoDescription="Estimate an affordable house purchase amount based on household income, debts, and lending guidelines (Conventional, FHA, VA), or a fixed monthly budget. Free and instant."
+      seoTitle="Free House Affordability Calculator: How Much Can I Afford?"
+      seoDescription="Use our free house affordability calculator to see how much house you can afford. Enter income, debts and down payment, compare Conventional, FHA and VA."
       footer={<HouseAffordabilityCalculatorFaqSection />}
       wide
     >

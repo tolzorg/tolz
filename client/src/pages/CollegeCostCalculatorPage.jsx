@@ -8,8 +8,8 @@ export default function CollegeCostCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="College Cost Calculator - Total Cost & Monthly Savings"
-      seoDescription="Estimate the total cost of college with yearly tuition increases, its value in today's money, and how much to save each month to cover all or part of it. Free, no signup."
+      seoTitle="College Cost Calculator: Free Tuition & Savings Estimator"
+      seoDescription="Free college cost calculator. Estimate total tuition with yearly increases, see it in today's dollars, and get the monthly amount to save. No signup needed."
       footer={<CollegeCostCalculatorFaqSection />}
       wide
     >

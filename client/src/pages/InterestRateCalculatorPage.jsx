@@ -8,8 +8,8 @@ export default function InterestRateCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Interest Rate Calculator - Free Loan Interest Rate Finder"
-      seoDescription="Find the interest rate implied by a loan amount, term, and fixed monthly payment, plus the total interest paid over the life of the loan. Free and instant."
+      seoTitle="Interest Rate Calculator: Find Your Loan Rate Free"
+      seoDescription="Free interest rate calculator. Enter your loan amount, term, and monthly payment to find the real rate and total interest you'll pay over the loan."
       footer={<InterestRateCalculatorFaqSection />}
       wide
     >

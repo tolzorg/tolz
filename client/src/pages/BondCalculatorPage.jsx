@@ -8,8 +8,8 @@ export default function BondCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Bond Calculator - Price, Yield, Coupon & Accrued Interest"
-      seoDescription="Solve for a bond's price, face value, yield, time to maturity, or coupon, and price bonds between coupon dates with dirty price, clean price, and accrued interest under 30/360, Actual/360, Actual/365, or Actual/Actual. Free, no signup."
+      seoTitle="Bond Calculator – Price, Yield, Coupon & Accrued Interest"
+      seoDescription="Use this free bond calculator to solve for bond price, yield, coupon, face value or maturity, and find clean price, dirty price and accrued interest."
       footer={<BondCalculatorFaqSection />}
       wide
     >

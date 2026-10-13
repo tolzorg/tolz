@@ -8,8 +8,8 @@ export default function SalaryCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Salary Calculator - Free Hourly, Weekly, Monthly & Annual Pay Converter"
-      seoDescription="Convert a salary between hourly, daily, weekly, biweekly, semi-monthly, monthly, quarterly, and annual pay, with figures both before and after holidays and vacation. Free and instant."
+      seoTitle="Salary Calculator: Hourly to Annual Pay Converter"
+      seoDescription="Free salary calculator to convert hourly, daily, weekly, biweekly, monthly or annual pay, with figures before and after holidays and vacation. No signup."
       footer={<SalaryCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function AnnuityCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Annuity Calculator - Free Online Accumulation Schedule"
-      seoDescription="Calculate how a starting principal plus annual and monthly additions will grow into an annuity, with a full accumulation schedule. Free, fast, and no signup required."
+      seoTitle="Annuity Calculator - Free Annuity Due & Ordinary Annuity"
+      seoDescription="Free annuity calculator: project growth from a principal plus annual and monthly additions. Compare annuity due vs ordinary annuity with a full schedule."
       footer={<AnnuityCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function SimpleInterestCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Simple Interest Calculator - Interest, Principal, Term & Rate"
-      seoDescription="Calculate simple interest and end balance with I = Prt, or solve for the principal, term, or rate. Shows calculation steps, a growth chart, and a full schedule. Free, no signup."
+      seoTitle="Simple Interest Calculator: Free, With Steps"
+      seoDescription="Free simple interest calculator. Find interest, end balance, principal, rate or time with steps, a growth chart and full schedule. No signup needed."
       footer={<SimpleInterestCalculatorFaqSection />}
       wide
     >
