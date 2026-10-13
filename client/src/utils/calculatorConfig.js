@@ -1286,6 +1286,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "margin-calculator",
+        label: "Margin Calculator",
+        slug: "margin-calculator",
+        tagline: "Profit margin & markup, plus stock and forex margin",
+        description:
+          "Calculate profit margin and markup from any two of cost, revenue, margin, and profit, plus the amount required to buy stocks or currency on margin.",
+        icon: "💹",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/financial/margin-calculator",
+        legacyPath: "/tools/margin-calculator",
+        keywords: [
+          "margin calculator", "profit margin calculator", "markup calculator",
+          "gross margin calculator", "stock margin calculator", "forex margin calculator",
+          "selling price calculator", "margin vs markup",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
