@@ -1244,6 +1244,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "depreciation-calculator",
+        label: "Depreciation Calculator",
+        slug: "depreciation-calculator",
+        tagline: "Straight line, declining balance & sum of years' digits",
+        description:
+          "Build a year-by-year depreciation schedule with the straight line, declining balance, or sum of the years' digits method, including partial-year conventions.",
+        icon: "📉",
+        iconBg: "#fff7ed",
+        iconColor: "#ea580c",
+        path: "/calculators/financial/depreciation-calculator",
+        legacyPath: "/tools/depreciation-calculator",
+        keywords: [
+          "depreciation calculator", "straight line depreciation calculator", "declining balance calculator",
+          "double declining balance calculator", "sum of years digits calculator", "depreciation schedule",
+          "asset depreciation calculator", "book value calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
