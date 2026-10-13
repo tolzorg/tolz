@@ -18,8 +18,8 @@
 // nothing at all, as does a zero cost (markup undefined). The pie appears only when cost and profit are both > 0.
 
 const NUMERIC = /^[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i;
-const clean = (x) => String(x ?? "").replace(/,/g, "").trim();
-const num = (text) => (NUMERIC.test(text) ? Number(text) : NaN);
+export const clean = (x) => String(x ?? "").replace(/,/g, "").trim();
+export const num = (text) => (NUMERIC.test(text) ? Number(text) : NaN);
 
 export const PROFIT_DEFAULTS = { cost: "120", revenue: "160", margin: "", profit: "" };
 export const STOCK_DEFAULTS = { price: "18.3", shares: "100", requirement: "30" };

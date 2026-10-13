@@ -1307,6 +1307,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "discount-calculator",
+        label: "Discount Calculator",
+        slug: "discount-calculator",
+        tagline: "Sale price, amount saved, or percent off",
+        description:
+          "Find the price after discount, the amount saved, the original price, or the discount from any two values, for percent-off or fixed-amount-off deals.",
+        icon: "🏷️",
+        iconBg: "#fff7ed",
+        iconColor: "#ea580c",
+        path: "/calculators/financial/discount-calculator",
+        legacyPath: "/tools/discount-calculator",
+        keywords: [
+          "discount calculator", "sale price calculator", "percent off calculator",
+          "price after discount", "original price calculator", "coupon calculator",
+          "how much do I save", "discount percentage calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
