@@ -1223,6 +1223,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "auto-lease-calculator",
+        label: "Auto Lease Calculator",
+        slug: "auto-lease-calculator",
+        tagline: "Monthly car lease payment, money factor & residual",
+        description:
+          "Calculate a monthly car lease payment from the price, money factor, residual value, and sales tax, or the price a payment can afford, and compare leasing with buying.",
+        icon: "🚙",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/auto-lease-calculator",
+        legacyPath: "/tools/auto-lease-calculator",
+        keywords: [
+          "auto lease calculator", "car lease calculator", "lease payment calculator",
+          "money factor calculator", "car lease payment", "residual value calculator",
+          "lease vs buy car calculator", "vehicle lease calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
