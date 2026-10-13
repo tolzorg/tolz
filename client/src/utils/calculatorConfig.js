@@ -1349,6 +1349,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "debt-to-income-calculator",
+        label: "Debt-to-Income Ratio Calculator",
+        slug: "debt-to-income-calculator",
+        tagline: "Front-end & back-end DTI, plus how much house you can afford",
+        description:
+          "Calculate your front-end and back-end debt-to-income (DTI) ratio from monthly or yearly income and debts, see how healthy it is, and estimate how much house you can afford.",
+        icon: "⚖️",
+        iconBg: "#fef2f2",
+        iconColor: "#dc2626",
+        path: "/calculators/financial/debt-to-income-calculator",
+        legacyPath: "/tools/debt-to-income-calculator",
+        keywords: [
+          "debt to income ratio calculator", "dti calculator", "debt ratio calculator",
+          "front end dti", "back end dti", "dti for mortgage", "debt to income calculator",
+          "28/36 rule calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
