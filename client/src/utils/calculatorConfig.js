@@ -1328,6 +1328,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "business-loan-calculator",
+        label: "Business Loan Calculator",
+        slug: "business-loan-calculator",
+        tagline: "Business loan payment, total cost, and real APR with fees",
+        description:
+          "Calculate a business loan's payment, total interest, and real rate (APR) including origination, documentation, and other fees, for regular, interest-only, or lump-sum repayment.",
+        icon: "🏢",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/financial/business-loan-calculator",
+        legacyPath: "/tools/business-loan-calculator",
+        keywords: [
+          "business loan calculator", "small business loan calculator", "sba loan calculator",
+          "business loan payment calculator", "loan origination fee calculator", "real apr calculator",
+          "interest only business loan", "commercial loan calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
