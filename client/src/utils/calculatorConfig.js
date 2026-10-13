@@ -1265,6 +1265,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "average-return-calculator",
+        label: "Average Return Calculator",
+        slug: "average-return-calculator",
+        tagline: "Annual return from cash flows, plus cumulative return",
+        description:
+          "Calculate an account's average annual return from its deposits and withdrawals, or the cumulative and average return of investments held for different lengths of time.",
+        icon: "📊",
+        iconBg: "#ecfdf5",
+        iconColor: "#059669",
+        path: "/calculators/financial/average-return-calculator",
+        legacyPath: "/tools/average-return-calculator",
+        keywords: [
+          "average return calculator", "annualized return calculator", "cumulative return calculator",
+          "money weighted return calculator", "xirr calculator", "investment return calculator",
+          "average annual return", "cash flow return calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
