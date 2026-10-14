@@ -1551,6 +1551,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "apr-calculator",
+        label: "APR Calculator",
+        slug: "apr-calculator",
+        tagline: "Real APR with fees, points and PMI",
+        description:
+          "Find the real APR of a loan including loaned and upfront fees, for any compounding and payment frequency, or a U.S. mortgage APR with points and PMI, plus an amortization schedule.",
+        icon: "🏷️",
+        iconBg: "#fef2f2",
+        iconColor: "#b91c1c",
+        path: "/calculators/financial/apr-calculator",
+        legacyPath: "/tools/apr-calculator",
+        keywords: [
+          "apr calculator", "real apr calculator", "annual percentage rate calculator", "mortgage apr calculator",
+          "loan apr calculator", "apr with fees", "apr vs interest rate", "calculate apr",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
