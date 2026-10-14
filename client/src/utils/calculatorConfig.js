@@ -1431,6 +1431,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "lease-calculator",
+        label: "Lease Calculator",
+        slug: "lease-calculator",
+        tagline: "Monthly lease payment, or the rate behind a payment",
+        description:
+          "Calculate the monthly payment of a lease from the asset value, residual value, term, and interest rate, or find the interest rate implied by a monthly payment.",
+        icon: "📝",
+        iconBg: "#fefce8",
+        iconColor: "#ca8a04",
+        path: "/calculators/financial/lease-calculator",
+        legacyPath: "/tools/lease-calculator",
+        keywords: [
+          "lease calculator", "lease payment calculator", "residual value calculator", "equipment lease calculator",
+          "lease interest rate calculator", "monthly lease payment", "business lease calculator", "lease vs buy",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
