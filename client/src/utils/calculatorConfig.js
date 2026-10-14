@@ -1531,6 +1531,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "roi-calculator",
+        label: "ROI Calculator",
+        slug: "roi-calculator",
+        tagline: "Return on investment, gain and annualized ROI",
+        description:
+          "Calculate return on investment (ROI), investment gain or loss, and annualized ROI from the amount invested and returned, using dates or an investment length.",
+        icon: "💹",
+        iconBg: "#eff6ff",
+        iconColor: "#1d4ed8",
+        path: "/calculators/financial/roi-calculator",
+        legacyPath: "/tools/roi-calculator",
+        keywords: [
+          "roi calculator", "return on investment calculator", "annualized roi calculator", "roi formula",
+          "calculate roi", "investment return calculator", "roi percentage calculator", "annual return calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

@@ -60,9 +60,11 @@ export function formatNumber(value, dp) {
     // Past 15 digits the reference prints the double's exact digits.
     text = `${BigInt(Math.round(abs))}${dp ? `.${"0".repeat(dp)}` : ""}`;
   } else {
-    const pre = Number(abs.toPrecision(15));
     const k = 10 ** dp;
-    text = (Math.round(Number((pre * k).toPrecision(15))) / k).toFixed(dp);
+    // A 15-digit pre-round fixes float noise like 1.005 → 1.00, but would eat
+    // real digits once the scaled value reaches 15 digits itself.
+    const scaled = abs * k >= 1e15 ? abs * k : Number((Number(abs.toPrecision(15)) * k).toPrecision(15));
+    text = (Math.round(scaled) / k).toFixed(dp);
   }
   const [int, dec] = text.split(".");
   const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

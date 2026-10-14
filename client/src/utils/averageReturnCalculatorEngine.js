@@ -45,7 +45,7 @@ function parseDate(text) {
 }
 
 /** Years from `a` to `b`: whole anniversaries plus leftover days ÷ 365. */
-function yearsBetween(a, b) {
+export function yearsBetween(a, b) {
   const A = new Date(a);
   const B = new Date(b);
   let years = B.getUTCFullYear() - A.getUTCFullYear();
