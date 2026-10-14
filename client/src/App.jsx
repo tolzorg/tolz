@@ -60,6 +60,7 @@ const LeaseCalculatorPage = lazy(() => import("./pages/LeaseCalculatorPage"));
 const RefinanceCalculatorPage = lazy(() => import("./pages/RefinanceCalculatorPage"));
 const BudgetCalculatorPage = lazy(() => import("./pages/BudgetCalculatorPage"));
 const RentalPropertyCalculatorPage = lazy(() => import("./pages/RentalPropertyCalculatorPage"));
+const IrrCalculatorPage = lazy(() => import("./pages/IrrCalculatorPage"));
 const RentCalculatorPage = lazy(() => import("./pages/RentCalculatorPage"));
 const MarriageTaxCalculatorPage = lazy(() => import("./pages/MarriageTaxCalculatorPage"));
 const EstateTaxCalculatorPage = lazy(() => import("./pages/EstateTaxCalculatorPage"));
@@ -260,6 +261,7 @@ export default function App() {
                 <Route path="/tools/refinance-calculator" element={<RefinanceCalculatorPage />} />
                 <Route path="/tools/budget-calculator" element={<BudgetCalculatorPage />} />
                 <Route path="/tools/rental-property-calculator" element={<RentalPropertyCalculatorPage />} />
+                <Route path="/tools/irr-calculator" element={<IrrCalculatorPage />} />
                 <Route path="/tools/rent-calculator"                 element={<RentCalculatorPage />} />
                 <Route path="/tools/marriage-tax-calculator"         element={<MarriageTaxCalculatorPage />} />
                 <Route path="/tools/estate-tax-calculator"           element={<EstateTaxCalculatorPage />} />
@@ -348,6 +350,7 @@ export default function App() {
                 <Route path="/calculators/financial/refinance-calculator" element={<RefinanceCalculatorPage />} />
                 <Route path="/calculators/financial/budget-calculator" element={<BudgetCalculatorPage />} />
                 <Route path="/calculators/financial/rental-property-calculator" element={<RentalPropertyCalculatorPage />} />
+                <Route path="/calculators/financial/irr-calculator" element={<IrrCalculatorPage />} />
                 <Route path="/calculators/financial/rent-calculator"                 element={<RentCalculatorPage />} />
                 <Route path="/calculators/financial/marriage-tax-calculator"         element={<MarriageTaxCalculatorPage />} />
                 <Route path="/calculators/financial/estate-tax-calculator"           element={<EstateTaxCalculatorPage />} />

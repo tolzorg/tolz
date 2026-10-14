@@ -1511,6 +1511,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "irr-calculator",
+        label: "IRR Calculator",
+        slug: "irr-calculator",
+        tagline: "Internal rate of return for fixed or irregular cash flows",
+        description:
+          "Calculate the internal rate of return (IRR) from a fixed recurring deposit or withdrawal and an ending balance, or from irregular yearly cash flows, with total and gross return.",
+        icon: "📈",
+        iconBg: "#ecfdf5",
+        iconColor: "#047857",
+        path: "/calculators/financial/irr-calculator",
+        legacyPath: "/tools/irr-calculator",
+        keywords: [
+          "irr calculator", "internal rate of return calculator", "irr formula", "calculate irr",
+          "cash flow irr calculator", "investment return calculator", "npv irr calculator", "annualized return calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
