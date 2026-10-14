@@ -1451,6 +1451,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "refinance-calculator",
+        label: "Refinance Calculator",
+        slug: "refinance-calculator",
+        tagline: "Should you refinance? Payment, APR, savings & break-even",
+        description:
+          "Compare your current loan with a refinance: new monthly payment, APR with points and fees, lifetime savings, cash-out take-home amount, and break-even point.",
+        icon: "🔁",
+        iconBg: "#f0f9ff",
+        iconColor: "#0369a1",
+        path: "/calculators/financial/refinance-calculator",
+        legacyPath: "/tools/refinance-calculator",
+        keywords: [
+          "refinance calculator", "mortgage refinance calculator", "refinance break even calculator", "cash out refinance calculator",
+          "should i refinance", "refinance savings calculator", "loan refinance calculator", "refinance apr calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
