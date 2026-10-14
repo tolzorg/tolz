@@ -1411,6 +1411,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "boat-loan-calculator",
+        label: "Boat Loan Calculator",
+        slug: "boat-loan-calculator",
+        tagline: "Boat loan payment, or how much boat a payment buys",
+        description:
+          "Calculate a boat loan's monthly payment, total interest, and total cost with down payment, trade-in, sales tax, and fees, or find the boat price a monthly payment can buy.",
+        icon: "⛵",
+        iconBg: "#e0f2fe",
+        iconColor: "#0284c7",
+        path: "/calculators/financial/boat-loan-calculator",
+        legacyPath: "/tools/boat-loan-calculator",
+        keywords: [
+          "boat loan calculator", "boat payment calculator", "marine loan calculator", "yacht loan calculator",
+          "boat financing calculator", "how much boat can i afford", "boat loan amortization", "boat price calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

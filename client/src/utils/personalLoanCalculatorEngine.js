@@ -132,21 +132,30 @@ export function calculatePersonalLoan(input) {
   };
 }
 
-function buildSchedule({ P, i, n, payment, startMonth, startYear, payoff }) {
+/**
+ * Month-by-month amortization of P at monthly rate i over n payments, the
+ * calculator.net way: n may be fractional, and the final partial payment
+ * carries interest = payment × fraction − remaining balance. Shared with
+ * the Boat Loan Calculator.
+ */
+export function amortizeMonthly({ P, i, n, payment }) {
   const whole = Math.floor(n + 1e-9);
   const frac = n - whole;
-  const monthly = [];
+  const rows = [];
   let balance = P;
   for (let k = 0; k < whole; k++) {
     const interest = balance * i;
     const principal = payment - interest;
     // At 0% the balance is exactly P − k × payment; accumulating it drifts by a float ulp at half cents.
     balance = i === 0 ? P - (k + 1) * payment : balance - principal;
-    monthly.push({ index: k + 1, date: addMonths(startMonth, startYear, k), interest, principal, balance });
+    rows.push({ index: k + 1, interest, principal, balance });
   }
-  if (frac > 1e-9) {
-    monthly.push({ index: whole + 1, date: addMonths(startMonth, startYear, whole), interest: payment * frac - balance, principal: balance, balance: 0 });
-  }
+  if (frac > 1e-9) rows.push({ index: whole + 1, interest: payment * frac - balance, principal: balance, balance: 0 });
+  return rows;
+}
+
+function buildSchedule({ P, i, n, payment, startMonth, startYear, payoff }) {
+  const monthly = amortizeMonthly({ P, i, n, payment }).map((r) => ({ ...r, date: addMonths(startMonth, startYear, r.index - 1) }));
 
   const annual = [];
   for (let start = 0; start < monthly.length; start += 12) {
