@@ -1390,6 +1390,27 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "personal-loan-calculator",
+        label: "Personal Loan Calculator",
+        slug: "personal-loan-calculator",
+        tagline: "Monthly payment, real APR with fees, and amortization schedule",
+        description:
+          "Calculate a personal loan's monthly payment, total interest, payoff date, and amortization schedule, plus the real APR with origination fees and insurance.",
+        icon: "🤝",
+        iconBg: "#eef2ff",
+        iconColor: "#4f46e5",
+        path: "/calculators/financial/personal-loan-calculator",
+        legacyPath: "/tools/personal-loan-calculator",
+        keywords: [
+          "personal loan calculator", "personal loan payment calculator", "loan apr calculator",
+          "origination fee calculator", "personal loan amortization", "unsecured loan calculator",
+          "debt consolidation loan calculator", "monthly loan payment",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
