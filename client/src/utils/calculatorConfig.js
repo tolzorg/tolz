@@ -1471,6 +1471,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "budget-calculator",
+        label: "Budget Calculator",
+        slug: "budget-calculator",
+        tagline: "Annual & monthly budget, DTI ratio & expense breakdown",
+        description:
+          "Plan a personal budget: enter incomes and expenses by month or year to see after-tax income, net surplus or deficit, debt-to-income ratio, and an expense breakdown by category.",
+        icon: "📊",
+        iconBg: "#f0fdf4",
+        iconColor: "#15803d",
+        path: "/calculators/financial/budget-calculator",
+        legacyPath: "/tools/budget-calculator",
+        keywords: [
+          "budget calculator", "monthly budget calculator", "personal budget calculator", "household budget calculator",
+          "budget planner", "expense calculator", "income and expense calculator", "how to budget",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
