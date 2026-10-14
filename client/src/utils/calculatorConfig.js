@@ -1491,6 +1491,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "rental-property-calculator",
+        label: "Rental Property Calculator",
+        slug: "rental-property-calculator",
+        tagline: "IRR, cap rate, cash flow & profit for a rental",
+        description:
+          "Analyze a rental property investment: IRR, total profit when sold, cash-on-cash return, cap rate, first-year cash flow, and a year-by-year breakdown of income, expenses, equity, and sale proceeds.",
+        icon: "🏘️",
+        iconBg: "#fff7ed",
+        iconColor: "#c2410c",
+        path: "/calculators/financial/rental-property-calculator",
+        legacyPath: "/tools/rental-property-calculator",
+        keywords: [
+          "rental property calculator", "rental property roi calculator", "cap rate calculator", "cash on cash return calculator",
+          "rental income calculator", "real estate investment calculator", "rental property irr", "investment property calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
