@@ -1370,6 +1370,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "take-home-pay-calculator",
+        label: "Take-Home-Paycheck Calculator",
+        slug: "take-home-pay-calculator",
+        tagline: "Net paycheck after taxes and deductions, plus your W-4 numbers",
+        description:
+          "Estimate your 2026 take-home paycheck after federal, state, and city income tax, Social Security, Medicare, and deductions, and get the numbers for Steps 3 and 4 of your W-4.",
+        icon: "💵",
+        iconBg: "#ecfdf5",
+        iconColor: "#059669",
+        path: "/calculators/financial/take-home-pay-calculator",
+        legacyPath: "/tools/take-home-pay-calculator",
+        keywords: [
+          "take home pay calculator", "paycheck calculator", "net pay calculator", "salary after tax calculator",
+          "w-4 calculator", "withholding calculator", "after tax income calculator", "2026 paycheck calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
