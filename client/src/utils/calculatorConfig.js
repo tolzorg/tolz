@@ -1751,6 +1751,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "commission-calculator",
+        label: "Commission Calculator",
+        slug: "commission-calculator",
+        tagline: "Simple and tiered sales commission",
+        description:
+          "Calculate a sales commission, sales price or commission rate from the other two, or work out tiered commissions with an optional base amount.",
+        icon: "🤝",
+        iconBg: "#fef3c7",
+        iconColor: "#b45309",
+        path: "/calculators/financial/commission-calculator",
+        legacyPath: "/tools/commission-calculator",
+        keywords: [
+          "commission calculator", "sales commission calculator", "tiered commission calculator", "commission rate calculator",
+          "real estate commission", "base salary plus commission", "commission percentage", "how to calculate commission",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
