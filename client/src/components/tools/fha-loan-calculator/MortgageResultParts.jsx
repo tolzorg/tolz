@@ -157,7 +157,7 @@ export function SummaryTable({ rows, title }) {
   );
 }
 
-function ScheduleTable({ schedule, view }) {
+function ScheduleTable({ schedule, view, cell = wholeMoney }) {
   const rows = view === "annual" ? schedule.annual : schedule.monthly;
   const heads = [view === "annual" ? "Year" : "Month", ...(schedule.showDates ? ["Date"] : []), "Interest", "Principal", "Ending Balance"];
   return (
@@ -172,9 +172,9 @@ function ScheduleTable({ schedule, view }) {
               <tr key={r.label}>
                 <td style={schedTd}>{r.label}</td>
                 {schedule.showDates && <td style={{ ...schedTd, whiteSpace: "normal" }}>{r.date}</td>}
-                <td style={schedTd}>{wholeMoney(r.interest)}</td>
-                <td style={schedTd}>{wholeMoney(r.principal)}</td>
-                <td style={schedTd}>{wholeMoney(r.balance)}</td>
+                <td style={schedTd}>{cell(r.interest)}</td>
+                <td style={schedTd}>{cell(r.principal)}</td>
+                <td style={schedTd}>{cell(r.balance)}</td>
               </tr>
             )];
             if (r.yearEnd) out.push(<tr key={`y${r.yearEnd}`}><td colSpan={heads.length} style={{ ...schedTd, textAlign: "center", fontWeight: 700, background: "var(--bg-muted)" }}>End of year {r.yearEnd}</td></tr>);
@@ -187,7 +187,7 @@ function ScheduleTable({ schedule, view }) {
 }
 
 /** "Amortization schedule" with Annual/Monthly tabs (active tab blue) and the line chart. */
-export function ScheduleSection({ schedule, view, setView, idPrefix }) {
+export function ScheduleSection({ schedule, view, setView, idPrefix, cell }) {
   return (
     <section aria-labelledby={`${idPrefix}-schedule-title`} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <h2 id={`${idPrefix}-schedule-title`} style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", margin: 0 }}>Amortization schedule</h2>
@@ -207,7 +207,7 @@ export function ScheduleSection({ schedule, view, setView, idPrefix }) {
         ))}
       </div>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div style={{ flex: "1 1 360px", minWidth: 0 }}><ScheduleTable schedule={schedule} view={view} /></div>
+        <div style={{ flex: "1 1 360px", minWidth: 0 }}><ScheduleTable schedule={schedule} view={view} cell={cell} /></div>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 0, padding: 16 }}>
           <AmortizationLineChart series={schedule.chart} loanAmount={schedule.loan} />
         </div>

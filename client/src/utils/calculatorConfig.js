@@ -1611,6 +1611,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "home-equity-loan-calculator",
+        label: "Home Equity Loan Calculator",
+        slug: "home-equity-loan-calculator",
+        tagline: "Payment, APR and how much you can borrow",
+        description:
+          "Calculate a home equity loan payment, total interest, cost and APR with closing costs and an amortization schedule, and estimate how much you can borrow from your home value, mortgage balance and LTV.",
+        icon: "🏘️",
+        iconBg: "#fff7ed",
+        iconColor: "#c2410c",
+        path: "/calculators/financial/home-equity-loan-calculator",
+        legacyPath: "/tools/home-equity-loan-calculator",
+        keywords: [
+          "home equity loan calculator", "home equity loan payment", "second mortgage calculator", "home equity loan apr",
+          "how much home equity can i borrow", "ltv calculator", "home equity closing costs", "home equity amortization",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
