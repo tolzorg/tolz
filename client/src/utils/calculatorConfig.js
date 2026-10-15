@@ -1711,6 +1711,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "present-value-calculator",
+        label: "Present Value Calculator",
+        slug: "present-value-calculator",
+        tagline: "Today's value of a future sum or deposits",
+        description:
+          "Calculate the present value of a future sum or of periodic deposits made at the beginning or end of each period, with future value, total interest and a schedule.",
+        icon: "💲",
+        iconBg: "#eef2ff",
+        iconColor: "#4338ca",
+        path: "/calculators/financial/present-value-calculator",
+        legacyPath: "/tools/present-value-calculator",
+        keywords: [
+          "present value calculator", "pv calculator", "present value of annuity", "discount future value",
+          "present value formula", "annuity due present value", "time value of money", "npv vs pv",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
