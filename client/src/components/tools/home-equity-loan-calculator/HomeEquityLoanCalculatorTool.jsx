@@ -4,6 +4,7 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import { ValueUnitField } from "../mortgage-calculator/MortgageFormControls";
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import { ErrorPanel, Row, Checkbox, ButtonRow, ScheduleSection } from "../fha-loan-calculator/MortgageResultParts";
+import BorrowLimitCalculator from "./BorrowLimitCalculator";
 import {
   calculateHomeEquityLoan, calculateBorrowLimit, scheduleMoney, LOAN_DEFAULTS, BORROW_DEFAULTS, LTV_CHOICES,
 } from "../../../utils/homeEquityLoanCalculatorEngine";
@@ -122,59 +123,15 @@ function PaymentCalculator() {
   );
 }
 
-function BorrowCalculator() {
-  const B = BORROW_DEFAULTS;
-  const [v, setV] = useState({ houseValue: "", mortgageBalance: "" });
-  const [ltv, setLtv] = useState(B.ltv);
-  const [submitted, setSubmitted] = useState(false);
-  const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
-
-  // Like the reference, the result follows the inputs; Calculate also reveals errors.
-  const values = v.houseValue === "" && v.mortgageBalance === "" ? B : v;
-  const result = calculateBorrowLimit({ ...values, ltv });
-  const clear = () => { setV({ houseValue: "", mortgageBalance: "" }); setLtv(B.ltv); setSubmitted(false); };
-
-  return (
-    <section aria-labelledby="he-borrow-title">
-      <h2 id="he-borrow-title" style={sectionTitle}>The loan amount you can borrow</h2>
-      <p style={{ fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6, margin: "0 0 12px" }}>
-        Use the calculator below to estimate the maximum home equity loan amount you may be able to borrow, based on the value of
-        your home, your remaining mortgage balance, and the loan-to-value (LTV) ratio acceptable by the lender.
-      </p>
-      <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ flex: "1 1 300px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-          <Row label="Current value of your house"><DollarField value={v.houseValue} onChange={set("houseValue")} placeholder={B.houseValue} /></Row>
-          <Row label="Outstanding balance of your mortgage"><DollarField value={v.mortgageBalance} onChange={set("mortgageBalance")} placeholder={B.mortgageBalance} /></Row>
-          <Row label="LTV ratio acceptable by the lender"><SelectField value={ltv} onChange={setLtv} options={LTV_CHOICES} style={{ width: "100%" }} /></Row>
-          <ButtonRow onCalculate={() => setSubmitted(true)} onClear={clear} />
-        </div>
-        <div className="card" style={{ flex: "1 1 300px", minWidth: 280, padding: 0, overflow: "hidden" }}>
-          <div style={header}>Result</div>
-          <div style={{ padding: "14px 16px" }} aria-live="polite">
-            {result.errors ? (
-              submitted ? <ErrorPanel messages={result.errors} /> : <p style={{ fontSize: 13.5, color: "var(--text-muted)", margin: 0 }}>Enter your home value and mortgage balance.</p>
-            ) : (
-              <>
-                <p style={{ fontSize: 16, color: "var(--text-primary)", margin: "0 0 6px" }}>
-                  {result.qualifies ? <>You may borrow up to <strong style={{ color: "var(--success)" }}>{result.amount}</strong>.</> : "You may not qualify for a home equity loan."}
-                </p>
-                <p style={{ fontSize: 13.5, color: "var(--text-primary)", margin: "0 0 10px" }}>{result.ltvText}</p>
-                {result.notes.length > 0 && <p style={{ fontSize: 12, color: "var(--text-secondary)", lineHeight: 1.5, margin: 0 }}>{result.notes.join(" ")}</p>}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function HomeEquityLoanCalculatorTool() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 34 }}>
       <PaymentCalculator />
       <hr style={{ border: "none", borderTop: "1px solid var(--border)", margin: 0 }} />
-      <BorrowCalculator />
+      <BorrowLimitCalculator
+        idPrefix="he" title="The loan amount you can borrow" calculate={calculateBorrowLimit}
+        intro="Use the calculator below to estimate the maximum home equity loan amount you may be able to borrow, based on the value of your home, your remaining mortgage balance, and the loan-to-value (LTV) ratio acceptable by the lender."
+      />
     </div>
   );
 }

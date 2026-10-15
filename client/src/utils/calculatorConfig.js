@@ -1631,6 +1631,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "heloc-calculator",
+        label: "HELOC Calculator",
+        slug: "heloc-calculator",
+        tagline: "Draw and repayment payments, APR and limit",
+        description:
+          "Calculate HELOC draw-period and repayment payments, total interest, cost and APR with closing costs and annual fees, plus an amortization schedule and how much line of credit you can borrow.",
+        icon: "🔑",
+        iconBg: "#fefce8",
+        iconColor: "#a16207",
+        path: "/calculators/financial/heloc-calculator",
+        legacyPath: "/tools/heloc-calculator",
+        keywords: [
+          "heloc calculator", "home equity line of credit calculator", "heloc payment calculator", "heloc apr",
+          "heloc draw period", "heloc repayment", "how much heloc can i get", "heloc amortization",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
