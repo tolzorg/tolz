@@ -1651,6 +1651,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "down-payment-calculator",
+        label: "Down Payment Calculator",
+        slug: "down-payment-calculator",
+        tagline: "Home price, cash needed or down payment %",
+        description:
+          "Find the home price your upfront cash can buy, the cash needed for a home, or the down payment percentage you can afford, with closing costs, loan amount and monthly payment.",
+        icon: "💵",
+        iconBg: "#ecfdf5",
+        iconColor: "#047857",
+        path: "/calculators/financial/down-payment-calculator",
+        legacyPath: "/tools/down-payment-calculator",
+        keywords: [
+          "down payment calculator", "how much down payment", "home down payment calculator", "cash needed to buy a house",
+          "down payment percentage", "closing costs calculator", "fha down payment", "how much house can i afford with",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
