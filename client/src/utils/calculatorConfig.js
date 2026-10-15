@@ -1591,6 +1591,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "va-mortgage-calculator",
+        label: "VA Mortgage Calculator",
+        slug: "va-mortgage-calculator",
+        tagline: "VA payment with funding fee and schedule",
+        description:
+          "Estimate a VA home loan payment with the VA funding fee, financed or paid upfront, plus property taxes, insurance, HOA and other costs, extra payments, a bi-weekly comparison and an amortization schedule.",
+        icon: "🎖️",
+        iconBg: "#f0fdf4",
+        iconColor: "#15803d",
+        path: "/calculators/financial/va-mortgage-calculator",
+        legacyPath: "/tools/va-mortgage-calculator",
+        keywords: [
+          "va mortgage calculator", "va loan calculator", "va funding fee calculator", "va home loan calculator",
+          "va mortgage payment", "veteran mortgage calculator", "va loan amortization", "va funding fee",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",

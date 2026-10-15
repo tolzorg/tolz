@@ -106,17 +106,11 @@ function readStartYear(text, message, errors) {
 }
 
 /**
- * @param {object} input — strings as typed: price, downPayment, downUnit
- *   ("percent"|"dollar"), years, rate, upfrontMip, annualMip, mipDuration,
- *   includeOptionals, propertyTaxes, taxUnit, homeInsurance, hoa, otherCosts,
- *   startMonth, startYear, moreOptions, taxIncrease, insuranceIncrease,
- *   hoaIncrease, otherIncrease, extraMonthly (+Month/+Year), extraYearly
- *   (+Month/+Year), extraOneTime (+Month/+Year), showBiweekly.
+ * Reads and validates the fields every calculator.net mortgage form shares
+ * (home price, down payment, term, rate), in the reference's message order.
  */
-export function calculateFhaLoan(input) {
-  const errors = [];
+export function readLoanBasics(input, errors) {
   const t = (k) => clean(input[k]);
-
   const price = num(t("price"));
   if (Number.isNaN(price) || price <= 0) errors.push("Please provide a positive home price value.");
 
@@ -136,12 +130,18 @@ export function calculateFhaLoan(input) {
 
   const rate = num(t("rate"));
   if (Number.isNaN(rate) || rate < 0) errors.push("Please provide a positive interest value.");
-  const upfrontPct = num(t("upfrontMip"));
-  if (Number.isNaN(upfrontPct) || upfrontPct < 0) errors.push("Please provide a positive upfront FHA Mortgage Insurance Premium (MIP) value.");
-  const annualPct = num(t("annualMip"));
-  if (Number.isNaN(annualPct) || annualPct < 0) errors.push("Please provide a positive annual FHA Mortgage Insurance Premium (MIP) value.");
+  // Same float path as the reference (the down payment is later backed out of
+  // the loan), which decides some half-cent roundings.
+  const baseLoan = byDollar ? price - downValue : price * (1 - downValue / 100);
+  return { price, downValue, byDollar, years, rate, baseLoan };
+}
 
-  const optional = !!input.includeOptionals;
+/**
+ * Reads the optional costs (when included) and the "More Options" cost
+ * increases and extra payments (when open).
+ */
+export function readCostsAndExtras(input, errors, optional, more) {
+  const t = (k) => clean(input[k]);
   let taxValue = 0; let insurance = 0; let hoa = 0; let other = 0;
   // The start date still anchors extra payments when the optionals are off.
   let startYear = num(clean(input.startYear)) || 0;
@@ -152,8 +152,6 @@ export function calculateFhaLoan(input) {
     other = readOptional(t("otherCosts"), "Please provide a positive other costs value.", errors);
     startYear = readStartYear(input.startYear, "Please provide a positive start date value.", errors);
   }
-
-  const more = !!input.moreOptions;
   const inc = { tax: 0, insurance: 0, hoa: 0, other: 0 };
   const extra = { monthly: 0, yearly: 0, oneTime: 0, monthlyYear: 0, yearlyYear: 0, oneTimeYear: 0 };
   if (more) {
@@ -168,24 +166,22 @@ export function calculateFhaLoan(input) {
     extra.oneTime = readOptional(t("extraOneTime"), "Please provide a positive extra one-time pay amount.", errors);
     extra.oneTimeYear = readStartYear(input.extraOneTimeYear, "Please provide a reasonable extra one-time pay start date.", errors);
   }
-  if (errors.length) return { errors };
+  return { taxValue, insurance, hoa, other, startYear, inc, extra };
+}
 
-  // ── Loan ──
-  // Same float path as the reference: the down payment is backed out of the
-  // loan (price − loan + upfront MIP), which decides some half-cent roundings.
-  const baseLoan = byDollar ? price - downValue : price * (1 - downValue / 100);
-  const upfront = price * (upfrontPct / 100);
-  const loan = baseLoan + upfront;
-  const downAmount = byDollar ? downValue : price - loan + upfront;
+/**
+ * Runs the month-by-month schedule shared by the reference's FHA and VA
+ * mortgage pages: payments (with a fractional final period), optional costs
+ * with yearly increases, extra payments, an optional monthly insurance
+ * premium (`mip`), the bi-weekly comparison and the amortization schedule.
+ */
+export function simulateMortgage({ input, loan, price, years, rate, optional, more, values, mip = null }) {
+  const { taxValue, insurance, hoa, other, startYear, inc, extra } = values;
   const n = years * 12;
   const r = rate / 1200;
   const payment = r === 0 ? loan / n : (loan * r) / (1 - (1 + r) ** -n);
-  const mipMonthly = optional ? (baseLoan * annualPct) / 1200 : 0;
-  const duration = input.mipDuration || "term";
-  const mipLtvBalance = 0.78 * price;
 
   const start = { month: Number(input.startMonth) || 1, year: startYear };
-  const startOrd = ordinal(start);
   const taxAnnual = optional ? (input.taxUnit === "dollar" ? taxValue : (price * taxValue) / 100) : 0;
   const ins = optional ? insurance : 0;
   const hoaAnnual = optional ? hoa : 0;
@@ -227,23 +223,16 @@ export function calculateFhaLoan(input) {
     const grow = (annual, pct) => (annual * (1 + (more ? pct : 0) / 100) ** yearIndex) / 12;
     const costs = { tax: grow(taxAnnual, inc.tax), insurance: grow(ins, inc.insurance), hoa: grow(hoaAnnual, inc.hoa), other: grow(otherAnnual, inc.other) };
 
-    let mip = 0;
-    if (mipMonthly > 0 && k <= n + 1e-9) {
-      const charged = duration === "term" ? true
-        : duration === "11" ? k <= 132
-          : duration === "5" ? k <= 60
-            : duration === "78" ? balance > mipLtvBalance
-              : false;
-      if (charged) { mip = mipMonthly; tot.mipMonths++; }
-    }
+    let premium = 0;
+    if (mip && mip.monthly > 0 && k <= n + 1e-9 && mip.charged(k, balance)) { premium = mip.monthly; tot.mipMonths++; }
 
     // Costs that scale with time are charged for the fraction of the final
     // month only when the loan runs its natural (fractional) course.
     const weight = balance === 0 && fraction < 1 ? fraction : 1;
-    tot.interest += interest; tot.principal += principal; tot.extra += extraPaid; tot.mip += mip;
+    tot.interest += interest; tot.principal += principal; tot.extra += extraPaid; tot.mip += premium;
     tot.tax += costs.tax * weight; tot.insurance += costs.insurance * weight;
     tot.hoa += costs.hoa * weight; tot.other += costs.other * weight;
-    rows.push({ k, date, interest, principal: principal + extraPaid, balance, extra: extraPaid, costs, mip });
+    rows.push({ k, date, interest, principal: principal + extraPaid, balance, extra: extraPaid, costs, mip: premium });
   }
 
   const months = rows.length;
@@ -253,53 +242,8 @@ export function calculateFhaLoan(input) {
   // Extra payments that do not end the loan early leave the fractional count.
   const paymentsCount = countText(paidEarly && months < lastRow ? months : n);
   const payoffDate = addMonths(start, months);
-
-  // ── Monthly / Total table ──
   const anyIncrease = more && (inc.tax > 0 || inc.insurance > 0 || inc.hoa > 0 || inc.other > 0);
   const firstColumn = anyIncrease || (first && first.extra > 0) ? "First Month" : "Monthly";
-  const table = [];
-  table.push({ label: "Mortgage Payment", first: payment, total: mortgageTotal, bold: true });
-  if (hasExtraInput) table.push({ label: "Extra Payment", first: first.extra, total: tot.extra });
-  if (taxAnnual > 0) table.push({ label: "Property Tax", first: first.costs.tax, total: tot.tax });
-  if (ins > 0) table.push({ label: "Home Insurance", first: first.costs.insurance, total: tot.insurance });
-  if (tot.mipMonths > 0) table.push({ label: "Annual MIP", first: mipMonthly, total: tot.mip });
-  if (hoaAnnual > 0) table.push({ label: "HOA Fee", first: first.costs.hoa, total: tot.hoa });
-  if (otherAnnual > 0) table.push({ label: "Other Costs", first: first.costs.other, total: tot.other });
-  const outFirst = payment + first.extra + first.costs.tax + first.costs.insurance + (duration === "no" ? 0 : mipMonthly) + first.costs.hoa + first.costs.other;
-  const outTotal = mortgageTotal + tot.extra + tot.tax + tot.insurance + tot.mip + tot.hoa + tot.other;
-  table.push({ label: "Total Out-of-Pocket", first: outFirst, total: outTotal, bold: true, shaded: true });
-
-  // ── Pie (life-of-loan totals) ──
-  const pie = [
-    { label: "Principal", value: loan, color: "#2b7ddb" },
-    // Without the optionals the reference charts payment × payments − loan,
-    // which overstates the interest when extra payments shorten the loan.
-    { label: "Interest", value: optional ? tot.interest : payment * (paidEarly ? months : n) - loan, color: "#8bbc21" },
-  ];
-  if (optional) {
-    pie.push(
-      { label: "Property Taxes", value: tot.tax, color: "#910000" },
-      { label: "Annual MIP", value: tot.mip, color: "#1aadce" },
-      { label: "Other Cost", value: tot.other, color: "#492970" },
-      { label: "Home Insurance", value: tot.insurance, color: "#c21271" },
-      { label: "HOA Fee", value: tot.hoa, color: "#827e1c" },
-    );
-  }
-
-  // ── Summary ──
-  const summary = [];
-  if (downValue > 0) {
-    summary.push(["House Price", money(price)], ["Loan Amount with Upfront MIP", money(loan)], ["Down Payment", money(downAmount)]);
-    if (upfront > 0) summary.push(["Upfront MIP", money(upfront)]);
-  }
-  summary.push([`Total of ${paymentsCount} Mortgage Payments`, money(mortgageTotal)], ["Total Interest", money(tot.interest)]);
-  if (paidEarly) summary.push(["Total Extra Payments", money(tot.extra)]);
-  if (optional) {
-    summary.push(["Mortgage Payoff Date", monthYear(payoffDate)]);
-    if (["11", "5", "78"].includes(duration) && tot.mipMonths > 0) {
-      summary.push([`Annual MIP Payoff Date (${tot.mipMonths} Total Payments)`, monthYear(addMonths(start, tot.mipMonths))]);
-    }
-  }
 
   // ── Biweekly comparison (P&I only, no extra payments) ──
   let biweekly = null;
@@ -346,15 +290,105 @@ export function calculateFhaLoan(input) {
   }
 
   return {
-    monthlyPay: money(payment),
+    n, payment, start, months, first, tot, paidEarly, mortgageTotal, paymentsCount, payoffDate, firstColumn,
+    hasExtraInput, taxAnnual, ins, hoaAnnual, otherAnnual, biweekly, schedule,
     sentence: paidEarly ? `With the extra payment, the loan will be paid off in ${yearsAndMonths(months)}.` : null,
-    firstColumn,
-    table: optional ? table.map((x) => ({ ...x, first: money(x.first), total: money(x.total) })) : null,
-    pie,
-    summary,
-    biweekly,
-    schedule,
+    // Without the optionals the reference charts payment × payments − loan,
+    // which overstates the interest when extra payments shorten the loan.
+    pieInterest: optional ? tot.interest : payment * (paidEarly ? months : n) - loan,
   };
 }
 
-export { wholeMoney };
+/** Monthly / Total table rows (formatted), with an optional premium row after Home Insurance. */
+export function costTable(sim, { premiumLabel = null, premiumFirst = 0, outFirstPremium = 0 } = {}) {
+  const { first, tot } = sim;
+  const table = [{ label: "Mortgage Payment", first: sim.payment, total: sim.mortgageTotal, bold: true }];
+  if (sim.hasExtraInput) table.push({ label: "Extra Payment", first: first.extra, total: tot.extra });
+  if (sim.taxAnnual > 0) table.push({ label: "Property Tax", first: first.costs.tax, total: tot.tax });
+  if (sim.ins > 0) table.push({ label: "Home Insurance", first: first.costs.insurance, total: tot.insurance });
+  if (premiumLabel && tot.mipMonths > 0) table.push({ label: premiumLabel, first: premiumFirst, total: tot.mip });
+  if (sim.hoaAnnual > 0) table.push({ label: "HOA Fee", first: first.costs.hoa, total: tot.hoa });
+  if (sim.otherAnnual > 0) table.push({ label: "Other Costs", first: first.costs.other, total: tot.other });
+  const outFirst = sim.payment + first.extra + first.costs.tax + first.costs.insurance + outFirstPremium + first.costs.hoa + first.costs.other;
+  const outTotal = sim.mortgageTotal + tot.extra + tot.tax + tot.insurance + tot.mip + tot.hoa + tot.other;
+  table.push({ label: "Total Out-of-Pocket", first: outFirst, total: outTotal, bold: true, shaded: true });
+  return table.map((x) => ({ ...x, first: money(x.first), total: money(x.total) }));
+}
+
+/**
+ * @param {object} input — strings as typed: price, downPayment, downUnit
+ *   ("percent"|"dollar"), years, rate, upfrontMip, annualMip, mipDuration,
+ *   includeOptionals, propertyTaxes, taxUnit, homeInsurance, hoa, otherCosts,
+ *   startMonth, startYear, moreOptions, taxIncrease, insuranceIncrease,
+ *   hoaIncrease, otherIncrease, extraMonthly (+Month/+Year), extraYearly
+ *   (+Month/+Year), extraOneTime (+Month/+Year), showBiweekly.
+ */
+export function calculateFhaLoan(input) {
+  const errors = [];
+  const t = (k) => clean(input[k]);
+  const { price, downValue, byDollar, years, rate, baseLoan } = readLoanBasics(input, errors);
+  const upfrontPct = num(t("upfrontMip"));
+  if (Number.isNaN(upfrontPct) || upfrontPct < 0) errors.push("Please provide a positive upfront FHA Mortgage Insurance Premium (MIP) value.");
+  const annualPct = num(t("annualMip"));
+  if (Number.isNaN(annualPct) || annualPct < 0) errors.push("Please provide a positive annual FHA Mortgage Insurance Premium (MIP) value.");
+  const optional = !!input.includeOptionals;
+  const more = !!input.moreOptions;
+  const values = readCostsAndExtras(input, errors, optional, more);
+  if (errors.length) return { errors };
+
+  const upfront = price * (upfrontPct / 100);
+  const loan = baseLoan + upfront;
+  const downAmount = byDollar ? downValue : price - loan + upfront;
+  const mipMonthly = optional ? (baseLoan * annualPct) / 1200 : 0;
+  const duration = input.mipDuration || "term";
+  const mipLtvBalance = 0.78 * price;
+  const charged = (k, balance) => (duration === "term" ? true
+    : duration === "11" ? k <= 132
+      : duration === "5" ? k <= 60
+        : duration === "78" ? balance > mipLtvBalance
+          : false);
+
+  const sim = simulateMortgage({ input, loan, price, years, rate, optional, more, values, mip: { monthly: mipMonthly, charged } });
+  const { tot } = sim;
+
+  const pie = [
+    { label: "Principal", value: loan, color: "#2b7ddb" },
+    { label: "Interest", value: sim.pieInterest, color: "#8bbc21" },
+  ];
+  if (optional) {
+    pie.push(
+      { label: "Property Taxes", value: tot.tax, color: "#910000" },
+      { label: "Annual MIP", value: tot.mip, color: "#1aadce" },
+      { label: "Other Cost", value: tot.other, color: "#492970" },
+      { label: "Home Insurance", value: tot.insurance, color: "#c21271" },
+      { label: "HOA Fee", value: tot.hoa, color: "#827e1c" },
+    );
+  }
+
+  const summary = [];
+  if (downValue > 0) {
+    summary.push(["House Price", money(price)], ["Loan Amount with Upfront MIP", money(loan)], ["Down Payment", money(downAmount)]);
+    if (upfront > 0) summary.push(["Upfront MIP", money(upfront)]);
+  }
+  summary.push([`Total of ${sim.paymentsCount} Mortgage Payments`, money(sim.mortgageTotal)], ["Total Interest", money(tot.interest)]);
+  if (sim.paidEarly) summary.push(["Total Extra Payments", money(tot.extra)]);
+  if (optional) {
+    summary.push(["Mortgage Payoff Date", monthYear(sim.payoffDate)]);
+    if (["11", "5", "78"].includes(duration) && tot.mipMonths > 0) {
+      summary.push([`Annual MIP Payoff Date (${tot.mipMonths} Total Payments)`, monthYear(addMonths(sim.start, tot.mipMonths))]);
+    }
+  }
+
+  return {
+    monthlyPay: money(sim.payment),
+    sentence: sim.sentence,
+    firstColumn: sim.firstColumn,
+    table: optional ? costTable(sim, { premiumLabel: "Annual MIP", premiumFirst: mipMonthly, outFirstPremium: duration === "no" ? 0 : mipMonthly }) : null,
+    pie,
+    summary,
+    biweekly: sim.biweekly,
+    schedule: sim.schedule,
+  };
+}
+
+export { money, monthYear, wholeMoney };
