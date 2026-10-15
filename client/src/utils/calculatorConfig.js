@@ -1731,6 +1731,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "future-value-calculator",
+        label: "Future Value Calculator",
+        slug: "future-value-calculator",
+        tagline: "What a sum and deposits grow to",
+        description:
+          "Calculate the future value of a starting amount plus periodic deposits made at the beginning or end of each period, with present value, total interest and a schedule.",
+        icon: "📈",
+        iconBg: "#f0fdfa",
+        iconColor: "#0f766e",
+        path: "/calculators/financial/future-value-calculator",
+        legacyPath: "/tools/future-value-calculator",
+        keywords: [
+          "future value calculator", "fv calculator", "future value of annuity", "future value with deposits",
+          "future value formula", "annuity due future value", "compound growth calculator", "time value of money",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
