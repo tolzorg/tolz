@@ -1671,6 +1671,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "rent-vs-buy-calculator",
+        label: "Rent vs. Buy Calculator",
+        slug: "rent-vs-buy-calculator",
+        tagline: "Average cost of buying vs renting by stay",
+        description:
+          "Compare the average cost of buying and renting a home for every stay from 1 to 30 years, with taxes, maintenance, appreciation and investment returns, and find your break-even stay.",
+        icon: "⚖️",
+        iconBg: "#f5f3ff",
+        iconColor: "#6d28d9",
+        path: "/calculators/financial/rent-vs-buy-calculator",
+        legacyPath: "/tools/rent-vs-buy-calculator",
+        keywords: [
+          "rent vs buy calculator", "rent or buy calculator", "should i rent or buy", "buy vs rent home",
+          "renting vs buying a house", "break even rent vs buy", "cost of owning vs renting", "rent versus buy",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
