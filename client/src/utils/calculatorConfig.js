@@ -1571,6 +1571,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "fha-loan-calculator",
+        label: "FHA Loan Calculator",
+        slug: "fha-loan-calculator",
+        tagline: "FHA payment with MIP, taxes and schedule",
+        description:
+          "Estimate an FHA mortgage payment with upfront and annual MIP, property taxes, insurance, HOA and other costs, extra payments, a bi-weekly comparison and an amortization schedule.",
+        icon: "🏡",
+        iconBg: "#eff6ff",
+        iconColor: "#1d4ed8",
+        path: "/calculators/financial/fha-loan-calculator",
+        legacyPath: "/tools/fha-loan-calculator",
+        keywords: [
+          "fha loan calculator", "fha mortgage calculator", "fha mip calculator", "fha payment calculator",
+          "fha upfront mip", "fha annual mip", "fha loan payment", "fha amortization schedule",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
