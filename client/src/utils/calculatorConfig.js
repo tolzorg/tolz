@@ -1691,6 +1691,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "payback-period-calculator",
+        label: "Payback Period Calculator",
+        slug: "payback-period-calculator",
+        tagline: "Payback, discounted payback and IRR",
+        description:
+          "Calculate the payback period, discounted payback period and cash flow return rate (IRR) of an investment with a growing or irregular cash flow, plus a yearly schedule.",
+        icon: "⏳",
+        iconBg: "#ecfeff",
+        iconColor: "#0e7490",
+        path: "/calculators/financial/payback-period-calculator",
+        legacyPath: "/tools/payback-period-calculator",
+        keywords: [
+          "payback period calculator", "discounted payback period calculator", "payback period formula", "investment payback",
+          "break even period", "cash flow return rate", "dpp calculator", "capital budgeting",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
