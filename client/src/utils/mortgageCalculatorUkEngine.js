@@ -36,20 +36,22 @@ const PALETTE = ["#2b7ddb", "#8bbc21", "#910000", "#1aadce", "#492970"];
  * whole-pound ties: month 1 of the default is 1,562.4999…92 → £1,562, while
  * the same tie on a 12-year term lands above and shows £1,563.
  */
-function displaySchedule(sim, loan, r) {
+export function closedFormBalance(loan, p, r, k) {
+  if (r === 0) return loan - p * k;
+  const g = (1 + r) ** k;
+  return loan * g - p * ((g - 1) / r);
+}
+
+export function closedFormSchedule(sim, loan, r) {
   const { monthly, annual } = sim.schedule;
   const p = sim.payment;
-  const closed = (k) => {
-    if (r === 0) return loan - p * k;
-    const g = (1 + r) ** k;
-    return loan * g - p * ((g - 1) / r);
-  };
+  const closed = (k) => closedFormBalance(loan, p, r, k);
   let prev = loan;
   const shown = monthly.map((row) => {
     const k = Number(row.label);
     // The final (fractional or paid-off) month keeps the simulated figures.
     const balance = row.balance === 0 ? 0 : k <= sim.n ? closed(k) : row.balance;
-    const out = row.balance === 0 ? { ...row, principal: prev, interest: row.interest } : { ...row, principal: prev - balance, interest: p - (prev - balance), balance };
+    const out = row.balance === 0 ? row : { ...row, principal: prev - balance, interest: p - (prev - balance), balance };
     prev = balance;
     return out;
   });
@@ -107,6 +109,8 @@ export function calculateMortgageUk(input) {
     mip: { monthly: optional ? costs.mortgageInsurance / 12 : 0, charged: () => true },
   });
   const { first } = sim;
+  // At 0% the reference's payment total is exactly the loan.
+  const mortgageTotal = rate === 0 ? loan : sim.mortgageTotal;
   // Costs never increase here, so each total is the monthly amount × the
   // (possibly fractional) number of payments: the reference's float path.
   const tot = { ...sim.tot, tax: first.costs.tax * sim.n, insurance: first.costs.insurance * sim.n, other: first.costs.other * sim.n };
@@ -121,9 +125,9 @@ export function calculateMortgageUk(input) {
       { label: "Other Costs", first: first.costs.other, total: tot.other, on: sim.otherAnnual > 0 },
     ].filter((x) => x.on);
     const outFirst = sim.payment + first.costs.tax + first.costs.insurance + first.mip + first.costs.other;
-    const outTotal = sim.mortgageTotal + tot.tax + tot.insurance + tot.mip + tot.other;
+    const outTotal = mortgageTotal + tot.tax + tot.insurance + tot.mip + tot.other;
     table = [
-      { label: "Mortgage Payment", first: sim.payment, total: sim.mortgageTotal, bold: true },
+      { label: "Mortgage Payment", first: sim.payment, total: mortgageTotal, bold: true },
       ...lines,
       { label: "Total Out-of-Pocket", first: outFirst, total: outTotal, bold: true },
     ].map((x) => ({ label: x.label, first: pounds(x.first), total: pounds(x.total), bold: !!x.bold }));
@@ -144,6 +148,6 @@ export function calculateMortgageUk(input) {
     table,
     summary: [["Loan Amount", pounds(loan)], ["Mortgage Deposit", pounds(price - loan)], ["Total Interest", pounds(tot.interest)]],
     pie: pie.map(([label, value], i) => ({ label, value, color: PALETTE[i], text: pounds(value) })),
-    schedule: sim.schedule && sim.n < 720 ? displaySchedule(sim, loan, rate / 1200) : null,
+    schedule: sim.schedule && sim.n < 720 ? closedFormSchedule(sim, loan, rate / 1200) : null,
   };
 }

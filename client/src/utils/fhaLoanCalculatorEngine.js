@@ -175,10 +175,11 @@ export function readCostsAndExtras(input, errors, optional, more) {
  * with yearly increases, extra payments, an optional monthly insurance
  * premium (`mip`), the bi-weekly comparison and the amortization schedule.
  */
-export function simulateMortgage({ input, loan, price, years, rate, optional, more, values, mip = null }) {
+export function simulateMortgage({ input, loan, price, years, rate, optional, more, values, mip = null, monthlyRate = null }) {
   const { taxValue, insurance, hoa, other, startYear, inc, extra } = values;
   const n = years * 12;
-  const r = rate / 1200;
+  // Pages that compound differently (Canada: semi-annually) pass their own monthly rate.
+  const r = monthlyRate ?? rate / 1200;
   const payment = r === 0 ? loan / n : (loan * r) / (1 - (1 + r) ** -n);
 
   const start = { month: Number(input.startMonth) || 1, year: startYear };

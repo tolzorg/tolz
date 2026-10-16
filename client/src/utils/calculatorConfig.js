@@ -1791,6 +1791,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "canadian-mortgage-calculator",
+        label: "Canadian Mortgage Calculator",
+        slug: "canadian-mortgage-calculator",
+        tagline: "Semi-annual compounding, in CAD",
+        description:
+          "Canadian mortgage calculator with semi-annual compounding: monthly payment, property tax, insurance, condo fees and total cost, with an amortization schedule.",
+        icon: "🍁",
+        iconBg: "#fef2f2",
+        iconColor: "#b91c1c",
+        path: "/calculators/financial/canadian-mortgage-calculator",
+        legacyPath: "/tools/canadian-mortgage-calculator",
+        keywords: [
+          "canadian mortgage calculator", "mortgage calculator canada", "semi-annual compounding mortgage", "canada mortgage payment",
+          "cad mortgage calculator", "condo fee mortgage calculator", "mortgage amortization canada", "monthly mortgage payment canada",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
