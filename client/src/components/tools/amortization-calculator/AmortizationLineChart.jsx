@@ -13,7 +13,7 @@ const PAD_BOTTOM = 40;
  * TOTALS (cumulative interest paid, cumulative total payments made, both
  * starting at $0) — matching the reference's own chart exactly (running
  * totals, not each year's individual interest/payment amount). */
-export default function AmortizationLineChart({ series, loanAmount, termLabel = "Year" }) {
+export default function AmortizationLineChart({ series, loanAmount, termLabel = "Year", currency = "$" }) {
   if (!series.length) return null;
 
   const minYear = 0;
@@ -46,7 +46,7 @@ export default function AmortizationLineChart({ series, loanAmount, termLabel = 
           <g key={v}>
             <line x1={PAD_LEFT} y1={y(v)} x2={WIDTH - PAD_RIGHT} y2={y(v)} stroke="var(--border)" strokeWidth="0.5" />
             <text x={PAD_LEFT - 6} y={y(v)} fontSize="10" fill="var(--text-muted)" textAnchor="end" dominantBaseline="middle">
-              {formatCompactCurrency(v)}
+              {formatCompactCurrency(v, currency)}
             </text>
           </g>
         ))}

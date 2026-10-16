@@ -265,7 +265,8 @@ export function simulateMortgage({ input, loan, price, years, rate, optional, mo
   // ── Amortization schedule (shown past 12 payments) ──
   let schedule = null;
   if (months > 12) {
-    const shortDate = (d) => `${d.month}/${String(d.year).slice(-2)}`;
+    // The reference prints the year modulo 100 without padding (8/8-7/9 for 2008).
+    const shortDate = (d) => `${d.month}/${Math.floor(d.year) % 100}`;
     const annual = [];
     for (let y = 0; y * 12 < months; y++) {
       const slice = rows.slice(y * 12, y * 12 + 12);

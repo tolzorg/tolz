@@ -187,7 +187,7 @@ function ScheduleTable({ schedule, view, cell = wholeMoney }) {
 }
 
 /** "Amortization schedule" with Annual/Monthly tabs (active tab blue) and the line chart. */
-export function ScheduleSection({ schedule, view, setView, idPrefix, cell }) {
+export function ScheduleSection({ schedule, view, setView, idPrefix, cell, currency }) {
   return (
     <section aria-labelledby={`${idPrefix}-schedule-title`} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <h2 id={`${idPrefix}-schedule-title`} style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", margin: 0 }}>Amortization schedule</h2>
@@ -209,7 +209,7 @@ export function ScheduleSection({ schedule, view, setView, idPrefix, cell }) {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 360px", minWidth: 0 }}><ScheduleTable schedule={schedule} view={view} cell={cell} /></div>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 0, padding: 16 }}>
-          <AmortizationLineChart series={schedule.chart} loanAmount={schedule.loan} />
+          <AmortizationLineChart series={schedule.chart} loanAmount={schedule.loan} currency={currency} />
         </div>
       </div>
     </section>

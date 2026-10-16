@@ -16,10 +16,10 @@ function formatWithCommas(raw) {
   return decPart !== undefined ? `${withCommas}.${decPart}` : withCommas;
 }
 
-export function DollarField({ value, onChange, placeholder, style }) {
+export function DollarField({ value, onChange, placeholder, style, symbol = "$" }) {
   return (
     <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
-      <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
+      <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>{symbol}</span>
       <TextField
         value={formatWithCommas(value)}
         onChange={(v) => onChange(stripToNumberString(v))}

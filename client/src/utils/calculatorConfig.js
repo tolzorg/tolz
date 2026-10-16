@@ -1771,6 +1771,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "mortgage-calculator-uk",
+        label: "Mortgage Calculator UK",
+        slug: "mortgage-calculator-uk",
+        tagline: "Monthly repayments in pounds",
+        description:
+          "UK mortgage calculator in pounds: monthly repayment and interest-only payment, deposit, taxes, insurance and other costs, with an amortization schedule.",
+        icon: "🏡",
+        iconBg: "#eff6ff",
+        iconColor: "#1d4ed8",
+        path: "/calculators/financial/mortgage-calculator-uk",
+        legacyPath: "/tools/mortgage-calculator-uk",
+        keywords: [
+          "mortgage calculator uk", "uk mortgage calculator", "mortgage repayment calculator", "interest only mortgage calculator",
+          "mortgage deposit calculator", "monthly mortgage payment uk", "mortgage calculator pounds", "uk amortization schedule",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
