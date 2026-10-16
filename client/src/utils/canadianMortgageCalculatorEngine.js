@@ -30,12 +30,28 @@ const PALETTE = ["#2b7ddb", "#8bbc21", "#910000", "#1aadce", "#492970", "#c21271
 /** Monthly rate equivalent to a nominal annual rate compounded semi-annually. */
 export const canadianMonthlyRate = (rate) => (1 + rate / 200) ** (1 / 6) - 1;
 
+const CANADA = {
+  monthlyRate: canadianMonthlyRate,
+  pmiName: "mortgage insurance", hoaName: "Condo/HOA fee", pmiLabel: "Mortgage Insurance", hoaLabel: "Condo/HOA Fee",
+  payoffWithoutOptionals: "year0",
+};
+
 /**
  * @param {object} input — strings as typed: price, downPayment (%), years,
  *   rate, includeOptionals (bool), propertyTaxes (% of price), homeInsurance,
  *   mortgageInsurance, hoa, otherCosts ($/year), startMonth (1–12), startYear.
  */
 export function calculateCanadianMortgage(input) {
+  return calculateMortgagePage(input, CANADA);
+}
+
+/**
+ * The calculator.net mortgage page this engine models, shared by its sister
+ * pages (e.g. the Mortgage Amortization Calculator), which differ only in
+ * `page`: the monthly rate, the PMI/HOA labels and error names, and what the
+ * payoff date does with the optionals unticked ("year0" or "omit").
+ */
+export function calculateMortgagePage(input, page) {
   const errors = [];
   const read = (k) => num(clean(input[k]));
   const price = read("price");
@@ -50,8 +66,8 @@ export function calculateCanadianMortgage(input) {
   const optional = !!input.includeOptionals;
   const c = {};
   if (optional) {
-    for (const [key, name] of [["propertyTaxes", "property taxes"], ["homeInsurance", "home insurance"], ["mortgageInsurance", "mortgage insurance"],
-      ["hoa", "Condo/HOA fee"], ["otherCosts", "other costs"], ["startYear", "start date"]]) {
+    for (const [key, name] of [["propertyTaxes", "property taxes"], ["homeInsurance", "home insurance"], ["mortgageInsurance", page.pmiName],
+      ["hoa", page.hoaName], ["otherCosts", "other costs"], ["startYear", "start date"]]) {
       c[key] = read(key);
       if (!(c[key] >= 0)) errors.push(`Please provide a positive ${name} value.`);
     }
@@ -59,7 +75,7 @@ export function calculateCanadianMortgage(input) {
   if (errors.length) return { errors };
 
   const loan = price * (1 - down / 100);
-  const r = canadianMonthlyRate(rate);
+  const r = page.monthlyRate(rate);
   const pmiMonthly = optional ? c.mortgageInsurance / 12 : 0;
   const pmiCutoff = 0.8 * price;
   // PMI applies only to loans that start above 80% of the price; its row and
@@ -92,8 +108,8 @@ export function calculateCanadianMortgage(input) {
     const lines = [
       { label: "Property Tax", first: first.costs.tax, total: tot.tax, on: sim.taxAnnual > 0 },
       { label: "Home Insurance", first: first.costs.insurance, total: tot.insurance, on: sim.ins > 0 },
-      { label: "Mortgage Insurance", first: pmiMonthly, total: tot.mip, on: pmiRequired },
-      { label: "Condo/HOA Fee", first: first.costs.hoa, total: tot.hoa, on: sim.hoaAnnual > 0 },
+      { label: page.pmiLabel, first: pmiMonthly, total: tot.mip, on: pmiRequired },
+      { label: page.hoaLabel, first: first.costs.hoa, total: tot.hoa, on: sim.hoaAnnual > 0 },
       { label: "Other Costs", first: first.costs.other, total: tot.other, on: sim.otherAnnual > 0 },
     ].filter((x) => x.on);
     // The first-month total counts the premium even when it is never charged.
@@ -118,8 +134,9 @@ export function calculateCanadianMortgage(input) {
 
   const summary = [];
   if (down > 0) summary.push(["House Price", money(price)], ["Loan Amount", money(loan)], ["Down Payment", money(price - loan)]);
-  summary.push([`Total of ${sim.paymentsCount} Mortgage Payments`, money(mortgageTotal)], ["Total Interest", money(tot.interest)],
-    ["Mortgage Payoff Date", monthYear(optional ? sim.payoffDate : { month: sim.payoffDate.month, year: 0 })]);
+  summary.push([`Total of ${sim.paymentsCount} Mortgage Payments`, money(mortgageTotal)], ["Total Interest", money(tot.interest)]);
+  if (optional) summary.push(["Mortgage Payoff Date", monthYear(sim.payoffDate)]);
+  else if (page.payoffWithoutOptionals === "year0") summary.push(["Mortgage Payoff Date", monthYear({ month: sim.payoffDate.month, year: 0 })]);
   if (pmiRequired) {
     const m = sim.start.month - 1 + tot.mipMonths;
     summary.push([`PMI Payoff Date (${tot.mipMonths} Total Payments)`, monthYear({ month: (m % 12) + 1, year: sim.start.year + Math.floor(m / 12) })]);

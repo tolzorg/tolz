@@ -1811,6 +1811,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "mortgage-amortization-calculator",
+        label: "Mortgage Amortization Calculator",
+        slug: "mortgage-amortization-calculator",
+        tagline: "Payment and amortization schedule",
+        description:
+          "Mortgage amortization calculator: monthly payment, interest vs principal, taxes, insurance, PMI and HOA costs, with an annual or monthly amortization schedule.",
+        icon: "📉",
+        iconBg: "#f5f3ff",
+        iconColor: "#6d28d9",
+        path: "/calculators/financial/mortgage-amortization-calculator",
+        legacyPath: "/tools/mortgage-amortization-calculator",
+        keywords: [
+          "mortgage amortization calculator", "mortgage amortization schedule", "amortization table mortgage", "mortgage payment breakdown",
+          "principal and interest calculator", "monthly amortization schedule", "mortgage calculator with pmi", "home loan amortization",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
