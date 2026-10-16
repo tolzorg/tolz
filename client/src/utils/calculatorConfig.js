@@ -1831,6 +1831,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "percent-off-calculator",
+        label: "Percentage Off Calculator",
+        slug: "percent-off-calculator",
+        tagline: "Sale price from any two values",
+        description:
+          "Percent off calculator: find the final price, amount saved, percent off or original price from any two values, with stackable additional discounts.",
+        icon: "🏷️",
+        iconBg: "#fdf2f8",
+        iconColor: "#be185d",
+        path: "/calculators/financial/percent-off-calculator",
+        legacyPath: "/tools/percent-off-calculator",
+        keywords: [
+          "percent off calculator", "percentage off calculator", "percent off price", "sale price calculator",
+          "stackable discount calculator", "double discount calculator", "how much is percent off", "final price after discount",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "rent-calculator",
         label: "Rent Calculator",
         slug: "rent-calculator",
