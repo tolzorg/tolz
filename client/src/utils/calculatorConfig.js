@@ -89,6 +89,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "army-body-fat-calculator",
+        label: "Army Body Fat Calculator",
+        slug: "army-body-fat-calculator",
+        tagline: "Army waist-to-height ratio standard (2026)",
+        description:
+          "Check the Army's current body composition standard: your waist-to-height ratio (waist at the navel ÷ height), which must be below 0.55, and the waist you need to pass.",
+        icon: "🪖",
+        iconBg: "#f0fdf4",
+        iconColor: "#4d7c0f",
+        path: "/calculators/health/army-body-fat-calculator",
+        legacyPath: "/tools/army-body-fat-calculator",
+        keywords: [
+          "army body fat calculator", "army waist to height ratio", "army whtr calculator", "army body composition program",
+          "abcp calculator", "army height and weight standards", "army waist to height standard", "military body fat calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",

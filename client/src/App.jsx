@@ -95,6 +95,7 @@ const HouseAffordabilityCalculatorPage = lazy(() => import("./pages/HouseAfforda
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
 const BmiCalculatorPage = lazy(() => import("./pages/BmiCalculatorPage"));
 const BodyFatCalculatorPage = lazy(() => import("./pages/BodyFatCalculatorPage"));
+const ArmyBodyFatCalculatorPage = lazy(() => import("./pages/ArmyBodyFatCalculatorPage"));
 const BmrCalculatorPage = lazy(() => import("./pages/BmrCalculatorPage"));
 const IdealWeightCalculatorPage = lazy(() => import("./pages/IdealWeightCalculatorPage"));
 const PaceCalculatorPage = lazy(() => import("./pages/PaceCalculatorPage"));
@@ -317,6 +318,7 @@ export default function App() {
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
                 <Route path="/tools/bmi-calculator" element={<BmiCalculatorPage />} />
                 <Route path="/tools/body-fat-calculator" element={<BodyFatCalculatorPage />} />
+                <Route path="/tools/army-body-fat-calculator" element={<ArmyBodyFatCalculatorPage />} />
                 <Route path="/tools/bmr-calculator" element={<BmrCalculatorPage />} />
                 <Route path="/tools/ideal-weight-calculator" element={<IdealWeightCalculatorPage />} />
                 <Route path="/tools/pace-calculator" element={<PaceCalculatorPage />} />
@@ -350,6 +352,7 @@ export default function App() {
                 <Route path="/calculators/health/sleep-calculator"                 element={<SleepCalculatorPage />} />
                 <Route path="/calculators/health/bmi-calculator" element={<BmiCalculatorPage />} />
                 <Route path="/calculators/health/body-fat-calculator" element={<BodyFatCalculatorPage />} />
+                <Route path="/calculators/health/army-body-fat-calculator" element={<ArmyBodyFatCalculatorPage />} />
                 <Route path="/calculators/health/bmr-calculator" element={<BmrCalculatorPage />} />
                 <Route path="/calculators/health/ideal-weight-calculator" element={<IdealWeightCalculatorPage />} />
                 <Route path="/calculators/sports/pace-calculator" element={<PaceCalculatorPage />} />
