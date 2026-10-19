@@ -129,6 +129,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "healthy-weight-calculator",
+        label: "Healthy Weight Calculator",
+        slug: "healthy-weight-calculator",
+        tagline: "Healthy weight range for your height",
+        description:
+          "Find the healthy weight range for your height (BMI 18.5-25), plus the weights for underweight, overweight and each obesity class, in pounds or kilograms.",
+        icon: "⚖️",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/health/healthy-weight-calculator",
+        legacyPath: "/tools/healthy-weight-calculator",
+        keywords: [
+          "healthy weight calculator", "healthy weight range", "healthy weight for my height", "normal weight range",
+          "how much should i weigh", "weight range for height", "bmi weight range", "healthy bmi weight",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
