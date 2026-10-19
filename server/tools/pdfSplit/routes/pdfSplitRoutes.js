@@ -3,6 +3,7 @@ import multer from "multer";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import { getPdfInfo, splitPdf } from "../controller/pdfSplitController.js";
 import { validatePdfFiles } from "../../../core/utils/validateMagicBytes.js";
+import { limitPdfPages } from "../../../core/utils/pdfPageLimit.js";
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ const splitLimiter = rateLimit({
   skip: (req) => req.method === "OPTIONS",
 });
 
-router.post("/info",  splitLimiter, uploadSingle, validatePdfFiles, getPdfInfo);
-router.post("/split", splitLimiter, uploadSingle, validatePdfFiles, splitPdf);
+router.post("/info",  splitLimiter, uploadSingle, validatePdfFiles, limitPdfPages(2000), getPdfInfo);
+router.post("/split", splitLimiter, uploadSingle, validatePdfFiles, limitPdfPages(2000), splitPdf);
 
 export default router;

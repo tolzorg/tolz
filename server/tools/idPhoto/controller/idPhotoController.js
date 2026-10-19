@@ -1,5 +1,6 @@
 import { PDFDocument } from "pdf-lib";
 import { mmToPt } from "../utils/mmToPt.js";
+import { ownBytes } from "../../../core/utils/ownBytes.js";
 
 function toDataUrl(buffer, mime) {
   return `data:${mime};base64,${buffer.toString("base64")}`;
@@ -21,7 +22,7 @@ export async function generatePrintSheetPdf(req, res) {
 
   try {
     const pdfDoc = await PDFDocument.create();
-    const embeddedImage = await pdfDoc.embedPng(req.file.buffer);
+    const embeddedImage = await pdfDoc.embedPng(ownBytes(req.file.buffer));
 
     const width = mmToPt(paperWidthMM);
     const height = mmToPt(paperHeightMM);

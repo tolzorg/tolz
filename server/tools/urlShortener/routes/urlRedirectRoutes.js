@@ -1,18 +1,14 @@
 import express from "express";
 import { urlStoreGet, urlStoreSet } from "../store/urlStore.js";
+import { validateUrl, isDisabledSlug } from "../utils/urlValidator.js";
 
 const router = express.Router();
 
 const SLUG_RE = /^[a-zA-Z0-9_-]{1,30}$/;
 
-function isSafeUrl(url) {
-  try {
-    const parsed = new URL(url);
-    return ["http:", "https:"].includes(parsed.protocol);
-  } catch {
-    return false;
-  }
-}
+// Re-checked on every visit, so links created before a rule (or a
+// BLOCKED_URL_DOMAINS entry) was added are blocked too.
+const isSafeUrl = (url) => validateUrl(url) === null;
 
 // Override CSP to allow inline styles for the simple HTML pages
 function setErrorCsp(res) {
@@ -93,6 +89,11 @@ router.get("/:slug", async (req, res) => {
   if (entry.expiresAt !== null && Date.now() > entry.expiresAt) {
     setErrorCsp(res);
     return res.status(410).send(errorPage("⏰", "Link Expired", "This short link has expired and is no longer available."));
+  }
+
+  if (isDisabledSlug(slug)) {
+    setErrorCsp(res);
+    return res.status(410).send(errorPage("🚫", "Link Disabled", "This short link has been disabled for violating our terms."));
   }
 
   if (!isSafeUrl(entry.originalUrl)) {

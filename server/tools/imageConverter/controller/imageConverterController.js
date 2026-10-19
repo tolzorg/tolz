@@ -1,10 +1,14 @@
-import sharp from "sharp";
+// Pixel-capped sharp (image-bomb guard), used exactly like sharp.
+import sharp from "../../../core/utils/safeSharp.js";
 import { PDFDocument } from "pdf-lib";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { existsSync } from "fs";
+import { withTimeout, TimeoutError } from "../../../core/utils/withTimeout.js";
+import { ownBytes } from "../../../core/utils/ownBytes.js";
 
+const OCR_TIMEOUT_MS = 60_000; // per image
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TESSDATA_PATH = join(__dirname, "..", "..", "..", "tessdata");
 const TESSDATA_FILE = join(TESSDATA_PATH, "eng.traineddata");
@@ -142,9 +146,9 @@ export async function imagesToPdf(req, res) {
 
       let embeddedImage;
       if (mime === "image/png") {
-        embeddedImage = await pdfDoc.embedPng(buf);
+        embeddedImage = await pdfDoc.embedPng(ownBytes(buf));
       } else {
-        embeddedImage = await pdfDoc.embedJpg(buf);
+        embeddedImage = await pdfDoc.embedJpg(ownBytes(buf));
       }
 
       const page = pdfDoc.addPage([width, height]);
@@ -187,7 +191,7 @@ export async function jpgToPdfSized(req, res) {
     for (const compressed of compressedBuffers) {
       const meta = await sharp(compressed).metadata();
       const { width, height } = fitToA4(meta.width, meta.height);
-      const embeddedImage = await pdfDoc.embedJpg(compressed);
+      const embeddedImage = await pdfDoc.embedJpg(ownBytes(compressed));
       const page = pdfDoc.addPage([width, height]);
       page.drawImage(embeddedImage, { x: 0, y: 0, width, height });
     }
@@ -305,12 +309,13 @@ export async function jpgToText(req, res) {
   let worker;
   try {
     const { createWorker } = await import("tesseract.js");
-    worker = await createWorker("eng", 1, {
+    const startWorker = () => createWorker("eng", 1, {
       logger: () => {},
       langPath: TESSDATA_PATH,
       cacheMethod: "none",
       gzip: false,
     });
+    worker = await startWorker();
 
     const results = [];
     for (const file of req.files) {
@@ -326,7 +331,19 @@ export async function jpgToText(req, res) {
         const pngBuffer = await pipeline.png().toBuffer();
 
         // ── Recognition ───────────────────────────────────────────────────
-        const { data } = await worker.recognize(pngBuffer);
+        // Time-limited: a pathological image can keep Tesseract busy for
+        // minutes. On timeout the worker is stopped (freeing the CPU) and a
+        // fresh one handles any remaining images.
+        let data;
+        try {
+          ({ data } = await withTimeout(worker.recognize(pngBuffer), OCR_TIMEOUT_MS, "OCR"));
+        } catch (err) {
+          if (!(err instanceof TimeoutError)) throw err;
+          await worker.terminate();
+          worker = await startWorker();
+          results.push({ name: file.originalname, error: "This image took too long to read. Try a smaller or clearer image." });
+          continue;
+        }
         // Extracted text may contain sensitive/personal content (IDs, receipts,
         // documents) — only log a text preview when explicitly debugging, and
         // never by default in production server logs.

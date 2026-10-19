@@ -41,16 +41,27 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+    # NOTE: Render applies these headers only when this service is synced as a
+    # Blueprint. If tolz-client was created by hand in the dashboard, add the
+    # same headers under Render → tolz-client → Settings → Headers.
     headers:
       # Content Security Policy — update connect-src if using a custom API domain.
-      # script-src includes 'wasm-unsafe-eval' and connect-src includes
-      # https://staticimgly.com so the ID Photo Generator's background-removal
-      # feature (@imgly/background-removal) can fetch and instantiate its
-      # WASM/ONNX model from imgly's CDN. worker-src covers the blob-URL
-      # worker that library spins up for off-main-thread inference.
+      # - script-src: 'wasm-unsafe-eval' for the ID Photo background-removal
+      #   model; the sha256 hash allows ONLY the Google Tag Manager snippet in
+      #   index.html (recompute it if that snippet ever changes, or analytics
+      #   stops loading); googletagmanager.com for the GTM script itself.
+      # - style-src 'unsafe-inline': the tools use React inline styles; without
+      #   it every page loses its layout.
+      # - connect-src: the API (*.onrender.com), live data for the Inflation
+      #   (api.bls.gov) and Currency (open.er-api.com) calculators, the ID Photo
+      #   model CDN (staticimgly.com) and Google Analytics (GA4 also reports to
+      #   analytics.google.com, www.google.com and stats.g.doubleclick.net).
+      # - img-src https:: GA4 loads an audience pixel from country-specific Google
+      #   domains (google.com.pk, google.co.uk, …); images can't run code.
+      # - worker-src covers the blob-URL worker the background-removal library uses.
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://tolz.org; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; connect-src 'self' https://*.onrender.com https://staticimgly.com; frame-ancestors 'none'; base-uri 'none'; object-src 'none'"
+        value: "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'sha256-uYpqYb5Tdtm+Bo4n2s8qLewTYtao+Si/G57CSxBu7DM=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.onrender.com https://api.bls.gov https://open.er-api.com https://staticimgly.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google.com https://*.g.doubleclick.net https://www.googletagmanager.com; worker-src 'self' blob:; frame-src https://www.googletagmanager.com; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'self'"
       # Clickjacking protection (redundant with frame-ancestors above for
       # modern browsers, kept for older browser / defense-in-depth coverage)
       - path: /*
@@ -63,7 +74,7 @@ services:
       # Don't leak the full referring URL (path/query) to other origins
       - path: /*
         name: Referrer-Policy
-        value: no-referrer
+        value: strict-origin-when-cross-origin
       # Force HTTPS on repeat visits (Render already serves over HTTPS only)
       - path: /*
         name: Strict-Transport-Security

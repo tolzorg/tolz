@@ -1,6 +1,6 @@
 import QRCode from "qrcode";
 import { generateSlug } from "../utils/slugGen.js";
-import { validateUrl, validateSlug } from "../utils/urlValidator.js";
+import { validateUrl, validateSlug, isDisabledSlug } from "../utils/urlValidator.js";
 import { urlStoreGet, urlStoreSet, urlStoreHas } from "../store/urlStore.js";
 
 const EXPIRY_DURATIONS = {
@@ -98,6 +98,9 @@ export async function getUrlInfo(req, res) {
   }
   if (entry.expiresAt !== null && entry.expiresAt <= Date.now()) {
     return res.status(410).json({ success: false, message: "This short URL has expired." });
+  }
+  if (isDisabledSlug(slug)) {
+    return res.status(410).json({ success: false, message: "This short URL has been disabled." });
   }
 
   return res.json({ success: true, slug, ...entry });

@@ -3,6 +3,7 @@ import multer from "multer";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import { compressPdfs } from "../controller/pdfCompressController.js";
 import { validatePdfFiles } from "../../../core/utils/validateMagicBytes.js";
+import { limitPdfPages } from "../../../core/utils/pdfPageLimit.js";
 
 const router = express.Router();
 
@@ -40,6 +41,6 @@ const heavyLimiter = rateLimit({
   skip: (req) => req.method === "OPTIONS",
 });
 
-router.post("/compress", heavyLimiter, uploadMiddleware, validatePdfFiles, compressPdfs);
+router.post("/compress", heavyLimiter, uploadMiddleware, validatePdfFiles, limitPdfPages(500), compressPdfs);
 
 export default router;

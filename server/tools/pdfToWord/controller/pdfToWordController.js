@@ -1,5 +1,50 @@
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import { Document, Packer, Paragraph, TextRun, HeadingLevel } from "docx";
+import { analyzePage } from "./pdfPageAnalysis.js";
+import { buildPageSection, buildDocument } from "./docxBuilder.js";
+
+// ── Layout conversion (text + images + colours + graphics, positioned) ──────
+// Each PDF page becomes a Word page of the same size: vector graphics (table
+// borders, shading, shapes) as a background picture, images as real pictures
+// at their exact place, and all text as editable paragraphs in positioned
+// text frames with their original fonts, sizes, colours and line breaks.
+async function convertWithLayout(pdfBuffer, stem) {
+  const loadingTask = pdfjs.getDocument({
+    data: new Uint8Array(pdfBuffer),
+    verbosity: 0,
+    fontExtraProperties: true,       // real font names (bold/italic/family)
+    isOffscreenCanvasSupported: false, // decode images to pixel data on the server
+    useSystemFonts: false,
+  });
+  let pdfDoc;
+  try {
+    pdfDoc = await loadingTask.promise;
+  } catch (err) {
+    await loadingTask.destroy();
+    throw err;
+  }
+  try {
+    const sections = [];
+    for (let p = 1; p <= pdfDoc.numPages; p++) {
+      const page = await pdfDoc.getPage(p);
+      const analysed = await analyzePage(page, pdfjs);
+      for (const entry of analysed.images) {
+        if (entry.inlineData) { entry.data = entry.inlineData; continue; }
+        const store = entry.imgId.startsWith("g_") ? page.commonObjs : page.objs;
+        entry.data = await new Promise((resolve) => {
+          const timer = setTimeout(() => resolve(null), 10_000);
+          try { store.get(entry.imgId, (obj) => { clearTimeout(timer); resolve(obj); }); }
+          catch { clearTimeout(timer); resolve(null); }
+        });
+      }
+      sections.push(await buildPageSection(analysed, pdfjs.ImageKind));
+      page.cleanup(); // only the encoded images are kept, not the page's raw pixels
+    }
+    return Packer.toBuffer(buildDocument(sections, stem));
+  } finally {
+    await loadingTask.destroy();
+  }
+}
 
 // ── Text-extraction conversion (pdfjs-dist + docx) ───────────────────────────
 function getFontSize(item) {
@@ -150,8 +195,17 @@ export async function convertPdfsToWord(req, res) {
     const outName = `${stem}.docx`;
 
     try {
-      const docxBuffer = await convertWithTextExtraction(file.buffer, stem);
-      const method = "text-extraction";
+      // Full layout conversion first; the plain text conversion is the fallback
+      // for PDFs the layout engine can't handle (the UI then shows "Text only").
+      let docxBuffer, method;
+      try {
+        docxBuffer = await convertWithLayout(file.buffer, stem);
+        method = "layout";
+      } catch (err) {
+        console.error("[pdfToWord] layout conversion failed, using text only:", file.originalname, err.message);
+        docxBuffer = await convertWithTextExtraction(file.buffer, stem);
+        method = "text-extraction";
+      }
 
       results.push({
         name: outName,

@@ -1,4 +1,5 @@
-import sharp from "sharp";
+// Pixel-capped sharp (image-bomb guard), used exactly like sharp.
+import sharp from "../../../core/utils/safeSharp.js";
 
 // ── Resize presets ────────────────────────────────────────────
 const RESIZE_PRESETS = {

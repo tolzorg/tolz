@@ -3,6 +3,7 @@ import multer from "multer";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import { convertPdfsToWord } from "../controller/pdfToWordController.js";
 import { validatePdfFiles } from "../../../core/utils/validateMagicBytes.js";
+import { limitPdfPages } from "../../../core/utils/pdfPageLimit.js";
 
 const router = express.Router();
 
@@ -40,6 +41,6 @@ const wordLimiter = rateLimit({
   skip: (req) => req.method === "OPTIONS",
 });
 
-router.post("/to-word", wordLimiter, uploadMiddleware, validatePdfFiles, convertPdfsToWord);
+router.post("/to-word", wordLimiter, uploadMiddleware, validatePdfFiles, limitPdfPages(300), convertPdfsToWord);
 
 export default router;
