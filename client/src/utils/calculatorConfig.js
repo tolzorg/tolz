@@ -108,6 +108,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "ideal-weight-calculator",
+        label: "Ideal Weight Calculator",
+        slug: "ideal-weight-calculator",
+        tagline: "Ideal body weight by 4 formulas",
+        description:
+          "Compare the Robinson, Miller, Devine and Hamwi ideal body weight formulas with your healthy BMI weight range, for adults and children 2-20.",
+        icon: "🎯",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/health/ideal-weight-calculator",
+        legacyPath: "/tools/ideal-weight-calculator",
+        keywords: [
+          "ideal weight calculator", "ideal body weight calculator", "how much should i weigh", "devine formula",
+          "robinson formula", "miller formula", "hamwi formula", "healthy weight for my height",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {

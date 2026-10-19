@@ -217,6 +217,14 @@ function stoneText(lb) {
   return rest ? `${stones} st ${rest} lb` : `${stones} st`;
 }
 
+/** The healthy BMI range for a child (CDC 5th – 85th percentile at age × 12
+ * months), each end rounded to 0.1 as the reference uses it. Also used by the
+ * Ideal Weight Calculator. */
+export function childHealthyBmiRange(sex, age) {
+  const curves = curvesAt(BMI_FOR_AGE, sex === "female" ? "female" : "male", age * 12, BMI_CURVES);
+  return [roundTo(curves[BMI_CURVES.indexOf(5)], 1), roundTo(curves[BMI_CURVES.indexOf(85)], 1)];
+}
+
 /**
  * @param {{ age, sex, heightUnit, height, height2, weightUnit, weight }} input  (strings; sex "male" | "female";
  *   heightUnit one of HEIGHT_UNITS, weightUnit one of WEIGHT_UNITS; height2 is the inches / cm box of a two-part unit)
