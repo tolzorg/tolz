@@ -109,6 +109,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "lean-body-mass-calculator",
+        label: "Lean Body Mass Calculator",
+        slug: "lean-body-mass-calculator",
+        tagline: "Lean body mass & body fat by formula",
+        description:
+          "Estimate your lean body mass (LBM) and body fat from height, weight, gender and age with the Boer, James and Hume formulas, plus the Peters formula for children.",
+        icon: "💪",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/health/lean-body-mass-calculator",
+        legacyPath: "/tools/lean-body-mass-calculator",
+        keywords: [
+          "lean body mass calculator", "lbm calculator", "lean mass calculator", "boer formula",
+          "james formula", "hume formula", "peters formula children", "fat free mass calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
