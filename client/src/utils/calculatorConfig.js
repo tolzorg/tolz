@@ -88,6 +88,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "bmr-calculator",
+        label: "BMR Calculator",
+        slug: "bmr-calculator",
+        tagline: "Basal metabolic rate & daily calories",
+        description:
+          "Estimate your basal metabolic rate with the Mifflin-St Jeor, Harris-Benedict or Katch-McArdle formula and your daily calorie needs at six activity levels.",
+        icon: "🔥",
+        iconBg: "#fff7ed",
+        iconColor: "#ea580c",
+        path: "/calculators/health/bmr-calculator",
+        legacyPath: "/tools/bmr-calculator",
+        keywords: [
+          "bmr calculator", "basal metabolic rate calculator", "mifflin st jeor calculator", "harris benedict calculator",
+          "katch mcardle calculator", "calories burned at rest", "daily calorie needs", "metabolism calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
