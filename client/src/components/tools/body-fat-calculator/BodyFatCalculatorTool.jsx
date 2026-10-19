@@ -24,6 +24,27 @@ const CATEGORY_COLORS = {
 const LENGTHS = [["height", "Height"], ["neck", "Neck"], ["waist", "Waist"], ["hip", "Hip"]];
 const METHODS = [["navy", "With measurements", "U.S. Navy method"], ["bmi", "Without measurements", "BMI method"]];
 
+const D = BODY_FAT_DEFAULTS;
+const DEFAULT_CM = Object.fromEntries(LENGTHS.map(([k]) => [k, lengthToCm(D[`${k}Unit`], D[k], D[`${k}2`])]));
+const DEFAULT_KG = weightToKg(D.weightUnit, D.weight);
+
+/** The example values, in whatever units are selected, shown as placeholders. */
+const placeholdersFor = (v) => ({
+  age: D.age,
+  weight: kgToWeight(v.weightUnit, DEFAULT_KG),
+  ...Object.fromEntries(LENGTHS.map(([k]) => [k, cmToLength(v[`${k}Unit`], DEFAULT_CM[k])])),
+});
+/** Blank boxes fall back to their placeholder (a two-part length only when both parts are blank). */
+function withPlaceholders(v) {
+  const ph = placeholdersFor(v);
+  const out = { ...v, age: v.age === "" ? ph.age : v.age, weight: v.weight === "" ? ph.weight : v.weight };
+  for (const [k] of LENGTHS) {
+    if (v[k] === "" && v[`${k}2`] === "") { out[k] = ph[k][0]; out[`${k}2`] = ph[k][1]; }
+  }
+  return out;
+}
+const EMPTY = { ...D, age: "", weight: "", ...Object.fromEntries(LENGTHS.flatMap(([k]) => [[k, ""], [`${k}2`, ""]])) };
+
 function ResultBody({ result }) {
   if (!result) return <p style={{ fontSize: 13.5, color: "var(--text-muted)", margin: 0 }}>Enter your measurements, then click Calculate.</p>;
   if (result.errors) return <ErrorPanel messages={result.errors} />;
@@ -51,16 +72,17 @@ function ResultBody({ result }) {
 }
 
 export default function BodyFatCalculatorTool() {
-  const [v, setV] = useState({ ...BODY_FAT_DEFAULTS });
-  const [result, setResult] = useState(() => calculateBodyFat(BODY_FAT_DEFAULTS));
+  const [v, setV] = useState(EMPTY);
+  const [result, setResult] = useState(() => calculateBodyFat(withPlaceholders(EMPTY)));
+  const ph = placeholdersFor(v);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
   const female = v.sex === "female";
   const tape = v.method !== "bmi";
 
-  const calculate = () => setResult(calculateBodyFat(v));
+  const calculate = () => setResult(calculateBodyFat(withPlaceholders(v)));
   const pickMethod = (method) => {
     setV((prev) => ({ ...prev, method }));
-    setResult(calculateBodyFat({ ...v, method }));
+    setResult(calculateBodyFat(withPlaceholders({ ...v, method })));
   };
   const clear = () => {
     setV((prev) => ({ ...prev, age: "", weight: "", ...Object.fromEntries(LENGTHS.flatMap(([k]) => [[k, ""], [`${k}2`, ""]])) }));
@@ -122,7 +144,7 @@ export default function BodyFatCalculatorTool() {
           <label style={rowStyle}>
             <span style={labelStyle}>Age</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <TextField value={v.age} onChange={set("age")} />
+              <TextField value={v.age} onChange={set("age")} placeholder={ph.age} />
             </div>
           </label>
 
@@ -130,7 +152,7 @@ export default function BodyFatCalculatorTool() {
             <span style={labelStyle}>Weight</span>
             <UnitMeasureField
               label="Weight" units={WEIGHT_UNITS} unit={v.weightUnit} onUnitChange={changeWeightUnit}
-              values={[v.weight, ""]} onChange={(_, text) => set("weight")(text)}
+              values={[v.weight, ""]} placeholders={[ph.weight, ""]} onChange={(_, text) => set("weight")(text)}
             />
           </div>
 
@@ -139,7 +161,7 @@ export default function BodyFatCalculatorTool() {
               <span style={labelStyle}>{label}</span>
               <UnitMeasureField
                 label={label} units={LENGTH_UNITS} unit={v[`${key}Unit`]} onUnitChange={changeLengthUnit(key)}
-                values={[v[key], v[`${key}2`]]} onChange={(i, text) => set(i ? `${key}2` : key)(text)}
+                values={[v[key], v[`${key}2`]]} placeholders={ph[key]} onChange={(i, text) => set(i ? `${key}2` : key)(text)}
               />
             </div>
           ))}

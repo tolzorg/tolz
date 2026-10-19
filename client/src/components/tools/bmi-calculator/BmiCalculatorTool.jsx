@@ -14,6 +14,29 @@ const resultBanner = { background: "var(--success)", color: "#fff", padding: "11
 const rowStyle = { display: "flex", alignItems: "center", gap: 10, marginBottom: 12 };
 const labelStyle = { flex: "0 0 58px", fontSize: 13.5, color: "var(--text-primary)" };
 const sup2 = <sup>2</sup>;
+const D = BMI_DEFAULTS;
+const DEFAULT_M = heightToMeters(D.heightUnit, D.height, D.height2);
+const DEFAULT_KG = weightToKg(D.weightUnit, D.weight);
+
+/** The example values, in whatever units are selected, shown as placeholders. */
+const placeholdersFor = (v) => ({
+  age: D.age,
+  height: metersToHeight(v.heightUnit, DEFAULT_M),
+  weight: kgToWeight(v.weightUnit, DEFAULT_KG),
+});
+/** Blank boxes fall back to their placeholder (a two-part height only when both parts are blank). */
+function withPlaceholders(v) {
+  const ph = placeholdersFor(v);
+  const heightBlank = v.height === "" && v.height2 === "";
+  return {
+    ...v,
+    age: v.age === "" ? ph.age : v.age,
+    height: heightBlank ? ph.height[0] : v.height,
+    height2: heightBlank ? ph.height[1] : v.height2,
+    weight: v.weight === "" ? ph.weight : v.weight,
+  };
+}
+const EMPTY = { ...D, age: "", height: "", height2: "", weight: "" };
 
 function ResultBody({ result }) {
   if (!result) return <p style={{ fontSize: 13.5, color: "var(--text-muted)", margin: 0 }}>Enter your age, gender, height and weight, then click Calculate.</p>;
@@ -48,11 +71,12 @@ function ResultBody({ result }) {
 }
 
 export default function BmiCalculatorTool() {
-  const [v, setV] = useState({ ...BMI_DEFAULTS });
-  const [result, setResult] = useState(() => calculateBmi(BMI_DEFAULTS));
+  const [v, setV] = useState(EMPTY);
+  const [result, setResult] = useState(() => calculateBmi(withPlaceholders(EMPTY)));
+  const ph = placeholdersFor(v);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
 
-  const calculate = () => setResult(calculateBmi(v));
+  const calculate = () => setResult(calculateBmi(withPlaceholders(v)));
   const clear = () => { setV((prev) => ({ ...prev, age: "", height: "", height2: "", weight: "" })); setResult(null); };
 
   // Switching a unit converts what is already typed, so nothing has to be re-entered.
@@ -79,7 +103,7 @@ export default function BmiCalculatorTool() {
           <label style={rowStyle}>
             <span style={labelStyle}>Age</span>
             <div style={{ flex: "0 1 110px", minWidth: 70 }}>
-              <TextField value={v.age} onChange={set("age")} />
+              <TextField value={v.age} onChange={set("age")} placeholder={ph.age} />
             </div>
             <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>ages: 2 - 120</span>
           </label>
@@ -96,7 +120,7 @@ export default function BmiCalculatorTool() {
             <span style={labelStyle}>Height</span>
             <UnitMeasureField
               label="Height" units={HEIGHT_UNITS} unit={v.heightUnit} onUnitChange={changeHeightUnit}
-              values={[v.height, v.height2]} onChange={(i, text) => set(i ? "height2" : "height")(text)}
+              values={[v.height, v.height2]} placeholders={ph.height} onChange={(i, text) => set(i ? "height2" : "height")(text)}
             />
           </div>
 
@@ -104,7 +128,7 @@ export default function BmiCalculatorTool() {
             <span style={labelStyle}>Weight</span>
             <UnitMeasureField
               label="Weight" units={WEIGHT_UNITS} unit={v.weightUnit} onUnitChange={changeWeightUnit}
-              values={[v.weight, ""]} onChange={(_, text) => set("weight")(text)}
+              values={[v.weight, ""]} placeholders={[ph.weight, ""]} onChange={(_, text) => set("weight")(text)}
             />
           </div>
 

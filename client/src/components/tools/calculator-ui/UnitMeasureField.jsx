@@ -8,12 +8,12 @@ import { inputStyle } from "../mortgage-calculator/MortgageFormControls";
 
 const srOnly = { position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" };
 
-function Box({ value, onChange, suffix, label, first }) {
+function Box({ value, onChange, suffix, label, first, placeholder }) {
   return (
     <label style={{ position: "relative", flex: 1, minWidth: 0, display: "flex", borderLeft: first ? "none" : "1px solid var(--border)" }}>
       <span style={srOnly}>{label}</span>
       <input
-        type="text" inputMode="decimal" value={value} onChange={(e) => onChange(e.target.value)}
+        type="text" inputMode="decimal" value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)}
         style={{ ...inputStyle, border: "none", borderRadius: 0, background: "transparent", minWidth: 0, paddingRight: suffix ? suffix.length * 7 + 14 : undefined }}
       />
       {suffix && (
@@ -27,9 +27,9 @@ function Box({ value, onChange, suffix, label, first }) {
 
 /**
  * @param {{ label: string, units: { value, label, short, parts? }[], unit: string, onUnitChange: (u) => void,
- *   values: [string, string], onChange: (i: 0 | 1, text: string) => void }} props
+ *   values: [string, string], onChange: (i: 0 | 1, text: string) => void, placeholders?: [string, string] }} props
  */
-export default function UnitMeasureField({ label, units, unit, onUnitChange, values, onChange }) {
+export default function UnitMeasureField({ label, units, unit, onUnitChange, values, onChange, placeholders = ["", ""] }) {
   const current = units.find((u) => u.value === unit) || units[0];
   const parts = current.parts;
   return (
@@ -41,11 +41,11 @@ export default function UnitMeasureField({ label, units, unit, onUnitChange, val
     >
       {parts ? (
         <>
-          <Box first value={values[0]} onChange={(t) => onChange(0, t)} suffix={parts[0]} label={`${label} (${parts[0]})`} />
-          <Box value={values[1]} onChange={(t) => onChange(1, t)} suffix={parts[1]} label={`${label} (${parts[1]})`} />
+          <Box first value={values[0]} placeholder={placeholders[0]} onChange={(t) => onChange(0, t)} suffix={parts[0]} label={`${label} (${parts[0]})`} />
+          <Box value={values[1]} placeholder={placeholders[1]} onChange={(t) => onChange(1, t)} suffix={parts[1]} label={`${label} (${parts[1]})`} />
         </>
       ) : (
-        <Box first value={values[0]} onChange={(t) => onChange(0, t)} label={`${label} (${current.short})`} />
+        <Box first value={values[0]} placeholder={placeholders[0]} onChange={(t) => onChange(0, t)} label={`${label} (${current.short})`} />
       )}
       <div style={{ position: "relative", flex: "0 0 auto", display: "flex", alignItems: "center", gap: 4, padding: "0 10px", background: "var(--bg-muted)", borderLeft: "1px solid var(--border)" }}>
         <span aria-hidden="true" style={{ fontSize: 13, fontWeight: 600, color: "var(--accent)", whiteSpace: "nowrap" }}>{current.short}</span>
