@@ -93,6 +93,7 @@ const InterestRateCalculatorPage = lazy(() => import("./pages/InterestRateCalcul
 const SalesTaxCalculatorPage = lazy(() => import("./pages/SalesTaxCalculatorPage"));
 const HouseAffordabilityCalculatorPage = lazy(() => import("./pages/HouseAffordabilityCalculatorPage"));
 const SleepCalculatorPage     = lazy(() => import("./pages/SleepCalculatorPage"));
+const BmiCalculatorPage = lazy(() => import("./pages/BmiCalculatorPage"));
 const UrlShortenerPage        = lazy(() => import("./pages/UrlShortenerPage"));
 const WordCounterPage         = lazy(() => import("./pages/WordCounterPage"));
 const SentenceCounterPage     = lazy(() => import("./pages/SentenceCounterPage"));
@@ -310,6 +311,7 @@ export default function App() {
                 <Route path="/tools/sales-tax-calculator"          element={<SalesTaxCalculatorPage />} />
                 <Route path="/tools/house-affordability-calculator" element={<HouseAffordabilityCalculatorPage />} />
                 <Route path="/tools/sleep-calculator"              element={<SleepCalculatorPage />} />
+                <Route path="/tools/bmi-calculator" element={<BmiCalculatorPage />} />
                 <Route path="/tools/url-shortener"                 element={<UrlShortenerPage />} />
                 <Route path="/tools/word-counter"                  element={<WordCounterPage />} />
                 <Route path="/tools/sentence-counter"              element={<SentenceCounterPage />} />
@@ -338,6 +340,7 @@ export default function App() {
                 {/* ── Individual calculator pages (new canonical URLs) ───── */}
                 <Route path="/calculators/health/calorie-tracker"                  element={<CalorieTrackerPage />} />
                 <Route path="/calculators/health/sleep-calculator"                 element={<SleepCalculatorPage />} />
+                <Route path="/calculators/health/bmi-calculator" element={<BmiCalculatorPage />} />
                 <Route path="/calculators/everyday-life/anniversary"               element={<AnniversaryCalculatorPage />} />
                 <Route path="/calculators/everyday-life/destiny-matrix"            element={<DestinyMatrixPage />} />
                 <Route path="/calculators/garden/grow-a-garden-calculator"          element={<GrowAGardenCalculatorPage />} />

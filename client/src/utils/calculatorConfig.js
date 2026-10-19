@@ -48,6 +48,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "bmi-calculator",
+        label: "BMI Calculator",
+        slug: "bmi-calculator",
+        tagline: "Body Mass Index for adults & children",
+        description:
+          "Calculate your Body Mass Index and weight category for adults (WHO) and children aged 2-20 (CDC percentiles), with healthy weight range, BMI Prime and Ponderal Index.",
+        icon: "⚖️",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/health/bmi-calculator",
+        legacyPath: "/tools/bmi-calculator",
+        keywords: [
+          "bmi calculator", "body mass index calculator", "bmi calculator for women", "bmi calculator for men",
+          "bmi calculator for kids", "child bmi percentile", "healthy weight calculator", "bmi prime", "ponderal index",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
