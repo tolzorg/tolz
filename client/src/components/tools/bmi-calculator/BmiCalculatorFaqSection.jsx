@@ -154,8 +154,8 @@ export default function BmiCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <p style={pStyle}>
           Free on <Link to="/" className="inline-home-link">Tolz</Link>, this Body Mass Index (BMI) calculator works out your BMI and the
-          weight status that goes with it, taking age into account. Use the "Metric Units" tab for centimeters and kilograms, or the
-          "Other Units" tab to convert other units first. It also gives your BMI Prime and Ponderal Index, both explained below.
+          weight status that goes with it, taking age into account. Pick the unit you prefer next to each box: height in
+          centimeters, meters, inches, feet, feet and inches or meters and centimeters, and weight in kilograms, pounds or stones. It also gives your BMI Prime and Ponderal Index, both explained below.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           To turn your weight goal into a daily plan, try the {link("/calculators/health/calorie-tracker", "Calorie Tracker & Calculator")}.

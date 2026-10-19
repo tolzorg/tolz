@@ -1,7 +1,10 @@
 // BMI Calculator engine — matches calculator.net/bmi-calculator.html (a GET
 // form, decoded with live probes; see scripts/bmi-calculator.test.js).
 //
-// Everything is computed in metric: inches × 0.0254 m, pounds × 0.453592 kg.
+// Height and weight each take their own unit (cm, m, in, ft, ft + in, m + cm;
+// kg, lb, st). Everything is computed in metric: inches × 0.0254 m, pounds ×
+// 0.453592 kg, stones = 14 lb. Weights in lb or st are rounded and compared in
+// pounds (as the reference does in US units), in kg otherwise.
 // BMI = kg / m², shown to one decimal, and that ROUNDED value drives every
 // later step (category, gauge needle, BMI Prime, child percentile).
 //
@@ -31,15 +34,32 @@ import { BMI_FOR_AGE, WEIGHT_FOR_AGE, STATURE_FOR_AGE } from "../data/cdcGrowthC
 export const BMI_DEFAULTS = {
   age: "25",
   sex: "male",
-  feet: "5",
-  inches: "10",
-  pounds: "160",
-  cm: "180",
-  kg: "65",
+  heightUnit: "ft-in",
+  height: "5",
+  height2: "10",
+  weightUnit: "lb",
+  weight: "160",
 };
+
+// Height and weight can each be entered in any of these units. Two-part
+// units (feet + inches, meters + centimeters) use a second box.
+export const HEIGHT_UNITS = [
+  { value: "cm", label: "centimeters (cm)", short: "cm" },
+  { value: "m", label: "meters (m)", short: "m" },
+  { value: "in", label: "inches (in)", short: "in" },
+  { value: "ft", label: "feet (ft)", short: "ft" },
+  { value: "ft-in", label: "feet / inches (ft / in)", short: "ft / in", parts: ["ft", "in"] },
+  { value: "m-cm", label: "meters / centimeters (m / cm)", short: "m / cm", parts: ["m", "cm"] },
+];
+export const WEIGHT_UNITS = [
+  { value: "kg", label: "kilograms (kg)", short: "kg" },
+  { value: "lb", label: "pounds (lb)", short: "lb" },
+  { value: "st", label: "stones (st)", short: "st" },
+];
 
 const INCH_M = 0.0254;
 const POUND_KG = 0.453592; // the reference's factor (not the exact 0.45359237) — confirmed live
+const STONE_LB = 14;
 
 const ERRORS = {
   age: "Please provide an age between 2 and 120.",
@@ -131,26 +151,87 @@ function lengthPart(text) {
   return n >= 0 ? n : NaN;
 }
 
+/** Height in meters from the two boxes, or NaN. Two-part units treat a blank box as 0. */
+export function heightToMeters(unit, a, b) {
+  const one = num(clean(a));
+  switch (unit) {
+    case "cm": return one / 100;
+    case "m": return one;
+    case "in": return one * INCH_M;
+    case "ft": return one * 12 * INCH_M;
+    case "ft-in": return (lengthPart(clean(a)) * 12 + lengthPart(clean(b))) * INCH_M;
+    case "m-cm": return lengthPart(clean(a)) + lengthPart(clean(b)) / 100;
+    default: return NaN;
+  }
+}
+
+/** Weight in pounds (lb or st boxes) — the reference works US weights in pounds. */
+const toPounds = (unit, value) => (unit === "st" ? value * STONE_LB : value);
+
+/** Weight in kilograms from its box, or NaN. */
+export function weightToKg(unit, text) {
+  const value = num(clean(text));
+  return unit === "kg" ? value : toPounds(unit, value) * POUND_KG;
+}
+
+const tidy = (value, decimals) => (Number.isFinite(value) && value > 0 ? String(roundTo(value, decimals)) : "");
+
+/** The boxes' text for a height in meters, in another unit (used when the unit is switched). */
+export function metersToHeight(unit, m) {
+  if (!(m > 0)) return ["", ""];
+  switch (unit) {
+    case "cm": return [tidy(m * 100, 1), ""];
+    case "m": return [tidy(m, 3), ""];
+    case "in": return [tidy(m / INCH_M, 1), ""];
+    case "ft": return [tidy(m / INCH_M / 12, 2), ""];
+    case "ft-in": {
+      let inches = roundTo(m / INCH_M, 1);
+      const feet = Math.floor(inches / 12);
+      inches = roundTo(inches - feet * 12, 1);
+      return [String(feet), String(inches)];
+    }
+    case "m-cm": {
+      let cm = roundTo(m * 100, 1);
+      const whole = Math.floor(cm / 100);
+      cm = roundTo(cm - whole * 100, 1);
+      return [String(whole), String(cm)];
+    }
+    default: return ["", ""];
+  }
+}
+
+/** The box's text for a weight in kilograms, in another unit. */
+export function kgToWeight(unit, kg) {
+  if (unit === "kg") return tidy(kg, 1);
+  const lb = kg / POUND_KG;
+  return unit === "st" ? tidy(lb / STONE_LB, 2) : tidy(lb, 1);
+}
+
+/** "9 st 3.5 lb" for a number of pounds. */
+function stoneText(lb) {
+  const total = roundTo(lb, 1);
+  let stones = Math.floor(total / STONE_LB);
+  let rest = roundTo(total - stones * STONE_LB, 1);
+  if (rest >= STONE_LB) { stones += 1; rest = 0; }
+  if (!stones) return `${rest} lb`;
+  return rest ? `${stones} st ${rest} lb` : `${stones} st`;
+}
+
 /**
- * @param {{ units: "us" | "metric", age, sex, feet, inches, pounds, cm, kg }} input  (strings; sex "male" | "female")
+ * @param {{ age, sex, heightUnit, height, height2, weightUnit, weight }} input  (strings; sex "male" | "female";
+ *   heightUnit one of HEIGHT_UNITS, weightUnit one of WEIGHT_UNITS; height2 is the inches / cm box of a two-part unit)
  * @returns {{ errors: string[] } | object}  See the return statement for the result shape.
  */
 export function calculateBmi(input) {
-  const us = input.units === "us";
   const sex = input.sex === "female" ? "female" : "male";
   const age = num(clean(input.age));
-
-  let heightM;
-  let weight; // in the display unit (lbs or kg)
-  if (us) {
-    const feet = lengthPart(clean(input.feet));
-    const inches = lengthPart(clean(input.inches));
-    heightM = (feet * 12 + inches) * INCH_M;
-    weight = num(clean(input.pounds));
-  } else {
-    heightM = num(clean(input.cm)) / 100;
-    weight = num(clean(input.kg));
-  }
+  const weightUnit = ["kg", "lb", "st"].includes(input.weightUnit) ? input.weightUnit : "kg";
+  const heightM = heightToMeters(input.heightUnit, input.height, input.height2);
+  const kgIn = weightToKg(weightUnit, input.weight);
+  // Weights are compared and rounded in kilograms, or in pounds for lb / st
+  // (as the reference does for US units); stones are only a display format.
+  const metric = weightUnit === "kg";
+  const weight = metric ? kgIn : toPounds(weightUnit, num(clean(input.weight)));
 
   const errors = [];
   if (!(age >= 2 && age <= 120)) errors.push(ERRORS.age);
@@ -158,11 +239,11 @@ export function calculateBmi(input) {
   if (!(weight > 0) || !Number.isFinite(weight)) errors.push(ERRORS.weight);
   if (errors.length) return { errors };
 
-  const unit = us ? "lbs" : "kg";
-  const kg = us ? weight * POUND_KG : weight;
+  const kg = kgIn;
   const h2 = heightM * heightM;
   const bmi = roundTo(kg / h2, 1);
-  const toDisplay = (massKg) => (us ? massKg / POUND_KG : massKg);
+  const toDisplay = (massKg) => (metric ? massKg : massKg / POUND_KG);
+  const massText = (value) => (weightUnit === "st" ? stoneText(value) : `${value} ${metric ? "kg" : "lbs"}`);
   const ponderal = trim(kg / (h2 * heightM), 1);
 
   // Healthy BMI range → healthy weight (rounded to 0.1) → gain/lose line.
@@ -170,16 +251,16 @@ export function calculateBmi(input) {
     const lo = roundTo(toDisplay(lowBmi * h2), 1);
     const hi = roundTo(toDisplay(highBmi * h2), 1);
     let change = null;
-    if (lo - weight >= 0.5) change = { verb: "Gain", amount: roundTo(lo - weight, 1).toFixed(1), target: String(lowBmi) };
-    else if (weight - hi >= 0.5) change = { verb: "Lose", amount: roundTo(weight - hi, 1).toFixed(1), target: String(highBmi) };
-    return { healthyWeight: { lo: String(lo), hi: String(hi) }, change };
+    const amount = (diff) => (weightUnit === "st" ? stoneText(diff) : `${roundTo(diff, 1).toFixed(1)} ${metric ? "kg" : "lbs"}`);
+    if (lo - weight >= 0.5) change = { verb: "Gain", amount: amount(lo - weight), target: String(lowBmi) };
+    else if (weight - hi >= 0.5) change = { verb: "Lose", amount: amount(weight - hi), target: String(highBmi) };
+    return { healthyWeight: { lo: massText(lo), hi: massText(hi) }, change };
   };
 
   if (age > 20) {
     const [category, color] = adultCategory(bmi);
     return {
       child: false,
-      unit,
       bmi: String(bmi),
       category,
       color,
@@ -208,7 +289,6 @@ export function calculateBmi(input) {
 
   return {
     child: true,
-    unit,
     bmi: String(bmi),
     category,
     color,

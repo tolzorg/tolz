@@ -68,6 +68,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "body-fat-calculator",
+        label: "Body Fat Calculator",
+        slug: "body-fat-calculator",
+        tagline: "Body fat % with the U.S. Navy method",
+        description:
+          "Estimate your body fat percentage with the U.S. Navy method, plus fat and lean mass, ACE category, ideal body fat for your age and the BMI method.",
+        icon: "📏",
+        iconBg: "#fef2f2",
+        iconColor: "#dc2626",
+        path: "/calculators/health/body-fat-calculator",
+        legacyPath: "/tools/body-fat-calculator",
+        keywords: [
+          "body fat calculator", "body fat percentage calculator", "navy body fat calculator", "us navy method",
+          "lean body mass calculator", "fat mass calculator", "ideal body fat percentage", "body fat percentage by age",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {

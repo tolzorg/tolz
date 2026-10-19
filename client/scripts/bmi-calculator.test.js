@@ -9,7 +9,7 @@
 // percentiles lying within 0.0002 of a rounding half far outside the chart
 // curves (−13.4998 shown as −14, 111.5002 as 111).
 
-import { calculateBmi, BMI_DEFAULTS } from "../src/utils/bmiCalculatorEngine.js";
+import { calculateBmi, metersToHeight, kgToWeight } from "../src/utils/bmiCalculatorEngine.js";
 
 let passed = 0;
 let failed = 0;
@@ -18,14 +18,19 @@ function eq(name, actual, expected) {
   else { failed++; console.error(`✗ ${name} — got ${JSON.stringify(actual)}, expected ${JSON.stringify(expected)}`); }
 }
 
-const metric = (o = {}) => calculateBmi({ ...BMI_DEFAULTS, units: "metric", ...o });
-const us = (o = {}) => calculateBmi({ ...BMI_DEFAULTS, units: "us", ...o });
+// The reference's two forms: US = feet / inches + pounds, metric = cm + kg.
+const BASE = { age: "25", sex: "male", feet: "5", inches: "10", pounds: "160", cm: "180", kg: "65" };
+const us = (o = {}) => { const v = { ...BASE, ...o }; return calculateBmi({ age: v.age, sex: v.sex, heightUnit: "ft-in", height: v.feet, height2: v.inches, weightUnit: "lb", weight: v.pounds }); };
+const metric = (o = {}) => { const v = { ...BASE, ...o }; return calculateBmi({ age: v.age, sex: v.sex, heightUnit: "cm", height: v.cm, weightUnit: "kg", weight: v.kg }); };
+const any = (heightUnit, height, height2, weightUnit, weight, age = "25") => calculateBmi({ age, sex: "male", heightUnit, height, height2, weightUnit, weight });
+const unitOf = (text) => text.split(" ").pop();
+const bare = (text) => text.replace(/ (kg|lbs)$/, "");
 function show(r) {
   if (r.errors) return r.errors.join(" | ");
   const parts = [`BMI = ${r.bmi} (${r.child ? r.percentile + "%, " : ""}${r.category}) needle=${r.gauge ? r.gauge.angle : "none"}`];
   if (r.child) parts.push(`W ${r.weightPercentile}% H ${r.heightPercentile}%`);
-  parts.push(`range ${r.healthyBmi.lo}-${r.healthyBmi.hi}`, `weight ${r.healthyWeight.lo}-${r.healthyWeight.hi} ${r.unit}`);
-  if (r.change) parts.push(`${r.change.verb} ${r.change.amount} to ${r.change.target}`);
+  parts.push(`range ${r.healthyBmi.lo}-${r.healthyBmi.hi}`, `weight ${bare(r.healthyWeight.lo)}-${bare(r.healthyWeight.hi)} ${unitOf(r.healthyWeight.hi)}`);
+  if (r.change) parts.push(`${r.change.verb} ${bare(r.change.amount)} to ${r.change.target}`);
   if (r.prime !== null) parts.push(`prime ${r.prime}`);
   parts.push(`PI ${r.ponderal}`);
   return parts.join(" | ");
@@ -58,17 +63,17 @@ eq("42.96 → 43 no gauge", at(42.96).gauge, null);
 eq("needle uses rounded BMI", at(15.99).gauge.angle, 18);
 
 // ── Gain / lose: at least 0.5 outside the ROUNDED healthy weight ──
-eq("gain 0.5 exactly", at(18).change.amount, "0.5");
+eq("gain 0.5 exactly", at(18).change.amount.replace(/ (kg|lbs)$/, ""), "0.5");
 eq("gain 0.499 hidden", at(18.001).change, null);
 eq("lose 0.5", at(25.5).change.verb, "Lose");
 eq("lose 0.499 hidden", at(25.499).change, null);
 const tall = (kg) => metric({ cm: "180", kg: String(kg) });
-eq("rounded min 59.9 − 59.4", tall(59.4).change.amount, "0.5");
+eq("rounded min 59.9 − 59.4", tall(59.4).change.amount.replace(/ (kg|lbs)$/, ""), "0.5");
 eq("59.42 hidden (raw 59.94 not used)", tall(59.42).change, null);
-eq("gain from rounded 59.9", tall(50.96).change.amount, "8.9");
-eq("lose half-up 37.15 → 37.2", metric({ age: "106", sex: "female", cm: "158", kg: "99.55" }).change.amount, "37.2");
+eq("gain from rounded 59.9", tall(50.96).change.amount.replace(/ (kg|lbs)$/, ""), "8.9");
+eq("lose half-up 37.15 → 37.2", metric({ age: "106", sex: "female", cm: "158", kg: "99.55" }).change.amount.replace(/ (kg|lbs)$/, ""), "37.2");
 eq("big adult", show(tall(300)), "BMI = 92.6 (Obese Class III) needle=none | range 18.5-25 | weight 59.9-81 kg | Lose 219.0 to 25 | prime 3.7 | PI 51.4");
-eq("US gain 0.5 lbs", us({ pounds: "128.4" }).change.amount, "0.5");
+eq("US gain 0.5 lbs", us({ pounds: "128.4" }).change.amount.replace(/ (kg|lbs)$/, ""), "0.5");
 eq("US 128.43 hidden", us({ pounds: "128.43" }).change, null);
 eq("US lose", show(us({ pounds: "250" })), "BMI = 35.9 (Obese Class II) needle=137.4 | range 18.5-25 | weight 128.9-174.2 lbs | Lose 75.8 to 25 | prime 1.44 | PI 20.2");
 eq("US 0.453592 lb factor (PI 21.5)", us({ age: "44", feet: "4", inches: "4.8", pounds: "114.6" }).ponderal, "21.5");
@@ -104,6 +109,33 @@ eq("-0% keeps its sign", us({ age: "4.09", feet: "2", inches: "8.3", pounds: "20
 eq("-0% has no gauge", us({ age: "4.09", feet: "2", inches: "8.3", pounds: "20" }).gauge, null);
 eq("0% has no gauge", us({ age: "20", feet: "6", inches: "5", pounds: "153" }).gauge, null);
 eq("-0% height", us({ age: "14", feet: "4", inches: "9", pounds: "158" }).heightPercentile, "-0");
+
+// ── Any height / weight unit (same person: 5 ft 10 in = 70 in = 177.8 cm, 160 lb) ──
+const ref = show(us());
+eq("inches", show(any("in", "70", "", "lb", "160")), ref);
+eq("feet decimal", show(any("ft", "5.8333333333", "", "lb", "160")), ref);
+eq("cm + lb", show(any("cm", "177.8", "", "lb", "160")), ref);
+eq("m + lb", show(any("m", "1.778", "", "lb", "160")), ref);
+eq("m / cm + lb", show(any("m-cm", "1", "77.8", "lb", "160")), ref);
+eq("stones", any("ft-in", "5", "10", "st", "11.4285714286").bmi, "23");
+eq("stone healthy weight", `${any("ft-in", "5", "10", "st", "11.4285714286").healthyWeight.lo} - ${any("ft-in", "5", "10", "st", "11.4285714286").healthyWeight.hi}`, "9 st 2.9 lb - 12 st 6.2 lb");
+eq("stone lose", any("ft-in", "5", "10", "st", "17").change.amount, "4 st 7.8 lb");
+eq("stone gain under 1 st", any("ft-in", "5", "10", "st", "9").change.amount, "2.9 lb");
+eq("ft-in + kg", metric({}).bmi === any("m-cm", "1", "80", "kg", "65").bmi, true);
+eq("blank second box is 0", any("m-cm", "2", "", "kg", "80").bmi, "20");
+eq("single-unit blank", show(any("cm", "", "", "kg", "65")), "Please provide positive height value.");
+eq("negative cm part", show(any("m-cm", "1", "-5", "kg", "65")), "Please provide positive height value.");
+eq("stone 0", show(any("cm", "180", "", "st", "0")), "Please provide positive weight value.");
+
+// ── Unit switching helpers ──
+eq("m → ft / in", metersToHeight("ft-in", 1.778).join(" "), "5 10");
+eq("m → cm", metersToHeight("cm", 1.778).join(""), "177.8");
+eq("m → m / cm", metersToHeight("m-cm", 1.778).join(" "), "1 77.8");
+eq("m → ft", metersToHeight("ft", 1.778)[0], "5.83");
+eq("blank stays blank", metersToHeight("cm", NaN).join(""), "");
+eq("kg → lb", kgToWeight("lb", 72.57472), "160");
+eq("kg → st", kgToWeight("st", 72.57472), "11.43");
+eq("kg → kg", kgToWeight("kg", 72.57472), "72.6");
 
 // ── Validation ──
 eq("blank age", show(metric({ age: "" })), "Please provide an age between 2 and 120.");
