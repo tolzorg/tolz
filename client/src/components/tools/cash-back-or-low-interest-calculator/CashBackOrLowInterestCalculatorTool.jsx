@@ -5,6 +5,8 @@ import {
   calculateCashBackOrLowInterest, DEFAULTS, US_STATES,
 } from "../../../utils/cashBackOrLowInterestEngine";
 import { formatMoney } from "../../../utils/simpleInterestCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const STATE_OPTIONS = [{ value: "", label: "-- Select --" }, ...US_STATES.map((s) => ({ value: s, label: s }))];
 
@@ -62,12 +64,15 @@ export default function CashBackOrLowInterestCalculatorTool() {
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
 
+  const req = useRequiredFields();
   function calculate() {
-    const filled = Object.fromEntries(Object.keys(v).map((k) => [k, v[k] || DEFAULTS[k]]));
-    setResult(calculateCashBackOrLowInterest({ ...filled, state, includeFees }));
+    // Down payment, trade-in, sales tax and fees may stay empty (0).
+    if (!req.require({ ...pickFields(v, ["cashBack", "rateHigh", "rateLow", "price", "term"]) })) { setResult(null); return; }
+    setResult(calculateCashBackOrLowInterest({ ...v, state, includeFees }));
   }
 
   function clear() {
+    req.clear();
     setV(Object.fromEntries(Object.keys(v).map((k) => [k, ""])));
     setState(""); setIncludeFees(false); setResult(null);
   }
@@ -77,15 +82,15 @@ export default function CashBackOrLowInterestCalculatorTool() {
       {/* ── Inputs ─────────────────────────────────────────────────── */}
       <div className="card" style={{ flex: "1 1 340px", minWidth: 300, padding: 16 }}>
         <p style={groupHeader}>Cash Back Offer</p>
-        <FieldRow label="Cash Back Amount"><DollarField value={v.cashBack} onChange={set("cashBack")} placeholder={DEFAULTS.cashBack} /></FieldRow>
-        <FieldRow label="Interest Rate (High)"><PercentField value={v.rateHigh} onChange={set("rateHigh")} placeholder={DEFAULTS.rateHigh} /></FieldRow>
+        <FieldRow label="Cash Back Amount"><Req name="cashBack" flagged={req.flagged}><DollarField value={v.cashBack} onChange={set("cashBack")} placeholder={DEFAULTS.cashBack} /></Req></FieldRow>
+        <FieldRow label="Interest Rate (High)"><Req name="rateHigh" flagged={req.flagged}><PercentField value={v.rateHigh} onChange={set("rateHigh")} placeholder={DEFAULTS.rateHigh} /></Req></FieldRow>
 
         <p style={{ ...groupHeader, marginTop: 16 }}>Low Interest Rate Offer</p>
-        <FieldRow label="Interest Rate (Low)"><PercentField value={v.rateLow} onChange={set("rateLow")} placeholder={DEFAULTS.rateLow} /></FieldRow>
+        <FieldRow label="Interest Rate (Low)"><Req name="rateLow" flagged={req.flagged}><PercentField value={v.rateLow} onChange={set("rateLow")} placeholder={DEFAULTS.rateLow} /></Req></FieldRow>
 
         <p style={{ ...groupHeader, marginTop: 16 }}>Other Information</p>
-        <FieldRow label="Auto Price"><DollarField value={v.price} onChange={set("price")} placeholder={DEFAULTS.price} /></FieldRow>
-        <FieldRow label="Loan Term" suffix="months"><TextField value={v.term} onChange={set("term")} placeholder={DEFAULTS.term} /></FieldRow>
+        <FieldRow label="Auto Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={DEFAULTS.price} /></Req></FieldRow>
+        <FieldRow label="Loan Term" suffix="months"><Req name="term" flagged={req.flagged}><TextField value={v.term} onChange={set("term")} placeholder={DEFAULTS.term} /></Req></FieldRow>
         <FieldRow label="Down Payment"><DollarField value={v.downPayment} onChange={set("downPayment")} placeholder={DEFAULTS.downPayment} /></FieldRow>
         <FieldRow label="Trade-in Value"><DollarField value={v.tradeIn} onChange={set("tradeIn")} placeholder={DEFAULTS.tradeIn} /></FieldRow>
         <FieldRow label="Your State"><SelectField value={state} onChange={setState} options={STATE_OPTIONS} style={{ flex: 1, minWidth: 0 }} /></FieldRow>

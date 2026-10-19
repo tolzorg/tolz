@@ -5,6 +5,8 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import AmortizationLineChart from "../amortization-calculator/AmortizationLineChart";
 import { calculatePersonalLoan, formatScheduleMoney, PERSONAL_LOAN_DEFAULTS } from "../../../utils/personalLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = PERSONAL_LOAN_DEFAULTS;
 const TEXT_KEYS = ["loanAmount", "interestRate", "years", "months", "feeAmount", "insurance"];
@@ -105,12 +107,12 @@ export default function PersonalLoanCalculatorTool() {
 
   // The example applies only while every box is empty; otherwise a blank
   // fee, insurance, years or months box counts as 0, as on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = TEXT_KEYS.every((k) => v[k] === "") ? D : v;
-    setResult(calculatePersonalLoan({ ...values, startMonth, startYear, includeFees, feeType, feePaid }));
+    setResult(req.evaluate(pickFields(v, TEXT_KEYS), (fill) => calculatePersonalLoan({ ...withFill(v, D, fill), startMonth, startYear, includeFees, feeType, feePaid })));
     setView("annual");
   };
-  const clear = () => { setV(EMPTY); setStartYear(""); setResult(null); };
+  const clear = () => { req.clear(); setV(EMPTY); setStartYear(""); setResult(null); };
 
   let body;
   if (!result) {
@@ -155,12 +157,12 @@ export default function PersonalLoanCalculatorTool() {
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 360px", minWidth: 280, maxWidth: 480, padding: 18 }}>
-          <Row label="Loan amount"><DollarField value={v.loanAmount} onChange={set("loanAmount")} placeholder={D.loanAmount} /></Row>
-          <Row label="Interest rate"><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Row>
+          <Row label="Loan amount"><Req name="loanAmount" flagged={req.flagged}><DollarField value={v.loanAmount} onChange={set("loanAmount")} placeholder={D.loanAmount} /></Req></Row>
+          <Row label="Interest rate"><Req name="interestRate" flagged={req.flagged}><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Req></Row>
           <Row label="Loan term">
             <div style={{ display: "flex", gap: 6, flex: 1, minWidth: 0 }}>
-              <UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" />
-              <UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" pad={58} />
+              <Req name="years" flagged={req.flagged}><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Req>
+              <Req name="months" flagged={req.flagged}><UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" pad={58} /></Req>
             </div>
           </Row>
           <Row label="Start date">
@@ -184,7 +186,7 @@ export default function PersonalLoanCalculatorTool() {
               <Row label="Amount">
                 <div style={{ display: "flex", gap: 6, flex: 1, minWidth: 0 }}>
                   {feeType === "percentage"
-                    ? <PercentField value={v.feeAmount} onChange={set("feeAmount")} placeholder={D.feeAmount} />
+                    ? <Req name="feeAmount" flagged={req.flagged}><PercentField value={v.feeAmount} onChange={set("feeAmount")} placeholder={D.feeAmount} /></Req>
                     : <DollarField value={v.feeAmount} onChange={set("feeAmount")} placeholder="0" />}
                   <SelectField value={feeType} onChange={setFeeType} options={FEE_TYPES} style={{ flex: "0 0 64px", minWidth: 0 }} />
                 </div>
@@ -201,7 +203,7 @@ export default function PersonalLoanCalculatorTool() {
                 </div>
               </fieldset>
               <Row label="Insurance" help="Some lenders may require the borrower to purchase credit insurance for personal loans as a form of protection.">
-                <UnitField value={v.insurance} onChange={set("insurance")} placeholder={D.insurance} unit="/month" Field={DollarField} pad={56} />
+                <Req name="insurance" flagged={req.flagged}><UnitField value={v.insurance} onChange={set("insurance")} placeholder={D.insurance} unit="/month" Field={DollarField} pad={56} /></Req>
               </Row>
             </div>
           )}

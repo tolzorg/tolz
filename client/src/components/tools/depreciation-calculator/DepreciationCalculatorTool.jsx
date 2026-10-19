@@ -7,6 +7,8 @@ import {
   calculateDepreciation, formatAmount, formatPercent, todayIso,
   DEFAULTS, METHOD_OPTIONS, CONVENTION_OPTIONS, MONTH_NAMES,
 } from "../../../utils/depreciationCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const MONTH_OPTIONS = MONTH_NAMES.map((name, i) => ({ value: String(i + 1), label: name }));
 const DAY_OPTIONS = Array.from({ length: 31 }, (_, i) => ({ value: String(i + 1), label: String(i + 1) }));
@@ -86,15 +88,18 @@ export default function DepreciationCalculatorTool() {
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
 
+  const req = useRequiredFields();
   function calculate() {
-    const filled = Object.fromEntries(Object.keys(v).map((k) => [k, v[k] || DEFAULTS[k]]));
+    // Salvage value may stay empty (0); the factor is needed only for declining balance.
+    if (!req.require({ cost: v.cost, years: v.years, ...(method === "declining" ? { factor: v.factor } : {}) })) { setResult(null); return; }
     setResult(calculateDepreciation({
-      ...filled, method, roundToDollars, partial, convention, startDate: startDate || todayIso(),
+      ...v, method, roundToDollars, partial, convention, startDate: startDate || todayIso(),
       accMonth: Number(accMonth), accDay: Number(accDay),
     }));
   }
 
   function clear() {
+    req.clear();
     setV(EMPTY);
     setMethod("straight");
     setRoundToDollars(true);
@@ -123,11 +128,11 @@ export default function DepreciationCalculatorTool() {
           <FieldRow label="Depreciation method" fieldWidth={190}>
             <SelectField value={method} onChange={setMethod} options={METHOD_OPTIONS} style={{ flex: 1, minWidth: 0 }} />
           </FieldRow>
-          <FieldRow label="Asset cost"><DollarField value={v.cost} onChange={set("cost")} placeholder={DEFAULTS.cost} /></FieldRow>
+          <FieldRow label="Asset cost"><Req name="cost" flagged={req.flagged}><DollarField value={v.cost} onChange={set("cost")} placeholder={DEFAULTS.cost} /></Req></FieldRow>
           <FieldRow label="Salvage value"><DollarField value={v.salvage} onChange={set("salvage")} placeholder={DEFAULTS.salvage} /></FieldRow>
-          <FieldRow label="Depreciation years"><TextField value={v.years} onChange={set("years")} placeholder={DEFAULTS.years} /></FieldRow>
+          <FieldRow label="Depreciation years"><Req name="years" flagged={req.flagged}><TextField value={v.years} onChange={set("years")} placeholder={DEFAULTS.years} /></Req></FieldRow>
           {method === "declining" && (
-            <FieldRow label="Depreciation factor"><TextField value={v.factor} onChange={set("factor")} placeholder={DEFAULTS.factor} /></FieldRow>
+            <FieldRow label="Depreciation factor"><Req name="factor" flagged={req.flagged}><TextField value={v.factor} onChange={set("factor")} placeholder={DEFAULTS.factor} /></Req></FieldRow>
           )}
 
           <YesNoField label="Round to dollars?" value={roundToDollars} onChange={setRoundToDollars} />

@@ -3,6 +3,8 @@ import { TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import { RadioOption } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import { ErrorPanel, ButtonRow } from "../fha-loan-calculator/MortgageResultParts";
 import UnitMeasureField from "../calculator-ui/UnitMeasureField";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { RequiredProvider, Req } from "../calculator-ui/Required";
 import { HighlightSummary, StatRow, StatList } from "../calculator-ui/ResultHighlight";
 import {
   calculateIdealWeight, IDEAL_WEIGHT_DEFAULTS, LENGTH_UNITS, WEIGHT_UNITS, lengthToCm, cmToLength,
@@ -18,16 +20,16 @@ const DEFAULT_CM = lengthToCm(D.heightUnit, D.height, D.height2);
 
 /** The example values, in whatever unit is selected, shown as placeholders. */
 const placeholdersFor = (v) => ({ age: D.age, height: cmToLength(v.heightUnit, DEFAULT_CM) });
-/** Blank boxes fall back to their placeholder (a two-part height only when both parts are blank). */
-function withPlaceholders(v) {
+/** The typed values, with the example put in for each field named in `fill` (used only to
+ * work out which empty fields are required — placeholders never reach a shown result). */
+function withExamples(v, fill) {
   const ph = placeholdersFor(v);
-  const heightBlank = v.height === "" && v.height2 === "";
-  return {
-    ...v,
-    age: v.age === "" ? ph.age : v.age,
-    height: heightBlank ? ph.height[0] : v.height,
-    height2: heightBlank ? ph.height[1] : v.height2,
-  };
+  const out = { ...v };
+  for (const key of fill) {
+    const example = ph[key];
+    if (Array.isArray(example)) { out[key] = example[0]; out[`${key}2`] = example[1]; } else out[key] = example;
+  }
+  return out;
 }
 const EMPTY = { ...D, age: "", height: "", height2: "" };
 
@@ -61,12 +63,14 @@ function ResultBody({ result }) {
 
 export default function IdealWeightCalculatorTool() {
   const [v, setV] = useState(EMPTY);
-  const [result, setResult] = useState(() => calculateIdealWeight(withPlaceholders(EMPTY)));
+  const [result, setResult] = useState(null); // no result until Calculate
   const ph = placeholdersFor(v);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
 
-  const calculate = () => setResult(calculateIdealWeight(withPlaceholders(v)));
-  const clear = () => { setV((prev) => ({ ...prev, age: "", height: "", height2: "" })); setResult(null); };
+  const req = useRequiredFields();
+  const evaluate = (values) => req.evaluate({ age: values.age, height: [values.height, values.height2] }, (fill) => calculateIdealWeight(withExamples(values, fill)));
+  const calculate = () => setResult(evaluate(v));
+  const clear = () => { setV((prev) => ({ ...prev, age: "", height: "", height2: "" })); req.clear(); setResult(null); };
   // Switching the height unit converts what is already typed.
   const changeHeightUnit = (unit) => setV((prev) => {
     const [a, b] = cmToLength(unit, lengthToCm(prev.heightUnit, prev.height, prev.height2));
@@ -75,10 +79,11 @@ export default function IdealWeightCalculatorTool() {
   // The result unit applies straight away to the current result.
   const changeResultUnit = (unit) => {
     setV((prev) => ({ ...prev, resultUnit: unit }));
-    setResult((prev) => (prev && !prev.errors ? calculateIdealWeight(withPlaceholders({ ...v, resultUnit: unit })) : prev));
+    setResult((prev) => (prev && !prev.errors ? evaluate({ ...v, resultUnit: unit }) : prev));
   };
 
   return (
+    <RequiredProvider flagged={req.flagged}>
     <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start" }}>
         <p style={{ fontSize: 14, color: "var(--text-secondary)", margin: 0, lineHeight: 1.6 }}>
@@ -100,7 +105,7 @@ export default function IdealWeightCalculatorTool() {
           <label style={rowStyle}>
             <span style={labelStyle}>Age</span>
             <div style={{ flex: "0 1 110px", minWidth: 70 }}>
-              <TextField value={v.age} onChange={set("age")} placeholder={ph.age} />
+              <Req name="age"><TextField value={v.age} onChange={set("age")} placeholder={ph.age} /></Req>
             </div>
             <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>ages 2 - 80</span>
           </label>
@@ -115,10 +120,10 @@ export default function IdealWeightCalculatorTool() {
 
           <div style={rowStyle}>
             <span style={labelStyle}>Height</span>
-            <UnitMeasureField
+            <Req name="height"><UnitMeasureField
               label="Height" units={LENGTH_UNITS} unit={v.heightUnit} onUnitChange={changeHeightUnit}
               values={[v.height, v.height2]} placeholders={ph.height} onChange={(i, text) => set(i ? "height2" : "height")(text)}
-            />
+            /></Req>
           </div>
 
           <label style={rowStyle}>
@@ -139,5 +144,6 @@ export default function IdealWeightCalculatorTool() {
         </div>
       </div>
     </div>
+    </RequiredProvider>
   );
 }

@@ -3,9 +3,11 @@ import { TextField } from "../loan-calculator/LoanFormControls";
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import {
   calculateDebtPayoff, validateDebtPayoffInputs,
-  formatPayoffLength, makeEmptyRows, applyDebtDefaults, DEFAULT_DEBTS, MAX_DEBTS,
+  formatPayoffLength, makeEmptyRows, DEFAULT_DEBTS, MAX_DEBTS,
   DEFAULTS, formatCurrency,
 } from "../../../utils/debtPayoffCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const VISIBLE_ROWS_DEFAULT = 6;
 
@@ -24,6 +26,14 @@ function formatWithCommas(raw) {
   const [intPart, decPart] = cleaned.split(".");
   const withCommas = (intPart || "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return decPart !== undefined ? `${withCommas}.${decPart}` : withCommas;
+}
+
+// Every debt row with an amount or rate typed in needs its balance, minimum payment and rate; with
+// nothing typed at all, the first row does. Placeholders are examples only.
+function debtRequired(debts) {
+  const touched = debts.map((d, i) => [d, i]).filter(([d]) => d.balance || d.minPayment || d.ratePercent);
+  const rows = touched.length ? touched : [[debts[0], 0]];
+  return Object.fromEntries(rows.flatMap(([d, i]) => ["balance", "minPayment", "ratePercent"].map((k) => [`${k}${i}`, d[k]])));
 }
 
 const cellInputStyle = { width: "100%", padding: "6px 7px", fontSize: 12.5, borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", fontFamily: "var(--font-display)", color: "var(--text-primary)" };
@@ -80,13 +90,15 @@ export default function DebtPayoffCalculatorTool() {
     setDebts((prev) => prev.map((d, i) => (i === index ? { ...d, [field]: value } : d)));
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ ...debtRequired(debts), ...(extraOneTime ? { extraOneTimeMonth } : {}) })) { setResult(null); setError(null); return; }
     const inputs = {
-      debts: applyDebtDefaults(debts),
-      extraMonthly: extraMonthly || DEFAULTS.extraMonthly,
-      extraYearly: extraYearly || DEFAULTS.extraYearly,
-      extraOneTime: extraOneTime || DEFAULTS.extraOneTime,
-      extraOneTimeMonth: extraOneTimeMonth || DEFAULTS.extraOneTimeMonth,
+      debts: debts.map((d, i) => ({ ...d, name: d.name || `Debt ${i + 1}` })),
+      extraMonthly: extraMonthly,
+      extraYearly: extraYearly,
+      extraOneTime: extraOneTime,
+      extraOneTimeMonth: extraOneTimeMonth,
       fixedTotal,
     };
     const validationError = validateDebtPayoffInputs(inputs);
@@ -102,6 +114,7 @@ export default function DebtPayoffCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setDebts(makeEmptyRows());
     setVisibleRows(VISIBLE_ROWS_DEFAULT);
     setExtraMonthly(""); setExtraYearly(""); setExtraOneTime(""); setExtraOneTimeMonth("");
@@ -135,13 +148,13 @@ export default function DebtPayoffCalculatorTool() {
                         <TextField value={debt.name} onChange={(v) => updateDebt(i, "name", v)} placeholder={fallback ? fallback.name : `Debt ${i + 1}`} style={cellInputStyle} />
                       </td>
                       <td style={{ ...td, minWidth: 90 }}>
-                        <DollarCell value={debt.balance} onChange={(v) => updateDebt(i, "balance", v)} placeholder={fallback ? formatWithCommas(fallback.balance) : ""} />
+                        <Req name={`balance${i}`} flagged={req.flagged}><DollarCell value={debt.balance} onChange={(v) => updateDebt(i, "balance", v)} placeholder={fallback ? formatWithCommas(fallback.balance) : ""} /></Req>
                       </td>
                       <td style={{ ...td, minWidth: 90 }}>
-                        <DollarCell value={debt.minPayment} onChange={(v) => updateDebt(i, "minPayment", v)} placeholder={fallback ? formatWithCommas(fallback.minPayment) : ""} />
+                        <Req name={`minPayment${i}`} flagged={req.flagged}><DollarCell value={debt.minPayment} onChange={(v) => updateDebt(i, "minPayment", v)} placeholder={fallback ? formatWithCommas(fallback.minPayment) : ""} /></Req>
                       </td>
                       <td style={{ ...td, minWidth: 80 }}>
-                        <PercentCell value={debt.ratePercent} onChange={(v) => updateDebt(i, "ratePercent", v)} placeholder={fallback ? fallback.ratePercent : ""} />
+                        <Req name={`ratePercent${i}`} flagged={req.flagged}><PercentCell value={debt.ratePercent} onChange={(v) => updateDebt(i, "ratePercent", v)} placeholder={fallback ? fallback.ratePercent : ""} /></Req>
                       </td>
                     </tr>
                   );
@@ -184,7 +197,7 @@ export default function DebtPayoffCalculatorTool() {
               </div>
               <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>of one-time payment made during the</span>
               <div style={{ width: 56 }}>
-                <TextField value={extraOneTimeMonth} onChange={setExtraOneTimeMonth} placeholder={DEFAULTS.extraOneTimeMonth} style={{ padding: "7px 9px", fontSize: 13, textAlign: "center" }} />
+                <Req name="extraOneTimeMonth" flagged={req.flagged}><TextField value={extraOneTimeMonth} onChange={setExtraOneTimeMonth} placeholder={DEFAULTS.extraOneTimeMonth} style={{ padding: "7px 9px", fontSize: 13, textAlign: "center" }} /></Req>
               </div>
               <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>th month</span>
             </div>

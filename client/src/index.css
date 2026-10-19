@@ -524,3 +524,14 @@ input[type="number"]::-webkit-inner-spin-button {
   border-left-style: hidden;
   background-color: transparent;
 }
+
+/* Calculator required fields: an empty box the calculation needs, after
+   Calculate. The box shows "Please enter a value" in red until it is filled. */
+.input-required {
+  border-color: #dc2626 !important;
+  box-shadow: inset 0 0 0 1px #dc2626 !important;
+}
+.input-required::placeholder {
+  color: #dc2626;
+  opacity: 1;
+}

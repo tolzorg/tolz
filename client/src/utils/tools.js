@@ -7,6 +7,7 @@ export const CATEGORIES = [
   { id: "converter", label: "Converters" },
   { id: "utility",   label: "Calculators", subCategories: [
     { id: "health-calc",       label: "Health Calculators",          path: "/calculators/health" },
+    { id: "sports-calc",       label: "Sports Calculators",          path: "/calculators/sports" },
     { id: "everyday",          label: "Everyday Life Calculators",   path: "/calculators/everyday-life" },
     { id: "construction-calc", label: "Construction Calculators",    path: "/calculators/construction" },
     { id: "garden-calc",       label: "Garden Calculators",          path: "/calculators/garden" },
@@ -231,6 +232,25 @@ export const TOOLS = [
     keywords: [
       "ideal weight calculator", "ideal body weight calculator", "how much should i weigh", "devine formula",
       "robinson formula", "miller formula", "hamwi formula", "healthy weight for my height",
+    ],
+  },
+  {
+    id: "pace-calculator",
+    label: "Pace Calculator",
+    tagline: "Pace, finish time, splits & converter",
+    description: "Find your running, walking or cycling pace, time or distance, with race times, splits, multipoint section paces, a pace converter and a finish-time estimate.",
+    icon: "🏃",
+    iconBg: "#ecfeff",
+    iconColor: "#0891b2",
+    category: "utility",
+    subCategory: "sports-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/pace-calculator",
+    available: true,
+    keywords: [
+      "pace calculator", "running pace calculator", "marathon pace calculator", "min per mile calculator",
+      "pace per km", "race time calculator", "split calculator", "finish time calculator",
     ],
   },
   {

@@ -8,6 +8,8 @@ import {
   calculateFromRemainingTerm, formatCurrency, formatWholeCurrency, formatYearsAndMonths,
   formatYearsMosShort, formatPercentWhole,
 } from "../../../utils/mortgagePayoffCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   loanAmount: "400000", loanTermYears: "30", annualRatePercent: "6",
@@ -59,23 +61,26 @@ export default function MortgagePayoffFromTermCard() {
   const [result, setResult] = useState(null);
   const [showAmortization, setShowAmortization] = useState(false);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ loanAmount, loanTermYears, annualRatePercent, remainingYears: [remainingYears, remainingMonths], ...(payoffOption === "extra" ? { extraMonthly: [extraMonthly, extraYearly, extraOneTime] } : {}) })) { setResult(null); return; }
     const r = calculateFromRemainingTerm({
-      loanAmount: loanAmount || DEFAULTS.loanAmount,
-      loanTermYears: loanTermYears || DEFAULTS.loanTermYears,
-      annualRatePercent: annualRatePercent || DEFAULTS.annualRatePercent,
-      remainingYears: remainingYears || DEFAULTS.remainingYears,
-      remainingMonths: remainingMonths || DEFAULTS.remainingMonths,
+      loanAmount: loanAmount,
+      loanTermYears: loanTermYears,
+      annualRatePercent: annualRatePercent,
+      remainingYears: remainingYears,
+      remainingMonths: remainingMonths,
       payoffOption,
-      extraMonthly: Number(extraMonthly || (payoffOption === "extra" ? DEFAULTS.extraMonthly : 0)) || 0,
-      extraYearly: Number(extraYearly || DEFAULTS.extraYearly) || 0,
-      extraOneTime: Number(extraOneTime || DEFAULTS.extraOneTime) || 0,
+      extraMonthly: Number(extraMonthly) || 0,
+      extraYearly: Number(extraYearly) || 0,
+      extraOneTime: Number(extraOneTime) || 0,
     });
     setResult(r);
     setShowAmortization(false);
   }
 
   function clear() {
+    req.clear();
     setLoanAmount(""); setLoanTermYears(""); setAnnualRatePercent("");
     setRemainingYears(""); setRemainingMonths("");
     setPayoffOption("extra"); setExtraMonthly(""); setExtraYearly(""); setExtraOneTime("");
@@ -101,16 +106,16 @@ export default function MortgagePayoffFromTermCard() {
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
           <div className="card" style={{ padding: 18 }}>
             <FieldRow label="Original loan amount">
-              <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ width: "100%" }} />
+              <Req name="loanAmount" flagged={req.flagged}><DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ width: "100%" }} /></Req>
             </FieldRow>
             <FieldRow label="Original loan term">
-              <YearsField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={{ width: "100%" }} />
+              <Req name="loanTermYears" flagged={req.flagged}><YearsField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={{ width: "100%" }} /></Req>
             </FieldRow>
             <FieldRow label="Interest rate">
-              <PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} style={{ width: "100%" }} />
+              <Req name="annualRatePercent" flagged={req.flagged}><PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} style={{ width: "100%" }} /></Req>
             </FieldRow>
             <FieldRow label="Remaining term" fieldWidth={200}>
-              <TermYearsMonthsField years={remainingYears} months={remainingMonths} onYearsChange={setRemainingYears} onMonthsChange={setRemainingMonths} />
+              <Req name="remainingYears" flagged={req.flagged}><TermYearsMonthsField years={remainingYears} months={remainingMonths} onYearsChange={setRemainingYears} onMonthsChange={setRemainingMonths} /></Req>
             </FieldRow>
 
             <div style={{ marginBottom: 16 }}>
@@ -120,7 +125,7 @@ export default function MortgagePayoffFromTermCard() {
                 <RadioOption checked={payoffOption === "extra"} onChange={() => setPayoffOption("extra")} label="Repayment with extra payments">
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <DollarField value={extraMonthly} onChange={setExtraMonthly} placeholder={DEFAULTS.extraMonthly} style={{ width: 110 }} />
+                      <Req name="extraMonthly" flagged={req.flagged}><DollarField value={extraMonthly} onChange={setExtraMonthly} placeholder={DEFAULTS.extraMonthly} style={{ width: 110 }} /></Req>
                       <span style={{ fontSize: 13, color: "var(--text-muted)" }}>per month</span>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -193,7 +198,7 @@ export default function MortgagePayoffFromTermCard() {
                     The remaining balance is <strong>{formatCurrency(result.balance)}</strong>. By paying{" "}
                     {result.mode === "biweekly"
                       ? <><strong>{formatCurrency(result.biweeklyPayment)}</strong> biweekly starting now</>
-                      : buildExtraDescription({ extraMonthly: Number(extraMonthly || DEFAULTS.extraMonthly) || 0, extraYearly: Number(extraYearly) || 0, extraOneTime: Number(extraOneTime) || 0 })}
+                      : buildExtraDescription({ extraMonthly: Number(extraMonthly) || 0, extraYearly: Number(extraYearly) || 0, extraOneTime: Number(extraOneTime) || 0 })}
                     , the loan will be paid off in <strong>{formatYearsAndMonths(result.newMonths)}</strong>. It is{" "}
                     <strong>{formatYearsAndMonths(result.remainingTotalMonths - result.newMonths)} earlier</strong>. This
                     results in savings of{" "}

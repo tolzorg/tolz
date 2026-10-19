@@ -9,6 +9,8 @@ import {
 import { linkButton, initialDates } from "../fha-loan-calculator/mortgageFormHelpers";
 import { calculateVaMortgage, VA_DEFAULTS, ELIGIBILITY } from "../../../utils/vaMortgageCalculatorEngine";
 import { convertUnit } from "../../../utils/fhaLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = VA_DEFAULTS;
 // Example values per unit — placeholders only.
@@ -62,19 +64,17 @@ export default function VaMortgageCalculatorTool() {
   };
 
   const visibleKeys = [...MAIN_KEYS, ...(moreOptions ? MORE_KEYS : [])];
+  const req = useRequiredFields();
   const calculate = () => {
-    const example = visibleKeys.every((k) => v[k] === "");
-    const values = example
-      ? { ...D, downPayment: UNIT_EXAMPLE.downPayment[downUnit], propertyTaxes: UNIT_EXAMPLE.propertyTaxes[taxUnit] }
-      : v;
-    setResult(calculateVaMortgage({
-      ...values, ...dates, downUnit, taxUnit, eligibility, usedBefore: usedBefore === "y", disabled: disabled === "y",
+    const examples = { ...D, downPayment: UNIT_EXAMPLE.downPayment[downUnit], propertyTaxes: UNIT_EXAMPLE.propertyTaxes[taxUnit] };
+    setResult(req.evaluate(pickFields(v, visibleKeys), (fill) => calculateVaMortgage({
+      ...withFill(v, examples, fill), ...dates, downUnit, taxUnit, eligibility, usedBefore: usedBefore === "y", disabled: disabled === "y",
       feeFinanced: feeOption === "f", moreOptions, showBiweekly,
-    }));
+    })));
     setView("annual");
   };
   const clear = () => {
-    setV(blank()); setDownUnit("percent"); setTaxUnit("percent"); setEligibility("v"); setUsedBefore("n");
+    req.clear(); setV(blank()); setDownUnit("percent"); setTaxUnit("percent"); setEligibility("v"); setUsedBefore("n");
     setDisabled("n"); setFeeOption("f"); setShowBiweekly(true); setDates(initialDates()); setResult(null);
   };
 
@@ -86,15 +86,15 @@ export default function VaMortgageCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ── */}
         <div className="card" style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 460, padding: 16 }}>
-          <Row label="Home Price"><DollarField value={v.price} onChange={set("price")} placeholder={D.price} /></Row>
+          <Row label="Home Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={D.price} /></Req></Row>
           <Row label="Down Payment">
-            <ValueUnitField
+            <Req name="downPayment" flagged={req.flagged}><ValueUnitField
               value={v.downPayment} unit={downUnit} placeholder={UNIT_EXAMPLE.downPayment[downUnit]}
               onValueChange={set("downPayment")} onUnitChange={(u) => changeUnit("downPayment", u, setDownUnit)}
-            />
+            /></Req>
           </Row>
-          <Row label="Loan Term" suffix="years"><TextField value={v.years} onChange={set("years")} placeholder={D.years} /></Row>
-          <Row label="Interest Rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Row>
+          <Row label="Loan Term" suffix="years"><Req name="years" flagged={req.flagged}><TextField value={v.years} onChange={set("years")} placeholder={D.years} /></Req></Row>
+          <Row label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Req></Row>
 
           <div style={{ marginTop: 6 }}>
             <RadioGroup legend="VA Eligibility:" name="va-eligibility" options={ELIGIBILITY} value={eligibility} onChange={setEligibility} />
@@ -113,7 +113,7 @@ export default function VaMortgageCalculatorTool() {
           </div>
           {moreOptions && (
             <>
-              <CostFields
+              <CostFields flagged={req.flagged}
                 v={v} set={set} taxUnit={taxUnit} taxPlaceholder={UNIT_EXAMPLE.propertyTaxes[taxUnit]}
                 onTaxUnit={(u) => changeUnit("propertyTaxes", u, setTaxUnit)} dates={dates} setDate={setDate} defaults={D}
               />

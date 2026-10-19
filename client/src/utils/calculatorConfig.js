@@ -131,6 +131,40 @@ export const CALCULATOR_CATEGORIES = [
     ],
   },
   {
+    id: "sports",
+    name: "Sports Calculators",
+    slug: "sports",
+    path: "/calculators/sports",
+    tagline: "Running pace, race times, splits & more",
+    description:
+      "Free sports calculators — running, walking and cycling pace, race finish times, splits and pace conversions. No signup required.",
+    icon: "🏅",
+    iconBg: "#ecfeff",
+    iconColor: "#0891b2",
+    calculators: [
+      {
+        id: "pace-calculator",
+        label: "Pace Calculator",
+        slug: "pace-calculator",
+        tagline: "Pace, finish time, splits & converter",
+        description:
+          "Find your running, walking or cycling pace, time or distance, with race times, splits, multipoint section paces, a pace converter and a finish-time estimate.",
+        icon: "🏃",
+        iconBg: "#ecfeff",
+        iconColor: "#0891b2",
+        path: "/calculators/sports/pace-calculator",
+        legacyPath: "/tools/pace-calculator",
+        keywords: [
+          "pace calculator", "running pace calculator", "marathon pace calculator", "min per mile calculator",
+          "pace per km", "race time calculator", "split calculator", "finish time calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+    ],
+  },
+  {
     id: "construction",
     name: "Construction Calculators",
     slug: "construction",

@@ -5,6 +5,8 @@ import { ErrorPanel, ButtonRow } from "../fha-loan-calculator/MortgageResultPart
 import BmiGauge from "./BmiGauge";
 import UnitMeasureField from "../calculator-ui/UnitMeasureField";
 import { HighlightSummary, StatRow, StatList } from "../calculator-ui/ResultHighlight";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { RequiredProvider, Req } from "../calculator-ui/Required";
 import {
   calculateBmi, BMI_DEFAULTS, HEIGHT_UNITS, WEIGHT_UNITS,
   heightToMeters, metersToHeight, weightToKg, kgToWeight,
@@ -24,16 +26,16 @@ const placeholdersFor = (v) => ({
   height: metersToHeight(v.heightUnit, DEFAULT_M),
   weight: kgToWeight(v.weightUnit, DEFAULT_KG),
 });
-/** Blank boxes fall back to their placeholder (a two-part height only when both parts are blank). */
-function withPlaceholders(v) {
+/** The typed values, with the example put in for each field named in `fill` (used only to
+ * work out which empty fields are required — placeholders never reach a shown result). */
+function withExamples(v, fill) {
   const ph = placeholdersFor(v);
-  const heightBlank = v.height === "" && v.height2 === "";
   return {
     ...v,
-    age: v.age === "" ? ph.age : v.age,
-    height: heightBlank ? ph.height[0] : v.height,
-    height2: heightBlank ? ph.height[1] : v.height2,
-    weight: v.weight === "" ? ph.weight : v.weight,
+    age: fill.has("age") ? ph.age : v.age,
+    height: fill.has("height") ? ph.height[0] : v.height,
+    height2: fill.has("height") ? ph.height[1] : v.height2,
+    weight: fill.has("weight") ? ph.weight : v.weight,
   };
 }
 const EMPTY = { ...D, age: "", height: "", height2: "", weight: "" };
@@ -72,12 +74,16 @@ function ResultBody({ result }) {
 
 export default function BmiCalculatorTool() {
   const [v, setV] = useState(EMPTY);
-  const [result, setResult] = useState(() => calculateBmi(withPlaceholders(EMPTY)));
+  const [result, setResult] = useState(null); // no result until Calculate
   const ph = placeholdersFor(v);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
 
-  const calculate = () => setResult(calculateBmi(withPlaceholders(v)));
-  const clear = () => { setV((prev) => ({ ...prev, age: "", height: "", height2: "", weight: "" })); setResult(null); };
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(
+    { age: v.age, height: [v.height, v.height2], weight: v.weight },
+    (fill) => calculateBmi(withExamples(v, fill)),
+  ));
+  const clear = () => { setV((prev) => ({ ...prev, age: "", height: "", height2: "", weight: "" })); req.clear(); setResult(null); };
 
   // Switching a unit converts what is already typed, so nothing has to be re-entered.
   const changeHeightUnit = (unit) => setV((prev) => {
@@ -87,6 +93,7 @@ export default function BmiCalculatorTool() {
   const changeWeightUnit = (unit) => setV((prev) => ({ ...prev, weightUnit: unit, weight: kgToWeight(unit, weightToKg(prev.weightUnit, prev.weight)) }));
 
   return (
+    <RequiredProvider flagged={req.flagged}>
     <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <button
@@ -103,7 +110,7 @@ export default function BmiCalculatorTool() {
           <label style={rowStyle}>
             <span style={labelStyle}>Age</span>
             <div style={{ flex: "0 1 110px", minWidth: 70 }}>
-              <TextField value={v.age} onChange={set("age")} placeholder={ph.age} />
+              <Req name="age"><TextField value={v.age} onChange={set("age")} placeholder={ph.age} /></Req>
             </div>
             <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>ages: 2 - 120</span>
           </label>
@@ -118,18 +125,18 @@ export default function BmiCalculatorTool() {
 
           <div style={rowStyle}>
             <span style={labelStyle}>Height</span>
-            <UnitMeasureField
+            <Req name="height"><UnitMeasureField
               label="Height" units={HEIGHT_UNITS} unit={v.heightUnit} onUnitChange={changeHeightUnit}
               values={[v.height, v.height2]} placeholders={ph.height} onChange={(i, text) => set(i ? "height2" : "height")(text)}
-            />
+            /></Req>
           </div>
 
           <div style={rowStyle}>
             <span style={labelStyle}>Weight</span>
-            <UnitMeasureField
+            <Req name="weight"><UnitMeasureField
               label="Weight" units={WEIGHT_UNITS} unit={v.weightUnit} onUnitChange={changeWeightUnit}
               values={[v.weight, ""]} placeholders={[ph.weight, ""]} onChange={(_, text) => set("weight")(text)}
-            />
+            /></Req>
           </div>
 
           <ButtonRow onCalculate={calculate} onClear={clear} />
@@ -143,5 +150,6 @@ export default function BmiCalculatorTool() {
         </div>
       </div>
     </div>
+    </RequiredProvider>
   );
 }

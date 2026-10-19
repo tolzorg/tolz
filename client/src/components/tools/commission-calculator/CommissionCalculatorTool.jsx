@@ -5,6 +5,8 @@ import { ErrorPanel, Row, ButtonRow } from "../fha-loan-calculator/MortgageResul
 import {
   calculateSimpleCommission, calculateTieredCommission, SIMPLE_DEFAULTS, TIERED_DEFAULTS, TIER_COUNT,
 } from "../../../utils/commissionCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const S = SIMPLE_DEFAULTS;
 const T = TIERED_DEFAULTS;
@@ -49,16 +51,17 @@ function SimpleCalculator() {
   const [v, setV] = useState({ price: "", rate: "", commission: "" });
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
-  // Which boxes are blank decides what gets solved, so the example is used only when all three are empty.
-  const calculate = () => setResult(calculateSimpleCommission(Object.values(v).every((x) => x === "") ? S : v));
+  // Which boxes are blank decides what gets solved; empty boxes the result needs are flagged.
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(pickFields(v, ["price", "rate"]), (fill) => calculateSimpleCommission(withFill(v, S, fill))));
 
   return (
     <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div className="card" style={{ flex: "1 1 300px", minWidth: 280, maxWidth: 420, padding: 16 }}>
-        <Row label="Sales Price"><DollarField value={v.price} onChange={set("price")} placeholder={S.price} /></Row>
-        <Row label="Commission Rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={S.rate} /></Row>
+        <Row label="Sales Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={S.price} /></Req></Row>
+        <Row label="Commission Rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={S.rate} /></Req></Row>
         <Row label="Commission"><DollarField value={v.commission} onChange={set("commission")} /></Row>
-        <ButtonRow onCalculate={calculate} onClear={() => { setV({ price: "", rate: "", commission: "" }); setResult(null); }} />
+        <ButtonRow onCalculate={calculate} onClear={() => { req.clear(); setV({ price: "", rate: "", commission: "" }); setResult(null); }} />
       </div>
       <ResultCard>
         {!result && <p style={muted}>Enter any two of the three values, then click Calculate.</p>}
@@ -100,34 +103,41 @@ function TieredCalculator() {
   const placeholder = (i, key) => T.tiers[i]?.[key] || undefined;
   const tiersEmpty = tiers.every((t) => t.to === "" && t.rate === "");
 
+  // Empty boxes the result needs are flagged (tier boxes are named to0/rate0, …).
+  const req = useRequiredFields();
   const calculate = () => {
-    const visible = [price, ...(hasBase ? [base] : []), ...(varies ? tiers.flatMap((t) => [t.to, t.rate]) : [fixed])];
-    const allEmpty = visible.every((x) => x === "");
-    const exampleTiers = emptyTiers().map((t, i) => ({ ...t, ...T.tiers[i], unit: tiers[i].unit }));
-    setResult(calculateTieredCommission({
-      price: allEmpty ? T.price : price, hasBase, base: allEmpty ? T.base : base, baseUnit,
-      varies, fixed: allEmpty ? T.fixed : fixed, fixedUnit, tiers: allEmpty ? exampleTiers : tiers,
+    const tierBoxes = varies ? Object.fromEntries(tiers.flatMap((t, i) => [
+      ...(T.tiers[i]?.to ? [[`to${i}`, t.to]] : []), ...(T.tiers[i]?.rate ? [[`rate${i}`, t.rate]] : []),
+    ])) : {};
+    const fields = { price, ...(hasBase ? { base } : {}), ...(varies ? tierBoxes : { fixed }) };
+    setResult(req.evaluate(fields, (fill) => {
+      const pick = (key, value, example) => (fill.has(key) ? example : value);
+      return calculateTieredCommission({
+        price: pick("price", price, T.price), hasBase, base: pick("base", base, T.base), baseUnit,
+        varies, fixed: pick("fixed", fixed, T.fixed), fixedUnit,
+        tiers: tiers.map((t, i) => ({ ...t, to: pick(`to${i}`, t.to, T.tiers[i]?.to), rate: pick(`rate${i}`, t.rate, T.tiers[i]?.rate) })),
+      });
     }));
   };
   const clear = () => {
-    setPrice(""); setHasBase(false); setBase(""); setBaseUnit(T.baseUnit); setVaries(true);
+    req.clear(); setPrice(""); setHasBase(false); setBase(""); setBaseUnit(T.baseUnit); setVaries(true);
     setFixed(""); setFixedUnit(T.fixedUnit); setTiers(emptyTiers()); setResult(null);
   };
 
   return (
     <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-        <Row label="Sales Price"><DollarField value={price} onChange={setPrice} placeholder={T.price} /></Row>
+        <Row label="Sales Price"><Req name="price" flagged={req.flagged}><DollarField value={price} onChange={setPrice} placeholder={T.price} /></Req></Row>
         <YesNo label="Has a base commission?" hint={BASE_HINT} value={hasBase} onChange={setHasBase} />
         {hasBase && (
           <Row label="Base commission">
-            <ValueUnitField value={base} unit={baseUnit} onValueChange={setBase} onUnitChange={setBaseUnit} placeholder={T.base} />
+            <Req name="base" flagged={req.flagged}><ValueUnitField value={base} unit={baseUnit} onValueChange={setBase} onUnitChange={setBaseUnit} placeholder={T.base} /></Req>
           </Row>
         )}
         <YesNo label="Commission varies with price?" hint={TIER_HINT} value={varies} onChange={setVaries} />
         {!varies && (
           <Row label="Commission">
-            <ValueUnitField value={fixed} unit={fixedUnit} onValueChange={setFixed} onUnitChange={setFixedUnit} placeholder={T.fixed} />
+            <Req name="fixed" flagged={req.flagged}><ValueUnitField value={fixed} unit={fixedUnit} onValueChange={setFixed} onUnitChange={setFixedUnit} placeholder={T.fixed} /></Req>
           </Row>
         )}
         {varies && (
@@ -146,8 +156,8 @@ function TieredCalculator() {
                 return (
                   <div key={i} style={{ display: "contents" }}>
                     <span style={{ fontSize: 12.5, color: example ? "var(--text-muted)" : "var(--text-primary)", overflowWrap: "anywhere" }}>{prev !== "" ? `$${withCommas(prev)}` : ""}</span>
-                    <DollarField value={t.to} onChange={setTier(i, "to")} placeholder={placeholder(i, "to")} />
-                    <ValueUnitField value={t.rate} unit={t.unit} onValueChange={setTier(i, "rate")} onUnitChange={setTier(i, "unit")} placeholder={placeholder(i, "rate")} />
+                    <Req name={`to${i}`} flagged={req.flagged}><DollarField value={t.to} onChange={setTier(i, "to")} placeholder={placeholder(i, "to")} /></Req>
+                    <Req name={`rate${i}`} flagged={req.flagged}><ValueUnitField value={t.rate} unit={t.unit} onValueChange={setTier(i, "rate")} onUnitChange={setTier(i, "unit")} placeholder={placeholder(i, "rate")} /></Req>
                   </div>
                 );
               })}

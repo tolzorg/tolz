@@ -8,6 +8,8 @@ import {
   calculateStartingAmount, calculateInvestmentLength,
   COMPOUND_OPTIONS, formatCurrency, formatPercent,
 } from "../../../utils/investmentCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Reference's own default values, shown as placeholder hints only —
 // fields start blank, Calculate falls back to these (the established
@@ -105,13 +107,15 @@ export default function InvestmentCalculatorTool() {
     setResult(null);
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ ...(activeTab === "endamount" ? {} : { target }), ...(activeTab === "investlength" ? {} : { years }), ...(activeTab === "returnrate" ? {} : { returnRate }), ...(activeTab === "startingamount" || activeTab === "contributeamount" ? {} : { startingAmount: [startingAmount, contribution] }) })) { setResult(null); return; }
     const shared = {
-      startingAmount: startingAmount || DEFAULTS.startingAmount,
-      years: years || DEFAULTS.years,
-      annualRatePercent: returnRate || DEFAULTS.returnRate,
+      startingAmount: startingAmount,
+      years: years,
+      annualRatePercent: returnRate,
       compound,
-      contribution: contribution || DEFAULTS.contribution,
+      contribution: contribution,
       contributeAt,
       contributionFrequency,
     };
@@ -119,19 +123,20 @@ export default function InvestmentCalculatorTool() {
     if (activeTab === "endamount") {
       r = { mode: "endamount", ...calculateEndAmount(shared) };
     } else if (activeTab === "contributeamount") {
-      r = { mode: "contributeamount", ...calculateAdditionalContribution({ targetAmount: target || DEFAULTS.target, ...shared }) };
+      r = { mode: "contributeamount", ...calculateAdditionalContribution({ targetAmount: target, ...shared }) };
     } else if (activeTab === "returnrate") {
-      r = { mode: "returnrate", ...calculateReturnRate({ targetAmount: target || DEFAULTS.target, ...shared }) };
+      r = { mode: "returnrate", ...calculateReturnRate({ targetAmount: target, ...shared }) };
     } else if (activeTab === "startingamount") {
-      r = { mode: "startingamount", ...calculateStartingAmount({ targetAmount: target || DEFAULTS.target, ...shared }) };
+      r = { mode: "startingamount", ...calculateStartingAmount({ targetAmount: target, ...shared }) };
     } else {
-      r = { mode: "investlength", ...calculateInvestmentLength({ targetAmount: target || DEFAULTS.target, ...shared }) };
+      r = { mode: "investlength", ...calculateInvestmentLength({ targetAmount: target, ...shared }) };
     }
     setResult(r);
     setScheduleView("annual");
   }
 
   function clear() {
+    req.clear();
     setTarget(""); setStartingAmount(""); setYears(""); setReturnRate("");
     setCompound(DEFAULTS.compound); setContribution("");
     setContributeAt("end"); setContributionFrequency("monthly");
@@ -172,22 +177,22 @@ export default function InvestmentCalculatorTool() {
           <div className="card" style={{ padding: 18 }}>
             {fields.target && (
               <FieldRow label="Your Target">
-                <DollarField value={target} onChange={setTarget} placeholder={DEFAULTS.target} />
+                <Req name="target" flagged={req.flagged}><DollarField value={target} onChange={setTarget} placeholder={DEFAULTS.target} /></Req>
               </FieldRow>
             )}
             {fields.startingAmount && (
               <FieldRow label="Starting Amount">
-                <DollarField value={startingAmount} onChange={setStartingAmount} placeholder={DEFAULTS.startingAmount} />
+                <Req name="startingAmount" flagged={req.flagged}><DollarField value={startingAmount} onChange={setStartingAmount} placeholder={DEFAULTS.startingAmount} /></Req>
               </FieldRow>
             )}
             {fields.years && (
               <FieldRow label="After" suffix="years">
-                <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+                <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
               </FieldRow>
             )}
             {fields.returnRate && (
               <FieldRow label="Return Rate">
-                <PercentField value={returnRate} onChange={setReturnRate} placeholder={DEFAULTS.returnRate} />
+                <Req name="returnRate" flagged={req.flagged}><PercentField value={returnRate} onChange={setReturnRate} placeholder={DEFAULTS.returnRate} /></Req>
               </FieldRow>
             )}
             {fields.compound && (

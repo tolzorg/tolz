@@ -7,6 +7,8 @@ import AmortizationLineChart from "./AmortizationLineChart";
 import {
   calculateAmortization, buildCumulativeSeries, formatCurrency, formatMonthYear, formatYearsAndMonths,
 } from "../../../utils/amortizationCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Demo numbers shown only as placeholder hint text — fields start blank,
 // Calculate falls back to these only when a field is left empty (the
@@ -93,13 +95,15 @@ export default function AmortizationCalculatorTool() {
     setAdditionalPayments((prev) => prev.map((p, i) => (i === index ? { ...p, [field]: value } : p)));
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ loanAmount, years: [years, months], interestRate })) { setResult(null); return; }
     const startDate = { month: Number(startMonth), year: Number(startYear) || initialDate.year };
     setResult(calculateAmortization({
-      loanAmount: loanAmount || DEFAULTS.loanAmount,
-      termYears: years || DEFAULTS.years,
-      termMonths: months || DEFAULTS.months,
-      annualRatePercent: interestRate || DEFAULTS.interestRate,
+      loanAmount: loanAmount,
+      termYears: years,
+      termMonths: months,
+      annualRatePercent: interestRate,
       extraPaymentsEnabled: extraEnabled,
       startDate,
       extraMonthly: { amount: Number(exMonthlyAmount) || 0, month: Number(exMonthlyMonth), year: Number(exMonthlyYear) },
@@ -111,6 +115,7 @@ export default function AmortizationCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setLoanAmount(""); setYears(""); setMonths(""); setInterestRate(""); setExtraEnabled(false);
     setStartMonth(initialDate.month); setStartYear(initialDate.year);
     setExMonthlyAmount(""); setExMonthlyMonth(initialDate.month); setExMonthlyYear(initialDate.year);
@@ -145,15 +150,15 @@ export default function AmortizationCalculatorTool() {
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div className="card" style={{ padding: 18, flex: "1 1 340px", minWidth: 300 }}>
           <FieldRow label="Loan amount">
-            <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} />
+            <Req name="loanAmount" flagged={req.flagged}><DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} /></Req>
           </FieldRow>
 
           <FieldRow label="Loan term" fieldWidth={200}>
-            <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
+            <Req name="years" flagged={req.flagged}><TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} /></Req>
           </FieldRow>
 
           <FieldRow label="Interest rate" suffix="%">
-            <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+            <Req name="interestRate" flagged={req.flagged}><TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} /></Req>
           </FieldRow>
 
           <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", cursor: "pointer", marginBottom: extraEnabled ? 14 : 0 }}>

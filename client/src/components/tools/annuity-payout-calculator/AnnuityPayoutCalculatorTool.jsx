@@ -8,6 +8,8 @@ import {
   validateFixedLengthInputs, validateFixedPaymentInputs,
   PAYOUT_FREQUENCY_OPTIONS, DEFAULT_FREQUENCY, DEFAULTS, formatCurrency,
 } from "../../../utils/annuityPayoutCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const TABS = [
   { key: "fixlength", label: "Fixed length" },
@@ -95,20 +97,22 @@ export default function AnnuityPayoutCalculatorTool() {
     setError(null);
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ startingPrincipal, interestRatePercent: interestRate, ...(activeTab === "fixlength" ? { yearsToPayout: years } : { payoutAmount }) })) { setResult(null); setError(null); return; }
     const shared = {
-      startingPrincipal: startingPrincipal || DEFAULTS.startingPrincipal,
-      interestRatePercent: interestRate || DEFAULTS.interestRatePercent,
+      startingPrincipal: startingPrincipal,
+      interestRatePercent: interestRate,
       frequency,
     };
     if (activeTab === "fixlength") {
-      const inputs = { ...shared, years: years || DEFAULTS.yearsToPayout };
+      const inputs = { ...shared, years: years };
       const validationError = validateFixedLengthInputs(inputs);
       if (validationError) { setError(validationError); setResult(null); return; }
       setError(null);
       setResult(calculateFixedLength(inputs));
     } else {
-      const inputs = { ...shared, payoutAmount: payoutAmount || DEFAULTS.payoutAmount };
+      const inputs = { ...shared, payoutAmount: payoutAmount };
       const validationError = validateFixedPaymentInputs(inputs);
       if (validationError) { setError(validationError); setResult(null); return; }
       setError(null);
@@ -117,6 +121,7 @@ export default function AnnuityPayoutCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setStartingPrincipal(""); setInterestRate(""); setYears(""); setPayoutAmount("");
     setFrequency(DEFAULT_FREQUENCY);
     setResult(null); setError(null);
@@ -149,20 +154,20 @@ export default function AnnuityPayoutCalculatorTool() {
           </div>
           <div className="card" style={{ padding: 18, marginTop: 12 }}>
             <FieldRow label="Starting principal">
-              <DollarField value={startingPrincipal} onChange={setStartingPrincipal} placeholder={DEFAULTS.startingPrincipal} />
+              <Req name="startingPrincipal" flagged={req.flagged}><DollarField value={startingPrincipal} onChange={setStartingPrincipal} placeholder={DEFAULTS.startingPrincipal} /></Req>
             </FieldRow>
 
             <FieldRow label="Interest/return rate">
-              <PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRatePercent} />
+              <Req name="interestRatePercent" flagged={req.flagged}><PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRatePercent} /></Req>
             </FieldRow>
 
             {activeTab === "fixlength" ? (
               <FieldRow label="Years to payout" suffix="years">
-                <TextField value={years} onChange={setYears} placeholder={DEFAULTS.yearsToPayout} />
+                <Req name="yearsToPayout" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.yearsToPayout} /></Req>
               </FieldRow>
             ) : (
               <FieldRow label="Payout amount">
-                <DollarField value={payoutAmount} onChange={setPayoutAmount} placeholder={DEFAULTS.payoutAmount} />
+                <Req name="payoutAmount" flagged={req.flagged}><DollarField value={payoutAmount} onChange={setPayoutAmount} placeholder={DEFAULTS.payoutAmount} /></Req>
               </FieldRow>
             )}
 

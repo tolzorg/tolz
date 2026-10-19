@@ -6,6 +6,8 @@ import InvestmentBarChart from "../investment-calculator/InvestmentBarChart";
 import {
   calculateSavings, validateSavingsInputs, COMPOUND_OPTIONS, DEFAULTS, formatCurrency,
 } from "../../../utils/savingsCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const BAR_LABELS = { starting: "Initial deposit", contributions: "Contributions", interest: "Interest" };
 
@@ -78,11 +80,13 @@ export default function SavingsCalculatorTool() {
   const [error, setError] = useState(null);
   const [scheduleView, setScheduleView] = useState("annual");
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ initialDeposit: [initialDeposit, annualContribution, monthlyContribution], interestRatePercent: interestRate, years })) { setResult(null); setError(null); return; }
     const inputs = {
-      interestRatePercent: interestRate || DEFAULTS.interestRatePercent,
-      taxRatePercent: taxRate || DEFAULTS.taxRatePercent,
-      years: years || DEFAULTS.years,
+      interestRatePercent: interestRate,
+      taxRatePercent: taxRate,
+      years: years,
     };
     const validationError = validateSavingsInputs(inputs);
     if (validationError) {
@@ -92,11 +96,11 @@ export default function SavingsCalculatorTool() {
     }
     setError(null);
     setResult(calculateSavings({
-      initialDeposit: initialDeposit || DEFAULTS.initialDeposit,
-      annualContribution: annualContribution || DEFAULTS.annualContribution,
-      annualContributionIncreasePercent: annualIncrease || DEFAULTS.annualContributionIncreasePercent,
-      monthlyContribution: monthlyContribution || DEFAULTS.monthlyContribution,
-      monthlyContributionIncreasePercent: monthlyIncrease || DEFAULTS.monthlyContributionIncreasePercent,
+      initialDeposit: initialDeposit,
+      annualContribution: annualContribution,
+      annualContributionIncreasePercent: annualIncrease,
+      monthlyContribution: monthlyContribution,
+      monthlyContributionIncreasePercent: monthlyIncrease,
       compound,
       ...inputs,
     }));
@@ -104,6 +108,7 @@ export default function SavingsCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setInitialDeposit(""); setAnnualContribution(""); setAnnualIncrease("");
     setMonthlyContribution(""); setMonthlyIncrease("");
     setInterestRate(""); setCompound("annually"); setYears(""); setTaxRate("");
@@ -123,11 +128,11 @@ export default function SavingsCalculatorTool() {
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div className="card" style={{ padding: 18, flex: "1 1 360px", minWidth: 320 }}>
           <FieldRow label="Initial deposit">
-            <DollarField value={initialDeposit} onChange={setInitialDeposit} placeholder={DEFAULTS.initialDeposit} />
+            <Req name="initialDeposit" flagged={req.flagged}><DollarField value={initialDeposit} onChange={setInitialDeposit} placeholder={DEFAULTS.initialDeposit} /></Req>
           </FieldRow>
 
           <FieldRow label="Annual contribution">
-            <DollarField value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} />
+            <Req name="annualContribution" flagged={req.flagged}><DollarField value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} /></Req>
           </FieldRow>
           <FieldRow label="increase" suffix="% /year">
             <TextField value={annualIncrease} onChange={setAnnualIncrease} placeholder={DEFAULTS.annualContributionIncreasePercent} />
@@ -141,7 +146,7 @@ export default function SavingsCalculatorTool() {
           </FieldRow>
 
           <FieldRow label="Interest rate" suffix="%">
-            <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRatePercent} />
+            <Req name="interestRatePercent" flagged={req.flagged}><TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRatePercent} /></Req>
           </FieldRow>
 
           <FieldRow label="Compound">
@@ -149,7 +154,7 @@ export default function SavingsCalculatorTool() {
           </FieldRow>
 
           <FieldRow label="Years to save" suffix="years">
-            <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+            <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
           </FieldRow>
 
           <FieldRow label="Tax rate" suffix="%" hint="Your marginal tax rate on interest earned. Tax is deducted from the interest as it's earned each period, not as a single lump sum at the end.">

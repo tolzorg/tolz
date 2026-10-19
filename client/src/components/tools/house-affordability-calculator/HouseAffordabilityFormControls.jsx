@@ -11,6 +11,7 @@
 // screenshot of the site rendered noticeably smaller/denser than the
 // original build. Purely visual; no calculation logic touched.
 import { FieldLabel, TextField as SharedTextField } from "../loan-calculator/LoanFormControls";
+import { useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
 
 export { FieldLabel };
 
@@ -29,10 +30,11 @@ const compactInputStyle = {
  * (mortgage-calculator/MortgageFormControls.jsx) — same behavior and
  * "percent"/"dollar" unit convention, tighter padding only. */
 export function ValueUnitField({ value, unit, onValueChange, onUnitChange, disabled, placeholder, units = ["percent", "dollar"] }) {
+  const invalid = useRequiredState(value);
   return (
     <div style={{ display: "flex", gap: 5 }}>
       <input
-        type="text" inputMode="decimal" value={value} placeholder={placeholder} disabled={disabled}
+        type="text" inputMode="decimal" value={value} disabled={disabled} {...requiredInputProps(invalid, placeholder)}
         onChange={(e) => onValueChange(e.target.value)}
         style={{ ...compactInputStyle, flex: 1, minWidth: 0 }}
       />

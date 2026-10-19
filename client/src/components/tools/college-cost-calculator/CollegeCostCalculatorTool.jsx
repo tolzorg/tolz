@@ -4,6 +4,8 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import {
   calculateCollegeCost, COLLEGE_AVERAGES, DEFAULTS, formatDollars, yearsLabel,
 } from "../../../utils/collegeCostCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const AVERAGE_OPTIONS = [{ value: "", label: "Select an Average" }, ...COLLEGE_AVERAGES];
 const DEFAULT_AVERAGE = "30990";
@@ -118,20 +120,23 @@ export default function CollegeCostCalculatorTool() {
     if (value) setTodayCost(value);
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ todayCost, duration })) { setResult(null); return; }
     setResult(calculateCollegeCost({
-      todayCost: todayCost || DEFAULTS.todayCost,
-      costIncrease: costIncrease || DEFAULTS.costIncrease,
-      duration: duration || DEFAULTS.duration,
-      savingPercent: savingPercent || DEFAULTS.savingPercent,
-      balanceNow: balanceNow || DEFAULTS.balanceNow,
-      returnRate: returnRate || DEFAULTS.returnRate,
-      taxRate: taxRate || DEFAULTS.taxRate,
-      startIn: startIn || DEFAULTS.startIn,
+      todayCost: todayCost,
+      costIncrease: costIncrease,
+      duration: duration,
+      savingPercent: savingPercent,
+      balanceNow: balanceNow,
+      returnRate: returnRate,
+      taxRate: taxRate,
+      startIn: startIn,
     }));
   }
 
   function clear() {
+    req.clear();
     setTodayCost(""); setAverage(DEFAULT_AVERAGE); setCostIncrease(""); setDuration(""); setSavingPercent("");
     setBalanceNow(""); setReturnRate(""); setTaxRate(""); setStartIn(""); setResult(null);
   }
@@ -140,7 +145,7 @@ export default function CollegeCostCalculatorTool() {
     <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       {/* ── Inputs ───────────────────────────────────────────────────── */}
       <div className="card" style={{ flex: "1 1 400px", minWidth: 300, padding: 16 }}>
-        <FieldRow label="Today's annual college costs"><DollarField value={todayCost} onChange={setTodayCost} placeholder={DEFAULTS.todayCost} /></FieldRow>
+        <FieldRow label="Today's annual college costs"><Req name="todayCost" flagged={req.flagged}><DollarField value={todayCost} onChange={setTodayCost} placeholder={DEFAULTS.todayCost} /></Req></FieldRow>
         <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "-2px 0 10px" }}>
           <span style={{ fontSize: 12.5, color: "var(--text-muted)", flexShrink: 0 }}>or</span>
           <SelectField value={average} onChange={pickAverage} options={AVERAGE_OPTIONS} style={{ flex: 1, minWidth: 0 }} />
@@ -148,7 +153,7 @@ export default function CollegeCostCalculatorTool() {
 
         <FieldRow label="College cost increase rate"><PercentField value={costIncrease} onChange={setCostIncrease} placeholder={DEFAULTS.costIncrease} /></FieldRow>
         <p style={noteStyle}>5% recommended</p>
-        <FieldRow label="Expected college attendance duration" suffix="years"><YearsInput value={duration} onChange={setDuration} placeholder={DEFAULTS.duration} /></FieldRow>
+        <FieldRow label="Expected college attendance duration" suffix="years"><Req name="duration" flagged={req.flagged}><YearsInput value={duration} onChange={setDuration} placeholder={DEFAULTS.duration} /></Req></FieldRow>
         <FieldRow label="Percent of costs from savings"><PercentField value={savingPercent} onChange={setSavingPercent} placeholder={DEFAULTS.savingPercent} /></FieldRow>
         <FieldRow label="College savings balance now"><DollarField value={balanceNow} onChange={setBalanceNow} placeholder={DEFAULTS.balanceNow} /></FieldRow>
         <p style={noteStyle}>amount saved so far</p>

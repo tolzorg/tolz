@@ -5,6 +5,8 @@ import SocialSecurityBarChart from "./SocialSecurityBarChart";
 import {
   calculateIdealApplicationAge, calculateCompareTwoAges,
 } from "../../../utils/socialSecurityCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 function stripToNumberString(input) {
   let cleaned = String(input ?? "").replace(/[^0-9.-]/g, "");
@@ -101,23 +103,25 @@ function IdealApplicationAgeSection() {
   const [cola, setCola] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ birthYear, lifeExpectancy })) { setResult(null); return; }
     setResult(calculateIdealApplicationAge({
-      birthYear: birthYear || 1970,
-      lifeExpectancy: lifeExpectancy || 83,
-      investmentReturn: investmentReturn || 5,
-      cola: cola || 3,
+      birthYear: birthYear,
+      lifeExpectancy: lifeExpectancy,
+      investmentReturn: investmentReturn,
+      cola: cola,
     }));
   }
   function clear() {
-    setBirthYear(""); setLifeExpectancy(""); setInvestmentReturn(""); setCola(""); setResult(null);
+    req.clear(); setBirthYear(""); setLifeExpectancy(""); setInvestmentReturn(""); setCola(""); setResult(null);
   }
 
   return (
     <div style={cardRow}>
       <div className="card" style={inputCard}>
-        <FieldRow label="Your birth year"><PlainField value={birthYear} onChange={setBirthYear} placeholder="1970" /></FieldRow>
-        <FieldRow label="Your life expectancy"><PlainField value={lifeExpectancy} onChange={setLifeExpectancy} placeholder="83" /></FieldRow>
+        <FieldRow label="Your birth year"><Req name="birthYear" flagged={req.flagged}><PlainField value={birthYear} onChange={setBirthYear} placeholder="1970" /></Req></FieldRow>
+        <FieldRow label="Your life expectancy"><Req name="lifeExpectancy" flagged={req.flagged}><PlainField value={lifeExpectancy} onChange={setLifeExpectancy} placeholder="83" /></Req></FieldRow>
         <FieldRow label="Your investment return" suffix="per year"><PercentField value={investmentReturn} onChange={setInvestmentReturn} placeholder="5" /></FieldRow>
         <FieldRow label="Cost of living adjustment" hint="Increases your Social Security benefit annually to help keep up with inflation." suffix="per year"><PercentField value={cola} onChange={setCola} placeholder="3" /></FieldRow>
 
@@ -171,18 +175,20 @@ function CompareTwoAgesSection() {
   const [cola, setCola] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ retirementAge1, monthlyIncome1, retirementAge2, monthlyIncome2 })) { setResult(null); return; }
     setResult(calculateCompareTwoAges({
-      retirementAge1: retirementAge1 || 62,
-      monthlyIncome1: monthlyIncome1 || 1600,
-      retirementAge2: retirementAge2 || 70,
-      monthlyIncome2: monthlyIncome2 || 2810,
-      investmentReturn: investmentReturn || 5,
-      cola: cola || 3,
+      retirementAge1: retirementAge1,
+      monthlyIncome1: monthlyIncome1,
+      retirementAge2: retirementAge2,
+      monthlyIncome2: monthlyIncome2,
+      investmentReturn: investmentReturn,
+      cola: cola,
     }));
   }
   function clear() {
-    setRetirementAge1(""); setMonthlyIncome1(""); setRetirementAge2(""); setMonthlyIncome2("");
+    req.clear(); setRetirementAge1(""); setMonthlyIncome1(""); setRetirementAge2(""); setMonthlyIncome2("");
     setInvestmentReturn(""); setCola(""); setResult(null);
   }
 
@@ -190,12 +196,12 @@ function CompareTwoAgesSection() {
     <div style={cardRow}>
       <div className="card" style={inputCard}>
         <SectionHeader>Social security claim option 1</SectionHeader>
-        <FieldRow label="Retirement age"><PlainField value={retirementAge1} onChange={setRetirementAge1} placeholder="62" /></FieldRow>
-        <FieldRow label="Monthly payment" suffix="per month"><DollarField value={monthlyIncome1} onChange={setMonthlyIncome1} placeholder="1600" /></FieldRow>
+        <FieldRow label="Retirement age"><Req name="retirementAge1" flagged={req.flagged}><PlainField value={retirementAge1} onChange={setRetirementAge1} placeholder="62" /></Req></FieldRow>
+        <FieldRow label="Monthly payment" suffix="per month"><Req name="monthlyIncome1" flagged={req.flagged}><DollarField value={monthlyIncome1} onChange={setMonthlyIncome1} placeholder="1600" /></Req></FieldRow>
 
         <SectionHeader>Social security claim option 2 (work longer)</SectionHeader>
-        <FieldRow label="Retirement age"><PlainField value={retirementAge2} onChange={setRetirementAge2} placeholder="70" /></FieldRow>
-        <FieldRow label="Monthly payment" suffix="per month"><DollarField value={monthlyIncome2} onChange={setMonthlyIncome2} placeholder="2810" /></FieldRow>
+        <FieldRow label="Retirement age"><Req name="retirementAge2" flagged={req.flagged}><PlainField value={retirementAge2} onChange={setRetirementAge2} placeholder="70" /></Req></FieldRow>
+        <FieldRow label="Monthly payment" suffix="per month"><Req name="monthlyIncome2" flagged={req.flagged}><DollarField value={monthlyIncome2} onChange={setMonthlyIncome2} placeholder="2810" /></Req></FieldRow>
 
         <SectionHeader>Other information</SectionHeader>
         <FieldRow label="Your investment return" suffix="per year"><PercentField value={investmentReturn} onChange={setInvestmentReturn} placeholder="5" /></FieldRow>

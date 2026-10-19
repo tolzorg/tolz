@@ -5,6 +5,8 @@ import { FieldLabel } from "../mortgage-calculator/MortgageFormControls";
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import { calculateMutualFund, DEFAULTS } from "../../../utils/mutualFundCalculatorEngine";
 import { formatMoney } from "../../../utils/simpleInterestCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const HINTS = {
   rate: "The annual rate of return you expect from the mutual fund. This is the rate of return before fees and charges. It typically varies across different funds and over time. Most funds provide historical data to help potential investors understand possible returns and risks.",
@@ -79,21 +81,24 @@ export default function MutualFundCalculatorTool() {
   const [operating, setOperating] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ investment: [investment, annual, monthly], rate, years: [years, months] })) { setResult(null); return; }
     setResult(calculateMutualFund({
-      investment: investment || DEFAULTS.investment,
-      annual: annual || DEFAULTS.annual,
-      monthly: monthly || DEFAULTS.monthly,
-      rate: rate || DEFAULTS.rate,
-      years: years || DEFAULTS.years,
-      months: months || DEFAULTS.months,
-      sales: sales || DEFAULTS.sales,
-      deferred: deferred || DEFAULTS.deferred,
-      operating: operating || DEFAULTS.operating,
+      investment: investment,
+      annual: annual,
+      monthly: monthly,
+      rate: rate,
+      years: years,
+      months: months,
+      sales: sales,
+      deferred: deferred,
+      operating: operating,
     }));
   }
 
   function clear() {
+    req.clear();
     setInvestment(""); setAnnual(""); setMonthly(""); setRate(""); setYears(""); setMonths("");
     setSales(""); setDeferred(""); setOperating(""); setResult(null);
   }
@@ -108,15 +113,15 @@ export default function MutualFundCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────────── */}
         <div className="card" style={{ flex: "1 1 380px", minWidth: 300, padding: 18 }}>
-          <FieldRow label="Initial investment" fieldWidth={220}><DollarField value={investment} onChange={setInvestment} placeholder={DEFAULTS.investment} /></FieldRow>
-          <FieldRow label="Annual contribution" fieldWidth={220}><DollarField value={annual} onChange={setAnnual} placeholder={DEFAULTS.annual} /></FieldRow>
+          <FieldRow label="Initial investment" fieldWidth={220}><Req name="investment" flagged={req.flagged}><DollarField value={investment} onChange={setInvestment} placeholder={DEFAULTS.investment} /></Req></FieldRow>
+          <FieldRow label="Annual contribution" fieldWidth={220}><Req name="annual" flagged={req.flagged}><DollarField value={annual} onChange={setAnnual} placeholder={DEFAULTS.annual} /></Req></FieldRow>
           <FieldRow label="Monthly contribution" fieldWidth={220}><DollarField value={monthly} onChange={setMonthly} placeholder={DEFAULTS.monthly} /></FieldRow>
           <FieldRow label="Rate of return" hint={HINTS.rate} suffix="/year" fieldWidth={220}>
-            <PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+            <Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req>
           </FieldRow>
           <FieldRow label="Holding length" fieldWidth={220}>
             <div style={{ display: "flex", gap: 6, alignItems: "center", flex: 1, minWidth: 0 }}>
-              <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} style={{ flex: 1, minWidth: 0 }} />
+              <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} style={{ flex: 1, minWidth: 0 }} /></Req>
               <span style={{ fontSize: 11, color: "var(--text-muted)" }}>years</span>
               <TextField value={months} onChange={setMonths} placeholder={DEFAULTS.months} style={{ flex: 1, minWidth: 0 }} />
               <span style={{ fontSize: 11, color: "var(--text-muted)" }}>months</span>

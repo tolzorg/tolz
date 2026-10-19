@@ -1,5 +1,6 @@
 import { FieldLabel, TextField, ValueUnitField, MonthYearField, FieldRow } from "./MortgageFormControls";
 import { MORTGAGE_PLACEHOLDERS } from "./useMortgageCalculator";
+import { Req } from "../calculator-ui/Required";
 
 const fieldWrapStyle = { display: "flex", flexDirection: "column", gap: 5, marginBottom: 10 };
 const increaseRowStyle = { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 };
@@ -38,7 +39,7 @@ export default function MortgageInputsPanel({
       <FieldRow label="Home Price">
         <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
           <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
-          <TextField value={inputs.homePrice} onChange={(v) => setField("homePrice", v)} placeholder={MORTGAGE_PLACEHOLDERS.homePrice} style={{ paddingLeft: 19 }} />
+          <Req name="homePrice"><TextField value={inputs.homePrice} onChange={(v) => setField("homePrice", v)} placeholder={MORTGAGE_PLACEHOLDERS.homePrice} style={{ paddingLeft: 19 }} /></Req>
         </div>
       </FieldRow>
 
@@ -50,11 +51,11 @@ export default function MortgageInputsPanel({
       </FieldRow>
 
       <FieldRow label="Loan Term" hint="The length of the mortgage, in years." suffix="years">
-        <TextField value={inputs.loanTermYears} onChange={(v) => setField("loanTermYears", v)} placeholder={MORTGAGE_PLACEHOLDERS.loanTermYears} />
+        <Req name="loanTermYears"><TextField value={inputs.loanTermYears} onChange={(v) => setField("loanTermYears", v)} placeholder={MORTGAGE_PLACEHOLDERS.loanTermYears} /></Req>
       </FieldRow>
 
       <FieldRow label="Interest Rate" hint="The annual interest rate for the loan." suffix="%">
-        <TextField value={inputs.interestRate} onChange={(v) => setField("interestRate", v)} placeholder={MORTGAGE_PLACEHOLDERS.interestRate} />
+        <Req name="interestRate"><TextField value={inputs.interestRate} onChange={(v) => setField("interestRate", v)} placeholder={MORTGAGE_PLACEHOLDERS.interestRate} /></Req>
       </FieldRow>
 
       <FieldRow label="Start Date" fieldWidth={190}>

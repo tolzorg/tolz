@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FieldRow, TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import { calculateRent, validateRentInputs, formatCurrency, DEFAULTS } from "../../../utils/rentCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const INCOME_UNIT_OPTIONS = [
   { value: "year", label: "per year" },
@@ -92,8 +94,10 @@ export default function RentCalculatorTool() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
-    const inputs = { income: income || DEFAULTS.income };
+    if (!req.require({ income })) { setResult(null); setError(null); return; }
+    const inputs = { income: income };
     const validationError = validateRentInputs(inputs);
     if (validationError) {
       setError(validationError);
@@ -104,11 +108,12 @@ export default function RentCalculatorTool() {
     setResult(calculateRent({
       ...inputs,
       incomeUnit,
-      monthlyDebt: monthlyDebt || DEFAULTS.monthlyDebt,
+      monthlyDebt: monthlyDebt,
     }));
   }
 
   function clear() {
+    req.clear();
     setIncome(""); setIncomeUnit(DEFAULTS.incomeUnit); setMonthlyDebt("");
     setResult(null); setError(null);
   }
@@ -156,7 +161,7 @@ export default function RentCalculatorTool() {
       <div className="card" style={{ padding: 16 }}>
         <FieldRow label="Your pre-tax income" fieldWidth={280}>
           <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, minWidth: 0 }}>
-            <DollarField value={income} onChange={setIncome} placeholder={DEFAULTS.income} style={{ flex: "1 1 110px", minWidth: 0 }} />
+            <Req name="income" flagged={req.flagged}><DollarField value={income} onChange={setIncome} placeholder={DEFAULTS.income} style={{ flex: "1 1 110px", minWidth: 0 }} /></Req>
             <SelectField value={incomeUnit} onChange={setIncomeUnit} options={INCOME_UNIT_OPTIONS} style={{ flex: "1 1 110px", minWidth: 0 }} />
           </div>
         </FieldRow>

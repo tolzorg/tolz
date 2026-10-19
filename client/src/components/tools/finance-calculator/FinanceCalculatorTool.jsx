@@ -6,6 +6,8 @@ import {
   calculateFV, calculatePMT, calculateIY, calculateN, calculatePV,
   DEFAULTS, formatCurrency, formatPercent, formatNumber,
 } from "../../../utils/financeCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // The 5 tabs, in the reference's own order. Each one solves for the
 // field it's named after, and hides exactly that field from the input
@@ -138,15 +140,20 @@ export default function FinanceCalculatorTool() {
     setResult(null);
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    const money = ["pv", "pmt", "fv"].filter((k) => k !== activeTab);
+    const amounts = { pv, pmt, fv };
+    // N and I/Y are needed (unless solved for), plus at least one of the money values.
+    if (!req.require({ ...(activeTab === "n" ? {} : { n }), ...(activeTab === "iy" ? {} : { iy }), [money[0]]: money.map((k) => amounts[k]), py, cy })) { setResult(null); return; }
     const params = {
-      n: Number(n || DEFAULTS.n),
-      iy: Number(iy || DEFAULTS.iy),
-      pv: Number(pv || DEFAULTS.pv),
-      pmt: Number(pmt || DEFAULTS.pmt),
-      fv: Number(fv || DEFAULTS.fv),
-      py: Number(py || DEFAULTS.py),
-      cy: Number(cy || DEFAULTS.cy),
+      n: Number(n),
+      iy: Number(iy),
+      pv: Number(pv),
+      pmt: Number(pmt),
+      fv: Number(fv),
+      py: Number(py),
+      cy: Number(cy),
       due: pmtAt === "beginning",
     };
     let r;
@@ -159,6 +166,7 @@ export default function FinanceCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setN(""); setIy(""); setPv(""); setPmt(""); setFv("");
     setPy(DEFAULTS.py); setCy(DEFAULTS.cy); setPmtAt(DEFAULTS.pmtAt);
     setSettingsOpen(false);
@@ -201,6 +209,7 @@ export default function FinanceCalculatorTool() {
           <div className="card" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0, marginTop: -1 }}>
             {FIELD_DEFS.filter((f) => f.key !== activeTab).map((f) => (
               <FieldRow key={f.key} label={f.label}>
+                <Req name={f.key} flagged={req.flagged}>
                 {f.kind === "dollar" && (
                   <DollarField value={fieldValues[f.key]} onChange={fieldSetters[f.key]} placeholder={DEFAULTS[f.key]} />
                 )}
@@ -210,6 +219,7 @@ export default function FinanceCalculatorTool() {
                 {f.kind === "number" && (
                   <TextField value={fieldValues[f.key]} onChange={fieldSetters[f.key]} placeholder={DEFAULTS[f.key]} />
                 )}
+              </Req>
               </FieldRow>
             ))}
 
@@ -239,11 +249,11 @@ export default function FinanceCalculatorTool() {
                 <div style={{ padding: 14, display: "flex", flexDirection: "column", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
                     <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>P/Y (# of periods per year)</span>
-                    <TextField value={py} onChange={setPy} style={{ width: 70 }} />
+                    <Req name="py" flagged={req.flagged}><TextField value={py} onChange={setPy} style={{ width: 70 }} /></Req>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
                     <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>C/Y (# of times interest compound per year)</span>
-                    <TextField value={cy} onChange={setCy} style={{ width: 70 }} />
+                    <Req name="cy" flagged={req.flagged}><TextField value={cy} onChange={setCy} style={{ width: 70 }} /></Req>
                   </div>
                   <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>
                     PMT made at the{" "}

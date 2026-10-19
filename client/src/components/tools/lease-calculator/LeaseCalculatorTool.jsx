@@ -3,6 +3,8 @@ import { FieldLabel, TextField } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import { calculateLease, formatPiePercent, LEASE_DEFAULTS } from "../../../utils/leaseCalculatorEngine";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = LEASE_DEFAULTS;
 const EMPTY = { assetValue: "", residualValue: "", years: "", months: "", interestRate: "", monthlyPay: "" };
@@ -48,11 +50,12 @@ export default function LeaseCalculatorTool() {
   // The example applies only while every visible box is empty; otherwise a
   // blank box means what it means on the reference. The Monthly Payment box
   // keeps its value across tabs, as on the reference (it drives the chart).
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = visibleKeys.every((k) => v[k] === "") ? { ...D, monthlyPay: v.monthlyPay || D.monthlyPay } : { ...v, monthlyPay: mode === "rate" ? v.monthlyPay || D.monthlyPay : v.monthlyPay };
-    setResult(calculateLease({ ...values, mode }));
+    const hiddenPay = mode === "rate" ? v.monthlyPay || D.monthlyPay : v.monthlyPay;
+    setResult(req.evaluate(pickFields(v, visibleKeys), (fill) => calculateLease({ ...withFill(v, D, fill), monthlyPay: fill.has("monthlyPay") ? D.monthlyPay : hiddenPay, mode })));
   };
-  const clear = () => { setV(EMPTY); setResult(null); };
+  const clear = () => { req.clear(); setV(EMPTY); setResult(null); };
 
   let body;
   if (!result) {
@@ -116,15 +119,15 @@ export default function LeaseCalculatorTool() {
           ))}
         </div>
         <div className="card" role="tabpanel" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
-          <Row label="Asset Value"><DollarField value={v.assetValue} onChange={set("assetValue")} placeholder={D.assetValue} /></Row>
-          <Row label="Residual Value"><DollarField value={v.residualValue} onChange={set("residualValue")} placeholder={D.residualValue} /></Row>
+          <Row label="Asset Value"><Req name="assetValue" flagged={req.flagged}><DollarField value={v.assetValue} onChange={set("assetValue")} placeholder={D.assetValue} /></Req></Row>
+          <Row label="Residual Value"><Req name="residualValue" flagged={req.flagged}><DollarField value={v.residualValue} onChange={set("residualValue")} placeholder={D.residualValue} /></Req></Row>
           <Row label="Lease Term" alignTop>
-            <UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" />
-            <UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" />
+            <Req name="years" flagged={req.flagged}><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Req>
+            <Req name="months" flagged={req.flagged}><UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" /></Req>
           </Row>
           {mode === "rate"
-            ? <Row label="Interest Rate"><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Row>
-            : <Row label="Monthly Payment"><DollarField value={v.monthlyPay} onChange={set("monthlyPay")} placeholder={D.monthlyPay} /></Row>}
+            ? <Row label="Interest Rate"><Req name="interestRate" flagged={req.flagged}><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Req></Row>
+            : <Row label="Monthly Payment"><Req name="monthlyPay" flagged={req.flagged}><DollarField value={v.monthlyPay} onChange={set("monthlyPay")} placeholder={D.monthlyPay} /></Req></Row>}
           <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate

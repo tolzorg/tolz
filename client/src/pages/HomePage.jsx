@@ -12,6 +12,7 @@ import JsonLd from "../components/JsonLd";
 // /calculators/* hub pages do, instead of showing one flat grid.
 const SUBCATEGORY_TO_CALC_CATEGORY = {
   "health-calc": "health",
+  "sports-calc": "sports",
   "everyday": "everyday-life",
   "construction-calc": "construction",
   "construction-materials": "construction",

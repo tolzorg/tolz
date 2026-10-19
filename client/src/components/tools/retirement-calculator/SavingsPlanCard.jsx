@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FieldLabel, TextField } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField, ResultTable } from "./RetirementFormControls";
 import { calculateSavingsPlan, formatCurrency } from "../../../utils/retirementCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = { currentAge: "35", retireAge: "67", amountNeeded: "600000", currentSavings: "30000", avgReturn: "6" };
 const fieldRow = { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginBottom: 12 };
@@ -26,17 +28,20 @@ export default function SavingsPlanCard() {
   const [avgReturn, setAvgReturn] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ currentAge, retireAge, amountNeeded, avgReturn })) { setResult(null); return; }
     setResult(calculateSavingsPlan({
-      currentAge: currentAge || DEFAULTS.currentAge,
-      retireAge: retireAge || DEFAULTS.retireAge,
-      amountNeeded: amountNeeded || DEFAULTS.amountNeeded,
-      currentSavings: currentSavings || DEFAULTS.currentSavings,
-      avgReturnPercent: avgReturn || DEFAULTS.avgReturn,
+      currentAge: currentAge,
+      retireAge: retireAge,
+      amountNeeded: amountNeeded,
+      currentSavings: currentSavings,
+      avgReturnPercent: avgReturn,
     }));
   }
 
   function clear() {
+    req.clear();
     setCurrentAge(""); setRetireAge(""); setAmountNeeded(""); setCurrentSavings(""); setAvgReturn("");
     setResult(null);
   }
@@ -56,11 +61,11 @@ export default function SavingsPlanCard() {
 
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
-          <Field label="Your age now" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} />
-          <Field label="Your planned retirement age" value={retireAge} onChange={setRetireAge} placeholder={DEFAULTS.retireAge} />
-          <DollarField label="Amount needed at the retirement age" value={amountNeeded} onChange={setAmountNeeded} placeholder={DEFAULTS.amountNeeded} fieldWidth={140} />
+          <Req name="currentAge" flagged={req.flagged}><Field label="Your age now" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req>
+          <Req name="retireAge" flagged={req.flagged}><Field label="Your planned retirement age" value={retireAge} onChange={setRetireAge} placeholder={DEFAULTS.retireAge} /></Req>
+          <Req name="amountNeeded" flagged={req.flagged}><DollarField label="Amount needed at the retirement age" value={amountNeeded} onChange={setAmountNeeded} placeholder={DEFAULTS.amountNeeded} fieldWidth={140} /></Req>
           <DollarField label="Your retirement savings now" value={currentSavings} onChange={setCurrentSavings} placeholder={DEFAULTS.currentSavings} fieldWidth={140} />
-          <PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} fieldWidth={140} />
+          <Req name="avgReturn" flagged={req.flagged}><PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} fieldWidth={140} /></Req>
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>

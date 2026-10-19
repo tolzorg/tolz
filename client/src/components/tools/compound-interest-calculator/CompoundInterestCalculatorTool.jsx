@@ -3,6 +3,8 @@ import { TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import {
   calculateCompoundInterest, COMPOUND_OPTIONS, DEFAULT_IN_COMPOUND, DEFAULT_OUT_COMPOUND, formatPercent,
 } from "../../../utils/compoundInterestCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULT_RATE = "6";
 
@@ -12,15 +14,17 @@ export default function CompoundInterestCalculatorTool() {
   const [outCompound, setOutCompound] = useState(DEFAULT_OUT_COMPOUND);
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ rate })) { setResult(null); return; }
     setResult(calculateCompoundInterest({
-      ratePercent: rate || DEFAULT_RATE,
+      ratePercent: rate,
       inCompound, outCompound,
     }));
   }
 
   function clear() {
-    setRate(""); setInCompound(DEFAULT_IN_COMPOUND); setOutCompound(DEFAULT_OUT_COMPOUND);
+    req.clear(); setRate(""); setInCompound(DEFAULT_IN_COMPOUND); setOutCompound(DEFAULT_OUT_COMPOUND);
     setResult(null);
   }
 
@@ -50,7 +54,7 @@ export default function CompoundInterestCalculatorTool() {
           <div style={{ flex: "1 1 140px", minWidth: 110 }}>
             <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-secondary)", marginBottom: 6, textAlign: "center" }}>Input Interest</div>
             <div style={{ position: "relative" }}>
-              <TextField value={rate} onChange={setRate} placeholder={DEFAULT_RATE} style={{ paddingRight: 24, textAlign: "center" }} />
+              <Req name="rate" flagged={req.flagged}><TextField value={rate} onChange={setRate} placeholder={DEFAULT_RATE} style={{ paddingRight: 24, textAlign: "center" }} /></Req>
               <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>%</span>
             </div>
           </div>

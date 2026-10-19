@@ -2,6 +2,8 @@ import { useState } from "react";
 import { SelectField } from "../loan-calculator/LoanFormControls";
 import { FieldRow, DollarField, ValueUnitField, TextField, ResultTable } from "./HouseAffordabilityFormControls";
 import { calculateHouseAffordability, validateHouseAffordabilityInputs, formatCurrency, formatPercent } from "../../../utils/houseAffordabilityCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 /** A plain red error line with a small warning icon — matches the
  * reference's own validation styling exactly (a `<font color="red">`
@@ -53,16 +55,18 @@ export default function MainAffordabilityCard() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ annualIncome, loanTermYears, interestRate })) { setResult(null); setError(null); return; }
     const inputs = {
-      annualIncome: annualIncome || DEFAULTS.annualIncome,
-      loanTermYears: loanTermYears || DEFAULTS.loanTermYears,
-      interestRate: interestRate || DEFAULTS.interestRate,
-      monthlyDebt: monthlyDebt || DEFAULTS.monthlyDebt,
-      downValue: downValue || DEFAULTS.downValue,
-      taxValue: taxValue || DEFAULTS.taxValue,
-      hoaValue: hoaValue || DEFAULTS.hoaValue,
-      insValue: insValue || DEFAULTS.insValue,
+      annualIncome: annualIncome,
+      loanTermYears: loanTermYears,
+      interestRate: interestRate,
+      monthlyDebt: monthlyDebt,
+      downValue: downValue,
+      taxValue: taxValue,
+      hoaValue: hoaValue,
+      insValue: insValue,
     };
     const validationError = validateHouseAffordabilityInputs(inputs);
     if (validationError) {
@@ -75,6 +79,7 @@ export default function MainAffordabilityCard() {
   }
 
   function clear() {
+    req.clear();
     setAnnualIncome(""); setLoanTermYears(""); setInterestRate(""); setMonthlyDebt("");
     setDownValue(""); setDownUnit("percent");
     setTaxValue(""); setTaxUnit("percent");
@@ -163,13 +168,13 @@ export default function MainAffordabilityCard() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: "10px 16px", flex: "0 1 380px", maxWidth: 380, minWidth: 280 }}>
           <FieldRow label="Annual household income" hint="The entire before-tax income of the household, including salary, tips, commissions, bonuses, investment income, dividends, alimony received, and more." suffix="before tax">
-            <DollarField value={annualIncome} onChange={setAnnualIncome} placeholder={DEFAULTS.annualIncome} />
+            <Req name="annualIncome" flagged={req.flagged}><DollarField value={annualIncome} onChange={setAnnualIncome} placeholder={DEFAULTS.annualIncome} /></Req>
           </FieldRow>
           <FieldRow label="Mortgage loan term" suffix="years">
-            <TextField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={smallInput} />
+            <Req name="loanTermYears" flagged={req.flagged}><TextField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={smallInput} /></Req>
           </FieldRow>
           <FieldRow label="Interest rate" suffix="%">
-            <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={smallInput} />
+            <Req name="interestRate" flagged={req.flagged}><TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={smallInput} /></Req>
           </FieldRow>
           <FieldRow label="Monthly debt payback" hint="The total of the minimum amounts you pay each month to keep up with ongoing debts, such as student loans, car loans, credit cards, child support, alimony paid, and personal loans." suffix="debts, car, etc">
             <DollarField value={monthlyDebt} onChange={setMonthlyDebt} placeholder={DEFAULTS.monthlyDebt} />

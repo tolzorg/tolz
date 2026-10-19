@@ -5,6 +5,8 @@ import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import {
   calculateBudget, INCOME_FIELDS, TAX_FIELD, EXPENSE_SECTIONS, ALL_FIELDS, BUDGET_DEFAULTS, BUDGET_DEFAULT_UNITS,
 } from "../../../utils/budgetCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const EMPTY = Object.fromEntries(ALL_FIELDS.map((f) => [f.key, ""]));
 const UNIT_OPTIONS = [{ value: "m", label: "Month" }, { value: "y", label: "Year" }];
@@ -157,19 +159,20 @@ export default function BudgetCalculatorTool() {
   const [units, setUnits] = useState(BUDGET_DEFAULT_UNITS);
   const [result, setResult] = useState(null);
 
-  // The example applies only while every box is empty; otherwise a blank
-  // box counts as $0, exactly as on the reference.
-  const calculate = () => setResult(calculateBudget({
-    values: ALL_FIELDS.every((f) => values[f.key] === "") ? BUDGET_DEFAULTS : values,
+  // A blank box counts as $0, exactly as on the reference; some income has to be
+  // entered (flagged on the first income box). Placeholders are examples only.
+  const req = useRequiredFields();
+  const calculate = () => setResult(!req.require({ [INCOME_FIELDS[0].key]: INCOME_FIELDS.map((f) => values[f.key]) }) ? null : calculateBudget({
+    values,
     units,
   }));
-  const clear = () => { setValues(EMPTY); setUnits(BUDGET_DEFAULT_UNITS); setResult(null); };
+  const clear = () => { req.clear(); setValues(EMPTY); setUnits(BUDGET_DEFAULT_UNITS); setResult(null); };
   const row = (f) => (
-    <AmountRow
+    <Req key={f.key} name={f.key} flagged={req.flagged}><AmountRow
       key={f.key} field={f} value={values[f.key]} unit={units[f.key]}
       onValue={(v) => setValues((p) => ({ ...p, [f.key]: v }))}
       onUnit={f.unit ? (u) => setUnits((p) => ({ ...p, [f.key]: u })) : null}
-    />
+    /></Req>
   );
 
   let body;

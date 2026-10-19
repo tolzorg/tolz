@@ -8,6 +8,8 @@ import {
   formatPayoffDuration, formatTimeframe, suggestedPayment,
   QUICK_FILL_OPTIONS, DEFAULTS, formatCurrency,
 } from "../../../utils/creditCardCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Reference rejects a literal negative balance/rate/payment (see
 // creditCardCalculatorEngine.js's doc comment), so — unlike the
@@ -72,21 +74,22 @@ export default function CreditCardCalculatorTool() {
   const [error, setError] = useState(null);
 
   function quickFill(percentOption) {
-    const b = balance || DEFAULTS.balance;
-    const r = rate || DEFAULTS.ratePercent;
-    setPaymentAmount(suggestedPayment(b, r, percentOption).toFixed(2));
+    if (!req.require({ balance, ratePercent: rate })) return;
+    setPaymentAmount(suggestedPayment(balance, rate, percentOption).toFixed(2));
   }
 
+  const req = useRequiredFields();
   function calculate() {
-    const shared = { balance: balance || DEFAULTS.balance, ratePercent: rate || DEFAULTS.ratePercent };
+    if (!req.require({ balance, ratePercent: rate, ...(payoffMode === "certainamount" ? { paymentAmount } : { years: [years, months] }) })) { setResult(null); setError(null); return; }
+    const shared = { balance: balance, ratePercent: rate };
     if (payoffMode === "certainamount") {
-      const inputs = { ...shared, paymentAmount: paymentAmount || DEFAULTS.paymentAmount };
+      const inputs = { ...shared, paymentAmount: paymentAmount };
       const validationError = validatePayCertainAmountInputs(inputs);
       if (validationError) { setError(validationError); setResult(null); return; }
       setError(null);
       setResult(calculatePayCertainAmount(inputs));
     } else {
-      const inputs = { ...shared, years: years || DEFAULTS.years, months: months || DEFAULTS.months };
+      const inputs = { ...shared, years: years, months: months };
       const validationError = validatePayoffTimeframeInputs(inputs);
       if (validationError) { setError(validationError); setResult(null); return; }
       setError(null);
@@ -95,6 +98,7 @@ export default function CreditCardCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setBalance(""); setRate(""); setPayoffMode("certainamount");
     setPaymentAmount(""); setYears(""); setMonths("");
     setResult(null); setError(null);
@@ -105,11 +109,11 @@ export default function CreditCardCalculatorTool() {
       {/* ── Inputs ───────────────────────────────────────────────────── */}
       <div className="card" style={{ padding: 18, flex: "1 1 360px", minWidth: 320 }}>
         <FieldRow label="Credit card balance">
-          <DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} />
+          <Req name="balance" flagged={req.flagged}><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></Req>
         </FieldRow>
 
         <FieldRow label="Interest rate">
-          <PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.ratePercent} />
+          <Req name="ratePercent" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.ratePercent} /></Req>
         </FieldRow>
 
         <p style={{ fontSize: 13, color: "var(--text-secondary)", margin: "12px 0 6px" }}>How do you plan to pay off?</p>
@@ -123,7 +127,7 @@ export default function CreditCardCalculatorTool() {
             <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, flexWrap: "wrap" }}>
               <span style={{ color: "var(--text-secondary)" }}>pay</span>
               <div style={{ width: 130 }}>
-                <DollarField value={paymentAmount} onChange={setPaymentAmount} placeholder={DEFAULTS.paymentAmount} />
+                <Req name="paymentAmount" flagged={req.flagged}><DollarField value={paymentAmount} onChange={setPaymentAmount} placeholder={DEFAULTS.paymentAmount} /></Req>
               </div>
               <span style={{ color: "var(--text-secondary)" }}>per month</span>
             </div>
@@ -153,7 +157,7 @@ export default function CreditCardCalculatorTool() {
           <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, flexWrap: "wrap", paddingLeft: 26, marginBottom: 10 }}>
             <span style={{ color: "var(--text-secondary)" }}>pay off in</span>
             <div style={{ width: 70 }}>
-              <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+              <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
             </div>
             <span style={{ color: "var(--text-secondary)" }}>years</span>
             <div style={{ width: 70 }}>

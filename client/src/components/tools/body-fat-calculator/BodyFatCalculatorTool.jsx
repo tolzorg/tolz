@@ -3,6 +3,8 @@ import { TextField } from "../loan-calculator/LoanFormControls";
 import { RadioOption } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import { ErrorPanel, ButtonRow } from "../fha-loan-calculator/MortgageResultParts";
 import UnitMeasureField from "../calculator-ui/UnitMeasureField";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { RequiredProvider, Req } from "../calculator-ui/Required";
 import { HighlightSummary, StatRow, StatList } from "../calculator-ui/ResultHighlight";
 import BodyFatGauge from "./BodyFatGauge";
 import {
@@ -34,12 +36,14 @@ const placeholdersFor = (v) => ({
   weight: kgToWeight(v.weightUnit, DEFAULT_KG),
   ...Object.fromEntries(LENGTHS.map(([k]) => [k, cmToLength(v[`${k}Unit`], DEFAULT_CM[k])])),
 });
-/** Blank boxes fall back to their placeholder (a two-part length only when both parts are blank). */
-function withPlaceholders(v) {
+/** The typed values, with the example put in for each field named in `fill` (used only to
+ * work out which empty fields are required — placeholders never reach a shown result). */
+function withExamples(v, fill) {
   const ph = placeholdersFor(v);
-  const out = { ...v, age: v.age === "" ? ph.age : v.age, weight: v.weight === "" ? ph.weight : v.weight };
-  for (const [k] of LENGTHS) {
-    if (v[k] === "" && v[`${k}2`] === "") { out[k] = ph[k][0]; out[`${k}2`] = ph[k][1]; }
+  const out = { ...v };
+  for (const key of fill) {
+    const example = ph[key];
+    if (Array.isArray(example)) { out[key] = example[0]; out[`${key}2`] = example[1]; } else out[key] = example;
   }
   return out;
 }
@@ -73,19 +77,22 @@ function ResultBody({ result }) {
 
 export default function BodyFatCalculatorTool() {
   const [v, setV] = useState(EMPTY);
-  const [result, setResult] = useState(() => calculateBodyFat(withPlaceholders(EMPTY)));
+  const [result, setResult] = useState(null); // no result until Calculate
   const ph = placeholdersFor(v);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
   const female = v.sex === "female";
   const tape = v.method !== "bmi";
 
-  const calculate = () => setResult(calculateBodyFat(withPlaceholders(v)));
+  const req = useRequiredFields();
+  const evaluate = (values) => req.evaluate({ age: values.age, weight: values.weight, ...Object.fromEntries(LENGTHS.map(([k]) => [k, [values[k], values[`${k}2`]]])) }, (fill) => calculateBodyFat(withExamples(values, fill)));
+  const calculate = () => setResult(evaluate(v));
   const pickMethod = (method) => {
     setV((prev) => ({ ...prev, method }));
-    setResult(calculateBodyFat(withPlaceholders({ ...v, method })));
+    if (result) setResult(evaluate({ ...v, method }));
   };
   const clear = () => {
     setV((prev) => ({ ...prev, age: "", weight: "", ...Object.fromEntries(LENGTHS.flatMap(([k]) => [[k, ""], [`${k}2`, ""]])) }));
+    req.clear();
     setResult(null);
   };
   // Switching a unit converts what is already typed.
@@ -96,6 +103,7 @@ export default function BodyFatCalculatorTool() {
   const changeWeightUnit = (unit) => setV((prev) => ({ ...prev, weightUnit: unit, weight: kgToWeight(unit, weightToKg(prev.weightUnit, prev.weight)) }));
 
   return (
+    <RequiredProvider flagged={req.flagged}>
     <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <button
@@ -144,25 +152,25 @@ export default function BodyFatCalculatorTool() {
           <label style={rowStyle}>
             <span style={labelStyle}>Age</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <TextField value={v.age} onChange={set("age")} placeholder={ph.age} />
+              <Req name="age"><TextField value={v.age} onChange={set("age")} placeholder={ph.age} /></Req>
             </div>
           </label>
 
           <div style={rowStyle}>
             <span style={labelStyle}>Weight</span>
-            <UnitMeasureField
+            <Req name="weight"><UnitMeasureField
               label="Weight" units={WEIGHT_UNITS} unit={v.weightUnit} onUnitChange={changeWeightUnit}
               values={[v.weight, ""]} placeholders={[ph.weight, ""]} onChange={(_, text) => set("weight")(text)}
-            />
+            /></Req>
           </div>
 
           {LENGTHS.filter(([key]) => (tape || key === "height") && (female || key !== "hip")).map(([key, label]) => (
             <div key={key} style={rowStyle}>
               <span style={labelStyle}>{label}</span>
-              <UnitMeasureField
+              <Req name={key}><UnitMeasureField
                 label={label} units={LENGTH_UNITS} unit={v[`${key}Unit`]} onUnitChange={changeLengthUnit(key)}
                 values={[v[key], v[`${key}2`]]} placeholders={ph[key]} onChange={(i, text) => set(i ? `${key}2` : key)(text)}
-              />
+              /></Req>
             </div>
           ))}
 
@@ -185,5 +193,6 @@ export default function BodyFatCalculatorTool() {
         </div>
       </div>
     </div>
+    </RequiredProvider>
   );
 }

@@ -5,6 +5,8 @@ import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import AmortizationLineChart from "../amortization-calculator/AmortizationLineChart";
 import { formatMoney } from "../../../utils/marginCalculatorEngine";
 import { calculateBoatLoan, convertDownPayment, BOAT_LOAN_DEFAULTS } from "../../../utils/boatLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = BOAT_LOAN_DEFAULTS;
 const TEXT_KEYS = ["price", "monthlyPay", "term", "interestRate", "downPayment", "tradeIn", "salesTax", "fees"];
@@ -87,12 +89,12 @@ export default function BoatLoanCalculatorTool() {
 
   // The example applies only while every box is empty; otherwise every box
   // is required, as on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = TEXT_KEYS.every((k) => v[k] === "") ? D : v;
-    setResult(calculateBoatLoan({ ...values, mode, termUnit, downUnit, financeFees }));
+    setResult(req.evaluate(pickFields(v, TEXT_KEYS), (fill) => calculateBoatLoan({ ...withFill(v, D, fill), mode, termUnit, downUnit, financeFees })));
     setView("annual");
   };
-  const clear = () => { setV(EMPTY); setResult(null); };
+  const clear = () => { req.clear(); setV(EMPTY); setResult(null); };
 
   let body;
   if (!result) {
@@ -162,22 +164,22 @@ export default function BoatLoanCalculatorTool() {
           </div>
           <div className="card" role="tabpanel" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
             {mode === "price"
-              ? <Row label="Boat Price"><DollarField value={v.price} onChange={set("price")} placeholder={D.price} /></Row>
-              : <Row label="Monthly Payment"><DollarField value={v.monthlyPay} onChange={set("monthlyPay")} placeholder={D.monthlyPay} /></Row>}
+              ? <Row label="Boat Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={D.price} /></Req></Row>
+              : <Row label="Monthly Payment"><Req name="monthlyPay" flagged={req.flagged}><DollarField value={v.monthlyPay} onChange={set("monthlyPay")} placeholder={D.monthlyPay} /></Req></Row>}
             <Row label="Loan Term">
-              <TextField value={v.term} onChange={set("term")} placeholder={D.term} style={{ flex: 1, minWidth: 0 }} />
+              <Req name="term" flagged={req.flagged}><TextField value={v.term} onChange={set("term")} placeholder={D.term} style={{ flex: 1, minWidth: 0 }} /></Req>
               <SelectField value={termUnit} onChange={setTermUnit} options={TERM_UNITS} style={{ flex: "0 0 96px", minWidth: 0 }} />
             </Row>
-            <Row label="Interest Rate"><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Row>
+            <Row label="Interest Rate"><Req name="interestRate" flagged={req.flagged}><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Req></Row>
             <Row label="Down Payment">
               {downUnit === "dollar"
-                ? <DollarField value={v.downPayment} onChange={set("downPayment")} placeholder={D.downPayment} />
+                ? <Req name="downPayment" flagged={req.flagged}><DollarField value={v.downPayment} onChange={set("downPayment")} placeholder={D.downPayment} /></Req>
                 : <PercentField value={v.downPayment} onChange={set("downPayment")} placeholder="20" />}
               <SelectField value={downUnit} onChange={changeDownUnit} options={DOWN_UNITS} style={{ flex: "0 0 62px", minWidth: 0 }} />
             </Row>
-            <Row label="Trade-in Value"><DollarField value={v.tradeIn} onChange={set("tradeIn")} placeholder={D.tradeIn} /></Row>
-            <Row label="Sales Tax"><PercentField value={v.salesTax} onChange={set("salesTax")} placeholder={D.salesTax} /></Row>
-            <Row label="Fees" help={FEES_HELP}><DollarField value={v.fees} onChange={set("fees")} placeholder={D.fees} /></Row>
+            <Row label="Trade-in Value"><Req name="tradeIn" flagged={req.flagged}><DollarField value={v.tradeIn} onChange={set("tradeIn")} placeholder={D.tradeIn} /></Req></Row>
+            <Row label="Sales Tax"><Req name="salesTax" flagged={req.flagged}><PercentField value={v.salesTax} onChange={set("salesTax")} placeholder={D.salesTax} /></Req></Row>
+            <Row label="Fees" help={FEES_HELP}><Req name="fees" flagged={req.flagged}><DollarField value={v.fees} onChange={set("fees")} placeholder={D.fees} /></Req></Row>
             <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, color: "var(--text-primary)", cursor: "pointer", margin: "6px 0 12px" }}>
               <input type="checkbox" checked={financeFees} onChange={(e) => setFinanceFees(e.target.checked)} style={{ width: 15, height: 15, cursor: "pointer" }} />
               Include all fees in loan

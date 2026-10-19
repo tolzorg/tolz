@@ -4,6 +4,8 @@ import { DollarField, YearsField } from "../mortgage-payoff-calculator/MortgageP
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import { calculateRoi, ROI_DEFAULTS } from "../../../utils/roiCalculatorEngine";
 import { todayIso } from "../../../utils/depreciationCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = ROI_DEFAULTS;
 const GOOD = "var(--success)";
@@ -48,22 +50,21 @@ export default function RoiCalculatorTool() {
   const [endDate, setEndDate] = useState(D.endDate);
   const [result, setResult] = useState(null);
 
-  // The example applies only while every visible box is empty; otherwise a
-  // blank box is an error, as on the reference. Dates aren't text boxes, so
-  // they keep their own values.
-  const calculate = () => {
-    const boxes = useLength ? [invested, returned, length] : [invested, returned];
-    const example = boxes.every((x) => x === "");
-    setResult(calculateRoi({
-      invested: example ? D.invested : invested,
-      returned: example ? D.returned : returned,
+  // A blank box is an error, as on the reference (flagged "Please enter a value").
+  // Dates aren't text boxes, so they keep their own values.
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(
+    { invested, returned, ...(useLength ? { length } : {}) },
+    (fill) => calculateRoi({
+      invested: fill.has("invested") ? D.invested : invested,
+      returned: fill.has("returned") ? D.returned : returned,
       useLength,
-      length: example ? D.length : length,
+      length: fill.has("length") ? D.length : length,
       startDate, endDate, today: todayIso(),
-    }));
-  };
+    }),
+  ));
   const clear = () => {
-    setInvested(""); setReturned(""); setLength(""); setUseLength(false);
+    req.clear(); setInvested(""); setReturned(""); setLength(""); setUseLength(false);
     setStartDate(todayIso()); setEndDate(D.endDate); setResult(null);
   };
 
@@ -98,8 +99,8 @@ export default function RoiCalculatorTool() {
   return (
     <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div className="card" style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 460, padding: 18 }}>
-        <Row label="Amount Invested"><DollarField value={invested} onChange={setInvested} placeholder={D.invested} /></Row>
-        <Row label="Amount Returned"><DollarField value={returned} onChange={setReturned} placeholder={D.returned} /></Row>
+        <Row label="Amount Invested"><Req name="invested" flagged={req.flagged}><DollarField value={invested} onChange={setInvested} placeholder={D.invested} /></Req></Row>
+        <Row label="Amount Returned"><Req name="returned" flagged={req.flagged}><DollarField value={returned} onChange={setReturned} placeholder={D.returned} /></Req></Row>
         <fieldset style={{ border: "none", padding: 0, margin: "10px 0 0" }}>
           <legend style={{ fontSize: 13, fontWeight: 600, color: "var(--text-secondary)", padding: 0, marginBottom: 8 }}>Investment Time:</legend>
           <div style={{ display: "flex", gap: 18, paddingLeft: 12, marginBottom: 10 }}>
@@ -112,7 +113,7 @@ export default function RoiCalculatorTool() {
           </div>
           <div style={{ paddingLeft: 12 }}>
             {useLength ? (
-              <Row label="Investment Length"><YearsField value={length} onChange={setLength} placeholder={D.length} /></Row>
+              <Row label="Investment Length"><Req name="length" flagged={req.flagged}><YearsField value={length} onChange={setLength} placeholder={D.length} /></Req></Row>
             ) : (
               <>
                 <Row label="From" htmlFor="roi-from"><input id="roi-from" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} style={dateInputStyle} /></Row>

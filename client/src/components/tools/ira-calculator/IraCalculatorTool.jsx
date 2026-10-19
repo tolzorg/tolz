@@ -4,6 +4,8 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import PensionLineChart from "../pension-calculator/PensionLineChart";
 import GroupedScheduleTable from "../roth-ira-calculator/GroupedScheduleTable";
 import { calculateIra, DEFAULTS, formatDollars } from "../../../utils/iraCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Tooltips copied verbatim from the reference.
 const HINTS = {
@@ -76,19 +78,22 @@ export default function IraCalculatorTool() {
   const [taxRetirement, setTaxRetirement] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ balance: [balance, contribution], rate, currentAge, retirementAge })) { setResult(null); return; }
     setResult(calculateIra({
-      balance: balance || DEFAULTS.balance,
-      contribution: contribution || DEFAULTS.contribution,
-      rate: rate || DEFAULTS.rate,
-      currentAge: currentAge || DEFAULTS.currentAge,
-      retirementAge: retirementAge || DEFAULTS.retirementAge,
-      taxNow: taxNow || DEFAULTS.taxNow,
-      taxRetirement: taxRetirement || DEFAULTS.taxRetirement,
+      balance: balance,
+      contribution: contribution,
+      rate: rate,
+      currentAge: currentAge,
+      retirementAge: retirementAge,
+      taxNow: taxNow,
+      taxRetirement: taxRetirement,
     }));
   }
 
   function clear() {
+    req.clear();
     setBalance(""); setContribution(""); setRate(""); setCurrentAge("");
     setRetirementAge(""); setTaxNow(""); setTaxRetirement(""); setResult(null);
   }
@@ -100,11 +105,11 @@ export default function IraCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────────── */}
         <div className="card" style={{ flex: "1 1 360px", minWidth: 300, padding: 18 }}>
-          <FieldRow label="Current balance"><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></FieldRow>
+          <FieldRow label="Current balance"><Req name="balance" flagged={req.flagged}><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></Req></FieldRow>
           <FieldRow label="Annual before tax contribution" hint={HINTS.contribution}><DollarField value={contribution} onChange={setContribution} placeholder={DEFAULTS.contribution} /></FieldRow>
-          <FieldRow label="Expected rate of return" hint={HINTS.rate}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></FieldRow>
-          <FieldRow label="Current age"><TextField value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></FieldRow>
-          <FieldRow label="Retirement age"><TextField value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} /></FieldRow>
+          <FieldRow label="Expected rate of return" hint={HINTS.rate}><Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req></FieldRow>
+          <FieldRow label="Current age"><Req name="currentAge" flagged={req.flagged}><TextField value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req></FieldRow>
+          <FieldRow label="Retirement age"><Req name="retirementAge" flagged={req.flagged}><TextField value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} /></Req></FieldRow>
           <FieldRow label="Current marginal tax rate" hint={HINTS.taxNow}><PercentField value={taxNow} onChange={setTaxNow} placeholder={DEFAULTS.taxNow} /></FieldRow>
           <FieldRow label="Expected tax rate in retirement" hint={HINTS.taxRetirement}><PercentField value={taxRetirement} onChange={setTaxRetirement} placeholder={DEFAULTS.taxRetirement} /></FieldRow>
 

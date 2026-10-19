@@ -6,6 +6,8 @@ import {
   calculateFromCash, calculateFromPrice, calculateDownPercent, DEFAULTS, OTHER_PERCENTS,
 } from "../../../utils/downPaymentCalculatorEngine";
 import { inputStyle } from "../mortgage-calculator/MortgageFormControls";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const sectionTitle = { fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", margin: "0 0 4px" };
 const sectionText = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6, margin: "0 0 12px" };
@@ -38,6 +40,7 @@ const FORMS = {
 };
 
 function ClosingCostsRow({ include, setInclude, value, onValue, unit, setUnit }) {
+  const invalid = useRequiredState(value);
   return (
     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 8, rowGap: 4, marginBottom: 8 }}>
       <label style={{ flex: "1 1 120px", minWidth: 0, display: "flex", alignItems: "center", gap: 7, cursor: "pointer" }}>
@@ -47,7 +50,7 @@ function ClosingCostsRow({ include, setInclude, value, onValue, unit, setUnit })
       <div style={{ flex: "1 1 200px", maxWidth: 260, display: "flex", gap: 6, minWidth: 0 }}>
         <input
           type="text" inputMode="decimal" value={value} disabled={!include} aria-label="Closing costs"
-          placeholder={unit === "dollar" ? CLOSING_DOLLAR_EXAMPLE : "3"} onChange={(e) => onValue(e.target.value)}
+          {...requiredInputProps(invalid, unit === "dollar" ? CLOSING_DOLLAR_EXAMPLE : "3")} onChange={(e) => onValue(e.target.value)}
           style={{ ...inputStyle, flex: 1, minWidth: 0, opacity: include ? 1 : 0.55 }}
         />
         <select value={unit} disabled={!include} onChange={(e) => setUnit(e.target.value)} aria-label="Closing costs unit"
@@ -117,14 +120,13 @@ function DownPaymentForm({ id, form, defaults }) {
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
 
+  const req = useRequiredFields();
   const calculate = () => {
     const visible = keys.filter((k) => k !== "closingCosts" || includeClosing);
-    const values = visible.every((k) => v[k] === "")
-      ? { ...defaults, closingCosts: closingUnit === "dollar" ? CLOSING_DOLLAR_EXAMPLE : defaults.closingCosts }
-      : v;
-    setResult(form.calculate({ ...values, includeClosing, closingUnit }));
+    const examples = { ...defaults, closingCosts: closingUnit === "dollar" ? CLOSING_DOLLAR_EXAMPLE : defaults.closingCosts };
+    setResult(req.evaluate(pickFields(v, visible), (fill) => form.calculate({ ...withFill(v, examples, fill), includeClosing, closingUnit })));
   };
-  const clear = () => { setV(blank()); setIncludeClosing(true); setClosingUnit("percent"); setResult(null); };
+  const clear = () => { req.clear(); setV(blank()); setIncludeClosing(true); setClosingUnit("percent"); setResult(null); };
 
   const ok = result && !result.errors && !result.empty;
   return (
@@ -136,13 +138,13 @@ function DownPaymentForm({ id, form, defaults }) {
           {form.fields.map(([key, label, kind]) => (
             <Row key={key} label={label}>
               {kind === "dollar"
-                ? <DollarField value={v[key]} onChange={set(key)} placeholder={defaults[key]} />
-                : <PercentField value={v[key]} onChange={set(key)} placeholder={defaults[key]} />}
+                ? <Req name={key} flagged={req.flagged}><DollarField value={v[key]} onChange={set(key)} placeholder={defaults[key]} /></Req>
+                : <Req name={key} flagged={req.flagged}><PercentField value={v[key]} onChange={set(key)} placeholder={defaults[key]} /></Req>}
             </Row>
           ))}
-          <ClosingCostsRow include={includeClosing} setInclude={setIncludeClosing} value={v.closingCosts} onValue={set("closingCosts")} unit={closingUnit} setUnit={setClosingUnit} />
-          <Row label="Interest Rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={defaults.rate} /></Row>
-          <Row label="Loan Term" suffix="years"><TextField value={v.years} onChange={set("years")} placeholder={defaults.years} /></Row>
+          <Req name="closingCosts" flagged={req.flagged}><ClosingCostsRow include={includeClosing} setInclude={setIncludeClosing} value={v.closingCosts} onValue={set("closingCosts")} unit={closingUnit} setUnit={setClosingUnit} /></Req>
+          <Row label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={defaults.rate} /></Req></Row>
+          <Row label="Loan Term" suffix="years"><Req name="years" flagged={req.flagged}><TextField value={v.years} onChange={set("years")} placeholder={defaults.years} /></Req></Row>
           <ButtonRow onCalculate={calculate} onClear={clear} />
         </div>
 

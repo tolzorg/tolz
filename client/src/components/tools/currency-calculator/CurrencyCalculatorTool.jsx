@@ -4,6 +4,8 @@ import {
   CURRENCY_LIST, MAJOR_CURRENCY_CODES, DEFAULT_FROM, DEFAULT_TO,
   fetchLiveRates, convertLive, convertCustomRate, formatCurrencyRate, formatRateTimestamp,
 } from "../../../utils/currencyCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = { amount: "100", rate: "4", amount2: "100" };
 
@@ -116,15 +118,17 @@ function LiveRateSection() {
     if (!nextCodes.has(to)) setTo(nextCodes.has(DEFAULT_TO) ? DEFAULT_TO : nextList[1]?.[0] ?? nextList[0]?.[0] ?? "");
   }
 
+  const req = useRequiredFields();
   function calculate() {
     if (!rates) return;
-    const amt = Number(amount) || Number(DEFAULTS.amount);
+    if (!req.require({ amount })) { setResult(null); return; }
+    const amt = Number(amount) || 0;
     const converted = convertLive(amt, from, to, rates);
     if (!converted) return;
     setResult({ amount: amt, from, to, ...converted });
   }
   function clear() {
-    setAmount(""); setFrom(DEFAULT_FROM); setTo(DEFAULT_TO); setPopularOnly(true); setResult(null);
+    req.clear(); setAmount(""); setFrom(DEFAULT_FROM); setTo(DEFAULT_TO); setPopularOnly(true); setResult(null);
   }
 
   const timestampLabel = formatRateTimestamp(ratesUpdatedAt);
@@ -135,7 +139,7 @@ function LiveRateSection() {
         <div className="card" style={{ padding: 18 }}>
           <div style={fieldWrap}>
             <FieldLabel>Amount</FieldLabel>
-            <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
+            <Req name="amount" flagged={req.flagged}><TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} /></Req>
           </div>
           <div style={fieldWrap}>
             <FieldLabel>From</FieldLabel>
@@ -205,13 +209,15 @@ function CustomRateSection() {
   const [amount2, setAmount2] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
-    const r = Number(rate) || Number(DEFAULTS.rate);
-    const amt = Number(amount2) || Number(DEFAULTS.amount2);
+    if (!req.require({ rate, amount2 })) { setResult(null); return; }
+    const r = Number(rate) || 0;
+    const amt = Number(amount2) || 0;
     setResult({ amount: amt, ...convertCustomRate(r, amt) });
   }
   function clear() {
-    setRate(""); setAmount2(""); setResult(null);
+    req.clear(); setRate(""); setAmount2(""); setResult(null);
   }
 
   return (
@@ -220,12 +226,12 @@ function CustomRateSection() {
         <div className="card" style={{ padding: 18 }}>
           <div style={fieldWrap}>
             <FieldLabel>Exchange rate for currency A/B</FieldLabel>
-            <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+            <Req name="rate" flagged={req.flagged}><TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req>
             <span style={{ fontSize: 12, color: "var(--text-muted)" }}>Equivalent unit(s) of B compared to 1 unit of A</span>
           </div>
           <div style={fieldWrap}>
             <FieldLabel>Amount to exchange</FieldLabel>
-            <TextField value={amount2} onChange={setAmount2} placeholder={DEFAULTS.amount2} />
+            <Req name="amount2" flagged={req.flagged}><TextField value={amount2} onChange={setAmount2} placeholder={DEFAULTS.amount2} /></Req>
           </div>
           <CalcButtons onCalculate={calculate} onClear={clear} />
         </div>

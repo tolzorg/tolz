@@ -5,6 +5,8 @@ import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import InvestmentBarChart from "../investment-calculator/InvestmentBarChart";
 import { ErrorPanel, Row, ButtonRow } from "../fha-loan-calculator/MortgageResultParts";
 import { calculateFutureValue, FV_DEFAULTS } from "../../../utils/futureValueCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = FV_DEFAULTS;
 const KEYS = Object.keys(D);
@@ -21,8 +23,9 @@ export default function FutureValueCalculatorTool() {
   const [timing, setTiming] = useState("end");
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
-  const calculate = () => setResult(calculateFutureValue({ ...(KEYS.every((k) => v[k] === "") ? D : v), timing }));
-  const clear = () => { setV(blank()); setTiming("end"); setResult(null); };
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(pickFields(v, KEYS), (fill) => calculateFutureValue({ ...withFill(v, D, fill), timing })));
+  const clear = () => { req.clear(); setV(blank()); setTiming("end"); setResult(null); };
   const ok = result && !result.errors;
   const pieTotal = ok && result.pie ? result.pie.reduce((s, p) => s + Math.max(0, p.value), 0) : 0;
 
@@ -34,10 +37,10 @@ export default function FutureValueCalculatorTool() {
       </p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-          <Row label="Number of Periods (N)"><TextField value={v.periods} onChange={set("periods")} placeholder={D.periods} /></Row>
-          <Row label="Starting Amount (PV)"><DollarField value={v.start} onChange={set("start")} placeholder={D.start} /></Row>
-          <Row label="Interest Rate (I/Y)"><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Row>
-          <Row label="Periodic Deposit (PMT)" suffix="/period"><DollarField value={v.deposit} onChange={set("deposit")} placeholder={D.deposit} /></Row>
+          <Row label="Number of Periods (N)"><Req name="periods" flagged={req.flagged}><TextField value={v.periods} onChange={set("periods")} placeholder={D.periods} /></Req></Row>
+          <Row label="Starting Amount (PV)"><Req name="start" flagged={req.flagged}><DollarField value={v.start} onChange={set("start")} placeholder={D.start} /></Req></Row>
+          <Row label="Interest Rate (I/Y)"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Req></Row>
+          <Row label="Periodic Deposit (PMT)" suffix="/period"><Req name="deposit" flagged={req.flagged}><DollarField value={v.deposit} onChange={set("deposit")} placeholder={D.deposit} /></Req></Row>
           <fieldset style={{ border: "none", padding: 0, margin: "4px 0 10px", minWidth: 0 }}>
             <legend style={{ fontSize: 13, color: "var(--text-secondary)", padding: 0, marginBottom: 4 }}>PMT made at the</legend>
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "4px 18px" }}>

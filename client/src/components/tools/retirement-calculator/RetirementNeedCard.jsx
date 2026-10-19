@@ -3,6 +3,8 @@ import { FieldLabel, TextField, SelectField } from "../loan-calculator/LoanFormC
 import { DollarField, PercentField, ResultTable, ValidationWarning } from "./RetirementFormControls";
 import BalanceByAgeChart from "./BalanceByAgeChart";
 import { calculateRetirementNeed, validateRetirementAges, formatCurrency, formatHeadlineMoney } from "../../../utils/retirementCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   currentAge: "35", retireAge: "67", lifeExpectancy: "85", currentIncome: "70000",
@@ -76,11 +78,13 @@ export default function RetirementNeedCard() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ currentAge, retireAge, lifeExpectancy, currentIncome, retIncomeLevel, avgReturn })) { setResult(null); setError(null); return; }
     const inputs = {
-      currentAge: currentAge || DEFAULTS.currentAge,
-      retireAge: retireAge || DEFAULTS.retireAge,
-      lifeExpectancy: lifeExpectancy || DEFAULTS.lifeExpectancy,
+      currentAge: currentAge,
+      retireAge: retireAge,
+      lifeExpectancy: lifeExpectancy,
     };
     const validationError = validateRetirementAges(inputs);
     if (validationError) {
@@ -91,20 +95,21 @@ export default function RetirementNeedCard() {
     setError(null);
     setResult(calculateRetirementNeed({
       ...inputs,
-      currentIncome: currentIncome || DEFAULTS.currentIncome,
-      incomeIncreasePercent: incomeIncrease || DEFAULTS.incomeIncrease,
-      retIncomeLevel: retIncomeLevel || DEFAULTS.retIncomeLevel,
+      currentIncome: currentIncome,
+      incomeIncreasePercent: incomeIncrease,
+      retIncomeLevel: retIncomeLevel,
       retIncomeUnit,
-      avgReturnPercent: avgReturn || DEFAULTS.avgReturn,
-      inflationPercent: inflation || DEFAULTS.inflation,
-      otherIncomeMonthly: otherIncome || DEFAULTS.otherIncome,
-      currentSavings: currentSavings || DEFAULTS.currentSavings,
-      futureSavings: futureSavings || DEFAULTS.futureSavings,
+      avgReturnPercent: avgReturn,
+      inflationPercent: inflation,
+      otherIncomeMonthly: otherIncome,
+      currentSavings: currentSavings,
+      futureSavings: futureSavings,
       futureSavingsUnit,
     }));
   }
 
   function clear() {
+    req.clear();
     setCurrentAge(""); setRetireAge(""); setLifeExpectancy(""); setCurrentIncome("");
     setIncomeIncrease(""); setRetIncomeLevel(""); setRetIncomeUnit("percent");
     setAvgReturn(""); setInflation(""); setOtherIncome(""); setCurrentSavings("");
@@ -128,19 +133,19 @@ export default function RetirementNeedCard() {
 
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 360px", minWidth: 320 }}>
-          <Field label="Your current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} />
-          <Field label="Your planned retirement age" value={retireAge} onChange={setRetireAge} placeholder={DEFAULTS.retireAge} />
-          <Field label="Your life expectancy" hint="The age up to which your retirement savings need to last." value={lifeExpectancy} onChange={setLifeExpectancy} placeholder={DEFAULTS.lifeExpectancy} />
-          <DollarField label="Your current pre-tax income" value={currentIncome} onChange={setCurrentIncome} placeholder={DEFAULTS.currentIncome} suffix="/year" />
+          <Req name="currentAge" flagged={req.flagged}><Field label="Your current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req>
+          <Req name="retireAge" flagged={req.flagged}><Field label="Your planned retirement age" value={retireAge} onChange={setRetireAge} placeholder={DEFAULTS.retireAge} /></Req>
+          <Req name="lifeExpectancy" flagged={req.flagged}><Field label="Your life expectancy" hint="The age up to which your retirement savings need to last." value={lifeExpectancy} onChange={setLifeExpectancy} placeholder={DEFAULTS.lifeExpectancy} /></Req>
+          <Req name="currentIncome" flagged={req.flagged}><DollarField label="Your current pre-tax income" value={currentIncome} onChange={setCurrentIncome} placeholder={DEFAULTS.currentIncome} suffix="/year" /></Req>
 
           <p style={sectionHeader}>Assumptions</p>
           <PercentField label="Your current income increase" value={incomeIncrease} onChange={setIncomeIncrease} placeholder={DEFAULTS.incomeIncrease} suffix="/year" />
-          <ValueUnitField
+          <Req name="retIncomeLevel" flagged={req.flagged}><ValueUnitField
             label="Income needed after retirement" hint="How much of your pre-retirement income you'll want to replace each year in retirement."
             value={retIncomeLevel} onChange={setRetIncomeLevel} unit={retIncomeUnit} onUnitChange={setRetIncomeUnit}
             unitLabel="of current income"
-          />
-          <PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} suffix="/year" />
+          /></Req>
+          <Req name="avgReturn" flagged={req.flagged}><PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} suffix="/year" /></Req>
           <PercentField label="Inflation rate" hint="Used to project your income and expenses forward, and to show results in today's purchasing power." value={inflation} onChange={setInflation} placeholder={DEFAULTS.inflation} suffix="/year" />
 
           <p style={sectionHeader}>Optional</p>

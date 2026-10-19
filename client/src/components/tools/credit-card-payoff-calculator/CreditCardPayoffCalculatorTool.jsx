@@ -6,6 +6,8 @@ import {
   formatPayoffLength, makeDefaultRows, MAX_CARDS,
   DEFAULT_BUDGET, formatCurrency,
 } from "../../../utils/creditCardPayoffCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const VISIBLE_ROWS_DEFAULT = 6;
 
@@ -76,8 +78,10 @@ export default function CreditCardPayoffCalculatorTool() {
     setCards((prev) => prev.map((c, i) => (i === index ? { ...c, [field]: value } : c)));
   }
 
+  const req = useRequiredFields();
   function calculate() {
-    const inputs = { budget: budget || DEFAULT_BUDGET, cards };
+    if (!req.require({ budget })) { setResult(null); setError(null); return; }
+    const inputs = { budget, cards };
     const validationError = validateCreditCardPayoffInputs(inputs);
     if (validationError) { setError(validationError); setResult(null); return; }
     setError(null);
@@ -85,6 +89,7 @@ export default function CreditCardPayoffCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setBudget("");
     setCards(makeDefaultRows());
     setVisibleRows(VISIBLE_ROWS_DEFAULT);
@@ -103,12 +108,12 @@ export default function CreditCardPayoffCalculatorTool() {
             <div style={{ width: 140 }}>
               <div style={{ position: "relative" }}>
                 <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
-                <TextField
+                <Req name="budget" flagged={req.flagged}><TextField
                   value={formatWithCommas(budget)}
                   onChange={(v) => setBudget(stripToNumberString(v))}
                   placeholder={formatWithCommas(DEFAULT_BUDGET)}
                   style={{ paddingLeft: 19 }}
-                />
+                /></Req>
               </div>
             </div>
           </div>

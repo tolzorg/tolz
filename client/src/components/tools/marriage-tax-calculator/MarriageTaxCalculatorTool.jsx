@@ -3,6 +3,8 @@ import { TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import {
   calculateMarriageTax, FILE_STATUS_OPTIONS, DEFAULTS, formatCurrency,
 } from "../../../utils/marriageTaxCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const SPOUSE1_BG = "#eef4fc";
 const SPOUSE2_BG = "#eef8ee";
@@ -112,29 +114,34 @@ export default function MarriageTaxCalculatorTool() {
   function field1(key) { return (v) => setS1((p) => ({ ...p, [key]: v })); }
   function field2(key) { return (v) => setS2((p) => ({ ...p, [key]: v })); }
 
+  const req = useRequiredFields();
   function calculate() {
+    // Some income has to be entered (for either spouse); everything else may stay empty (0).
+    const incomes = ["salary", "interest", "rental", "stcg", "ltcg", "qdiv"].flatMap((k) => [s1[k], s2[k]]);
+    if (!req.require({ salary1: incomes })) { setResult(null); return; }
     const spouse1 = {
-      salary: s1.salary || DEFAULTS.salary1, interest: s1.interest || DEFAULTS.interest1,
-      rental: s1.rental || DEFAULTS.rental1, stcg: s1.stcg || DEFAULTS.stcg1,
-      ltcg: s1.ltcg || DEFAULTS.ltcg1, qdiv: s1.qdiv || DEFAULTS.qdiv1,
-      k401: s1.k401 || DEFAULTS.k401_1, status: s1.status,
-      dependents: s1.dependents || DEFAULTS.dependents1,
+      salary: s1.salary, interest: s1.interest,
+      rental: s1.rental, stcg: s1.stcg,
+      ltcg: s1.ltcg, qdiv: s1.qdiv,
+      k401: s1.k401, status: s1.status,
+      dependents: s1.dependents,
       useStandard: s1.useStandard, itemized: s1.itemized || "0",
-      stateRatePercent: s1.stateRatePercent || DEFAULTS.stateTax1, selfEmployed: s1.selfEmployed,
+      stateRatePercent: s1.stateRatePercent, selfEmployed: s1.selfEmployed,
     };
     const spouse2 = {
-      salary: s2.salary || DEFAULTS.salary2, interest: s2.interest || DEFAULTS.interest2,
-      rental: s2.rental || DEFAULTS.rental2, stcg: s2.stcg || DEFAULTS.stcg2,
-      ltcg: s2.ltcg || DEFAULTS.ltcg2, qdiv: s2.qdiv || DEFAULTS.qdiv2,
-      k401: s2.k401 || DEFAULTS.k401_2, status: s2.status,
-      dependents: s2.dependents || DEFAULTS.dependents2,
+      salary: s2.salary, interest: s2.interest,
+      rental: s2.rental, stcg: s2.stcg,
+      ltcg: s2.ltcg, qdiv: s2.qdiv,
+      k401: s2.k401, status: s2.status,
+      dependents: s2.dependents,
       useStandard: s2.useStandard, itemized: s2.itemized || "0",
-      stateRatePercent: s2.stateRatePercent || DEFAULTS.stateTax2, selfEmployed: s2.selfEmployed,
+      stateRatePercent: s2.stateRatePercent, selfEmployed: s2.selfEmployed,
     };
     setResult(calculateMarriageTax({ spouse1, spouse2 }));
   }
 
   function clear() {
+    req.clear();
     setS1(emptySpouse(DEFAULTS, 1));
     setS2(emptySpouse(DEFAULTS, 2));
     setResult(null);
@@ -155,7 +162,7 @@ export default function MarriageTaxCalculatorTool() {
             </tr>
           </thead>
           <tbody>
-            <Row label="Salary+Business Income" children1={<DollarField value={s1.salary} onChange={field1("salary")} placeholder={DEFAULTS.salary1} />} children2={<DollarField value={s2.salary} onChange={field2("salary")} placeholder={DEFAULTS.salary2} />} />
+            <Row label="Salary+Business Income" children1={<Req name="salary1" flagged={req.flagged}><DollarField value={s1.salary} onChange={field1("salary")} placeholder={DEFAULTS.salary1} /></Req>} children2={<DollarField value={s2.salary} onChange={field2("salary")} placeholder={DEFAULTS.salary2} />} />
             <Row label="Interest+Dividends Income" children1={<DollarField value={s1.interest} onChange={field1("interest")} placeholder={DEFAULTS.interest1} />} children2={<DollarField value={s2.interest} onChange={field2("interest")} placeholder={DEFAULTS.interest2} />} />
             <Row label="Rental, Royalty, Passive Income" children1={<DollarField value={s1.rental} onChange={field1("rental")} placeholder={DEFAULTS.rental1} />} children2={<DollarField value={s2.rental} onChange={field2("rental")} placeholder={DEFAULTS.rental2} />} />
             <Row label="Short Term Capital Gain" children1={<DollarField value={s1.stcg} onChange={field1("stcg")} placeholder={DEFAULTS.stcg1} />} children2={<DollarField value={s2.stcg} onChange={field2("stcg")} placeholder={DEFAULTS.stcg2} />} />

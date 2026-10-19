@@ -6,6 +6,8 @@ import InvestmentBarChart from "../investment-calculator/InvestmentBarChart";
 import {
   calculateAnnuity, validateAnnuityInputs, DEFAULTS, formatCurrency,
 } from "../../../utils/annuityCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const BAR_LABELS = { starting: "Start principal", contributions: "Additions", interest: "Return/interest" };
 const SCHEDULE_COLUMNS = [
@@ -89,8 +91,10 @@ export default function AnnuityCalculatorTool() {
   const [error, setError] = useState(null);
   const [scheduleView, setScheduleView] = useState("annual");
 
+  const req = useRequiredFields();
   function calculate() {
-    const inputs = { years: years || DEFAULTS.years };
+    if (!req.require({ startingPrincipal: [startingPrincipal, annualAddition, monthlyAddition], growthRatePercent: growthRate, years })) { setResult(null); setError(null); return; }
+    const inputs = { years: years };
     const validationError = validateAnnuityInputs(inputs);
     if (validationError) {
       setError(validationError);
@@ -99,10 +103,10 @@ export default function AnnuityCalculatorTool() {
     }
     setError(null);
     setResult(calculateAnnuity({
-      startingPrincipal: startingPrincipal || DEFAULTS.startingPrincipal,
-      annualAddition: annualAddition || DEFAULTS.annualAddition,
-      monthlyAddition: monthlyAddition || DEFAULTS.monthlyAddition,
-      growthRatePercent: growthRate || DEFAULTS.growthRatePercent,
+      startingPrincipal: startingPrincipal,
+      annualAddition: annualAddition,
+      monthlyAddition: monthlyAddition,
+      growthRatePercent: growthRate,
       additionAt,
       ...inputs,
     }));
@@ -110,6 +114,7 @@ export default function AnnuityCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setStartingPrincipal(""); setAnnualAddition(""); setMonthlyAddition("");
     setAdditionAt("beginning"); setGrowthRate(""); setYears("");
     setResult(null); setError(null);
@@ -121,11 +126,11 @@ export default function AnnuityCalculatorTool() {
         {/* ── Inputs ───────────────────────────────────────────── */}
         <div className="card" style={{ padding: 18, flex: "1 1 360px", minWidth: 320 }}>
           <FieldRow label="Starting principal">
-            <DollarField value={startingPrincipal} onChange={setStartingPrincipal} placeholder={DEFAULTS.startingPrincipal} />
+            <Req name="startingPrincipal" flagged={req.flagged}><DollarField value={startingPrincipal} onChange={setStartingPrincipal} placeholder={DEFAULTS.startingPrincipal} /></Req>
           </FieldRow>
 
           <FieldRow label="Annual addition">
-            <DollarField value={annualAddition} onChange={setAnnualAddition} placeholder={DEFAULTS.annualAddition} />
+            <Req name="annualAddition" flagged={req.flagged}><DollarField value={annualAddition} onChange={setAnnualAddition} placeholder={DEFAULTS.annualAddition} /></Req>
           </FieldRow>
 
           <FieldRow label="Monthly addition">
@@ -146,11 +151,11 @@ export default function AnnuityCalculatorTool() {
           </div>
 
           <FieldRow label="Annual growth rate">
-            <PercentField value={growthRate} onChange={setGrowthRate} placeholder={DEFAULTS.growthRatePercent} />
+            <Req name="growthRatePercent" flagged={req.flagged}><PercentField value={growthRate} onChange={setGrowthRate} placeholder={DEFAULTS.growthRatePercent} /></Req>
           </FieldRow>
 
           <FieldRow label="After" suffix="years">
-            <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+            <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
           </FieldRow>
 
           <div style={{ display: "flex", gap: 10, marginTop: 6 }}>

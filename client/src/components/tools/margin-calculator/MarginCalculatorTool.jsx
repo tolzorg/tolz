@@ -6,6 +6,8 @@ import {
   calculateProfitMargin, calculateStockMargin, calculateCurrencyMargin,
   PROFIT_DEFAULTS, STOCK_DEFAULTS, CURRENCY_DEFAULTS, MARGIN_RATIO_OPTIONS,
 } from "../../../utils/marginCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const sectionTitle = { fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", margin: "0 0 4px" };
 const sectionText = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6, margin: "0 0 12px" };
@@ -73,9 +75,9 @@ function ProfitMarginCalculator() {
   const [v, setV] = useState(EMPTY);
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
-  // Which boxes are blank decides what gets solved, so the example (cost
-  // and revenue) is used only while every box is empty.
-  const calculate = () => setResult(calculateProfitMargin(Object.values(v).every((x) => x === "") ? PROFIT_DEFAULTS : v));
+  // Which boxes are blank decides what gets solved; empty boxes the result needs are flagged.
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(pickFields(v, Object.keys(PROFIT_DEFAULTS)), (fill) => calculateProfitMargin(withFill(v, PROFIT_DEFAULTS, fill))));
 
   let body;
   if (!result) body = placeholderNote("Enter any two of cost, revenue, margin, and profit, then click Calculate.");
@@ -111,11 +113,11 @@ function ProfitMarginCalculator() {
       intro="Calculate the profit margin of making, trading products, or doing business in general. Please provide any two of the following to calculate the rest values."
       inputs={(
         <>
-          <FieldRow label="Cost"><DollarField value={v.cost} onChange={set("cost")} placeholder={PROFIT_DEFAULTS.cost} /></FieldRow>
-          <FieldRow label="Revenue"><DollarField value={v.revenue} onChange={set("revenue")} placeholder={PROFIT_DEFAULTS.revenue} /></FieldRow>
+          <FieldRow label="Cost"><Req name="cost" flagged={req.flagged}><DollarField value={v.cost} onChange={set("cost")} placeholder={PROFIT_DEFAULTS.cost} /></Req></FieldRow>
+          <FieldRow label="Revenue"><Req name="revenue" flagged={req.flagged}><DollarField value={v.revenue} onChange={set("revenue")} placeholder={PROFIT_DEFAULTS.revenue} /></Req></FieldRow>
           <FieldRow label="Margin"><PercentField value={v.margin} onChange={set("margin")} /></FieldRow>
           <FieldRow label="Profit"><DollarField value={v.profit} onChange={set("profit")} /></FieldRow>
-          <ButtonRow onCalculate={calculate} onClear={() => { setV(EMPTY); setResult(null); }} />
+          <ButtonRow onCalculate={calculate} onClear={() => { req.clear(); setV(EMPTY); setResult(null); }} />
         </>
       )}
       result={body}
@@ -137,7 +139,8 @@ function StockMarginCalculator() {
   const [v, setV] = useState(EMPTY);
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((prev) => ({ ...prev, [key]: value }));
-  const calculate = () => setResult(calculateStockMargin(Object.fromEntries(Object.keys(v).map((k) => [k, v[k] || STOCK_DEFAULTS[k]]))));
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(v, (fill) => calculateStockMargin(withFill(v, STOCK_DEFAULTS, fill))));
 
   return (
     <CalculatorSection
@@ -146,10 +149,10 @@ function StockMarginCalculator() {
       intro="Calculate the required amount or maintenance margin needed for investors to make securities purchase on margin."
       inputs={(
         <>
-          <FieldRow label="Stock price"><DollarField value={v.price} onChange={set("price")} placeholder={STOCK_DEFAULTS.price} /></FieldRow>
-          <FieldRow label="Number of shares"><TextField value={v.shares} onChange={set("shares")} placeholder={STOCK_DEFAULTS.shares} /></FieldRow>
-          <FieldRow label="Margin requirement"><PercentField value={v.requirement} onChange={set("requirement")} placeholder={STOCK_DEFAULTS.requirement} /></FieldRow>
-          <ButtonRow onCalculate={calculate} onClear={() => { setV(EMPTY); setResult(null); }} />
+          <FieldRow label="Stock price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={STOCK_DEFAULTS.price} /></Req></FieldRow>
+          <FieldRow label="Number of shares"><Req name="shares" flagged={req.flagged}><TextField value={v.shares} onChange={set("shares")} placeholder={STOCK_DEFAULTS.shares} /></Req></FieldRow>
+          <FieldRow label="Margin requirement"><Req name="requirement" flagged={req.flagged}><PercentField value={v.requirement} onChange={set("requirement")} placeholder={STOCK_DEFAULTS.requirement} /></Req></FieldRow>
+          <ButtonRow onCalculate={calculate} onClear={() => { req.clear(); setV(EMPTY); setResult(null); }} />
         </>
       )}
       result={!result ? placeholderNote("Enter the stock price, number of shares, and margin requirement, then click Calculate.")
@@ -171,7 +174,8 @@ function CurrencyMarginCalculator() {
   const [ratio, setRatio] = useState(CURRENCY_DEFAULTS.ratio);
   const [units, setUnits] = useState("");
   const [result, setResult] = useState(null);
-  const calculate = () => setResult(calculateCurrencyMargin({ rate: rate || CURRENCY_DEFAULTS.rate, ratio, units: units || CURRENCY_DEFAULTS.units }));
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate({ rate, units }, (fill) => calculateCurrencyMargin({ rate: fill.has("rate") ? CURRENCY_DEFAULTS.rate : rate, ratio, units: fill.has("units") ? CURRENCY_DEFAULTS.units : units })));
 
   return (
     <CalculatorSection
@@ -180,10 +184,10 @@ function CurrencyMarginCalculator() {
       intro="Calculate the minimum amount to maintain in the margin account to make currency trading."
       inputs={(
         <>
-          <FieldRow label="Exchange rate"><TextField value={rate} onChange={setRate} placeholder={CURRENCY_DEFAULTS.rate} /></FieldRow>
+          <FieldRow label="Exchange rate"><Req name="rate" flagged={req.flagged}><TextField value={rate} onChange={setRate} placeholder={CURRENCY_DEFAULTS.rate} /></Req></FieldRow>
           <FieldRow label="Margin ratio"><SelectField value={ratio} onChange={setRatio} options={MARGIN_RATIO_OPTIONS} style={{ flex: 1, minWidth: 0 }} /></FieldRow>
-          <FieldRow label="Units"><TextField value={units} onChange={setUnits} placeholder={CURRENCY_DEFAULTS.units} /></FieldRow>
-          <ButtonRow onCalculate={calculate} onClear={() => { setRate(""); setUnits(""); setRatio(CURRENCY_DEFAULTS.ratio); setResult(null); }} />
+          <FieldRow label="Units"><Req name="units" flagged={req.flagged}><TextField value={units} onChange={setUnits} placeholder={CURRENCY_DEFAULTS.units} /></Req></FieldRow>
+          <ButtonRow onCalculate={calculate} onClear={() => { req.clear(); setRate(""); setUnits(""); setRatio(CURRENCY_DEFAULTS.ratio); setResult(null); }} />
         </>
       )}
       result={!result ? placeholderNote("Enter the exchange rate, margin ratio, and units, then click Calculate.")

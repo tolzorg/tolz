@@ -3,6 +3,8 @@ import { FieldLabel } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField, YearsField } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import { calculateRentalProperty, RENTAL_DEFAULTS } from "../../../utils/rentalPropertyCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = RENTAL_DEFAULTS;
 const TEXT_KEYS = Object.keys(D).filter((k) => typeof D[k] === "string");
@@ -197,15 +199,15 @@ export default function RentalPropertyCalculatorTool() {
 
   // The example applies only while every visible box is empty; otherwise a
   // blank box is an error, exactly as on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
     const visible = TEXT_KEYS.filter((k) => (useLoan || !LOAN_KEYS.includes(k))
       && (needRepair || !REPAIR_KEYS.includes(k))
       && k !== (knowSellPrice ? "appreciation" : "sellPrice"));
-    const values = visible.every((k) => v[k] === "") ? D : v;
-    setResult(calculateRentalProperty({ ...values, useLoan, needRepair, knowSellPrice }));
+    setResult(req.evaluate(pickFields(v, visible), (fill) => calculateRentalProperty({ ...withFill(v, D, fill), useLoan, needRepair, knowSellPrice })));
   };
   const clear = () => {
-    setV(EMPTY); setUseLoan(D.useLoan); setNeedRepair(D.needRepair); setKnowSellPrice(D.knowSellPrice); setResult(null);
+    req.clear(); setV(EMPTY); setUseLoan(D.useLoan); setNeedRepair(D.needRepair); setKnowSellPrice(D.knowSellPrice); setResult(null);
   };
 
   let body;
@@ -218,21 +220,21 @@ export default function RentalPropertyCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 380px", minWidth: 280, padding: 18 }}>
           <div style={sectionTitle}>Purchase</div>
-          <Row label="Purchase Price"><DollarField value={v.price} onChange={set("price")} placeholder={D.price} /></Row>
+          <Row label="Purchase Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={D.price} /></Req></Row>
           <YesNo label="Use Loan?" name="rp-use-loan" value={useLoan} onChange={setUseLoan} />
           {useLoan && (
             <div style={{ paddingLeft: 12, borderLeft: "2px solid var(--border)", marginBottom: 8 }}>
-              <Row label="Down Payment"><PercentField value={v.downPayment} onChange={set("downPayment")} placeholder={D.downPayment} /></Row>
-              <Row label="Interest Rate"><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Row>
-              <Row label="Loan Term"><YearsField value={v.loanTerm} onChange={set("loanTerm")} placeholder={D.loanTerm} /></Row>
+              <Row label="Down Payment"><Req name="downPayment" flagged={req.flagged}><PercentField value={v.downPayment} onChange={set("downPayment")} placeholder={D.downPayment} /></Req></Row>
+              <Row label="Interest Rate"><Req name="interestRate" flagged={req.flagged}><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Req></Row>
+              <Row label="Loan Term"><Req name="loanTerm" flagged={req.flagged}><YearsField value={v.loanTerm} onChange={set("loanTerm")} placeholder={D.loanTerm} /></Req></Row>
             </div>
           )}
-          <Row label="Closing Cost"><DollarField value={v.closingCost} onChange={set("closingCost")} placeholder={D.closingCost} /></Row>
+          <Row label="Closing Cost"><Req name="closingCost" flagged={req.flagged}><DollarField value={v.closingCost} onChange={set("closingCost")} placeholder={D.closingCost} /></Req></Row>
           <YesNo label="Need Repairs?" name="rp-need-repair" value={needRepair} onChange={setNeedRepair} />
           {needRepair && (
             <div style={{ paddingLeft: 12, borderLeft: "2px solid var(--border)", marginBottom: 8 }}>
-              <Row label="Repair Cost"><DollarField value={v.repairCost} onChange={set("repairCost")} placeholder={D.repairCost} /></Row>
-              <Row label="Value after Repairs"><DollarField value={v.afterRepairValue} onChange={set("afterRepairValue")} placeholder={D.afterRepairValue} /></Row>
+              <Row label="Repair Cost"><Req name="repairCost" flagged={req.flagged}><DollarField value={v.repairCost} onChange={set("repairCost")} placeholder={D.repairCost} /></Req></Row>
+              <Row label="Value after Repairs"><Req name="afterRepairValue" flagged={req.flagged}><DollarField value={v.afterRepairValue} onChange={set("afterRepairValue")} placeholder={D.afterRepairValue} /></Req></Row>
             </div>
           )}
 
@@ -250,21 +252,21 @@ export default function RentalPropertyCalculatorTool() {
           <ColumnHeads first="" second="Annual Increase" />
           <GrowRow label="Monthly Rent" amount="rent" increase="rentIncrease" v={v} set={set} />
           <GrowRow label="Other Monthly Income" amount="otherIncome" increase="otherIncomeIncrease" v={v} set={set} />
-          <Row label="Vacancy Rate"><PercentField value={v.vacancy} onChange={set("vacancy")} placeholder={D.vacancy} /></Row>
-          <Row label="Management Fee"><PercentField value={v.management} onChange={set("management")} placeholder={D.management} /></Row>
+          <Row label="Vacancy Rate"><Req name="vacancy" flagged={req.flagged}><PercentField value={v.vacancy} onChange={set("vacancy")} placeholder={D.vacancy} /></Req></Row>
+          <Row label="Management Fee"><Req name="management" flagged={req.flagged}><PercentField value={v.management} onChange={set("management")} placeholder={D.management} /></Req></Row>
 
           <div style={{ ...sectionTitle, marginTop: 16 }}>Sell</div>
           <YesNo label="Do You Know the Sell Price?" name="rp-know-sell" value={knowSellPrice} onChange={setKnowSellPrice} />
           {knowSellPrice ? (
-            <Row label="Sell Price"><DollarField value={v.sellPrice} onChange={set("sellPrice")} placeholder={D.sellPrice} /></Row>
+            <Row label="Sell Price"><Req name="sellPrice" flagged={req.flagged}><DollarField value={v.sellPrice} onChange={set("sellPrice")} placeholder={D.sellPrice} /></Req></Row>
           ) : (
             <Row label="Value Appreciation">
-              <PercentField value={v.appreciation} onChange={set("appreciation")} placeholder={D.appreciation} />
+              <Req name="appreciation" flagged={req.flagged}><PercentField value={v.appreciation} onChange={set("appreciation")} placeholder={D.appreciation} /></Req>
               <span style={{ fontSize: 12, color: "var(--text-muted)", flexShrink: 0 }}>per year</span>
             </Row>
           )}
-          <Row label="Holding Length"><YearsField value={v.holding} onChange={set("holding")} placeholder={D.holding} /></Row>
-          <Row label="Cost to Sell"><PercentField value={v.sellCost} onChange={set("sellCost")} placeholder={D.sellCost} /></Row>
+          <Row label="Holding Length"><Req name="holding" flagged={req.flagged}><YearsField value={v.holding} onChange={set("holding")} placeholder={D.holding} /></Req></Row>
+          <Row label="Cost to Sell"><Req name="sellCost" flagged={req.flagged}><PercentField value={v.sellCost} onChange={set("sellCost")} placeholder={D.sellCost} /></Req></Row>
 
           <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>

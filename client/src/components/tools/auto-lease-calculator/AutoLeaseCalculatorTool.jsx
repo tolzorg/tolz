@@ -5,6 +5,8 @@ import {
   calculateAutoLease, convertRateText, formatPercent2, DEFAULTS, RATE_TYPE_OPTIONS,
 } from "../../../utils/autoLeaseCalculatorEngine";
 import { formatMoney } from "../../../utils/simpleInterestCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Tooltip text copied from the reference's own "?" icons.
 const HINTS = {
@@ -103,16 +105,18 @@ export default function AutoLeaseCalculatorTool() {
 
   const ratePlaceholder = rateType === "moneyfactor" ? DEFAULTS.moneyFactor : DEFAULTS.interestRate;
 
+  // Down payment, trade-in and sales tax may stay empty (0).
+  const req = useRequiredFields();
   function run(mode) {
-    const fallback = { ...DEFAULTS, rate: ratePlaceholder };
-    const filled = Object.fromEntries(Object.keys(v).map((k) => [k, v[k] || fallback[k]]));
-    setResult(calculateAutoLease({ ...filled, mode, rateType }));
+    if (!req.require({ ...(mode === "price" ? { price: v.price } : { monthlyPay: v.monthlyPay }), term: v.term, rate: v.rate, residual: v.residual })) { setResult(null); return; }
+    setResult(calculateAutoLease({ ...v, mode, rateType }));
   }
 
-  // Like the reference, switching tabs recalculates in the new mode.
+  // Like the reference, switching tabs recalculates in the new mode (once there is a result).
   function switchTab(next) {
     setTab(next);
-    run(next);
+    req.clear();
+    if (result) run(next);
   }
 
   // Switching Money Factor ⇄ Interest Rate converts the typed value (×/÷ 2400).
@@ -123,6 +127,7 @@ export default function AutoLeaseCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setV(EMPTY);
     setResult(null);
   }
@@ -166,12 +171,12 @@ export default function AutoLeaseCalculatorTool() {
 
         <div className="card" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
           {tab === "price" ? (
-            <FieldRow label="Auto Price"><DollarField value={v.price} onChange={set("price")} placeholder={DEFAULTS.price} /></FieldRow>
+            <FieldRow label="Auto Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={set("price")} placeholder={DEFAULTS.price} /></Req></FieldRow>
           ) : (
-            <FieldRow label="Monthly Pay"><DollarField value={v.monthlyPay} onChange={set("monthlyPay")} placeholder={DEFAULTS.monthlyPay} /></FieldRow>
+            <FieldRow label="Monthly Pay"><Req name="monthlyPay" flagged={req.flagged}><DollarField value={v.monthlyPay} onChange={set("monthlyPay")} placeholder={DEFAULTS.monthlyPay} /></Req></FieldRow>
           )}
           <FieldRow label="Lease Term" suffix="months">
-            <TextField value={v.term} onChange={set("term")} placeholder={DEFAULTS.term} />
+            <Req name="term" flagged={req.flagged}><TextField value={v.term} onChange={set("term")} placeholder={DEFAULTS.term} /></Req>
           </FieldRow>
           {/* Same layout as FieldRow, but the label slot holds the rate-type
               menu, which must be able to shrink on narrow screens. */}
@@ -186,16 +191,16 @@ export default function AutoLeaseCalculatorTool() {
             </div>
             <div style={{ flex: "0 1 180px", minWidth: 140, display: "flex" }}>
               {rateType === "moneyfactor" ? (
-                <TextField value={v.rate} onChange={set("rate")} placeholder={ratePlaceholder} />
+                <Req name="rate" flagged={req.flagged}><TextField value={v.rate} onChange={set("rate")} placeholder={ratePlaceholder} /></Req>
               ) : (
-                <PercentField value={v.rate} onChange={set("rate")} placeholder={ratePlaceholder} />
+                <Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={ratePlaceholder} /></Req>
               )}
             </div>
           </div>
           <FieldRow label="Down Payment"><DollarField value={v.downPayment} onChange={set("downPayment")} placeholder={DEFAULTS.downPayment} /></FieldRow>
           <FieldRow label="Trade-in Value" hint={HINTS.tradeIn}><DollarField value={v.tradeIn} onChange={set("tradeIn")} placeholder={DEFAULTS.tradeIn} /></FieldRow>
           <FieldRow label="Sales Tax" hint={HINTS.taxRate}><PercentField value={v.taxRate} onChange={set("taxRate")} placeholder={DEFAULTS.taxRate} /></FieldRow>
-          <FieldRow label="Residual Value" hint={HINTS.residual}><DollarField value={v.residual} onChange={set("residual")} placeholder={DEFAULTS.residual} /></FieldRow>
+          <FieldRow label="Residual Value" hint={HINTS.residual}><Req name="residual" flagged={req.flagged}><DollarField value={v.residual} onChange={set("residual")} placeholder={DEFAULTS.residual} /></Req></FieldRow>
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
             <button type="button" onClick={() => run(tab)} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>

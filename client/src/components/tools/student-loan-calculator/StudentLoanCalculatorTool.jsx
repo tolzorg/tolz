@@ -7,6 +7,8 @@ import {
   SIMPLE_DEFAULTS, REPAYMENT_DEFAULTS, PROJECTION_DEFAULTS,
   formatCurrency, formatMoney, formatRate, formatDuration,
 } from "../../../utils/studentLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const cardRow = { display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" };
 const inputCard = { flex: "1 1 380px", minWidth: 300, padding: 16 };
@@ -215,21 +217,15 @@ function RepaymentSection() {
   const [extraOneTime, setExtraOneTime] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
-    const d = REPAYMENT_DEFAULTS;
-    setResult(calculateRepayment({
-      balance: balance || d.balance,
-      payment: payment || d.payment,
-      rate: rate || d.rate,
-      option,
-      extraMonthly: extraMonthly || d.extraMonthly,
-      extraYearly: extraYearly || d.extraYearly,
-      extraOneTime: extraOneTime || d.extraOneTime,
-    }));
+    // Extra payments may stay empty (0).
+    if (!req.require({ balance, payment, rate })) { setResult(null); return; }
+    setResult(calculateRepayment({ balance, payment, rate, option, extraMonthly, extraYearly, extraOneTime }));
   }
 
   function clear() {
-    setBalance(""); setPayment(""); setRate(""); setOption("extra");
+    req.clear(); setBalance(""); setPayment(""); setRate(""); setOption("extra");
     setExtraMonthly(""); setExtraYearly(""); setExtraOneTime(""); setResult(null);
   }
 
@@ -242,9 +238,9 @@ function RepaymentSection() {
       </SectionTitle>
       <div style={cardRow}>
         <div className="card" style={inputCard}>
-          <FieldRow label="Loan Balance"><DollarField value={balance} onChange={setBalance} placeholder={REPAYMENT_DEFAULTS.balance} /></FieldRow>
-          <FieldRow label="Monthly Payment" suffix="/month"><DollarField value={payment} onChange={setPayment} placeholder={REPAYMENT_DEFAULTS.payment} /></FieldRow>
-          <FieldRow label="Interest Rate"><PercentField value={rate} onChange={setRate} placeholder={REPAYMENT_DEFAULTS.rate} /></FieldRow>
+          <FieldRow label="Loan Balance"><Req name="balance" flagged={req.flagged}><DollarField value={balance} onChange={setBalance} placeholder={REPAYMENT_DEFAULTS.balance} /></Req></FieldRow>
+          <FieldRow label="Monthly Payment" suffix="/month"><Req name="payment" flagged={req.flagged}><DollarField value={payment} onChange={setPayment} placeholder={REPAYMENT_DEFAULTS.payment} /></Req></FieldRow>
+          <FieldRow label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={REPAYMENT_DEFAULTS.rate} /></Req></FieldRow>
 
           <fieldset style={{ border: "none", padding: 0, margin: "14px 0 0" }}>
             <legend style={{ fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>Repayment Options:</legend>
@@ -294,21 +290,15 @@ function ProjectionSection() {
   const [payInterestInSchool, setPayInterestInSchool] = useState(false);
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
-    const d = PROJECTION_DEFAULTS;
-    setResult(calculateProjection({
-      yearsToGraduate: yearsToGraduate || d.yearsToGraduate,
-      annualAmount: annualAmount || d.annualAmount,
-      currentBalance: currentBalance || d.currentBalance,
-      loanTerm: loanTerm || d.loanTerm,
-      gracePeriod: gracePeriod || d.gracePeriod,
-      rate: rate || d.rate,
-      payInterestInSchool,
-    }));
+    // Current balance and grace period may stay empty (0).
+    if (!req.require({ yearsToGraduate, annualAmount, loanTerm, rate })) { setResult(null); return; }
+    setResult(calculateProjection({ yearsToGraduate, annualAmount, currentBalance, loanTerm, gracePeriod, rate, payInterestInSchool }));
   }
 
   function clear() {
-    setYearsToGraduate(""); setAnnualAmount(""); setCurrentBalance(""); setLoanTerm("");
+    req.clear(); setYearsToGraduate(""); setAnnualAmount(""); setCurrentBalance(""); setLoanTerm("");
     setGracePeriod(""); setRate(""); setPayInterestInSchool(false); setResult(null);
   }
 
@@ -319,14 +309,14 @@ function ProjectionSection() {
       </SectionTitle>
       <div style={cardRow}>
         <div className="card" style={inputCard}>
-          <FieldRow label="To Graduate In" suffix="years"><PlainField value={yearsToGraduate} onChange={setYearsToGraduate} placeholder={PROJECTION_DEFAULTS.yearsToGraduate} /></FieldRow>
-          <FieldRow label="Estimated Loan Amount" suffix="/year"><DollarField value={annualAmount} onChange={setAnnualAmount} placeholder={PROJECTION_DEFAULTS.annualAmount} /></FieldRow>
+          <FieldRow label="To Graduate In" suffix="years"><Req name="yearsToGraduate" flagged={req.flagged}><PlainField value={yearsToGraduate} onChange={setYearsToGraduate} placeholder={PROJECTION_DEFAULTS.yearsToGraduate} /></Req></FieldRow>
+          <FieldRow label="Estimated Loan Amount" suffix="/year"><Req name="annualAmount" flagged={req.flagged}><DollarField value={annualAmount} onChange={setAnnualAmount} placeholder={PROJECTION_DEFAULTS.annualAmount} /></Req></FieldRow>
           <FieldRow label="Current Balance"><DollarField value={currentBalance} onChange={setCurrentBalance} placeholder={PROJECTION_DEFAULTS.currentBalance} /></FieldRow>
-          <FieldRow label="Loan Term" suffix="years"><PlainField value={loanTerm} onChange={setLoanTerm} placeholder={PROJECTION_DEFAULTS.loanTerm} /></FieldRow>
+          <FieldRow label="Loan Term" suffix="years"><Req name="loanTerm" flagged={req.flagged}><PlainField value={loanTerm} onChange={setLoanTerm} placeholder={PROJECTION_DEFAULTS.loanTerm} /></Req></FieldRow>
           <FieldRow label="Grace Period" hint="The period between the date of graduation and the date that repayment of a student loan must begin." suffix="months">
             <PlainField value={gracePeriod} onChange={setGracePeriod} placeholder={PROJECTION_DEFAULTS.gracePeriod} />
           </FieldRow>
-          <FieldRow label="Interest Rate"><PercentField value={rate} onChange={setRate} placeholder={PROJECTION_DEFAULTS.rate} /></FieldRow>
+          <FieldRow label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={PROJECTION_DEFAULTS.rate} /></Req></FieldRow>
 
           <fieldset style={{ border: "none", padding: 0, margin: "12px 0 0" }}>
             <legend style={{ fontSize: 13.5, color: "var(--text-primary)", marginBottom: 8 }}>Do you pay interest during school years?</legend>

@@ -1,3 +1,4 @@
+import { useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
 // Small shared form-control pieces for the Mortgage Calculator's input
 // panel — a labeled field with an optional info tooltip, and a
 // number-plus-unit-dropdown control used by Down Payment, Property Taxes,
@@ -30,9 +31,10 @@ const inputStyle = {
 };
 
 export function TextField({ value, onChange, disabled, placeholder, style }) {
+  const invalid = useRequiredState(value);
   return (
     <input
-      type="text" inputMode="decimal" value={value} placeholder={placeholder} disabled={disabled}
+      type="text" inputMode="decimal" value={value} disabled={disabled} {...requiredInputProps(invalid, placeholder)}
       onChange={(e) => onChange(e.target.value)}
       style={{ ...inputStyle, ...style }}
     />
@@ -41,10 +43,11 @@ export function TextField({ value, onChange, disabled, placeholder, style }) {
 
 /** A number input paired with a $/% unit dropdown — Down Payment, Property Taxes, Home Insurance, PMI, HOA, Other Costs. */
 export function ValueUnitField({ value, unit, onValueChange, onUnitChange, disabled, placeholder, units = ["percent", "dollar"] }) {
+  const invalid = useRequiredState(value);
   return (
     <div style={{ display: "flex", gap: 6 }}>
       <input
-        type="text" inputMode="decimal" value={value} placeholder={placeholder} disabled={disabled}
+        type="text" inputMode="decimal" value={value} disabled={disabled} {...requiredInputProps(invalid, placeholder)}
         onChange={(e) => onValueChange(e.target.value)}
         style={{ ...inputStyle, flex: 1, minWidth: 0 }}
       />

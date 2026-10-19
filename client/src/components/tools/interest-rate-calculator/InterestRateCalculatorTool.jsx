@@ -5,6 +5,8 @@ import InterestRatePieChart from "./InterestRatePieChart";
 import {
   calculateInterestRate, validateInterestRateInputs, formatCurrency, formatPercent, DEFAULTS,
 } from "../../../utils/interestRateCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
@@ -66,12 +68,14 @@ export default function InterestRateCalculatorTool() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ loanAmount, years: [years, months], monthlyPayment })) { setResult(null); setError(null); return; }
     const inputs = {
-      loanAmount: loanAmount || DEFAULTS.loanAmount,
-      years: years || DEFAULTS.years,
-      months: months || DEFAULTS.months,
-      monthlyPayment: monthlyPayment || DEFAULTS.monthlyPayment,
+      loanAmount: loanAmount,
+      years: years,
+      months: months,
+      monthlyPayment: monthlyPayment,
     };
     const validationError = validateInterestRateInputs(inputs);
     if (validationError) {
@@ -84,6 +88,7 @@ export default function InterestRateCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setLoanAmount(""); setYears(""); setMonths(""); setMonthlyPayment("");
     setResult(null); setError(null);
   }
@@ -95,15 +100,15 @@ export default function InterestRateCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
           <FieldRow label="Loan amount">
-            <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} />
+            <Req name="loanAmount" flagged={req.flagged}><DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} /></Req>
           </FieldRow>
 
           <FieldRow label="Loan term" fieldWidth={200}>
-            <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
+            <Req name="years" flagged={req.flagged}><TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} /></Req>
           </FieldRow>
 
           <FieldRow label="Monthly payment">
-            <DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} />
+            <Req name="monthlyPayment" flagged={req.flagged}><DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} /></Req>
           </FieldRow>
 
           <div style={{ display: "flex", gap: 10, marginTop: 6 }}>

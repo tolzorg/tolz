@@ -5,6 +5,8 @@ import { FieldLabel } from "../mortgage-calculator/MortgageFormControls";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import InvestmentBarChart from "../investment-calculator/InvestmentBarChart";
 import { calculateRmd, rmdYearOptions, DEFAULTS, formatMoney, formatPeriod } from "../../../utils/rmdCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const HINTS = {
   year: "The year the Required Minimum Distribution (RMD) to be made.",
@@ -60,18 +62,21 @@ export default function RmdCalculatorTool() {
   const [rate, setRate] = useState(DEFAULTS.rate);
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ birthYear, balance, ...(spouseIsBeneficiary ? { spouseYear } : {}) })) { setResult(null); return; }
     setResult(calculateRmd({
-      birthYear: birthYear || DEFAULTS.birthYear,
+      birthYear: birthYear,
       rmdYear,
-      balance: balance || DEFAULTS.balance,
+      balance: balance,
       spouseIsBeneficiary,
-      spouseYear: spouseYear || DEFAULTS.spouseYear,
+      spouseYear: spouseYear,
       rate,
     }));
   }
 
   function clear() {
+    req.clear();
     setBirthYear(""); setRmdYear(years[1]); setBalance(""); setSpouseIsBeneficiary(true);
     setSpouseYear(""); setRate(""); setResult(null);
   }
@@ -105,12 +110,12 @@ export default function RmdCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────────── */}
         <div className="card" style={{ flex: "1 1 360px", minWidth: 300, padding: 18 }}>
-          <FieldRow label="Your year of birth"><TextField value={birthYear} onChange={setBirthYear} placeholder={DEFAULTS.birthYear} /></FieldRow>
+          <FieldRow label="Your year of birth"><Req name="birthYear" flagged={req.flagged}><TextField value={birthYear} onChange={setBirthYear} placeholder={DEFAULTS.birthYear} /></Req></FieldRow>
           <FieldRow label="Year of RMD" hint={HINTS.year}>
             <SelectField value={rmdYear} onChange={setRmdYear} options={years.map((y) => ({ value: y, label: y }))} style={{ flex: 1, minWidth: 0 }} />
           </FieldRow>
           <FieldRow label={`Account balance as of 12/31/${balanceYear}`}>
-            <DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} />
+            <Req name="balance" flagged={req.flagged}><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></Req>
           </FieldRow>
 
           <fieldset style={{ border: "none", padding: 0, margin: "0 0 12px" }}>
@@ -125,7 +130,7 @@ export default function RmdCalculatorTool() {
             </div>
           </fieldset>
           {spouseIsBeneficiary && (
-            <FieldRow label="Your spouse's date of birth"><TextField value={spouseYear} onChange={setSpouseYear} placeholder={DEFAULTS.spouseYear} /></FieldRow>
+            <FieldRow label="Your spouse's date of birth"><Req name="spouseYear" flagged={req.flagged}><TextField value={spouseYear} onChange={setSpouseYear} placeholder={DEFAULTS.spouseYear} /></Req></FieldRow>
           )}
           <FieldRow label="Estimated rate of return (Optional)" hint={HINTS.rate}>
             <PercentField value={rate} onChange={setRate} />

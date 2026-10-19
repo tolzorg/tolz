@@ -7,6 +7,8 @@ import {
   CASH_FLOW_ROWS, RETURN_ROWS, VISIBLE_ROWS,
 } from "../../../utils/averageReturnCalculatorEngine";
 import { todayIso } from "../../../utils/depreciationCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const ACTIVITY_OPTIONS = [{ value: "d", label: "Deposit" }, { value: "w", label: "Withdraw" }];
 const BLANK_DATE = "2024-01-01";
@@ -86,16 +88,14 @@ function CashFlowCalculator() {
   const [result, setResult] = useState(null);
 
   const setFlow = (i, key) => (value) => setFlows((prev) => prev.map((f, j) => (j === i ? { ...f, [key]: value } : f)));
+  // The starting and ending balances are needed; cash flow rows are optional.
+  const req = useRequiredFields();
   const calculate = () => {
-    const untouched = flows.every((f) => f.amount === "");
-    const used = untouched ? flows.map((f, i) => ({ ...f, amount: FLOW_HINTS[i] ?? "" })) : flows;
-    setResult(calculateCashFlowReturn({
-      startBalance: startBalance || START_BALANCE_HINT, startDate,
-      endBalance: endBalance || END_BALANCE_HINT, endDate, flows: used,
-    }));
+    if (!req.require({ startBalance, endBalance })) { setResult(null); return; }
+    setResult(calculateCashFlowReturn({ startBalance, startDate, endBalance, endDate, flows }));
   };
   const clear = () => {
-    setStartBalance(""); setEndBalance("");
+    req.clear(); setStartBalance(""); setEndBalance("");
     setFlows((prev) => prev.map((f) => ({ ...f, amount: "" })));
     setResult(null);
   };
@@ -125,13 +125,13 @@ function CashFlowCalculator() {
                 <tr>
                   <td />
                   <td style={{ ...inputCell, fontSize: 13, color: "var(--text-primary)", whiteSpace: "nowrap" }}>Starting Balance</td>
-                  <td style={inputCell}><DollarField value={startBalance} onChange={setStartBalance} placeholder={START_BALANCE_HINT} /></td>
+                  <td style={inputCell}><Req name="startBalance" flagged={req.flagged}><DollarField value={startBalance} onChange={setStartBalance} placeholder={START_BALANCE_HINT} /></Req></td>
                   <td style={inputCell}><input type="date" aria-label="Starting balance date" value={startDate} onChange={(e) => setStartDate(e.target.value)} style={dateInputStyle} /></td>
                 </tr>
                 <tr>
                   <td />
                   <td style={{ ...inputCell, fontSize: 13, color: "var(--text-primary)", whiteSpace: "nowrap" }}>Ending Balance</td>
-                  <td style={inputCell}><DollarField value={endBalance} onChange={setEndBalance} placeholder={END_BALANCE_HINT} /></td>
+                  <td style={inputCell}><Req name="endBalance" flagged={req.flagged}><DollarField value={endBalance} onChange={setEndBalance} placeholder={END_BALANCE_HINT} /></Req></td>
                   <td style={inputCell}><input type="date" aria-label="Ending balance date" value={endDate} onChange={(e) => setEndDate(e.target.value)} style={dateInputStyle} /></td>
                 </tr>
                 {flows.slice(0, rowCount).map((flow, i) => (
@@ -186,11 +186,10 @@ function CumulativeReturnCalculator() {
   const [result, setResult] = useState(null);
 
   const setRow = (i, key) => (value) => setRows((prev) => prev.map((r, j) => (j === i ? { ...r, [key]: value } : r)));
-  const calculate = () => {
-    const untouched = rows.every((r) => r.ret === "" && r.years === "" && r.months === "");
-    setResult(calculateCumulativeReturn({ rows: untouched ? RETURN_HINTS : rows }));
-  };
-  const clear = () => { setRows(blankReturns()); setResult(null); };
+  // At least one return is needed (flagged on the first row).
+  const req = useRequiredFields();
+  const calculate = () => setResult(!req.require({ ret0: rows.map((r) => r.ret) }) ? null : calculateCumulativeReturn({ rows }));
+  const clear = () => { req.clear(); setRows(blankReturns()); setResult(null); };
   const rowCount = showMore ? RETURN_ROWS : VISIBLE_ROWS;
   const summaryCell = { fontSize: 13.5, color: "var(--text-primary)" };
 
@@ -221,7 +220,7 @@ function CumulativeReturnCalculator() {
               {rows.slice(0, rowCount).map((row, i) => (
                 <tr key={i}>
                   <td style={indexCell}>{i + 1}.</td>
-                  <td style={inputCell}><PercentField value={row.ret} onChange={setRow(i, "ret")} placeholder={RETURN_HINTS[i]?.ret} /></td>
+                  <td style={inputCell}><Req name={`ret${i}`} flagged={req.flagged}><PercentField value={row.ret} onChange={setRow(i, "ret")} placeholder={RETURN_HINTS[i]?.ret} /></Req></td>
                   <td style={inputCell}><TextField value={row.years} onChange={setRow(i, "years")} placeholder={RETURN_HINTS[i]?.years || undefined} /></td>
                   <td style={inputCell}><TextField value={row.months} onChange={setRow(i, "months")} placeholder={RETURN_HINTS[i]?.months || undefined} /></td>
                 </tr>

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FieldRow } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField, RadioOption } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import { calculateDiscount, DISCOUNT_DEFAULTS } from "../../../utils/discountCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const EMPTY = { before: "", discount: "", after: "", saved: "" };
 const resultBanner = { background: "var(--success)", color: "#fff", padding: "11px 16px", fontSize: 14, fontWeight: 700, fontFamily: "var(--font-display)" };
@@ -28,7 +30,8 @@ export default function DiscountCalculatorTool() {
   // Which boxes are blank decides what gets solved, so the example (price
   // before and discount) is used only while every visible box is empty.
   const visible = fixed ? ["before", "discount", "after"] : ["before", "discount", "after", "saved"];
-  const calculate = () => setResult(calculateDiscount({ ...(visible.every((k) => v[k] === "") ? DISCOUNT_DEFAULTS : v), type }));
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(pickFields(v, visible), (fill) => calculateDiscount({ ...withFill(v, DISCOUNT_DEFAULTS, fill), type })));
 
   let body;
   if (!result) {
@@ -53,11 +56,11 @@ export default function DiscountCalculatorTool() {
       <p style={{ fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>Please provide any 2 values below to calculate.</p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 18 }}>
-          <FieldRow label="Price before discount"><DollarField value={v.before} onChange={set("before")} placeholder={DISCOUNT_DEFAULTS.before} /></FieldRow>
+          <FieldRow label="Price before discount"><Req name="before" flagged={req.flagged}><DollarField value={v.before} onChange={set("before")} placeholder={DISCOUNT_DEFAULTS.before} /></Req></FieldRow>
           <FieldRow label="Discount">
             {fixed
-              ? <DollarField value={v.discount} onChange={set("discount")} placeholder={DISCOUNT_DEFAULTS.discount} />
-              : <PercentField value={v.discount} onChange={set("discount")} placeholder={DISCOUNT_DEFAULTS.discount} />}
+              ? <Req name="discount" flagged={req.flagged}><DollarField value={v.discount} onChange={set("discount")} placeholder={DISCOUNT_DEFAULTS.discount} /></Req>
+              : <Req name="discount" flagged={req.flagged}><PercentField value={v.discount} onChange={set("discount")} placeholder={DISCOUNT_DEFAULTS.discount} /></Req>}
           </FieldRow>
           <FieldRow label="Price after discount"><DollarField value={v.after} onChange={set("after")} /></FieldRow>
           {!fixed && <FieldRow label="You saved"><DollarField value={v.saved} onChange={set("saved")} /></FieldRow>}
@@ -72,7 +75,7 @@ export default function DiscountCalculatorTool() {
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate
             </button>
-            <button type="button" onClick={() => { setV(EMPTY); setResult(null); }} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
+            <button type="button" onClick={() => { req.clear(); setV(EMPTY); setResult(null); }} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
           </div>
         </div>
         <div className="card" style={{ flex: "1 1 340px", minWidth: 280, padding: 0, overflow: "hidden" }}>

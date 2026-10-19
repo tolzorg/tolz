@@ -2,6 +2,8 @@ import { useState } from "react";
 import { NumberField, DollarField, PercentField, ResultTable, ScheduleTable, ValidationWarning } from "./Four01kFormControls";
 import BalanceGrowthChart from "./BalanceGrowthChart";
 import { calculateBalanceProjection, validate401kAges, formatCurrency } from "../../../utils/four01kCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   currentAge: "30", currentSalary: "75000", currentBalance: "35000", contributionPercent: "10",
@@ -24,11 +26,13 @@ export default function BalanceProjectionCard() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ currentAge, currentSalary, retirementAge, lifeExpectancy, avgReturnPercent })) { setResult(null); setError(null); return; }
     const inputs = {
-      currentAge: currentAge || DEFAULTS.currentAge,
-      retirementAge: retirementAge || DEFAULTS.retirementAge,
-      lifeExpectancy: lifeExpectancy || DEFAULTS.lifeExpectancy,
+      currentAge: currentAge,
+      retirementAge: retirementAge,
+      lifeExpectancy: lifeExpectancy,
     };
     const validationError = validate401kAges(inputs);
     if (validationError) {
@@ -39,18 +43,19 @@ export default function BalanceProjectionCard() {
     setError(null);
     setResult(calculateBalanceProjection({
       ...inputs,
-      currentSalary: currentSalary || DEFAULTS.currentSalary,
-      currentBalance: currentBalance || DEFAULTS.currentBalance,
-      contributionPercent: contributionPercent || DEFAULTS.contributionPercent,
-      employerMatchPercent: employerMatchPercent || DEFAULTS.employerMatchPercent,
-      employerMatchLimitPercent: employerMatchLimitPercent || DEFAULTS.employerMatchLimitPercent,
-      salaryIncreasePercent: salaryIncreasePercent || DEFAULTS.salaryIncreasePercent,
-      avgReturnPercent: avgReturnPercent || DEFAULTS.avgReturnPercent,
-      inflationPercent: inflationPercent || DEFAULTS.inflationPercent,
+      currentSalary: currentSalary,
+      currentBalance: currentBalance,
+      contributionPercent: contributionPercent,
+      employerMatchPercent: employerMatchPercent,
+      employerMatchLimitPercent: employerMatchLimitPercent,
+      salaryIncreasePercent: salaryIncreasePercent,
+      avgReturnPercent: avgReturnPercent,
+      inflationPercent: inflationPercent,
     }));
   }
 
   function clear() {
+    req.clear();
     setCurrentAge(""); setCurrentSalary(""); setCurrentBalance(""); setContributionPercent("");
     setEmployerMatchPercent(""); setEmployerMatchLimitPercent(""); setRetirementAge(""); setLifeExpectancy("");
     setSalaryIncreasePercent(""); setAvgReturnPercent(""); setInflationPercent("");
@@ -87,18 +92,18 @@ export default function BalanceProjectionCard() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 340px", minWidth: 300 }}>
           <p style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 10 }}>Basic info</p>
-          <NumberField label="Current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} />
-          <DollarField label="Current annual salary" value={currentSalary} onChange={setCurrentSalary} placeholder={DEFAULTS.currentSalary} />
+          <Req name="currentAge" flagged={req.flagged}><NumberField label="Current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req>
+          <Req name="currentSalary" flagged={req.flagged}><DollarField label="Current annual salary" value={currentSalary} onChange={setCurrentSalary} placeholder={DEFAULTS.currentSalary} /></Req>
           <DollarField label="Current 401(k) balance" value={currentBalance} onChange={setCurrentBalance} placeholder={DEFAULTS.currentBalance} />
           <PercentField label="Contribution (% of salary)" value={contributionPercent} onChange={setContributionPercent} placeholder={DEFAULTS.contributionPercent} />
           <PercentField label="Employer match" hint="Percentage of your contribution the employer matches, up to the limit below." value={employerMatchPercent} onChange={setEmployerMatchPercent} placeholder={DEFAULTS.employerMatchPercent} />
           <PercentField label="Employer match limit" hint="The employer only matches contributions up to this percentage of salary." value={employerMatchLimitPercent} onChange={setEmployerMatchLimitPercent} placeholder={DEFAULTS.employerMatchLimitPercent} />
 
           <p style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.03em", margin: "18px 0 10px" }}>Projections</p>
-          <NumberField label="Expected retirement age" value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} />
-          <NumberField label="Life expectancy" value={lifeExpectancy} onChange={setLifeExpectancy} placeholder={DEFAULTS.lifeExpectancy} />
+          <Req name="retirementAge" flagged={req.flagged}><NumberField label="Expected retirement age" value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} /></Req>
+          <Req name="lifeExpectancy" flagged={req.flagged}><NumberField label="Life expectancy" value={lifeExpectancy} onChange={setLifeExpectancy} placeholder={DEFAULTS.lifeExpectancy} /></Req>
           <PercentField label="Expected salary increase" suffix="per year" value={salaryIncreasePercent} onChange={setSalaryIncreasePercent} placeholder={DEFAULTS.salaryIncreasePercent} />
-          <PercentField label="Expected annual return" suffix="per year" value={avgReturnPercent} onChange={setAvgReturnPercent} placeholder={DEFAULTS.avgReturnPercent} />
+          <Req name="avgReturnPercent" flagged={req.flagged}><PercentField label="Expected annual return" suffix="per year" value={avgReturnPercent} onChange={setAvgReturnPercent} placeholder={DEFAULTS.avgReturnPercent} /></Req>
           <PercentField label="Expected inflation rate" suffix="per year" value={inflationPercent} onChange={setInflationPercent} placeholder={DEFAULTS.inflationPercent} />
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
@@ -159,7 +164,7 @@ export default function BalanceProjectionCard() {
 
                   <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: 10 }}>
                     If withdrawing at fixed purchasing power monthly, <strong>{formatCurrency(result.growing.monthlyAtRetirement, { decimals: 0 })}</strong> per
-                    month can be withdrawn from age {retireAgeDisplay + 1} and increase {inflationPercent || DEFAULTS.inflationPercent}% per year until {lifeExpectancyDisplay}.
+                    month can be withdrawn from age {retireAgeDisplay + 1} and increase {inflationPercent || 0}% per year until {lifeExpectancyDisplay}.
                     {/* The "today's money at retirement" clause is trivially
                         equal to the actual amount when 0 years have passed —
                         the reference omits it entirely in that case. */}

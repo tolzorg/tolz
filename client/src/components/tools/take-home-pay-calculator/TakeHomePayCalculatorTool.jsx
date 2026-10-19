@@ -4,6 +4,8 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import {
   calculateTakeHomePay, PAY_FREQUENCIES, FILING_STATUSES, TAKE_HOME_DEFAULTS, TAX_YEAR,
 } from "../../../utils/takeHomePayCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = TAKE_HOME_DEFAULTS;
 const TEXT_KEYS = ["salary", "children", "otherDependents", "otherIncome", "pretaxDeductions", "deductionsNotWithheld", "itemizedDeductions",
@@ -98,11 +100,11 @@ export default function TakeHomePayCalculatorTool() {
 
   // The example applies only while every box is empty; otherwise a blank box
   // means $0 (or 0), exactly as on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = TEXT_KEYS.every((k) => v[k] === "") ? D : v;
-    setResult(calculateTakeHomePay({ ...values, ...choice, spouse65: joint && choice.spouse65 }));
+    setResult(req.evaluate(pickFields(v, TEXT_KEYS), (fill) => calculateTakeHomePay({ ...withFill(v, D, fill), ...choice, spouse65: joint && choice.spouse65 })));
   };
-  const clear = () => { setV(EMPTY); setResult(null); };
+  const clear = () => { req.clear(); setV(EMPTY); setResult(null); };
 
   let body;
   if (!result) {
@@ -167,35 +169,35 @@ export default function TakeHomePayCalculatorTool() {
   return (
     <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
       <div className="card" style={{ flex: "1 1 420px", minWidth: 280, maxWidth: 540, padding: 18 }}>
-        <Row label="Your job income (salary)"><YearField value={v.salary} onChange={set("salary")} placeholder={D.salary} /></Row>
+        <Row label="Your job income (salary)"><Req name="salary" flagged={req.flagged}><YearField value={v.salary} onChange={set("salary")} placeholder={D.salary} /></Req></Row>
         <Row label="Pay frequency">
           <SelectField value={choice.payFrequency} onChange={pick("payFrequency")} options={PAY_FREQUENCIES} style={{ flex: 1, minWidth: 0 }} />
         </Row>
         <Row label="File status">
           <SelectField value={choice.filingStatus} onChange={pick("filingStatus")} options={FILING_STATUSES} style={{ flex: 1, minWidth: 0 }} />
         </Row>
-        <Row label="Number of children under age 17"><TextField value={v.children} onChange={set("children")} placeholder={D.children} /></Row>
-        <Row label="Number of other dependents"><TextField value={v.otherDependents} onChange={set("otherDependents")} placeholder={D.otherDependents} /></Row>
+        <Row label="Number of children under age 17"><Req name="children" flagged={req.flagged}><TextField value={v.children} onChange={set("children")} placeholder={D.children} /></Req></Row>
+        <Row label="Number of other dependents"><Req name="otherDependents" flagged={req.flagged}><TextField value={v.otherDependents} onChange={set("otherDependents")} placeholder={D.otherDependents} /></Req></Row>
         <Row label="Other income (not from jobs)" hint="interest, dividends, retirement income, etc.">
-          <YearField value={v.otherIncome} onChange={set("otherIncome")} placeholder={D.otherIncome} />
+          <Req name="otherIncome" flagged={req.flagged}><YearField value={v.otherIncome} onChange={set("otherIncome")} placeholder={D.otherIncome} /></Req>
         </Row>
         <Row
           label="Pretax deductions withheld" hint="401k, health insurance, HSA, etc."
           help="Deductions to be withheld from salary by the employer before being paid out, including those for a 401k, health savings account (HSA), the employee's share of the health insurance premium, child support payments, union and uniform dues, etc."
         >
-          <YearField value={v.pretaxDeductions} onChange={set("pretaxDeductions")} placeholder={D.pretaxDeductions} />
+          <Req name="pretaxDeductions" flagged={req.flagged}><YearField value={v.pretaxDeductions} onChange={set("pretaxDeductions")} placeholder={D.pretaxDeductions} /></Req>
         </Row>
         <Row
           label="Deductions not withheld" hint="IRA, student loan interest, etc."
           help="Deductions that will not be withheld by the employer but can be subtracted from taxable income, including IRA contributions, student loan interest, qualified tuition and education-related fees up to $4,000, etc."
         >
-          <YearField value={v.deductionsNotWithheld} onChange={set("deductionsNotWithheld")} placeholder={D.deductionsNotWithheld} />
+          <Req name="deductionsNotWithheld" flagged={req.flagged}><YearField value={v.deductionsNotWithheld} onChange={set("deductionsNotWithheld")} placeholder={D.deductionsNotWithheld} /></Req>
         </Row>
         <Row
           label="Itemized deductions" hint="mortgage interest, charitable donations, state/local/sales/property taxes, etc."
           help="Expenditure on eligible products, services, or contributions that may be subtracted from taxable income, including qualified mortgage interest, state and local income plus either property or sales taxes up to a certain amount, charitable donations, medical and dental expenses (over 10% of adjusted gross income), etc."
         >
-          <YearField value={v.itemizedDeductions} onChange={set("itemizedDeductions")} placeholder={D.itemizedDeductions} />
+          <Req name="itemizedDeductions" flagged={req.flagged}><YearField value={v.itemizedDeductions} onChange={set("itemizedDeductions")} placeholder={D.itemizedDeductions} /></Req>
         </Row>
 
         <YesNo
@@ -205,23 +207,23 @@ export default function TakeHomePayCalculatorTool() {
         {choice.hasOtherJobs && (
           <div style={{ padding: "8px 10px 2px", marginBottom: 10, border: "1px dashed var(--border)", borderRadius: "var(--radius-sm)" }}>
             <p style={{ fontSize: 12.5, color: "var(--text-secondary)", margin: "0 0 8px" }}>Please list these income(s):</p>
-            <Row label="Income #2"><YearField value={v.job2} onChange={set("job2")} placeholder={D.job2} /></Row>
-            <Row label="Income #3"><YearField value={v.job3} onChange={set("job3")} placeholder={D.job3} /></Row>
+            <Row label="Income #2"><Req name="job2" flagged={req.flagged}><YearField value={v.job2} onChange={set("job2")} placeholder={D.job2} /></Req></Row>
+            <Row label="Income #3"><Req name="job3" flagged={req.flagged}><YearField value={v.job3} onChange={set("job3")} placeholder={D.job3} /></Req></Row>
           </div>
         )}
 
         <Row label="State income tax rate" hint={<a href="https://en.wikipedia.org/wiki/State_income_tax" target="_blank" rel="noopener noreferrer nofollow" style={{ color: "var(--accent)" }}>click here to find out</a>}>
-          <PercentField value={v.stateRate} onChange={set("stateRate")} placeholder={D.stateRate} />
+          <Req name="stateRate" flagged={req.flagged}><PercentField value={v.stateRate} onChange={set("stateRate")} placeholder={D.stateRate} /></Req>
         </Row>
-        <Row label="City income tax rate"><PercentField value={v.cityRate} onChange={set("cityRate")} placeholder={D.cityRate} /></Row>
+        <Row label="City income tax rate"><Req name="cityRate" flagged={req.flagged}><PercentField value={v.cityRate} onChange={set("cityRate")} placeholder={D.cityRate} /></Req></Row>
 
         <YesNo name="thp-age" legend="Are you age 65 or older?" value={choice.age65} onChange={pick("age65")} />
         {joint && <YesNo name="thp-spouse-age" legend="Is your spouse age 65 or older?" value={choice.spouse65} onChange={pick("spouse65")} />}
 
-        <Row label="Qualified tips income"><YearField value={v.tips} onChange={set("tips")} placeholder={D.tips} /></Row>
-        <Row label="Qualified overtime compensation"><YearField value={v.overtime} onChange={set("overtime")} placeholder={D.overtime} /></Row>
-        <Row label="Qualified passenger vehicle loan interest"><YearField value={v.vehicleLoanInterest} onChange={set("vehicleLoanInterest")} placeholder={D.vehicleLoanInterest} /></Row>
-        <Row label="Cash gifts to charities"><YearField value={v.charityGifts} onChange={set("charityGifts")} placeholder={D.charityGifts} /></Row>
+        <Row label="Qualified tips income"><Req name="tips" flagged={req.flagged}><YearField value={v.tips} onChange={set("tips")} placeholder={D.tips} /></Req></Row>
+        <Row label="Qualified overtime compensation"><Req name="overtime" flagged={req.flagged}><YearField value={v.overtime} onChange={set("overtime")} placeholder={D.overtime} /></Req></Row>
+        <Row label="Qualified passenger vehicle loan interest"><Req name="vehicleLoanInterest" flagged={req.flagged}><YearField value={v.vehicleLoanInterest} onChange={set("vehicleLoanInterest")} placeholder={D.vehicleLoanInterest} /></Req></Row>
+        <Row label="Cash gifts to charities"><Req name="charityGifts" flagged={req.flagged}><YearField value={v.charityGifts} onChange={set("charityGifts")} placeholder={D.charityGifts} /></Req></Row>
 
         <YesNo name="thp-self" legend="Are you self-employed or an independent contractor?" value={choice.selfEmployed} onChange={pick("selfEmployed")} />
 

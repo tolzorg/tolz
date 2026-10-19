@@ -2,6 +2,7 @@
 // are generic (no mortgage-specific logic) and reused from the Mortgage
 // Calculator's shared control file rather than duplicated.
 import { FieldLabel, TextField, ValueUnitField, FieldRow, inputStyle } from "../mortgage-calculator/MortgageFormControls";
+import { Req } from "../calculator-ui/Required";
 
 export { FieldLabel, TextField, ValueUnitField, FieldRow };
 
@@ -24,7 +25,8 @@ export function TermYearsMonthsField({ years, months, onYearsChange, onMonthsCha
     <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
       <TextField value={years} onChange={onYearsChange} disabled={disabled} style={{ flex: 1, minWidth: 0 }} />
       <span style={{ fontSize: 13, color: "var(--text-muted)", flexShrink: 0 }}>years</span>
-      <TextField value={months} onChange={onMonthsChange} disabled={disabled} style={{ flex: 1, minWidth: 0 }} />
+      {/* A flagged term shows on the years box only. */}
+      <Req name={null}><TextField value={months} onChange={onMonthsChange} disabled={disabled} style={{ flex: 1, minWidth: 0 }} /></Req>
       <span style={{ fontSize: 13, color: "var(--text-muted)", flexShrink: 0 }}>months</span>
     </div>
   );

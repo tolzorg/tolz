@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FieldRow, DollarField, ValueUnitField, TextField, ResultTable } from "./HouseAffordabilityFormControls";
 import { calculateHouseAffordabilityByBudget, validateBudgetInputs, formatCurrency, formatPercent } from "../../../utils/houseAffordabilityCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   monthlyBudget: "3500", loanTermYears: "30", interestRate: "6.792",
@@ -43,16 +45,18 @@ export default function BudgetAffordabilityCard() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ monthlyBudget, loanTermYears, interestRate })) { setResult(null); setError(null); return; }
     const inputs = {
-      monthlyBudget: monthlyBudget || DEFAULTS.monthlyBudget,
-      loanTermYears: loanTermYears || DEFAULTS.loanTermYears,
-      interestRate: interestRate || DEFAULTS.interestRate,
-      downValue: downValue || DEFAULTS.downValue,
-      taxValue: taxValue || DEFAULTS.taxValue,
-      hoaValue: hoaValue || DEFAULTS.hoaValue,
-      insValue: insValue || DEFAULTS.insValue,
-      maintenanceValue: maintenanceValue || DEFAULTS.maintenanceValue,
+      monthlyBudget: monthlyBudget,
+      loanTermYears: loanTermYears,
+      interestRate: interestRate,
+      downValue: downValue,
+      taxValue: taxValue,
+      hoaValue: hoaValue,
+      insValue: insValue,
+      maintenanceValue: maintenanceValue,
     };
     const validationError = validateBudgetInputs(inputs);
     if (validationError) {
@@ -65,6 +69,7 @@ export default function BudgetAffordabilityCard() {
   }
 
   function clear() {
+    req.clear();
     setMonthlyBudget(""); setLoanTermYears(""); setInterestRate("");
     setDownValue(""); setDownUnit("percent"); setIncludeFees(true);
     setTaxValue(""); setTaxUnit("percent");
@@ -115,13 +120,13 @@ export default function BudgetAffordabilityCard() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: "10px 16px", flex: "0 1 380px", maxWidth: 380, minWidth: 280 }}>
           <FieldRow label="Budget for house" hint="The amount of money you can afford and are willing to pay for the house each month." suffix="per month">
-            <DollarField value={monthlyBudget} onChange={setMonthlyBudget} placeholder={DEFAULTS.monthlyBudget} />
+            <Req name="monthlyBudget" flagged={req.flagged}><DollarField value={monthlyBudget} onChange={setMonthlyBudget} placeholder={DEFAULTS.monthlyBudget} /></Req>
           </FieldRow>
           <FieldRow label="Mortgage loan term" suffix="years">
-            <TextField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={smallInput} />
+            <Req name="loanTermYears" flagged={req.flagged}><TextField value={loanTermYears} onChange={setLoanTermYears} placeholder={DEFAULTS.loanTermYears} style={smallInput} /></Req>
           </FieldRow>
           <FieldRow label="Interest rate" suffix="%">
-            <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={smallInput} />
+            <Req name="interestRate" flagged={req.flagged}><TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={smallInput} /></Req>
           </FieldRow>
           <FieldRow label="Down payment">
             <ValueUnitField value={downValue} unit={downUnit} onValueChange={setDownValue} onUnitChange={setDownUnit} placeholder={DEFAULTS.downValue} />

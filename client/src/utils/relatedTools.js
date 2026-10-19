@@ -8,6 +8,7 @@ import { TOOLS } from "./tools";
 // viewed tool's own category page (never a generic/homepage catch-all).
 const GROUP_META = {
   "health-calc":            { label: "health calculators",              emoji: "💪",  path: "/calculators/health" },
+  "sports-calc":            { label: "sports calculators",              emoji: "🏅",  path: "/calculators/sports" },
   everyday:                 { label: "everyday life calculators",       emoji: "🌅",  path: "/calculators/everyday-life" },
   "construction-calc":      { label: "construction converters",         emoji: "📐",  path: "/calculators/construction" },
   "construction-materials": { label: "construction materials calculators", emoji: "🧱", path: "/calculators/construction" },

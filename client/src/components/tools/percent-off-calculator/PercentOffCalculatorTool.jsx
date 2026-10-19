@@ -3,6 +3,8 @@ import { FieldRow } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField, RadioOption } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import { ErrorPanel, ButtonRow } from "../fha-loan-calculator/MortgageResultParts";
 import { calculatePercentOff, PERCENT_OFF_DEFAULTS } from "../../../utils/percentOffCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = PERCENT_OFF_DEFAULTS;
 const EMPTY = { original: "", percent: "", final: "", saved: "", extra: "" };
@@ -17,11 +19,12 @@ export default function PercentOffCalculatorTool() {
 
   // Which boxes are blank decides what gets solved, so the example (original
   // price and percent off) is used only while every visible box is empty.
+  const req = useRequiredFields();
   const calculate = () => {
     const visible = ["original", "percent", "final", "saved", ...(stack ? ["extra"] : [])];
-    setResult(calculatePercentOff({ ...(visible.every((k) => v[k] === "") ? D : v), stack }));
+    setResult(req.evaluate(pickFields(v, visible), (fill) => calculatePercentOff({ ...withFill(v, D, fill), stack })));
   };
-  const clear = () => { setV(EMPTY); setStack(false); setResult(null); };
+  const clear = () => { req.clear(); setV(EMPTY); setStack(false); setResult(null); };
 
   let body;
   if (!result) {
@@ -46,9 +49,9 @@ export default function PercentOffCalculatorTool() {
       <p style={{ fontSize: 13.5, color: "var(--text-secondary)", margin: 0 }}>Please provide two values below to calculate.</p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 18 }}>
-          <FieldRow label="Original price"><DollarField value={v.original} onChange={set("original")} placeholder={D.original} /></FieldRow>
+          <FieldRow label="Original price"><Req name="original" flagged={req.flagged}><DollarField value={v.original} onChange={set("original")} placeholder={D.original} /></Req></FieldRow>
           <FieldRow label={stack ? <><First /> Percent off</> : "Percent off"}>
-            <PercentField value={v.percent} onChange={set("percent")} placeholder={D.percent} />
+            <Req name="percent" flagged={req.flagged}><PercentField value={v.percent} onChange={set("percent")} placeholder={D.percent} /></Req>
           </FieldRow>
           <FieldRow label="Final price"><DollarField value={v.final} onChange={set("final")} /></FieldRow>
           <FieldRow label="Saved"><DollarField value={v.saved} onChange={set("saved")} /></FieldRow>
@@ -60,7 +63,7 @@ export default function PercentOffCalculatorTool() {
             </div>
           </fieldset>
           {stack && (
-            <FieldRow label="Additional discount"><PercentField value={v.extra} onChange={set("extra")} placeholder={D.extra} /></FieldRow>
+            <FieldRow label="Additional discount"><Req name="extra" flagged={req.flagged}><PercentField value={v.extra} onChange={set("extra")} placeholder={D.extra} /></Req></FieldRow>
           )}
           <ButtonRow onCalculate={calculate} onClear={clear} />
         </div>

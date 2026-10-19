@@ -3,6 +3,8 @@ import { FieldRow, TextField } from "../loan-calculator/LoanFormControls";
 import MortgagePieChart from "../mortgage-calculator/MortgagePieChart";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import { calculateFixedTerm, calculateFixedPayments, formatCurrency, formatYearsAndDecimalMonths } from "../../../utils/paymentCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Demo numbers shown only as placeholder hint text, not pre-filled values
 // — the established convention from the Mortgage/Loan/Auto Loan/Interest
@@ -38,16 +40,19 @@ export default function PaymentCalculatorTool() {
   const [result, setResult] = useState(null);
   const [scheduleView, setScheduleView] = useState("annual"); // annual | monthly
 
+  const req = useRequiredFields();
   function calculate() {
-    const shared = { loanAmount: loanAmount || DEFAULTS.loanAmount, annualRatePercent: interestRate || DEFAULTS.interestRate };
+    if (!req.require({ loanAmount, interestRate, ...(tab === "fixedTerm" ? { loanTerm } : { monthlyPay }) })) { setResult(null); return; }
+    const shared = { loanAmount: loanAmount, annualRatePercent: interestRate };
     setResult(
       tab === "fixedTerm"
-        ? { mode: "fixedTerm", years: Number(loanTerm || DEFAULTS.loanTerm), ...calculateFixedTerm({ ...shared, years: loanTerm || DEFAULTS.loanTerm }) }
-        : { mode: "fixedPayments", ...calculateFixedPayments({ ...shared, monthlyPay: monthlyPay || DEFAULTS.monthlyPay }) }
+        ? { mode: "fixedTerm", years: Number(loanTerm), ...calculateFixedTerm({ ...shared, years: loanTerm }) }
+        : { mode: "fixedPayments", ...calculateFixedPayments({ ...shared, monthlyPay: monthlyPay }) }
     );
   }
 
   function clear() {
+    req.clear();
     setLoanAmount(""); setLoanTerm(""); setMonthlyPay(""); setInterestRate("");
     setResult(null);
   }
@@ -99,21 +104,21 @@ export default function PaymentCalculatorTool() {
 
           <div className="card" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
             <FieldRow label="Loan Amount">
-              <DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} />
+              <Req name="loanAmount" flagged={req.flagged}><DollarField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} /></Req>
             </FieldRow>
 
             {tab === "fixedTerm" ? (
               <FieldRow label="Loan Term" suffix="years">
-                <TextField value={loanTerm} onChange={setLoanTerm} placeholder={DEFAULTS.loanTerm} />
+                <Req name="loanTerm" flagged={req.flagged}><TextField value={loanTerm} onChange={setLoanTerm} placeholder={DEFAULTS.loanTerm} /></Req>
               </FieldRow>
             ) : (
               <FieldRow label="Monthly Pay">
-                <DollarField value={monthlyPay} onChange={setMonthlyPay} placeholder={DEFAULTS.monthlyPay} />
+                <Req name="monthlyPay" flagged={req.flagged}><DollarField value={monthlyPay} onChange={setMonthlyPay} placeholder={DEFAULTS.monthlyPay} /></Req>
               </FieldRow>
             )}
 
             <FieldRow label="Interest Rate">
-              <PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+              <Req name="interestRate" flagged={req.flagged}><PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} /></Req>
             </FieldRow>
 
             <div style={{ display: "flex", gap: 10 }}>

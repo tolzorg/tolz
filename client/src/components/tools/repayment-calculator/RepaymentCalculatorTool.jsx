@@ -9,6 +9,8 @@ import {
   COMPOUND_OPTIONS, PAYBACK_OPTIONS, DEFAULT_COMPOUND, DEFAULT_PAYBACK,
   DEFAULTS, formatCurrency,
 } from "../../../utils/repaymentCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const rowStyle = { display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid var(--border)", fontSize: 13.5 };
 
@@ -41,20 +43,22 @@ export default function RepaymentCalculatorTool() {
   const [error, setError] = useState(null);
   const [showTable, setShowTable] = useState(false);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ loanAmount, interestRate, ...(payoffMode === "fixedtime" ? { years: [years, months] } : { installmentAmount }) })) { setResult(null); setError(null); return; }
     const shared = {
-      loanAmount: loanAmount || DEFAULTS.loanAmount,
-      interestRate: interestRate || DEFAULTS.interestRate,
+      loanAmount: loanAmount,
+      interestRate: interestRate,
       compound, payback,
     };
     if (payoffMode === "fixedtime") {
-      const inputs = { ...shared, years: years || DEFAULTS.years, months: months || DEFAULTS.months };
+      const inputs = { ...shared, years: years, months: months };
       const validationError = validateFixedTimeInputs(inputs);
       if (validationError) { setError(validationError); setResult(null); return; }
       setError(null);
       setResult(calculateFixedTime(inputs));
     } else {
-      const inputs = { ...shared, installmentAmount: installmentAmount || DEFAULTS.installmentAmount };
+      const inputs = { ...shared, installmentAmount: installmentAmount };
       const validationError = validateFixedInstallmentInputs(inputs);
       if (validationError) { setError(validationError); setResult(null); return; }
       setError(null);
@@ -70,6 +74,7 @@ export default function RepaymentCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setLoanAmount(""); setInterestRate(""); setCompound(DEFAULT_COMPOUND); setPayback(DEFAULT_PAYBACK);
     setPayoffMode("fixedtime"); setYears(""); setMonths(""); setInstallmentAmount("");
     setResult(null); setError(null); setShowTable(false);
@@ -83,12 +88,12 @@ export default function RepaymentCalculatorTool() {
           <FieldRow label="Loan balance">
             <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
               <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
-              <TextField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ paddingLeft: 19 }} />
+              <Req name="loanAmount" flagged={req.flagged}><TextField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ paddingLeft: 19 }} /></Req>
             </div>
           </FieldRow>
 
           <FieldRow label="Interest rate" suffix="%">
-            <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+            <Req name="interestRate" flagged={req.flagged}><TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} /></Req>
           </FieldRow>
 
           <FieldRow label="Compound">
@@ -108,7 +113,7 @@ export default function RepaymentCalculatorTool() {
               <div style={{ paddingLeft: 26, marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>of</span>
                 <div style={{ width: 180 }}>
-                  <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
+                  <Req name="years" flagged={req.flagged}><TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} /></Req>
                 </div>
               </div>
             )}
@@ -122,7 +127,7 @@ export default function RepaymentCalculatorTool() {
                 <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>of</span>
                 <div style={{ position: "relative", width: 130 }}>
                   <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
-                  <TextField value={installmentAmount} onChange={setInstallmentAmount} placeholder={DEFAULTS.installmentAmount} style={{ paddingLeft: 19 }} />
+                  <Req name="installmentAmount" flagged={req.flagged}><TextField value={installmentAmount} onChange={setInstallmentAmount} placeholder={DEFAULTS.installmentAmount} style={{ paddingLeft: 19 }} /></Req>
                 </div>
                 <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>{paybackPhrase(payback)}</span>
               </div>

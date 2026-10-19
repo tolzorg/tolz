@@ -8,6 +8,8 @@ import {
 } from "./MortgageResultParts";
 import { linkButton, initialDates } from "./mortgageFormHelpers";
 import { calculateFhaLoan, suggestedAnnualMip, convertUnit, FHA_DEFAULTS, MIP_DURATIONS } from "../../../utils/fhaLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = FHA_DEFAULTS;
 // Example values per unit — placeholders only.
@@ -55,16 +57,14 @@ export default function FhaLoanCalculatorTool() {
   };
 
   const visibleKeys = [...MAIN_KEYS, ...(includeOptionals ? OPTIONAL_KEYS : []), ...(moreOptions ? MORE_KEYS : [])];
+  const req = useRequiredFields();
   const calculate = () => {
-    const example = visibleKeys.every((k) => v[k] === "");
-    const values = example
-      ? { ...D, downPayment: UNIT_EXAMPLE.downPayment[downUnit], propertyTaxes: UNIT_EXAMPLE.propertyTaxes[taxUnit] }
-      : v;
-    setResult(calculateFhaLoan({ ...values, ...dates, downUnit, taxUnit, mipDuration, includeOptionals, moreOptions, showBiweekly }));
+    const examples = { ...D, downPayment: UNIT_EXAMPLE.downPayment[downUnit], propertyTaxes: UNIT_EXAMPLE.propertyTaxes[taxUnit] };
+    setResult(req.evaluate(pickFields(v, visibleKeys), (fill) => calculateFhaLoan({ ...withFill(v, examples, fill), ...dates, downUnit, taxUnit, mipDuration, includeOptionals, moreOptions, showBiweekly })));
     setView("annual");
   };
   const clear = () => {
-    setV(blank()); setDownUnit("percent"); setTaxUnit("percent"); setMipDuration("term");
+    req.clear(); setV(blank()); setDownUnit("percent"); setTaxUnit("percent"); setMipDuration("term");
     setIncludeOptionals(true); setShowBiweekly(true); setDates(initialDates()); setResult(null);
   };
 
@@ -76,24 +76,24 @@ export default function FhaLoanCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ── */}
         <div className="card" style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 460, padding: 16 }}>
-          <Row label="Home Price"><DollarField value={v.price} onChange={setLoanField("price")} placeholder={D.price} /></Row>
+          <Row label="Home Price"><Req name="price" flagged={req.flagged}><DollarField value={v.price} onChange={setLoanField("price")} placeholder={D.price} /></Req></Row>
           <Row label="Down Payment">
-            <ValueUnitField
+            <Req name="downPayment" flagged={req.flagged}><ValueUnitField
               value={v.downPayment} unit={downUnit} placeholder={UNIT_EXAMPLE.downPayment[downUnit]}
               onValueChange={setLoanField("downPayment")} onUnitChange={(u) => changeUnit("downPayment", u, setDownUnit)}
-            />
+            /></Req>
           </Row>
-          <Row label="Loan Term" suffix="years"><TextField value={v.years} onChange={setLoanField("years")} placeholder={D.years} /></Row>
-          <Row label="Interest Rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Row>
-          <Row label="Upfront FHA MIP"><PercentField value={v.upfrontMip} onChange={set("upfrontMip")} placeholder={D.upfrontMip} /></Row>
-          <Row label="Annual FHA MIP"><PercentField value={v.annualMip} onChange={set("annualMip")} placeholder={D.annualMip} /></Row>
+          <Row label="Loan Term" suffix="years"><Req name="years" flagged={req.flagged}><TextField value={v.years} onChange={setLoanField("years")} placeholder={D.years} /></Req></Row>
+          <Row label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Req></Row>
+          <Row label="Upfront FHA MIP"><Req name="upfrontMip" flagged={req.flagged}><PercentField value={v.upfrontMip} onChange={set("upfrontMip")} placeholder={D.upfrontMip} /></Req></Row>
+          <Row label="Annual FHA MIP"><Req name="annualMip" flagged={req.flagged}><PercentField value={v.annualMip} onChange={set("annualMip")} placeholder={D.annualMip} /></Req></Row>
           <Row label="Annual FHA MIP Duration">
             <SelectField value={mipDuration} onChange={setMipDuration} options={MIP_DURATIONS} style={{ width: "100%" }} />
           </Row>
 
           <Checkbox checked={includeOptionals} onChange={setIncludeOptionals}>Include Optionals Below</Checkbox>
           {includeOptionals && (
-            <CostFields
+            <CostFields flagged={req.flagged}
               v={v} set={set} taxUnit={taxUnit} taxPlaceholder={UNIT_EXAMPLE.propertyTaxes[taxUnit]}
               onTaxUnit={(u) => changeUnit("propertyTaxes", u, setTaxUnit)} dates={dates} setDate={setDate} defaults={D}
             />

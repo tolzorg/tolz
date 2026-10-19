@@ -3,6 +3,8 @@ import { FieldRow, TextField, SelectField, TermYearsMonthsField } from "../loan-
 import MortgagePieChart from "../mortgage-calculator/MortgagePieChart";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import { calculateInterest, formatCurrency, COMPOUND_OPTIONS, DEFAULT_COMPOUND } from "../../../utils/interestCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Demo numbers shown only as placeholder hint text, not pre-filled values
 // — the established convention from the Mortgage/Loan/Auto Loan calculators.
@@ -45,22 +47,25 @@ export default function InterestCalculatorTool() {
   const [result, setResult] = useState(null);
   const [scheduleView, setScheduleView] = useState("annual"); // annual | monthly
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ initialInvestment: [initialInvestment, annualContribution, monthlyContribution], interestRate, years: [years, months] })) { setResult(null); return; }
     setResult(calculateInterest({
-      initialInvestment: initialInvestment || DEFAULTS.initialInvestment,
-      annualContribution: annualContribution || DEFAULTS.annualContribution,
-      monthlyContribution: monthlyContribution || DEFAULTS.monthlyContribution,
+      initialInvestment: initialInvestment,
+      annualContribution: annualContribution,
+      monthlyContribution: monthlyContribution,
       contributeAt,
-      annualRatePercent: interestRate || DEFAULTS.interestRate,
+      annualRatePercent: interestRate,
       compound,
-      years: years || DEFAULTS.years,
-      months: months || DEFAULTS.months,
-      taxRatePercent: taxRate || DEFAULTS.taxRate,
-      inflationRatePercent: inflationRate || DEFAULTS.inflationRate,
+      years: years,
+      months: months,
+      taxRatePercent: taxRate,
+      inflationRatePercent: inflationRate,
     }));
   }
 
   function clear() {
+    req.clear();
     setInitialInvestment(""); setAnnualContribution(""); setMonthlyContribution("");
     setContributeAt("end"); setInterestRate(""); setCompound(DEFAULT_COMPOUND);
     setYears(""); setMonths(""); setTaxRate(""); setInflationRate("");
@@ -82,11 +87,11 @@ export default function InterestCalculatorTool() {
           </div>
 
           <FieldRow label="Initial investment">
-            <DollarField value={initialInvestment} onChange={setInitialInvestment} placeholder={DEFAULTS.initialInvestment} />
+            <Req name="initialInvestment" flagged={req.flagged}><DollarField value={initialInvestment} onChange={setInitialInvestment} placeholder={DEFAULTS.initialInvestment} /></Req>
           </FieldRow>
 
           <FieldRow label="Annual contribution">
-            <DollarField value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} />
+            <Req name="annualContribution" flagged={req.flagged}><DollarField value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} /></Req>
           </FieldRow>
 
           <FieldRow label="Monthly contribution">
@@ -111,7 +116,7 @@ export default function InterestCalculatorTool() {
           </div>
 
           <FieldRow label="Interest rate">
-            <PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+            <Req name="interestRate" flagged={req.flagged}><PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} /></Req>
           </FieldRow>
 
           <FieldRow label="Compound">
@@ -119,7 +124,7 @@ export default function InterestCalculatorTool() {
           </FieldRow>
 
           <FieldRow label="Investment length" fieldWidth={200}>
-            <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
+            <Req name="years" flagged={req.flagged}><TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} /></Req>
           </FieldRow>
 
           <FieldRow label="Tax rate" hint="Your marginal tax rate. Growth compounds tax-free throughout the term; this percentage is deducted from the total interest earned only once, at the end.">

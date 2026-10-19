@@ -5,6 +5,8 @@ import { FieldLabel } from "../mortgage-calculator/MortgageFormControls";
 import PensionLineChart from "../pension-calculator/PensionLineChart";
 import GroupedScheduleTable from "./GroupedScheduleTable";
 import { calculateRothIra, DEFAULTS, formatDollars } from "../../../utils/rothIraCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Tooltips copied verbatim from the reference (including its own
 // inconsistent limit figures between the first two).
@@ -77,19 +79,22 @@ export default function RothIraCalculatorTool() {
   const [tax, setTax] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ balance: [balance, contribution], rate, currentAge, retirementAge })) { setResult(null); return; }
     setResult(calculateRothIra({
-      balance: balance || DEFAULTS.balance,
-      contribution: contribution || DEFAULTS.contribution,
+      balance: balance,
+      contribution: contribution,
       maximize,
-      rate: rate || DEFAULTS.rate,
-      currentAge: currentAge || DEFAULTS.currentAge,
-      retirementAge: retirementAge || DEFAULTS.retirementAge,
-      tax: tax || DEFAULTS.tax,
+      rate: rate,
+      currentAge: currentAge,
+      retirementAge: retirementAge,
+      tax: tax,
     }));
   }
 
   function clear() {
+    req.clear();
     setBalance(""); setContribution(""); setMaximize(false); setRate("");
     setCurrentAge(""); setRetirementAge(""); setTax(""); setResult(null);
   }
@@ -101,7 +106,7 @@ export default function RothIraCalculatorTool() {
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* ── Inputs ───────────────────────────────────────────────── */}
         <div className="card" style={{ flex: "1 1 360px", minWidth: 300, padding: 18 }}>
-          <FieldRow label="Current balance"><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></FieldRow>
+          <FieldRow label="Current balance"><Req name="balance" flagged={req.flagged}><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></Req></FieldRow>
           <FieldRow label="Annual contribution" hint={HINTS.contribution}>
             {maximize
               ? <span style={{ fontSize: 13.5, color: "var(--text-secondary)", padding: "8px 2px" }}>maxing out</span>
@@ -120,9 +125,9 @@ export default function RothIraCalculatorTool() {
               ))}
             </div>
           </fieldset>
-          <FieldRow label="Expected rate of return" hint={HINTS.rate}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></FieldRow>
-          <FieldRow label="Current age"><TextField value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></FieldRow>
-          <FieldRow label="Retirement age"><TextField value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} /></FieldRow>
+          <FieldRow label="Expected rate of return" hint={HINTS.rate}><Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req></FieldRow>
+          <FieldRow label="Current age"><Req name="currentAge" flagged={req.flagged}><TextField value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req></FieldRow>
+          <FieldRow label="Retirement age"><Req name="retirementAge" flagged={req.flagged}><TextField value={retirementAge} onChange={setRetirementAge} placeholder={DEFAULTS.retirementAge} /></Req></FieldRow>
           <FieldRow label="Marginal tax rate" hint={HINTS.tax}><PercentField value={tax} onChange={setTax} placeholder={DEFAULTS.tax} /></FieldRow>
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>

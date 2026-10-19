@@ -4,6 +4,8 @@ import PensionLineChart from "./PensionLineChart";
 import {
   calculateLumpSumOrMonthly, calculateSingleLifeOrJoint, calculateWorkLonger, formatCurrency,
 } from "../../../utils/pensionCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 function stripToNumberString(input) {
   let cleaned = String(input ?? "").replace(/[^0-9.-]/g, "");
@@ -102,30 +104,32 @@ function LumpSumOrMonthlySection() {
   const [cola, setCola] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ retirementAge, lumpSumAmount, monthlyIncome })) { setResult(null); return; }
     setResult(calculateLumpSumOrMonthly({
-      retirementAge: retirementAge || 65,
-      lumpSumAmount: lumpSumAmount || 800000,
-      investmentReturn: investmentReturn || 5,
-      monthlyIncome: monthlyIncome || 5000,
-      cola: cola || 3.5,
+      retirementAge: retirementAge,
+      lumpSumAmount: lumpSumAmount,
+      investmentReturn: investmentReturn,
+      monthlyIncome: monthlyIncome,
+      cola: cola,
     }));
   }
   function clear() {
-    setRetirementAge(""); setLumpSumAmount(""); setInvestmentReturn(""); setMonthlyIncome(""); setCola(""); setResult(null);
+    req.clear(); setRetirementAge(""); setLumpSumAmount(""); setInvestmentReturn(""); setMonthlyIncome(""); setCola(""); setResult(null);
   }
 
   return (
     <div style={cardRow}>
       <div className="card" style={inputCard}>
-        <FieldRow label="Your retirement age"><PlainField value={retirementAge} onChange={setRetirementAge} placeholder="65" /></FieldRow>
+        <FieldRow label="Your retirement age"><Req name="retirementAge" flagged={req.flagged}><PlainField value={retirementAge} onChange={setRetirementAge} placeholder="65" /></Req></FieldRow>
 
         <SectionHeader>Option 1: lump sum payment</SectionHeader>
-        <FieldRow label="Lump sum payment amount"><DollarField value={lumpSumAmount} onChange={setLumpSumAmount} placeholder="800000" /></FieldRow>
+        <FieldRow label="Lump sum payment amount"><Req name="lumpSumAmount" flagged={req.flagged}><DollarField value={lumpSumAmount} onChange={setLumpSumAmount} placeholder="800000" /></Req></FieldRow>
         <FieldRow label="Your investment return" suffix="per year"><PercentField value={investmentReturn} onChange={setInvestmentReturn} placeholder="5" /></FieldRow>
 
         <SectionHeader>Option 2: monthly pension payment</SectionHeader>
-        <FieldRow label="Monthly pension income" suffix="per month"><DollarField value={monthlyIncome} onChange={setMonthlyIncome} placeholder="5000" /></FieldRow>
+        <FieldRow label="Monthly pension income" suffix="per month"><Req name="monthlyIncome" flagged={req.flagged}><DollarField value={monthlyIncome} onChange={setMonthlyIncome} placeholder="5000" /></Req></FieldRow>
         <FieldRow label="Cost-of-living adjustment" hint="Increases your pension payments annually to help keep up with inflation." suffix="per year"><PercentField value={cola} onChange={setCola} placeholder="3.5" /></FieldRow>
 
         <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
@@ -149,9 +153,9 @@ function LumpSumOrMonthlySection() {
             <>
               <p style={sentenceStyle}>
                 {result.sentence.kind === "alwaysMonthly" && "It is better to take monthly pension income."}
-                {result.sentence.kind === "alwaysLumpSum" && `With this investment return of ${result.sentence.investmentReturn || 5}% per year, it is better to take the lump sum payout.`}
+                {result.sentence.kind === "alwaysLumpSum" && `With this investment return of ${result.sentence.investmentReturn || 0}% per year, it is better to take the lump sum payout.`}
                 {result.sentence.kind === "crossover" && (
-                  <>With the investment return of {result.sentence.investmentReturn || 5}% per year, if you can live up to <strong>age {result.sentence.crossoverAge} or older</strong>, it is better to take monthly pension income. Otherwise, it is better to take the lump sum payout.</>
+                  <>With the investment return of {result.sentence.investmentReturn || 0}% per year, if you can live up to <strong>age {result.sentence.crossoverAge} or older</strong>, it is better to take monthly pension income. Otherwise, it is better to take the lump sum payout.</>
                 )}
               </p>
               <PensionLineChart series={[
@@ -183,32 +187,34 @@ function SingleLifeOrJointSection() {
   const [cola, setCola] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ retirementAge, lifeExpectancy, spousesAge, spouseLifeExpectancy, singleLifePension, jointSurvivorPension })) { setResult(null); return; }
     setResult(calculateSingleLifeOrJoint({
-      retirementAge: retirementAge || 65,
-      lifeExpectancy: lifeExpectancy || 77,
-      spousesAge: spousesAge || 62,
-      spouseLifeExpectancy: spouseLifeExpectancy || 82,
-      singleLifePension: singleLifePension || 5000,
-      jointSurvivorPension: jointSurvivorPension || 3000,
-      investmentReturn: investmentReturn || 5,
-      cola: cola || 3.5,
+      retirementAge: retirementAge,
+      lifeExpectancy: lifeExpectancy,
+      spousesAge: spousesAge,
+      spouseLifeExpectancy: spouseLifeExpectancy,
+      singleLifePension: singleLifePension,
+      jointSurvivorPension: jointSurvivorPension,
+      investmentReturn: investmentReturn,
+      cola: cola,
     }));
   }
   function clear() {
-    setRetirementAge(""); setLifeExpectancy(""); setSpousesAge(""); setSpouseLifeExpectancy("");
+    req.clear(); setRetirementAge(""); setLifeExpectancy(""); setSpousesAge(""); setSpouseLifeExpectancy("");
     setSingleLifePension(""); setJointSurvivorPension(""); setInvestmentReturn(""); setCola(""); setResult(null);
   }
 
   return (
     <div style={cardRow}>
       <div className="card" style={inputCard}>
-        <FieldRow label="Your retirement age"><PlainField value={retirementAge} onChange={setRetirementAge} placeholder="65" /></FieldRow>
-        <FieldRow label="Your life expectancy"><PlainField value={lifeExpectancy} onChange={setLifeExpectancy} placeholder="77" /></FieldRow>
-        <FieldRow label="Spouse's age when you retire"><PlainField value={spousesAge} onChange={setSpousesAge} placeholder="62" /></FieldRow>
-        <FieldRow label="Spouse's life expectancy"><PlainField value={spouseLifeExpectancy} onChange={setSpouseLifeExpectancy} placeholder="82" /></FieldRow>
-        <FieldRow label="Single life pension" suffix="per month"><DollarField value={singleLifePension} onChange={setSingleLifePension} placeholder="5000" /></FieldRow>
-        <FieldRow label="Joint survivor pension" suffix="per month"><DollarField value={jointSurvivorPension} onChange={setJointSurvivorPension} placeholder="3000" /></FieldRow>
+        <FieldRow label="Your retirement age"><Req name="retirementAge" flagged={req.flagged}><PlainField value={retirementAge} onChange={setRetirementAge} placeholder="65" /></Req></FieldRow>
+        <FieldRow label="Your life expectancy"><Req name="lifeExpectancy" flagged={req.flagged}><PlainField value={lifeExpectancy} onChange={setLifeExpectancy} placeholder="77" /></Req></FieldRow>
+        <FieldRow label="Spouse's age when you retire"><Req name="spousesAge" flagged={req.flagged}><PlainField value={spousesAge} onChange={setSpousesAge} placeholder="62" /></Req></FieldRow>
+        <FieldRow label="Spouse's life expectancy"><Req name="spouseLifeExpectancy" flagged={req.flagged}><PlainField value={spouseLifeExpectancy} onChange={setSpouseLifeExpectancy} placeholder="82" /></Req></FieldRow>
+        <FieldRow label="Single life pension" suffix="per month"><Req name="singleLifePension" flagged={req.flagged}><DollarField value={singleLifePension} onChange={setSingleLifePension} placeholder="5000" /></Req></FieldRow>
+        <FieldRow label="Joint survivor pension" suffix="per month"><Req name="jointSurvivorPension" flagged={req.flagged}><DollarField value={jointSurvivorPension} onChange={setJointSurvivorPension} placeholder="3000" /></Req></FieldRow>
         <FieldRow label="Your investment return" suffix="per year"><PercentField value={investmentReturn} onChange={setInvestmentReturn} placeholder="5" /></FieldRow>
         <FieldRow label="Cost-of-living adjustment" hint="Increases your pension payments annually to help keep up with inflation." suffix="per year"><PercentField value={cola} onChange={setCola} placeholder="3.5" /></FieldRow>
 
@@ -260,18 +266,20 @@ function WorkLongerSection() {
   const [cola, setCola] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ retirementAge1, monthlyIncome1, retirementAge2, monthlyIncome2 })) { setResult(null); return; }
     setResult(calculateWorkLonger({
-      retirementAge1: retirementAge1 || 60,
-      monthlyIncome1: monthlyIncome1 || 2500,
-      retirementAge2: retirementAge2 || 65,
-      monthlyIncome2: monthlyIncome2 || 3800,
-      investmentReturn: investmentReturn || 5,
-      cola: cola || 3.5,
+      retirementAge1: retirementAge1,
+      monthlyIncome1: monthlyIncome1,
+      retirementAge2: retirementAge2,
+      monthlyIncome2: monthlyIncome2,
+      investmentReturn: investmentReturn,
+      cola: cola,
     }));
   }
   function clear() {
-    setRetirementAge1(""); setMonthlyIncome1(""); setRetirementAge2(""); setMonthlyIncome2("");
+    req.clear(); setRetirementAge1(""); setMonthlyIncome1(""); setRetirementAge2(""); setMonthlyIncome2("");
     setInvestmentReturn(""); setCola(""); setResult(null);
   }
 
@@ -279,12 +287,12 @@ function WorkLongerSection() {
     <div style={cardRow}>
       <div className="card" style={inputCard}>
         <SectionHeader>Pension option 1</SectionHeader>
-        <FieldRow label="Retirement age"><PlainField value={retirementAge1} onChange={setRetirementAge1} placeholder="60" /></FieldRow>
-        <FieldRow label="Monthly pension income" suffix="per month"><DollarField value={monthlyIncome1} onChange={setMonthlyIncome1} placeholder="2500" /></FieldRow>
+        <FieldRow label="Retirement age"><Req name="retirementAge1" flagged={req.flagged}><PlainField value={retirementAge1} onChange={setRetirementAge1} placeholder="60" /></Req></FieldRow>
+        <FieldRow label="Monthly pension income" suffix="per month"><Req name="monthlyIncome1" flagged={req.flagged}><DollarField value={monthlyIncome1} onChange={setMonthlyIncome1} placeholder="2500" /></Req></FieldRow>
 
         <SectionHeader>Pension option 2 (work longer)</SectionHeader>
-        <FieldRow label="Retirement age"><PlainField value={retirementAge2} onChange={setRetirementAge2} placeholder="65" /></FieldRow>
-        <FieldRow label="Monthly pension income" suffix="per month"><DollarField value={monthlyIncome2} onChange={setMonthlyIncome2} placeholder="3800" /></FieldRow>
+        <FieldRow label="Retirement age"><Req name="retirementAge2" flagged={req.flagged}><PlainField value={retirementAge2} onChange={setRetirementAge2} placeholder="65" /></Req></FieldRow>
+        <FieldRow label="Monthly pension income" suffix="per month"><Req name="monthlyIncome2" flagged={req.flagged}><DollarField value={monthlyIncome2} onChange={setMonthlyIncome2} placeholder="3800" /></Req></FieldRow>
 
         <SectionHeader>Other information</SectionHeader>
         <FieldRow label="Your investment return" suffix="per year"><PercentField value={investmentReturn} onChange={setInvestmentReturn} placeholder="5" /></FieldRow>

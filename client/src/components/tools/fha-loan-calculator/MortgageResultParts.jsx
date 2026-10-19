@@ -5,6 +5,7 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import { MonthYearField, ValueUnitField } from "../mortgage-calculator/MortgageFormControls";
 import AmortizationLineChart from "../amortization-calculator/AmortizationLineChart";
 import { wholeMoney } from "../../../utils/fhaLoanCalculatorEngine";
+import { Req } from "../calculator-ui/Required";
 
 const td = { padding: "5px 10px", fontSize: 13.5, color: "var(--text-primary)", border: "1px solid var(--border)", lineHeight: 1.4, whiteSpace: "nowrap" };
 const labelTd = { ...td, textAlign: "left", fontWeight: 400, whiteSpace: "normal", overflowWrap: "anywhere" };
@@ -62,15 +63,15 @@ function ExtraRow({ label, word, amount, onAmount, month, year, onMonth, onYear 
 }
 
 /** Property taxes, insurance, HOA, other costs and the start date. */
-export function CostFields({ v, set, taxUnit, taxPlaceholder, onTaxUnit, dates, setDate, defaults }) {
+export function CostFields({ v, set, taxUnit, taxPlaceholder, onTaxUnit, dates, setDate, defaults, flagged }) {
   return (
     <>
       <Row label="Property Taxes">
-        <ValueUnitField value={v.propertyTaxes} unit={taxUnit} placeholder={taxPlaceholder} onValueChange={set("propertyTaxes")} onUnitChange={onTaxUnit} />
+        <Req name="propertyTaxes" flagged={flagged}><ValueUnitField value={v.propertyTaxes} unit={taxUnit} placeholder={taxPlaceholder} onValueChange={set("propertyTaxes")} onUnitChange={onTaxUnit} /></Req>
       </Row>
-      <Row label="Home Insurance" suffix="/year"><DollarField value={v.homeInsurance} onChange={set("homeInsurance")} placeholder={defaults.homeInsurance} /></Row>
-      <Row label="HOA Fee" suffix="/year"><DollarField value={v.hoa} onChange={set("hoa")} placeholder={defaults.hoa} /></Row>
-      <Row label="Other Costs" suffix="/year"><DollarField value={v.otherCosts} onChange={set("otherCosts")} placeholder={defaults.otherCosts} /></Row>
+      <Row label="Home Insurance" suffix="/year"><Req name="homeInsurance" flagged={flagged}><DollarField value={v.homeInsurance} onChange={set("homeInsurance")} placeholder={defaults.homeInsurance} /></Req></Row>
+      <Row label="HOA Fee" suffix="/year"><Req name="hoa" flagged={flagged}><DollarField value={v.hoa} onChange={set("hoa")} placeholder={defaults.hoa} /></Req></Row>
+      <Row label="Other Costs" suffix="/year"><Req name="otherCosts" flagged={flagged}><DollarField value={v.otherCosts} onChange={set("otherCosts")} placeholder={defaults.otherCosts} /></Req></Row>
       <Row label="Start Date">
         <MonthYearField month={dates.startMonth} year={dates.startYear} onMonthChange={setDate("startMonth")} onYearChange={setDate("startYear")} />
       </Row>

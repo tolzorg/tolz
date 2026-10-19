@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FieldLabel, TextField } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField, ResultTable, ValidationWarning } from "./RetirementFormControls";
 import { calculateWithdrawal, validateRetirementAges, formatCurrency } from "../../../utils/retirementCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   currentAge: "35", retireAge: "67", lifeExpectancy: "85", currentSavings: "30000",
@@ -33,11 +35,13 @@ export default function WithdrawalCard() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ currentAge, retireAge, lifeExpectancy, currentSavings: [currentSavings, annualContribution, monthlyContribution], avgReturn })) { setResult(null); setError(null); return; }
     const inputs = {
-      currentAge: currentAge || DEFAULTS.currentAge,
-      retireAge: retireAge || DEFAULTS.retireAge,
-      lifeExpectancy: lifeExpectancy || DEFAULTS.lifeExpectancy,
+      currentAge: currentAge,
+      retireAge: retireAge,
+      lifeExpectancy: lifeExpectancy,
     };
     const validationError = validateRetirementAges(inputs);
     if (validationError) {
@@ -48,15 +52,16 @@ export default function WithdrawalCard() {
     setError(null);
     setResult(calculateWithdrawal({
       ...inputs,
-      currentSavings: currentSavings || DEFAULTS.currentSavings,
-      annualContribution: annualContribution || DEFAULTS.annualContribution,
-      monthlyContribution: monthlyContribution || DEFAULTS.monthlyContribution,
-      avgReturnPercent: avgReturn || DEFAULTS.avgReturn,
-      inflationPercent: inflation || DEFAULTS.inflation,
+      currentSavings: currentSavings,
+      annualContribution: annualContribution,
+      monthlyContribution: monthlyContribution,
+      avgReturnPercent: avgReturn,
+      inflationPercent: inflation,
     }));
   }
 
   function clear() {
+    req.clear();
     setCurrentAge(""); setRetireAge(""); setLifeExpectancy(""); setCurrentSavings("");
     setAnnualContribution(""); setMonthlyContribution(""); setAvgReturn(""); setInflation("");
     setResult(null); setError(null);
@@ -80,13 +85,13 @@ export default function WithdrawalCard() {
 
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
-          <Field label="Your age now" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} />
-          <Field label="Your planned retirement age" value={retireAge} onChange={setRetireAge} placeholder={DEFAULTS.retireAge} />
-          <Field label="Your life expectancy" value={lifeExpectancy} onChange={setLifeExpectancy} placeholder={DEFAULTS.lifeExpectancy} />
-          <DollarField label="Your retirement savings today" value={currentSavings} onChange={setCurrentSavings} placeholder={DEFAULTS.currentSavings} />
-          <DollarField label="Annual contribution" value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} />
+          <Req name="currentAge" flagged={req.flagged}><Field label="Your age now" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req>
+          <Req name="retireAge" flagged={req.flagged}><Field label="Your planned retirement age" value={retireAge} onChange={setRetireAge} placeholder={DEFAULTS.retireAge} /></Req>
+          <Req name="lifeExpectancy" flagged={req.flagged}><Field label="Your life expectancy" value={lifeExpectancy} onChange={setLifeExpectancy} placeholder={DEFAULTS.lifeExpectancy} /></Req>
+          <Req name="currentSavings" flagged={req.flagged}><DollarField label="Your retirement savings today" value={currentSavings} onChange={setCurrentSavings} placeholder={DEFAULTS.currentSavings} /></Req>
+          <Req name="annualContribution" flagged={req.flagged}><DollarField label="Annual contribution" value={annualContribution} onChange={setAnnualContribution} placeholder={DEFAULTS.annualContribution} /></Req>
           <DollarField label="Monthly contribution" value={monthlyContribution} onChange={setMonthlyContribution} placeholder={DEFAULTS.monthlyContribution} />
-          <PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} />
+          <Req name="avgReturn" flagged={req.flagged}><PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} /></Req>
           <PercentField label="Inflation rate (annual)" value={inflation} onChange={setInflation} placeholder={DEFAULTS.inflation} />
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>

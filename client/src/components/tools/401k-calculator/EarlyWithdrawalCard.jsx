@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { DollarField, PercentField, YesNoField, ResultTable } from "./Four01kFormControls";
 import { calculateEarlyWithdrawal, formatCurrency } from "../../../utils/four01kCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = { withdrawalAmount: "10000", federalTaxPercent: "25", stateTaxPercent: "5", localTaxPercent: "0" };
 
@@ -15,17 +17,20 @@ export default function EarlyWithdrawalCard() {
   const [hasOtherExemption, setHasOtherExemption] = useState(false);
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ withdrawalAmount })) { setResult(null); return; }
     setResult(calculateEarlyWithdrawal({
-      withdrawalAmount: withdrawalAmount || DEFAULTS.withdrawalAmount,
-      federalTaxPercent: federalTaxPercent || DEFAULTS.federalTaxPercent,
-      stateTaxPercent: stateTaxPercent || DEFAULTS.stateTaxPercent,
-      localTaxPercent: localTaxPercent || DEFAULTS.localTaxPercent,
+      withdrawalAmount: withdrawalAmount,
+      federalTaxPercent: federalTaxPercent,
+      stateTaxPercent: stateTaxPercent,
+      localTaxPercent: localTaxPercent,
       isEmployed, is55OrOlderWhenLeft, hasQualifyingDisability, hasOtherExemption,
     }));
   }
 
   function clear() {
+    req.clear();
     setWithdrawalAmount(""); setFederalTaxPercent(""); setStateTaxPercent(""); setLocalTaxPercent("");
     setIsEmployed(true); setIs55OrOlderWhenLeft(false); setHasQualifyingDisability(false); setHasOtherExemption(false);
     setResult(null);
@@ -45,7 +50,7 @@ export default function EarlyWithdrawalCard() {
 
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 340px", minWidth: 300 }}>
-          <DollarField label="Early withdrawal amount" value={withdrawalAmount} onChange={setWithdrawalAmount} placeholder={DEFAULTS.withdrawalAmount} />
+          <Req name="withdrawalAmount" flagged={req.flagged}><DollarField label="Early withdrawal amount" value={withdrawalAmount} onChange={setWithdrawalAmount} placeholder={DEFAULTS.withdrawalAmount} /></Req>
           <PercentField label="Federal income tax rate" value={federalTaxPercent} onChange={setFederalTaxPercent} placeholder={DEFAULTS.federalTaxPercent} />
           <PercentField label="State income tax rate" value={stateTaxPercent} onChange={setStateTaxPercent} placeholder={DEFAULTS.stateTaxPercent} />
           <PercentField label="Local/city income tax rate" value={localTaxPercent} onChange={setLocalTaxPercent} placeholder={DEFAULTS.localTaxPercent} />

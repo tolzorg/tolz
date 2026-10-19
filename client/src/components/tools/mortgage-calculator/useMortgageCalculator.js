@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
 import {
   resolveDownPayment, resolveAnnualCost, buildAmortizationSchedule, computeBiweeklyPayoff,
 } from "../../../utils/mortgageCalculatorEngine";
@@ -8,10 +9,9 @@ const DEFAULT_START_MONTH = now.getMonth() + 1;
 const DEFAULT_START_YEAR = now.getFullYear();
 
 // Demo numbers shown as placeholder hint text in their fields, not
-// pre-filled as actual values — the field starts empty, and calculate()
-// falls back to these only if the user leaves it blank. Keeps the
-// calculator immediately usable (click Calculate with nothing typed and
-// still get a sensible result) without the inputs looking pre-answered.
+// pre-filled as actual values — the field starts empty and an empty field is
+// never replaced by its example: Home Price, Loan Term and Interest Rate are
+// flagged "Please enter a value" when empty; the other boxes count as 0.
 export const MORTGAGE_PLACEHOLDERS = {
   homePrice: "400000",
   downPaymentValue: "20",
@@ -121,21 +121,23 @@ export function useMortgageCalculator() {
     return target - start;
   }, [inputs.startMonth, inputs.startYear]);
 
+  const req = useRequiredFields();
+  const { require: requireFields, clear: clearRequired } = req;
   const calculate = useCallback(() => {
-    // Fields with a placeholder (see MORTGAGE_PLACEHOLDERS) start blank —
-    // "" falls back to the DEFAULTS demo number here; anything the user
-    // actually typed (including "0") is used as-is.
-    const homePrice = Math.max(0, Number(inputs.homePrice || DEFAULTS.homePrice) || 0);
-    const { dollars: downPaymentDollars } = resolveDownPayment(homePrice, inputs.downPaymentValue || DEFAULTS.downPaymentValue, inputs.downPaymentUnit);
+    // Fields with a placeholder (see MORTGAGE_PLACEHOLDERS) start blank; the
+    // example is never used. Anything the user typed (including "0") is used as-is.
+    if (!requireFields({ homePrice: inputs.homePrice, loanTermYears: inputs.loanTermYears, interestRate: inputs.interestRate })) { setResult(null); return; }
+    const homePrice = Math.max(0, Number(inputs.homePrice) || 0);
+    const { dollars: downPaymentDollars } = resolveDownPayment(homePrice, inputs.downPaymentValue, inputs.downPaymentUnit);
     const loanAmount = Math.max(0, homePrice - downPaymentDollars);
 
     const costs = inputs.includeTaxesAndCosts
       ? {
-          propertyTaxAnnual: resolveAnnualCost(inputs.propertyTaxValue || DEFAULTS.propertyTaxValue, inputs.propertyTaxUnit, homePrice),
-          homeInsuranceAnnual: resolveAnnualCost(inputs.homeInsuranceValue || DEFAULTS.homeInsuranceValue, inputs.homeInsuranceUnit, homePrice),
-          pmiAnnual: resolveAnnualCost(inputs.pmiValue || DEFAULTS.pmiValue, inputs.pmiUnit, loanAmount),
-          hoaAnnual: resolveAnnualCost(inputs.hoaValue || DEFAULTS.hoaValue, inputs.hoaUnit, homePrice),
-          otherCostsAnnual: resolveAnnualCost(inputs.otherCostsValue || DEFAULTS.otherCostsValue, inputs.otherCostsUnit, homePrice),
+          propertyTaxAnnual: resolveAnnualCost(inputs.propertyTaxValue, inputs.propertyTaxUnit, homePrice),
+          homeInsuranceAnnual: resolveAnnualCost(inputs.homeInsuranceValue, inputs.homeInsuranceUnit, homePrice),
+          pmiAnnual: resolveAnnualCost(inputs.pmiValue, inputs.pmiUnit, loanAmount),
+          hoaAnnual: resolveAnnualCost(inputs.hoaValue, inputs.hoaUnit, homePrice),
+          otherCostsAnnual: resolveAnnualCost(inputs.otherCostsValue, inputs.otherCostsUnit, homePrice),
           propertyTaxIncreasePercent: Number(increaseRates.propertyTax) || 0,
           homeInsuranceIncreasePercent: Number(increaseRates.homeInsurance) || 0,
           hoaIncreasePercent: Number(increaseRates.hoa) || 0,
@@ -162,7 +164,7 @@ export function useMortgageCalculator() {
     const hasExtraPayments = Boolean(extraMonthlyParam || extraYearlyParam || oneTimePayments.length);
 
     const startDate = { month: inputs.startMonth, year: inputs.startYear };
-    const baseParams = { loanAmount, homePrice, annualRatePercent: Number(inputs.interestRate || DEFAULTS.interestRate) || 0, termYears: Number(inputs.loanTermYears || DEFAULTS.loanTermYears) || 0, startDate };
+    const baseParams = { loanAmount, homePrice, annualRatePercent: Number(inputs.interestRate) || 0, termYears: Number(inputs.loanTermYears) || 0, startDate };
 
     const schedule = buildAmortizationSchedule({
       ...baseParams, ...costs,
@@ -181,9 +183,10 @@ export function useMortgageCalculator() {
       homePrice, downPaymentDollars, loanAmount, schedule, baselineSchedule, biweekly,
       includeTaxesAndCosts: inputs.includeTaxesAndCosts, hasExtraPayments,
     });
-  }, [inputs, increaseRates, extraMonthly, extraYearly, extraOneTime, showAdditionalOneTime, additionalOneTimePayments, showBiweekly, toMonthIndex]);
+  }, [inputs, increaseRates, extraMonthly, extraYearly, extraOneTime, showAdditionalOneTime, additionalOneTimePayments, showBiweekly, toMonthIndex, requireFields]);
 
   const clear = useCallback(() => {
+    clearRequired();
     setInputs(INITIAL_INPUTS);
     setShowMoreOptions(false);
     setIncreaseRates({ propertyTax: "", homeInsurance: "", hoa: "", otherCosts: "" });
@@ -194,7 +197,7 @@ export function useMortgageCalculator() {
     setAdditionalOneTimePayments(buildAdditionalOneTimeRows(DEFAULT_START_MONTH, DEFAULT_START_YEAR));
     setShowBiweekly(false);
     setResult(null);
-  }, []);
+  }, [clearRequired]);
 
   return {
     inputs, setField,
@@ -206,6 +209,6 @@ export function useMortgageCalculator() {
     showAdditionalOneTime, toggleAdditionalOneTime, additionalOneTimePayments, updateOneTimePayment,
     showBiweekly, setShowBiweekly,
     result, amortizationView, setAmortizationView,
-    calculate, clear,
+    calculate, clear, flagged: req.flagged,
   };
 }

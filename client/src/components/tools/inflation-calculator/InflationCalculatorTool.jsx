@@ -9,6 +9,8 @@ import {
   formatCurrency, formatPercent,
 } from "../../../utils/inflationCalculatorEngine";
 import { fetchRecentCpiWindow } from "../../../utils/cpiLiveUpdate";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = { amount: "100", rate: "3", years: "10" };
 
@@ -124,8 +126,10 @@ function CpiSection() {
     setToMonth(Number(v));
   }
 
+  const req = useRequiredFields();
   function calculate() {
-    const amt = Number(amount) || Number(DEFAULTS.amount);
+    if (!req.require({ amount })) { setResult(null); return; }
+    const amt = Number(amount) || 0;
     const r = calculateCpiInflation({ amount: amt, fromYear, fromMonth, toYear, toMonth });
     setResult(r);
   }
@@ -144,7 +148,7 @@ function CpiSection() {
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
           <div className="card" style={{ padding: 18 }}>
             <FieldRow label="Amount">
-              <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
+              <Req name="amount" flagged={req.flagged}><TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} /></Req>
             </FieldRow>
 
             <FieldRow label="in" fieldWidth={220}>
@@ -216,14 +220,16 @@ function ForwardFlatRateSection() {
   const [years, setYears] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
-    const amt = Number(amount) || Number(DEFAULTS.amount);
-    const r = Number(rate) || Number(DEFAULTS.rate);
-    const yrs = Number(years) || Number(DEFAULTS.years);
+    if (!req.require({ amount, rate, years })) { setResult(null); return; }
+    const amt = Number(amount) || 0;
+    const r = Number(rate) || 0;
+    const yrs = Number(years) || 0;
     setResult({ amount: amt, rate: r, years: yrs, ...calculateForwardFlatRate({ amount: amt, ratePercent: r, years: yrs }) });
   }
   function clear() {
-    setAmount(""); setRate(""); setYears(""); setResult(null);
+    req.clear(); setAmount(""); setRate(""); setYears(""); setResult(null);
   }
 
   return (
@@ -236,13 +242,13 @@ function ForwardFlatRateSection() {
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
           <div className="card" style={{ padding: 18 }}>
             <FieldRow label="Amount">
-              <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
+              <Req name="amount" flagged={req.flagged}><TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} /></Req>
             </FieldRow>
             <FieldRow label="Inflation rate" suffix="%">
-              <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+              <Req name="rate" flagged={req.flagged}><TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req>
             </FieldRow>
             <FieldRow label="After" suffix="years">
-              <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+              <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
             </FieldRow>
             <CalcButtons onCalculate={calculate} onClear={clear} />
           </div>
@@ -272,14 +278,16 @@ function BackwardFlatRateSection() {
   const [years, setYears] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
-    const amt = Number(amount) || Number(DEFAULTS.amount);
-    const r = Number(rate) || Number(DEFAULTS.rate);
-    const yrs = Number(years) || Number(DEFAULTS.years);
+    if (!req.require({ amount, rate, years })) { setResult(null); return; }
+    const amt = Number(amount) || 0;
+    const r = Number(rate) || 0;
+    const yrs = Number(years) || 0;
     setResult({ amount: amt, rate: r, years: yrs, ...calculateBackwardFlatRate({ amount: amt, ratePercent: r, years: yrs }) });
   }
   function clear() {
-    setAmount(""); setRate(""); setYears(""); setResult(null);
+    req.clear(); setAmount(""); setRate(""); setYears(""); setResult(null);
   }
 
   return (
@@ -292,13 +300,13 @@ function BackwardFlatRateSection() {
         <div style={{ flex: "1 1 380px", minWidth: 320 }}>
           <div className="card" style={{ padding: 18 }}>
             <FieldRow label="Amount">
-              <TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} />
+              <Req name="amount" flagged={req.flagged}><TextField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} /></Req>
             </FieldRow>
             <FieldRow label="Inflation rate" suffix="%">
-              <TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+              <Req name="rate" flagged={req.flagged}><TextField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req>
             </FieldRow>
             <FieldRow label="Years ago" suffix="years">
-              <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+              <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
             </FieldRow>
             <CalcButtons onCalculate={calculate} onClear={clear} />
           </div>

@@ -4,6 +4,8 @@ import { DollarField, PercentField } from "../mortgage-payoff-calculator/Mortgag
 import PensionLineChart from "../pension-calculator/PensionLineChart";
 import { ErrorPanel, Row, ButtonRow } from "../fha-loan-calculator/MortgageResultParts";
 import { calculateRentVsBuy, RVB_DEFAULTS, FILING_STATUSES } from "../../../utils/rentVsBuyCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = RVB_DEFAULTS;
 // [key, label, kind ("dollar" | "percent" | "years"), suffix]
@@ -45,11 +47,12 @@ export default function RentVsBuyCalculatorTool() {
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
 
+  const req = useRequiredFields();
+
   const calculate = () => {
-    const values = KEYS.every((k) => v[k] === "") ? D : v;
-    setResult(calculateRentVsBuy({ ...values, filingStatus }));
+    setResult(req.evaluate(pickFields(v, KEYS), (fill) => calculateRentVsBuy({ ...withFill(v, D, fill), filingStatus })));
   };
-  const clear = () => { setV(blank()); setFilingStatus("MarriedJoint"); setResult(null); };
+  const clear = () => { req.clear(); setV(blank()); setFilingStatus("MarriedJoint"); setResult(null); };
   const ok = result && !result.errors;
 
   return (
@@ -60,7 +63,7 @@ export default function RentVsBuyCalculatorTool() {
             <legend style={{ ...groupTitle, width: "100%", padding: "0 0 6px" }}>{title}</legend>
             {fields.map(([key, label, kind, suffix]) => (
               <Row key={key} label={label} suffix={kind === "years" ? "years" : suffix}>
-                <Field kind={kind} value={v[key]} onChange={set(key)} placeholder={D[key]} />
+                <Req name={key} flagged={req.flagged}><Field kind={kind} value={v[key]} onChange={set(key)} placeholder={D[key]} /></Req>
               </Row>
             ))}
             {title === "Your Information" && (

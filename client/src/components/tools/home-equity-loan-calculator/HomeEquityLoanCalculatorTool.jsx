@@ -8,6 +8,8 @@ import BorrowLimitCalculator from "./BorrowLimitCalculator";
 import {
   calculateHomeEquityLoan, calculateBorrowLimit, scheduleMoney, LOAN_DEFAULTS, BORROW_DEFAULTS, LTV_CHOICES,
 } from "../../../utils/homeEquityLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const L = LOAN_DEFAULTS;
 const HELP = {
@@ -43,13 +45,15 @@ function PaymentCalculator() {
     setV((p) => ({ ...p, closingCosts: convertClosing(p.closingCosts, p.amount || L.amount, unit) }));
     setClosingUnit(unit);
   };
+  const req = useRequiredFields();
   const calculate = () => {
     const keys = ["amount", "rate", "years", ...(includeClosing ? ["closingCosts"] : [])];
-    const values = keys.every((k) => v[k] === "") ? { ...L, closingCosts: CLOSING_EXAMPLE[closingUnit] } : v;
-    setResult(calculateHomeEquityLoan({ ...values, includeClosing, closingUnit, closingPaid }));
+    const examples = { ...L, closingCosts: CLOSING_EXAMPLE[closingUnit] };
+    setResult(req.evaluate(pickFields(v, keys), (fill) => calculateHomeEquityLoan({ ...withFill(v, examples, fill), includeClosing, closingUnit, closingPaid })));
     setView("annual");
   };
   const clear = () => {
+    req.clear();
     setV({ amount: "", rate: "", years: "", closingCosts: "" });
     setIncludeClosing(false); setClosingUnit("amount"); setClosingPaid("deduct"); setResult(null);
   };
@@ -61,18 +65,18 @@ function PaymentCalculator() {
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-          <Row label="Loan amount"><DollarField value={v.amount} onChange={set("amount")} placeholder={L.amount} /></Row>
-          <Row label="Interest rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={L.rate} /></Row>
-          <Row label="Loan term" suffix="years"><TextField value={v.years} onChange={set("years")} placeholder={L.years} /></Row>
+          <Row label="Loan amount"><Req name="amount" flagged={req.flagged}><DollarField value={v.amount} onChange={set("amount")} placeholder={L.amount} /></Req></Row>
+          <Row label="Interest rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={L.rate} /></Req></Row>
+          <Row label="Loan term" suffix="years"><Req name="years" flagged={req.flagged}><TextField value={v.years} onChange={set("years")} placeholder={L.years} /></Req></Row>
           <Checkbox checked={includeClosing} onChange={setIncludeClosing}>{includeClosing ? "Include closing costs below" : "Include closing costs"}</Checkbox>
           {includeClosing && (
             <div style={{ marginBottom: 10 }}>
               <div style={{ marginBottom: 6 }}><FieldLabel hint={HELP.closing}>Closing costs</FieldLabel></div>
               <Row label="Amount">
-                <ValueUnitField
+                <Req name="closingCosts" flagged={req.flagged}><ValueUnitField
                   value={v.closingCosts} unit={closingUnit === "percentage" ? "percent" : "dollar"} placeholder={CLOSING_EXAMPLE[closingUnit]}
                   onValueChange={set("closingCosts")} onUnitChange={(u) => changeUnit(u === "percent" ? "percentage" : "amount")}
-                />
+                /></Req>
               </Row>
               <fieldset style={{ border: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", gap: "4px 16px", alignItems: "center" }}>
                 <legend style={{ fontSize: 12, fontWeight: 600, color: "var(--text-secondary)", float: "left", marginRight: 8 }}>to be</legend>

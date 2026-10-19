@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { NumberField, DollarField, PercentField } from "./Four01kFormControls";
 import { calculateMaximizeMatch, formatCurrency, formatPercent } from "../../../utils/four01kCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   currentAge: "30", currentSalary: "75000",
@@ -17,18 +19,21 @@ export default function MaximizeMatchCard() {
   const [employerMatch2LimitPercent, setEmployerMatch2LimitPercent] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ currentAge, currentSalary, employerMatch1Percent, employerMatch1LimitPercent })) { setResult(null); return; }
     setResult(calculateMaximizeMatch({
-      currentAge: currentAge || DEFAULTS.currentAge,
-      currentSalary: currentSalary || DEFAULTS.currentSalary,
-      employerMatch1Percent: employerMatch1Percent || DEFAULTS.employerMatch1Percent,
-      employerMatch1LimitPercent: employerMatch1LimitPercent || DEFAULTS.employerMatch1LimitPercent,
-      employerMatch2Percent: employerMatch2Percent || DEFAULTS.employerMatch2Percent,
-      employerMatch2LimitPercent: employerMatch2LimitPercent || DEFAULTS.employerMatch2LimitPercent,
+      currentAge: currentAge,
+      currentSalary: currentSalary,
+      employerMatch1Percent: employerMatch1Percent,
+      employerMatch1LimitPercent: employerMatch1LimitPercent,
+      employerMatch2Percent: employerMatch2Percent,
+      employerMatch2LimitPercent: employerMatch2LimitPercent,
     }));
   }
 
   function clear() {
+    req.clear();
     setCurrentAge(""); setCurrentSalary(""); setEmployerMatch1Percent(""); setEmployerMatch1LimitPercent("");
     setEmployerMatch2Percent(""); setEmployerMatch2LimitPercent("");
     setResult(null);
@@ -50,10 +55,10 @@ export default function MaximizeMatchCard() {
 
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
-          <NumberField label="Current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} />
-          <DollarField label="Current annual salary" value={currentSalary} onChange={setCurrentSalary} placeholder={DEFAULTS.currentSalary} />
-          <PercentField label="Employer match 1" value={employerMatch1Percent} onChange={setEmployerMatch1Percent} placeholder={DEFAULTS.employerMatch1Percent} />
-          <PercentField label="Employer match 1 limit" value={employerMatch1LimitPercent} onChange={setEmployerMatch1LimitPercent} placeholder={DEFAULTS.employerMatch1LimitPercent} />
+          <Req name="currentAge" flagged={req.flagged}><NumberField label="Current age" value={currentAge} onChange={setCurrentAge} placeholder={DEFAULTS.currentAge} /></Req>
+          <Req name="currentSalary" flagged={req.flagged}><DollarField label="Current annual salary" value={currentSalary} onChange={setCurrentSalary} placeholder={DEFAULTS.currentSalary} /></Req>
+          <Req name="employerMatch1Percent" flagged={req.flagged}><PercentField label="Employer match 1" value={employerMatch1Percent} onChange={setEmployerMatch1Percent} placeholder={DEFAULTS.employerMatch1Percent} /></Req>
+          <Req name="employerMatch1LimitPercent" flagged={req.flagged}><PercentField label="Employer match 1 limit" value={employerMatch1LimitPercent} onChange={setEmployerMatch1LimitPercent} placeholder={DEFAULTS.employerMatch1LimitPercent} /></Req>
           <PercentField label="Employer match 2" hint="An optional second match tier, applied to contributions between match 1's limit and match 2's limit." value={employerMatch2Percent} onChange={setEmployerMatch2Percent} placeholder={DEFAULTS.employerMatch2Percent} />
           <PercentField label="Employer match 2 limit" value={employerMatch2LimitPercent} onChange={setEmployerMatch2LimitPercent} placeholder={DEFAULTS.employerMatch2LimitPercent} />
 

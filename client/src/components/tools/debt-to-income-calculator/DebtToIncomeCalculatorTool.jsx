@@ -6,6 +6,8 @@ import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import {
   calculateDebtToIncome, INCOME_FIELDS, DEBT_FIELDS, DTI_DEFAULTS, MORTGAGE_RATE,
 } from "../../../utils/debtToIncomeCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const ALL_FIELDS = [...INCOME_FIELDS, ...DEBT_FIELDS];
 const EMPTY = Object.fromEntries(ALL_FIELDS.map((f) => [f.key, ""]));
@@ -77,19 +79,20 @@ export default function DebtToIncomeCalculatorTool() {
   const [units, setUnits] = useState(DEFAULT_UNITS);
   const [result, setResult] = useState(null);
 
-  // The example applies only while every box is empty; otherwise a blank
-  // box counts as $0, exactly as on the reference.
-  const calculate = () => setResult(calculateDebtToIncome({
-    values: ALL_FIELDS.every((f) => values[f.key] === "") ? DTI_DEFAULTS : values,
+  // A blank box counts as $0, exactly as on the reference; some income has to be
+  // entered (flagged on the first income box). Placeholders are examples only.
+  const req = useRequiredFields();
+  const calculate = () => setResult(!req.require({ [INCOME_FIELDS[0].key]: INCOME_FIELDS.map((f) => values[f.key]) }) ? null : calculateDebtToIncome({
+    values,
     units,
   }));
-  const clear = () => { setValues(EMPTY); setUnits(DEFAULT_UNITS); setResult(null); };
+  const clear = () => { req.clear(); setValues(EMPTY); setUnits(DEFAULT_UNITS); setResult(null); };
   const row = (f) => (
-    <AmountRow
+    <Req key={f.key} name={f.key} flagged={req.flagged}><AmountRow
       key={f.key} field={f} value={values[f.key]} unit={units[f.key]}
       onValue={(v) => setValues((p) => ({ ...p, [f.key]: v }))}
       onUnit={(u) => setUnits((p) => ({ ...p, [f.key]: u }))}
-    />
+    /></Req>
   );
 
   let body;

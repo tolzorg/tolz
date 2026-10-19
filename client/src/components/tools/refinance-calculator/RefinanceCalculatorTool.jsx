@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FieldLabel, TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import { DollarField, PercentField } from "../mortgage-payoff-calculator/MortgagePayoffFormControls";
 import { calculateRefinance, REFINANCE_DEFAULTS } from "../../../utils/refinanceCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = REFINANCE_DEFAULTS;
 const BALANCE_KEYS = ["balance", "payment"];
@@ -73,12 +75,12 @@ export default function RefinanceCalculatorTool() {
 
   // The example applies only while every visible box is empty; otherwise a
   // blank box means what it means on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
     const visible = [...(mode === "balance" ? BALANCE_KEYS : ORIGINAL_KEYS), ...SHARED_KEYS];
-    const values = visible.every((k) => v[k] === "") ? D : v;
-    setResult(calculateRefinance({ ...values, knowBalance: mode === "balance" }));
+    setResult(req.evaluate(pickFields(v, visible), (fill) => calculateRefinance({ ...withFill(v, D, fill), knowBalance: mode === "balance" })));
   };
-  const clear = () => { setV(EMPTY); setResult(null); };
+  const clear = () => { req.clear(); setV(EMPTY); setResult(null); };
 
   let body;
   if (!result) {
@@ -130,26 +132,26 @@ export default function RefinanceCalculatorTool() {
         </div>
         {mode === "balance" ? (
           <>
-            <Row label="Remaining balance"><DollarField value={v.balance} onChange={set("balance")} placeholder={D.balance} /></Row>
-            <Row label="Monthly payment"><DollarField value={v.payment} onChange={set("payment")} placeholder={D.payment} /></Row>
+            <Row label="Remaining balance"><Req name="balance" flagged={req.flagged}><DollarField value={v.balance} onChange={set("balance")} placeholder={D.balance} /></Req></Row>
+            <Row label="Monthly payment"><Req name="payment" flagged={req.flagged}><DollarField value={v.payment} onChange={set("payment")} placeholder={D.payment} /></Req></Row>
           </>
         ) : (
           <>
-            <Row label="Original loan amount"><DollarField value={v.originalAmount} onChange={set("originalAmount")} placeholder={D.originalAmount} /></Row>
-            <Row label="Loan term"><UnitField value={v.originalTerm} onChange={set("originalTerm")} placeholder={D.originalTerm} unit="years" /></Row>
+            <Row label="Original loan amount"><Req name="originalAmount" flagged={req.flagged}><DollarField value={v.originalAmount} onChange={set("originalAmount")} placeholder={D.originalAmount} /></Req></Row>
+            <Row label="Loan term"><Req name="originalTerm" flagged={req.flagged}><UnitField value={v.originalTerm} onChange={set("originalTerm")} placeholder={D.originalTerm} unit="years" /></Req></Row>
             <Row label="Time remaining" alignTop>
-              <UnitField value={v.remainingYears} onChange={set("remainingYears")} placeholder={D.remainingYears} unit="years" />
-              <UnitField value={v.remainingMonths} onChange={set("remainingMonths")} placeholder={D.remainingMonths} unit="months" />
+              <Req name="remainingYears" flagged={req.flagged}><UnitField value={v.remainingYears} onChange={set("remainingYears")} placeholder={D.remainingYears} unit="years" /></Req>
+              <Req name="remainingMonths" flagged={req.flagged}><UnitField value={v.remainingMonths} onChange={set("remainingMonths")} placeholder={D.remainingMonths} unit="months" /></Req>
             </Row>
           </>
         )}
-        <Row label="Interest rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Row>
+        <Row label="Interest rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Req></Row>
 
         <div style={{ ...sectionTitle, marginTop: 16 }}>New loan</div>
-        <Row label="New loan term"><UnitField value={v.newTerm} onChange={set("newTerm")} placeholder={D.newTerm} unit="years" /></Row>
-        <Row label="Interest rate"><PercentField value={v.newRate} onChange={set("newRate")} placeholder={D.newRate} /></Row>
-        <Row label="Points" help={HELP.points}><TextField value={v.points} onChange={set("points")} placeholder={D.points} /></Row>
-        <Row label="Costs and fees" help={HELP.costs}><DollarField value={v.costs} onChange={set("costs")} placeholder={D.costs} /></Row>
+        <Row label="New loan term"><Req name="newTerm" flagged={req.flagged}><UnitField value={v.newTerm} onChange={set("newTerm")} placeholder={D.newTerm} unit="years" /></Req></Row>
+        <Row label="Interest rate"><Req name="newRate" flagged={req.flagged}><PercentField value={v.newRate} onChange={set("newRate")} placeholder={D.newRate} /></Req></Row>
+        <Row label="Points" help={HELP.points}><Req name="points" flagged={req.flagged}><TextField value={v.points} onChange={set("points")} placeholder={D.points} /></Req></Row>
+        <Row label="Costs and fees" help={HELP.costs}><Req name="costs" flagged={req.flagged}><DollarField value={v.costs} onChange={set("costs")} placeholder={D.costs} /></Req></Row>
         <Row label="Cash out amount" help={HELP.cashOut}><TextField value={v.cashOut} onChange={set("cashOut")} placeholder={`$${D.cashOut}`} /></Row>
 
         <div style={{ display: "flex", gap: 10, marginTop: 12 }}>

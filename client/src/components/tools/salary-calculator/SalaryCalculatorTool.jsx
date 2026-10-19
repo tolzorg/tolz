@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FieldRow, TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import { calculateSalary, formatCurrency, UNIT_OPTIONS } from "../../../utils/salaryCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   amount: "50", unit: "Hourly", hoursPerWeek: "40", daysPerWeek: "5",
@@ -55,18 +57,21 @@ export default function SalaryCalculatorTool() {
   const [vacationDaysPerYear, setVacationDaysPerYear] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ amount, hoursPerWeek, daysPerWeek })) { setResult(null); return; }
     setResult(calculateSalary({
-      amount: amount || DEFAULTS.amount,
+      amount: amount,
       unit,
-      hoursPerWeek: hoursPerWeek || DEFAULTS.hoursPerWeek,
-      daysPerWeek: daysPerWeek || DEFAULTS.daysPerWeek,
-      holidaysPerYear: holidaysPerYear || DEFAULTS.holidaysPerYear,
-      vacationDaysPerYear: vacationDaysPerYear || DEFAULTS.vacationDaysPerYear,
+      hoursPerWeek: hoursPerWeek,
+      daysPerWeek: daysPerWeek,
+      holidaysPerYear: holidaysPerYear,
+      vacationDaysPerYear: vacationDaysPerYear,
     }));
   }
 
   function clear() {
+    req.clear();
     setAmount(""); setUnit(DEFAULTS.unit);
     setHoursPerWeek(""); setDaysPerWeek(""); setHolidaysPerYear(""); setVacationDaysPerYear("");
     setResult(null);
@@ -80,16 +85,16 @@ export default function SalaryCalculatorTool() {
           <div className="card" style={{ padding: 18 }}>
             <FieldRow label="Salary amount" fieldWidth={280}>
               <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, minWidth: 0 }}>
-                <DollarField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} style={{ flex: "1 1 100px", minWidth: 0 }} />
+                <Req name="amount" flagged={req.flagged}><DollarField value={amount} onChange={setAmount} placeholder={DEFAULTS.amount} style={{ flex: "1 1 100px", minWidth: 0 }} /></Req>
                 <span style={{ fontSize: 11.5, color: "var(--text-muted)", flexShrink: 0 }}>per</span>
                 <SelectField value={unit} onChange={setUnit} options={UNIT_OPTIONS} style={{ flex: "1 1 120px", minWidth: 0 }} />
               </div>
             </FieldRow>
             <FieldRow label="Hours per week">
-              <TextField value={hoursPerWeek} onChange={setHoursPerWeek} placeholder={DEFAULTS.hoursPerWeek} />
+              <Req name="hoursPerWeek" flagged={req.flagged}><TextField value={hoursPerWeek} onChange={setHoursPerWeek} placeholder={DEFAULTS.hoursPerWeek} /></Req>
             </FieldRow>
             <FieldRow label="Days per week">
-              <TextField value={daysPerWeek} onChange={setDaysPerWeek} placeholder={DEFAULTS.daysPerWeek} />
+              <Req name="daysPerWeek" flagged={req.flagged}><TextField value={daysPerWeek} onChange={setDaysPerWeek} placeholder={DEFAULTS.daysPerWeek} /></Req>
             </FieldRow>
             <FieldRow label="Holidays per year">
               <TextField value={holidaysPerYear} onChange={setHolidaysPerYear} placeholder={DEFAULTS.holidaysPerYear} />

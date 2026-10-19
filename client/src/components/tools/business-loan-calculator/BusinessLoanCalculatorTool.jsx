@@ -6,6 +6,8 @@ import {
   calculateBusinessLoan, buildBusinessLoanSchedule, formatTableMoney,
   COMPOUND_OPTIONS, PAYBACK_OPTIONS, BUSINESS_LOAN_DEFAULTS,
 } from "../../../utils/businessLoanCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const D = BUSINESS_LOAN_DEFAULTS;
 const TEXT_KEYS = ["loanAmount", "interestRate", "years", "months", "originationFee", "documentationFee", "otherFees"];
@@ -84,12 +86,12 @@ export default function BusinessLoanCalculatorTool() {
 
   // The example is used only while every box is empty; otherwise blanks
   // mean what they mean on the reference (no fee, 0 years/months).
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = TEXT_KEYS.every((k) => v[k] === "") ? D : v;
-    setResult(calculateBusinessLoan({ ...values, compound, payback }));
+    setResult(req.evaluate(pickFields(v, TEXT_KEYS), (fill) => calculateBusinessLoan({ ...withFill(v, D, fill), compound, payback })));
     setShowTable(false);
   };
-  const clear = () => { setV(EMPTY); setResult(null); setShowTable(false); };
+  const clear = () => { req.clear(); setV(EMPTY); setResult(null); setShowTable(false); };
 
   let body;
   if (!result) {
@@ -134,19 +136,19 @@ export default function BusinessLoanCalculatorTool() {
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 460, padding: 18 }}>
-          <FieldRow label="Loan amount"><DollarField value={v.loanAmount} onChange={set("loanAmount")} placeholder={D.loanAmount} /></FieldRow>
-          <FieldRow label="Interest rate"><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></FieldRow>
+          <FieldRow label="Loan amount"><Req name="loanAmount" flagged={req.flagged}><DollarField value={v.loanAmount} onChange={set("loanAmount")} placeholder={D.loanAmount} /></Req></FieldRow>
+          <FieldRow label="Interest rate"><Req name="interestRate" flagged={req.flagged}><PercentField value={v.interestRate} onChange={set("interestRate")} placeholder={D.interestRate} /></Req></FieldRow>
           <FieldRow label="Compound"><SelectField value={compound} onChange={setCompound} options={COMPOUND_OPTIONS} style={{ flex: 1, minWidth: 0 }} /></FieldRow>
           <FieldRow label="Loan term">
             <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1, minWidth: 0 }}>
-              <UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" />
-              <UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" />
+              <Req name="years" flagged={req.flagged}><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Req>
+              <Req name="months" flagged={req.flagged}><UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" /></Req>
             </div>
           </FieldRow>
           <FieldRow label="Pay back"><SelectField value={payback} onChange={setPayback} options={PAYBACK_OPTIONS} style={{ flex: 1, minWidth: 0 }} /></FieldRow>
-          <FieldRow label="Origination fee"><PercentField value={v.originationFee} onChange={set("originationFee")} placeholder={D.originationFee} /></FieldRow>
-          <FieldRow label="Documentation fee"><DollarField value={v.documentationFee} onChange={set("documentationFee")} placeholder={D.documentationFee} /></FieldRow>
-          <FieldRow label="Other fees"><DollarField value={v.otherFees} onChange={set("otherFees")} placeholder={D.otherFees} /></FieldRow>
+          <FieldRow label="Origination fee"><Req name="originationFee" flagged={req.flagged}><PercentField value={v.originationFee} onChange={set("originationFee")} placeholder={D.originationFee} /></Req></FieldRow>
+          <FieldRow label="Documentation fee"><Req name="documentationFee" flagged={req.flagged}><DollarField value={v.documentationFee} onChange={set("documentationFee")} placeholder={D.documentationFee} /></Req></FieldRow>
+          <FieldRow label="Other fees"><Req name="otherFees" flagged={req.flagged}><DollarField value={v.otherFees} onChange={set("otherFees")} placeholder={D.otherFees} /></Req></FieldRow>
           <div style={{ display: "flex", gap: 10, marginTop: 14 }}>
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>
               Calculate

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { TextField, SelectField } from "../loan-calculator/LoanFormControls";
 import {
   calculateDebtConsolidation, validateDebtConsolidationInputs,
-  formatPayoffLength, makeEmptyRows, applyDebtDefaults, DEFAULT_DEBTS, MAX_DEBTS,
+  formatPayoffLength, makeEmptyRows, DEFAULT_DEBTS, MAX_DEBTS,
   DEFAULTS, formatCurrency, formatPercent,
 } from "../../../utils/debtConsolidationCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const VISIBLE_ROWS_DEFAULT = 6;
 const FEE_UNIT_OPTIONS = [{ value: "p", label: "%" }, { value: "d", label: "$" }];
@@ -21,6 +23,14 @@ function formatWithCommas(raw) {
   const [intPart, decPart] = cleaned.split(".");
   const withCommas = (intPart || "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return decPart !== undefined ? `${withCommas}.${decPart}` : withCommas;
+}
+
+// Every debt row with an amount or rate typed in needs its balance, minimum payment and rate; with
+// nothing typed at all, the first row does. Placeholders are examples only.
+function debtRequired(debts) {
+  const touched = debts.map((d, i) => [d, i]).filter(([d]) => d.balance || d.minPayment || d.ratePercent);
+  const rows = touched.length ? touched : [[debts[0], 0]];
+  return Object.fromEntries(rows.flatMap(([d, i]) => ["balance", "minPayment", "ratePercent"].map((k) => [`${k}${i}`, d[k]])));
 }
 
 const cellInputStyle = { width: "100%", padding: "6px 7px", fontSize: 12.5, borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", fontFamily: "var(--font-display)", color: "var(--text-primary)" };
@@ -88,14 +98,16 @@ export default function DebtConsolidationCalculatorTool() {
     setDebts((prev) => prev.map((d, i) => (i === index ? { ...d, [field]: value } : d)));
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ ...debtRequired(debts), loanAmount, interestRate, years: [years, months] })) { setResult(null); setError(null); return; }
     const inputs = {
-      debts: applyDebtDefaults(debts),
-      loanAmount: loanAmount || DEFAULTS.loanAmount,
-      interestRate: interestRate || DEFAULTS.interestRate,
-      years: years || DEFAULTS.years,
-      months: months || DEFAULTS.months,
-      loanCost: loanCost || DEFAULTS.loanCost,
+      debts: debts.map((d, i) => ({ ...d, name: d.name || `Debt ${i + 1}` })),
+      loanAmount: loanAmount,
+      interestRate: interestRate,
+      years: years,
+      months: months,
+      loanCost: loanCost,
       loanCostUnit,
     };
     const validationError = validateDebtConsolidationInputs(inputs);
@@ -111,6 +123,7 @@ export default function DebtConsolidationCalculatorTool() {
   }
 
   function clear() {
+    req.clear();
     setDebts(makeEmptyRows());
     setVisibleRows(VISIBLE_ROWS_DEFAULT);
     setLoanAmount(""); setInterestRate(""); setYears(""); setMonths("");
@@ -145,13 +158,13 @@ export default function DebtConsolidationCalculatorTool() {
                       <TextField value={debt.name} onChange={(v) => updateDebt(i, "name", v)} placeholder={fallback ? fallback.name : `Debt ${i + 1}`} style={cellInputStyle} />
                     </td>
                     <td style={{ ...td, minWidth: 90 }}>
-                      <DollarCell value={debt.balance} onChange={(v) => updateDebt(i, "balance", v)} placeholder={fallback ? formatWithCommas(fallback.balance) : ""} />
+                      <Req name={`balance${i}`} flagged={req.flagged}><DollarCell value={debt.balance} onChange={(v) => updateDebt(i, "balance", v)} placeholder={fallback ? formatWithCommas(fallback.balance) : ""} /></Req>
                     </td>
                     <td style={{ ...td, minWidth: 90 }}>
-                      <DollarCell value={debt.minPayment} onChange={(v) => updateDebt(i, "minPayment", v)} placeholder={fallback ? formatWithCommas(fallback.minPayment) : ""} />
+                      <Req name={`minPayment${i}`} flagged={req.flagged}><DollarCell value={debt.minPayment} onChange={(v) => updateDebt(i, "minPayment", v)} placeholder={fallback ? formatWithCommas(fallback.minPayment) : ""} /></Req>
                     </td>
                     <td style={{ ...td, minWidth: 80 }}>
-                      <PercentCell value={debt.ratePercent} onChange={(v) => updateDebt(i, "ratePercent", v)} placeholder={fallback ? fallback.ratePercent : ""} />
+                      <Req name={`ratePercent${i}`} flagged={req.flagged}><PercentCell value={debt.ratePercent} onChange={(v) => updateDebt(i, "ratePercent", v)} placeholder={fallback ? fallback.ratePercent : ""} /></Req>
                     </td>
                   </tr>
                 );
@@ -179,20 +192,20 @@ export default function DebtConsolidationCalculatorTool() {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <label style={{ fontSize: 13, color: "var(--text-secondary)", flex: "0 0 100px" }}>Loan amount</label>
             <div style={{ width: 160 }}>
-              <DollarCell value={loanAmount} onChange={setLoanAmount} placeholder={formatWithCommas(DEFAULTS.loanAmount)} style={{ padding: "7px 9px", fontSize: 13 }} />
+              <Req name="loanAmount" flagged={req.flagged}><DollarCell value={loanAmount} onChange={setLoanAmount} placeholder={formatWithCommas(DEFAULTS.loanAmount)} style={{ padding: "7px 9px", fontSize: 13 }} /></Req>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <label style={{ fontSize: 13, color: "var(--text-secondary)", flex: "0 0 100px" }}>Interest rate</label>
             <div style={{ width: 160 }}>
-              <PercentCell value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={{ padding: "7px 9px", fontSize: 13 }} />
+              <Req name="interestRate" flagged={req.flagged}><PercentCell value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} style={{ padding: "7px 9px", fontSize: 13 }} /></Req>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <label style={{ fontSize: 13, color: "var(--text-secondary)", flex: "0 0 100px", paddingTop: 7 }}>Loan term</label>
             <div style={{ display: "flex", flexDirection: "column", gap: 6, width: 160 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} style={{ padding: "7px 9px", fontSize: 13, width: "100%" }} />
+                <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} style={{ padding: "7px 9px", fontSize: 13, width: "100%" }} /></Req>
                 <span style={{ fontSize: 12.5, color: "var(--text-muted)", whiteSpace: "nowrap" }}>years</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>

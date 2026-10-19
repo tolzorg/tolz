@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { DollarField, PercentField, ResultTable } from "./RetirementFormControls";
 import { calculateMoneyLongevity, formatCurrency, formatYearsAndDecimalMonths } from "../../../utils/retirementCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = { amountYouHave: "500000", monthlyWithdraw: "3000", avgReturn: "6" };
 
@@ -10,15 +12,18 @@ export default function MoneyLongevityCard() {
   const [avgReturn, setAvgReturn] = useState("");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ amountYouHave, monthlyWithdraw, avgReturn })) { setResult(null); return; }
     setResult(calculateMoneyLongevity({
-      amountYouHave: amountYouHave || DEFAULTS.amountYouHave,
-      monthlyWithdraw: monthlyWithdraw || DEFAULTS.monthlyWithdraw,
-      avgReturnPercent: avgReturn || DEFAULTS.avgReturn,
+      amountYouHave: amountYouHave,
+      monthlyWithdraw: monthlyWithdraw,
+      avgReturnPercent: avgReturn,
     }));
   }
 
   function clear() {
+    req.clear();
     setAmountYouHave(""); setMonthlyWithdraw(""); setAvgReturn("");
     setResult(null);
   }
@@ -39,9 +44,9 @@ export default function MoneyLongevityCard() {
 
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ padding: 16, flex: "1 1 320px", minWidth: 300 }}>
-          <DollarField label="The amount you have" value={amountYouHave} onChange={setAmountYouHave} placeholder={DEFAULTS.amountYouHave} fieldWidth={140} />
-          <DollarField label="Your planned monthly withdrawal" value={monthlyWithdraw} onChange={setMonthlyWithdraw} placeholder={DEFAULTS.monthlyWithdraw} fieldWidth={140} />
-          <PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} fieldWidth={140} />
+          <Req name="amountYouHave" flagged={req.flagged}><DollarField label="The amount you have" value={amountYouHave} onChange={setAmountYouHave} placeholder={DEFAULTS.amountYouHave} fieldWidth={140} /></Req>
+          <Req name="monthlyWithdraw" flagged={req.flagged}><DollarField label="Your planned monthly withdrawal" value={monthlyWithdraw} onChange={setMonthlyWithdraw} placeholder={DEFAULTS.monthlyWithdraw} fieldWidth={140} /></Req>
+          <Req name="avgReturn" flagged={req.flagged}><PercentField label="Average investment return" value={avgReturn} onChange={setAvgReturn} placeholder={DEFAULTS.avgReturn} fieldWidth={140} /></Req>
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
             <button type="button" onClick={calculate} style={{ flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none", borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer" }}>

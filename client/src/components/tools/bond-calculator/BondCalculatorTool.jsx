@@ -6,6 +6,8 @@ import {
   calculateBond, calculateBondPricing, convertCouponUnit, defaultDates,
   DEFAULTS, PRICING_DEFAULTS, FREQUENCY_OPTIONS, DAY_COUNT_OPTIONS, formatMoney4, format4,
 } from "../../../utils/bondCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const UNIT_OPTIONS = [{ value: "p", label: "%" }, { value: "d", label: "$" }];
 
@@ -168,17 +170,19 @@ function BondPricing() {
   const [dayCount, setDayCount] = useState("b");
   const [result, setResult] = useState(null);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ face, yield: yieldPct, coupon })) { setResult(null); return; }
     setResult(calculateBondPricing({
-      face: face || PRICING_DEFAULTS.face,
-      yield: yieldPct || PRICING_DEFAULTS.yield,
-      coupon: coupon || PRICING_DEFAULTS.coupon,
+      face,
+      yield: yieldPct,
+      coupon,
       couponUnit: unit, frequency, maturity, settlement, dayCount,
     }));
   }
   function clear() {
     const d = defaultDates();
-    setFace(""); setYieldPct(""); setCoupon(""); setUnit("p"); setFrequency("a");
+    req.clear(); setFace(""); setYieldPct(""); setCoupon(""); setUnit("p"); setFrequency("a");
     setMaturity(d.maturity); setSettlement(d.settlement); setDayCount("b"); setResult(null);
   }
 
@@ -199,10 +203,10 @@ function BondPricing() {
       </p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 360px", minWidth: 300, padding: 18 }}>
-          <FieldRow label="Face value" fieldWidth={210}><DollarField value={face} onChange={setFace} placeholder={PRICING_DEFAULTS.face} /></FieldRow>
-          <FieldRow label="Yield" fieldWidth={210}><PercentField value={yieldPct} onChange={setYieldPct} placeholder={PRICING_DEFAULTS.yield} /></FieldRow>
+          <FieldRow label="Face value" fieldWidth={210}><Req name="face" flagged={req.flagged}><DollarField value={face} onChange={setFace} placeholder={PRICING_DEFAULTS.face} /></Req></FieldRow>
+          <FieldRow label="Yield" fieldWidth={210}><Req name="yield" flagged={req.flagged}><PercentField value={yieldPct} onChange={setYieldPct} placeholder={PRICING_DEFAULTS.yield} /></Req></FieldRow>
           <FieldRow label="Annual coupon" fieldWidth={210}>
-            <CouponField value={coupon} onChange={setCoupon} unit={unit} onUnitChange={setUnit} face={face || PRICING_DEFAULTS.face} placeholder={PRICING_DEFAULTS.coupon} />
+            <Req name="coupon" flagged={req.flagged}><CouponField value={coupon} onChange={setCoupon} unit={unit} onUnitChange={setUnit} face={face || PRICING_DEFAULTS.face} placeholder={PRICING_DEFAULTS.coupon} /></Req>
           </FieldRow>
           <FieldRow label="Coupon frequency" fieldWidth={210}>
             <SelectField value={frequency} onChange={setFrequency} options={FREQUENCY_OPTIONS} style={{ flex: 1, minWidth: 0 }} />

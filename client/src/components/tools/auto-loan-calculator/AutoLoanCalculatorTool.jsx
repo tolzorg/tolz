@@ -3,6 +3,8 @@ import { FieldRow, TextField, SelectField } from "../loan-calculator/LoanFormCon
 import MortgagePieChart from "../mortgage-calculator/MortgagePieChart";
 import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import { calculateFromPrice, calculateFromPayment, formatCurrency, US_STATES } from "../../../utils/autoLoanCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Demo numbers shown only as placeholder hint text, not pre-filled values
 // — the established convention from the Mortgage/Loan calculators.
@@ -51,27 +53,30 @@ export default function AutoLoanCalculatorTool() {
   const [result, setResult] = useState(null);
   const [showTable, setShowTable] = useState(false);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ ...(tab === "totalPrice" ? { autoPrice } : { targetMonthlyPayment }), loanTermMonths, interestRate })) { setResult(null); return; }
     const shared = {
-      cashIncentives: cashIncentives || DEFAULTS.cashIncentives,
-      downPayment: downPayment || DEFAULTS.downPayment,
-      tradeInValue: tradeInValue || DEFAULTS.tradeInValue,
-      amountOwedOnTradeIn: amountOwedOnTradeIn || DEFAULTS.amountOwedOnTradeIn,
-      loanTermMonths: loanTermMonths || DEFAULTS.loanTermMonths,
-      annualRatePercent: interestRate || DEFAULTS.interestRate,
-      salesTaxPercent: salesTaxPercent || DEFAULTS.salesTaxPercent,
-      fees: fees || DEFAULTS.fees,
+      cashIncentives: cashIncentives,
+      downPayment: downPayment,
+      tradeInValue: tradeInValue,
+      amountOwedOnTradeIn: amountOwedOnTradeIn,
+      loanTermMonths: loanTermMonths,
+      annualRatePercent: interestRate,
+      salesTaxPercent: salesTaxPercent,
+      fees: fees,
       includeTaxesFeesInLoan, state: stateName,
     };
     setResult(
       tab === "totalPrice"
-        ? calculateFromPrice({ ...shared, autoPrice: autoPrice || DEFAULTS.autoPrice })
-        : calculateFromPayment({ ...shared, targetMonthlyPayment: targetMonthlyPayment || DEFAULTS.targetMonthlyPayment })
+        ? calculateFromPrice({ ...shared, autoPrice: autoPrice })
+        : calculateFromPayment({ ...shared, targetMonthlyPayment: targetMonthlyPayment })
     );
     setShowTable(false);
   }
 
   function clear() {
+    req.clear();
     setAutoPrice(""); setTargetMonthlyPayment(""); setLoanTermMonths(""); setInterestRate("");
     setCashIncentives(""); setDownPayment(""); setTradeInValue(""); setAmountOwedOnTradeIn("");
     setStateName(""); setSalesTaxPercent(""); setFees(""); setIncludeTaxesFeesInLoan(false);
@@ -125,20 +130,20 @@ export default function AutoLoanCalculatorTool() {
           <div className="card" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
             {tab === "totalPrice" ? (
               <FieldRow label="Auto Price">
-                <DollarField value={autoPrice} onChange={setAutoPrice} placeholder={DEFAULTS.autoPrice} />
+                <Req name="autoPrice" flagged={req.flagged}><DollarField value={autoPrice} onChange={setAutoPrice} placeholder={DEFAULTS.autoPrice} /></Req>
               </FieldRow>
             ) : (
               <FieldRow label="Monthly Pay">
-                <DollarField value={targetMonthlyPayment} onChange={setTargetMonthlyPayment} placeholder={DEFAULTS.targetMonthlyPayment} />
+                <Req name="targetMonthlyPayment" flagged={req.flagged}><DollarField value={targetMonthlyPayment} onChange={setTargetMonthlyPayment} placeholder={DEFAULTS.targetMonthlyPayment} /></Req>
               </FieldRow>
             )}
 
             <FieldRow label="Loan Term" suffix="months">
-              <TextField value={loanTermMonths} onChange={setLoanTermMonths} placeholder={DEFAULTS.loanTermMonths} />
+              <Req name="loanTermMonths" flagged={req.flagged}><TextField value={loanTermMonths} onChange={setLoanTermMonths} placeholder={DEFAULTS.loanTermMonths} /></Req>
             </FieldRow>
 
             <FieldRow label="Interest Rate">
-              <PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+              <Req name="interestRate" flagged={req.flagged}><PercentField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} /></Req>
             </FieldRow>
 
             <FieldRow label="Cash Incentives" hint="Manufacturer or dealer cash rebates that reduce what you need to finance. Whether they're also exempt from sales tax depends on your state (see Your State below).">

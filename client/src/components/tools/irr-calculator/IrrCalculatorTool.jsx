@@ -8,6 +8,8 @@ import {
   calculateFixedIrr, calculateIrregularIrr, FIXED_DEFAULTS, IRREGULAR_DEFAULTS, FREQUENCIES,
   IRREGULAR_YEARS, IRREGULAR_VISIBLE,
 } from "../../../utils/irrCalculatorEngine";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const FLOW_TYPES = [{ value: "d", label: "Deposit" }, { value: "w", label: "Withdraw" }];
 const FREQUENCY_OPTIONS = FREQUENCIES.map(({ value, label }) => ({ value, label }));
@@ -49,11 +51,12 @@ function ButtonRow({ onCalculate, onClear }) {
 
 /** A dollar box that keeps a leading minus sign (cash flows can be negative). */
 function SignedDollarField({ value, onChange, placeholder, label }) {
+  const invalid = useRequiredState(value);
   return (
     <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
       <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
       <input
-        type="text" inputMode="decimal" value={value} placeholder={placeholder} aria-label={label}
+        type="text" inputMode="decimal" value={value} {...requiredInputProps(invalid, placeholder)} aria-label={label}
         onChange={(e) => onChange(e.target.value)} style={{ ...inputStyle, paddingLeft: 19 }}
       />
     </div>
@@ -130,9 +133,9 @@ function FixedCashFlowCalculator() {
 
   // The example applies only while every box is empty; otherwise a blank box
   // means what it means on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = FIXED_TEXT_KEYS.every((k) => v[k] === "") ? D : v;
-    setResult(calculateFixedIrr({ ...values, flowType, frequency, timing }));
+    setResult(req.evaluate(pickFields(v, FIXED_TEXT_KEYS), (fill) => calculateFixedIrr({ ...withFill(v, D, fill), flowType, frequency, timing })));
   };
   const clear = () => {
     setV(EMPTY_FIXED); setFlowType(D.flowType); setFrequency(D.frequency); setTiming(D.timing); setResult(null);
@@ -144,15 +147,15 @@ function FixedCashFlowCalculator() {
       <p style={sectionText}>This calculator computes the IRR based on a fixed recurring cash flow or no cash flow.</p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 360px", minWidth: 280, maxWidth: 500, padding: 16 }}>
-          <Row label="Initial Investment"><DollarField value={v.initial} onChange={set("initial")} placeholder={D.initial} /></Row>
+          <Row label="Initial Investment"><Req name="initial" flagged={req.flagged}><DollarField value={v.initial} onChange={set("initial")} placeholder={D.initial} /></Req></Row>
           <Row label="Holding">
-            <UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" />
-            <UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" />
+            <Req name="years" flagged={req.flagged}><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Req>
+            <Req name="months" flagged={req.flagged}><UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" /></Req>
           </Row>
-          <Row label="Ending Balance"><DollarField value={v.ending} onChange={set("ending")} placeholder={D.ending} /></Row>
+          <Row label="Ending Balance"><Req name="ending" flagged={req.flagged}><DollarField value={v.ending} onChange={set("ending")} placeholder={D.ending} /></Req></Row>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6, marginBottom: 8 }}>
             <SelectField value={flowType} onChange={setFlowType} options={FLOW_TYPES} style={{ flex: "0 0 112px", minWidth: 0 }} />
-            <div style={{ flex: "1 1 110px", minWidth: 0 }}><DollarField value={v.amount} onChange={set("amount")} placeholder={D.amount} /></div>
+            <div style={{ flex: "1 1 110px", minWidth: 0 }}><Req name="amount" flagged={req.flagged}><DollarField value={v.amount} onChange={set("amount")} placeholder={D.amount} /></Req></div>
             <SelectField value={frequency} onChange={setFrequency} options={FREQUENCY_OPTIONS} style={{ flex: "0 1 140px", minWidth: 0 }} />
           </div>
           <fieldset style={{ border: "none", padding: 0, margin: "2px 0 0", display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, fontSize: 13.5, color: "var(--text-primary)" }}>
@@ -187,12 +190,16 @@ function IrregularCashFlowCalculator() {
   const D = IRREGULAR_DEFAULTS;
 
   const setFlow = (i) => (value) => setFlows((prev) => prev.map((f, j) => (j === i ? value : f)));
-  // Untouched → the example; otherwise blank years count as $0, as on the reference.
-  const calculate = () => {
-    const untouched = initial === "" && flows.every((f) => f === "");
-    setResult(calculateIrregularIrr(untouched ? D : { initial, flows }));
-  };
-  const clear = () => { setInitial(""); setFlows(blankFlows()); setResult(null); };
+  // Blank years count as $0, as on the reference; empty boxes the IRR needs are flagged.
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(
+    { initial, ...Object.fromEntries(flows.map((f, i) => [`f${i}`, f])) },
+    (fill) => calculateIrregularIrr({
+      initial: fill.has("initial") ? D.initial : initial,
+      flows: flows.map((f, i) => (fill.has(`f${i}`) ? D.flows[i] : f)),
+    }),
+  ));
+  const clear = () => { req.clear(); setInitial(""); setFlows(blankFlows()); setResult(null); };
   const rowCount = showMore ? IRREGULAR_YEARS : IRREGULAR_VISIBLE;
 
   return (
@@ -205,12 +212,12 @@ function IrregularCashFlowCalculator() {
       </p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 420, padding: 16 }}>
-          <Row label="Initial Investment"><DollarField value={initial} onChange={setInitial} placeholder={D.initial} /></Row>
+          <Row label="Initial Investment"><Req name="initial" flagged={req.flagged}><DollarField value={initial} onChange={setInitial} placeholder={D.initial} /></Req></Row>
           <p style={{ fontWeight: 700, fontSize: 13.5, color: "var(--text-primary)", margin: "8px 0 8px" }}>Cash Flow:</p>
           {flows.slice(0, rowCount).map((flow, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, paddingLeft: 8 }}>
               <span style={{ flex: "0 0 62px", fontSize: 13, color: "var(--text-secondary)" }}>Year {i + 1}.</span>
-              <SignedDollarField value={flow} onChange={setFlow(i)} placeholder={D.flows[i]} label={`Cash flow in year ${i + 1}`} />
+              <Req name={`f${i}`} flagged={req.flagged}><SignedDollarField value={flow} onChange={setFlow(i)} placeholder={D.flows[i]} label={`Cash flow in year ${i + 1}`} /></Req>
             </div>
           ))}
           <div style={{ padding: "2px 0 0 78px" }}>

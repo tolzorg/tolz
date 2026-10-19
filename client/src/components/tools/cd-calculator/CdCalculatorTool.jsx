@@ -5,6 +5,8 @@ import LoanScheduleTable from "../loan-calculator/LoanScheduleTable";
 import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import InvestmentBarChart from "../investment-calculator/InvestmentBarChart";
 import { calculateCd, DEFAULTS, COMPOUND_OPTIONS, formatMoney } from "../../../utils/cdCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const TAX_HINT = "Your marginal income tax rate applies to the interest. If you only want to calculate interest compounding or if your interest income is not taxable, enter 0.";
 
@@ -52,19 +54,22 @@ export default function CdCalculatorTool() {
   const [result, setResult] = useState(null);
   const [view, setView] = useState("annual");
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ deposit, rate, years: [years, months] })) { setResult(null); return; }
     setResult(calculateCd({
-      deposit: deposit || DEFAULTS.deposit,
-      rate: rate || DEFAULTS.rate,
+      deposit: deposit,
+      rate: rate,
       compound,
-      years: years || DEFAULTS.years,
-      months: months || DEFAULTS.months,
-      tax: tax || DEFAULTS.tax,
+      years: years,
+      months: months,
+      tax: tax,
     }));
     setView("annual");
   }
 
   function clear() {
+    req.clear();
     setDeposit(""); setRate(""); setCompound("annually"); setYears(""); setMonths(""); setTax("");
     setResult(null);
   }
@@ -79,16 +84,16 @@ export default function CdCalculatorTool() {
         {/* ── Inputs ───────────────────────────────────────────────── */}
         <div className="card" style={{ flex: "1 1 360px", minWidth: 300, padding: 18 }}>
           <FieldRow label="Initial deposit">
-            <DollarField value={deposit} onChange={setDeposit} placeholder={DEFAULTS.deposit} />
+            <Req name="deposit" flagged={req.flagged}><DollarField value={deposit} onChange={setDeposit} placeholder={DEFAULTS.deposit} /></Req>
           </FieldRow>
           <FieldRow label="Interest rate">
-            <PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+            <Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req>
           </FieldRow>
           <FieldRow label="Compound">
             <SelectField value={compound} onChange={setCompound} options={COMPOUND_OPTIONS} style={{ flex: 1, minWidth: 0 }} />
           </FieldRow>
           <FieldRow label="Deposit length" suffix="years">
-            <TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} />
+            <Req name="years" flagged={req.flagged}><TextField value={years} onChange={setYears} placeholder={DEFAULTS.years} /></Req>
           </FieldRow>
           <FieldRow label="" suffix="months">
             <TextField value={months} onChange={setMonths} placeholder={DEFAULTS.months} />

@@ -5,6 +5,8 @@ import LoanScheduleTable from "./LoanScheduleTable";
 import {
   calculateAmortizedLoan, formatCurrency, COMPOUND_OPTIONS, PAYBACK_OPTIONS, DEFAULT_COMPOUND, DEFAULT_PAYBACK,
 } from "../../../utils/loanCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 // Demo numbers shown only as placeholder hint text (see the Mortgage
 // Calculator's own MORTGAGE_PLACEHOLDERS for the established convention
@@ -24,18 +26,21 @@ export default function AmortizedLoanCard() {
   const [result, setResult] = useState(null);
   const [showTable, setShowTable] = useState(false);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ loanAmount, years: [years, months], interestRate })) { setResult(null); return; }
     setResult(calculateAmortizedLoan({
-      loanAmount: loanAmount || DEFAULTS.loanAmount,
-      years: years || DEFAULTS.years,
-      months: months || DEFAULTS.months,
-      annualRatePercent: interestRate || DEFAULTS.interestRate,
+      loanAmount: loanAmount,
+      years: years,
+      months: months,
+      annualRatePercent: interestRate,
       compound, payback,
     }));
     setShowTable(false);
   }
 
   function clear() {
+    req.clear();
     setLoanAmount(""); setYears(""); setMonths(""); setInterestRate("");
     setCompound(DEFAULT_COMPOUND); setPayback(DEFAULT_PAYBACK);
     setResult(null); setShowTable(false);
@@ -60,16 +65,16 @@ export default function AmortizedLoanCard() {
             <FieldRow label="Loan Amount">
               <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
                 <span style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "var(--text-muted)", fontSize: 13, pointerEvents: "none" }}>$</span>
-                <TextField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ paddingLeft: 19 }} />
+                <Req name="loanAmount" flagged={req.flagged}><TextField value={loanAmount} onChange={setLoanAmount} placeholder={DEFAULTS.loanAmount} style={{ paddingLeft: 19 }} /></Req>
               </div>
             </FieldRow>
 
             <FieldRow label="Loan Term" fieldWidth={200}>
-              <TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} />
+              <Req name="years" flagged={req.flagged}><TermYearsMonthsField years={years} months={months} onYearsChange={setYears} onMonthsChange={setMonths} /></Req>
             </FieldRow>
 
             <FieldRow label="Interest Rate" suffix="%">
-              <TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} />
+              <Req name="interestRate" flagged={req.flagged}><TextField value={interestRate} onChange={setInterestRate} placeholder={DEFAULTS.interestRate} /></Req>
             </FieldRow>
 
             <FieldRow label="Compound">

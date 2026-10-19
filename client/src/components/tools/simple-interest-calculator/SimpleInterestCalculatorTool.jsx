@@ -7,6 +7,8 @@ import InvestmentBarChart from "../investment-calculator/InvestmentBarChart";
 import {
   calculateSimpleInterest, DEFAULTS, TAB_FIELDS, RATE_BASE_OPTIONS, TERM_BASE_OPTIONS, formatMoney,
 } from "../../../utils/simpleInterestCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const TABS = [
   { key: "balance", label: "Balance" },
@@ -82,6 +84,9 @@ function Results({ result }) {
   );
 }
 
+// The boxes shown on a tab (TAB_FIELDS) are all needed for its result.
+const pickRequired = (shown, values) => Object.fromEntries(Object.keys(values).filter((k) => shown[k]).map((k) => [k, values[k]]));
+
 export default function SimpleInterestCalculatorTool() {
   const [activeTab, setActiveTab] = useState("balance");
   const [balance, setBalance] = useState("");
@@ -99,19 +104,22 @@ export default function SimpleInterestCalculatorTool() {
     setResult(null);
   }
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ ...pickRequired(TAB_FIELDS[activeTab], { balance, principal, rate, term }) })) { setResult(null); return; }
     setResult(calculateSimpleInterest({
       mode: activeTab,
-      balance: balance || DEFAULTS.balance,
-      principal: principal || DEFAULTS.principal,
-      rate: rate || DEFAULTS.rate,
+      balance: balance,
+      principal: principal,
+      rate: rate,
       rateBase,
-      term: term || DEFAULTS.term,
+      term: term,
       termBase,
     }));
   }
 
   function clear() {
+    req.clear();
     setBalance(""); setPrincipal(""); setRate(""); setRateBase("y");
     setTerm(""); setTermBase("y"); setResult(null);
   }
@@ -148,18 +156,18 @@ export default function SimpleInterestCalculatorTool() {
           <div className="card" style={{ padding: 18, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
             {fields.balance && (
               <FieldRow label="End balance" fieldWidth={230}>
-                <DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} />
+                <Req name="balance" flagged={req.flagged}><DollarField value={balance} onChange={setBalance} placeholder={DEFAULTS.balance} /></Req>
               </FieldRow>
             )}
             {fields.principal && (
               <FieldRow label="Principal" fieldWidth={230}>
-                <DollarField value={principal} onChange={setPrincipal} placeholder={DEFAULTS.principal} />
+                <Req name="principal" flagged={req.flagged}><DollarField value={principal} onChange={setPrincipal} placeholder={DEFAULTS.principal} /></Req>
               </FieldRow>
             )}
             {fields.rate && (
               <FieldRow label="Interest rate" fieldWidth={230}>
                 <div style={{ display: "flex", gap: 6, flex: 1, minWidth: 0 }}>
-                  <PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} />
+                  <Req name="rate" flagged={req.flagged}><PercentField value={rate} onChange={setRate} placeholder={DEFAULTS.rate} /></Req>
                   <SelectField value={rateBase} onChange={setRateBase} options={RATE_BASE_OPTIONS} style={{ width: 108, flexShrink: 0 }} />
                 </div>
               </FieldRow>
@@ -167,7 +175,7 @@ export default function SimpleInterestCalculatorTool() {
             {fields.term && (
               <FieldRow label="Term" fieldWidth={230}>
                 <div style={{ display: "flex", gap: 6, flex: 1, minWidth: 0 }}>
-                  <TextField value={term} onChange={setTerm} placeholder={DEFAULTS.term} style={{ flex: 1, minWidth: 0 }} />
+                  <Req name="term" flagged={req.flagged}><TextField value={term} onChange={setTerm} placeholder={DEFAULTS.term} style={{ flex: 1, minWidth: 0 }} /></Req>
                   <SelectField value={termBase} onChange={setTermBase} options={TERM_BASE_OPTIONS} style={{ width: 108, flexShrink: 0 }} />
                 </div>
               </FieldRow>

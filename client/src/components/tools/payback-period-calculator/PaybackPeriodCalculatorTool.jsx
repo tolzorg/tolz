@@ -6,6 +6,8 @@ import { linkButton } from "../fha-loan-calculator/mortgageFormHelpers";
 import {
   calculateFixedCashFlow, calculateIrregularCashFlow, FIXED_DEFAULTS, IRREGULAR_DEFAULTS, MAX_YEARS,
 } from "../../../utils/paybackPeriodCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const sectionTitle = { fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", margin: "0 0 10px" };
 // Compact cells so all five columns fit a phone screen.
@@ -84,27 +86,28 @@ function FixedCashFlow() {
   const [direction, setDirection] = useState("increase");
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
-  const calculate = () => setResult(calculateFixedCashFlow({ ...(keys.every((k) => v[k] === "") ? D : v), direction }));
-  const clear = () => { setV(blank()); setDirection("increase"); setResult(null); };
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(pickFields(v, keys), (fill) => calculateFixedCashFlow({ ...withFill(v, D, fill), direction })));
+  const clear = () => { req.clear(); setV(blank()); setDirection("increase"); setResult(null); };
 
   return (
     <section aria-labelledby="pb-fixed-title">
       <h2 id="pb-fixed-title" style={sectionTitle}>Fixed Cash Flow</h2>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-          <Row label="Initial Investment"><DollarField value={v.investment} onChange={set("investment")} placeholder={D.investment} /></Row>
-          <Row label="Cash Flow" suffix="/Year"><DollarField value={v.cashFlow} onChange={set("cashFlow")} placeholder={D.cashFlow} /></Row>
+          <Row label="Initial Investment"><Req name="investment" flagged={req.flagged}><DollarField value={v.investment} onChange={set("investment")} placeholder={D.investment} /></Req></Row>
+          <Row label="Cash Flow" suffix="/Year"><Req name="cashFlow" flagged={req.flagged}><DollarField value={v.cashFlow} onChange={set("cashFlow")} placeholder={D.cashFlow} /></Req></Row>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 8, rowGap: 4, marginBottom: 8 }}>
             <div style={{ flex: "1 1 120px", minWidth: 0 }}>
               <SelectField value={direction} onChange={setDirection} options={[{ value: "increase", label: "Increase" }, { value: "decrease", label: "Decrease" }]} style={{ width: 130 }} />
             </div>
             <div style={{ flex: "1 1 200px", maxWidth: 260, display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
-              <div style={{ flex: 1, minWidth: 0, display: "flex" }}><PercentField value={v.changeRate} onChange={set("changeRate")} placeholder={D.changeRate} /></div>
+              <div style={{ flex: 1, minWidth: 0, display: "flex" }}><Req name="changeRate" flagged={req.flagged}><PercentField value={v.changeRate} onChange={set("changeRate")} placeholder={D.changeRate} /></Req></div>
               <span style={{ fontSize: 12, color: "var(--text-muted)" }}>/Year</span>
             </div>
           </div>
-          <Row label="Number of Years"><TextField value={v.years} onChange={set("years")} placeholder={D.years} /></Row>
-          <Row label="Discount Rate"><PercentField value={v.discountRate} onChange={set("discountRate")} placeholder={D.discountRate} /></Row>
+          <Row label="Number of Years"><Req name="years" flagged={req.flagged}><TextField value={v.years} onChange={set("years")} placeholder={D.years} /></Req></Row>
+          <Row label="Discount Rate"><Req name="discountRate" flagged={req.flagged}><PercentField value={v.discountRate} onChange={set("discountRate")} placeholder={D.discountRate} /></Req></Row>
           <ButtonRow onCalculate={calculate} onClear={clear} />
         </div>
         <ResultCard result={result} />
@@ -123,12 +126,18 @@ function IrregularCashFlow() {
   const [result, setResult] = useState(null);
   const setFlow = (k) => (value) => setFlows((p) => p.map((x, i) => (i === k ? value : x)));
 
-  const calculate = () => {
-    // Hidden boxes still count, as on the reference (they are only collapsed).
-    const allEmpty = investment === "" && discountRate === "" && flows.every((x) => x === "");
-    setResult(calculateIrregularCashFlow(allEmpty ? D : { investment, discountRate, flows }));
-  };
-  const clear = () => { setInvestment(""); setDiscountRate(""); setFlows(emptyFlows()); setShowMore(false); setResult(null); };
+  // Hidden boxes still count, as on the reference (they are only collapsed); empty boxes the
+  // calculation needs are flagged.
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(
+    { investment, discountRate, ...Object.fromEntries(flows.map((x, k) => [`f${k}`, x])) },
+    (fill) => calculateIrregularCashFlow({
+      investment: fill.has("investment") ? D.investment : investment,
+      discountRate: fill.has("discountRate") ? D.discountRate : discountRate,
+      flows: flows.map((x, k) => (fill.has(`f${k}`) ? D.flows[k] || "" : x)),
+    }),
+  ));
+  const clear = () => { req.clear(); setInvestment(""); setDiscountRate(""); setFlows(emptyFlows()); setShowMore(false); setResult(null); };
   const shown = showMore ? MAX_YEARS : VISIBLE_FLOWS;
 
   return (
@@ -136,12 +145,12 @@ function IrregularCashFlow() {
       <h2 id="pb-irregular-title" style={sectionTitle}>Irregular Cash Flow Each Year</h2>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-          <Row label="Initial Investment"><DollarField value={investment} onChange={setInvestment} placeholder={D.investment} /></Row>
-          <Row label="Discount Rate"><PercentField value={discountRate} onChange={setDiscountRate} placeholder={D.discountRate} /></Row>
+          <Row label="Initial Investment"><Req name="investment" flagged={req.flagged}><DollarField value={investment} onChange={setInvestment} placeholder={D.investment} /></Req></Row>
+          <Row label="Discount Rate"><Req name="discountRate" flagged={req.flagged}><PercentField value={discountRate} onChange={setDiscountRate} placeholder={D.discountRate} /></Req></Row>
           <p style={{ fontWeight: 700, fontSize: 13.5, color: "var(--text-primary)", textAlign: "center", margin: "8px 0" }}>Cash Flow</p>
           <div style={{ maxHeight: showMore ? 420 : undefined, overflowY: showMore ? "auto" : undefined }}>
             {flows.slice(0, shown).map((x, k) => (
-              <Row key={k} label={`Year ${k + 1}.`}><DollarField value={x} onChange={setFlow(k)} placeholder={D.flows[k] || ""} /></Row>
+              <Row key={k} label={`Year ${k + 1}.`}><Req name={`f${k}`} flagged={req.flagged}><DollarField value={x} onChange={setFlow(k)} placeholder={D.flows[k] || ""} /></Req></Row>
             ))}
           </div>
           <div style={{ textAlign: "center", margin: "6px 0 8px" }}>

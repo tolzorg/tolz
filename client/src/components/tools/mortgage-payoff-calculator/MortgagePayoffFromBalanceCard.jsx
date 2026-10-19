@@ -8,6 +8,8 @@ import {
   calculateFromBalance, formatCurrency, formatWholeCurrency, formatYearsAndMonths,
   formatYearsMosShort, formatPercentWhole,
 } from "../../../utils/mortgagePayoffCalculatorEngine";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const DEFAULTS = {
   unpaidPrincipal: "230000", monthlyPayment: "1500", annualRatePercent: "6",
@@ -50,21 +52,24 @@ export default function MortgagePayoffFromBalanceCard() {
   const [result, setResult] = useState(null);
   const [showAmortization, setShowAmortization] = useState(false);
 
+  const req = useRequiredFields();
   function calculate() {
+    if (!req.require({ unpaidPrincipal, monthlyPayment, annualRatePercent, ...(payoffOption === "extra" ? { extraMonthly: [extraMonthly, extraYearly, extraOneTime] } : {}) })) { setResult(null); return; }
     const r = calculateFromBalance({
-      unpaidPrincipal: unpaidPrincipal || DEFAULTS.unpaidPrincipal,
-      monthlyPayment: monthlyPayment || DEFAULTS.monthlyPayment,
-      annualRatePercent: annualRatePercent || DEFAULTS.annualRatePercent,
+      unpaidPrincipal: unpaidPrincipal,
+      monthlyPayment: monthlyPayment,
+      annualRatePercent: annualRatePercent,
       payoffOption,
-      extraMonthly: Number(extraMonthly || (payoffOption === "extra" ? DEFAULTS.extraMonthly : 0)) || 0,
-      extraYearly: Number(extraYearly || DEFAULTS.extraYearly) || 0,
-      extraOneTime: Number(extraOneTime || DEFAULTS.extraOneTime) || 0,
+      extraMonthly: Number(extraMonthly) || 0,
+      extraYearly: Number(extraYearly) || 0,
+      extraOneTime: Number(extraOneTime) || 0,
     });
     setResult(r);
     setShowAmortization(false);
   }
 
   function clear() {
+    req.clear();
     setUnpaidPrincipal(""); setMonthlyPayment(""); setAnnualRatePercent("");
     setPayoffOption("extra"); setExtraMonthly(""); setExtraYearly(""); setExtraOneTime("");
     setResult(null);
@@ -88,13 +93,13 @@ export default function MortgagePayoffFromBalanceCard() {
         <div style={{ flex: "1 1 340px", minWidth: 300 }}>
           <div className="card" style={{ padding: 18 }}>
             <FieldRow label="Unpaid principal balance">
-              <DollarField value={unpaidPrincipal} onChange={setUnpaidPrincipal} placeholder={DEFAULTS.unpaidPrincipal} style={{ width: "100%" }} />
+              <Req name="unpaidPrincipal" flagged={req.flagged}><DollarField value={unpaidPrincipal} onChange={setUnpaidPrincipal} placeholder={DEFAULTS.unpaidPrincipal} style={{ width: "100%" }} /></Req>
             </FieldRow>
             <FieldRow label="Monthly payment">
-              <DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} style={{ width: "100%" }} />
+              <Req name="monthlyPayment" flagged={req.flagged}><DollarField value={monthlyPayment} onChange={setMonthlyPayment} placeholder={DEFAULTS.monthlyPayment} style={{ width: "100%" }} /></Req>
             </FieldRow>
             <FieldRow label="Interest rate">
-              <PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} style={{ width: "100%" }} />
+              <Req name="annualRatePercent" flagged={req.flagged}><PercentField value={annualRatePercent} onChange={setAnnualRatePercent} placeholder={DEFAULTS.annualRatePercent} style={{ width: "100%" }} /></Req>
             </FieldRow>
 
             <div style={{ marginBottom: 16 }}>
@@ -103,7 +108,7 @@ export default function MortgagePayoffFromBalanceCard() {
                 <RadioOption checked={payoffOption === "extra"} onChange={() => setPayoffOption("extra")} label="Repayment with extra payments">
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <DollarField value={extraMonthly} onChange={setExtraMonthly} placeholder={DEFAULTS.extraMonthly} style={{ width: 110 }} />
+                      <Req name="extraMonthly" flagged={req.flagged}><DollarField value={extraMonthly} onChange={setExtraMonthly} placeholder={DEFAULTS.extraMonthly} style={{ width: 110 }} /></Req>
                       <span style={{ fontSize: 13, color: "var(--text-muted)" }}>per month</span>
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -156,7 +161,7 @@ export default function MortgagePayoffFromBalanceCard() {
                     The remaining term of the loan is <strong>{formatYearsAndMonths(result.remainingTotalMonths)}</strong>. By paying{" "}
                     {result.mode === "biweekly"
                       ? <><strong>{formatCurrency(result.biweeklyPayment)}</strong> biweekly starting now</>
-                      : buildExtraDescription({ extraMonthly: Number(extraMonthly || DEFAULTS.extraMonthly) || 0, extraYearly: Number(extraYearly) || 0, extraOneTime: Number(extraOneTime) || 0 })}
+                      : buildExtraDescription({ extraMonthly: Number(extraMonthly) || 0, extraYearly: Number(extraYearly) || 0, extraOneTime: Number(extraOneTime) || 0 })}
                     , the loan will be paid off in <strong>{formatYearsAndMonths(result.newMonths)}</strong>. It is{" "}
                     <strong>{formatYearsAndMonths(result.remainingTotalMonths - result.newMonths)} earlier</strong>. This
                     results in savings of{" "}

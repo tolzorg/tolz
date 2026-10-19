@@ -7,6 +7,8 @@ import {
   COMPOUND_CHOICES, PAYBACK_CHOICES,
 } from "../../../utils/aprCalculatorEngine";
 import { formatNumber } from "../../../utils/irrCalculatorEngine";
+import { useRequiredFields, pickFields, withFill } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const HELP = {
   loanedFees: "Loaned fees are fees that are added to the loan amount, increasing the total borrowed amount. They do not need to be paid at the loan closing.",
@@ -165,28 +167,28 @@ function GeneralAprCalculator() {
 
   // The example applies only while every box is empty; otherwise a blank box
   // means what it means on the reference.
+  const req = useRequiredFields();
   const calculate = () => {
-    const values = GENERAL_TEXT.every((k) => v[k] === "") ? D : v;
-    setResult(calculateGeneralApr({ ...values, compound, payback }));
+    setResult(req.evaluate(pickFields(v, GENERAL_TEXT), (fill) => calculateGeneralApr({ ...withFill(v, D, fill), compound, payback })));
     setRunId((n) => n + 1);
   };
-  const clear = () => { setV(empty(GENERAL_TEXT)); setCompound(D.compound); setPayback(D.payback); setResult(null); };
+  const clear = () => { req.clear(); setV(empty(GENERAL_TEXT)); setCompound(D.compound); setPayback(D.payback); setResult(null); };
 
   return (
     <section aria-labelledby="apr-general-title">
       <h2 id="apr-general-title" style={sectionTitle}>General APR Calculator</h2>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap", marginTop: 8 }}>
         <div className="card" style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 460, padding: 16 }}>
-          <Row label="Loan Amount"><DollarField value={v.amount} onChange={set("amount")} placeholder={D.amount} /></Row>
+          <Row label="Loan Amount"><Req name="amount" flagged={req.flagged}><DollarField value={v.amount} onChange={set("amount")} placeholder={D.amount} /></Req></Row>
           <Row label="Loan Term">
-            <UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" />
-            <UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" />
+            <Req name="years" flagged={req.flagged}><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Req>
+            <Req name="months" flagged={req.flagged}><UnitField value={v.months} onChange={set("months")} placeholder={D.months} unit="months" /></Req>
           </Row>
-          <Row label="Interest Rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Row>
+          <Row label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Req></Row>
           <Row label="Compound"><SelectField value={compound} onChange={setCompound} options={COMPOUND_CHOICES} style={{ width: "100%" }} /></Row>
           <Row label="Pay Back"><SelectField value={payback} onChange={setPayback} options={PAYBACK_CHOICES} style={{ width: "100%" }} /></Row>
-          <Row label="Loaned Fees" help={HELP.loanedFees}><DollarField value={v.loanedFees} onChange={set("loanedFees")} placeholder={D.loanedFees} /></Row>
-          <Row label="Upfront Fees" help={HELP.upfrontFees}><DollarField value={v.upfrontFees} onChange={set("upfrontFees")} placeholder={D.upfrontFees} /></Row>
+          <Row label="Loaned Fees" help={HELP.loanedFees}><Req name="loanedFees" flagged={req.flagged}><DollarField value={v.loanedFees} onChange={set("loanedFees")} placeholder={D.loanedFees} /></Req></Row>
+          <Row label="Upfront Fees" help={HELP.upfrontFees}><Req name="upfrontFees" flagged={req.flagged}><DollarField value={v.upfrontFees} onChange={set("upfrontFees")} placeholder={D.upfrontFees} /></Req></Row>
           <ButtonRow onCalculate={calculate} onClear={clear} />
         </div>
         <ResultCard key={runId} result={result} withSchedule idle="Enter the loan details, then click Calculate to see the real APR." />
@@ -202,8 +204,9 @@ function MortgageAprCalculator() {
   const [v, setV] = useState(empty(MORTGAGE_TEXT));
   const [result, setResult] = useState(null);
   const set = (key) => (value) => setV((p) => ({ ...p, [key]: value }));
-  const calculate = () => setResult(calculateMortgageApr(MORTGAGE_TEXT.every((k) => v[k] === "") ? D : v));
-  const clear = () => { setV(empty(MORTGAGE_TEXT)); setResult(null); };
+  const req = useRequiredFields();
+  const calculate = () => setResult(req.evaluate(pickFields(v, MORTGAGE_TEXT), (fill) => calculateMortgageApr(withFill(v, D, fill))));
+  const clear = () => { req.clear(); setV(empty(MORTGAGE_TEXT)); setResult(null); };
 
   return (
     <section aria-labelledby="apr-mortgage-title">
@@ -211,12 +214,12 @@ function MortgageAprCalculator() {
       <p style={sectionText}>Use the calculator below for mortgage loans in the United States.</p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 460, padding: 16 }}>
-          <Row label="House Value"><DollarField value={v.houseValue} onChange={set("houseValue")} placeholder={D.houseValue} /></Row>
-          <Row label="Down Payment"><PercentField value={v.downPayment} onChange={set("downPayment")} placeholder={D.downPayment} /></Row>
-          <Row label="Loan Term"><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Row>
-          <Row label="Interest Rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Row>
-          <Row label="Loan Fees"><DollarField value={v.loanFees} onChange={set("loanFees")} placeholder={D.loanFees} /></Row>
-          <Row label="Points"><TextField value={v.points} onChange={set("points")} placeholder={D.points} /></Row>
+          <Row label="House Value"><Req name="houseValue" flagged={req.flagged}><DollarField value={v.houseValue} onChange={set("houseValue")} placeholder={D.houseValue} /></Req></Row>
+          <Row label="Down Payment"><Req name="downPayment" flagged={req.flagged}><PercentField value={v.downPayment} onChange={set("downPayment")} placeholder={D.downPayment} /></Req></Row>
+          <Row label="Loan Term"><Req name="years" flagged={req.flagged}><UnitField value={v.years} onChange={set("years")} placeholder={D.years} unit="years" /></Req></Row>
+          <Row label="Interest Rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={D.rate} /></Req></Row>
+          <Row label="Loan Fees"><Req name="loanFees" flagged={req.flagged}><DollarField value={v.loanFees} onChange={set("loanFees")} placeholder={D.loanFees} /></Req></Row>
+          <Row label="Points"><Req name="points" flagged={req.flagged}><TextField value={v.points} onChange={set("points")} placeholder={D.points} /></Req></Row>
           <Row label="PMI Insurance"><UnitField value={v.pmi} onChange={set("pmi")} placeholder={`$${D.pmi}`} unit="/year" /></Row>
           <ButtonRow onCalculate={calculate} onClear={clear} />
         </div>

@@ -6,6 +6,8 @@ import InvestmentPieChart from "../investment-calculator/InvestmentPieChart";
 import { ErrorPanel, Row, Checkbox, ButtonRow, ScheduleSection } from "../fha-loan-calculator/MortgageResultParts";
 import { calculateHeloc, calculateHelocBorrowLimit, scheduleMoney, HELOC_DEFAULTS } from "../../../utils/helocCalculatorEngine";
 import BorrowLimitCalculator from "../home-equity-loan-calculator/BorrowLimitCalculator";
+import { useRequiredFields, pickFields, withFill, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { Req } from "../calculator-ui/Required";
 
 const H = HELOC_DEFAULTS;
 const HELP = {
@@ -56,13 +58,15 @@ function PaymentCalculator() {
     setV((p) => ({ ...p, closingCosts: convertClosing(p.closingCosts, p.amount || H.amount, unit) }));
     setClosingUnit(unit);
   };
+  const req = useRequiredFields();
   const calculate = () => {
     const keys = ["amount", "rate", "drawYears", "repayYears", ...(includeCosts ? ["closingCosts", "annualFee"] : [])];
-    const values = keys.every((k) => v[k] === "") ? { ...H, closingCosts: CLOSING_EXAMPLE[closingUnit] } : v;
-    setResult(calculateHeloc({ ...values, includeCosts, closingUnit, closingPaid }));
+    const examples = { ...H, closingCosts: CLOSING_EXAMPLE[closingUnit] };
+    setResult(req.evaluate(pickFields(v, keys), (fill) => calculateHeloc({ ...withFill(v, examples, fill), includeCosts, closingUnit, closingPaid })));
     setView("annual");
   };
   const clear = () => {
+    req.clear();
     setV({ amount: "", rate: "", drawYears: "", repayYears: "", closingCosts: "", annualFee: "" });
     setIncludeCosts(false); setClosingUnit("amount"); setClosingPaid("upfront"); setResult(null);
   };
@@ -74,19 +78,19 @@ function PaymentCalculator() {
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 440, padding: 16 }}>
-          <Row label="Loan amount"><DollarField value={v.amount} onChange={set("amount")} placeholder={H.amount} /></Row>
-          <Row label="Interest rate"><PercentField value={v.rate} onChange={set("rate")} placeholder={H.rate} /></Row>
+          <Row label="Loan amount"><Req name="amount" flagged={req.flagged}><DollarField value={v.amount} onChange={set("amount")} placeholder={H.amount} /></Req></Row>
+          <Row label="Interest rate"><Req name="rate" flagged={req.flagged}><PercentField value={v.rate} onChange={set("rate")} placeholder={H.rate} /></Req></Row>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 8, rowGap: 4, marginBottom: 8 }}>
             <div style={{ flex: "1 1 120px", minWidth: 0 }}><FieldLabel hint={HELP.draw}>Draw period</FieldLabel></div>
             <div style={{ flex: "1 1 200px", maxWidth: 260, display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
-              <div style={{ flex: 1, minWidth: 0, display: "flex" }}><TextField value={v.drawYears} onChange={set("drawYears")} placeholder={H.drawYears} /></div>
+              <div style={{ flex: 1, minWidth: 0, display: "flex" }}><Req name="drawYears" flagged={req.flagged}><TextField value={v.drawYears} onChange={set("drawYears")} placeholder={H.drawYears} /></Req></div>
               <span style={{ fontSize: 12, color: "var(--text-muted)" }}>years</span>
             </div>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 8, rowGap: 4, marginBottom: 8 }}>
             <div style={{ flex: "1 1 120px", minWidth: 0 }}><FieldLabel hint={HELP.repay}>Repayment period</FieldLabel></div>
             <div style={{ flex: "1 1 200px", maxWidth: 260, display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
-              <div style={{ flex: 1, minWidth: 0, display: "flex" }}><TextField value={v.repayYears} onChange={set("repayYears")} placeholder={H.repayYears} /></div>
+              <div style={{ flex: 1, minWidth: 0, display: "flex" }}><Req name="repayYears" flagged={req.flagged}><TextField value={v.repayYears} onChange={set("repayYears")} placeholder={H.repayYears} /></Req></div>
               <span style={{ fontSize: 12, color: "var(--text-muted)" }}>years</span>
             </div>
           </div>
@@ -95,10 +99,10 @@ function PaymentCalculator() {
             <div style={{ marginBottom: 10 }}>
               <div style={{ marginBottom: 6 }}><FieldLabel hint={HELP.closing}>Closing costs</FieldLabel></div>
               <Row label="Amount">
-                <ValueUnitField
+                <Req name="closingCosts" flagged={req.flagged}><ValueUnitField
                   value={v.closingCosts} unit={closingUnit === "percentage" ? "percent" : "dollar"} placeholder={CLOSING_EXAMPLE[closingUnit]}
                   onValueChange={set("closingCosts")} onUnitChange={(u) => changeUnit(u === "percent" ? "percentage" : "amount")}
-                />
+                /></Req>
               </Row>
               <fieldset style={{ border: "none", padding: 0, margin: "0 0 10px", display: "flex", flexWrap: "wrap", gap: "4px 16px", alignItems: "center" }}>
                 <legend style={{ fontSize: 12, fontWeight: 600, color: "var(--text-secondary)", float: "left", marginRight: 8 }}>to be</legend>
@@ -112,7 +116,7 @@ function PaymentCalculator() {
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 8, rowGap: 4 }}>
                 <div style={{ flex: "1 1 120px", minWidth: 0 }}><FieldLabel hint={HELP.fee}>Annual fee</FieldLabel></div>
                 <div style={{ flex: "1 1 200px", maxWidth: 260, display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
-                  <div style={{ flex: 1, minWidth: 0, display: "flex" }}><DollarField value={v.annualFee} onChange={set("annualFee")} placeholder={H.annualFee} /></div>
+                  <div style={{ flex: 1, minWidth: 0, display: "flex" }}><Req name="annualFee" flagged={req.flagged}><DollarField value={v.annualFee} onChange={set("annualFee")} placeholder={H.annualFee} /></Req></div>
                   <span style={{ fontSize: 12, color: "var(--text-muted)" }}>/year</span>
                 </div>
               </div>
