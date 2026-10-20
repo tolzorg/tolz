@@ -36,7 +36,7 @@ export const ACTIVITY_OPTIONS = [
 export const SHARES = [0.4, 0.55, 0.65, 0.75];
 export const CARB_KCAL = 3.75;
 export const MIN_CARBS = 130;
-const GOALS = [
+export const GOALS = [
   { kcal: 0, us: "Weight Maintenance", metric: "Weight Maintenance", text: "maintain your weight" },
   { kcal: -500, us: "Lose 1 lb/week", metric: "Lose 0.5 kg/week", usText: "lose 1 lb per week", metricText: "lose 0.5 kg per week" },
   { kcal: -1000, us: "Lose 2 lb/week", metric: "Lose 1 kg/week", usText: "lose 2 lb per week", metricText: "lose 1 kg per week" },

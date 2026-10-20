@@ -209,6 +209,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "fat-intake-calculator",
+        label: "Fat Intake Calculator",
+        slug: "fat-intake-calculator",
+        tagline: "Daily fat & saturated fat in grams",
+        description:
+          "Find how many grams of fat (20-35% of Calories) and saturated fat (under 10%, or 7% for heart health) to eat each day to maintain, lose or gain weight, from your age, gender, height, weight and activity level.",
+        icon: "🧈",
+        iconBg: "#fefce8",
+        iconColor: "#ca8a04",
+        path: "/calculators/health/fat-intake-calculator",
+        legacyPath: "/tools/fat-intake-calculator",
+        keywords: [
+          "fat intake calculator", "daily fat intake", "how much fat should i eat", "fat calculator",
+          "saturated fat calculator", "grams of fat per day", "fat intake for weight loss", "dietary fat calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
