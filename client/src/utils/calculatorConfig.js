@@ -229,6 +229,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "tdee-calculator",
+        label: "TDEE Calculator",
+        slug: "tdee-calculator",
+        tagline: "Total daily energy expenditure",
+        description:
+          "Estimate your total daily energy expenditure (maintenance Calories or kJ) from your age, gender, height, weight and activity level, plus how much to eat to lose or gain weight and your BMI.",
+        icon: "🔥",
+        iconBg: "#fff7ed",
+        iconColor: "#ea580c",
+        path: "/calculators/health/tdee-calculator",
+        legacyPath: "/tools/tdee-calculator",
+        keywords: [
+          "tdee calculator", "total daily energy expenditure", "maintenance calories calculator", "tdee",
+          "calories to maintain weight", "daily calorie needs", "tdee for weight loss", "energy expenditure calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",

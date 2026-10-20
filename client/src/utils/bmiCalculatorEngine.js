@@ -126,7 +126,7 @@ function formatPercentile(p) {
   return p >= 99.9 ? trim(p, 2) : p >= 99 ? trim(p, 1) : trim(p, 0);
 }
 
-function adultCategory(bmi) {
+export function adultCategory(bmi) {
   if (bmi <= 16) return ["Severe thinness", "#b90606"];
   if (bmi <= 17) return ["Moderate thinness", "#ca5353"];
   if (bmi <= 18.5) return ["Mild thinness", "#ffe400"];
