@@ -249,6 +249,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "gfr-calculator",
+        label: "GFR Calculator",
+        slug: "gfr-calculator",
+        tagline: "Kidney function by CKD-EPI, MDRD & Mayo",
+        description:
+          "Estimate glomerular filtration rate (eGFR) from serum creatinine, age, gender and race with the CKD-EPI, MDRD and Mayo Quadratic formulas, or the bedside Schwartz formula for children.",
+        icon: "🫘",
+        iconBg: "#fef2f2",
+        iconColor: "#dc2626",
+        path: "/calculators/health/gfr-calculator",
+        legacyPath: "/tools/gfr-calculator",
+        keywords: [
+          "gfr calculator", "egfr calculator", "glomerular filtration rate", "ckd-epi calculator",
+          "mdrd calculator", "kidney function calculator", "creatinine clearance", "schwartz formula",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
