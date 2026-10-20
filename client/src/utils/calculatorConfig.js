@@ -242,6 +242,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "target-heart-rate-calculator",
+        label: "Target Heart Rate Calculator",
+        slug: "target-heart-rate-calculator",
+        tagline: "Heart rate zones (Karvonen, Borg RPE)",
+        description:
+          "Find your target heart rate training zones from your age or tested maximum heart rate, with the Karvonen method, Borg RPE or CR10 scales and three max heart rate formulas.",
+        icon: "❤️",
+        iconBg: "#fef2f2",
+        iconColor: "#dc2626",
+        path: "/calculators/sports/target-heart-rate-calculator",
+        legacyPath: "/tools/target-heart-rate-calculator",
+        keywords: [
+          "target heart rate calculator", "heart rate zone calculator", "karvonen formula", "max heart rate calculator",
+          "fat burning heart rate", "training heart rate", "heart rate reserve", "borg rpe scale",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
