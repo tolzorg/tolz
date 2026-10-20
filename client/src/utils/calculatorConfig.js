@@ -309,6 +309,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "bac-calculator",
+        label: "Blood Alcohol Concentration (BAC) Calculator",
+        slug: "bac-calculator",
+        tagline: "Blood alcohol level & time to 0%",
+        description:
+          "Estimate your blood alcohol concentration (BAC) from beer, wine, liquor or any drink, your weight, gender and time since your first drink, with a chart of BAC over time and the hours until 0%.",
+        icon: "🍺",
+        iconBg: "#fffbeb",
+        iconColor: "#d97706",
+        path: "/calculators/health/bac-calculator",
+        legacyPath: "/tools/bac-calculator",
+        keywords: [
+          "bac calculator", "blood alcohol calculator", "blood alcohol concentration", "am i drunk calculator",
+          "alcohol level calculator", "widmark formula", "how long to sober up", "drink driving limit",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
