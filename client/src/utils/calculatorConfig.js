@@ -189,6 +189,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "protein-calculator",
+        label: "Protein Calculator",
+        slug: "protein-calculator",
+        tagline: "Daily protein by ADA, CDC & WHO",
+        description:
+          "Find how many grams of protein you need each day by the American Dietetic Association, CDC (10-35% of Calories) and World Health Organization guidelines, from your age, gender, height, weight and activity level.",
+        icon: "🥚",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/health/protein-calculator",
+        legacyPath: "/tools/protein-calculator",
+        keywords: [
+          "protein calculator", "how much protein do i need", "daily protein intake", "protein intake calculator",
+          "protein per day calculator", "grams of protein per day", "protein requirement calculator", "protein needs calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
