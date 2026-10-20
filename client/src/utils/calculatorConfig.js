@@ -169,6 +169,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "carbohydrate-calculator",
+        label: "Carbohydrate Calculator",
+        slug: "carbohydrate-calculator",
+        tagline: "Daily carbs in grams (40-75%)",
+        description:
+          "Find how many grams of carbohydrates to eat each day, at 40%, 55%, 65% and 75% of your Calories, to maintain, lose or gain weight, from your age, gender, height, weight and activity level.",
+        icon: "🍞",
+        iconBg: "#fff7ed",
+        iconColor: "#ea580c",
+        path: "/calculators/health/carbohydrate-calculator",
+        legacyPath: "/tools/carbohydrate-calculator",
+        keywords: [
+          "carbohydrate calculator", "carb calculator", "carbs per day calculator", "how many carbs should i eat",
+          "daily carb intake", "carbs for weight loss", "grams of carbs calculator", "carb intake calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
