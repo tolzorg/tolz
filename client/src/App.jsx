@@ -100,6 +100,7 @@ const LeanBodyMassCalculatorPage = lazy(() => import("./pages/LeanBodyMassCalcul
 const HealthyWeightCalculatorPage = lazy(() => import("./pages/HealthyWeightCalculatorPage"));
 const OneRepMaxCalculatorPage = lazy(() => import("./pages/OneRepMaxCalculatorPage"));
 const TargetHeartRateCalculatorPage = lazy(() => import("./pages/TargetHeartRateCalculatorPage"));
+const MacroCalculatorPage = lazy(() => import("./pages/MacroCalculatorPage"));
 const BmrCalculatorPage = lazy(() => import("./pages/BmrCalculatorPage"));
 const IdealWeightCalculatorPage = lazy(() => import("./pages/IdealWeightCalculatorPage"));
 const PaceCalculatorPage = lazy(() => import("./pages/PaceCalculatorPage"));
@@ -325,6 +326,7 @@ export default function App() {
                 <Route path="/tools/army-body-fat-calculator" element={<ArmyBodyFatCalculatorPage />} />
                 <Route path="/tools/lean-body-mass-calculator" element={<LeanBodyMassCalculatorPage />} />
                 <Route path="/tools/healthy-weight-calculator" element={<HealthyWeightCalculatorPage />} />
+                <Route path="/tools/macro-calculator" element={<MacroCalculatorPage />} />
                 <Route path="/tools/one-rep-max-calculator" element={<OneRepMaxCalculatorPage />} />
                 <Route path="/tools/target-heart-rate-calculator" element={<TargetHeartRateCalculatorPage />} />
                 <Route path="/tools/bmr-calculator" element={<BmrCalculatorPage />} />
@@ -363,6 +365,7 @@ export default function App() {
                 <Route path="/calculators/health/army-body-fat-calculator" element={<ArmyBodyFatCalculatorPage />} />
                 <Route path="/calculators/health/lean-body-mass-calculator" element={<LeanBodyMassCalculatorPage />} />
                 <Route path="/calculators/health/healthy-weight-calculator" element={<HealthyWeightCalculatorPage />} />
+                <Route path="/calculators/health/macro-calculator" element={<MacroCalculatorPage />} />
                 <Route path="/calculators/sports/one-rep-max-calculator" element={<OneRepMaxCalculatorPage />} />
                 <Route path="/calculators/sports/target-heart-rate-calculator" element={<TargetHeartRateCalculatorPage />} />
                 <Route path="/calculators/health/one-rep-max-calculator" element={<Navigate to="/calculators/sports/one-rep-max-calculator" replace />} />

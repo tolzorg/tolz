@@ -149,6 +149,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "macro-calculator",
+        label: "Macro Calculator",
+        slug: "macro-calculator",
+        tagline: "Daily protein, carbs & fat by plan",
+        description:
+          "Find your daily protein, carbs, fat, sugar and saturated fat with healthy ranges from your age, gender, height, weight, activity and goal: balanced, low fat, low carb, high protein or your own plan.",
+        icon: "🥑",
+        iconBg: "#f0fdf4",
+        iconColor: "#16a34a",
+        path: "/calculators/health/macro-calculator",
+        legacyPath: "/tools/macro-calculator",
+        keywords: [
+          "macro calculator", "macronutrient calculator", "iifym calculator", "macros calculator",
+          "protein carbs fat calculator", "macros for weight loss", "daily macros", "high protein macros",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
