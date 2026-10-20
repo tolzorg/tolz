@@ -289,6 +289,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "body-surface-area-calculator",
+        label: "Body Surface Area Calculator",
+        slug: "body-surface-area-calculator",
+        tagline: "BSA by Du Bois, Mosteller & 6 more",
+        description:
+          "Calculate body surface area (BSA) with the Du Bois, Mosteller, Haycock, Gehan & George, Boyd, Fujimoto, Takahira and Schlich formulas in m², ft² and in², from your weight, height and gender.",
+        icon: "📐",
+        iconBg: "#ecfeff",
+        iconColor: "#0891b2",
+        path: "/calculators/health/body-surface-area-calculator",
+        legacyPath: "/tools/body-surface-area-calculator",
+        keywords: [
+          "body surface area calculator", "bsa calculator", "mosteller formula", "du bois formula",
+          "body surface area", "bsa for chemotherapy", "haycock formula", "bsa m2 calculator",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
