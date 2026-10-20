@@ -222,6 +222,26 @@ export const CALCULATOR_CATEGORIES = [
         badge: "New",
         badgeType: "new",
       },
+      {
+        id: "one-rep-max-calculator",
+        label: "One Rep Max Calculator",
+        slug: "one-rep-max-calculator",
+        tagline: "1RM from weight & reps (Epley, Brzycki, Lombardi)",
+        description:
+          "Estimate your one rep max (1RM) from the weight and reps you can lift with the Epley, Brzycki or Lombardi formula, plus weights for 1-20 reps and 50-100% of your 1RM.",
+        icon: "🏋️",
+        iconBg: "#eff6ff",
+        iconColor: "#2563eb",
+        path: "/calculators/sports/one-rep-max-calculator",
+        legacyPath: "/tools/one-rep-max-calculator",
+        keywords: [
+          "one rep max calculator", "1rm calculator", "max lift calculator", "bench press max calculator",
+          "epley formula", "brzycki formula", "lombardi formula", "one rep max chart",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
     ],
   },
   {
