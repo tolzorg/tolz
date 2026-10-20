@@ -269,6 +269,26 @@ export const CALCULATOR_CATEGORIES = [
         badgeType: "new",
       },
       {
+        id: "body-type-calculator",
+        label: "Body Type Calculator",
+        slug: "body-type-calculator",
+        tagline: "Female body shape & waist-hip ratio",
+        description:
+          "Find your body shape (hourglass, bottom or top hourglass, spoon, triangle, inverted triangle or rectangle) from bust, waist, high hip and hip sizes, plus your waist-hip ratio.",
+        icon: "⏳",
+        iconBg: "#fdf2f8",
+        iconColor: "#db2777",
+        path: "/calculators/health/body-type-calculator",
+        legacyPath: "/tools/body-type-calculator",
+        keywords: [
+          "body type calculator", "body shape calculator", "what is my body shape", "hourglass calculator",
+          "female body shape", "waist hip ratio", "pear apple body shape", "body shape test",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
         id: "bmr-calculator",
         label: "BMR Calculator",
         slug: "bmr-calculator",
