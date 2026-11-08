@@ -441,32 +441,37 @@ async function compressDocument(originalBuffer, { images, stripNonVisual, exactN
 }
 
 // ── Target-size compression ──────────────────────────────────────────────────
+// Every ladder step is a full pass that re-encodes all images, which is slow on
+// a small server CPU. The search stops early once this budget is used and
+// returns the best result so far, so the request answers well before the
+// client's timeout.
+const TARGET_TIME_BUDGET_MS = 120_000;
+
 // Returns the highest-quality result that fits the target; if even the
 // quality floor doesn't fit, returns the smallest content-preserving result.
-async function compressToTargetSize(originalBuffer, targetBytes) {
+async function compressToTargetSize(originalBuffer, targetBytes, deadline) {
   const lossless = await compressDocument(originalBuffer, { images: null, stripNonVisual: true, exactNumbers: false });
   if (lossless.length <= targetBytes) return lossless;
 
-  let smallest = lossless;
-  let bestFit = null;
-  const cache = new Map();
-  const attempt = async (i) => {
-    if (!cache.has(i)) cache.set(i, await compressDocument(originalBuffer, { images: TARGET_LADDER[i], stripNonVisual: true, exactNumbers: false }));
-    const out = cache.get(i);
-    if (out.length < smallest.length) smallest = out;
-    return out;
-  };
+  const attempt = (i) => compressDocument(originalBuffer, { images: TARGET_LADDER[i], stripNonVisual: true, exactNumbers: false });
 
-  // Sizes shrink as the ladder index grows: binary-search the first (highest
-  // quality) step that fits the target.
-  let lo = 0, hi = TARGET_LADDER.length - 1;
-  while (lo <= hi) {
+  // Try the quality floor first: if even that doesn't fit, no step can, and the
+  // search is over after two passes instead of five.
+  const last = TARGET_LADDER.length - 1;
+  const floor = await attempt(last);
+  if (floor.length > targetBytes) return floor.length < lossless.length ? floor : lossless;
+
+  // The floor fits. Sizes shrink as the ladder index grows: binary-search the
+  // first (highest-quality) step that fits, keeping the floor as the fallback.
+  let bestFit = floor;
+  let lo = 0, hi = last - 1;
+  while (lo <= hi && Date.now() < deadline) {
     const mid = (lo + hi) >> 1;
     const out = await attempt(mid);
     if (out.length <= targetBytes) { bestFit = out; hi = mid - 1; }
     else lo = mid + 1;
   }
-  return bestFit ?? smallest;
+  return bestFit;
 }
 
 // ── Main request handler ─────────────────────────────────────────────────────
@@ -490,6 +495,7 @@ export async function compressPdfs(req, res) {
     }
 
     const targetBytes = Math.round(targetSizeKb * 1024);
+    const deadline = Date.now() + TARGET_TIME_BUDGET_MS; // shared by all files in the request
     const results = [];
 
     for (const file of req.files) {
@@ -499,7 +505,7 @@ export async function compressPdfs(req, res) {
         continue;
       }
       try {
-        const pdfBytes = await compressToTargetSize(file.buffer, targetBytes);
+        const pdfBytes = await compressToTargetSize(file.buffer, targetBytes, deadline);
         const originalSize = file.buffer.length;
         const compressedSize = pdfBytes.length;
         const savings = Math.max(0, Math.round((1 - compressedSize / originalSize) * 100));

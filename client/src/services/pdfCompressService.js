@@ -13,7 +13,10 @@ export async function compressPdfs(files, level, targetSizeKb = null) {
 
   try {
     const res = await axios.post(`${BASE_URL}/pdf/compress`, fd, {
-      timeout: 180_000,
+      // Large PDFs on the small production server can take a few minutes; this matches
+      // the server's own 300 s request limit (server.js), and target-size mode stops
+      // searching after 120 s, leaving time for the upload and download.
+      timeout: 300_000,
     });
     if (!res.data.success) throw new Error(res.data.error || "Compression failed");
     return res.data;
