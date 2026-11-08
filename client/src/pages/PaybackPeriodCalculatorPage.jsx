@@ -8,8 +8,8 @@ export default function PaybackPeriodCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Payback Period Calculator - Discounted Payback & IRR"
-      seoDescription="Calculate the payback period, discounted payback period and cash flow return rate (IRR) of an investment with a growing or irregular cash flow, plus a year-by-year schedule. Free, no signup."
+      seoTitle="Payback Period Calculator – Free Discounted Payback & IRR"
+      seoDescription="Free payback period calculator for uneven or growing cash flows. Get simple and discounted payback, IRR, and a year-by-year schedule in one place."
       footer={<PaybackPeriodCalculatorFaqSection />}
       wide
     >

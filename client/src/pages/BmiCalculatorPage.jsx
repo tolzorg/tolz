@@ -8,8 +8,8 @@ export default function BmiCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="BMI Calculator - Body Mass Index for Adults & Children"
-      seoDescription="Free BMI calculator: find your Body Mass Index and weight category for adults (WHO) and children aged 2-20 (CDC percentiles), plus healthy weight, BMI Prime and Ponderal Index."
+      seoTitle="BMI Calculator - Free Adult & Kids BMI Check"
+      seoDescription="Check your BMI free with Tolz. Get your weight category, healthy range, BMI Prime and Ponderal Index for adults and kids, plus what your number really means."
       footer={<BmiCalculatorFaqSection />}
       wide
     >

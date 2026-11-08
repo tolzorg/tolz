@@ -8,8 +8,8 @@ export default function BudgetCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Budget Calculator - Monthly & Annual Budget, DTI & Expense Breakdown"
-      seoDescription="Plan a personal budget: enter incomes and expenses by month or year to see after-tax income, net surplus or deficit, debt-to-income ratio, and an expense breakdown by category. Free, no signup."
+      seoTitle="Free Budget Calculator - Monthly & Yearly Budget Planner"
+      seoDescription="Free budget calculator for monthly or yearly planning. See after-tax income, surplus or deficit, debt-to-income ratio, and where your money goes by category."
       footer={<BudgetCalculatorFaqSection />}
       wide
     >

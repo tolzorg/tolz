@@ -8,8 +8,8 @@ export default function CommissionCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Commission Calculator - Simple & Tiered Sales Commission"
-      seoDescription="Calculate a sales commission, sales price or commission rate from the other two, or work out tiered commissions with an optional base amount. Free, no signup."
+      seoTitle="Commission Calculator - Free Sales & Tiered Commission Tool"
+      seoDescription="Use this free commission calculator to find commission, sales price, or rate in seconds. Handles tiered commissions with an optional base amount."
       footer={<CommissionCalculatorFaqSection />}
       wide
     >

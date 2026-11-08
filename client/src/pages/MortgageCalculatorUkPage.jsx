@@ -8,8 +8,8 @@ export default function MortgageCalculatorUkPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Mortgage Calculator UK - Monthly Repayment in Pounds"
-      seoDescription="UK mortgage calculator in pounds: monthly repayment and interest-only payment, deposit, taxes, insurance and other costs, with an amortization schedule and charts. Free, no signup."
+      seoTitle="Mortgage Calculator UK – Free Repayment & Interest-Only"
+      seoDescription="Free mortgage calculator UK in pounds. Work out repayment or interest-only payments, add deposit, stamp duty and insurance, and see your full schedule."
       footer={<MortgageCalculatorUkFaqSection />}
       wide
     >

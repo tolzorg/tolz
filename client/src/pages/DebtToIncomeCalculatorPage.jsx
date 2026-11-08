@@ -8,8 +8,8 @@ export default function DebtToIncomeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Debt-to-Income (DTI) Ratio Calculator - Front-End & Back-End DTI"
-      seoDescription="Calculate your front-end and back-end debt-to-income ratio from monthly or yearly income and debts, see how healthy it is, and estimate how much house you can afford. Free, no signup."
+      seoTitle="Debt-to-Income Ratio Calculator: Free DTI Check"
+      seoDescription="Use this free debt-to-income ratio calculator to find your front-end and back-end DTI, see if it’s healthy, and estimate how much house you can afford."
       footer={<DebtToIncomeCalculatorFaqSection />}
       wide
     >

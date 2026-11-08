@@ -8,8 +8,8 @@ export default function AprCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="APR Calculator - Real APR with Fees, Points & PMI"
-      seoDescription="Find the real APR of a loan including loaned and upfront fees, for any compounding and payment frequency, or a U.S. mortgage APR with points and PMI, plus an amortization schedule. Free, no signup."
+      seoTitle="APR Calculator - Real Loan & Mortgage APR (2027)"
+      seoDescription="Free APR calculator for loans and U.S. mortgages. Add fees, points and PMI to see the real APR, plus a full amortization schedule. Updated for 2027."
       footer={<AprCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function IdealWeightCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Ideal Weight Calculator - Robinson, Miller, Devine & Hamwi"
-      seoDescription="Free ideal weight calculator: compare the Robinson, Miller, Devine and Hamwi ideal body weight formulas with your healthy BMI weight range, for adults and children aged 2-20."
+      seoTitle="Ideal Weight Calculator: Devine, Hamwi & More"
+      seoDescription="Free ideal weight calculator comparing Robinson, Miller, Devine and Hamwi formulas with your healthy BMI range. Works for adults and children aged 2–20."
       footer={<IdealWeightCalculatorFaqSection />}
       wide
     >

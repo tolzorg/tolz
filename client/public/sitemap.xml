@@ -11,6 +11,9 @@
   <url><loc>https://www.tolz.org/calculators</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/health</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/sports</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://www.tolz.org/calculators/education</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://www.tolz.org/calculators/logistics</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/calculators/tech-electronics</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/everyday-life</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/construction</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://www.tolz.org/calculators/garden</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2026-08-29</lastmod></url>
@@ -48,6 +51,43 @@
   <url><loc>https://www.tolz.org/tools/body-type-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://www.tolz.org/tools/body-surface-area-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://www.tolz.org/tools/bac-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/ielts-score-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/pte-score-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/ap-bio-score-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/ap-chem-score-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/ap-lang-score-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/ap-world-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/act-score-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/gpa-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/college-gpa-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/high-school-gpa-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/gpa-calculator-pakistan</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/gwa-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/grade-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/final-grade-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/semester-grade-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/test-grade-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/cbm-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/container-loading-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/pallet-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/dimensional-weight-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/freight-class-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/reorder-point-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/takt-time-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/pcb-trace-width-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/pcb-trace-current-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/pcb-trace-resistance-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/pcb-impedance-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/chmod-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/cidr-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/raid-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/battery-life-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/battery-capacity-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/3d-printing-cost-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/hash-identifier-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/voltage-drop-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/resistor-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://www.tolz.org/tools/electricity-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://www.tolz.org/tools/bmr-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-19</lastmod></url>
   <url><loc>https://www.tolz.org/tools/ideal-weight-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-19</lastmod></url>
   <url><loc>https://www.tolz.org/tools/pace-calculator</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2026-10-19</lastmod></url>

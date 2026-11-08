@@ -9,14 +9,14 @@ import { useRequiredState, requiredInputProps } from "./requiredFields";
 
 const srOnly = { position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" };
 
-function Box({ value, onChange, suffix, label, first, placeholder, invalid }) {
+function Box({ value, onChange, suffix, label, first, placeholder, invalid, highlight, disabled }) {
   return (
     <label style={{ position: "relative", flex: 1, minWidth: 0, display: "flex", borderLeft: first ? "none" : "1px solid var(--border)" }}>
       <span style={srOnly}>{label}</span>
       <input
-        type="text" inputMode="decimal" value={value} onChange={(e) => onChange(e.target.value)}
+        type="text" inputMode="decimal" value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}
         {...(invalid && !first ? { ...requiredInputProps(true, ""), placeholder: "" } : requiredInputProps(invalid, placeholder))}
-        style={{ ...inputStyle, border: "none", borderRadius: 0, background: "transparent", minWidth: 0, paddingRight: suffix ? suffix.length * 7 + 14 : undefined }}
+        style={{ ...inputStyle, border: "none", borderRadius: 0, background: "transparent", minWidth: 0, paddingRight: suffix ? suffix.length * 7 + 14 : undefined, ...(highlight ? { color: "var(--accent)", fontWeight: 700 } : null) }}
       />
       {suffix && (
         <span aria-hidden="true" style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", fontSize: 12.5, color: "var(--text-muted)", pointerEvents: "none" }}>
@@ -31,8 +31,10 @@ function Box({ value, onChange, suffix, label, first, placeholder, invalid }) {
  * @param {{ label: string, units: { value, label, short, parts? }[], unit: string, onUnitChange: (u) => void,
  *   values: string[], onChange: (i: number, text: string) => void, placeholders?: string[] }} props
  *   A unit with `parts` (e.g. ["ft", "in"] or ["hrs", "min", "sec"]) shows one box per part.
+ *   `highlight` (optional) shows the value in the accent colour, e.g. for a value the calculator filled in.
+ *   `disabled` (optional) makes the number box(es) read-only (the unit can still be changed).
  */
-export default function UnitMeasureField({ label, units, unit, onUnitChange, values, onChange, placeholders = [] }) {
+export default function UnitMeasureField({ label, units, unit, onUnitChange, values, onChange, placeholders = [], highlight = false, disabled = false }) {
   const current = units.find((u) => u.value === unit) || units[0];
   // Flagged as required and still empty: every box shows it, the first one with the message.
   const invalid = useRequiredState(values);
@@ -41,18 +43,18 @@ export default function UnitMeasureField({ label, units, unit, onUnitChange, val
     <div
       style={{
         display: "flex", alignItems: "stretch", flex: 1, minWidth: 0, border: "1px solid var(--border)",
-        borderRadius: "var(--radius-sm)", background: "var(--bg-white)", overflow: "hidden",
+        borderRadius: "var(--radius-sm)", background: disabled ? "var(--bg-muted)" : "var(--bg-white)", overflow: "hidden",
       }}
     >
       {parts ? (
         parts.map((part, i) => (
           <Box
             key={part} first={i === 0} value={values[i] ?? ""} placeholder={placeholders[i] ?? ""} invalid={invalid}
-            onChange={(t) => onChange(i, t)} suffix={part} label={`${label} (${part})`}
+            onChange={(t) => onChange(i, t)} suffix={part} label={`${label} (${part})`} highlight={highlight} disabled={disabled}
           />
         ))
       ) : (
-        <Box first value={values[0]} placeholder={placeholders[0]} invalid={invalid} onChange={(t) => onChange(0, t)} label={`${label} (${current.short})`} />
+        <Box first value={values[0]} placeholder={placeholders[0]} invalid={invalid} onChange={(t) => onChange(0, t)} label={`${label} (${current.short})`} highlight={highlight} disabled={disabled} />
       )}
       <div style={{ position: "relative", flex: "0 0 auto", display: "flex", alignItems: "center", gap: 4, padding: "0 10px", background: "var(--bg-muted)", borderLeft: "1px solid var(--border)" }}>
         <span aria-hidden="true" style={{ fontSize: 13, fontWeight: 600, color: "var(--accent)", whiteSpace: "nowrap" }}>{current.short}</span>

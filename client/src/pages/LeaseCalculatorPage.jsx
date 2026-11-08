@@ -8,8 +8,8 @@ export default function LeaseCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Lease Calculator - Monthly Lease Payment or Implied Interest Rate"
-      seoDescription="Calculate the monthly payment of a lease from the asset value, residual value, term, and interest rate, or find the interest rate implied by a monthly payment. Free, no signup."
+      seoTitle="Free Lease Calculator: Monthly Payment & Interest Rate"
+      seoDescription="Free lease calculator: get your monthly lease payment or find the interest rate hidden in a quote. Covers residual value, money factor and lease vs buy."
       footer={<LeaseCalculatorFaqSection />}
       wide
     >

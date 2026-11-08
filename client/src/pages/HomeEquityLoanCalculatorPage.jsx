@@ -8,8 +8,8 @@ export default function HomeEquityLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Home Equity Loan Calculator - Payment, APR & How Much to Borrow"
-      seoDescription="Calculate a home equity loan payment, total interest, cost and APR with closing costs and an amortization schedule, and estimate how much you can borrow from your home value, mortgage balance and LTV. Free, no signup."
+      seoTitle="Home Equity Loan Calculator: Payment, APR & Max Loan"
+      seoDescription="Free home equity loan calculator: estimate your monthly payment, total interest, APR with closing costs, amortization schedule and how much you can borrow."
       footer={<HomeEquityLoanCalculatorFaqSection />}
       wide
     >

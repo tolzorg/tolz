@@ -8,8 +8,8 @@ export default function BoatLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Boat Loan Calculator - Monthly Payment & Affordable Boat Price"
-      seoDescription="Calculate a boat loan's monthly payment, total interest, and total cost with down payment, trade-in, sales tax, and fees, or find the boat price a monthly payment can buy. Free, no signup."
+      seoTitle="Boat Loan Calculator - Monthly Payment & Total Cost"
+      seoDescription="Free boat loan calculator to estimate your monthly payment, total interest, and full cost with down payment, trade-in, tax, and fees. No signup needed."
       footer={<BoatLoanCalculatorFaqSection />}
       wide
     >

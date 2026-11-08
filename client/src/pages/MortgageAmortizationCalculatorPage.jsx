@@ -8,8 +8,8 @@ export default function MortgageAmortizationCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Mortgage Amortization Calculator - Schedule & Payment"
-      seoDescription="Mortgage amortization calculator: monthly payment, interest vs principal, taxes, insurance, PMI and HOA costs, with an annual or monthly amortization schedule and charts. Free, no signup."
+      seoTitle="Mortgage Amortization Calculator - Free Payment Schedule"
+      seoDescription="Free mortgage amortization calculator. See your monthly payment, interest vs principal, taxes, insurance, PMI and HOA, plus a full amortization schedule."
       footer={<MortgageAmortizationCalculatorFaqSection />}
       wide
     >

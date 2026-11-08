@@ -13,6 +13,9 @@ import JsonLd from "../components/JsonLd";
 const SUBCATEGORY_TO_CALC_CATEGORY = {
   "health-calc": "health",
   "sports-calc": "sports",
+  "education-calc": "education",
+  "logistics-calc": "logistics",
+  "tech-calc": "tech-electronics",
   "everyday": "everyday-life",
   "construction-calc": "construction",
   "construction-materials": "construction",

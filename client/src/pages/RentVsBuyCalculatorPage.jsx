@@ -8,8 +8,8 @@ export default function RentVsBuyCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Rent vs. Buy Calculator - Should I Rent or Buy a Home?"
-      seoDescription="Compare the average cost of buying and renting a home for every stay from 1 to 30 years, with mortgage, taxes, insurance, maintenance, appreciation, investment returns and tax savings, and find your break-even stay. Free, no signup."
+      seoTitle="Rent vs Buy Calculator: Find Your Break-Even Year"
+      seoDescription="Free rent vs buy calculator. Compare buying and renting costs for every stay from 1 to 30 years, with taxes, upkeep and returns, and find your break-even."
       footer={<RentVsBuyCalculatorFaqSection />}
       wide
     >

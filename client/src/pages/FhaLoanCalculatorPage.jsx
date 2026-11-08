@@ -8,8 +8,8 @@ export default function FhaLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="FHA Loan Calculator - Payment with MIP, Taxes & Schedule"
-      seoDescription="Estimate an FHA mortgage payment with upfront and annual MIP, property taxes, insurance, HOA and other costs, extra payments, a bi-weekly comparison and a full amortization schedule. Free, no signup."
+      seoTitle="FHA Loan Calculator - Free Payment, MIP & Amortization"
+      seoDescription="Free FHA loan calculator: estimate your monthly payment with upfront and annual MIP, taxes, insurance, HOA, extra payments and an amortization schedule."
       footer={<FhaLoanCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function VaMortgageCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="VA Mortgage Calculator - Payment with VA Funding Fee"
-      seoDescription="Estimate a VA home loan payment with the VA funding fee (financed or paid upfront), property taxes, insurance and other costs, extra payments, a bi-weekly comparison and a full amortization schedule. Free, no signup."
+      seoTitle="VA Mortgage Calculator - Free VA Loan Payment Estimator"
+      seoDescription="Use our free VA mortgage calculator to estimate monthly payments with the VA funding fee, taxes, insurance, HOA, extra payments and an amortization schedule."
       footer={<VaMortgageCalculatorFaqSection />}
       wide
     >

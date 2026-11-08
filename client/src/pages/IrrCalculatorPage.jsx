@@ -8,8 +8,8 @@ export default function IrrCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="IRR Calculator - Internal Rate of Return for Fixed & Irregular Cash Flows"
-      seoDescription="Calculate the internal rate of return (IRR) from a fixed recurring deposit or withdrawal and an ending balance, or from irregular yearly cash flows, with total and gross return. Free, no signup."
+      seoTitle="IRR Calculator - Free Internal Rate of Return Tool"
+      seoDescription="Free IRR calculator that finds your internal rate of return from recurring deposits and an ending balance or irregular yearly cash flows. Try it for free."
       footer={<IrrCalculatorFaqSection />}
       wide
     >

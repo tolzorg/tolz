@@ -9,6 +9,9 @@ import { TOOLS } from "./tools";
 const GROUP_META = {
   "health-calc":            { label: "health calculators",              emoji: "💪",  path: "/calculators/health" },
   "sports-calc":            { label: "sports calculators",              emoji: "🏅",  path: "/calculators/sports" },
+  "education-calc":         { label: "education calculators",           emoji: "🎓",  path: "/calculators/education" },
+  "logistics-calc":         { label: "logistics calculators",           emoji: "🚚",  path: "/calculators/logistics" },
+  "tech-calc":              { label: "tech and electronics calculators", emoji: "💻",  path: "/calculators/tech-electronics" },
   everyday:                 { label: "everyday life calculators",       emoji: "🌅",  path: "/calculators/everyday-life" },
   "construction-calc":      { label: "construction converters",         emoji: "📐",  path: "/calculators/construction" },
   "construction-materials": { label: "construction materials calculators", emoji: "🧱", path: "/calculators/construction" },

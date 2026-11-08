@@ -8,8 +8,8 @@ export default function RefinanceCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Refinance Calculator - New Payment, APR, Savings & Break-Even"
-      seoDescription="Compare your current loan with a refinance: new monthly payment, APR with points and fees, lifetime savings, cash-out take-home amount, and break-even point. Free, no signup."
+      seoTitle="Refinance Calculator – Free Savings & Break-Even Tool"
+      seoDescription="Use our free refinance calculator to compare loans, see your new payment, APR with points, lifetime savings, cash-out amount and break-even point."
       footer={<RefinanceCalculatorFaqSection />}
       wide
     >

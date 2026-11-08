@@ -3,16 +3,23 @@
 // Calculator's shared control file rather than duplicated.
 import { FieldLabel, TextField, ValueUnitField, FieldRow, inputStyle } from "../mortgage-calculator/MortgageFormControls";
 import { Req } from "../calculator-ui/Required";
+import { useRequiredState, REQUIRED_MESSAGE } from "../calculator-ui/requiredFields";
 
 export { FieldLabel, TextField, ValueUnitField, FieldRow };
 
-export function SelectField({ value, onChange, options, disabled, style }) {
+/** `placeholder` (optional) adds an empty first choice, e.g. "Select"; while that empty choice is flagged as
+ * required it reads "Please enter a value" with the red required border. */
+export function SelectField({ value, onChange, options, disabled, style, placeholder }) {
+  const invalid = useRequiredState(value) && placeholder !== undefined;
   return (
     <select
       value={value} disabled={disabled}
       onChange={(e) => onChange(e.target.value)}
+      className={invalid ? "input-required" : undefined}
+      aria-invalid={invalid || undefined}
       style={{ ...inputStyle, cursor: disabled ? "not-allowed" : "pointer", ...style }}
     >
+      {placeholder !== undefined && <option value="" disabled>{invalid ? REQUIRED_MESSAGE : placeholder}</option>}
       {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
     </select>
   );

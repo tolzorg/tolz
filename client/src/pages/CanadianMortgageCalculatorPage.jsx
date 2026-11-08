@@ -8,8 +8,8 @@ export default function CanadianMortgageCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Canadian Mortgage Calculator - Semi-Annual Compounding"
-      seoDescription="Canadian mortgage calculator with semi-annual compounding: monthly payment, property tax, insurance, condo fees and total cost, with an amortization schedule and charts. Free, no signup."
+      seoTitle="Canadian Mortgage Calculator – Payments & Amortization"
+      seoDescription="Free Canadian mortgage calculator with semi-annual compounding. Get monthly payments, property tax, insurance, condo fees and an amortization schedule."
       footer={<CanadianMortgageCalculatorFaqSection />}
       wide
     >

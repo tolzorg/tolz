@@ -8,8 +8,8 @@ export default function RentalPropertyCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Rental Property Calculator - IRR, Cap Rate, Cash Flow & Profit"
-      seoDescription="Analyze a rental property investment: IRR, total profit when sold, cash-on-cash return, cap rate, first-year cash flow, and a year-by-year breakdown of income, expenses, equity, and sale proceeds. Free, no signup."
+      seoTitle="Rental Property Calculator - Free IRR, Cap Rate & ROI"
+      seoDescription="Free rental property calculator to analyze cash flow, cap rate, cash-on-cash return, IRR and total profit at sale, with a full year-by-year breakdown."
       footer={<RentalPropertyCalculatorFaqSection />}
       wide
     >

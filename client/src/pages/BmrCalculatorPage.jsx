@@ -8,8 +8,8 @@ export default function BmrCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="BMR Calculator - Basal Metabolic Rate & Daily Calorie Needs"
-      seoDescription="Free BMR calculator: estimate your basal metabolic rate with the Mifflin-St Jeor, Harris-Benedict or Katch-McArdle formula and see your daily calorie needs at six activity levels, in Calories or kilojoules."
+      seoTitle="BMR Calculator: Free Basal Metabolic Rate & Daily Calories"
+      seoDescription="Free BMR calculator with Mifflin-St Jeor, Harris-Benedict and Katch-McArdle. Find your basal metabolic rate, normal ranges and daily calories at six activity levels."
       footer={<BmrCalculatorFaqSection />}
       wide
     >

@@ -5,6 +5,30 @@ import RelatedTools from "./RelatedTools";
 
 const SITE_URL = "https://www.tolz.org";
 
+/** schema.org applicationCategory for each tool category / calculator subcategory (UtilityApplication otherwise). */
+const APP_CATEGORY_BY_SUBCATEGORY = {
+  "financial-calc": "FinanceApplication",
+  "health-calc": "HealthApplication",
+  "sports-calc": "SportsApplication",
+  "education-calc": "EducationalApplication",
+  "logistics-calc": "BusinessApplication",
+  "tech-calc": "DeveloperApplication",
+  "construction-calc": "HomeApplication",
+  "construction-materials": "HomeApplication",
+  everyday: "LifestyleApplication",
+  "garden-calc": "GameApplication",
+};
+const APP_CATEGORY_BY_CATEGORY = {
+  image: "MultimediaApplication",
+  pdf: "BusinessApplication",
+  "excel-tools": "BusinessApplication",
+  "design-tools": "DesignApplication",
+  "gaming-tools": "GameApplication",
+  "naming-tools": "EntertainmentApplication",
+};
+const applicationCategoryFor = (tool) =>
+  APP_CATEGORY_BY_SUBCATEGORY[tool.subCategory] || APP_CATEGORY_BY_CATEGORY[tool.category] || "UtilityApplication";
+
 export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoDescription, wide = false }) {
   const toolSchema = tool
     ? {
@@ -13,7 +37,7 @@ export default function ToolPageWrapper({ tool, children, footer, seoTitle, seoD
         name: tool.label,
         description: tool.description,
         url: `${SITE_URL}${tool.path}`,
-        applicationCategory: "UtilityApplication",
+        applicationCategory: applicationCategoryFor(tool),
         operatingSystem: "Any",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       }

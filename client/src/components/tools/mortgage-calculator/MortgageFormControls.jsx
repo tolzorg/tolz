@@ -41,7 +41,8 @@ export function TextField({ value, onChange, disabled, placeholder, style }) {
   );
 }
 
-/** A number input paired with a $/% unit dropdown — Down Payment, Property Taxes, Home Insurance, PMI, HOA, Other Costs. */
+/** A number input paired with a $/% unit dropdown — Down Payment, Property Taxes, Home Insurance, PMI, HOA, Other Costs.
+ * `units` may also include "decimal" (shown as ".", a plain decimal number), e.g. ["decimal", "percent"] for weights. */
 export function ValueUnitField({ value, unit, onValueChange, onUnitChange, disabled, placeholder, units = ["percent", "dollar"] }) {
   const invalid = useRequiredState(value);
   return (
@@ -56,6 +57,7 @@ export function ValueUnitField({ value, unit, onValueChange, onUnitChange, disab
         onChange={(e) => onUnitChange(e.target.value)}
         style={{ ...inputStyle, width: 54, flexShrink: 0, cursor: disabled ? "not-allowed" : "pointer" }}
       >
+        {units.includes("decimal") && <option value="decimal">.</option>}
         {units.includes("percent") && <option value="percent">%</option>}
         {units.includes("dollar") && <option value="dollar">$</option>}
       </select>

@@ -8,8 +8,8 @@ export default function AutoLeaseCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Auto Lease Calculator - Monthly Car Lease Payment"
-      seoDescription="Calculate a monthly car lease payment from the price, money factor, residual value, and sales tax, or the price a payment can afford, and compare leasing with buying. Free, no signup."
+      seoTitle="Auto Lease Calculator – Free Monthly Car Lease Payment Tool"
+      seoDescription="Free auto lease calculator: estimate your monthly car lease payment from price, money factor, residual and tax, or work backward from a payment you want."
       footer={<AutoLeaseCalculatorFaqSection />}
       wide
     >

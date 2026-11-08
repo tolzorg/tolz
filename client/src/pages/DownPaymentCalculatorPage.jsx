@@ -8,8 +8,8 @@ export default function DownPaymentCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Down Payment Calculator - Home Price, Cash Needed & Down %"
-      seoDescription="Find the home price your upfront cash can buy, the cash needed for a home, or the down payment percentage you can afford, with closing costs, loan amount, monthly payment and 3.5% to 20% comparisons. Free, no signup."
+      seoTitle="Down Payment Calculator - Free Home Price & Cash Needed"
+      seoDescription="Use our free down payment calculator to find the home price you can afford, cash needed, or down payment percentage, with closing costs and monthly payment."
       footer={<DownPaymentCalculatorFaqSection />}
       wide
     >

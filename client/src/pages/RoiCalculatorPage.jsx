@@ -8,8 +8,8 @@ export default function RoiCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="ROI Calculator - Return on Investment & Annualized ROI"
-      seoDescription="Calculate return on investment (ROI), investment gain or loss, and annualized ROI from the amount invested and returned, using dates or an investment length. Free, no signup."
+      seoTitle="ROI Calculator: Free Return on Investment & Annualized ROI"
+      seoDescription="Free ROI calculator that shows your gain or loss, total ROI and annualized ROI from dates or holding period. No signup. Plus formulas, examples and tips."
       footer={<RoiCalculatorFaqSection />}
       wide
     >

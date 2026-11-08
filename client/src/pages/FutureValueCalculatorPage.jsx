@@ -8,8 +8,8 @@ export default function FutureValueCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Future Value Calculator - FV with Deposits & Schedule"
-      seoDescription="Calculate the future value of a starting amount plus periodic deposits made at the beginning or end of each period, with present value, total interest, a schedule and charts. Free, no signup."
+      seoTitle="Future Value Calculator – Free FV with Deposits"
+      seoDescription="Free future value calculator with periodic deposits at the start or end of each period. See present value, total interest and a year-by-year schedule."
       footer={<FutureValueCalculatorFaqSection />}
       wide
     >

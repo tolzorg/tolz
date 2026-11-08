@@ -8,8 +8,8 @@ export default function BusinessLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Business Loan Calculator - Payment, Fees & Real APR"
-      seoDescription="Calculate a business loan's payment, total interest, and real rate (APR) including origination, documentation, and other fees. Supports interest-only and lump-sum repayment. Free, no signup."
+      seoTitle="Business Loan Calculator - Payment, Interest & Real APR"
+      seoDescription="Free business loan calculator. See your payment, total interest and real APR with origination and other fees, for regular, interest-only or lump-sum loans."
       footer={<BusinessLoanCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function PercentOffCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Percent Off Calculator - Final Price & Stacked Discounts"
-      seoDescription="Percent off calculator: find the final price, amount saved, percent off or original price from any two values, with stackable additional discounts. Free, no signup."
+      seoTitle="Percent Off Calculator: Sale Price & Savings (Free)"
+      seoDescription="Free percent off calculator. Find the sale price, amount saved, discount percent or original price, plus stackable extra discounts. Works in seconds."
       footer={<PercentOffCalculatorFaqSection />}
       wide
     >

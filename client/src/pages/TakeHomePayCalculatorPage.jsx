@@ -8,8 +8,8 @@ export default function TakeHomePayCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Take-Home-Paycheck Calculator 2026 - Net Pay After Taxes & W-4"
-      seoDescription="Estimate your 2026 take-home paycheck after federal, state, and city income tax, Social Security, Medicare, and deductions, plus the numbers for Steps 3 and 4 of your W-4. Free, no signup."
+      seoTitle="Take Home Pay Calculator 2027 - Paycheck & W-4 Steps 3–4"
+      seoDescription="Free take home pay calculator for 2026. Estimate your paycheck after federal, state and city tax, FICA and deductions, plus W-4 Step 3 and 4 numbers."
       footer={<TakeHomePayCalculatorFaqSection />}
       wide
     >

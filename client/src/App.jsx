@@ -109,6 +109,43 @@ const GfrCalculatorPage = lazy(() => import("./pages/GfrCalculatorPage"));
 const BodyTypeCalculatorPage = lazy(() => import("./pages/BodyTypeCalculatorPage"));
 const BodySurfaceAreaCalculatorPage = lazy(() => import("./pages/BodySurfaceAreaCalculatorPage"));
 const BacCalculatorPage = lazy(() => import("./pages/BacCalculatorPage"));
+const IeltsScoreCalculatorPage = lazy(() => import("./pages/IeltsScoreCalculatorPage"));
+const PteScoreCalculatorPage = lazy(() => import("./pages/PteScoreCalculatorPage"));
+const ApBioScoreCalculatorPage = lazy(() => import("./pages/ApBioScoreCalculatorPage"));
+const ApChemScoreCalculatorPage = lazy(() => import("./pages/ApChemScoreCalculatorPage"));
+const ApLangScoreCalculatorPage = lazy(() => import("./pages/ApLangScoreCalculatorPage"));
+const ApWorldCalculatorPage = lazy(() => import("./pages/ApWorldCalculatorPage"));
+const ActScoreCalculatorPage = lazy(() => import("./pages/ActScoreCalculatorPage"));
+const GpaCalculatorPage = lazy(() => import("./pages/GpaCalculatorPage"));
+const CollegeGpaCalculatorPage = lazy(() => import("./pages/CollegeGpaCalculatorPage"));
+const HighSchoolGpaCalculatorPage = lazy(() => import("./pages/HighSchoolGpaCalculatorPage"));
+const GpaPakistanCalculatorPage = lazy(() => import("./pages/GpaPakistanCalculatorPage"));
+const GwaCalculatorPage = lazy(() => import("./pages/GwaCalculatorPage"));
+const GradeCalculatorPage = lazy(() => import("./pages/GradeCalculatorPage"));
+const FinalGradeCalculatorPage = lazy(() => import("./pages/FinalGradeCalculatorPage"));
+const SemesterGradeCalculatorPage = lazy(() => import("./pages/SemesterGradeCalculatorPage"));
+const TestGradeCalculatorPage = lazy(() => import("./pages/TestGradeCalculatorPage"));
+const CbmCalculatorPage = lazy(() => import("./pages/CbmCalculatorPage"));
+const ContainerLoadingCalculatorPage = lazy(() => import("./pages/ContainerLoadingCalculatorPage"));
+const PalletCalculatorPage = lazy(() => import("./pages/PalletCalculatorPage"));
+const DimensionalWeightCalculatorPage = lazy(() => import("./pages/DimensionalWeightCalculatorPage"));
+const FreightClassCalculatorPage = lazy(() => import("./pages/FreightClassCalculatorPage"));
+const ReorderPointCalculatorPage = lazy(() => import("./pages/ReorderPointCalculatorPage"));
+const TaktTimeCalculatorPage = lazy(() => import("./pages/TaktTimeCalculatorPage"));
+const PcbTraceWidthCalculatorPage = lazy(() => import("./pages/PcbTraceWidthCalculatorPage"));
+const PcbTraceCurrentCalculatorPage = lazy(() => import("./pages/PcbTraceCurrentCalculatorPage"));
+const PcbTraceResistanceCalculatorPage = lazy(() => import("./pages/PcbTraceResistanceCalculatorPage"));
+const PcbImpedanceCalculatorPage = lazy(() => import("./pages/PcbImpedanceCalculatorPage"));
+const ChmodCalculatorPage = lazy(() => import("./pages/ChmodCalculatorPage"));
+const CidrCalculatorPage = lazy(() => import("./pages/CidrCalculatorPage"));
+const RaidCalculatorPage = lazy(() => import("./pages/RaidCalculatorPage"));
+const BatteryLifeCalculatorPage = lazy(() => import("./pages/BatteryLifeCalculatorPage"));
+const BatteryCapacityCalculatorPage = lazy(() => import("./pages/BatteryCapacityCalculatorPage"));
+const PrintingCostCalculatorPage = lazy(() => import("./pages/PrintingCostCalculatorPage"));
+const HashIdentifierCalculatorPage = lazy(() => import("./pages/HashIdentifierCalculatorPage"));
+const VoltageDropCalculatorPage = lazy(() => import("./pages/VoltageDropCalculatorPage"));
+const ResistorCalculatorPage = lazy(() => import("./pages/ResistorCalculatorPage"));
+const ElectricityCalculatorPage = lazy(() => import("./pages/ElectricityCalculatorPage"));
 const BmrCalculatorPage = lazy(() => import("./pages/BmrCalculatorPage"));
 const IdealWeightCalculatorPage = lazy(() => import("./pages/IdealWeightCalculatorPage"));
 const PaceCalculatorPage = lazy(() => import("./pages/PaceCalculatorPage"));
@@ -343,6 +380,43 @@ export default function App() {
                 <Route path="/tools/body-type-calculator" element={<BodyTypeCalculatorPage />} />
                 <Route path="/tools/body-surface-area-calculator" element={<BodySurfaceAreaCalculatorPage />} />
                 <Route path="/tools/bac-calculator" element={<BacCalculatorPage />} />
+                <Route path="/tools/ielts-score-calculator" element={<IeltsScoreCalculatorPage />} />
+                <Route path="/tools/pte-score-calculator" element={<PteScoreCalculatorPage />} />
+                <Route path="/tools/ap-bio-score-calculator" element={<ApBioScoreCalculatorPage />} />
+                <Route path="/tools/ap-chem-score-calculator" element={<ApChemScoreCalculatorPage />} />
+                <Route path="/tools/ap-lang-score-calculator" element={<ApLangScoreCalculatorPage />} />
+                <Route path="/tools/ap-world-calculator" element={<ApWorldCalculatorPage />} />
+                <Route path="/tools/act-score-calculator" element={<ActScoreCalculatorPage />} />
+                <Route path="/tools/gpa-calculator" element={<GpaCalculatorPage />} />
+                <Route path="/tools/college-gpa-calculator" element={<CollegeGpaCalculatorPage />} />
+                <Route path="/tools/high-school-gpa-calculator" element={<HighSchoolGpaCalculatorPage />} />
+                <Route path="/tools/gpa-calculator-pakistan" element={<GpaPakistanCalculatorPage />} />
+                <Route path="/tools/gwa-calculator" element={<GwaCalculatorPage />} />
+                <Route path="/tools/grade-calculator" element={<GradeCalculatorPage />} />
+                <Route path="/tools/final-grade-calculator" element={<FinalGradeCalculatorPage />} />
+                <Route path="/tools/semester-grade-calculator" element={<SemesterGradeCalculatorPage />} />
+                <Route path="/tools/test-grade-calculator" element={<TestGradeCalculatorPage />} />
+                <Route path="/tools/cbm-calculator" element={<CbmCalculatorPage />} />
+                <Route path="/tools/container-loading-calculator" element={<ContainerLoadingCalculatorPage />} />
+                <Route path="/tools/pallet-calculator" element={<PalletCalculatorPage />} />
+                <Route path="/tools/dimensional-weight-calculator" element={<DimensionalWeightCalculatorPage />} />
+                <Route path="/tools/freight-class-calculator" element={<FreightClassCalculatorPage />} />
+                <Route path="/tools/reorder-point-calculator" element={<ReorderPointCalculatorPage />} />
+                <Route path="/tools/takt-time-calculator" element={<TaktTimeCalculatorPage />} />
+                <Route path="/tools/pcb-trace-width-calculator" element={<PcbTraceWidthCalculatorPage />} />
+                <Route path="/tools/pcb-trace-current-calculator" element={<PcbTraceCurrentCalculatorPage />} />
+                <Route path="/tools/pcb-trace-resistance-calculator" element={<PcbTraceResistanceCalculatorPage />} />
+                <Route path="/tools/pcb-impedance-calculator" element={<PcbImpedanceCalculatorPage />} />
+                <Route path="/tools/chmod-calculator" element={<ChmodCalculatorPage />} />
+                <Route path="/tools/cidr-calculator" element={<CidrCalculatorPage />} />
+                <Route path="/tools/raid-calculator" element={<RaidCalculatorPage />} />
+                <Route path="/tools/battery-life-calculator" element={<BatteryLifeCalculatorPage />} />
+                <Route path="/tools/battery-capacity-calculator" element={<BatteryCapacityCalculatorPage />} />
+                <Route path="/tools/3d-printing-cost-calculator" element={<PrintingCostCalculatorPage />} />
+                <Route path="/tools/hash-identifier-calculator" element={<HashIdentifierCalculatorPage />} />
+                <Route path="/tools/voltage-drop-calculator" element={<VoltageDropCalculatorPage />} />
+                <Route path="/tools/resistor-calculator" element={<ResistorCalculatorPage />} />
+                <Route path="/tools/electricity-calculator" element={<ElectricityCalculatorPage />} />
                 <Route path="/tools/one-rep-max-calculator" element={<OneRepMaxCalculatorPage />} />
                 <Route path="/tools/target-heart-rate-calculator" element={<TargetHeartRateCalculatorPage />} />
                 <Route path="/tools/bmr-calculator" element={<BmrCalculatorPage />} />
@@ -392,6 +466,43 @@ export default function App() {
                 <Route path="/calculators/health/bac-calculator" element={<BacCalculatorPage />} />
                 <Route path="/calculators/sports/one-rep-max-calculator" element={<OneRepMaxCalculatorPage />} />
                 <Route path="/calculators/sports/target-heart-rate-calculator" element={<TargetHeartRateCalculatorPage />} />
+                <Route path="/calculators/education/ielts-score-calculator" element={<IeltsScoreCalculatorPage />} />
+                <Route path="/calculators/education/pte-score-calculator" element={<PteScoreCalculatorPage />} />
+                <Route path="/calculators/education/ap-bio-score-calculator" element={<ApBioScoreCalculatorPage />} />
+                <Route path="/calculators/education/ap-chem-score-calculator" element={<ApChemScoreCalculatorPage />} />
+                <Route path="/calculators/education/ap-lang-score-calculator" element={<ApLangScoreCalculatorPage />} />
+                <Route path="/calculators/education/ap-world-calculator" element={<ApWorldCalculatorPage />} />
+                <Route path="/calculators/education/act-score-calculator" element={<ActScoreCalculatorPage />} />
+                <Route path="/calculators/education/gpa-calculator" element={<GpaCalculatorPage />} />
+                <Route path="/calculators/education/college-gpa-calculator" element={<CollegeGpaCalculatorPage />} />
+                <Route path="/calculators/education/high-school-gpa-calculator" element={<HighSchoolGpaCalculatorPage />} />
+                <Route path="/calculators/education/gpa-calculator-pakistan" element={<GpaPakistanCalculatorPage />} />
+                <Route path="/calculators/education/gwa-calculator" element={<GwaCalculatorPage />} />
+                <Route path="/calculators/education/grade-calculator" element={<GradeCalculatorPage />} />
+                <Route path="/calculators/education/final-grade-calculator" element={<FinalGradeCalculatorPage />} />
+                <Route path="/calculators/education/semester-grade-calculator" element={<SemesterGradeCalculatorPage />} />
+                <Route path="/calculators/education/test-grade-calculator" element={<TestGradeCalculatorPage />} />
+                <Route path="/calculators/logistics/cbm-calculator" element={<CbmCalculatorPage />} />
+                <Route path="/calculators/logistics/container-loading-calculator" element={<ContainerLoadingCalculatorPage />} />
+                <Route path="/calculators/logistics/pallet-calculator" element={<PalletCalculatorPage />} />
+                <Route path="/calculators/logistics/dimensional-weight-calculator" element={<DimensionalWeightCalculatorPage />} />
+                <Route path="/calculators/logistics/freight-class-calculator" element={<FreightClassCalculatorPage />} />
+                <Route path="/calculators/logistics/reorder-point-calculator" element={<ReorderPointCalculatorPage />} />
+                <Route path="/calculators/logistics/takt-time-calculator" element={<TaktTimeCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/pcb-trace-width-calculator" element={<PcbTraceWidthCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/pcb-trace-current-calculator" element={<PcbTraceCurrentCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/pcb-trace-resistance-calculator" element={<PcbTraceResistanceCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/pcb-impedance-calculator" element={<PcbImpedanceCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/chmod-calculator" element={<ChmodCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/cidr-calculator" element={<CidrCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/raid-calculator" element={<RaidCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/battery-life-calculator" element={<BatteryLifeCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/battery-capacity-calculator" element={<BatteryCapacityCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/3d-printing-cost-calculator" element={<PrintingCostCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/hash-identifier-calculator" element={<HashIdentifierCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/voltage-drop-calculator" element={<VoltageDropCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/resistor-calculator" element={<ResistorCalculatorPage />} />
+                <Route path="/calculators/tech-electronics/electricity-calculator" element={<ElectricityCalculatorPage />} />
                 <Route path="/calculators/health/one-rep-max-calculator" element={<Navigate to="/calculators/sports/one-rep-max-calculator" replace />} />
                 <Route path="/calculators/health/bmr-calculator" element={<BmrCalculatorPage />} />
                 <Route path="/calculators/health/ideal-weight-calculator" element={<IdealWeightCalculatorPage />} />

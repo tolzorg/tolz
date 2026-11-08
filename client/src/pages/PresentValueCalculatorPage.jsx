@@ -8,8 +8,8 @@ export default function PresentValueCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Present Value Calculator - PV of a Sum or Annuity"
-      seoDescription="Calculate the present value of a future sum or of periodic deposits (annuity) made at the beginning or end of each period, with future value, total interest, a schedule and charts. Free, no signup."
+      seoTitle="Present Value Calculator - Free PV of Sum or Annuity"
+      seoDescription="Use our free present value calculator to find the PV of a future sum or periodic deposits, with future value, total interest, and a full schedule."
       footer={<PresentValueCalculatorFaqSection />}
       wide
     >

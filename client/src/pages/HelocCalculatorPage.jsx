@@ -8,8 +8,8 @@ export default function HelocCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="HELOC Calculator - Payments, APR & How Much You Can Borrow"
-      seoDescription="Calculate HELOC draw-period and repayment payments, total interest, cost and APR with closing costs and annual fees, plus an amortization schedule and how much line of credit you can borrow. Free, no signup."
+      seoTitle="HELOC Calculator: Payments, Interest & APR (Free)"
+      seoDescription="Free HELOC calculator to estimate draw and repayment payments, total interest, APR with fees, borrowing limit, and a full amortization schedule."
       footer={<HelocCalculatorFaqSection />}
       wide
     >

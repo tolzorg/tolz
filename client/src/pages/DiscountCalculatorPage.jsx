@@ -8,8 +8,8 @@ export default function DiscountCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Discount Calculator - Sale Price, Amount Saved & Percent Off"
-      seoDescription="Find the price after discount, the amount you save, the original price, or the discount from any two values. Supports percent off and fixed amount off. Free, no signup."
+      seoTitle="Discount Calculator - Find Sale Price & Savings | Tolz"
+      seoDescription="Free discount calculator to find the sale price, amount saved, original price, or discount percent for percent-off and fixed-amount deals. Try it now."
       footer={<DiscountCalculatorFaqSection />}
       wide
     >

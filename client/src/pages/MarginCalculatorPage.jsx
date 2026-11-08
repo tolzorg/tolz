@@ -8,8 +8,8 @@ export default function MarginCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Margin Calculator - Profit Margin, Markup, Stock & Forex Margin"
-      seoDescription="Calculate profit margin and markup from any two of cost, revenue, margin, and profit, plus the amount required to buy stocks or currency on margin. Free, no signup."
+      seoTitle="Margin Calculator – Profit Margin & Markup (Free Online)"
+      seoDescription="Free margin calculator to find profit margin, markup, cost, revenue and profit from any two values. Also calculates margin required for stocks and forex."
       footer={<MarginCalculatorFaqSection />}
       wide
     >

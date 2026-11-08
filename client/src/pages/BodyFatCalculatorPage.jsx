@@ -8,8 +8,8 @@ export default function BodyFatCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Body Fat Calculator - U.S. Navy Method & Body Fat Percentage"
-      seoDescription="Free body fat calculator: estimate your body fat percentage with the U.S. Navy method from neck, waist and hip measurements, plus fat mass, lean mass, ACE category, ideal body fat for your age and the BMI method."
+      seoTitle="Body Fat Calculator - Free Navy Method Tool"
+      seoDescription="Free body fat calculator using the Navy method. Get your body fat percentage, fat mass, lean mass, ACE category and ideal range for your age in seconds."
       footer={<BodyFatCalculatorFaqSection />}
       wide
     >

@@ -2,12 +2,16 @@
 // with the main value large and a coloured status badge, and label / value
 // rows for the details.
 
-// Light badge colours (yellows) need dark text.
-const LIGHT = new Set(["#ffe400", "#d8c419", "#ffd400"]);
+// Light badge colours (yellows, the site's amber) need dark text.
+const LIGHT = new Set(["#ffe400", "#d8c419", "#ffd400", "var(--warning)"]);
+
+/** `color` with a #rrggbb-style alpha (hex), or the same opacity mixed in for a site token such as var(--accent). */
+const tint = (color, alphaHex) =>
+  color.startsWith("#") ? `${color}${alphaHex}` : `color-mix(in srgb, ${color} ${Math.round((parseInt(alphaHex, 16) / 255) * 100)}%, transparent)`;
 
 /**
  * @param {{ label: string, value: React.ReactNode, unit?: React.ReactNode, color: string,
- *   badge?: React.ReactNode, note?: React.ReactNode }} props  color is a #rrggbb hex.
+ *   badge?: React.ReactNode, note?: React.ReactNode }} props  color is a #rrggbb hex or a CSS colour token (var(--…)).
  */
 export function HighlightSummary({ label, value, unit, color, badge, note }) {
   return (
@@ -15,7 +19,7 @@ export function HighlightSummary({ label, value, unit, color, badge, note }) {
       style={{
         display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap",
         padding: "14px 16px", marginBottom: 12, borderRadius: "var(--radius-md)",
-        background: `${color}1a`, border: `1px solid ${color}55`, borderLeft: `5px solid ${color}`,
+        background: tint(color, "1a"), border: `1px solid ${tint(color, "55")}`, borderLeft: `5px solid ${color}`,
       }}
     >
       <div>
@@ -44,14 +48,14 @@ export function HighlightSummary({ label, value, unit, color, badge, note }) {
   );
 }
 
-/** One label / value line of a details list; `tone` (#rrggbb) highlights it. */
+/** One label / value line of a details list; `tone` (#rrggbb or a CSS colour token) highlights it. */
 export function StatRow({ label, children, tone }) {
   return (
     <div
       style={{
         display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap",
         padding: "9px 12px", borderBottom: "1px solid var(--border)", fontSize: 14,
-        background: tone ? `${tone}14` : undefined, borderLeft: tone ? `3px solid ${tone}` : "3px solid transparent",
+        background: tone ? tint(tone, "14") : undefined, borderLeft: tone ? `3px solid ${tone}` : "3px solid transparent",
       }}
     >
       <span style={{ color: "var(--text-secondary)" }}>{label}</span>

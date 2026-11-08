@@ -8,8 +8,8 @@ export default function PersonalLoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Personal Loan Calculator - Monthly Payment, APR & Amortization"
-      seoDescription="Calculate a personal loan's monthly payment, total interest, payoff date, and amortization schedule, plus the real APR with origination fees and insurance. Free, no signup."
+      seoTitle="Personal Loan Calculator – Payment, Interest & APR"
+      seoDescription="Free personal loan calculator to find your monthly payment, total interest, payoff date and amortization schedule, plus the real APR with fees and insurance."
       footer={<PersonalLoanCalculatorFaqSection />}
       wide
     >
