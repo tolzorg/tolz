@@ -1,4 +1,4 @@
-import { PDFDocument, PDFName, PDFNumber, PDFRawStream, PDFArray, PDFDict, PDFRef, PDFStream, PDFBool } from "pdf-lib";
+import { PDFDocument, PDFName, PDFNumber, PDFRawStream, PDFArray, PDFDict, PDFRef, PDFStream, PDFBool, PDFString, PDFHexString } from "pdf-lib";
 // Pixel-capped sharp (image-bomb guard), used exactly like sharp.
 import sharp from "../../../core/utils/safeSharp.js";
 import { deflate as _deflate, createInflate, createInflateRaw } from "zlib";
@@ -19,12 +19,14 @@ const deflate = promisify(_deflate);
 //   every Flate stream at level 9, Flate-compress uncompressed streams, and
 //   pack objects into object streams.
 //
-//   Visually safe (Medium / High / target size): re-encode JPEG images and
+//   Visually safe (Medium / High): re-encode JPEG images and
 //   photo-like lossless images at good quality, and downscale only images
 //   larger than the level's maximum dimension. Gray, RGB and CMYK JPEGs keep
-//   their colour space. Images whose colour data could be misread are left
-//   untouched: Indexed / Lab / Separation / DeviceN colour, JPEG 2000, images
-//   with a /Decode array, stencil masks, and images used as another image's
+//   their colour space. Palette (Indexed) images over a gray or RGB base are
+//   expanded to real colours and treated like any other lossless image.
+//   Images whose colour data could be misread are left untouched: Lab /
+//   Separation / DeviceN / CMYK-palette colour, JPEG 2000, images with a
+//   /Decode array, stencil masks, and images used as another image's
 //   transparency mask (SMask / Mask).
 //
 // A result is never larger than the original: if nothing helps, the original
@@ -77,22 +79,6 @@ const LEVELS = {
   high:   { images: { quality: 65, maxDim: 1800, flateToJpeg: true  }, stripNonVisual: true,  exactNumbers: false },
 };
 
-// Target-size mode tries these in order of decreasing quality (binary search)
-// and keeps the best quality that fits. The last step is the quality floor:
-// images stay clearly recognisable even when the target can't be reached.
-const TARGET_LADDER = [
-  { quality: 85, maxDim: 3000, flateToJpeg: true },
-  { quality: 80, maxDim: 2400, flateToJpeg: true },
-  { quality: 72, maxDim: 2000, flateToJpeg: true },
-  { quality: 65, maxDim: 1800, flateToJpeg: true },
-  { quality: 58, maxDim: 1600, flateToJpeg: true },
-  { quality: 50, maxDim: 1400, flateToJpeg: true },
-  { quality: 42, maxDim: 1200, flateToJpeg: true },
-  { quality: 35, maxDim: 1000, flateToJpeg: true },
-];
-
-const MAX_SIZE_MODE_FILES = 3;
-
 // A re-encoded image replaces the original only if it is at least 10% smaller.
 const MIN_IMAGE_GAIN = 0.9;
 // A lossless image becomes JPEG only if the JPEG is under half its size — true
@@ -143,6 +129,41 @@ function safeChannels(context, csObj) {
     }
   }
   return -1; // Indexed, Lab, Separation, DeviceN, Pattern …
+}
+
+/**
+ * An Indexed (palette) colour space over a gray or RGB base, as
+ * { base, channels, hival, lookup }, or null when it isn't one JPEG can carry.
+ * Scanned handouts often store pages and figures this way.
+ */
+async function indexedPalette(context, csObj) {
+  const cs = csObj instanceof PDFRef ? context.lookup(csObj) : csObj;
+  if (!(cs instanceof PDFArray)) return null;
+  const arr = cs.asArray();
+  if (arr.length !== 4 || arr[0]?.toString() !== "/Indexed") return null;
+  const channels = safeChannels(context, arr[1]);
+  if (channels !== 1 && channels !== 3) return null; // CMYK / exotic bases stay lossless
+  const hival = getNumVal(arr[2] instanceof PDFRef ? context.lookup(arr[2]) : arr[2]);
+  if (!Number.isInteger(hival) || hival < 0 || hival > 255) return null;
+  const lk = arr[3] instanceof PDFRef ? context.lookup(arr[3]) : arr[3];
+  let lookup = null;
+  if (lk instanceof PDFString || lk instanceof PDFHexString) lookup = Buffer.from(lk.asBytes());
+  else if (lk instanceof PDFRawStream) {
+    if (!lk.dict.get(NAME("Filter"))) lookup = Buffer.from(lk.contents);
+    else if (filterIs(lk.dict, "FlateDecode") && !lk.dict.get(NAME("DecodeParms"))) lookup = await inflateFlate(lk.contents);
+  }
+  if (!lookup || lookup.length < (hival + 1) * channels) return null;
+  return { base: arr[1], channels, hival, lookup };
+}
+
+/** Palette indices (one byte per pixel) → gray or RGB samples. */
+function expandPalette(indices, { channels, hival, lookup }) {
+  const out = Buffer.allocUnsafe(indices.length * channels);
+  for (let i = 0, o = 0; i < indices.length; i++) {
+    const at = Math.min(indices[i], hival) * channels; // out-of-range indices clamp, as viewers do
+    for (let c = 0; c < channels; c++) out[o++] = lookup[at + c];
+  }
+  return out;
 }
 
 // ── PNG predictor undo (rows prefixed with a filter-type byte) ───────────────
@@ -380,8 +401,13 @@ async function recompressImages(pdfDoc, { quality, maxDim, flateToJpeg }) {
     if (imageMask instanceof PDFBool && imageMask.asBoolean()) continue;
     if (dict.get(NAME("Decode"))) continue;                  // inverted / remapped samples
     if ((getNumVal(dict.get(NAME("BitsPerComponent"))) ?? 8) !== 8) continue;
-    const channels = safeChannels(context, dict.get(NAME("ColorSpace")));
-    if (channels < 1) continue;                              // Indexed, Lab, DeviceN, …
+    let channels = safeChannels(context, dict.get(NAME("ColorSpace")));
+    let palette = null;
+    if (channels < 1) {
+      palette = await indexedPalette(context, dict.get(NAME("ColorSpace")));
+      if (!palette) continue;                                // Lab, DeviceN, unusual palettes, …
+      channels = palette.channels;                           // what the JPEG will carry
+    }
     const width = getNumVal(dict.get(NAME("Width")));
     const height = getNumVal(dict.get(NAME("Height")));
     if (!width || !height || width * height < 64 * 64) continue;
@@ -389,6 +415,7 @@ async function recompressImages(pdfDoc, { quality, maxDim, flateToJpeg }) {
     try {
       // ── JPEG: re-encode at the level's quality (and size) ──────────────────
       if (filterIs(dict, "DCTDecode")) {
+        if (palette) continue; // a JPEG of palette indices isn't valid — leave it
         const src = Buffer.from(obj.contents);
         const meta = await sharp(src).metadata();
         if (meta.width !== width || meta.height !== height) continue;
@@ -402,6 +429,7 @@ async function recompressImages(pdfDoc, { quality, maxDim, flateToJpeg }) {
       if (!flateToJpeg || !filterIs(dict, "FlateDecode")) continue;
       if (dict.get(NAME("SMask")) || dict.get(NAME("Mask"))) continue; // has transparency
       if (channels === 4) continue; // raw CMYK samples: keep lossless
+      const samples = palette ? 1 : channels; // stored values per pixel (a palette stores one index)
       let dp = dict.get(NAME("DecodeParms"));
       if (dp instanceof PDFArray) dp = dp.asArray()[0];
       if (dp instanceof PDFRef) dp = context.lookup(dp);
@@ -411,14 +439,17 @@ async function recompressImages(pdfDoc, { quality, maxDim, flateToJpeg }) {
         const colors = getNumVal(dp.get(NAME("Colors"))) ?? 1;
         const bpc = getNumVal(dp.get(NAME("BitsPerComponent"))) ?? 8;
         const columns = getNumVal(dp.get(NAME("Columns"))) ?? 1;
-        if (colors !== channels || bpc !== 8 || columns !== width) continue;
+        if (colors !== samples || bpc !== 8 || columns !== width) continue;
       }
       const raw = await inflateFlate(obj.contents);
-      const pixels = predictor >= 10 ? undoPngPredictor(raw, width, channels, height) : raw;
-      const expected = width * height * channels;
-      if (!pixels || pixels.length < expected) continue;
-      const result = await encodeJpeg(sharp(pixels.subarray(0, expected), { raw: { width, height, channels } }), channels, quality, maxDim);
-      if (result && result.out.length < obj.contents.length * PHOTO_GAIN) replaceWithJpeg(obj, result);
+      const stored = predictor >= 10 ? undoPngPredictor(raw, width, samples, height) : raw;
+      if (!stored || stored.length < width * height * samples) continue;
+      const pixels = palette ? expandPalette(stored.subarray(0, width * height), palette) : stored.subarray(0, width * height * channels);
+      const result = await encodeJpeg(sharp(pixels, { raw: { width, height, channels } }), channels, quality, maxDim);
+      if (result && result.out.length < obj.contents.length * PHOTO_GAIN) {
+        replaceWithJpeg(obj, result);
+        if (palette) dict.set(NAME("ColorSpace"), palette.base); // samples are now real colours, not indices
+      }
     } catch { /* undecodable — leave the image exactly as it was */ }
   }
 }
@@ -440,98 +471,12 @@ async function compressDocument(originalBuffer, { images, stripNonVisual, exactN
   return out.length < originalBuffer.length ? out : Buffer.from(originalBuffer);
 }
 
-// ── Target-size compression ──────────────────────────────────────────────────
-// Every ladder step is a full pass that re-encodes all images, which is slow on
-// a small server CPU. The search stops early once this budget is used and
-// returns the best result so far, so the request answers well before the
-// client's timeout.
-const TARGET_TIME_BUDGET_MS = 120_000;
-
-// Returns the highest-quality result that fits the target; if even the
-// quality floor doesn't fit, returns the smallest content-preserving result.
-async function compressToTargetSize(originalBuffer, targetBytes, deadline) {
-  const lossless = await compressDocument(originalBuffer, { images: null, stripNonVisual: true, exactNumbers: false });
-  if (lossless.length <= targetBytes) return lossless;
-
-  const attempt = (i) => compressDocument(originalBuffer, { images: TARGET_LADDER[i], stripNonVisual: true, exactNumbers: false });
-
-  // Try the quality floor first: if even that doesn't fit, no step can, and the
-  // search is over after two passes instead of five.
-  const last = TARGET_LADDER.length - 1;
-  const floor = await attempt(last);
-  if (floor.length > targetBytes) return floor.length < lossless.length ? floor : lossless;
-
-  // The floor fits. Sizes shrink as the ladder index grows: binary-search the
-  // first (highest-quality) step that fits, keeping the floor as the fallback.
-  let bestFit = floor;
-  let lo = 0, hi = last - 1;
-  while (lo <= hi && Date.now() < deadline) {
-    const mid = (lo + hi) >> 1;
-    const out = await attempt(mid);
-    if (out.length <= targetBytes) { bestFit = out; hi = mid - 1; }
-    else lo = mid + 1;
-  }
-  return bestFit;
-}
-
 // ── Main request handler ─────────────────────────────────────────────────────
 export async function compressPdfs(req, res) {
   if (!req.files?.length) {
     return res.status(400).json({ success: false, error: "Please upload at least one PDF file." });
   }
 
-  const targetSizeKb = req.body.targetSizeKb ? parseFloat(req.body.targetSizeKb) : null;
-
-  // ── Target size mode ──────────────────────────────────────────────────────
-  if (targetSizeKb !== null) {
-    if (isNaN(targetSizeKb) || targetSizeKb <= 0) {
-      return res.status(400).json({ success: false, error: "Invalid target size." });
-    }
-    if (req.files.length > MAX_SIZE_MODE_FILES) {
-      return res.status(400).json({
-        success: false,
-        error: `Target size mode supports up to ${MAX_SIZE_MODE_FILES} PDFs at once.`,
-      });
-    }
-
-    const targetBytes = Math.round(targetSizeKb * 1024);
-    const deadline = Date.now() + TARGET_TIME_BUDGET_MS; // shared by all files in the request
-    const results = [];
-
-    for (const file of req.files) {
-      try { await PDFDocument.load(file.buffer, { ignoreEncryption: true }); }
-      catch {
-        results.push({ name: file.originalname, error: `"${file.originalname}" is not a valid or readable PDF.` });
-        continue;
-      }
-      try {
-        const pdfBytes = await compressToTargetSize(file.buffer, targetBytes, deadline);
-        const originalSize = file.buffer.length;
-        const compressedSize = pdfBytes.length;
-        const savings = Math.max(0, Math.round((1 - compressedSize / originalSize) * 100));
-        const achievedTarget = compressedSize <= targetBytes;
-
-        results.push({
-          name: file.originalname,
-          originalSize,
-          compressedSize,
-          savings,
-          targetSizeKb,
-          achievedTarget,
-          // Helps the UI communicate the minimum achievable size when target was impossible
-          minimumAchievableKb: achievedTarget ? null : Math.ceil(compressedSize / 1024),
-          data: `data:application/pdf;base64,${pdfBytes.toString("base64")}`,
-        });
-      } catch (err) {
-        console.error("[pdfCompress] compressToTarget error:", file.originalname, err.message);
-        results.push({ name: file.originalname, error: `Failed to compress "${file.originalname}".` });
-      }
-    }
-
-    return res.json({ success: true, results });
-  }
-
-  // ── Compression level mode ────────────────────────────────────────────────
   const level = (req.body.level || "medium").toLowerCase();
   if (!LEVELS[level]) {
     return res.status(400).json({ success: false, error: "Invalid compression level. Use low, medium, or high." });

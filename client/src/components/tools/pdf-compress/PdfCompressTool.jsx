@@ -3,9 +3,8 @@ import { Spinner, ErrorCard } from "../../ui";
 import PdfDropZone from "../pdf-merge/PdfDropZone";
 import { compressPdfs } from "../../../services/pdfCompressService";
 
-const MAX_FILES      = 20;
-const MAX_FILES_SIZE = 3;   // limit when using target-size mode
-const MAX_SIZE       = 50 * 1024 * 1024;
+const MAX_FILES = 20;
+const MAX_SIZE  = 50 * 1024 * 1024;
 
 const LEVELS = [
   { id: "low",    label: "Low",    sub: "Best quality",  icon: "🔵" },
@@ -33,8 +32,6 @@ function getCompressedName(original) {
 
 export default function PdfCompressTool() {
   const [files,        setFiles]        = useState([]);
-  const [mode,         setMode]         = useState("level"); // "level" | "size"
-  const [targetSizeKb, setTargetSizeKb] = useState(50);
   const [level,        setLevel]        = useState("medium");
   const [phase,        setPhase]        = useState("idle"); // idle | compressing | done | error
   const [results,      setResults]      = useState([]);
@@ -48,15 +45,6 @@ export default function PdfCompressTool() {
   const showAddErrors = (errs) => {
     setAddErrors(errs);
     setTimeout(() => setAddErrors([]), 6000);
-  };
-
-  // ── mode switch ───────────────────────────────────────────────────────────────
-  const handleSetMode = (newMode) => {
-    setMode(newMode);
-    if (newMode === "size") {
-      setFiles((prev) => prev.slice(0, MAX_FILES_SIZE));
-    }
-    setPhase("idle"); setResults([]); setError(null);
   };
 
   // ── file add ─────────────────────────────────────────────────────────────────
@@ -76,7 +64,7 @@ export default function PdfCompressTool() {
     }
 
     setFiles((prev) => {
-      const limit  = mode === "size" ? MAX_FILES_SIZE : MAX_FILES;
+      const limit  = MAX_FILES;
       const dupes  = valid.filter((f) => isDuplicate(prev, f)).map((f) => f.name);
       const fresh  = valid.filter((f) => !isDuplicate(prev, f));
       const fitsIn = limit - prev.length;
@@ -89,7 +77,7 @@ export default function PdfCompressTool() {
 
     if (errs.length) showAddErrors(errs);
     setPhase("idle"); setResults([]); setError(null);
-  }, [mode]);
+  }, []);
 
   // ── remove / clear ───────────────────────────────────────────────────────────
   const handleRemove = useCallback((idx) => {
@@ -109,22 +97,19 @@ export default function PdfCompressTool() {
     if (!files.length || phase === "compressing") return;
     setPhase("compressing"); setError(null); setResults([]);
     try {
-      const data = mode === "size"
-        ? await compressPdfs(files, null, targetSizeKb)
-        : await compressPdfs(files, level, null);
+      const data = await compressPdfs(files, level);
       setResults(data.results); setPhase("done");
     } catch (err) {
       setError(err.message || "Compression failed. Please try again.");
       setPhase("error");
     }
-  }, [files, mode, level, targetSizeKb, phase]);
+  }, [files, level, phase]);
 
   // ── derived ──────────────────────────────────────────────────────────────────
   const hasFiles      = files.length > 0;
   const isCompressing = phase === "compressing";
   const isDone        = phase === "done";
   const successCount  = results.filter((r) => !r.error).length;
-  const maxForMode    = mode === "size" ? MAX_FILES_SIZE : MAX_FILES;
 
   return (
     <div className="animate-fadeUp" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -151,141 +136,43 @@ export default function PdfCompressTool() {
       {/* ── Global error ── */}
       {error && <ErrorCard message={error} onRetry={compress} />}
 
-      {/* ── Mode selector + settings ── */}
+      {/* ── Compression level ── */}
       {hasFiles && (
         <div className="card" style={{ padding: 16 }}>
 
-          {/* Mode toggle buttons */}
-          <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
-            {[
-              { id: "size",  label: "Specific Size" },
-              { id: "level", label: "Compression Level" },
-            ].map((opt) => {
-              const active = mode === opt.id;
+          {/* ── Compression level: 3-button selector ── */}
+          <div style={{ display: "flex", gap: 8 }}>
+            {LEVELS.map((l) => {
+              const active = level === l.id;
               return (
                 <button
-                  key={opt.id}
+                  key={l.id}
                   disabled={isCompressing}
-                  onClick={() => handleSetMode(opt.id)}
+                  onClick={() => setLevel(l.id)}
                   style={{
-                    flex: 1, padding: "8px 12px",
+                    flex: 1, padding: "10px 8px",
                     borderRadius: "var(--radius-md)",
                     border: `2px solid ${active ? "var(--accent)" : "var(--border)"}`,
                     background: active ? "var(--accent-light)" : "var(--bg-white)",
                     cursor: isCompressing ? "not-allowed" : "pointer",
-                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-                    color: active ? "var(--accent)" : "var(--text-secondary)",
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
                     transition: "all var(--transition)",
                   }}
                 >
-                  {opt.label}
+                  <span style={{ fontSize: 16 }}>{l.icon}</span>
+                  <span style={{
+                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                    color: active ? "var(--accent)" : "var(--text-primary)",
+                  }}>
+                    {l.label}
+                  </span>
+                  <span style={{ fontSize: 10, color: "var(--text-muted)", fontFamily: "var(--font-display)", fontWeight: 500 }}>
+                    {l.sub}
+                  </span>
                 </button>
               );
             })}
           </div>
-
-          {/* ── Size mode: inline input row ── */}
-          {mode === "size" && (
-            <>
-              <div style={{
-                display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
-              }}>
-                <span style={{
-                  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14,
-                  color: "var(--text-primary)", whiteSpace: "nowrap",
-                }}>
-                  PDF Size:
-                </span>
-
-                <input
-                  type="number"
-                  value={targetSizeKb}
-                  min={1}
-                  disabled={isCompressing}
-                  onChange={(e) => setTargetSizeKb(Math.max(1, Number(e.target.value) || 1))}
-                  style={{
-                    flex: 1, minWidth: 80, maxWidth: 160,
-                    padding: "9px 12px",
-                    borderRadius: "var(--radius-md)",
-                    border: "1.5px solid var(--border-hover)",
-                    background: "var(--bg-white)",
-                    fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 15,
-                    color: "var(--text-primary)",
-                    outline: "none",
-                  }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
-                  onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-hover)"; }}
-                />
-
-                <span style={{
-                  fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14,
-                  color: "var(--text-secondary)",
-                }}>
-                  Kb
-                </span>
-
-                {isCompressing ? (
-                  <button className="btn btn-primary" disabled
-                    style={{ padding: "9px 20px", fontSize: 14 }}>
-                    <Spinner size={14} />
-                    Compressing…
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-primary"
-                    onClick={compress}
-                    style={{ padding: "9px 20px", fontSize: 14 }}
-                  >
-                    {isDone ? "Re-compress" : "Compress"}
-                  </button>
-                )}
-              </div>
-
-              <p style={{
-                marginTop: 10, textAlign: "center",
-                fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 12,
-                color: "var(--accent)",
-              }}>
-                Note:- You Can Compress {MAX_FILES_SIZE} PDFs At Once
-              </p>
-            </>
-          )}
-
-          {/* ── Level mode: 3-button selector ── */}
-          {mode === "level" && (
-            <div style={{ display: "flex", gap: 8 }}>
-              {LEVELS.map((l) => {
-                const active = level === l.id;
-                return (
-                  <button
-                    key={l.id}
-                    disabled={isCompressing}
-                    onClick={() => setLevel(l.id)}
-                    style={{
-                      flex: 1, padding: "10px 8px",
-                      borderRadius: "var(--radius-md)",
-                      border: `2px solid ${active ? "var(--accent)" : "var(--border)"}`,
-                      background: active ? "var(--accent-light)" : "var(--bg-white)",
-                      cursor: isCompressing ? "not-allowed" : "pointer",
-                      display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
-                      transition: "all var(--transition)",
-                    }}
-                  >
-                    <span style={{ fontSize: 16 }}>{l.icon}</span>
-                    <span style={{
-                      fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-                      color: active ? "var(--accent)" : "var(--text-primary)",
-                    }}>
-                      {l.label}
-                    </span>
-                    <span style={{ fontSize: 10, color: "var(--text-muted)", fontFamily: "var(--font-display)", fontWeight: 500 }}>
-                      {l.sub}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          )}
         </div>
       )}
 
@@ -366,8 +253,8 @@ export default function PdfCompressTool() {
             ))}
           </div>
 
-          {/* Add more (respects per-mode limit) */}
-          {!isCompressing && files.length < maxForMode && (
+          {/* Add more (up to the file limit) */}
+          {!isCompressing && files.length < MAX_FILES && (
             <label style={{
               display: "flex", alignItems: "center", gap: 8,
               marginTop: 10, padding: "8px 10px",
@@ -385,7 +272,7 @@ export default function PdfCompressTool() {
                 <line x1="6.5" y1="1" x2="6.5" y2="12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 <line x1="1" y1="6.5" x2="12" y2="6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
-              Add more PDFs ({maxForMode - files.length} slots left)
+              Add more PDFs ({MAX_FILES - files.length} slots left)
               <input
                 type="file" accept="application/pdf,.pdf" multiple hidden
                 onChange={(e) => { if (e.target.files?.length) { handleFiles(e.target.files); e.target.value = ""; } }}
@@ -395,8 +282,8 @@ export default function PdfCompressTool() {
         </div>
       )}
 
-      {/* ── Full-width Compress button (level mode only) ── */}
-      {hasFiles && mode === "level" && (
+      {/* ── Full-width Compress button ── */}
+      {hasFiles && (
         isCompressing ? (
           <button className="btn btn-primary" disabled
             style={{ width: "100%", padding: "14px 24px", fontSize: 15, justifyContent: "center" }}>
@@ -490,17 +377,6 @@ export default function PdfCompressTool() {
                     }}>
                       {r.savings > 0 ? `-${r.savings}%` : "No change"}
                     </span>
-                    {r.targetSizeKb && !r.achievedTarget && (
-                      <span style={{
-                        padding: "2px 7px", borderRadius: 99, fontSize: 10,
-                        background: "#fef9c3", color: "#92400e",
-                        fontFamily: "var(--font-display)", fontWeight: 600,
-                      }}>
-                        {r.minimumAchievableKb
-                          ? `Best possible — min ~${r.minimumAchievableKb} KB (target ${r.targetSizeKb} KB unreachable)`
-                          : `Best possible (target ${r.targetSizeKb} KB unreachable)`}
-                      </span>
-                    )}
                   </div>
                 </div>
                 <button

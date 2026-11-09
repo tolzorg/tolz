@@ -2,20 +2,15 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_URL || "/api";
 
-export async function compressPdfs(files, level, targetSizeKb = null) {
+export async function compressPdfs(files, level) {
   const fd = new FormData();
   files.forEach((f) => fd.append("pdfs", f));
-  if (targetSizeKb !== null) {
-    fd.append("targetSizeKb", String(targetSizeKb));
-  } else {
-    fd.append("level", level);
-  }
+  fd.append("level", level);
 
   try {
     const res = await axios.post(`${BASE_URL}/pdf/compress`, fd, {
       // Large PDFs on the small production server can take a few minutes; this matches
-      // the server's own 300 s request limit (server.js), and target-size mode stops
-      // searching after 120 s, leaving time for the upload and download.
+      // the server's own 300 s request limit (server.js).
       timeout: 300_000,
     });
     if (!res.data.success) throw new Error(res.data.error || "Compression failed");
