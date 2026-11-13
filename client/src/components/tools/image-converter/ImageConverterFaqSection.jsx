@@ -82,9 +82,16 @@ const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
 };
+const h3Style = {
+  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13.5,
+  color: "var(--text-primary)", marginBottom: 6, marginTop: 12,
+};
 const pStyle = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 10 };
-const ulStyle = { ...pStyle, marginBottom: 0, paddingLeft: 18 };
+const ulStyle = { ...pStyle, paddingLeft: 18 };
+const liStyle = { marginBottom: 8 };
 const cardStyle = { padding: "20px 20px" };
+const mono = { fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" };
+const Ext = ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="inline-home-link">{children}</a>;
 
 export default function ImageConverterFaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -104,254 +111,418 @@ export default function ImageConverterFaqSection() {
       <JsonLd data={faqSchema} />
 
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Convert Images in Seconds, Completely Free</h2>
-        <p style={pStyle}>
-          Switching an image from one format to another shouldn't require installing software or learning a
-          complicated program. This image converter online tool from{" "}
-          <Link to="/" className="inline-home-link">Tolz</Link> lets you convert images to JPG, PNG, PDF, and
-          several other formats directly in your browser, along with a built-in OCR feature that extracts
-          editable text from images. Whether you're preparing a photo for a website, compressing a scanned
-          document, or pulling text out of a screenshot, this all-in-one tool handles it without downloads,
-          watermarks, or hidden steps. Everything runs in the same interface, so you never have to juggle
-          multiple single-purpose converters just to finish one task.
-        </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Unlike many single-format tools scattered across the web, this converter combines eight distinct
-          functions into a single workflow. That means fewer tabs open, fewer files bouncing between apps,
-          and a much faster path from "I have this image" to "I have what I actually need."
+          This tool is by <Link to="/" className="inline-home-link">tolz.org</Link>
         </p>
       </div>
 
+      {/* Format differences */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>What Is the Difference Between JPG, JPEG, PNG, PDF and BMP Files?</h2>
+        <p style={pStyle}>
+          JPG and JPEG are the same format. The name comes from the Joint Photographic Experts Group. Older Windows
+          versions required three-letter extensions, so “.jpg” became common, while “.jpeg” is the full form. Both open
+          identically everywhere, and converting between them changes nothing except the file name.
+        </p>
+        <p style={pStyle}>The real differences between the formats are in how they store data:</p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>JPG/JPEG</strong> uses lossy compression. It discards detail the eye barely notices, which gives
+            small files but means repeated re-saving gradually degrades quality.
+          </li>
+          <li style={liStyle}>
+            <strong>PNG</strong> uses lossless compression and supports transparency, so nothing is thrown away. The
+            cost is larger files for photographs.
+          </li>
+          <li style={liStyle}>
+            <strong>BMP</strong> stores raw pixel data with little or no compression. That makes it simple but very
+            large. A photo that is 400 KB as JPG can exceed 20 MB as BMP.
+          </li>
+          <li>
+            <strong>PDF</strong> is not an image format at all but a document container. It can hold images, text,
+            fonts and vector graphics in fixed page layouts. Because it holds images as well as text, a PDF can contain
+            a JPG inside it.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          For a practical comparison of web formats, MDN’s{" "}
+          <Ext href="https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types">image file type guide</Ext>{" "}
+          is a reliable reference.
+        </p>
+      </div>
+
+      {/* Conversion factor */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>What Is an Image Conversion Factor and Why Does It Matter?</h2>
+        <p style={pStyle}>
+          “Conversion factor” is not a single official image term. In practice it describes the ratios that decide how
+          an image changes when you convert it. Three matter most:
+        </p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Scale factor:</strong> how much the pixel dimensions change. Converting a 4000×3000 image at 50%
+            gives 2000×1500, which is roughly one quarter of the pixels.
+          </li>
+          <li style={liStyle}>
+            <strong>Resolution (DPI/PPI) factor:</strong> how many pixels are used per inch. A 300 DPI setting suits
+            print, while 72–150 is usually enough for screens.
+          </li>
+          <li>
+            <strong>Compression ratio:</strong> original size divided by output size. A 10 MB file that becomes 1 MB
+            has a 10:1 ratio.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          These factors matter because they control the trade-off between sharpness and file size. Raising DPI after
+          the fact does not add detail, it only changes metadata. Always set the factor from the destination: pixel
+          size for the web, DPI for print, and a size cap for email.
+        </p>
+      </div>
+
+      {/* In-browser conversion */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Is There an Online PDF or Image Converter That Works in the Browser Without Uploading Files?</h2>
+        <p style={pStyle}>
+          Yes. Some tools use client-side processing, meaning the conversion runs in your own browser through
+          JavaScript and WebAssembly. The file never leaves your device. You can verify any tool’s claim by opening
+          your browser’s developer tools (Network tab) while converting. If no file upload request appears, the work is
+          happening locally.
+        </p>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          Tolz Image Converter is built for this kind of private, in-browser workflow, with JPG, PNG, PDF, WebP, BMP,
+          GIF, TIFF and HEIC conversion plus OCR in one place and no signup. This is especially useful for IDs,
+          contracts and financial documents, where avoiding third-party servers removes the biggest privacy risk.
+          Browsers support this through standard features such as the File API, and open-source libraries make it
+          practical.
+        </p>
+      </div>
+
+      {/* Merge PDFs */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>How Can I Merge PDF Files Without Uploading Them Anywhere?</h2>
+        <p style={pStyle}>There are three reliable options:</p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Browser-based merging.</strong> Client-side tools combine pages locally, often using libraries like
+            pdf-lib. Select the files, set the order, and download the result.
+          </li>
+          <li style={liStyle}>
+            <strong>Built-in OS tools.</strong> On Mac, Preview lets you drag pages from one PDF into another’s sidebar.
+            On Windows, “Microsoft Print to PDF” can combine documents when you print them to a single file.
+          </li>
+          <li>
+            <strong>Desktop software.</strong> Open-source tools such as PDFsam work fully offline.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          If your source files are images, such as scanned pages or photos of paperwork, you can convert them directly
+          into one PDF with Tolz, which skips the separate merge step entirely.
+        </p>
+      </div>
+
+      {/* HEIC */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>How to Convert iPhone and iPad Photos to JPG, and HEIC to JPG on Windows</h2>
+        <p style={pStyle}>
+          iPhones and iPads save photos as HEIC by default because the format keeps quality at about half the file size
+          of JPG. The downside is compatibility.
+        </p>
+        <h3 style={h3Style}>On your iPhone or iPad:</h3>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Stop shooting HEIC:</strong> go to Settings &gt; Camera &gt; Formats and choose “Most Compatible.”
+            New photos will be JPG.
+          </li>
+          <li style={liStyle}>
+            <strong>Convert existing photos:</strong> save the photo to the Files app, then long-press it and choose
+            Quick Actions &gt; Convert Image &gt; JPEG (iOS/iPadOS 16 and later).
+          </li>
+          <li style={liStyle}>
+            <strong>Convert automatically when transferring:</strong> Settings &gt; Photos &gt; “Transfer to Mac or
+            PC” &gt; Automatic.
+          </li>
+          <li>
+            <strong>Use a converter:</strong> open Tolz in Safari or Chrome on your phone, upload the HEIC file, pick
+            JPG and download.
+          </li>
+        </ul>
+        <h3 style={h3Style}>On Windows 10, 11 and newer versions:</h3>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            Windows 10 reached end of support in October 2025, but HEIC still works the same way on it and on Windows
+            11.
+          </li>
+          <li style={liStyle}>
+            Install Microsoft’s HEIF Image Extensions (and HEVC Video Extensions if prompted) to preview HEIC files.
+          </li>
+          <li>
+            To convert, open the file in Photos or Paint and use Save As JPG, or upload it to Tolz to convert in bulk.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          Any later Windows version should follow the same pattern. If a native HEIC viewer is missing, a converter is
+          the quickest fix.
+        </p>
+      </div>
+
+      {/* OCR difficulty */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Is It Difficult to Extract Text from an Image in Image Processing?</h2>
+        <p style={pStyle}>
+          It is easy for clean images and hard for messy ones. Modern OCR engines handle clear printed text very well,
+          but several things make it difficult in practice:
+        </p>
+        <ul style={ulStyle}>
+          <li style={liStyle}><strong>Poor quality:</strong> blur, low resolution, shadows and noise.</li>
+          <li style={liStyle}>
+            <strong>Layout complexity:</strong> multi-column pages, tables, and text over busy backgrounds.
+          </li>
+          <li style={liStyle}>
+            <strong>Variety:</strong> unusual fonts, curved or skewed text, and mixed languages.
+          </li>
+          <li><strong>Handwriting:</strong> the least reliable case, as noted in our FAQ.</li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          You can improve results by cropping tightly, straightening the image, raising contrast and using at least 300
+          DPI. Our “Common Mistakes” section below covers more tips.
+        </p>
+      </div>
+
+      {/* Without OCR */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>What Are Some Methods for Extracting Text from Images or PDFs Without OCR?</h2>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Text-based PDFs:</strong> if you can select text with your cursor, it is already real text. Copy it
+            directly or use <code style={mono}>pdftotext</code>.
+          </li>
+          <li style={liStyle}>
+            <strong>Built-in OS and phone features:</strong> iPhone Live Text, Android Google Lens and similar tools
+            recognize text in photos. These use machine learning, not classic OCR engines, but need no extra software.
+          </li>
+          <li style={liStyle}>
+            <strong>Metadata and source files:</strong> screenshots and exports sometimes have alt text, embedded text
+            layers or accompanying source documents.
+          </li>
+          <li>
+            <strong>Manual transcription or voice typing:</strong> slow, but sometimes the most accurate option for
+            handwriting or damaged scans.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          Be aware that a pure image has no text data inside it. Any method that reads text from pixels is some form of
+          recognition, so for scans and photos, OCR remains the practical answer.
+        </p>
+      </div>
+
+      {/* Unsolved problems */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>What Are Some Unsolved Problems in Text-to-Image Conversion?</h2>
+        <p style={pStyle}>The phrase covers two things, and both still have open problems:</p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>AI text-to-image generation</strong> (creating pictures from prompts) still struggles with accurate
+            in-image text and spelling, counting objects, precise spatial relationships (“the red cube left of the blue
+            sphere”), consistent characters across images, and fine details like hands. Questions of copyright,
+            training-data consent and labeling AI-generated images are also unresolved.
+          </li>
+          <li>
+            <strong>Image-to-text conversion (OCR)</strong> still struggles with handwriting, degraded historical
+            documents, complex layouts, low-resource languages and scripts, and understanding context rather than just
+            characters.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          The takeaway for everyday users is that tools are far better than a few years ago, but results still depend
+          on input quality, so always review important output.
+        </p>
+      </div>
+
+      {/* Max PDF compression */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>How Do I Do Maximum PDF Compression?</h2>
+        <p style={pStyle}>
+          Maximum compression is a trade-off, so work through these steps in order and stop when the size is
+          acceptable:
+        </p>
+        <ol style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Lower image resolution.</strong> Images are usually the bulk of a PDF. Downsample to 150 DPI for
+            screen reading, or 72–100 DPI if file size matters more than sharpness.
+          </li>
+          <li style={liStyle}>
+            <strong>Increase JPG compression.</strong> Re-encode embedded images at 50–70% quality, which is usually
+            fine for scans.
+          </li>
+          <li style={liStyle}>
+            <strong>Convert to grayscale.</strong> This helps for text-only scans and can cut size substantially.
+          </li>
+          <li style={liStyle}>
+            <strong>Remove extras.</strong> Strip unused fonts, metadata, attachments, thumbnails and duplicate images.
+          </li>
+          <li style={liStyle}>
+            <strong>Use Ghostscript for aggressive control.</strong> For example,{" "}
+            <code style={mono}>gs -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -o out.pdf in.pdf</code> applies its
+            lowest-quality preset.
+          </li>
+          <li>
+            <strong>Rebuild from images.</strong> For scanned files, convert each page to compressed JPG with Tolz, then
+            combine them into a new PDF. Pre-compressing the images first often gives the smallest result.
+          </li>
+        </ol>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          Always keep the original, as heavy compression cannot be undone, and check that small text is still readable
+          before sending.
+        </p>
+      </div>
+
+      {/* Scenarios */}
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Why You Might Need an Image Converter (Practical Scenarios)</h2>
         <p style={pStyle}>
-          Image format needs come up more often than people expect, and the right format usually depends on
-          where the image is going next.
+          Image format needs come up more often than people expect, and the right format usually depends on where the
+          image is going next.
         </p>
         <ul style={{ ...ulStyle, marginBottom: 0 }}>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Uploading to a website or CMS.</strong> Many platforms only accept specific formats or
-            have file-size limits. Converting a large PNG to a compressed JPG, or a HEIC photo from an
-            iPhone into a universally supported format, avoids upload errors and speeds up page load times.
+          <li style={liStyle}>
+            <strong>Uploading to a website or CMS.</strong> Many platforms only accept specific formats or have
+            file-size limits. Converting a large PNG to a compressed JPG, or a HEIC photo from an iPhone into a
+            universally supported format, avoids upload errors and speeds up page load times.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Submitting documents or applications.</strong> Scanned IDs, certificates, or receipts
-            saved as images often need to become a single PDF for official submissions, job applications, or
-            visa paperwork. Combining and converting multiple images into one PDF keeps everything organized
-            and easy to send.
+          <li style={liStyle}>
+            <strong>Submitting documents or applications.</strong> Scanned IDs, certificates, or receipts saved as
+            images often need to become a single PDF for official submissions, job applications, or visa paperwork.
+            Combining and converting multiple images into one PDF keeps everything organized and easy to send.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Printing photos or designs.</strong> Print services frequently require specific formats
-            and resolutions. Converting an image to a print-ready format prevents color shifts, blurring, or
-            rejected print jobs.
+          <li style={liStyle}>
+            <strong>Printing photos or designs.</strong> Print services frequently require specific formats and
+            resolutions. Converting an image to a print-ready format prevents color shifts, blurring, or rejected print
+            jobs.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Digitizing printed or scanned text.</strong> A photographed page of notes, a screenshot
-            of a contract, or a scanned book excerpt is only useful if the text inside it can be copied,
-            searched, or edited. The OCR function extracts that text automatically, saving the time it would
-            take to retype it manually.
+          <li style={liStyle}>
+            <strong>Digitizing printed or scanned text.</strong> A photographed page of notes, a screenshot of a
+            contract, or a scanned book excerpt is only useful if the text inside it can be copied, searched, or
+            edited. The OCR function extracts that text automatically, saving the time it would take to retype it
+            manually.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Reducing file size for email or storage.</strong> Email providers and cloud storage
-            plans often cap attachment sizes. Converting and compressing an image keeps quality intact while
-            making the file easier to send or store.
+          <li style={liStyle}>
+            <strong>Reducing file size for email or storage.</strong> Email providers and cloud storage plans often cap
+            attachment sizes. Converting and compressing an image keeps quality intact while making the file easier to
+            send or store.
           </li>
           <li>
-            <strong>Archiving or backing up photos.</strong> Some formats age better than others for
-            long-term storage. Converting older or less common formats into widely supported ones like JPG
-            or PNG helps ensure files remain accessible years down the line.
+            <strong>Archiving or backing up photos.</strong> Some formats age better than others for long-term storage.
+            Converting older or less common formats into widely supported ones like JPG or PNG helps ensure files
+            remain accessible years down the line.
           </li>
         </ul>
       </div>
 
+      {/* Formats */}
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Formats Supported: JPG, PNG, PDF, WebP, and More</h2>
         <p style={pStyle}>
-          A reliable image converter needs to support the formats people actually use, not just the common
-          ones. This tool handles conversions between JPG, PNG, PDF, WebP, BMP, GIF, TIFF, and HEIC,
-          covering nearly every scenario from casual photo sharing to professional document handling.
-        </p>
-        <ul style={ulStyle}>
-          <li style={{ marginBottom: 8 }}>
-            JPG remains the standard for photographs and web images due to its balance of quality and
-            compact file size.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            PNG is preferred when transparency or sharp detail matters, such as logos, graphics, or
-            screenshots.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            PDF is the go-to format for documents, applications, and anything meant to be printed or shared
-            as a single file.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            WebP is increasingly used on modern websites because it offers smaller file sizes without a
-            noticeable drop in quality.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            HEIC, common on iPhones, often needs converting to JPG or PNG for compatibility with non-Apple
-            devices and older software.
-          </li>
-          <li>
-            TIFF and BMP are still used in specific professional and archival contexts where uncompressed
-            image data matters.
-          </li>
-        </ul>
-        <p style={{ ...pStyle, marginTop: 10 }}>
-          Because the tool covers both directions of conversion, for example, JPG to PDF and PDF to JPG, it
-          functions as a single hub rather than requiring a different tool for every format pairing.
+          A reliable image converter needs to support the formats people actually use, not just the common ones. This
+          tool handles conversions between JPG, PNG, PDF, WebP, BMP, GIF, TIFF, and HEIC, covering nearly every
+          scenario from casual photo sharing to professional document handling.
         </p>
         <p style={pStyle}>
-          Here's a quick breakdown of what each format is actually good for, so choosing the right one takes
-          less guesswork:
+          JPG remains the standard for photographs and web images due to its balance of quality and compact file size.
+          PNG is preferred when transparency or sharp detail matters, such as logos, graphics, or screenshots. PDF is
+          the go-to format for documents, applications, and anything meant to be printed or shared as a single file.
+          WebP is increasingly used on modern websites because it offers smaller file sizes without a noticeable drop
+          in quality. HEIC, common on iPhones, often needs converting to JPG or PNG for compatibility with non-Apple
+          devices and older software. TIFF and BMP are still used in specific professional and archival contexts where
+          uncompressed image data matters.
+        </p>
+        <p style={pStyle}>
+          Because the tool covers both directions of conversion, for example, JPG to PDF and PDF to JPG, it functions as
+          a single hub rather than requiring a different tool for every format pairing.
+        </p>
+        <p style={pStyle}>
+          Here's a quick breakdown of what each format is actually good for, so choosing the right one takes less
+          guesswork:
         </p>
         <ul style={{ ...ulStyle, marginBottom: 0 }}>
-          <li style={{ marginBottom: 8 }}>
-            <strong>JPG</strong> — the most widely supported image format on the web, ideal for photos where
-            a small file size matters more than pixel-perfect detail.
+          <li style={liStyle}>
+            <strong>JPG</strong> - the most widely supported image format on the web, ideal for photos where a small
+            file size matters more than pixel-perfect detail.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>PNG</strong> — the better choice when an image needs a transparent background or sharp
-            edges, such as logos, icons, or text-heavy graphics.
+          <li style={liStyle}>
+            <strong>PNG</strong> - the better choice when an image needs a transparent background or sharp edges, such
+            as logos, icons, or text-heavy graphics.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>PDF</strong> — the standard for documents, forms, and anything meant to be printed,
-            signed, or submitted as one combined file.
+          <li style={liStyle}>
+            <strong>PDF</strong> - the standard for documents, forms, and anything meant to be printed, signed, or
+            submitted as one combined file.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>WebP</strong> — a newer format built for the web that shrinks file size noticeably
-            without a visible quality drop, which is why more websites use it for faster page loads.
+          <li style={liStyle}>
+            <strong>WebP</strong> - a newer format built for the web that shrinks file size noticeably without a
+            visible quality drop, which is why more websites use it for faster page loads.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>HEIC</strong> — Apple's default photo format on iPhones; convert it to JPG or PNG when
-            sharing with non-Apple devices or apps that don't recognize HEIC.
+          <li style={liStyle}>
+            <strong>HEIC</strong> - Apple's default photo format on iPhones; convert it to JPG or PNG when sharing with
+            non-Apple devices or apps that don't recognize HEIC.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>BMP</strong> — an older, uncompressed format still used in some legacy software and
-            Windows-based systems where exact pixel data matters more than file size.
+          <li style={liStyle}>
+            <strong>BMP</strong> - an older, uncompressed format still used in some legacy software and Windows-based
+            systems where exact pixel data matters more than file size.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>GIF</strong> — best known for simple animations and short looping clips, though it also
-            works for basic static images with limited colors.
+          <li style={liStyle}>
+            <strong>GIF</strong> - best known for simple animations and short looping clips, though it also works for
+            basic static images with limited colors.
           </li>
           <li>
-            <strong>TIFF</strong> — common in printing, publishing, and scanning workflows where preserving
-            maximum image detail is more important than file size.
+            <strong>TIFF</strong> - common in printing, publishing, and scanning workflows where preserving maximum
+            image detail is more important than file size.
           </li>
         </ul>
       </div>
 
+      {/* Free / privacy */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Why Convert to JPG Specifically?</h2>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          JPG deserves a special mention because it's the format most people end up converting to,
-          regardless of what they started with. It's the most universally accessible image format, nearly
-          every device, browser, app, and photo viewer can open it without issue. Converting a PNG, BMP,
-          WebP, HEIC, or even a PDF page into JPG also compresses the file, which means faster uploads,
-          quicker page loads, and easier sharing over email or messaging apps, all without a noticeable drop
-          in visual quality for everyday use. If you're not sure which format to pick and just need
-          something that "works everywhere," JPG is usually the safest default.
-        </p>
-      </div>
-
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Maintaining Image Quality During Conversion</h2>
+        <h2 style={h2Style}>Is This Image Converter Really Free? Privacy &amp; Trust</h2>
         <p style={pStyle}>
-          A common concern with online converters is quality loss, images that come out blurry, oddly
-          compressed, or noticeably different from the original. This tool is built to preserve visual
-          quality during conversion, keeping resolution and detail as close to the source file as possible.
-          For formats like PNG that don't use lossy compression, no quality is lost in the process at all.
-          For JPG conversions, which do use compression by nature, the tool balances file size reduction
-          with visual clarity so images stay sharp without becoming unnecessarily large.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          If file size is the priority, for example, when preparing images for a website where load speed
-          matters, converting to a more compressed format like JPG or WebP can noticeably shrink file size
-          while keeping the image looking clean at normal viewing sizes.
-        </p>
-      </div>
-
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>How to Convert an Image (Step-by-Step)</h2>
-        <ol style={{ ...ulStyle, marginBottom: 0 }}>
-          <li style={{ marginBottom: 8 }}>
-            Open the image converter tool and upload your file by dragging it into the tool or selecting it
-            from your device.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            Choose the format you want to convert to, JPG, PNG, PDF, WebP, or another supported option.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            If you're extracting text, select the OCR function instead of a format conversion.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            Let the tool process the file; most conversions complete within seconds.
-          </li>
-          <li>Download the converted file directly to your device.</li>
-        </ol>
-        <p style={{ ...pStyle, marginTop: 10, marginBottom: 0 }}>
-          The process works the same way whether you're on a desktop browser or a mobile device, so there's
-          no need for a separate app on your phone.
-        </p>
-      </div>
-
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Is This Image Converter Really Free? Privacy & Trust</h2>
-        <p style={pStyle}>
-          This image converter is completely free to use, with no signup, account creation, or hidden
-          charges required at any step. There's no limit disguised behind a paywall and no "free trial" that
-          quietly expects payment later, the tool functions fully without asking for personal information.
+          This image converter is completely free to use, with no signup, account creation, or hidden charges required
+          at any step. There's no limit disguised behind a paywall and no "free trial" that quietly expects payment
+          later, the tool functions fully without asking for personal information.
         </p>
         <p style={pStyle}>
-          On the privacy side, uploaded images are processed for the sole purpose of completing the
-          requested conversion and are not stored for later use or shared with third parties. You're not
-          required to create an account, provide an email address, or install anything on your device, which
-          reduces the amount of personal data exposed in the process. For anyone converting sensitive
-          documents, IDs, contracts, financial paperwork, this matters as much as conversion quality does,
-          since the tool should do its job without becoming a place where files linger longer than
-          necessary.
+          On the privacy side, uploaded images are processed for the sole purpose of completing the requested
+          conversion and are not stored for later use or shared with third parties. You're not required to create an
+          account, provide an email address, or install anything on your device, which reduces the amount of personal
+          data exposed in the process. For anyone converting sensitive documents, IDs, contracts, financial paperwork,
+          this matters as much as conversion quality does, since the tool should do its job without becoming a place
+          where files linger longer than necessary.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Because everything runs directly through the browser, there's also no risk of bundled software,
-          browser extensions, or unwanted add-ons that some desktop converter programs are known to install.
+          Because everything runs directly through the browser, there's also no risk of bundled software, browser
+          extensions, or unwanted add-ons that some desktop converter programs are known to install.
         </p>
       </div>
 
+      {/* Common mistakes */}
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Common Mistakes to Avoid When Converting Images</h2>
         <ul style={{ ...ulStyle, marginBottom: 0 }}>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Converting an already-compressed JPG to PNG expecting quality gains.</strong> Converting
-            to a less compressed format doesn't restore detail that was lost in the original compression, it
-            only changes the file type.
+          <li style={liStyle}>
+            <strong>Converting an already-compressed JPG to PNG expecting quality gains.</strong> Converting to a less
+            compressed format doesn't restore detail that was lost in the original compression, it only changes the
+            file type.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Ignoring resolution before converting to PDF for printing.</strong> Low-resolution
-            images will still look pixelated in a PDF, regardless of format.
+          <li style={liStyle}>
+            <strong>Ignoring resolution before converting to PDF for printing.</strong> Low-resolution images will still
+            look pixelated in a PDF, regardless of format.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Running OCR on low-contrast or skewed images.</strong> Straightening and improving
-            lighting on a photo before extraction noticeably improves text accuracy.
+          <li style={liStyle}>
+            <strong>Running OCR on low-contrast or skewed images.</strong> Straightening and improving lighting on a
+            photo before extraction noticeably improves text accuracy.
           </li>
           <li>
-            <strong>Assuming all formats support transparency.</strong> JPG does not support transparent
-            backgrounds; PNG does. Converting a transparent PNG to JPG will fill the background with a solid
-            color.
+            <strong>Assuming all formats support transparency.</strong> JPG does not support transparent backgrounds;
+            PNG does. Converting a transparent PNG to JPG will fill the background with a solid color.
           </li>
         </ul>
-      </div>
-
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Who Uses This Tool</h2>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          This converter is used across a wide range of everyday and professional needs: students
-          digitizing notes, freelancers preparing deliverables in the right format for clients, small
-          business owners converting product photos for online stores, job seekers assembling application
-          documents into a single PDF, and anyone dealing with the common frustration of a file that's
-          "almost" the right format but not quite. Because it consolidates eight tools into one interface,
-          it also appeals to people who'd rather not bookmark eight different single-purpose websites for
-          occasional use.
-        </p>
       </div>
 
       <div className="card" style={cardStyle}>

@@ -9,7 +9,7 @@ export default function UrlShortenerPage() {
     <ToolPageWrapper
       tool={tool}
       seoTitle="Free URL Shortener Online | Shorten Links Instantly"
-      seoDescription="Shorten long URLs into clean, shareable links in seconds. Free URL shortener with no signup, no watermark, and instant results. Try it now."
+      seoDescription="Shorten long links in seconds with Tolz’s free URL shortener. No signup needed. Paste your link, get a short URL, and share it anywhere."
       footer={<UrlShortenerFaqSection />}
     >
       <UrlShortenerTool />

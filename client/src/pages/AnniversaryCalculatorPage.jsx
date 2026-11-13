@@ -8,8 +8,8 @@ export default function AnniversaryCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Anniversary Calculator | Free Online Tool"
-      seoDescription="Calculate years, months, and days since any anniversary instantly. Free, accurate, no signup needed, try Tolz's Anniversary Calculator now."
+      seoTitle="Anniversary Calculator - Count Years, Months & Days"
+      seoDescription="Find out exactly how long it's been since your wedding, first date, or any milestone. Free anniversary calculator with a countdown to your next one."
       footer={<AnniversaryFaqSection />}
       wide
     >

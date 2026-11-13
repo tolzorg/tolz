@@ -8,8 +8,8 @@ export default function SleepCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Sleep Calculator - Find Your Best Bedtime & Wake Time"
-      seoDescription="Free sleep calculator based on 90-minute cycles. Get your ideal bedtime or wake-up time in seconds. No signup, no data stored."
+      seoTitle="Sleep Calculator: Best Bedtime & Wake-Up Time"
+      seoDescription="Free sleep calculator based on 90-minute cycles. Find your ideal bedtime or wake-up time in seconds, plus science-backed tips for falling and staying asleep."
       footer={<SleepCalculatorFaqSection />}
       wide
     >

@@ -5,94 +5,59 @@ import JsonLd from "../../JsonLd";
 const FAQ_ITEMS = [
   {
     q: "How accurate is an online auto loan calculator?",
-    a: "An auto loan calculator is highly accurate for the math itself, since it uses the same amortization formula lenders use. The variable that can shift your real-world payment is the exact APR a lender offers you, which depends on your credit profile and the lender's underwriting at the time of application.",
+    a: "The math is highly accurate because it uses the same amortization formula lenders use. What can change your real payment is the exact APR a lender offers, which depends on your credit and underwriting.",
   },
   {
     q: "Does a car loan calculator include sales tax?",
-    a: "Not all of them do, but this one does. You can enter your local sales tax rate so it's factored into your loan amount, which gives you a more realistic total cost than calculators that only account for the vehicle price and interest rate.",
+    a: "Not all do, but this one does. Enter your local sales tax rate so it's included in your loan amount, which gives you a more realistic total.",
+  },
+  {
+    q: "How much can I borrow for a car loan?",
+    a: "It depends on your income, credit, existing debts, and the car's value. Many lenders want your total debt payments to stay under about 45% to 50% of your gross income.",
   },
   {
     q: "How does a trade-in affect my auto loan payment?",
-    a: "Your trade-in value is typically subtracted from the vehicle price before your loan amount is calculated, and in most states it also reduces the amount subject to sales tax. A handful of states, including California, Hawaii, and Virginia, don't offer this tax reduction, so it's worth checking your state's rule before assuming your trade-in will lower your tax bill.",
+    a: "It lowers the amount you finance, and in most states it also lowers the amount that's taxed. A few states, including California and Maryland, tax the full price, so check your state's rule.",
   },
   {
     q: "What's the difference between dealership financing and direct lending?",
-    a: "Direct lending means securing a loan from a bank or credit union before you buy, then paying the dealer with those funds. Dealership financing means the loan is arranged through the dealer, often with a lender tied to the manufacturer. Direct lending generally gives buyers more negotiating leverage, while dealership financing is more convenient for buyers who'd rather not shop lenders themselves.",
+    a: "Direct lending is a loan you get from a bank or credit union before you buy. Dealership financing is arranged through the dealer. Direct lending usually gives you more leverage, while dealership financing is more convenient and sometimes has special manufacturer rates.",
   },
   {
     q: "Are manufacturer rebates taxed?",
-    a: "It depends on the state. In many states, sales tax is calculated on the vehicle's price before the rebate is subtracted, so the rebate doesn't reduce your taxable amount. A number of other states, including Texas, Oregon, and Pennsylvania, don't tax rebates this way. Confirming your state's current treatment is worth doing before you finalize your budget.",
+    a: "It depends on the state. In many states, tax is figured on the price before the rebate, so the rebate doesn't lower your tax. Confirm your state's current rule before you finalize your budget.",
   },
   {
     q: "What credit score do I need for the best auto loan rate?",
-    a: "Lenders generally reserve their lowest advertised APRs for borrowers with scores in the high 700s and above, though rates are offered across a range of credit tiers. Checking your score before applying helps you set a realistic rate expectation when using the calculator.",
+    a: "Lenders generally save their lowest rates for scores in the high 700s and above (781 and up is called super prime), though you can get approved at many score levels.",
+  },
+  {
+    q: "What does pre-approval mean, and do I have to use it?",
+    a: "Pre-approval is a conditional offer showing how much you can borrow and at what rate. You don't have to use it, and you only owe money after you sign the final loan.",
   },
   {
     q: "Is it better to choose a longer or shorter auto loan term?",
-    a: "A shorter term means a higher monthly payment but less total interest paid and faster equity buildup. A longer term lowers the monthly payment but increases total interest cost and raises the risk of owing more than the car is worth. The right choice depends on your monthly budget versus your total cost priorities.",
+    a: "A shorter term has a higher payment but costs less in total interest and builds equity faster. A longer term, like 84 months, lowers the payment but costs much more in interest and raises the risk of owing more than the car is worth.",
   },
   {
     q: "How much should I put down on a car?",
-    a: "A down payment between 15% and 20% of the vehicle's total cost is a reasonable target for most buyers. Putting down more reduces your loan principal, your monthly payment, and your total interest cost, while also lowering the chance of ending up upside-down on the loan.",
+    a: "Aim for 15% to 20% of the car's price. A bigger down payment lowers your payment, your interest cost, and your risk of going upside down.",
   },
   {
     q: "Is it better to pay cash or finance a car?",
-    a: "Paying cash avoids interest entirely and removes any risk of owing more than the car is worth, while financing can make sense if you can secure a very low rate and have a better use for your cash elsewhere, or if you're using the loan to build credit history through consistent on-time payments.",
+    a: "Cash avoids interest and any risk of negative equity. Financing can make sense if you get a very low rate, have a better use for your cash, or want to build credit.",
   },
   {
-    q: "Can I pay off my auto loan early to save on interest?",
-    a: "In most cases, yes, paying extra toward principal or paying off the loan ahead of schedule reduces total interest paid. Some lenders include prepayment penalties or restrictions, though, so it's worth checking your loan agreement before counting on an early payoff.",
+    q: "Can I pay off my auto loan early?",
+    a: "Usually, yes, and it reduces total interest. Some lenders charge prepayment penalties, so check your contract first.",
   },
   {
-    q: "Is this auto loan calculator really free with no signup required?",
-    a: "Yes. There's no account creation, no email requirement, and no hidden fees to use the calculator or view your full amortization schedule.",
-  },
-];
-
-const FAQ_SCHEMA_ITEMS = [
-  {
-    q: "How accurate is an online auto loan calculator?",
-    a: "An auto loan calculator is highly accurate for the math itself, since it uses the same amortization formula lenders use. The variable that can shift your real-world payment is the exact APR a lender offers you, which depends on your credit profile and the lender's underwriting at the time of application.",
+    q: "Can I refinance an auto loan?",
+    a: "Yes. Refinancing can lower your rate or payment if your credit has improved or rates have dropped. Lenders may have limits on vehicle age, mileage, and loan balance.",
   },
   {
-    q: "Does a car loan calculator include sales tax?",
-    a: "Not all of them do, but this one does. You can enter your local sales tax rate so it's factored into your loan amount, which gives you a more realistic total cost than calculators that only account for the vehicle price and interest rate.",
-  },
-  {
-    q: "How does a trade-in affect my auto loan payment?",
-    a: "Your trade-in value is typically subtracted from the vehicle price before your loan amount is calculated, and in most states it also reduces the amount subject to sales tax. A handful of states, including California, Hawaii, and Virginia, don't offer this tax reduction, so it's worth checking your state's rule before assuming your trade-in will lower your tax bill.",
-  },
-  {
-    q: "What's the difference between dealership financing and direct lending?",
-    a: "Direct lending means securing a loan from a bank or credit union before you buy, then paying the dealer with those funds. Dealership financing means the loan is arranged through the dealer, often with a lender tied to the manufacturer. Direct lending generally gives buyers more negotiating leverage, while dealership financing is more convenient for buyers who'd rather not shop lenders themselves.",
-  },
-  {
-    q: "Are manufacturer rebates taxed?",
-    a: "It depends on the state. In many states, sales tax is calculated on the vehicle's price before the rebate is subtracted, so the rebate doesn't reduce your taxable amount. A number of other states, including Texas, Oregon, and Pennsylvania, don't tax rebates this way.",
-  },
-  {
-    q: "What credit score do I need for the best auto loan rate?",
-    a: "Lenders generally reserve their lowest advertised APRs for borrowers with scores in the high 700s and above, though rates are offered across a range of credit tiers. Checking your score before applying helps you set a realistic rate expectation when using the calculator.",
-  },
-  {
-    q: "Is it better to choose a longer or shorter auto loan term?",
-    a: "A shorter term means a higher monthly payment but less total interest paid and faster equity buildup. A longer term lowers the monthly payment but increases total interest cost and raises the risk of owing more than the car is worth. The right choice depends on your monthly budget versus your total cost priorities.",
-  },
-  {
-    q: "How much should I put down on a car?",
-    a: "A down payment between 15% and 20% of the vehicle's total cost is a reasonable target for most buyers. Putting down more reduces your loan principal, your monthly payment, and your total interest cost, while also lowering the chance of ending up upside-down on the loan.",
-  },
-  {
-    q: "Is it better to pay cash or finance a car?",
-    a: "Paying cash avoids interest entirely and removes any risk of owing more than the car is worth, while financing can make sense if you can secure a very low rate and have a better use for your cash elsewhere, or if you're using the loan to build credit history through consistent on-time payments.",
-  },
-  {
-    q: "Can I pay off my auto loan early to save on interest?",
-    a: "In most cases, yes — paying extra toward principal or paying off the loan ahead of schedule reduces total interest paid. Some lenders include prepayment penalties or restrictions, though, so it's worth checking your loan agreement before counting on an early payoff.",
-  },
-  {
-    q: "Is this auto loan calculator really free with no signup required?",
-    a: "Yes. There's no account creation, no email requirement, and no hidden fees to use the calculator or view your full amortization schedule.",
+    q: "Is this auto loan calculator really free?",
+    a: "Yes. There's no signup, no email requirement, and no hidden fees, including for the full amortization schedule.",
   },
 ];
 
@@ -100,9 +65,17 @@ const h2Style = {
   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17,
   color: "var(--text-primary)", letterSpacing: "-0.02em", marginBottom: 10,
 };
+const h3Style = {
+  fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13.5,
+  color: "var(--text-primary)", marginBottom: 6, marginTop: 14,
+};
 const pStyle = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 10 };
-const ulStyle = { ...pStyle, marginBottom: 0, paddingLeft: 18 };
+const ulStyle = { ...pStyle, paddingLeft: 18 };
+const liStyle = { marginBottom: 8 };
+const last = { ...pStyle, marginBottom: 0 };
+const firstH3 = { ...h3Style, marginTop: 0 };
 const cardStyle = { padding: "20px 20px" };
+const Ext = ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="inline-home-link">{children}</a>;
 
 function FaqRow({ item, open, onToggle }) {
   return (
@@ -141,7 +114,7 @@ export default function AutoLoanCalculatorFaqSection() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_SCHEMA_ITEMS.map((item) => ({
+    mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -153,418 +126,722 @@ export default function AutoLoanCalculatorFaqSection() {
       <JsonLd data={faqSchema} />
 
       <div className="card" style={cardStyle}>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Buying a car involves more moving parts than most people expect, and the sticker price rarely
-          reflects what you'll actually pay each month. This auto loan calculator, available free on{" "}
-          <Link to="/" className="inline-home-link">Tolz</Link>, lets you factor in sales tax, trade-in
-          credit, cash incentives, and title or registration fees so you can see a realistic monthly
-          payment before you sit down at a dealership finance desk. Whether you're comparing loan offers,
-          checking if a deal fits your budget, or working backward from a payment you can afford to find
-          the right vehicle price, this tool gives you accurate numbers in seconds. It's built primarily
-          around U.S. auto financing conventions and tax rules, so buyers outside the U.S. should adjust the
-          tax and fee inputs to match their own market.
+        <p style={last}>
+          This tool is by <Link to="/" className="inline-home-link">tolz.org</Link>
         </p>
       </div>
 
+      {/* What is an auto loan */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>How This Auto Loan Calculator Works</h2>
+        <h2 style={h2Style}>What Is an Auto Loan, and How Do You Calculate It?</h2>
         <p style={pStyle}>
-          The calculator uses the standard amortization formula that lenders apply to auto loans, factoring
-          in your vehicle price, down payment, trade-in value, loan term, and interest rate (APR). Instead
-          of just estimating a bare-bones payment, it also lets you add sales tax and title/registration
-          fees to your loan amount, and subtract any manufacturer cash incentives or rebates you're eligible
-          for. That matters because these extra costs are often rolled into the financed amount, quietly
-          increasing both your monthly payment and the total interest you'll pay over the life of the loan.
+          An auto loan is money you borrow to buy a vehicle and pay back in fixed monthly payments over a set term,
+          usually 36 to 84 months. The car itself secures the loan. That means the lender holds a lien on the title
+          until you pay it off, and it can repossess the vehicle if you stop making payments.
         </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          You also have the flexibility to solve for either the monthly payment or the vehicle price. If
-          you already know what you can afford each month, you can work backward, sometimes called a
-          reverse auto loan calculation, to find the maximum price you should be negotiating for. If you
-          already know the price of the car, the calculator will show you exactly what your payment will
-          look like across different loan terms and rates.
+        <p style={pStyle}>Lenders figure your monthly payment with the standard amortization formula:</p>
+        <p style={{ ...pStyle, fontWeight: 700, color: "var(--text-primary)", textAlign: "center" }}>
+          Payment = P × r ÷ (1 − (1 + r)⁻ⁿ)
+        </p>
+        <p style={pStyle}>
+          In that formula, P is the amount you borrow, r is your monthly interest rate (your APR divided by 12), and n
+          is the number of monthly payments. For example, a $30,000 loan at 7% APR over 60 months works out to about
+          $594 a month. You'd pay roughly $35,640 in total, which includes about $5,640 in interest.
+        </p>
+        <p style={pStyle}>
+          You don't need to do that math by hand. Enter your vehicle price, down payment, trade-in value, loan term, and
+          APR, and the calculator does the rest. It also lets you add sales tax and title or registration fees to the
+          loan, and subtract any manufacturer rebate you qualify for. Those extras are often rolled into the financed
+          amount, which quietly raises both your payment and the total interest you pay.
+        </p>
+        <p style={last}>
+          You can solve for either number. If you already know the price, the calculator shows your payment across
+          different terms and rates. If you know what you can afford each month, work backward to find the highest
+          price you should negotiate toward. This is sometimes called a reverse auto loan calculation.
         </p>
       </div>
 
+      {/* What to enter */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Entering Your Vehicle Price, Down Payment, and Trade-In</h2>
+        <h2 style={h2Style}>What to Enter: Vehicle Price, Down Payment, and Trade-In</h2>
+        <p style={pStyle}>Each input changes your payment in a different way, so it helps to know what to put in each field.</p>
         <p style={pStyle}>
-          Getting an accurate estimate starts with entering the right inputs, and each field affects your
-          payment differently.
+          <strong>Vehicle price</strong> is the negotiated price, or the MSRP if you haven't negotiated yet.{" "}
+          <strong>Down payment</strong> reduces the amount you borrow dollar for dollar. A bigger down payment means a
+          lower payment and less interest overall, while a smaller one does the opposite.
         </p>
         <p style={pStyle}>
-          Vehicle price is your starting point, either the negotiated price or MSRP if you haven't
-          negotiated yet. Down payment reduces the amount you need to finance dollar for dollar, which
-          shortens your effective loan and lowers your total interest cost. A larger down payment generally
-          means fewer months of payments and less interest paid overall, while a smaller one stretches the
-          loan out and increases the total interest you'll pay across the term.
+          <strong>Trade-in value</strong> also lowers the amount you finance, and in most states it lowers the amount
+          that's taxed too (more on that below). Keep in mind that dealers often offer less for a trade-in than you'd get
+          from a private sale. If you have the time, get a few quotes from online car buyers or other dealers before you
+          accept the first number.
         </p>
-        <p style={pStyle}>
-          Trade-in value works in a similar way, reducing both the amount financed and, in most states, the
-          amount subject to sales tax, though the exact tax treatment varies by location, which is covered
-          in detail further down this page. It's worth noting that dealership trade-in offers are often
-          lower than what you could get selling the same vehicle privately, so it's worth weighing the
-          convenience of a trade-in against the extra effort of a private sale before deciding which route
-          nets you more value toward your next car.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          You can also check how much you'd save by paying certain costs upfront instead of rolling them
-          into the loan. Dealer fees, sales tax, and add-ons the finance office tries to sell you all
-          increase your loan balance if financed, so it's worth running the numbers both ways, financed
-          versus paid out of pocket, to see which produces a lower total cost.
+        <p style={last}>
+          It's also worth running the numbers both ways: once with fees and add-ons financed, and once with them paid
+          out of pocket. Dealer fees, sales tax, and extras from the finance office all increase your loan balance and
+          interest if you finance them.
         </p>
       </div>
 
+      {/* Fees */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Understanding Sales Tax, Registration, and Other Purchase Fees</h2>
+        <h2 style={h2Style}>Sales Tax, Registration, and Other Purchase Fees</h2>
         <p style={pStyle}>
-          A car purchase comes with a number of costs beyond the negotiated price, and most of these can
-          either be rolled into your loan or paid upfront, depending on the dealer and your credit
-          situation. Buyers with limited credit are sometimes required to pay certain fees out of pocket
-          rather than financing them. Here's what typically shows up on a car purchase in the U.S.:
+          Most of the costs beyond the price can be rolled into your loan or paid upfront, depending on the dealer and
+          your credit. Buyers with weaker credit are sometimes asked to pay certain fees out of pocket. Here's what
+          usually shows up on a U.S. car purchase:
         </p>
         <ul style={ulStyle}>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Sales tax</strong> — Most states charge sales tax on vehicle purchases, and this amount
-            can usually be financed along with the price of the car. Alaska, Delaware, Montana, New
-            Hampshire, and Oregon are the five states that don't charge sales tax on vehicle purchases at
-            all.
+          <li style={liStyle}>
+            <strong>Sales tax.</strong> Most states tax vehicle purchases, and you can usually finance it. Alaska,
+            Delaware, Montana, New Hampshire, and Oregon have no statewide sales tax. Some of them still charge other
+            taxes or fees. Delaware, for example, charges a document fee based on the price, and Alaska allows local
+            sales taxes.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Documentation (doc) fee</strong> — This is charged by the dealer for handling the
-            paperwork behind your title and registration. It varies widely by dealer and state.
+          <li style={liStyle}>
+            <strong>Documentation (doc) fee.</strong> The dealer charges this for handling title and registration
+            paperwork. It varies widely by dealer and state, and some states cap it.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Title and registration fees</strong> — These are fees collected by your state's motor
-            vehicle agency to title and register the car in your name.
+          <li style={liStyle}>
+            <strong>Title and registration fees.</strong> Your state's motor vehicle agency collects these to put the car
+            in your name.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Advertising fee</strong> — Some dealers pass along a regional advertising cost tied to
-            promoting the manufacturer's vehicles in their area. If it isn't itemized separately, it's
-            usually already baked into the advertised price. This typically runs a few hundred dollars when
-            charged.
+          <li style={liStyle}>
+            <strong>Destination fee.</strong> This covers shipping a new car from the factory to the dealership. It's
+            usually listed on the window sticker and often runs from about $1,000 to $2,000.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Destination fee</strong> — This covers shipping the vehicle from the factory to the
-            dealership and is usually somewhere between $900 and $1,500 on a new car.
+          <li style={liStyle}>
+            <strong>Advertising fee.</strong> Some dealers pass along a regional advertising charge. If it isn't
+            itemized, it's usually already built into the advertised price.
           </li>
           <li>
-            <strong>Insurance</strong> — Auto insurance is legally required to drive in the U.S. and
-            dealers generally won't complete financing paperwork without proof of coverage. Full coverage,
-            which lenders typically require when you finance rather than pay cash, can run over $1,000 a
-            year depending on your driving record and location. Many dealers can arrange short-term coverage
-            to get you off the lot while you finalize a longer-term policy.
+            <strong>Insurance.</strong> You need proof of coverage before the dealer will finish the paperwork. Lenders
+            also require full coverage (collision and comprehensive) while you owe money on the car. Depending on your
+            driving record and where you live, full coverage can easily cost more than $2,000 a year. It doesn't show up
+            in the loan, but it belongs in your monthly budget.
           </li>
         </ul>
-        <p style={{ ...pStyle, marginTop: 10, marginBottom: 0 }}>
-          If your dealer is bundling taxes and fees into the loan, make sure that's reflected in how you
-          enter your numbers into the calculator so the payment estimate matches what you'll actually owe.
-          If they're being paid upfront instead, leave them out of the financed amount. And if a dealer
-          tries to include an unfamiliar or vaguely described charge in your paperwork, it's reasonable to
-          ask exactly what it covers before agreeing to pay it.
+        <p style={last}>
+          If the dealer is rolling taxes and fees into the loan, include them in the calculator so the estimate matches
+          what you'll owe. If you're paying them upfront, leave them out. And if you see a vague or unfamiliar charge on
+          the paperwork, ask exactly what it covers before you agree to it.
         </p>
       </div>
 
+      {/* How much can you borrow */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Dealership Financing vs. Direct Lending</h2>
+        <h2 style={h2Style}>How Much Can You Borrow on an Auto Loan?</h2>
         <p style={pStyle}>
-          There are two main ways to finance a vehicle: direct lending and dealership financing. Direct
-          lending means getting a loan straight from a bank, credit union, or other lender before you buy,
-          then using those funds to pay the dealer once you've agreed on a price. Dealership financing works
-          differently, the loan paperwork is arranged through the dealer, who typically works with a
-          captive lender tied to the vehicle's manufacturer or with an outside bank that later purchases the
-          loan contract from the dealer.
+          There's no single limit. Lenders look at your income, your credit, your existing debts, and the value of the
+          car. Here's what matters most:
         </p>
-        <p style={pStyle}>
-          Direct lending tends to give buyers more negotiating leverage, since walking into a dealership
-          with financing already arranged puts pressure on the dealer to either match or beat that rate. It
-          also means you're not locked into any single dealership, so you can walk away from a bad deal more
-          easily. Dealership financing, on the other hand, is often more convenient if you'd rather not shop
-          multiple lenders yourself, though your rate options are generally more limited than what you'd
-          find comparing offers on your own.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          It's also worth checking directly with car manufacturers, since they frequently offer promotional
-          financing to move inventory, rates as low as 0%, 0.9%, 1.9%, or 2.9% aren't unusual on select
-          models, and these can beat anything a bank or credit union will offer.
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Debt-to-income ratio (DTI).</strong> This compares your monthly debt payments to your gross monthly
+            income. Many lenders want your total DTI, including the new car payment, to stay under roughly 45% to 50%.
+            Some also cap the car payment itself at around 15% to 20% of your gross income.
+          </li>
+          <li style={liStyle}>
+            <strong>Credit score.</strong> A strong score can mean a higher approved amount and a better rate. A low
+            score usually means a lower limit or a larger required down payment.
+          </li>
+          <li style={liStyle}>
+            <strong>Loan-to-value ratio (LTV).</strong> Lenders compare the loan to what the car is worth. Borrowers with
+            good credit may be approved for close to 100% of the car's value or a bit more. Weaker credit usually means a
+            lower percentage.
+          </li>
+          <li>
+            <strong>Minimum and maximum amounts.</strong> Most lenders set a floor (often $5,000 or so) and a ceiling
+            that varies by lender and vehicle.
+          </li>
+        </ul>
+        <p style={last}>
+          For context, Experian reports that the average new car loan was about $43,600 in the second quarter of 2026,
+          and the average used car loan was about $27,900. The amount a lender will approve isn't always the amount you
+          should borrow, though. A common rule of thumb is to put 20% down, finance for no more than four years, and
+          keep your total car costs (payment, insurance, and fuel) under 10% of your gross income. Many buyers need a
+          longer term to make that work, but the idea is a useful target.
         </p>
       </div>
 
+      {/* Process */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>How Manufacturer Rebates and Incentives Affect Your Loan</h2>
+        <h2 style={h2Style}>The Auto Loan Process, Step by Step</h2>
+        <p style={pStyle}>Getting a car loan is simpler when you do things in the right order.</p>
+        <ol style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Set a budget.</strong> Decide on a monthly payment you can handle, then use the calculator to see
+            what price that supports.
+          </li>
+          <li style={liStyle}>
+            <strong>Check your credit.</strong> Pull your free reports at AnnualCreditReport.com and your score from
+            your bank or card issuer. Fix any errors before you apply.
+          </li>
+          <li style={liStyle}>
+            <strong>Get pre-approved.</strong> Apply with a bank, credit union, or online lender to see your rate and
+            maximum amount before you shop.
+          </li>
+          <li style={liStyle}>
+            <strong>Shop for the car.</strong> Negotiate the price of the vehicle first, then talk about financing.
+          </li>
+          <li style={liStyle}>
+            <strong>Compare financing.</strong> Ask the dealer if it can beat your pre-approved rate. Take the lower
+            APR, not the lower payment.
+          </li>
+          <li style={liStyle}>
+            <strong>Finalize the loan.</strong> The lender verifies your information and the car, and you review and
+            sign the contract.
+          </li>
+          <li>
+            <strong>Pay and register.</strong> The lender pays the dealer, you add the car to your insurance, and the
+            title and registration are processed. Your payments start about 30 to 45 days later.
+          </li>
+        </ol>
         <p style={pStyle}>
-          Cash rebates and other incentives from manufacturers reduce your loan amount much like a down
-          payment would, but how they interact with sales tax depends on your state. In some states, sales
-          tax is calculated on the vehicle's price before the rebate is subtracted, so a $50,000 car with a
-          $2,000 rebate is still taxed as if it cost $50,000, not $48,000. A number of states don't tax
-          rebates this way, including Alaska, Arizona, Delaware, Iowa, Kansas, Kentucky, Louisiana,
-          Massachusetts, Minnesota, Missouri, Montana, Nebraska, New Hampshire, Oklahoma, Oregon,
-          Pennsylvania, Rhode Island, Texas, Utah, Vermont, and Wyoming. Rules can change, so it's worth
-          confirming current treatment with your state's tax authority before finalizing your numbers.
+          <strong>When should you apply?</strong> The best time is after you've set a budget and before you visit a
+          dealership, ideally a week or two ahead of buying. Pre-approvals are usually good for 30 to 60 days. If you
+          apply to several lenders, try to do it within a short window. Credit scoring models typically count multiple
+          auto loan inquiries made within 14 days (and up to 45 days with some newer models) as a single inquiry.
         </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Rebates are also typically limited to new vehicles. A handful of used car dealers offer cash
-          incentives, but it's uncommon, largely because pinning down a fair market value for a used vehicle
-          is harder than pricing a new one off MSRP.
+        <p style={pStyle}>
+          <strong>How long does approval take?</strong> Online pre-approval often takes a few minutes. Final approval
+          at a dealership can happen within a few hours, sometimes the same day. Banks and credit unions may take one to
+          three business days, especially if they need extra documents.
+        </p>
+        <p style={pStyle}>
+          <strong>What do you need for a car loan?</strong> Lenders typically ask for:
+        </p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>A valid driver's license or other government ID</li>
+          <li style={liStyle}>Your Social Security number (or ITIN with some lenders)</li>
+          <li style={liStyle}>Proof of income, such as recent pay stubs, W-2s, or tax returns</li>
+          <li style={liStyle}>Proof of address, such as a utility bill or lease</li>
+          <li style={liStyle}>Proof of auto insurance</li>
+          <li style={liStyle}>Vehicle details, including the VIN, mileage, and the purchase agreement</li>
+          <li style={liStyle}>
+            The title and loan payoff information if you're trading in a vehicle you still owe on
+          </li>
+          <li>Bank account details, if you want to set up automatic payments</li>
+        </ul>
+        <p style={last}>
+          <strong>How do banks verify income?</strong> Lenders usually check pay stubs and W-2s, and they may call your
+          employer or use a payroll database to confirm that you work there. If you're self-employed or have irregular
+          income, expect to provide tax returns, bank statements, or 1099s. Some lenders also request your tax
+          transcripts directly from the IRS with your permission.
         </p>
       </div>
 
+      {/* Pre-approval */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Understanding the Numbers Behind Your Car Payment</h2>
+        <h2 style={h2Style}>How Does a Pre-Approved Auto Loan Work?</h2>
         <p style={pStyle}>
-          A car payment is driven by four core variables: the principal you're financing, your interest
-          rate, your loan term, and whether the vehicle is new or used.
+          A pre-approval is a lender's conditional offer. After you share basic details about your income and credit,
+          the lender tells you the maximum amount it's willing to lend, the rate, and the term. Some lenders use a soft
+          credit check for a preliminary quote, and others run a hard inquiry, so ask which one applies before you
+          submit.
         </p>
         <p style={pStyle}>
-          Principal is simply how much you're borrowing after your down payment, trade-in credit, and any
-          rebate are subtracted from the purchase price (plus tax and fees, if financed). A bigger down
-          payment shrinks the principal directly, which shortens your effective repayment burden and lowers
-          total interest, while a smaller one does the opposite.
+          The approval is conditional. The lender still has to verify your information and approve the specific car,
+          and the offer expires after a set time, usually 30 to 60 days.
+        </p>
+        <p style={pStyle}><strong>The benefits of pre-approval:</strong></p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            You know your budget and rate before you walk in, so you negotiate from a stronger position.
+          </li>
+          <li style={liStyle}>
+            It gives you a benchmark. If the dealer offers financing, you can tell whether it's actually a better deal.
+          </li>
+          <li style={liStyle}>
+            It separates the car price from the financing, which makes it harder for a dealer to hide costs inside a
+            monthly payment.
+          </li>
+          <li>It speeds up the purchase, since the paperwork is already started.</li>
+        </ul>
+        <p style={pStyle}>
+          <strong>What happens after you're pre-approved?</strong> You shop for the car, choose one that fits the
+          lender's limits, and send the lender the purchase details. The lender then verifies everything, issues the
+          final loan documents, and pays the dealer once you sign. Check the final rate and terms against your
+          pre-approval before you sign.
         </p>
         <p style={pStyle}>
-          Interest rate (APR) is the cost of borrowing, expressed annually, and it's the figure you should
-          compare across lenders rather than a bare "interest rate," since APR bundles in certain fees along
-          with the base rate. You don't get to pick your own APR, lenders set it based on your credit
-          profile, the loan term, and whether the vehicle is new or used. Someone with subprime credit can
-          end up paying a rate roughly 10 percentage points higher than someone with excellent credit, which
-          is why improving your credit before applying is one of the highest-leverage things you can do.
+          <strong>Can you decide not to take a loan you've been approved for?</strong> Yes. A pre-approval isn't a
+          contract, and you're under no obligation to use it. You only owe money once you sign the final loan agreement
+          and the funds are released. If you skip it, the only lasting effect is the credit inquiry, which has a small,
+          temporary effect on your score.
         </p>
-        <p style={pStyle}>
-          Loan term, typically ranging from 24 to 84 months in the U.S., determines how your total cost is
-          spread out. A longer term lowers your monthly payment but stretches out interest charges and slows
-          down how quickly you build equity, sometimes to the point where you owe more than the car is
-          worth, a situation known as being upside-down or having negative equity. A shorter term raises the
-          monthly payment but reduces total interest and gets you to full ownership faster.
-        </p>
-        <p style={pStyle}>
-          Vehicle condition, new versus used, also shapes your numbers. New cars carry a higher MSRP and
-          therefore a larger principal, but they typically qualify for lower APRs than comparable used-car
-          loans. Used vehicles cost less upfront and depreciate more slowly than new ones, though they can
-          come with higher maintenance costs over time, which is worth factoring into your overall budget
-          even though it won't show up in the loan calculation itself.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          To see how these variables interact, consider a $32,000 vehicle with a $4,000 trade-in and a 6.5%
-          local sales tax rate. If your state taxes the price after the trade-in credit is applied, you'd
-          be taxed on $28,000 instead of the full $32,000, a savings of roughly $260 in tax alone. Add a
-          $1,500 down payment and a $500 rebate that isn't taxed in your state, and your financed amount
-          drops meaningfully below the sticker price before interest even enters the picture. Running that
-          same loan at 60 months instead of 72 months at a 7% APR typically shows a payment that's
-          noticeably higher per month but saves well over a thousand dollars in total interest by payoff,
-          exactly the kind of trade-off this calculator is built to make visible instantly.
+        <p style={last}>
+          <strong>Can you lose a pre-approval if you quit your job?</strong> Yes, it's possible. Pre-approvals depend
+          on your income and employment staying the same. Many lenders verify your job again right before funding, and
+          a job change can lead them to cancel or reduce the offer. Avoid changing jobs, opening new credit accounts, or
+          taking on new debt between pre-approval and closing. If something does change, tell the lender early.
         </p>
       </div>
 
+      {/* Interest rate */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Trade-In Value and How It Affects Your Sales Tax</h2>
+        <h2 style={h2Style}>What Interest Rate Can You Expect?</h2>
         <p style={pStyle}>
-          Trading in your current vehicle reduces the price you're financing, and in most states with
-          sales tax, it also reduces the amount that tax is calculated on. For example, on a $50,000 new
-          car with a $10,000 trade-in and an 8% sales tax rate, if your state applies tax to the post-trade-in
-          price, the math looks like this:
-        </p>
-        <p style={{ ...pStyle, fontWeight: 700, color: "var(--text-primary)" }}>
-          ($50,000 − $10,000) × 8% = $3,200 in sales tax
+          Rates change often, so use current averages as a rough guide rather than a promise. According to{" "}
+          <Ext href="https://www.experian.com/blogs/ask-experian/auto-loan-rates-financing/">
+            Experian's State of the Automotive Finance Market report
+          </Ext>
+          , the average APR in the second quarter of 2026 was about 6.35% for new cars and 11.19% for used cars. Your
+          own rate depends heavily on your credit tier. Early 2026 Experian data shows new car rates ranging from about
+          4.5% for the highest scores to about 16% for the lowest, and used car rates running from around 6.3% for
+          super prime borrowers to more than 21% for deep subprime borrowers.
         </p>
         <p style={pStyle}>
-          Not every state offers this reduction, though. California, the District of Columbia, Hawaii,
-          Kentucky, Maryland, Michigan, Montana, and Virginia are commonly cited as not reducing the taxable
-          amount for a trade-in, meaning the same purchase would be taxed on the full price:
+          <strong>Who sets auto loan interest rates?</strong> The lender does. No government agency sets the rate on
+          your car loan. The Federal Reserve's policy rate influences what lenders pay for money, so rates tend to rise
+          and fall with it, but each lender sets its own prices. If you finance at a dealership, the dealer may also add
+          a markup to the lender's rate, which is another reason to arrive with a pre-approval.
         </p>
-        <p style={{ ...pStyle, fontWeight: 700, color: "var(--text-primary)" }}>
-          $50,000 × 8% = $4,000 in sales tax
+        <p style={pStyle}><strong>How do lenders decide your rate?</strong> The main factors are:</p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>Your credit score and credit history</li>
+          <li style={liStyle}>The loan term (longer terms often carry higher rates)</li>
+          <li style={liStyle}>Whether the car is new or used, and its age and mileage</li>
+          <li style={liStyle}>Your down payment and the loan-to-value ratio</li>
+          <li style={liStyle}>Your income and debt-to-income ratio</li>
+          <li>The type of lender, since credit unions often offer lower rates than banks or dealers</li>
+        </ul>
+        <p style={pStyle}>
+          <strong>What are the cheapest ways to get an auto loan?</strong> Start by comparing offers from at least three
+          lenders, including a credit union. Then:
         </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          That's an $800 difference on this example alone, which is a meaningful enough gap that buyers in
-          these states sometimes come out ahead selling their old vehicle privately and applying the
-          proceeds toward the new purchase instead of trading it in at the dealership. As with rebate
-          taxation, confirm your state's current rule before assuming either scenario applies to your
-          purchase.
+        <ul style={ulStyle}>
+          <li style={liStyle}>Improve your credit score before applying, if you can wait.</li>
+          <li style={liStyle}>Put more money down.</li>
+          <li style={liStyle}>Choose the shortest term you can afford.</li>
+          <li style={liStyle}>
+            Check manufacturer financing deals, which sometimes offer rates as low as 0% on select new models.
+          </li>
+          <li style={liStyle}>Add a cosigner with strong credit if your own profile is thin.</li>
+          <li>Turn down add-ons you don't need, because financing them means paying interest on them.</li>
+        </ul>
+        <p style={last}>
+          <strong>Do banks match auto loan rates?</strong> Sometimes. A bank or credit union may match or beat a
+          competitor's offer, especially if you're an existing customer. It's never guaranteed, but it costs nothing to
+          ask. Bring a written offer from another lender, and focus on the APR rather than only the payment. Dealers are
+          the most likely to match, since they have access to several lenders.
         </p>
       </div>
 
+      {/* Subprime */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>When You Actually Need an Auto Loan Calculator</h2>
+        <h2 style={h2Style}>What Are Subprime Auto Loans?</h2>
         <p style={pStyle}>
-          There are several common situations where running the numbers ahead of time saves you money and
-          stress.
+          A subprime auto loan is made to a borrower with a lower credit score, generally in the range of 600 or below
+          (Experian defines subprime as 501 to 600 and deep subprime as 500 and under). Because the lender takes on more
+          risk, these loans come with much higher rates. Recent Experian data shows average used car rates around 19%
+          for subprime and above 21% for deep subprime borrowers.
         </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Before visiting a dealership, you walk in knowing your target price range instead of relying on
-          the salesperson's numbers. When comparing loan offers from a bank, credit union, and dealer, even
-          a one-point difference in APR can change your total cost by hundreds or thousands of dollars over
-          a multi-year term. When deciding between a shorter and longer loan term, since seeing the monthly
-          payment and total interest side by side makes the tradeoff concrete instead of abstract. When you
-          have a trade-in vehicle and want to know how much it actually reduces your new loan and your tax
-          bill, rather than guessing based on the dealer's initial offer. When you're budgeting for a car
-          purchase and need to work backward from an affordable monthly payment to figure out what price
-          range to shop in. When refinancing an existing auto loan, to compare your current payment against
-          what a new rate or term would produce. And when a manufacturer incentive or rebate is on the
-          table, you can see its real effect on your bottom line after accounting for how, or whether, it's
-          taxed in your state.
-        </p>
+        <p style={pStyle}>Subprime loans can help you get a car and rebuild credit, but they cost a lot. If you go this route:</p>
+        <ul style={{ ...ulStyle, marginBottom: 0 }}>
+          <li style={liStyle}>
+            Compare offers from credit unions and online lenders before you accept a dealer's.
+          </li>
+          <li style={liStyle}>
+            Put as much down as you can to reduce the amount financed and the lender's risk.
+          </li>
+          <li style={liStyle}>
+            Be careful with buy-here-pay-here lots, which can charge very high rates, may not report your payments to
+            the credit bureaus, and sometimes use tracking devices.
+          </li>
+          <li style={liStyle}>
+            Look for a loan that doesn't carry prepayment penalties, so you can refinance when your credit improves.
+          </li>
+          <li>
+            Pick a car that's reasonably priced. A cheaper, reliable vehicle usually makes more sense than stretching for
+            a nicer one.
+          </li>
+        </ul>
       </div>
 
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Reading Your Auto Loan Amortization Schedule</h2>
-        <p style={pStyle}>
-          Once you calculate your payment, the amortization schedule breaks down exactly how each
-          installment is split between principal and interest over the loan term. It typically shows, for
-          every scheduled payment: the due date, how much goes toward principal, how much goes toward
-          interest, the remaining balance after that payment, and eventually the projected payoff date.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Early in the loan, a larger share of each payment goes toward interest; as the balance shrinks,
-          more of each payment shifts toward principal. This breakdown is useful in a few practical ways.
-          It shows you how much you'd save in interest by making extra principal payments. It tells you
-          your outstanding balance at any point in time, which matters if you're considering selling or
-          trading in the vehicle before the loan is paid off. And it gives you the true total cost of the
-          loan, principal plus total interest, so you can compare that figure across different rate and
-          term combinations rather than judging a loan only by its monthly payment.
-        </p>
-      </div>
-
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Smart Auto Loan Strategies</h2>
-        <p style={pStyle}>
-          <strong>Preparation.</strong> The most effective way to get a good deal is to know what you can
-          afford and what a fair rate looks like before you ever walk into a dealership. Research typical
-          pricing for the make and model you want, and get quotes from more than one lender so you have
-          leverage in negotiations. Dealers, like most businesses, aim to maximize what they make on a
-          sale, but they're often willing to come down significantly from an opening offer when a buyer has
-          done their homework and has other options on the table. Getting pre-approved through direct
-          lending before you shop strengthens your position considerably.
-        </p>
-        <p style={pStyle}>
-          <strong>Credit.</strong> Your credit, and to a lesser degree your income, largely determines both
-          whether you're approved and what rate you're offered, regardless of whether you finance through a
-          dealer or a direct lender. Borrowers with strong credit consistently pay less over the life of the
-          loan, so taking steps to improve your score before applying, even modestly, can shift you into a
-          meaningfully better rate tier.
-        </p>
-        <p style={pStyle}>
-          <strong>Cash rebate vs. lower interest rate.</strong> Manufacturers frequently let buyers choose
-          between a cash rebate that lowers the purchase price immediately or a reduced interest rate that
-          saves money over time through lower interest charges. Which one saves you more depends on the
-          loan amount, term, and how the rebate is taxed in your state, running both scenarios through the
-          calculator is the fastest way to see which comes out ahead for your specific numbers.
-        </p>
-        <p style={pStyle}>
-          <strong>Early payoff.</strong> Paying off your auto loan ahead of schedule shortens the loan and
-          can meaningfully reduce the interest you pay overall. That said, some lenders build in prepayment
-          penalties or restrict early payoff in the loan agreement, so it's worth reading the contract terms
-          carefully before you sign, especially if paying the loan off early is part of your plan from the
-          start.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          <strong>Considering alternatives.</strong> A brand-new car depreciates quickly, often more than
-          10% the moment it leaves the lot, so a car that's just a few years old can offer significant
-          savings over buying new, with a much smaller portion of that early depreciation already absorbed
-          by the previous owner. For drivers who mainly want the experience of driving something new every
-          few years rather than long-term ownership, leasing is worth considering too, since it typically
-          has a lower upfront cost than a full purchase, though you won't build equity in the vehicle.
-        </p>
-      </div>
-
+      {/* Down payment and term */}
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Choosing Your Down Payment and Loan Term</h2>
         <p style={pStyle}>
-          A down payment in the range of 15% to 20% of the vehicle's total cost is a reasonable target for
-          most buyers, since it keeps your loan-to-value ratio healthy and reduces the odds of ending up
-          upside-down on the loan later. A bigger down payment on the same vehicle lowers both your monthly
-          payment and your total interest cost, for example, on a $45,000 vehicle financed at 6.4% over 60
-          months, moving from a $9,000 down payment to a $12,000 down payment drops the principal from
-          $36,000 to $33,000, which brings the payment down from roughly $703 to $664 a month and cuts
-          total interest paid from about $6,162 to $5,648.
+          A down payment of 15% to 20% of the vehicle's cost is a reasonable target for most buyers. It keeps your
+          loan-to-value ratio healthy and lowers the risk of ending up upside down. A larger down payment also saves
+          money. On a $45,000 vehicle at 6.4% APR over 60 months, going from a $9,000 down payment to a $12,000 down
+          payment cuts the amount borrowed from $36,000 to $33,000. That lowers the payment from about $703 to about $644
+          a month and reduces total interest from roughly $6,160 to about $5,650.
         </p>
         <p style={pStyle}>
-          Your loan term matters just as much as the rate you're charged. On a $30,000 loan, choosing a
-          48-month term over 60 months might mean paying around $719 a month instead of $593, a higher
-          monthly cost, but it can also mean paying roughly $1,000 less in total interest by the time the
-          loan is paid off, even if the shorter term carries a slightly higher rate. Before settling on a
-          term, decide the maximum payment you can comfortably handle each month, factoring in the other
-          costs of ownership, fuel, insurance, and maintenance, that don't show up in the loan calculation
-          itself but absolutely affect your budget. Walking into a dealership already knowing that number
-          puts you in a stronger position to negotiate the purchase price rather than negotiating around a
-          monthly payment the dealer proposes.
+          The loan term matters as much as the rate. On a $30,000 loan at 7% APR, a 48-month term costs about $718 a
+          month, compared with about $594 for 60 months. The shorter loan has a higher payment, but it saves you around
+          $1,160 in total interest.
         </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          Because even a small difference in APR compounds over a multi-year term, it's worth running the
-          same loan amount and term through the calculator using rate quotes from a few different lenders
-          before committing. This is also a good moment to check current average auto loan rates for your
-          credit tier, which gives you a realistic benchmark for what you should expect to be offered, and
-          helps you judge whether paying down other debt or adding a cosigner before applying is likely to
-          improve your rate meaningfully.
-        </p>
-      </div>
-
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Should You Pay Cash Instead of Financing?</h2>
         <p style={pStyle}>
-          Most vehicle purchases in the U.S. are financed, but paying cash outright has real advantages
-          worth weighing.
+          <strong>Is a 7-year (84-month) car loan a bad idea?</strong> In most cases, yes. A longer term lowers the
+          monthly payment, but the costs add up:
         </p>
         <ul style={ulStyle}>
-          <li style={{ marginBottom: 8 }}>
-            <strong>No monthly payments.</strong> Paying cash means there's no loan looming over you for
-            years and no risk of late fees for a missed payment.
+          <li style={liStyle}>
+            <strong>You pay much more interest.</strong> A $35,000 loan at 7% costs about $6,580 in interest over 60
+            months, but about $9,380 over 84 months. That's an extra $2,800 for the same car.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>No interest cost.</strong> Skipping financing means skipping interest entirely. As an
-            example, financing $32,000 over five years at 6% works out to a monthly payment of about
-            $618.65 and roughly $5,119 in total interest paid over the loan, money a cash buyer keeps.
+          <li style={liStyle}>
+            <strong>You can end up upside down.</strong> Cars lose value faster than your balance drops in the early
+            years, so you may owe more than the car is worth for a long time.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Full ownership from day one.</strong> With the car paid off in full, there are no
-            lender-imposed restrictions on selling it, choosing your insurance coverage, or modifying it
-            however you like.
+          <li style={liStyle}>
+            <strong>Repair costs overlap with payments.</strong> By years six and seven, the car is likely out of
+            warranty, and you could be paying for repairs and the loan at once.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>A natural check on overspending.</strong> Paying in a single lump sum limits you to
-            what's actually in your budget, whereas financing makes it easy to stretch into a pricier
-            vehicle by extending the term a little further, something dealers are often happy to help you do
-            through added fees or extended financing terms.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Occasional cash-only discounts.</strong> Some rebate offers are structured specifically
-            for buyers who aren't financing, so paying cash can occasionally unlock a better price than a
-            financed purchase would.
-          </li>
-          <li>
-            <strong>No risk of going upside-down.</strong> Since a depreciating asset can end up worth less
-            than what's owed on it, paying in full removes that risk completely.
-          </li>
+          <li><strong>Rates are often higher on longer terms.</strong></li>
         </ul>
-        <p style={{ ...pStyle, marginTop: 10, marginBottom: 0 }}>
-          That said, financing isn't automatically the worse choice. If you can secure a very low
-          promotional rate and have a better use for your cash, investing it somewhere with a higher
-          expected return, for instance, financing the car while investing the difference can leave you
-          ahead financially. Financing responsibly and making every payment on time is also one of the more
-          straightforward ways to build a stronger credit history, which pays off in other areas of your
-          finances down the line. Which approach makes sense depends on your own financial picture, not a
-          one-size-fits-all rule.
+        <p style={pStyle}>
+          An 84-month loan can make sense if you get a very low promotional rate and can handle the risk of owing more
+          than the car is worth, but it should be the exception. If a car only fits your budget at 84 months, consider a
+          cheaper car, a bigger down payment, or a used vehicle.
+        </p>
+        <p style={last}>
+          Before settling on a term, decide the highest payment you can comfortably handle once you add fuel,
+          insurance, and maintenance. Walk into the dealership with that number, and negotiate the purchase price
+          instead of letting the dealer negotiate around a monthly payment.
         </p>
       </div>
 
+      {/* Trade-in tax */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Free, Private, and Accurate: What to Expect From This Tool</h2>
+        <h2 style={h2Style}>Trade-In Value and How It Affects Sales Tax</h2>
         <p style={pStyle}>
-          This auto loan calculator is completely free to use, with no signup, account creation, or hidden
-          charges required. You can run as many calculations as you need, comparing different terms, rates,
-          or trade-in scenarios, without any usage limits.
+          Trading in your current vehicle reduces what you finance, and in most states it also reduces the amount you
+          pay tax on. For example, on a $50,000 car with a $10,000 trade-in and an 8% sales tax rate, the math looks like
+          this:
+        </p>
+        <p style={{ ...pStyle, fontWeight: 700, color: "var(--text-primary)", textAlign: "center" }}>
+          ($50,000 − $10,000) × 8% = $3,200 in sales tax
+        </p>
+        <p style={last}>
+          Not every state gives you that break. A few, including California and Maryland, tax the full price, so the
+          same purchase would cost $4,000 in tax. That's an $800 difference, which is why buyers in those states
+          sometimes come out ahead by selling the old car privately. Rules change, so check your state's current
+          treatment with your motor vehicle agency or department of revenue before you decide.
+        </p>
+      </div>
+
+      {/* Rebates */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>How Manufacturer Rebates and Incentives Affect Your Loan</h2>
+        <p style={pStyle}>
+          A cash rebate lowers the amount you finance, much like a down payment. How it affects your sales tax depends
+          on your state. In many states, tax is figured on the price before the rebate is taken off, so a $50,000 car
+          with a $2,000 rebate is still taxed as if it cost $50,000. Other states tax the lower amount. Confirm your
+          state's rule before you finalize the numbers.
         </p>
         <p style={pStyle}>
-          Because the calculator runs directly in your browser, the numbers you enter (vehicle price,
-          trade-in value, personal financial details) are not stored or transmitted anywhere. Nothing you
-          input is saved on Tolz's servers, so you can freely test different loan scenarios without any
-          privacy concerns. The math behind the tool follows the same amortization formula used by banks and
-          auto lenders, so the payment estimates you see closely match what you'd be quoted in a real loan
-          agreement, though your final rate and terms will always depend on the lender's underwriting.
+          Rebates are usually limited to new vehicles. Used car dealers rarely offer them, because it's harder to pin
+          down a fair price on a used car.
         </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          You also don't need to download anything or build a spreadsheet to get a full amortization
-          breakdown, the calculator works directly in your browser on desktop or mobile, and you can rerun
-          it as many times as you want while you shop around, negotiate, or compare offers from different
-          lenders.
+        <p style={last}>
+          <strong>Cash rebate or low interest rate?</strong> Manufacturers often make you choose between the two. The
+          better deal depends on your loan amount, term, and how the rebate is taxed. Run both scenarios through the
+          calculator to compare total cost, not just the monthly payment.
+        </p>
+      </div>
+
+      {/* Dealer vs direct */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Dealership Financing vs. Direct Lending</h2>
+        <p style={pStyle}>
+          There are two main ways to finance a car. With <strong>direct lending</strong>, you get a loan from a bank,
+          credit union, or online lender before you buy, then use it to pay the dealer. With{" "}
+          <strong>dealership financing</strong>, the dealer arranges the loan, usually through the manufacturer's
+          finance company or an outside bank that buys the contract.
+        </p>
+        <p style={last}>
+          Direct lending gives you more leverage. If you arrive with financing already approved, the dealer has to match
+          or beat your rate, and you can walk away from a bad deal easily. Dealership financing is more convenient, and
+          it's sometimes the best option because manufacturers often run promotional rates like 0%, 1.9%, or 2.9% on
+          select new models. Those can beat what a bank or credit union will offer, so it's worth checking both.
+        </p>
+      </div>
+
+      {/* Who can get a loan */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Who Can Get a Car Loan?</h2>
+        <h3 style={firstH3}>Can an 18-year-old get a car loan?</h3>
+        <p style={pStyle}>
+          Yes, in most cases. In most states, 18 is the legal age to sign a loan contract, though a few set it at 19 or
+          21. The bigger hurdle is credit history. Most 18-year-olds have little or none, so lenders often ask for a
+          cosigner or a larger down payment. Some lenders also set their own minimum age or income, so check before you
+          apply.
+        </p>
+        <h3 style={h3Style}>Can you get a car loan if you already have one?</h3>
+        <p style={pStyle}>
+          Yes, as long as your income can support both payments. Lenders look at your debt-to-income ratio, your payment
+          history on the existing loan, and the value of both vehicles. Having two car loans, or several, isn't illegal
+          or unusual, but each new loan makes the next one harder to get and more expensive. If you owe more than the
+          first car is worth, expect even tighter limits.
+        </p>
+        <h3 style={h3Style}>Can you get a car loan if you have a personal loan?</h3>
+        <p style={pStyle}>
+          Yes. A personal loan counts as debt in your debt-to-income ratio, so it reduces how much you can borrow, but it
+          doesn't disqualify you. A history of on-time payments on the personal loan can actually help your application.
+        </p>
+        <h3 style={h3Style}>Can you get an auto loan during bankruptcy?</h3>
+        <p style={last}>
+          It's possible, but it takes extra steps. If you're in Chapter 13, you generally need permission from the
+          bankruptcy trustee or court before you take on new debt. In Chapter 7, you may need court approval while the
+          case is open, and it's often easier after the discharge. Some lenders specialize in borrowers with a recent
+          bankruptcy, but expect a high interest rate and a down payment requirement. Talk to your bankruptcy attorney
+          before you apply.
+        </p>
+      </div>
+
+      {/* Negative equity */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>What Is Negative Equity, and How Do You Get Out of It?</h2>
+        <p style={pStyle}>
+          Negative equity means you owe more on the loan than the car is worth. It's also called being upside down. It
+          happens most often when you put little or nothing down, choose a long term, or roll old debt into a new loan,
+          since cars lose value quickly. A new car can lose around 10% of its value as soon as you drive it off the lot.
+        </p>
+        <p style={pStyle}>
+          It's not a problem unless you need to sell the car or it's totaled. If you want to get out of it:
+        </p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>Pay extra toward principal.</strong> Even small extra payments help close the gap faster. Make sure
+            your lender applies the extra to principal and not to future payments.
+          </li>
+          <li style={liStyle}>
+            <strong>Keep the car and keep paying.</strong> Over time, your balance falls faster than the car's value, and
+            you'll eventually be right-side up.
+          </li>
+          <li style={liStyle}>
+            <strong>Refinance, if you qualify.</strong> A lower rate can reduce interest, though many lenders won't
+            refinance a loan that's far underwater.
+          </li>
+          <li style={liStyle}>
+            <strong>Sell the car and pay the difference.</strong> If you have savings or can get a small personal loan,
+            this ends the problem.
+          </li>
+          <li>
+            <strong>Be careful about rolling it into a new loan.</strong> Dealers often offer to add your old balance to
+            a new loan. It makes the new car's loan even bigger, and you start upside down again.
+          </li>
+        </ul>
+        <p style={last}>
+          <strong>What is gap insurance?</strong> Gap insurance covers the difference between what you owe and what your
+          car is worth if it's totaled or stolen. Without it, you'd still owe the leftover balance. It's worth considering
+          if you made a small down payment (under 20%), chose a term of 60 months or longer, or rolled negative equity
+          into the loan. You can often add it to your regular auto policy for a small yearly cost, which is usually
+          cheaper than buying it from the dealer, where it's often a flat fee of several hundred dollars added to the
+          loan. You can cancel it once you owe less than the car is worth.
+        </p>
+      </div>
+
+      {/* Managing */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Managing Your Auto Loan</h2>
+        <h3 style={firstH3}>Where can you find your auto loan account number?</h3>
+        <p style={pStyle}>
+          Check your monthly statement, your online account or the lender's mobile app, or your welcome letter and
+          original loan paperwork. If you can't find it, call the lender with your name, Social Security number, and
+          vehicle information. Your car's title or registration lists the lender as the lienholder, which can help you
+          figure out who to contact.
+        </p>
+        <h3 style={h3Style}>How can you make an auto loan payment?</h3>
+        <p style={pStyle}>
+          Most lenders accept payments online, through a mobile app, by phone, by mail, or in person at a branch. Autopay
+          is the easiest way to avoid late payments, and some lenders give a small rate discount for it. Pay directly
+          through the lender when possible, since third-party payment services may charge extra fees or take longer.
+        </p>
+        <h3 style={h3Style}>Can you change the due date of an auto loan?</h3>
+        <p style={pStyle}>
+          Often, yes. Many lenders let you move your due date so it lines up with your paycheck. Call or message your
+          lender to ask. There may be a limit on how often you can do it, and a few lenders charge a small fee or add a
+          few days of interest. Changing the due date doesn't change your loan term, rate, or balance.
+        </p>
+        <h3 style={h3Style}>What does delinquency mean?</h3>
+        <p style={last}>
+          An auto loan is delinquent when you miss a scheduled payment. Lenders usually add a late fee after a short
+          grace period, and they typically report the missed payment to the credit bureaus once it's 30 days late, which
+          can hurt your credit score. At 60 and 90 days, the damage grows, and the lender may start repossession
+          proceedings. How quickly that happens depends on your contract and your state. If you think you'll miss a
+          payment, call your lender before the due date. Many offer deferrals or modified payment plans.
+        </p>
+      </div>
+
+      {/* Refinance */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Can You Refinance or Switch an Auto Loan to Another Bank?</h2>
+        <p style={pStyle}>
+          Yes. Refinancing means taking out a new loan to pay off your current one. You can use it to move your loan to
+          a different bank or credit union, get a lower rate, or change your term. Moving your loan to another lender is
+          the same thing as refinancing.
+        </p>
+        <p style={pStyle}>It usually makes sense when:</p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>Your credit score has improved since you took the loan</li>
+          <li style={liStyle}>Market rates have dropped</li>
+          <li style={liStyle}>You took dealer financing at a high rate and can now beat it</li>
+          <li>You want a lower payment or a shorter term</li>
+        </ul>
+        <p style={pStyle}>
+          Lenders typically have rules about the vehicle and the loan, such as age and mileage limits (for example, under
+          10 years old and under 100,000 to 125,000 miles), a minimum loan balance, and a balance that isn't much higher
+          than the car's value. Keep making your regular payments until the new loan closes. Also keep in mind that
+          stretching out the term to lower the payment can increase your total interest, and some lenders charge title
+          or application fees.
+        </p>
+        <p style={last}>
+          <strong>Which companies are good for refinancing?</strong> Credit unions are often a good place to start
+          because their rates tend to be lower. PenFed Credit Union, Navy Federal Credit Union (for military members and
+          their families), and Capital One are well-known options, and many local credit unions refinance as well. Rates
+          and eligibility change often, so get quotes from at least three lenders and compare the APR, any fees, and the
+          new total cost with the calculator.
+        </p>
+      </div>
+
+      {/* Cash or finance */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Should You Pay Cash or Finance a Car?</h2>
+        <p style={pStyle}>
+          <strong>Is it worth taking a car loan if you can pay in full?</strong> It depends. Paying cash has real
+          advantages:
+        </p>
+        <ul style={ulStyle}>
+          <li style={liStyle}>
+            <strong>No interest.</strong> Financing $32,000 over five years at 6% means a payment of about $618.65 a
+            month and roughly $5,119 in interest. A cash buyer keeps that money.
+          </li>
+          <li style={liStyle}>
+            <strong>No monthly payment</strong> and no risk of late fees or repossession.
+          </li>
+          <li style={liStyle}>
+            <strong>Full ownership from day one</strong>, with no lender rules about insurance, selling, or
+            modifications.
+          </li>
+          <li style={liStyle}>
+            <strong>No chance of going upside down.</strong>
+          </li>
+          <li style={liStyle}>
+            <strong>A natural spending limit.</strong> Cash keeps you within your real budget, while financing makes it
+            easy to stretch into a pricier car.
+          </li>
+          <li>
+            <strong>Occasional cash discounts.</strong> Some rebates are only for buyers who aren't financing.
+          </li>
+        </ul>
+        <p style={pStyle}>
+          Financing can still make sense. If you can get a very low promotional rate, such as 0% to 2.9%, and your cash
+          could earn more somewhere else, you may come out ahead by financing. It also keeps your savings available for
+          emergencies, and making every payment on time helps build credit. If you do have the cash, a common compromise
+          is a large down payment and a short term.
+        </p>
+        <p style={pStyle}>
+          <strong>Are car loans worth it in general?</strong> For most people, a loan is the only practical way to buy a
+          car, and it's worth it when you need reliable transportation, keep the term short, and borrow only what you can
+          afford. It's not worth it if the loan pushes you into a longer term, a high rate, or a car that strains your
+          budget.
+        </p>
+        <p style={last}>
+          <strong>What is a fixed deposit auto loan?</strong> This is a type of secured loan that's common in countries
+          like India. You use a fixed deposit (a bank savings deposit) as collateral, and the bank lends you a percentage
+          of its value, often at a rate only a little above what the deposit earns. Your deposit keeps earning interest,
+          but you can't withdraw it until you repay. In the U.S., the closest equivalent is a share-secured or
+          CD-secured loan from a credit union or bank. These loans can offer low rates, and they're a useful way to build
+          credit, but the lender can use your deposit to cover missed payments.
+        </p>
+      </div>
+
+      {/* Lying about income */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Can You Lie About Income on an Auto Loan Application?</h2>
+        <p style={pStyle}>
+          Don't. Giving false information about your income on a loan application is fraud, even if you plan to pay on
+          time. Making false statements to a lender can lead to federal charges, and the penalties can include large
+          fines and prison time. State charges are possible too.
+        </p>
+        <p style={pStyle}>
+          If someone lied about their income but always paid on time and paid the loan off, they could still face
+          consequences. Paying the loan doesn't erase the false statement. In practice, lenders and prosecutors focus on
+          cases involving larger amounts, defaults, or patterns of fraud, and a small loan that was paid in full is less
+          likely to be pursued. But there is no guarantee, and it's a risk that has no upside. The lender can also call
+          the loan due immediately if it finds out. If this is something you did in the past, talk to a licensed
+          attorney about your situation.
+        </p>
+        <p style={last}>
+          If your income doesn't meet the lender's requirements, there are legal ways to improve your chances: add a
+          cosigner, increase your down payment, choose a cheaper car, include other verifiable income such as a
+          part-time job, or apply with a credit union that looks at your full financial picture.
+        </p>
+      </div>
+
+      {/* Strategies */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Smart Auto Loan Strategies</h2>
+        <ul style={{ ...ulStyle, marginBottom: 0 }}>
+          <li style={liStyle}>
+            <strong>Prepare before you shop.</strong> Know your budget and a fair rate. Research typical prices for the
+            car you want and get quotes from more than one lender. For free, plain-English guidance, the{" "}
+            <Ext href="https://www.consumerfinance.gov/consumer-tools/auto-loans/">
+              Consumer Financial Protection Bureau's auto loan resources
+            </Ext>{" "}
+            are a good place to start.
+          </li>
+          <li style={liStyle}>
+            <strong>Work on your credit.</strong> Your credit largely decides whether you're approved and at what rate.
+            Even a modest score increase can move you into a better rate tier.
+          </li>
+          <li style={liStyle}>
+            <strong>Check for a tax deduction.</strong> Under federal law passed in 2025, interest on loans for certain
+            new, U.S.-assembled personal vehicles may be deductible, up to $10,000 a year, for tax years 2025 through
+            2028, with income limits. Confirm the current rules with the IRS or a tax professional.
+          </li>
+          <li style={liStyle}>
+            <strong>Read the contract before you sign.</strong> Some lenders charge prepayment penalties or limit early
+            payoff. If you plan to pay the loan off early, look for that in the contract.
+          </li>
+          <li>
+            <strong>Consider alternatives.</strong> A car that's two or three years old has already absorbed the
+            steepest depreciation, and it can cost far less than a new one. Leasing has a lower upfront cost and lower
+            payments, but you build no equity and you have mileage limits.
+          </li>
+        </ul>
+      </div>
+
+      {/* Schedule */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Reading Your Amortization Schedule and When to Use This Calculator</h2>
+        <p style={pStyle}>
+          Once you calculate your payment, the amortization schedule shows how each payment is split between principal
+          and interest. For each payment, it lists the due date, the principal portion, the interest portion, and the
+          remaining balance. Early in the loan, more of each payment goes toward interest. As the balance drops, more
+          goes toward principal.
+        </p>
+        <p style={pStyle}>
+          The schedule helps you see how much you'd save with extra payments, find your payoff balance if you want to
+          sell or trade the car, and compare the true total cost (principal plus interest) across different loans.
+        </p>
+        <p style={pStyle}>The calculator is most useful when you're:</p>
+        <ul style={{ ...ulStyle, marginBottom: 0 }}>
+          <li style={liStyle}>Setting a price range before visiting a dealership</li>
+          <li style={liStyle}>
+            Comparing offers from a bank, credit union, and dealer, where even a one-point APR difference can change the
+            total cost by hundreds or thousands of dollars
+          </li>
+          <li style={liStyle}>Choosing between a shorter and longer term</li>
+          <li style={liStyle}>Seeing how a trade-in or rebate changes your loan and your tax bill</li>
+          <li style={liStyle}>Working backward from a monthly payment to a price</li>
+          <li>Checking whether refinancing would lower your payment</li>
+        </ul>
+      </div>
+
+      {/* Free, private */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Free, Private, and Accurate</h2>
+        <p style={last}>
+          This calculator is free, with no signup, account, or usage limits. Run as many scenarios as you want. It works
+          in your browser on desktop and mobile, and the numbers you enter aren't stored or sent to Tolz's servers. The
+          math uses the same amortization formula banks use, so the estimates should closely match a real quote, though
+          your final rate and terms depend on the lender's approval.
         </p>
       </div>
 

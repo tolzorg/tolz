@@ -5,37 +5,46 @@ import JsonLd from "../../JsonLd";
 const FAQ_ITEMS = [
   {
     q: "Is the Compress PDF tool free to use?",
-    a: "Yes. Compressing a PDF is completely free with no hidden charges, subscription, or trial limits. You can compress as many files as you need without paying.",
+    a: "Yes. Compressing a PDF is completely free with no hidden charges, subscription, or trial limits.",
   },
   {
     q: "Do I need to create an account or sign up?",
-    a: "No. There's no signup or registration required. You upload your file, compress it, and download the result without providing an email address or creating an account.",
+    a: "No. Upload your file, compress it, and download the result without providing an email address.",
   },
   {
     q: "Will compressing reduce the quality of my PDF?",
-    a: "For normal use, no noticeable loss. Text stays sharp and clear, and images are optimised to a resolution that still looks clean on screen and in standard printing. You can compress a PDF without losing the quality that matters for reading, sharing, or everyday printing.",
+    a: "Not noticeably for normal use. Text stays sharp, and images are optimised to a resolution that looks clean on screen and in standard printing.",
   },
   {
     q: "How much smaller will my file get?",
-    a: "It depends on what's inside. Image-heavy or scanned PDFs often shrink by 70% to 90%, while text-only documents shrink less because text is already compact. The tool shows you the new file size after compression.",
+    a: "It depends on the contents. Image-heavy or scanned PDFs often shrink by 70% to 90%, while text-only documents shrink less. The tool shows the new size after compression.",
   },
   {
     q: "Is it safe to compress confidential documents online?",
-    a: "Your files are processed securely and are not stored or shared, and no account is needed, so you don't leave personal data behind. For highly sensitive files, keeping a local master copy is always a good practice.",
+    a: "Your files are processed securely and are not stored or shared. For highly sensitive files, consider offline compression and keep a local master copy.",
   },
   {
     q: "Does the compressed PDF have a watermark?",
-    a: "No. The tool does not add any watermark. Your compressed file looks exactly like the original, just smaller.",
+    a: "No. Your compressed file looks like the original, just smaller.",
   },
   {
     q: "Can I compress a PDF on my phone?",
-    a: "Yes. The tool runs in your browser, so it works on Android and iOS phones and tablets as well as Windows and macOS computers, with nothing to install.",
+    a: "Yes. The tool runs in your browser on Android, iOS, Windows, and macOS with nothing to install.",
+  },
+  {
+    q: "Can I compress a PDF that is already compressed?",
+    a: "Often, yes, if it still contains large images. Gains are smaller each time, so start from the original when you can.",
   },
   {
     q: "Why won't my PDF attach to an email?",
-    a: "Most email providers limit attachments to around 25 MB. If your PDF is larger, compress it first to bring it under the limit, then attach and send it as normal.",
+    a: "Most providers limit attachments to around 25 MB. Compress the file first, then attach it.",
   },
 ];
+
+const BATCH_CODE = `mkdir compressed
+Get-ChildItem *.pdf | ForEach-Object {
+  gswin64c -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="compressed\\$($_.Name)" $_.FullName
+}`;
 
 function FaqRow({ item, open, onToggle }) {
   return (
@@ -76,7 +85,14 @@ const h2Style = {
 };
 const pStyle = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 10 };
 const cardStyle = { padding: "20px 20px" };
-const olStyle = { ...pStyle, marginBottom: 0, paddingLeft: 18 };
+const olStyle = { ...pStyle, paddingLeft: 18 };
+const liStyle = { marginBottom: 8 };
+const mono = { fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" };
+const preStyle = {
+  ...mono, fontSize: 12.5, lineHeight: 1.6, color: "var(--text-primary)", background: "var(--bg-muted)",
+  border: "1px solid var(--border)", borderRadius: 8, padding: "12px 14px", margin: "0 0 10px", overflowX: "auto",
+};
+const Ext = ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="inline-home-link">{children}</a>;
 
 export default function PdfCompressFaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -95,203 +111,294 @@ export default function PdfCompressFaqSection() {
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <JsonLd data={faqSchema} />
 
-      {/* Intro */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Compress PDF Online — Reduce PDF File Size for Free</h2>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Large PDF files are one of the most common everyday roadblocks: the document won't attach to an
-          email, a portal rejects it for exceeding the upload limit, or a folder full of scanned reports
-          quietly eats up your storage. The Compress PDF tool from <Link to="/" className="inline-home-link">Tolz</Link> solves this in seconds by reducing the
-          size of any PDF while keeping it readable, printable, and professional. You upload your document,
-          let the tool compress the PDF, and download a lighter version — no software installation, no
-          account, and no cost. Whether you're dealing with a bloated 40 MB proposal or a stack of
-          high-resolution scans, you can compress a PDF right here on the page and get a file that's easy to
-          send, share, and store.
+          This tool is by <Link to="/" className="inline-home-link">tolz.org</Link>
         </p>
       </div>
 
-      {/* What it does */}
+      {/* What compressing does */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>What the Compress PDF Tool Does</h2>
+        <h2 style={h2Style}>What Does Compressing a PDF Do?</h2>
         <p style={pStyle}>
-          At its core, this tool shrinks the file size of a PDF by optimising the elements that make documents
-          heavy. Most oversized PDFs are large because of embedded images, high-resolution scans, duplicated
-          fonts, and uncompressed data streams. The compressor analyses these components and rewrites them
-          more efficiently — downsampling images to a sensible resolution, applying smarter image compression,
-          and stripping redundant metadata — so the final compressed PDF carries the same content in a
-          fraction of the space.
+          Compression removes redundancy. Any file contains patterns and repetition that take up more space than the
+          actual information requires. A simple analogy is text shorthand: writing "gr8" instead of "great" conveys the
+          same idea in fewer characters. Real compression algorithms do the same thing far more cleverly, finding
+          repeated sequences and storing them once, then referencing them. Well-designed algorithms can shrink plain
+          English text by roughly a factor of three to four.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The result is a genuine reduction in file size, often cutting a document by 40% to 90% depending on
-          what's inside it. A text-heavy PDF may only shrink modestly because text is already compact, while
-          an image-heavy or scanned PDF can drop dramatically. Because the tool works on the structure of the
-          file rather than deleting pages or content, your document stays intact: the same pages, the same
-          layout, the same reading experience, just lighter. This makes it a reliable way to reduce PDF file
-          size without rebuilding the document from scratch.
+          The key distinction is whether the process can be reversed. <strong>Lossless compression</strong> is fully
+          reversible: the original data can be rebuilt exactly, with no errors. Shorthand like "gr8" is not lossless,
+          because you cannot be sure whether the original said "great" or "gr8". <strong>Lossy compression</strong>{" "}
+          deliberately discards detail that is hard to notice, which is how it achieves much bigger savings. At its
+          simplest, compressing a PDF means running an algorithm over the file's data and writing out a smaller version
+          of it. That is the whole principle; everything else is about choosing what to compress and how hard.
         </p>
       </div>
 
-      {/* When you need it */}
+      {/* How tools work */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>When You Need to Compress a PDF</h2>
+        <h2 style={h2Style}>How Do PDF Compression Tools Work, and What Makes PDF Special?</h2>
         <p style={pStyle}>
-          The clearest sign you need to compress a PDF is when something refuses to accept your file. Email is
-          the most frequent culprit — most providers cap attachments at around 25 MB, and a single scanned
-          contract or image-rich brochure can blow past that easily. Compressing the file first turns a
-          rejected attachment into one that sends instantly.
+          A PDF is not one block of data. It is a container holding text, fonts, vector graphics, images, metadata, and
+          an internal structure, and each part compresses differently. This is what makes PDF compression more
+          interesting than zipping a file. A compressor can treat each component on its own terms:
         </p>
+        <ul style={olStyle}>
+          <li style={liStyle}>
+            <strong>Images</strong> usually make up most of a PDF's weight. The tool downsamples them to a sensible
+            resolution and re-encodes them more efficiently, for example as JPEG, so a 600 dpi scan becomes a clean 150
+            dpi page that still reads well on screen.
+          </li>
+          <li style={liStyle}>
+            <strong>Fonts</strong> are often embedded in full, sometimes more than once. The tool keeps only the
+            characters the document actually uses (subsetting) and removes duplicates.
+          </li>
+          <li style={liStyle}>
+            <strong>Text and vector content</strong> stays as text and vectors, so it remains sharp and searchable.
+          </li>
+          <li>
+            <strong>Hidden data</strong> such as unused objects, old edit history, thumbnails, and redundant metadata
+            is stripped out, and the file's internal structure is rewritten more compactly.
+          </li>
+        </ul>
         <p style={pStyle}>
-          Online forms and portals are another common trigger. Job applications, university submissions, visa
-          and immigration systems, tax portals, and tender platforms almost always enforce strict upload
-          limits, sometimes as low as 2 MB or 5 MB. When your CV, transcript, or supporting document is just
-          over the threshold, a quick compression is the difference between submitting on time and scrambling
-          to fix it.
+          The PDF format itself, standardised as <Ext href="https://www.iso.org/standard/75839.html">ISO 32000</Ext>,
+          supports several compression filters, which is why a well-built tool can shrink a document dramatically
+          without changing a single page of its layout.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          There are quieter reasons too. If you archive invoices, statements, or reports, compressed PDFs take
-          up far less storage across your device and cloud accounts. Teams that share documents through chat
-          apps or project tools benefit from lighter files that load faster for everyone. Anyone publishing a
-          PDF on a website will find that a smaller file improves page load speed and the visitor experience.
-          And if you routinely scan paperwork, those scans are notoriously large — compressing them keeps your
-          digital filing system lean. In each of these situations, the ability to compress a large PDF file
-          quickly saves both time and frustration.
+          <strong>Can you do it manually?</strong> Yes, though results vary. Acrobat's File &gt; Save as Other &gt;
+          Reduced Size PDF applies one fixed preset, which is why people often find it shrinks less than a dedicated
+          compressor. Acrobat's more advanced PDF Optimizer lets you control image quality, fonts, and cleanup
+          separately, but it needs a paid licence and some trial and error. Command-line tools such as Ghostscript offer
+          similar control for free. A browser tool like Tolz applies sensible optimisation settings automatically, so
+          you get comparable savings without configuring anything.
+        </p>
+      </div>
+
+      {/* Is it bad */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>Is It Bad to Compress a PDF? Does It Always Reduce Quality?</h2>
+        <p style={pStyle}>
+          No, compressing a PDF is not harmful. The original file is untouched, and you receive a separate, smaller
+          copy. The only question is how much visual detail the copy gives up, and the answer depends on the kind of
+          compression used.
+        </p>
+        <p style={pStyle}>
+          Image quality does not have to drop noticeably. Lossless steps (removing duplicate fonts, dropping unused
+          objects, packing the structure efficiently) change nothing visible. Lossy steps affect only images, and
+          moderate downsampling of a photo or scan is rarely visible at normal viewing sizes. Text and line art are kept
+          as crisp vector data, so they stay sharp at any zoom level.
+        </p>
+        <p style={pStyle}>What can change after compression:</p>
+        <ul style={olStyle}>
+          <li style={liStyle}>
+            <strong>File size drops</strong>, and this is the goal. Image-heavy files often shrink by 70% to 90%;
+            text-only files shrink less.
+          </li>
+          <li style={liStyle}>
+            <strong>Image sharpness may reduce slightly</strong>, which matters only if you zoom in heavily or print at
+            poster size.
+          </li>
+          <li style={liStyle}>
+            <strong>Metadata</strong> such as author fields or edit history may be removed.
+          </li>
+          <li>
+            <strong>Page content, layout, links, and fillable fields</strong> stay the same.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          The one scenario to be careful with is professional print production. Keep your original as a master and use
+          the compressed copy for email, uploads, and everyday reading.
         </p>
       </div>
 
       {/* Without losing quality */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>How to Compress a PDF Without Losing Quality</h2>
-        <p style={pStyle}>
-          The concern people raise most often is whether a smaller file means a worse-looking document, and
-          it's a fair question. The answer lies in how compression is applied. There are two broad approaches:
-          lossless compression, which reduces size by storing the same data more efficiently with no visible
-          change at all, and lossy compression, which achieves bigger savings by intelligently reducing image
-          detail that the human eye barely registers.
-        </p>
-        <p style={pStyle}>
-          This tool is tuned to strike a practical balance. For everyday documents — contracts, reports,
-          presentations, forms — it keeps text razor-sharp because text is preserved as crisp vector data, not
-          flattened into a blurry image. For photos and scans, it downsamples resolution to a level that still
-          looks clean on screen and in normal printing while removing the excess pixels that inflate file size
-          without adding real clarity. In practice, that means you can compress a PDF without losing quality
-          that matters for reading, sharing, or standard printing.
-        </p>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          If your document is destined for professional, high-resolution printing, it's worth keeping your
-          original master copy and using the compressed version for digital sharing. For the overwhelming
-          majority of uses — sending, uploading, storing, and viewing — the compressed output is visually
-          indistinguishable from the source while being dramatically smaller.
-        </p>
-      </div>
-
-      {/* How to use */}
-      <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>How to Compress a PDF in Your Browser</h2>
-        <p style={pStyle}>
-          Using the tool takes three simple steps and no technical knowledge.
-        </p>
-        <ol style={olStyle}>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Add your file.</strong> Drag it onto the upload area or select it from your device. The
-            tool accepts standard PDF files and handles both single-page documents and long, multi-page files.
+        <h2 style={h2Style}>How Do I Compress a PDF Without Losing Quality?</h2>
+        <p style={pStyle}>The practical goal is not zero change, it is no visible change. To get there:</p>
+        <ul style={olStyle}>
+          <li style={liStyle}>
+            <strong>Start from the original file</strong>, not a copy that has already been compressed or re-saved
+            several times. Each lossy pass degrades images a little more.
           </li>
-          <li style={{ marginBottom: 8 }}>
-            <strong>Let the compressor process the document.</strong> It optimises images, streamlines the
-            internal structure, and rebuilds the PDF at a reduced size automatically — there's nothing to
-            configure and no confusing settings to decipher. Within moments, the tool reports the new, smaller
-            size of your compressed PDF so you can see exactly how much space you've saved.
+          <li style={liStyle}>
+            <strong>Use a tool that preserves text as text.</strong> Tolz keeps text and vector graphics intact and only
+            optimises embedded images.
+          </li>
+          <li style={liStyle}>
+            <strong>Check the result before sending.</strong> Open the compressed file, zoom to around 100%, and scan a
+            few pages with images or small print.
           </li>
           <li>
-            <strong>Download your compressed PDF.</strong> The lighter file is ready to attach to an email,
-            upload to a portal, or save wherever you keep your documents.
+            <strong>Keep the original.</strong> If the compressed version is too soft for a specific purpose, you can
+            always try again from the source.
           </li>
-        </ol>
-        <p style={{ ...pStyle, marginTop: 10, marginBottom: 0 }}>
-          Because everything runs online, you can compress a PDF from a laptop, desktop, tablet, or phone
-          using any modern browser — there's nothing to download or install, and the process works the same
-          across Windows, macOS, Android, and iOS.
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          If you control the source document, you can also prevent bloat before it starts: export from Word,
+          PowerPoint, or Google Docs using a "minimum size" or "standard" option, and avoid pasting oversized images.
         </p>
       </div>
 
-      {/* Features */}
+      {/* Best software */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Features That Make This Compressor Different</h2>
+        <h2 style={h2Style}>What Is the Best Software to Compress PDF Files?</h2>
         <p style={pStyle}>
-          Several things make this a genuinely convenient tool rather than just another file utility. It's
-          completely free, with no hidden charges, trial limits, or paywalls waiting to interrupt you halfway
-          through. There's no signup and no registration — you don't hand over an email address or create an
-          account just to shrink a document, which keeps the whole task quick and frictionless.
+          The best option depends on what you need. For quick, one-off jobs on any device, an online compressor with no
+          signup is the fastest route, and that is exactly what Tolz Compress PDF is built for: free, no watermark, no
+          installation, and no settings to learn. It is a strong fit for email attachments, form uploads, and everyday
+          sharing.
         </p>
+        <p style={pStyle}>Other routes make sense in other situations:</p>
+        <ul style={olStyle}>
+          <li style={liStyle}>
+            <strong>Adobe Acrobat</strong> (official guide) is best when you already pay for it and want fine control
+            over images, fonts, and cleanup.
+          </li>
+          <li style={liStyle}>
+            <strong>Preview on macOS</strong> has a built-in "Reduce File Size" Quartz filter, which is convenient but
+            often over-compresses images and gives mixed results.
+          </li>
+          <li>
+            <strong>Ghostscript</strong> is a free, open-source command-line tool suited to scripting and large batches.
+          </li>
+        </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The output is clean, too: your compressed PDF comes back without any watermark stamped across the
-          pages, so the file looks exactly as professional as the original. The tool is browser-based, which
-          means it works on any device and any operating system without installing heavy desktop software or
-          worrying about compatibility. It handles large PDFs and multi-page documents comfortably, and it
-          delivers consistent, reliable results whether you're compressing a one-page form or a hundred-page
-          report. Sitting alongside the other free utilities on Tolz, it fits naturally into a workflow where
-          you might also convert, merge, or edit documents as part of the same task.
+          For most people compressing a document now and then, the simplest tool that gives a clean result is the best
+          one.
         </p>
       </div>
 
-      {/* Safety */}
+      {/* Offline */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Is It Safe to Compress PDFs Online?</h2>
+        <h2 style={h2Style}>How Do I Compress PDF Files Offline?</h2>
         <p style={pStyle}>
-          Trust matters when your documents can contain contracts, personal details, or confidential business
-          information, so it's reasonable to want to know what happens to your file. This tool is built around
-          straightforward, privacy-conscious handling: your PDF is processed securely, your files are not
-          stored or shared, and the compressed result is yours alone to download. Because there's no account
-          and no registration, you aren't leaving behind personal data simply to use the service.
+          If you cannot or prefer not to upload a file, you can compress PDFs locally on your own computer:
         </p>
+        <ul style={olStyle}>
+          <li style={liStyle}>
+            <strong>Adobe Acrobat (Windows and Mac):</strong> open the file, choose File &gt; Save as Other &gt; Reduced
+            Size PDF, or use Optimize PDF for more control.
+          </li>
+          <li style={liStyle}>
+            <strong>Preview (Mac):</strong> open the PDF, choose File &gt; Export, and set the Quartz Filter to Reduce
+            File Size. Check the output carefully, as image quality can drop noticeably.
+          </li>
+          <li style={liStyle}>
+            <strong>Ghostscript (Windows, Mac, Linux):</strong> a free command-line option that works fully offline.
+            See the batch example below.
+          </li>
+          <li>
+            <strong>Microsoft Word or PowerPoint:</strong> if you still have the source file, use File &gt; Save As
+            &gt; PDF and choose Minimum size instead of Standard.
+          </li>
+        </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The tool is free to use with no hidden costs, so there's no upsell that pressures you into handing
-          over payment or personal information mid-task. For sensitive documents, this combination — secure
-          processing, no permanent storage of your files, no required signup, and no watermark — makes it a
-          practical everyday choice for compressing PDFs without giving up control of your data. As with any
-          online document you consider especially confidential, keeping a local master copy is always
-          sensible, but for the vast majority of files the process is quick, private, and safe.
+          Offline tools take more setup than a browser tool, but they keep files on your device from start to finish.
         </p>
       </div>
 
-      {/* Different file types */}
+      {/* Batch on Windows */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Compressing Different Types of PDFs</h2>
+        <h2 style={h2Style}>How Do You Batch Resize and Compress PDF Files in Windows?</h2>
         <p style={pStyle}>
-          Not every PDF responds to compression the same way, and knowing what you're working with helps set
-          realistic expectations. Scanned documents — signed contracts, ID copies, or paper receipts run
-          through a scanner — are usually the largest files of all, because every page is stored as a full
-          image rather than as text. These see the most dramatic reduction, since the tool can downsample
-          those page images substantially while keeping them perfectly legible.
+          For a whole folder, a short{" "}
+          <Ext href="https://ghostscript.com/releases/gsdnld.html">Ghostscript</Ext> script is the most reliable free
+          method. After installing Ghostscript, open PowerShell in the folder containing your PDFs and run:
         </p>
-        <p style={pStyle}>
-          Presentations and brochures exported to PDF tend to be heavy with photographs, logos, and full-bleed
-          background graphics. When you compress a PDF like this, the tool trims the embedded imagery
-          efficiently, which is why a design-rich file can shrink so much without any visible drop in quality
-          on screen.
-        </p>
+        <pre style={preStyle}><code>{BATCH_CODE}</code></pre>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Text-based documents such as ebooks, essays, and plain reports are already lightweight, so the
-          savings are smaller, but compressing them still helps by cleaning up duplicated fonts and
-          streamlining the internal data. Forms and interactive PDFs compress well too, and the tool preserves
-          their fillable fields so the document stays functional after it's optimised. Whatever the mix inside
-          your file, the compressor adapts to the content it finds, which is why it works reliably as an
-          all-purpose way to reduce PDF file size.
+          The <code style={mono}>/ebook</code> setting targets roughly 150 dpi images, a good balance for screen
+          reading. Use <code style={mono}>/screen</code> for the smallest files (about 72 dpi) or{" "}
+          <code style={mono}>/printer</code> for higher quality. Each file is saved in the new{" "}
+          <code style={mono}>compressed</code> folder, so your originals stay safe. If you have Acrobat Pro, its Action
+          Wizard can run an Optimize action across a folder with no scripting. For occasional single files, the Tolz
+          tool remains quicker.
         </p>
       </div>
 
-      {/* Tips */}
+      {/* Already compressed */}
       <div className="card" style={cardStyle}>
-        <h2 style={h2Style}>Getting the Most From the Tool</h2>
-        <p style={{ ...pStyle, marginBottom: 0 }}>
-          A few small habits help you get the best results. If your PDF is mostly scanned images, expect the
-          largest savings, since that's where excess data usually hides. If a file barely shrinks, it's often
-          already well-optimised or made mostly of text, which is a good sign rather than a problem. When you
-          need to hit a strict upload limit, compress the PDF first and check the reported size before
-          submitting, so you're never caught out by a rejected form. And when a document is heading for both
-          print and digital use, keep the original for printing and use the compressed copy for emailing and
-          uploading. With those simple habits, the Compress PDF tool becomes a fast, dependable part of
-          handling documents day to day.
+        <h2 style={h2Style}>Can I Compress an Already Compressed PDF Further, From 20 MB to 12 MB?</h2>
+        <p style={pStyle}>
+          Often yes, but with diminishing returns. A file that has already been compressed has had the easy savings
+          taken, so what is left depends on what the PDF contains.
         </p>
+        <ul style={olStyle}>
+          <li style={liStyle}>
+            <strong>If it is still image-heavy</strong>, a second pass at a lower image resolution can still cut a
+            large amount. Going from 20 MB to 12 MB (a 40% cut) is usually realistic for scans and photo-rich files.
+          </li>
+          <li style={liStyle}>
+            <strong>If it is mostly text</strong>, there is little left to remove, and a second pass may change almost
+            nothing.
+          </li>
+          <li>
+            <strong>Quality is the trade-off.</strong> Repeated lossy compression compounds image degradation, so always
+            try again from the original if you still have it.
+          </li>
+        </ul>
+        <p style={{ ...pStyle, marginBottom: 0 }}>
+          If the file will not reach your target, try these in order: compress again with Tolz and compare sizes; split
+          the document into parts; remove unneeded pages, attachments, or embedded media; or re-scan at a lower
+          resolution (150 to 200 dpi is enough for most documents). Always check the final size before submitting to a
+          portal with a strict limit.
+        </p>
+      </div>
+
+      {/* Confidential */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>How Do You Compress a PDF That Contains Confidential Data?</h2>
+        <p style={pStyle}>Treat sensitive files with the same care you would any private document:</p>
+        <ul style={{ ...olStyle, marginBottom: 0 }}>
+          <li style={liStyle}>
+            <strong>Use a tool that states clearly how files are handled.</strong> Tolz processes your PDF securely,
+            does not share it, and does not require an account.
+          </li>
+          <li style={liStyle}>
+            <strong>Prefer offline compression for highly sensitive files</strong>, such as legal, medical, or financial
+            records, if your policy forbids uploading them anywhere. Acrobat or Ghostscript on your own machine keeps
+            data local.
+          </li>
+          <li style={liStyle}>
+            <strong>Remove what should not be there.</strong> Compression is not redaction. Hidden text, comments, and
+            metadata can persist, so use a proper redaction tool if parts must be hidden.
+          </li>
+          <li style={liStyle}>
+            <strong>Protect the result.</strong> Add a password or send via a secure sharing link rather than a plain
+            attachment. Guidance from the{" "}
+            <Ext href="https://csrc.nist.gov/">NIST Computer Security Resource Center</Ext> is a useful reference for
+            handling sensitive information.
+          </li>
+          <li>
+            <strong>Delete temporary copies</strong> from shared computers and download folders.
+          </li>
+        </ul>
+      </div>
+
+      {/* PDF types */}
+      <div className="card" style={cardStyle}>
+        <h2 style={h2Style}>How Different Types of PDFs Compress</h2>
+        <ul style={{ ...olStyle, marginBottom: 0 }}>
+          <li style={liStyle}>
+            <strong>Scanned documents</strong> (contracts, ID copies, receipts) are stored as full-page images and see
+            the biggest reductions.
+          </li>
+          <li style={liStyle}>
+            <strong>Presentations and brochures</strong> carry photos, logos, and backgrounds, and shrink substantially
+            with little visible change.
+          </li>
+          <li style={liStyle}>
+            <strong>Text-based files</strong> (ebooks, essays, reports) are already compact, so savings are modest. If a
+            file barely shrinks, it was likely well optimised already.
+          </li>
+          <li>
+            <strong>Forms and interactive PDFs</strong> keep their fillable fields after compression.
+          </li>
+        </ul>
       </div>
 
       {/* FAQ */}

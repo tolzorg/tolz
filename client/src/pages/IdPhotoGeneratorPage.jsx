@@ -9,7 +9,7 @@ export default function IdPhotoGeneratorPage() {
     <ToolPageWrapper
       tool={tool}
       seoTitle="Passport Photo Maker Online | Free ID Photo Generator"
-      seoDescription="Create compliant passport, visa & ID photos in seconds. Crop to size, add print sheets with bleed guides, and export PDF or JPEG, free, no signup."
+      seoDescription="Make compliant passport, visa & ID photos at home. Crop to size, build 4x6 print sheets with bleed guides, export PDF or JPEG. Free, no signup."
       footer={<IdPhotoGeneratorFaqSection />}
     >
       <IdPhotoGeneratorTool />

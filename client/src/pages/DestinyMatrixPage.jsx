@@ -9,7 +9,7 @@ export default function DestinyMatrixPage() {
     <ToolPageWrapper
       tool={tool}
       seoTitle="Free Destiny Matrix Calculator | Chart by Birth Date"
-      seoDescription="Generate your free Destiny Matrix chart by date of birth. No signup, no cost. Discover your karmic tail, love line, money line, and life purpose."
+      seoDescription="Free Destiny Matrix calculator. Enter your birth date to get your chart, karmic tail, love line, money line, and life purpose. No signup needed."
       footer={<DestinyMatrixFaqSection />}
     >
       <DestinyMatrixTool />

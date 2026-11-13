@@ -8,8 +8,8 @@ export default function LoanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Free Loan Calculator Online | Amortization Schedule"
-      seoDescription="Calculate loan payments, amortization schedules, deferred loans, and bond present value free online. No signup, instant results, full payment breakdown."
+      seoTitle="Loan Calculator: Amortization, Deferred & Bond Value"
+      seoDescription="Free loan calculator for amortized payments, deferred loans, and zero-coupon bond present value. See a full payment schedule. No signup needed."
       footer={<LoanCalculatorFaqSection />}
       wide
     >

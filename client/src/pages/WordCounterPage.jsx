@@ -8,8 +8,8 @@ export default function WordCounterPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Free Word Counter Online | Count Words & Characters"
-      seoDescription="Count words, characters, sentences & paragraphs instantly with Tolz's free Word Counter. No signup, no limits, 100% accurate results."
+      seoTitle="Free Word Counter: Count Words & Characters Online"
+      seoDescription="Count words, characters, sentences, and paragraphs instantly with the free Tolz Word Counter. No signup, no limits, and your text stays private."
       footer={<WordCounterFaqSection />}
     >
       <WordCounterTool />
