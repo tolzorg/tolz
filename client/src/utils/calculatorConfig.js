@@ -1190,6 +1190,39 @@ export const CALCULATOR_CATEGORIES = [
     ],
   },
   {
+    id: "internet-network",
+    name: "Internet and Network Calculators",
+    slug: "internet-network",
+    path: "/calculators/internet-network",
+    tagline: "IP subnets, masks & host ranges",
+    description:
+      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet. No signup required.",
+    icon: "🌐",
+    iconBg: "#e0f2fe",
+    iconColor: "#0284c7",
+    calculators: [
+      {
+        id: "ip-subnet-calculator",
+        label: "IP Subnet Calculator",
+        slug: "ip-subnet-calculator",
+        tagline: "IPv4 & IPv6 network, mask & host range",
+        description:
+          "Enter an IPv4 address and subnet mask, or an IPv6 address and prefix length, to get the network and broadcast address, usable host range, wildcard mask, IP class and all possible subnets.",
+        icon: "🌐",
+        iconBg: "#e0f2fe",
+        iconColor: "#0284c7",
+        path: "/calculators/internet-network/ip-subnet-calculator",
+        legacyPath: "/tools/ip-subnet-calculator",
+        keywords: [
+          "ip subnet calculator", "subnet calculator", "subnet mask calculator", "ipv4 subnet calculator", "ipv6 subnet calculator", "network address calculator", "broadcast address calculator", "usable host range",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+    ],
+  },
+  {
     id: "construction",
     name: "Construction Calculators",
     slug: "construction",

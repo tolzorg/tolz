@@ -13,6 +13,7 @@ const APP_CATEGORY_BY_SUBCATEGORY = {
   "education-calc": "EducationalApplication",
   "logistics-calc": "BusinessApplication",
   "tech-calc": "DeveloperApplication",
+  "network-calc": "UtilitiesApplication",
   "construction-calc": "HomeApplication",
   "construction-materials": "HomeApplication",
   everyday: "LifestyleApplication",

@@ -146,6 +146,7 @@ const HashIdentifierCalculatorPage = lazy(() => import("./pages/HashIdentifierCa
 const VoltageDropCalculatorPage = lazy(() => import("./pages/VoltageDropCalculatorPage"));
 const ResistorCalculatorPage = lazy(() => import("./pages/ResistorCalculatorPage"));
 const ElectricityCalculatorPage = lazy(() => import("./pages/ElectricityCalculatorPage"));
+const IpSubnetCalculatorPage = lazy(() => import("./pages/IpSubnetCalculatorPage"));
 const BmrCalculatorPage = lazy(() => import("./pages/BmrCalculatorPage"));
 const IdealWeightCalculatorPage = lazy(() => import("./pages/IdealWeightCalculatorPage"));
 const PaceCalculatorPage = lazy(() => import("./pages/PaceCalculatorPage"));
@@ -417,6 +418,7 @@ export default function App() {
                 <Route path="/tools/voltage-drop-calculator" element={<VoltageDropCalculatorPage />} />
                 <Route path="/tools/resistor-calculator" element={<ResistorCalculatorPage />} />
                 <Route path="/tools/electricity-calculator" element={<ElectricityCalculatorPage />} />
+                <Route path="/tools/ip-subnet-calculator" element={<IpSubnetCalculatorPage />} />
                 <Route path="/tools/one-rep-max-calculator" element={<OneRepMaxCalculatorPage />} />
                 <Route path="/tools/target-heart-rate-calculator" element={<TargetHeartRateCalculatorPage />} />
                 <Route path="/tools/bmr-calculator" element={<BmrCalculatorPage />} />
@@ -503,6 +505,7 @@ export default function App() {
                 <Route path="/calculators/tech-electronics/voltage-drop-calculator" element={<VoltageDropCalculatorPage />} />
                 <Route path="/calculators/tech-electronics/resistor-calculator" element={<ResistorCalculatorPage />} />
                 <Route path="/calculators/tech-electronics/electricity-calculator" element={<ElectricityCalculatorPage />} />
+                <Route path="/calculators/internet-network/ip-subnet-calculator" element={<IpSubnetCalculatorPage />} />
                 <Route path="/calculators/health/one-rep-max-calculator" element={<Navigate to="/calculators/sports/one-rep-max-calculator" replace />} />
                 <Route path="/calculators/health/bmr-calculator" element={<BmrCalculatorPage />} />
                 <Route path="/calculators/health/ideal-weight-calculator" element={<IdealWeightCalculatorPage />} />

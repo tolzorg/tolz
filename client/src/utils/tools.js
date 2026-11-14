@@ -11,6 +11,7 @@ export const CATEGORIES = [
     { id: "education-calc",    label: "Education Calculators",       path: "/calculators/education" },
     { id: "logistics-calc",    label: "Logistics Calculators",       path: "/calculators/logistics" },
     { id: "tech-calc",         label: "Tech and Electronics Calculators", path: "/calculators/tech-electronics" },
+    { id: "network-calc",      label: "Internet and Network Calculators", path: "/calculators/internet-network" },
     { id: "everyday",          label: "Everyday Life Calculators",   path: "/calculators/everyday-life" },
     { id: "construction-calc", label: "Construction Calculators",    path: "/calculators/construction" },
     { id: "garden-calc",       label: "Garden Calculators",          path: "/calculators/garden" },
@@ -1129,6 +1130,24 @@ export const TOOLS = [
     available: true,
     keywords: [
       "electricity calculator", "electricity cost calculator", "appliance energy calculator", "kwh calculator", "electricity usage calculator", "power consumption calculator", "cost per kwh", "appliance wattage",
+    ],
+  },
+  {
+    id: "ip-subnet-calculator",
+    label: "IP Subnet Calculator",
+    tagline: "IPv4 & IPv6 network, mask & host range",
+    description: "Enter an IPv4 address and subnet mask, or an IPv6 address and prefix length, to get the network and broadcast address, usable host range, wildcard mask, IP class and all possible subnets.",
+    icon: "🌐",
+    iconBg: "#e0f2fe",
+    iconColor: "#0284c7",
+    category: "utility",
+    subCategory: "network-calc",
+    badge: "New",
+    badgeType: "new",
+    path: "/tools/ip-subnet-calculator",
+    available: true,
+    keywords: [
+      "ip subnet calculator", "subnet calculator", "subnet mask calculator", "ipv4 subnet calculator", "ipv6 subnet calculator", "network address calculator", "broadcast address calculator", "usable host range",
     ],
   },
   {

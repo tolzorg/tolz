@@ -12,6 +12,7 @@ const GROUP_META = {
   "education-calc":         { label: "education calculators",           emoji: "🎓",  path: "/calculators/education" },
   "logistics-calc":         { label: "logistics calculators",           emoji: "🚚",  path: "/calculators/logistics" },
   "tech-calc":              { label: "tech and electronics calculators", emoji: "💻",  path: "/calculators/tech-electronics" },
+  "network-calc":           { label: "internet and network calculators", emoji: "🌐",  path: "/calculators/internet-network" },
   everyday:                 { label: "everyday life calculators",       emoji: "🌅",  path: "/calculators/everyday-life" },
   "construction-calc":      { label: "construction converters",         emoji: "📐",  path: "/calculators/construction" },
   "construction-materials": { label: "construction materials calculators", emoji: "🧱", path: "/calculators/construction" },

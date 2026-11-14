@@ -20,10 +20,10 @@ export const DEFAULT_CIDR = ["192", "168", "0", "0", "8"];
 const OCTET_RANGE = "Each octet should be in the 0 to 255 range.";
 const OCTET_INT = "Octet value must be an integer.";
 
-const toInt = (ip) => ((ip[0] << 24) >>> 0) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
-const toIp = (n) => [n >>> 24, (n >>> 16) & 255, (n >>> 8) & 255, n & 255];
+export const toInt = (ip) => ((ip[0] << 24) >>> 0) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
+export const toIp = (n) => [n >>> 24, (n >>> 16) & 255, (n >>> 8) & 255, n & 255];
 export const ipString = (ip) => ip.join(".");
-const maskInt = (width) => (width === 0 ? 0 : (0xffffffff << (32 - width)) >>> 0);
+export const maskInt = (width) => (width === 0 ? 0 : (0xffffffff << (32 - width)) >>> 0);
 export const formatThousands = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 function parseOctets(texts, errors) {

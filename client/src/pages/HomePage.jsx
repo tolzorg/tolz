@@ -16,6 +16,7 @@ const SUBCATEGORY_TO_CALC_CATEGORY = {
   "education-calc": "education",
   "logistics-calc": "logistics",
   "tech-calc": "tech-electronics",
+  "network-calc": "internet-network",
   "everyday": "everyday-life",
   "construction-calc": "construction",
   "construction-materials": "construction",
