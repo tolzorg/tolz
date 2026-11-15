@@ -1,117 +1,26 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FieldLabel, inputStyle } from "../mortgage-calculator/MortgageFormControls";
 import { SelectField } from "../loan-calculator/LoanFormControls";
 import { ErrorPanel } from "../fha-loan-calculator/MortgageResultParts";
-import { useRequiredFields, useRequiredState, requiredInputProps } from "../calculator-ui/requiredFields";
+import { useRequiredFields } from "../calculator-ui/requiredFields";
 import { Req } from "../calculator-ui/Required";
 import { StatRow, StatList } from "../calculator-ui/ResultHighlight";
+import {
+  Section, ActionButtons, InputTextarea, TextOutput, DownloadIcon,
+} from "../calculator-ui/EncodeDecodeParts";
+import { muted, fieldWrap, linkBtn, resultTitle } from "../calculator-ui/encodeDecodeStyles";
 import ConversionDropZone from "../image-converter/ConversionDropZone";
-import { copyText, downloadBlob } from "../../../utils/cpsExport";
+import { downloadBlob } from "../../../utils/cpsExport";
 import {
   CHARSETS, DEFAULT_CHARSET, FILE_OPERATIONS, OUTPUT_TYPES, MESSAGES, MAX_FILE_MB, MAX_FILE_BYTES,
   encodeText, decodeText, encodeFile, decodeFile, downloadName, formatBytes,
 } from "../../../utils/base64EncodeDecodeEngine";
 
-const para = { fontSize: 13.5, color: "var(--text-secondary)", lineHeight: 1.6, margin: 0 };
-const muted = { fontSize: 13, color: "var(--text-muted)", margin: 0 };
-const resultBanner = { background: "var(--accent)", color: "#fff", padding: "11px 16px", fontSize: 16, fontWeight: 700, fontFamily: "var(--font-display)" };
-const sectionTitle = { fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, color: "var(--text-primary)", letterSpacing: "-0.02em", margin: 0 };
-const fieldWrap = { display: "flex", flexDirection: "column", gap: 5, marginBottom: 12, minWidth: 0 };
-const mono = { fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" };
-const textareaStyle = {
-  ...inputStyle, ...mono, fontSize: 13, lineHeight: 1.5, minHeight: 110, resize: "vertical", background: "var(--bg-white)", wordBreak: "break-all",
-};
-const outputStyle = {
-  ...textareaStyle, minHeight: 140, background: "var(--accent-light)", border: "1px solid var(--accent)", color: "var(--text-primary)",
-};
-const actionBtn = {
-  flex: 1, padding: "9px 0", fontSize: 12.5, background: "var(--success)", color: "#fff", border: "none",
-  borderRadius: "var(--radius-sm)", fontWeight: 700, fontFamily: "var(--font-display)", cursor: "pointer",
-};
-const linkBtn = {
-  display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 10px", fontSize: 12.5, fontWeight: 600,
-  fontFamily: "var(--font-display)", color: "var(--accent)", background: "var(--bg-white)", border: "1px solid var(--accent)",
-  borderRadius: "var(--radius-sm)", cursor: "pointer",
-};
 const fileChip = {
   display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, marginTop: 10, padding: "8px 10px",
   borderRadius: "var(--radius-sm)", background: "var(--bg-muted)", border: "1px solid var(--border)", fontSize: 13, color: "var(--text-primary)",
 };
-
-const CopyIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M11 3.5V3a1.5 1.5 0 00-1.5-1.5h-6A1.5 1.5 0 002 3v6a1.5 1.5 0 001.5 1.5H4" stroke="currentColor" strokeWidth="1.5" />
-  </svg>
-);
-const DownloadIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M2.5 13.5h11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-function Section({ title, id, intro, form, result }) {
-  return (
-    <section aria-labelledby={id} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-      <h2 id={id} style={sectionTitle}>{title}</h2>
-      {intro && <p style={para}>{intro}</p>}
-      <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <div className="card" style={{ flex: "1 1 340px", minWidth: 260, maxWidth: 480, padding: 18 }}>{form}</div>
-        <div className="card" style={{ flex: "1 1 400px", minWidth: 0, padding: 0, overflow: "hidden" }}>
-          <div style={resultBanner}>Result</div>
-          <div style={{ padding: "14px 16px" }} aria-live="polite">{result}</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ActionButtons({ actions, onClear }) {
-  return (
-    <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
-      {actions.map(({ label, onClick }) => (
-        <button key={label} type="button" onClick={onClick} style={actionBtn}>{label}</button>
-      ))}
-      <button type="button" onClick={onClear} className="btn-secondary" style={{ padding: "9px 16px", fontSize: 12 }}>Clear</button>
-    </div>
-  );
-}
-
-function InputTextarea({ value, onChange }) {
-  const invalid = useRequiredState(value);
-  return (
-    <textarea
-      id="b64-input" value={value} rows={5} spellCheck={false} autoComplete="off" autoCapitalize="off"
-      {...requiredInputProps(invalid, "")}
-      onChange={(e) => onChange(e.target.value)}
-      style={textareaStyle}
-    />
-  );
-}
-
-/** "Encoded result:  [copy] [download]" + the read-only output box. */
-function TextOutput({ result, filename }) {
-  const [copied, setCopied] = useState(false);
-  const timer = useRef(null);
-  const title = result.mode === "encode" ? "Encoded result" : "Decoded result";
-  const copy = async () => {
-    const ok = await copyText(result.output);
-    setCopied(ok ? "Copied!" : "Copy failed");
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setCopied(false), 1600);
-  };
-  const download = () => downloadBlob(result.output, downloadName(filename, true), "text/plain");
-  return (
-    <>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
-        <strong style={{ fontSize: 14, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>{title}:</strong>
-        <button type="button" style={linkBtn} onClick={copy} aria-label={`Copy ${title.toLowerCase()}`}><CopyIcon />{copied || "Copy"}</button>
-        <button type="button" style={linkBtn} onClick={download} aria-label={`Download ${title.toLowerCase()} as a text file`}><DownloadIcon />Download</button>
-      </div>
-      <textarea readOnly value={result.output} rows={6} aria-label={title} spellCheck={false} style={outputStyle} />
-    </>
-  );
-}
+const titleOf = (r) => (r.mode === "encode" ? "Encoded result" : "Decoded result");
 
 function Sizes({ result }) {
   return (
@@ -149,7 +58,7 @@ function TextTool() {
       <div style={fieldWrap}>
         <label htmlFor="b64-input"><FieldLabel>Text to encode or decode</FieldLabel></label>
         <Req name="text" flagged={req.flagged}>
-          <InputTextarea value={text} onChange={setText} />
+          <InputTextarea id="b64-input" value={text} onChange={setText} />
         </Req>
       </div>
       <label style={fieldWrap}>
@@ -169,7 +78,7 @@ function TextTool() {
   let body;
   if (!result) body = <p style={muted}>{MESSAGES.prompt}</p>;
   else if (result.error) body = <ErrorPanel messages={[result.error]} />;
-  else body = <><TextOutput result={result} filename="" /><Sizes result={result} /></>;
+  else body = <><TextOutput title={titleOf(result)} text={result.output} downloadAs={() => downloadName("", true)} /><Sizes result={result} /></>;
 
   return (
     <Section
@@ -282,14 +191,14 @@ function FileTool() {
     body = (
       <>
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-          <strong style={{ fontSize: 14, color: "var(--text-primary)", fontFamily: "var(--font-display)" }}>Decoded result:</strong>
+          <strong style={resultTitle}>Decoded result:</strong>
           <button type="button" style={linkBtn} onClick={() => saveBinary(result.binary, result.filename)}><DownloadIcon />Download</button>
         </div>
         <p style={{ ...muted, marginTop: 8 }}>The decoded file has been downloaded. Click Download to save it again.</p>
         <Sizes result={result} />
       </>
     );
-  } else body = <><TextOutput result={result} filename={result.filename} /><Sizes result={result} /></>;
+  } else body = <><TextOutput title={titleOf(result)} text={result.output} downloadAs={() => downloadName(result.filename, true)} /><Sizes result={result} /></>;
 
   return (
     <Section

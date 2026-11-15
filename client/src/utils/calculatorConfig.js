@@ -1194,9 +1194,9 @@ export const CALCULATOR_CATEGORIES = [
     name: "Internet and Network Calculators",
     slug: "internet-network",
     path: "/calculators/internet-network",
-    tagline: "IP subnets, host ranges & Base64",
+    tagline: "IP subnets, Base64 & URL encoding",
     description:
-      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet, plus a Base64 encoder and decoder for text, images and files. No signup required.",
+      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet, plus a Base64 encoder and decoder for text, images and files and a URL (percent) encoder and decoder. No signup required.",
     icon: "🌐",
     iconBg: "#e0f2fe",
     iconColor: "#0284c7",
@@ -1234,6 +1234,25 @@ export const CALCULATOR_CATEGORIES = [
         legacyPath: "/tools/base64-encode-decode",
         keywords: [
           "base64 encoder", "base64 decoder", "base64 encode", "base64 decode", "base64 converter", "image to base64", "file to base64", "base64 to image", "base64 to text",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
+        id: "url-encode-decode",
+        label: "URL Encode / Decode",
+        slug: "url-encode-decode",
+        tagline: "Percent-encode or decode text for URLs",
+        description:
+          "Percent-encode text so it can be used safely in a URL, or decode %XX sequences back to readable text, with full UTF-8 support. Runs in your browser; nothing is uploaded.",
+        icon: "🔗",
+        iconBg: "#e0f2fe",
+        iconColor: "#0284c7",
+        path: "/calculators/internet-network/url-encode-decode",
+        legacyPath: "/tools/url-encode-decode",
+        keywords: [
+          "url encode", "url decode", "url encoder", "url decoder", "percent encoding", "percent encode", "encodeuricomponent", "urlencode online", "decode url",
         ],
         available: true,
         badge: "New",
