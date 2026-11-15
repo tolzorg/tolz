@@ -5,7 +5,7 @@
 // "@" at the start of a field could otherwise be read as a spreadsheet
 // formula by Excel/Sheets).
 
-function downloadBlob(content, filename, mime) {
+export function downloadBlob(content, filename, mime) {
   const blob = new Blob([content], { type: `${mime};charset=utf-8` });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");

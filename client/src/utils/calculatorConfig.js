@@ -1194,9 +1194,9 @@ export const CALCULATOR_CATEGORIES = [
     name: "Internet and Network Calculators",
     slug: "internet-network",
     path: "/calculators/internet-network",
-    tagline: "IP subnets, masks & host ranges",
+    tagline: "IP subnets, host ranges & Base64",
     description:
-      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet. No signup required.",
+      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet, plus a Base64 encoder and decoder for text, images and files. No signup required.",
     icon: "🌐",
     iconBg: "#e0f2fe",
     iconColor: "#0284c7",
@@ -1215,6 +1215,25 @@ export const CALCULATOR_CATEGORIES = [
         legacyPath: "/tools/ip-subnet-calculator",
         keywords: [
           "ip subnet calculator", "subnet calculator", "subnet mask calculator", "ipv4 subnet calculator", "ipv6 subnet calculator", "network address calculator", "broadcast address calculator", "usable host range",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
+        id: "base64-encode-decode",
+        label: "Base64 Encoder & Decoder",
+        slug: "base64-encode-decode",
+        tagline: "Encode or decode text, images & files",
+        description:
+          "Base64-encode or decode text in 40 character sets, or encode and decode images and files, right in your browser. Copy or download the result; nothing is uploaded.",
+        icon: "🔤",
+        iconBg: "#e0f2fe",
+        iconColor: "#0284c7",
+        path: "/calculators/internet-network/base64-encode-decode",
+        legacyPath: "/tools/base64-encode-decode",
+        keywords: [
+          "base64 encoder", "base64 decoder", "base64 encode", "base64 decode", "base64 converter", "image to base64", "file to base64", "base64 to image", "base64 to text",
         ],
         available: true,
         badge: "New",
