@@ -1194,9 +1194,9 @@ export const CALCULATOR_CATEGORIES = [
     name: "Internet and Network Calculators",
     slug: "internet-network",
     path: "/calculators/internet-network",
-    tagline: "IP subnets, Base64 & URL encoding",
+    tagline: "IP subnets, encoders & passwords",
     description:
-      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet, plus a Base64 encoder and decoder for text, images and files and a URL (percent) encoder and decoder. No signup required.",
+      "Free internet and network calculators — an IP subnet calculator for IPv4 and IPv6 that finds the network and broadcast address, usable host range, subnet and wildcard mask, IP class and every possible subnet, plus a Base64 encoder and decoder for text, images and files a URL (percent) encoder and decoder, and a strong random password generator. No signup required.",
     icon: "🌐",
     iconBg: "#e0f2fe",
     iconColor: "#0284c7",
@@ -1253,6 +1253,25 @@ export const CALCULATOR_CATEGORIES = [
         legacyPath: "/tools/url-encode-decode",
         keywords: [
           "url encode", "url decode", "url encoder", "url decoder", "percent encoding", "percent encode", "encodeuricomponent", "urlencode online", "decode url",
+        ],
+        available: true,
+        badge: "New",
+        badgeType: "new",
+      },
+      {
+        id: "password-generator",
+        label: "Password Generator",
+        slug: "password-generator",
+        tagline: "Strong random passwords with entropy",
+        description:
+          "Generate strong, random passwords from lower case, upper case, numbers and symbols, exclude ambiguous characters or brackets, and see the strength and entropy. Generated in your browser.",
+        icon: "🔑",
+        iconBg: "#e0f2fe",
+        iconColor: "#0284c7",
+        path: "/calculators/internet-network/password-generator",
+        legacyPath: "/tools/password-generator",
+        keywords: [
+          "password generator", "random password generator", "strong password generator", "secure password", "password strength", "password entropy", "generate password", "random password",
         ],
         available: true,
         badge: "New",

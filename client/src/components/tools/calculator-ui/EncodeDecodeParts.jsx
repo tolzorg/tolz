@@ -29,7 +29,7 @@ export const DownloadIcon = () => (
 );
 
 /** A section heading + intro, then the input card and the Result card side by side (stacked on phones). */
-export function Section({ title, id, intro, form, result }) {
+export function Section({ title, id, intro, form, result, banner = "Result", busy = false }) {
   return (
     <section id={title ? undefined : id} aria-labelledby={title ? id : undefined} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       {title && <h2 id={id} style={sectionTitle}>{title}</h2>}
@@ -37,8 +37,8 @@ export function Section({ title, id, intro, form, result }) {
       <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 340px", minWidth: 260, maxWidth: 480, padding: 18 }}>{form}</div>
         <div className="card" style={{ flex: "1 1 400px", minWidth: 0, padding: 0, overflow: "hidden" }}>
-          <div style={resultBanner}>Result</div>
-          <div style={{ padding: "14px 16px" }} aria-live="polite">{result}</div>
+          <div style={resultBanner}>{banner}</div>
+          <div style={{ padding: "14px 16px" }} aria-live="polite" aria-busy={busy || undefined}>{result}</div>
         </div>
       </div>
     </section>
