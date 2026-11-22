@@ -175,6 +175,7 @@ const TermsPage                    = lazy(() => import("./pages/TermsPage"));
 const DisclaimerPage               = lazy(() => import("./pages/DisclaimerPage"));
 const CopyrightPage                = lazy(() => import("./pages/CopyrightPage"));
 const AboutPage                    = lazy(() => import("./pages/AboutPage"));
+const AllToolLinksPage             = lazy(() => import("./pages/AllToolLinksPage"));
 const ContactPage                  = lazy(() => import("./pages/ContactPage"));
 const NotFoundPage                 = lazy(() => import("./pages/NotFoundPage"));
 const CalculatorCategoryPage          = lazy(() => import("./pages/CalculatorCategoryPage"));
@@ -630,6 +631,7 @@ export default function App() {
                 <Route path="/disclaimer"                          element={<DisclaimerPage />} />
                 <Route path="/copyright"                           element={<CopyrightPage />} />
                 <Route path="/about"                               element={<AboutPage />} />
+                <Route path="/our-all-tool-pages-links"            element={<AllToolLinksPage />} />
                 <Route path="/contact"                             element={<ContactPage />} />
                 <Route path="*"                                    element={<NotFoundPage />} />
               </Routes>

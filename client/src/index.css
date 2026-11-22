@@ -441,6 +441,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height
     max-width: 640px;
   }
   .tool-page-sidebar { width: 100%; }
+  /* Mobile only: unwrap the sidebar so the related-tools card (<nav>) can
+     sit directly below the tool instead of between the header and the tool. */
+  .tool-page-sidebar { display: contents; }
+  .tool-page-sidebar > * { width: 100%; }
+  .tool-page-sidebar > nav { order: 1; }
   .tool-page-grid-children { max-width: 100%; width: 100%; }
   .tool-page-grid-footer-wrap { max-width: 640px; }
   .tool-page-columns--wide { max-width: 640px; }
