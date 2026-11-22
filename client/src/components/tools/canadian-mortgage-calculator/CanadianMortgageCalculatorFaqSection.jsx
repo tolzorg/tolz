@@ -459,7 +459,7 @@ export default function CanadianMortgageCalculatorFaqSection() {
           requirements, so check each lender’s rules.
         </P>
 
-        <H3>As a New <Ext href="https://en.immigrant.today/canada/23677-stress-test.htm">Immigrant</Ext>, How Much Down Payment Do I Need?</H3>
+        <H3>As a New Immigrant, How Much Down Payment Do I Need?</H3>
         <P>
           It depends on your status and the lender. A newcomer with permanent residency and a solid job can sometimes qualify with
           5% down through insured programs. Many bank programs ask for 10% to 20% if you have no Canadian credit history. If you’re
@@ -611,7 +611,7 @@ export default function CanadianMortgageCalculatorFaqSection() {
           Fixed and variable rates run off different benchmarks. Fixed rates track Government of Canada bond yields. Lenders look
           at those yields, with 5-year yields as the benchmark for 5-year fixed rates, then add a spread to cover their costs and
           profit. Variable rates are based on the lender’s prime rate, which moves with the Bank of Canada’s overnight rate, with a
-          discount or premium on top.
+          discount or premium on top. <Ext href={RATEHUB}>Ratehub</Ext>
         </P>
         <P>
           Your personal rate also depends on whether the mortgage is insured, your credit score, the size of the down payment, the
@@ -663,7 +663,8 @@ export default function CanadianMortgageCalculatorFaqSection() {
         <P>
           Since November 2024, uninsured borrowers can switch lenders at renewal without taking the stress test again if the loan
           amount and amortization stay the same, which has made shopping around easier. Variable-rate holders don’t renew their
-          rate in the same way, since their rate moves with prime throughout the term.
+          rate in the same way, since their rate moves with prime throughout the term.{" "}
+          <Ext href="https://en.immigrant.today/canada/23677-stress-test.htm">Immigrant</Ext>
         </P>
 
         <H3>What’s the Maximum Interest Rate for a Mortgage in Canada?</H3>
