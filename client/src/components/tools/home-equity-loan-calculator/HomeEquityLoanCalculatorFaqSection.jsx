@@ -154,8 +154,8 @@ export default function HomeEquityLoanCalculatorFaqSection() {
         </P>
         <P>
           The borrowing-limit part works from your home’s value, your remaining mortgage balance and the loan-to-value ratio a
-          lender is willing to accept. The cost part takes a loan amount, rate and term and gives you the monthly payment,
-          total interest, total repayment and an APR that includes closing costs. Then it builds an amortization schedule from
+          lender is willing to accept. The cost part takes a loan amount, rate and term and gives you the <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>,
+          total interest, total repayment and an <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> that includes closing costs. Then it builds an <Link to="/tools/amortization-calculator" className="inline-home-link">amortization schedule</Link> from
           the same numbers, so you don’t have to rebuild anything in a spreadsheet.
         </P>
         <P>
@@ -247,7 +247,7 @@ export default function HomeEquityLoanCalculatorFaqSection() {
         <P>
           It depends on where you stand. If you’ve got solid credit, plenty of equity and steady income, it’s pretty smooth:
           many borrowers close in two to six weeks. The slowest parts are usually the appraisal and the title work. If your
-          credit is shaky, your DTI is high or the house is already tapped out, it gets a lot harder, and you may be turned
+          credit is shaky, your <Link to="/tools/debt-to-income-calculator" className="inline-home-link">DTI</Link> is high or the house is already tapped out, it gets a lot harder, and you may be turned
           down or offered a rate that doesn’t make sense.
         </P>
       </Card>
@@ -255,7 +255,7 @@ export default function HomeEquityLoanCalculatorFaqSection() {
       <Card title="Can You Get a Home Equity Loan With No Salary?">
         <P>
           Yes, if you’ve got other income that you can document. Lenders need to see that you can repay, but they don’t care
-          whether it’s a paycheck. Social Security, pension payments, retirement account withdrawals, rental income, investment
+          whether it’s a <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link>. Social Security, pension payments, retirement account withdrawals, rental income, investment
           income and, in some cases, alimony or child support can all count. If you’ve got no income at all and are leaning
           only on the equity, mainstream lenders will almost always say no, since they’re required to verify you can repay the
           loan.

@@ -101,7 +101,7 @@ export default function FramingCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Free Framing Calculator: Calculate Wall Studs, Spacing, and Material Cost</h2>
         <p style={pStyle}>
-          Framing a wall looks simple until you're standing at the lumber yard trying to figure out exactly how
+          Framing a wall looks simple until you're standing at the <Link to="/tools/board-foot-calculator" className="inline-home-link">lumber</Link> yard trying to figure out exactly how
           many studs to buy. Get the count wrong and you're either making a second trip or paying for lumber
           you'll never use. The framing calculator on <Link to="/" className="inline-home-link">Tolz</Link>
           {" "}removes that guesswork by turning your wall length and chosen on-center spacing into an exact
@@ -142,7 +142,7 @@ export default function FramingCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>16″ OC</strong> is the most common spacing for residential wall framing in the United States.
           It offers a strong balance of structural support and material efficiency, and it lines up cleanly
-          with standard 4×8 sheet goods like drywall and plywood, since 48 inches divides evenly into three
+          with standard 4×8 sheet goods like <Link to="/calculators/construction/drywall" className="inline-home-link">drywall</Link> and plywood, since 48 inches divides evenly into three
           16-inch sections.
         </p>
         <p style={pStyle}>

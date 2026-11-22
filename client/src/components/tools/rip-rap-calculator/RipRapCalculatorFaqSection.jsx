@@ -112,7 +112,7 @@ export default function RipRapCalculatorFaqSection() {
         <h2 style={h2Style}>What Is Rip Rap and Why Does D₅₀ Matter?</h2>
         <p style={pStyle}>
           Rip rap is a layer of large, durable rock placed along shorelines, channel banks, culvert outlets,
-          spillways, and slopes to resist the erosive force of moving water. Unlike uniform gravel or crushed
+          spillways, and slopes to resist the erosive force of moving water. Unlike uniform <Link to="/calculators/construction/river-rock" className="inline-home-link">gravel</Link> or crushed
           stone, riprap is deliberately graded, a mix of rock sizes engineered to interlock and stay in place
           under hydraulic stress.
         </p>
@@ -143,7 +143,7 @@ export default function RipRapCalculatorFaqSection() {
           calculator processes these inputs through the Isbash formula and returns the required D₅₀ instantly.
           Because the tool supports both metric and imperial units, you can enter velocity in feet per second
           or meters per second and receive results in the unit system that matches your project drawings or
-          local building codes, without needing to convert anything manually.
+          local building codes, without needing to <Link to="/tools/unit-converter" className="inline-home-link">convert</Link> anything manually.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           This matters because manual calculation of the Isbash equation is easy to get wrong, a single unit
@@ -162,7 +162,7 @@ export default function RipRapCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           By entering the area you need to cover and the desired placement depth, the tool estimates the
-          total volume of rip rap required, typically expressed in cubic yards or cubic meters depending on
+          total volume of rip rap required, typically expressed in <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link> or <Link to="/tools/cbm-calculator" className="inline-home-link">cubic meters</Link> depending on
           your selected unit system. Placement depth is usually specified as a multiple of D₅₀ (commonly 1.5
           to 2 times the median stone diameter) to ensure adequate layer thickness and interlock between
           stones, and the calculator's volume output reflects that relationship.

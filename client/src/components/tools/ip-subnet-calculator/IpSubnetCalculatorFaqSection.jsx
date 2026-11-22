@@ -187,7 +187,7 @@ export default function IpSubnetCalculatorFaqSection() {
           as the mask 255.255.255.224. For IPv4, the prefix length can run from /0 to /32.
         </P>
         <P>
-          CIDR (Classless Inter-Domain Routing) is the system that made this notation standard. Before CIDR, a device could work out the network
+          {" "}<Link to="/tools/cidr-calculator" className="inline-home-link">CIDR</Link> (Classless Inter-Domain Routing) is the system that made this notation standard. Before CIDR, a device could work out the network
           portion from the address class alone. Since CIDR, an address always has to come with its mask or prefix length. CIDR doesn’t do away with
           the mask. The slash is just a shorter way to write the same information, so 192.168.1.0/24 and 192.168.1.0 with 255.255.255.0 mean
           exactly the same thing. What CIDR did remove is the old requirement that networks be sized only as /8, /16 or /24. You can now use any

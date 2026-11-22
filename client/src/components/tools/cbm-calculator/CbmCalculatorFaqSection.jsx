@@ -168,7 +168,7 @@ export default function CbmCalculatorFaqSection() {
 
       <Card title="What Is the Usable Internal Volume (CBM) of a Shipping Container?">
         <P>
-          Usable internal volume is the space inside the walls, floor and ceiling that your cargo can actually occupy. For a 20ft container, 5.90 ×
+          Usable internal volume is the space inside the walls, floor and ceiling that your cargo can actually occupy. For a <Link to="/tools/container-loading-calculator" className="inline-home-link">20ft container</Link>, 5.90 ×
           2.35 × 2.39 gives about 33.1 CBM. A 10ft container comes to roughly 15.9 CBM by the same math, and a 40ft standard container to roughly
           67.6 CBM.
         </P>
@@ -222,7 +222,7 @@ export default function CbmCalculatorFaqSection() {
           including packaging.
         </Lead>
         <Lead lead="Volumetric weight,">
-          also called dimensional weight, is a calculated number based on the space your cargo takes up. It exists because a carrier’s capacity
+          also called <Link to="/tools/dimensional-weight-calculator" className="inline-home-link">dimensional weight</Link>, is a calculated number based on the space your cargo takes up. It exists because a carrier’s capacity
           is limited by both space and weight. Think about a flight with a very light but oversized bag. The airline cannot fill that space with
           other paying cargo, so it bills for the space instead.
         </Lead>
@@ -252,7 +252,7 @@ export default function CbmCalculatorFaqSection() {
         <P>
           The logic is easy to follow. A carrier has two limits to manage, the space available and the weight a vehicle can safely carry. If it
           was billed only by weight, bulky, lightweight cargo would take up valuable space for almost no revenue. If it was billed only by size, a
-          pallet of dense steel parts would cost the same as a pallet of foam. Charging for the greater of the two keeps pricing fair on both
+          {" "}<Link to="/tools/pallet-calculator" className="inline-home-link">pallet</Link> of dense steel parts would cost the same as a pallet of foam. Charging for the greater of the two keeps pricing fair on both
           ends.
         </P>
         <P>

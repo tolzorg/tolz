@@ -184,13 +184,13 @@ export default function CreditCardCalculatorFaqSection() {
         <p style={pStyle}>It works in two directions, depending on what you already know.</p>
         <p style={pStyle}>
           <strong>Mode 1: you know the payment.</strong> Say you can put $200 a month toward the card. Enter your
-          balance, APR, and that $200, and the calculator tells you how many months it'll take to hit zero and how
+          balance, <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link>, and that $200, and the calculator tells you how many months it'll take to hit zero and how
           much interest you'll pay along the way.
         </p>
         <p style={pStyle}>
           <strong>Mode 2: you know the deadline.</strong> Maybe you want the card gone before a wedding, a move, or
           the end of the year. Enter your balance, APR, and the number of months, and the calculator tells you the
-          monthly payment you'll need.
+          {" "}<Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> you'll need.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Either way you get the total interest, which is usually the number that surprises people. Balance, rate,
@@ -255,7 +255,7 @@ export default function CreditCardCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How the Calculator Works</h2>
         <p style={pStyle}>
-          The calculator uses standard amortization. Each month your payment covers that month's interest first, and
+          The calculator uses standard <Link to="/tools/amortization-calculator" className="inline-home-link">amortization</Link>. Each month your payment covers that month's interest first, and
           whatever's left goes to the balance. Early on, interest takes a big bite. As the balance drops, the
           interest shrinks and more of each payment goes to principal. That's why payoff accelerates toward the end.
         </p>
@@ -358,7 +358,7 @@ export default function CreditCardCalculatorFaqSection() {
           can still result in an interest charge the next month.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          <strong>Daily compounding.</strong> Most issuers also compound interest daily, meaning each day's interest
+          <strong>Daily compounding.</strong> Most issuers also <Link to="/tools/compound-interest-calculator" className="inline-home-link">compound interest</Link> daily, meaning each day's interest
           gets added to the balance and starts earning interest. That's part of why your actual statement can come
           out a little higher than a simple monthly calculation.
         </p>
@@ -388,7 +388,7 @@ export default function CreditCardCalculatorFaqSection() {
         <h2 style={h2Style}>Credit Card Interest Rates: What's Normal and What Isn't</h2>
         <p style={pStyle}>
           Credit card APRs have run above 20% on average in recent years, which is steep compared to most other debt.
-          Auto loans and personal loans from good credit usually sit in the single digits to low teens, and mortgages
+          Auto loans and <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link> from good credit usually sit in the single digits to low teens, and mortgages
           are lower still. Cards cost more because they're unsecured, meaning there's no house or car for the lender
           to take if you stop paying. The lender covers that risk with a higher rate.
         </p>

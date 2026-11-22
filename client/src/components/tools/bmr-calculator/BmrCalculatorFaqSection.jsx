@@ -210,7 +210,7 @@ export default function BmrCalculatorFaqSection() {
         </P>
         <H3>BMR vs. Daily Calorie Needs</H3>
         <P>
-          BMR isn’t what you should eat. It’s the floor. Your actual daily need, called total daily energy expenditure (TDEE), is
+          BMR isn’t what you should eat. It’s the floor. Your actual daily need, called <Link to="/tools/tdee-calculator" className="inline-home-link">total daily energy expenditure</Link> (TDEE), is
           your BMR multiplied by an activity factor, usually between 1.2 and 1.9. We’ll walk through that below.
         </P>
         <H3>What’s the Difference Between Metabolism and Basal Metabolic Rate?</H3>
@@ -352,9 +352,9 @@ export default function BmrCalculatorFaqSection() {
 
       <Card title="What Is the Major Factor That Determines BMR?">
         <P>
-          Body composition, meaning how much lean mass you have. Fat-free mass (muscle, organs, bone, water) explains the biggest
+          Body composition, meaning how much lean mass you have. <Link to="/tools/lean-body-mass-calculator" className="inline-home-link">Fat-free mass</Link> (muscle, organs, bone, water) explains the biggest
           share of the difference in BMR between people. Age, thyroid hormones and fat mass add smaller pieces. That’s also why the
-          Katch-McArdle formula, which is built around lean mass, can be more accurate for people who know their body fat
+          Katch-McArdle formula, which is built around lean mass, can be more accurate for people who know their <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link>{" "}
           percentage.
         </P>
         <H3>Who Has a Higher BMR: Someone With More Muscle or More Fat?</H3>
@@ -367,7 +367,7 @@ export default function BmrCalculatorFaqSection() {
         <H3>Why Do Overweight People Often Have Higher BMRs?</H3>
         <P>
           A larger body has more tissue to keep running. More fat mass, and also more lean mass (carrying extra weight builds some
-          muscle and organ mass too). So in absolute calories per day, people with higher body weight usually have higher BMRs than
+          muscle and organ mass too). So in absolute <Link to="/tools/calorie-tracker" className="inline-home-link">calories per day</Link>, people with higher body weight usually have higher BMRs than
           lean people of the same height. Per kilogram of body weight it’s the other way around, since fat burns less than muscle.
           People with obesity don’t have “slow metabolisms” as a rule. The research is pretty consistent on that.
         </P>

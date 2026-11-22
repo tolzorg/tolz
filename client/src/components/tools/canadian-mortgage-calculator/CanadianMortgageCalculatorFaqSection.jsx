@@ -170,8 +170,8 @@ export default function CanadianMortgageCalculatorFaqSection() {
 
       <Card title="How This Canadian Mortgage Calculator Works">
         <P>
-          You enter the home price, your down payment, the interest rate and the amortization period. If they apply to you, add
-          annual property tax, annual home insurance and monthly condo fees. The calculator gives you your monthly mortgage
+          You enter the home price, your <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>, the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> and the <Link to="/tools/amortization-calculator" className="inline-home-link">amortization</Link> period. If they apply to you, add
+          annual property tax, annual home insurance and monthly condo fees. The calculator gives you your <Link to="/tools/mortgage-calculator" className="inline-home-link">monthly mortgage</Link>{" "}
           payment, your total monthly housing cost, the total interest over the life of the loan, and the full cost of the home
           once everything’s added up.
         </P>
@@ -238,7 +238,7 @@ export default function CanadianMortgageCalculatorFaqSection() {
         <P>
           Payments are traditionally monthly, but most lenders offer other schedules. Standard bi-weekly takes your annual total
           and splits it across 26 payments, which doesn’t change much. Accelerated bi-weekly is the one worth knowing about. You
-          pay half of your monthly payment every two weeks, so you make 26 half-payments a year. That works out to one extra full
+          pay half of your <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> every two weeks, so you make 26 half-payments a year. That works out to one extra full
           monthly payment annually, and it shortens your amortization quite a bit.
         </P>
         <P>

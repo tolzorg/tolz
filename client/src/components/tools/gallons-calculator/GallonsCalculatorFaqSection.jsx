@@ -129,7 +129,7 @@ export default function GallonsCalculatorFaqSection() {
           sealer, or coating product has a manufacturer-listed coverage rate, usually printed as "covers
           approximately 350–400 sq ft per gallon" on the can or technical data sheet. That number isn't
           universal; it changes based on the product's viscosity, solids content, and intended film thickness.
-          The calculator takes that coverage rate and your total square footage, then does the division for
+          The calculator takes that coverage rate and your total <Link to="/tools/square-footage-calculator" className="inline-home-link">square footage</Link>, then does the division for
           you, converting an abstract spec-sheet number into a real quantity you can take to the checkout
           counter.
         </p>
@@ -185,7 +185,7 @@ export default function GallonsCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>Primer application.</strong> Primer often has a different coverage rate than topcoat paint,
-          especially on porous drywall, raw wood, or masonry. Calculating primer separately from paint avoids
+          especially on porous <Link to="/calculators/construction/drywall" className="inline-home-link">drywall</Link>, raw wood, or masonry. Calculating primer separately from paint avoids
           underestimating the first coat, which is the coat that determines how well everything above it
           adheres.
         </p>
@@ -231,7 +231,7 @@ export default function GallonsCalculatorFaqSection() {
           For example, a 1,000 sq ft wall with a product rated at 350 sq ft per gallon, applied in two coats,
           would need (1,000 × 2) ÷ 350 = approximately 5.71 gallons, which most people would round up to 6
           gallons to account for the container sizes available at the store. The calculator performs this
-          exact calculation instantly, while also handling unit conversions between gallons, imperial gallons,
+          exact calculation instantly, while also handling <Link to="/tools/unit-converter" className="inline-home-link">unit conversions</Link> between gallons, imperial gallons,
           and liters, so you're not manually converting a European product's liter-based coverage rate into US
           gallon quantities.
         </p>

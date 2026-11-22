@@ -146,8 +146,8 @@ export default function AutoLeaseCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What Is an Auto Lease Calculator?</h2>
         <p style={pStyle}>
-          An auto lease calculator estimates what you’ll pay each month to lease a vehicle. People also call it a car lease
-          calculator or a lease payment calculator. It’s all the same idea.
+          An auto <Link to="/tools/lease-calculator" className="inline-home-link">lease calculator</Link> estimates what you’ll pay each month to lease a vehicle. People also call it a car lease
+          calculator or a lease <Link to="/tools/payment-calculator" className="inline-home-link">payment calculator</Link>. It’s all the same idea.
         </p>
         <p style={pStyle}>
           A lease isn’t a loan on the whole car. You’re paying for the chunk of value the car loses while you drive it, plus a
@@ -156,7 +156,7 @@ export default function AutoLeaseCalculatorFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Think of a lease as a long-term rental. A normal rental runs a few hours or days. A lease usually runs two to four
-          years. You make a down payment (sometimes), pay monthly, and give the car back at the end. Some leases include an
+          years. You make a <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link> (sometimes), pay monthly, and give the car back at the end. Some leases include an
           option to buy the car when the term is up, and if you want that option written in from the start, it can nudge
           the monthly payment up a little.
         </p>
@@ -171,7 +171,7 @@ export default function AutoLeaseCalculatorFaqSection() {
           <li style={liStyle}><strong>Vehicle price (capitalized cost):</strong> This is the negotiated price of the car, not the sticker price. Fees you roll into the lease get added to it. Rebates and incentives come off it.</li>
           <li style={liStyle}><strong>Down payment or trade-in (cap cost reduction):</strong> Money or trade-in value you put in upfront to lower the amount you’re paying for.</li>
           <li style={liStyle}><strong>Residual value:</strong> What the leasing company expects the car to be worth when your lease ends. Quotes usually show it as a percentage of MSRP. Multiply it out to get the dollar amount.</li>
-          <li style={liStyle}><strong>Money factor:</strong> The lease version of an interest rate. It looks like a tiny decimal, such as 0.00250.</li>
+          <li style={liStyle}><strong>Money factor:</strong> The lease version of an <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>. It looks like a tiny decimal, such as 0.00250.</li>
           <li style={liStyle}><strong>Lease term:</strong> Number of months. 24, 36, and 39 are common, and the range is usually two to four years.</li>
           <li style={lastLi}><strong>Sales tax rate:</strong> Your local rate. More on how leases get taxed below, because it’s not the same everywhere.</li>
         </ul>
@@ -184,7 +184,7 @@ export default function AutoLeaseCalculatorFaqSection() {
 
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How to Calculate a Car Lease Payment</h2>
-        <p style={pStyle}>The monthly payment has three parts: depreciation, a finance charge, and tax.</p>
+        <p style={pStyle}>The monthly payment has three parts: <Link to="/tools/depreciation-calculator" className="inline-home-link">depreciation</Link>, a finance charge, and tax.</p>
         <div style={formulaStyle}>
           Depreciation = (net cap cost − residual value) ÷ lease term in months<br />
           Finance charge = (net cap cost + residual value) × money factor<br />

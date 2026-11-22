@@ -97,10 +97,10 @@ export default function FrenchDrainCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>French Drain Calculator: Estimate Trench Volume, Gravel, and Pipe Length</h2>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Standing water along a foundation, a soggy patch of lawn that never dries out, or a retaining wall
+          Standing water along a foundation, a soggy patch of lawn that never dries out, or a <Link to="/calculators/construction/retaining-wall" className="inline-home-link">retaining wall</Link>{" "}
           showing signs of hydrostatic pressure, these are the moments a French drain earns its keep. Before
           anyone breaks ground, though, there's a question that trips up even experienced landscapers: how much
-          gravel, pipe, and excavation will this actually take? This calculator, built by{" "}
+          {" "}<Link to="/calculators/construction/river-rock" className="inline-home-link">gravel</Link>, pipe, and excavation will this actually take? This calculator, built by{" "}
           <Link to="/" className="inline-home-link">Tolz</Link>, removes the guesswork by turning your trench
           dimensions into an exact material list, so you can order the right amount the first time instead of
           making a second trip to the supply yard.
@@ -152,7 +152,7 @@ export default function FrenchDrainCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Once these three values are entered, the calculator immediately returns trench volume, pipe length,
           gravel volume, and an estimated cost, all without needing to open a separate spreadsheet or do manual
-          conversions between cubic feet and cubic yards.
+          conversions between cubic feet and <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link>.
         </p>
       </div>
 

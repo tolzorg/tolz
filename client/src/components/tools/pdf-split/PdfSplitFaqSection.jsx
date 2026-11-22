@@ -144,7 +144,7 @@ export default function PdfSplitFaqSection() {
           viewer. That viewer is designed for reading, printing, and saving, and it has no dedicated “split” button. The
           usual workaround is to open the PDF in Chrome, press Ctrl+P (Cmd+P on Mac), choose “Save as PDF” as the
           destination, and enter a custom page range. This works for a single range, but Chrome re-renders the pages
-          when it saves them. That can change file size or drop interactive elements such as bookmarks and form fields.
+          when it saves them. That can change <Link to="/tools/pdf-compress" className="inline-home-link">file size</Link> or drop interactive elements such as bookmarks and form fields.
           It also becomes tedious if you need several ranges.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
@@ -249,7 +249,7 @@ export default function PdfSplitFaqSection() {
           </li>
           <li>
             <strong>Cut the tall page into slices (when you only have the PDF).</strong> Use a crop or “slice by height”
-            tool to cut the tall page into equal horizontal sections, then convert each section to a normal page size.
+            tool to cut the tall page into equal horizontal sections, then <Link to="/tools/pdf-to-word" className="inline-home-link">convert</Link> each section to a normal page size.
             Be aware that slicing can cut through lines of text or images, so check the output before using it.
           </li>
         </ol>

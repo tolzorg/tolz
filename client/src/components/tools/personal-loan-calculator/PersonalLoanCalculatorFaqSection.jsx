@@ -197,14 +197,14 @@ export default function PersonalLoanCalculatorFaqSection() {
           <li style={liStyle}><strong>Total interest.</strong> This is the real price of borrowing. Two loans can have the same payment and very different total costs if the terms are different.</li>
           <li style={liStyle}><strong>Payoff date.</strong> “60 months” is abstract. “Final payment in November 2031” isn’t.</li>
           <li style={liStyle}><strong>Amortization schedule.</strong> A payment-by-payment table showing how much of each installment goes to interest and how much pays down your balance.</li>
-          <li style={lastLi}><strong>Real APR.</strong> Many personal loans come with an origination fee, and some come with insurance. Both push the actual cost above the quoted rate. The calculator rolls them into one annual percentage rate so you can compare offers fairly.</li>
+          <li style={lastLi}><strong>Real APR.</strong> Many personal loans come with an origination fee, and some come with insurance. Both push the actual cost above the quoted rate. The calculator rolls them into one <Link to="/tools/apr-calculator" className="inline-home-link">annual percentage rate</Link> so you can compare offers fairly.</li>
         </ul>
       </div>
 
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How to Use the Calculator</h2>
         <p style={pStyle}>
-          Start with the three basics: the loan amount, the interest rate, and the term. That’s enough for a payment, total
+          Start with the three basics: the loan amount, the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, and the term. That’s enough for a payment, total
           interest, and payoff date.
         </p>
         <p style={pStyle}>
@@ -217,7 +217,7 @@ export default function PersonalLoanCalculatorFaqSection() {
           <li style={liStyle}><strong>Compare rates.</strong> Personal loan rates run from the low single digits for borrowers with excellent credit to the mid-30s for those with weak credit. Plug in a few rates and see how the payment moves. That helps you decide what you’re actually willing to accept before a lender quotes you.</li>
           <li style={liStyle}><strong>Compare terms.</strong> Terms generally run from one year to seven. A short term means a bigger payment and less interest. A long term gives you a smaller payment and costs more overall.</li>
           <li style={liStyle}><strong>Fine-tune the amount.</strong> An extra $5,000 might not hurt on a seven-year term but could blow up a three-year plan. Sometimes the smarter move is to cover part of the expense with cash and borrow less.</li>
-          <li style={lastLi}><strong>Check the total, not just the payment.</strong> If you’re saving for retirement, a house, or a kid’s tuition, make sure the loan’s total cost doesn’t eat into those goals.</li>
+          <li style={lastLi}><strong>Check the total, not just the payment.</strong> If you’re saving for <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link>, a house, or a kid’s <Link to="/tools/college-cost-calculator" className="inline-home-link">tuition</Link>, make sure the loan’s total cost doesn’t eat into those goals.</li>
         </ul>
       </div>
 
@@ -262,7 +262,7 @@ export default function PersonalLoanCalculatorFaqSection() {
 
         <h3 style={h3Style}>A quick sanity check with your income</h3>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Lenders care a lot about your debt-to-income ratio (DTI), which is your total monthly debt payments divided by your
+          Lenders care a lot about your <Link to="/tools/debt-to-income-calculator" className="inline-home-link">debt-to-income ratio</Link> (DTI), which is your total monthly debt payments divided by your
           gross monthly income. Say you earn $4,500 a month and already pay $900 toward a car loan and credit cards. Add a
           $356 loan payment and your DTI goes from 20% to about 28%. Many lenders get cautious once DTI climbs past the high
           30s or low 40s, so run this math before you apply, not after a rejection.

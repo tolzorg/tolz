@@ -150,7 +150,7 @@ export default function PdfMergeFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Merge PDF - Combine Multiple PDF Files Into One, Free and Online</h2>
         <p style={pStyle}>
-          Managing separate PDF documents quickly becomes messy: a signed contract split across three scans, an invoice
+          Managing separate PDF documents quickly becomes messy: a signed contract <Link to="/tools/pdf-split" className="inline-home-link">split</Link> across three scans, an invoice
           here, a receipt there, chapters of a report saved as individual files. The Merge PDF tool on{" "}
           <Link to="/" className="inline-home-link">Tolz</Link> solves this in seconds by joining all of those documents
           into one clean, ordered file you can download, print, or send. There's no software to install and no account
@@ -214,7 +214,7 @@ export default function PdfMergeFaqSection() {
           sizes, adds no watermark, and needs no signup. When choosing any online merger, check for these four things:
         </p>
         <ul style={ulStyle}>
-          <li style={liStyle}>It doesn't compress or flatten pages during the merge</li>
+          <li style={liStyle}>It doesn't <Link to="/tools/pdf-compress" className="inline-home-link">compress</Link> or flatten pages during the merge</li>
           <li style={liStyle}>It lets you reorder files before combining</li>
           <li style={liStyle}>It doesn't add watermarks or limit you to a trial</li>
           <li>It states clearly how your files are handled and protected</li>
@@ -492,7 +492,7 @@ export default function PdfMergeFaqSection() {
             <strong>Flatten the form</strong> after filling it, if you want to lock the entries in before sending.
           </li>
           <li>
-            <strong>Edit original text</strong> in a dedicated PDF editor, or change the source Word document and
+            <strong>Edit original text</strong> in a dedicated PDF editor, or change the source <Link to="/tools/pdf-to-word" className="inline-home-link">Word document</Link> and
             re-export.
           </li>
         </ul>

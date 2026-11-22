@@ -182,7 +182,7 @@ export default function RmdCalculatorFaqSection() {
         <h2 style={h2Style}>What Is a Required Minimum Distribution?</h2>
         <p style={pStyle}>
           A required minimum distribution, or RMD, is the least amount the IRS says you have to withdraw each year from
-          most tax-deferred retirement accounts once you hit a certain age. The reasoning is pretty simple. You (probably)
+          most tax-deferred <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> accounts once you hit a certain age. The reasoning is pretty simple. You (probably)
           got a tax break when the money went in, and it grew for years without being taxed. The government doesn't let
           that go on forever, so at some point it makes you start taking money out and paying tax on it.
         </p>
@@ -219,7 +219,7 @@ export default function RmdCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           Your balance on December 31 isn't always the number on your year-end statement. If you had a rollover or
-          transfer in motion at year-end, meaning money left one IRA but hadn't landed in the other by December 31, the
+          transfer in motion at year-end, meaning money left one <Link to="/tools/ira-calculator" className="inline-home-link">IRA</Link> but hadn't landed in the other by December 31, the
           amount in transit gets added back to the balance. Your custodian usually handles this, but it's worth knowing if
           your own math doesn't match theirs.
         </p>
@@ -276,13 +276,13 @@ export default function RmdCalculatorFaqSection() {
           Before you use that April 1 grace period, think it through. Delaying means taking two RMDs in the same calendar
           year, the late first one and the regular second one. That stacks two years of taxable income into one. For a lot
           of people, that pushes some of the income into a higher bracket, can bump Medicare premiums, and can make more
-          of their Social Security taxable. Here's the example: if you turn 73 in 2026, you can take your first RMD any
+          of their <Link to="/tools/social-security-calculator" className="inline-home-link">Social Security</Link> taxable. Here's the example: if you turn 73 in 2026, you can take your first RMD any
           time in 2026, or hold off until April 1, 2027. If you hold off, your second one is still due by December 31,
           2027, so 2027 would carry both.
         </p>
         <p style={pStyle}>
           <strong>The still-working exception.</strong> If you're still employed past RMD age and you own less than 5% of
-          the company, your current employer's plan (like a 401(k) or 403(b)) may let you wait until the year you actually
+          the company, your current employer's plan (like a <Link to="/tools/401k-calculator" className="inline-home-link">401(k)</Link> or 403(b)) may let you wait until the year you actually
           retire. Two catches. First, it only applies to the plan at the job you're still working at. Old 401(k)s from
           former employers don't qualify. Second, it doesn't apply to IRAs at all, including SEP and SIMPLE IRAs, even if
           you're still working. Some plans don't offer the delay either, so check with yours.
@@ -317,7 +317,7 @@ export default function RmdCalculatorFaqSection() {
           forward for every year through age 120, which is where the Uniform Lifetime Table stops.
         </p>
         <p style={pStyle}>
-          You'll see two things play out at the same time. Your balance changes with your investment growth (you choose
+          You'll see two things play out at the same time. Your balance changes with your <Link to="/tools/investment-calculator" className="inline-home-link">investment growth</Link> (you choose
           the rate), and your RMD takes a bigger bite each year as the divisor shrinks. Using the example above: you
           withdraw $20,325 from $500,000, the remaining $479,675 grows at 5%, and your balance heads into the next year at
           about $503,700. At 76 the factor is 23.7, so your RMD becomes about $21,250. Notice that the RMD went up even

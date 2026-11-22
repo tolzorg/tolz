@@ -195,13 +195,13 @@ export default function FhaLoanCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What This FHA Loan Calculator Shows You</h2>
         <p style={pStyle}>
-          A basic mortgage calculator takes a loan amount and a rate and spits out principal and interest. That’s fine for a
+          A basic <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage calculator</Link> takes a loan amount and a rate and spits out principal and interest. That’s fine for a
           ballpark, but it skips the stuff that makes an FHA loan different. An FHA mortgage calculator has to handle two
           separate mortgage insurance charges, and it has to count the recurring housing costs a lender looks at when
           deciding whether you qualify.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          This one starts with your home price and down payment, works out the base loan, adds the upfront premium, applies
+          This one starts with your home price and <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>, works out the base loan, adds the upfront premium, applies
           the annual premium, then layers on taxes, insurance, HOA and anything else you enter. What comes out is the number
           that matters: the total that leaves your bank account each month, not just the part that goes to the lender.
         </p>
@@ -212,7 +212,7 @@ export default function FhaLoanCalculatorFaqSection() {
         <h3 style={firstH3}>Principal and interest</h3>
         <p style={pStyle}>
           This is the core of the payment. It depends on how much you borrow, your rate and your term, usually 30 years or 15.
-          Early on, most of each payment goes to interest. Over time that flips, and the amortization schedule below the
+          Early on, most of each payment goes to interest. Over time that flips, and the <Link to="/tools/amortization-calculator" className="inline-home-link">amortization schedule</Link> below the
           calculator shows you exactly how.
         </p>
         <h3 style={h3Style}>Upfront mortgage insurance premium (UFMIP)</h3>
@@ -255,7 +255,7 @@ export default function FhaLoanCalculatorFaqSection() {
         <h2 style={h2Style}>How to Use This FHA Loan Calculator</h2>
         <p style={pStyle}>
           Start with the home price and your down payment, either as a dollar amount or a percentage. If you’re not sure what
-          to enter, 3.5% is the floor for borrowers with a 580 credit score or higher. Then put in the interest rate you’ve
+          to enter, 3.5% is the floor for borrowers with a 580 credit score or higher. Then put in the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> you’ve
           been quoted (or a realistic current estimate if you haven’t shopped yet) and pick your loan term.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
@@ -320,7 +320,7 @@ export default function FhaLoanCalculatorFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           You may see advice online that MIP goes away once you hit 20% equity, like private mortgage insurance on a
-          conventional loan. It doesn’t. On an FHA loan with a small down payment, the only ways out are refinancing into a
+          conventional loan. It doesn’t. On an FHA loan with a small down payment, the only ways out are <Link to="/tools/refinance-calculator" className="inline-home-link">refinancing</Link> into a
           conventional loan or paying the mortgage off. If you’re planning to hold the house a long time, this is the single
           biggest long-term cost of going to FHA, and it’s why the calculator shows the premium separately.
         </p>

@@ -197,7 +197,7 @@ export default function BudgetCalculatorFaqSection() {
           ahead of time how to split it up. That’s it. It’s not a punishment and it’s not about never buying anything fun.
         </p>
         <p style={pStyle}>
-          People usually start one for a specific reason. Maybe they want to pay off a credit card, save for a down payment,
+          People usually start one for a specific reason. Maybe they want to pay off a <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link>, save for a <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>,
           stop running short before payday, or get ready for a big change like a move, a baby, or a career switch. Others
           just have a vague feeling that they’re spending too much and want proof.
         </p>
@@ -212,8 +212,8 @@ export default function BudgetCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How to Use the Budget Calculator</h2>
         <ul style={ulStyle}>
-          <li style={liStyle}><strong>Pick monthly or yearly.</strong> Go with whichever matches how your money works. If you get a steady paycheck and pay most bills monthly, start with monthly. If you’re a freelancer, work seasonally, or get a big chunk of income once or twice a year, the yearly view is more honest.</li>
-          <li style={liStyle}><strong>Enter your income.</strong> List each source on its own line: your job, side work, rental income, interest, benefits, child support, whatever applies. Separate lines show you how much you lean on any one source. If your main paycheck disappeared, would the rest cover the basics?</li>
+          <li style={liStyle}><strong>Pick monthly or yearly.</strong> Go with whichever matches how your money works. If you get a steady <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> and pay most bills monthly, start with monthly. If you’re a freelancer, work seasonally, or get a big chunk of income once or twice a year, the yearly view is more honest.</li>
+          <li style={liStyle}><strong>Enter your income.</strong> List each source on its own line: your job, side work, <Link to="/tools/rental-property-calculator" className="inline-home-link">rental income</Link>, interest, benefits, child support, whatever applies. Separate lines show you how much you lean on any one source. If your main paycheck disappeared, would the rest cover the basics?</li>
           <li style={liStyle}><strong>Enter your expenses by category.</strong> Housing, utilities, groceries, transportation, insurance, debt payments, healthcare, subscriptions, entertainment, savings, and so on. Be specific. “Misc: $600” tells you nothing. “Pet food $70, haircuts $45, gifts $90” tells you plenty.</li>
           <li style={lastLi}><strong>Check the results.</strong> Everything updates as you type, so there’s nothing to submit. That makes it easy to play with “what if” scenarios. What if rent goes up $150? What if you drop the gym and two streaming services? What if you pick up four extra shifts a month? Change one number and watch the bottom line move.</li>
         </ul>
@@ -246,7 +246,7 @@ export default function BudgetCalculatorFaqSection() {
         <p style={pStyle}>
           Gross income is what your employer says you earn. After-tax income is what actually shows up in your bank account.
           Your budget should run on the second number, because you can’t spend money that went to taxes, health insurance
-          premiums, or a retirement contribution.
+          premiums, or a <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> contribution.
         </p>
         <p style={pStyle}>
           This matters more than it sounds. Many popular budgeting rules, including some you’ll see quoted online, are based

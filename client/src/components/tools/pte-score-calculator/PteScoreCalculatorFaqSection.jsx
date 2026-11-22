@@ -234,7 +234,7 @@ export default function PteScoreCalculatorFaqSection() {
 
       <Card title="PTE Score to IELTS Conversion">
         <P>
-          Converting a PTE score to IELTS is the most common reason people use a PTE score calculator. IELTS reports bands from 0 to 9 in
+          Converting a PTE score to <Link to="/tools/ielts-score-calculator" className="inline-home-link">IELTS</Link> is the most common reason people use a PTE score calculator. IELTS reports bands from 0 to 9 in
           half-band steps, while PTE uses a 90-point scale, so the match is an estimate and not an exact equivalence. Pearson publishes a
           comparison based on its studies, and institutions often use similar tables. The usual pattern looks like this:
         </P>
@@ -484,7 +484,7 @@ export default function PteScoreCalculatorFaqSection() {
         <H3>Does Stammering Affect PTE Scoring?</H3>
         <P>
           Oral fluency is one of the scoring enabling skills, and it looks at the rhythm and flow of your speech, including pauses, repeated
-          words and false starts. A stammer can therefore affect that part of your result. If you have a condition or disability that might
+          {" "}<Link to="/tools/word-counter" className="inline-home-link">words</Link> and false starts. A stammer can therefore affect that part of your result. If you have a condition or disability that might
           affect your performance, ask Pearson about accommodations before you book the test. Practicing the speaking tasks under timed
           conditions also helps you learn how much a pause or a repeated word costs.
         </P>

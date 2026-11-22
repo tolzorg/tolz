@@ -90,9 +90,9 @@ export default function CashBackOrLowInterestFaqSection() {
 
       <div className="card" style={cardStyle}>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          This cash back or low interest calculator, free on <Link to="/" className="inline-home-link">Tolz</Link>,
-          compares a car deal's cash rebate with its low-rate financing offer. It shows the loan, monthly payment,
-          interest and total cost of each, including your state's sales tax rules, so you can see which saves more.
+          This cash back or low <Link to="/tools/interest-calculator" className="inline-home-link">interest calculator</Link>, free on <Link to="/" className="inline-home-link">Tolz</Link>,
+          compares a car deal's cash rebate with its low-rate financing offer. It shows the loan, <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>,
+          interest and total cost of each, including your state's <Link to="/tools/sales-tax-calculator" className="inline-home-link">sales tax</Link> rules, so you can see which saves more.
         </p>
       </div>
 
@@ -100,7 +100,7 @@ export default function CashBackOrLowInterestFaqSection() {
         <h2 style={h2Style}>Cash Rebates</h2>
         <p style={pStyle}>
           A cash rebate is a discount off a car's purchase price, usually a few hundred to a few thousand dollars, and
-          sometimes enough to cover the whole down payment. Beyond rebates open to everyone, there are often special
+          sometimes enough to cover the whole <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>. Beyond rebates open to everyone, there are often special
           rebates for military members, students, first-time buyers, loyal returning customers, or buyers switching
           from a competitor (a "conquest" incentive). Some require financing through the manufacturer's own lender.
         </p>

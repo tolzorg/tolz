@@ -229,8 +229,8 @@ export default function CalorieTrackerFaqSection() {
         </p>
         <h3 style={h3Style}>Do calorie trackers usually include your basal metabolic rate?</h3>
         <p style={pStyle}>
-          Most do, usually behind the scenes. A good tracker, including the Tolz calculator, estimates your BMR from age,
-          sex, height and weight, multiplies it by an activity factor to get your total daily energy expenditure
+          Most do, usually behind the scenes. A good tracker, including the Tolz calculator, estimates your <Link to="/tools/bmr-calculator" className="inline-home-link">BMR</Link> from age,
+          sex, height and weight, multiplies it by an activity factor to get your <Link to="/tools/tdee-calculator" className="inline-home-link">total daily energy expenditure</Link>{" "}
           (TDEE), and then subtracts or adds calories for your goal. The most common mistake is double counting. If your
           daily target already includes an activity multiplier, logging every workout on top of it overstates how much
           you can eat. Choose one approach and keep it consistent. Wearables usually report "active" calories (movement
@@ -318,7 +318,7 @@ export default function CalorieTrackerFaqSection() {
         <p style={pStyle}>
           Yes. Calorie balance drives weight change. A large randomized trial of low-fat versus low-carb diets found no
           significant difference in 12-month weight loss between them. What matters is adherence. Carbs can still affect
-          your experience: refined carbohydrates may leave you hungrier, while fiber-rich carbohydrates keep you full. If
+          your experience: refined <Link to="/tools/carbohydrate-calculator" className="inline-home-link">carbohydrates</Link> may leave you hungrier, while fiber-rich carbohydrates keep you full. If
           you have diabetes or prediabetes, carbohydrate quality and timing matter more, so follow your healthcare team's
           advice.
         </p>
@@ -375,7 +375,7 @@ export default function CalorieTrackerFaqSection() {
         <p style={pStyle}>
           Slightly. After hard exercise, your body spends extra energy on recovery (excess post-exercise oxygen
           consumption), but for typical workouts this adds only tens of calories over the following hours, not hundreds.
-          Vigorous exercise within an hour or two of bedtime can also raise body temperature and heart rate and disrupt
+          Vigorous exercise within an hour or two of <Link to="/tools/sleep-calculator" className="inline-home-link">bedtime</Link> can also raise body temperature and heart rate and disrupt
           sleep for some people, which can hurt more than it helps. Light evening movement is a safer choice.
         </p>
         <h3 style={h3Style}>How do you burn calories before bed?</h3>
@@ -509,7 +509,7 @@ export default function CalorieTrackerFaqSection() {
         <h3 style={firstH3}>What This Calorie Calculator Does</h3>
         <p style={pStyle}>
           This calorie calculator takes your age, gender, height, weight, and activity level, then runs the numbers
-          through established nutrition formulas to give you four connected results: your BMI, your total daily energy
+          through established nutrition formulas to give you four connected results: your <Link to="/tools/bmi-calculator" className="inline-home-link">BMI</Link>, your total daily energy
           expenditure (TDEE), a macro breakdown by protein, carbs, and fat, and a recommended daily water intake. Instead
           of using separate tools for each metric, you get an integrated view of where you stand and what to adjust,
           whether your goal is losing fat, maintaining your current weight, or building muscle. Because every calculation

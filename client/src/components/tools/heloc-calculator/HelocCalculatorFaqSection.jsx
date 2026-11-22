@@ -184,7 +184,7 @@ export default function HelocCalculatorFaqSection() {
       <Card title="How Does a Home Equity Line of Credit Work?">
         <P>
           A HELOC is a revolving line of credit secured by your house. You’re not handed a lump sum on day one. Instead, you
-          get a credit limit and borrow from it as you need to, a lot like a credit card, except your home is the collateral.
+          get a credit limit and borrow from it as you need to, a lot like a <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link>, except your home is the collateral.
           If your limit is $80,000 and you only use $15,000, you only owe (and pay interest on) the $15,000.
         </P>
         <P>Every HELOC runs in two phases.</P>
@@ -203,7 +203,7 @@ export default function HelocCalculatorFaqSection() {
           Most HELOCs also carry a variable rate. The lender takes a benchmark index (usually the prime rate) and adds a margin
           that’s set when you open the account. If the index goes up, your rate goes up. That’s why the same $50,000 balance
           can cost noticeably different amounts in different years. Because the loan is secured by your home, the starting
-          rate is often lower than what you’d get on a credit card or personal loan, but the variable rate adds uncertainty
+          rate is often lower than what you’d get on a credit card or <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loan</Link>, but the variable rate adds uncertainty
           you won’t see with a fixed-rate loan.
         </P>
       </Card>
@@ -267,7 +267,7 @@ export default function HelocCalculatorFaqSection() {
           to your effective cost.
         </P>
         <P>
-          That’s what the APR in the results is for. It rolls the interest rate, the closing costs, and the annual fee into one
+          That’s what the <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> in the results is for. It rolls the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, the closing costs, and the annual fee into one
           yearly percentage, so you can compare offers with different rates and fee structures. A lender with a slightly lower
           rate and heavy fees can end up costing more than one with a higher rate and almost no fees. Compare APR and total
           cost, not the headline rate.
@@ -276,7 +276,7 @@ export default function HelocCalculatorFaqSection() {
 
       <Card title="Reading the HELOC Amortization Schedule">
         <P>
-          The amortization schedule splits every payment into interest and principal and shows what you’ll owe afterward. It’s
+          The <Link to="/tools/amortization-calculator" className="inline-home-link">amortization schedule</Link> splits every payment into interest and principal and shows what you’ll owe afterward. It’s
           worth actually reading.
         </P>
         <P>

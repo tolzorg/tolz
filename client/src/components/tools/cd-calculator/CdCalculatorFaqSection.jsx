@@ -170,12 +170,12 @@ export default function CdCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What This Certificate of Deposit Calculator Does</h2>
         <p style={pStyle}>
-          You give it a lump sum, an interest rate, and a length of time. It tells you what the CD will be worth at
+          You give it a lump sum, an <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, and a length of time. It tells you what the CD will be worth at
           maturity. You can choose annual, monthly, or continuous compounding, so you can match the math to how your bank
           credits interest. If you enter a tax rate, you'll also see your after-tax earnings.
         </p>
         <p style={pStyle}>
-          You get more than one number back. There's the ending balance, the total interest earned, and two schedules.
+          You get more than one number back. There's the ending balance, the total <Link to="/tools/interest-calculator" className="inline-home-link">interest earned</Link>, and two schedules.
           One is an annual breakdown for the big picture. The other is month by month, for when you want to know what the
           CD is worth at a particular point along the way. So it covers what people usually mean by a CD interest
           calculator, a CD maturity calculator, and a CD earnings calculator.
@@ -225,7 +225,7 @@ export default function CdCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>One deposit only.</strong> In most cases you fund the CD when you open it, and that's it. If you want
-          to keep adding money over time, a savings account fits better.
+          to keep adding money over time, a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link> fits better.
         </p>
         <p style={pStyle}>
           <strong>A fixed term.</strong> The longer the term, the longer your interest has to compound. Longer terms also
@@ -297,7 +297,7 @@ export default function CdCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           There's one more thing the calculator can't see: whether your bank pays interest out or lets it compound. Some
           CDs send interest to your checking account every month. If you take it as a payout, it can't compound inside
-          the CD. In that case you'll earn closer to simple interest on the original deposit, so the ending balance will be
+          the CD. In that case you'll earn closer to <Link to="/tools/simple-interest-calculator" className="inline-home-link">simple interest</Link> on the original deposit, so the ending balance will be
           lower than the calculator shows. If compounding matters to you, make sure the interest stays in the CD.
         </p>
       </div>
@@ -307,7 +307,7 @@ export default function CdCalculatorFaqSection() {
         <p style={pStyle}>These get mixed up constantly, so here's the quick version.</p>
         <p style={pStyle}>
           <strong>APR</strong> is the annualized rate before compounding. Banks lean on it for debts like mortgages,
-          credit cards, and car loans. <strong>APY</strong> is what you actually earn over a full year once compounding is
+          credit cards, and <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loans</Link>. <strong>APY</strong> is what you actually earn over a full year once compounding is
           counted. CDs and savings accounts are almost always advertised in APY, and APY is the fairer way to compare
           them.
         </p>

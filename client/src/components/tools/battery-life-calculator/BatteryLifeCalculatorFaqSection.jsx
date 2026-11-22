@@ -127,7 +127,7 @@ export default function BatteryLifeCalculatorFaqSection() {
 
       <Card title="Understanding the Inputs: Capacity, Discharge Safety, and Load">
         <Lead lead="Battery capacity.">
-          Small batteries are usually rated in mAh, larger ones in Ah, and laptops and power stations in Wh. A 2,000 mAh battery can, in theory,
+          Small <Link to="/tools/battery-capacity-calculator" className="inline-home-link">batteries</Link> are usually rated in mAh, larger ones in Ah, and laptops and power stations in Wh. A 2,000 mAh battery can, in theory,
           supply 2,000 mA for one hour or 200 mA for ten hours. You can usually find the number printed on the battery or in the product’s
           specifications.
         </Lead>
@@ -138,7 +138,7 @@ export default function BatteryLifeCalculatorFaqSection() {
           drones and RC vehicles. This one setting often decides whether you get a flattering number or a trustworthy one.
         </Lead>
         <Lead lead="Current draw or wattage.">
-          Use the average draw you expect during normal operation, not the peak figure on the spec sheet. If the device only lists watts, which is
+          Use the average draw you expect during normal operation, not the peak figure on the spec sheet. If the device only lists <Link to="/tools/electricity-calculator" className="inline-home-link">watts</Link>, which is
           typical for power banks, routers, mini PCs, and appliances, use the wattage option.
         </Lead>
       </Card>
@@ -151,7 +151,7 @@ export default function BatteryLifeCalculatorFaqSection() {
           ["Using mAh:", "Divide usable capacity (mAh) by current draw (mA)."],
           ["Using Wh:", "Divide usable energy (Wh) by power consumption (W)."],
         ]} />
-        <P>If you only know mAh and voltage, convert to watt-hours first:</P>
+        <P>If you only know mAh and <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage</Link>, convert to watt-hours first:</P>
         <Formula>Wh = (mAh ÷ 1,000) × Voltage</Formula>
         <P>For example, a 5,000 mAh lithium-ion battery at 3.7 V stores approximately 18.5 Wh.</P>
         <H3>Example 1: Handheld Device</H3>
@@ -364,7 +364,7 @@ export default function BatteryLifeCalculatorFaqSection() {
 
       <Card title="Does Cold Decrease Battery Life?">
         <P>
-          Yes. Cold slows the chemical reactions inside a battery and raises its internal resistance, so it can deliver less usable energy. A phone
+          Yes. Cold slows the chemical reactions inside a battery and raises its internal <Link to="/tools/resistor-calculator" className="inline-home-link">resistance</Link>, so it can deliver less usable energy. A phone
           that shows 40 percent in freezing weather may shut off suddenly, then work again after it warms up. The capacity is usually still there,
           but it is temporarily out of reach. Apple recommends keeping iPhones in an ambient temperature range of about 62° to 72°F (16° to 22°C),
           and heat is worse than cold for long-term battery health.

@@ -231,9 +231,9 @@ export default function MortgagePayoffFaqSection() {
             <strong>Years remaining.</strong> How much time is left on that original term.
           </li>
           <li style={liStyle}>
-            <strong>Annual interest rate.</strong> The rate your monthly payment is based on. This isn't the same as the
-            APR, which rolls in costs like mortgage insurance, origination fees, and points. The APR is usually a bit
-            higher, so use the plain interest rate from your note or statement.
+            <strong>Annual interest rate.</strong> The rate your <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> is based on. This isn't the same as the
+            {" "}<Link to="/tools/apr-calculator" className="inline-home-link">APR</Link>, which rolls in costs like mortgage insurance, origination fees, and points. The APR is usually a bit
+            higher, so use the plain <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> from your note or statement.
           </li>
           <li style={liStyle}>
             <strong>Current monthly payment.</strong> Principal and interest only. If your bill includes escrow for
@@ -261,13 +261,13 @@ export default function MortgagePayoffFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Where Your Mortgage Payment Actually Goes</h2>
         <p style={pStyle}>
-          A mortgage payment has two parts. The principal is the money you borrowed. The interest is what the lender
+          A <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage payment</Link> has two parts. The principal is the money you borrowed. The interest is what the lender
           charges you for borrowing it, calculated as a percentage of whatever you still owe.
         </p>
         <p style={pStyle}>
           Each month, the interest gets covered first and whatever's left goes to principal. Early on, you owe a lot,
           so the interest charge is big and the principal chunk is tiny. As the balance shrinks, interest shrinks too,
-          and more of each payment goes to principal. That's amortization.
+          and more of each payment goes to principal. That's <Link to="/tools/amortization-calculator" className="inline-home-link">amortization</Link>.
         </p>
         <p style={pStyle}>
           Here's how lopsided it gets. Say you borrow $300,000 at 6.5% for 30 years. Your payment is about $1,896. In

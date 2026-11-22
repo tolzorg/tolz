@@ -182,7 +182,7 @@ export default function BodySurfaceAreaCalculatorFaqSection() {
       <Card title="How Do I Calculate BSA in m² With This Calculator?">
         <P>
           The tool needs three inputs: weight, height and gender. Enter them in the fields provided, then run the calculation. Each
-          formula returns its own result, and you can read it in square meters, square feet and square inches.
+          formula returns its own result, and you can read it in square meters, <Link to="/tools/square-footage-calculator" className="inline-home-link">square feet</Link> and square inches.
         </P>
         <P>
           Every formula works on kilograms and centimeters. If you measure in pounds and inches, convert first: divide pounds by 2.2046
@@ -299,7 +299,7 @@ export default function BodySurfaceAreaCalculatorFaqSection() {
           drugs, and it also appears in some pediatric and burn-care dosing.
         </P>
         <P>
-          BSA-based dosing has limits, though. It doesn’t account for liver or kidney function, genetics, other medications or body
+          BSA-based dosing has limits, though. It doesn’t account for liver or <Link to="/tools/gfr-calculator" className="inline-home-link">kidney function</Link>, genetics, other medications or body
           composition. For drugs with a narrow therapeutic index, where the gap between an effective dose and a toxic one is small, even a
           modest error in BSA can matter. That is why clinicians often adjust doses based on a patient’s response and lab results, and why
           a calculated BSA should be confirmed against your hospital’s protocol before anyone acts on it.
@@ -322,7 +322,7 @@ export default function BodySurfaceAreaCalculatorFaqSection() {
 
       <Card title="Why Are Pediatric Doses Based on Weight and Body Surface Area?">
         <P>
-          Children aren’t small adults. Their organs, body fat, water content and drug-processing systems change quickly as they grow, so
+          Children aren’t small adults. Their organs, <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link>, water content and drug-processing systems change quickly as they grow, so
           a flat adult dose doesn’t work. Pediatric doses are therefore scaled to body size, either in mg/kg or in mg/m².
         </P>
         <P>
@@ -351,7 +351,7 @@ export default function BodySurfaceAreaCalculatorFaqSection() {
           goes along with a higher energy requirement. This is one reason BSA has been used to estimate metabolic size.
         </P>
         <P>
-          Strictly speaking, metabolic rate is driven more by fat-free mass, meaning everything except body fat, such as muscle, organs,
+          Strictly speaking, metabolic rate is driven more by <Link to="/tools/lean-body-mass-calculator" className="inline-home-link">fat-free mass</Link>, meaning everything except body fat, such as muscle, organs,
           bone and blood. Fat tissue is far less metabolically active. BSA correlates reasonably well with fat-free mass, which is why it
           works as a practical stand-in. It isn’t a perfect one. Two people with the same BSA can have different metabolic rates depending
           on muscle mass, age and sex.
@@ -375,7 +375,7 @@ export default function BodySurfaceAreaCalculatorFaqSection() {
 
       <Card title="What Is the Difference Between Body Surface Area and Body Mass Index?">
         <P>
-          Both use height and weight, but they answer different questions. BMI (weight in kilograms divided by height in meters squared)
+          Both use height and weight, but they answer different questions. <Link to="/tools/bmi-calculator" className="inline-home-link">BMI</Link> (weight in kilograms divided by height in meters squared)
           is a screening tool that places a person in a weight category such as underweight, healthy weight, overweight or obese. BSA
           estimates the area of the skin, and clinicians use it to scale doses, standardize organ measurements and compare physiological
           values across people.

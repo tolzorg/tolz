@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -151,7 +152,7 @@ export default function AmortizationCalculatorFaqSection() {
           off a little more of the debt.
         </p>
         <p style={pStyle}>
-          Here's how it plays out on a typical mortgage, car loan, or personal loan. The lender sets one fixed monthly
+          Here's how it plays out on a typical mortgage, <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loan</Link>, or <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loan</Link>. The lender sets one fixed monthly
           payment. Interest is always charged on the balance you still owe, so the interest part is biggest in month
           one. Each payment lowers the balance a bit, the next month's interest is a bit smaller, and more of your fixed
           payment goes to principal. The payment stays the same while the split between interest and principal keeps
@@ -172,7 +173,7 @@ export default function AmortizationCalculatorFaqSection() {
           and the balance left afterward.
         </p>
         <p style={last}>
-          This calculator builds that table for you. Enter your loan amount, interest rate, and term, and you'll see
+          This calculator builds that table for you. Enter your loan amount, <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, and term, and you'll see
           exactly where each dollar goes. You can also add extra payments and watch the schedule shrink.
         </p>
       </div>
@@ -183,7 +184,7 @@ export default function AmortizationCalculatorFaqSection() {
         <p style={pStyle}>You only need a few numbers:</p>
         <ul style={ulStyle}>
           <li style={liStyle}><strong>Loan amount:</strong> the total principal you're borrowing.</li>
-          <li style={liStyle}><strong>Interest rate:</strong> your annual interest rate (APR).</li>
+          <li style={liStyle}><strong>Interest rate:</strong> your annual interest rate (<Link to="/tools/apr-calculator" className="inline-home-link">APR</Link>).</li>
           <li style={liStyle}><strong>Loan term:</strong> how long you have to repay, in years or months.</li>
           <li>
             <strong>Extra payments (optional):</strong> a monthly, yearly, or one-time amount on top of the required
@@ -191,7 +192,7 @@ export default function AmortizationCalculatorFaqSection() {
           </li>
         </ul>
         <p style={pStyle}>
-          The calculator then shows your monthly payment, your total interest over the life of the loan, your payoff
+          The calculator then shows your <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>, your total interest over the life of the loan, your payoff
           date, and the full payment-by-payment table. If you added extra payments, it also shows how much interest
           you'd save and how much sooner you'd be done.
         </p>

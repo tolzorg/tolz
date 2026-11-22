@@ -156,7 +156,7 @@ export default function FinalGradeCalculatorFaqSection() {
       <Card title="What Is Meant by Final Grades, and Why They Matter">
         <P>
           The phrase “final grade” can mean two different things, and it helps to know which one you are dealing with. Sometimes it means the
-          score you earn on the final exam itself. More often it means your overall grade for the course, which is the weighted average of
+          score you earn on the final exam itself. More often it means your <Link to="/tools/grade-calculator" className="inline-home-link">overall grade</Link> for the course, which is the weighted average of
           everything you were graded on: homework, quizzes, projects, midterms and the final exam. Each part counts for a set share of the total,
           and that share is its weight.
         </P>
@@ -166,7 +166,7 @@ export default function FinalGradeCalculatorFaqSection() {
           final grade is your exam score, and there is nothing to calculate.
         </P>
         <P>
-          There is also a final semester grade, which most schools express as a GPA. It combines your results across all of your courses,
+          There is also a final <Link to="/tools/semester-grade-calculator" className="inline-home-link">semester grade</Link>, which most schools express as a <Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link>. It combines your results across all of your courses,
           usually weighted by credit hours, so a four-credit class counts more than a two-credit class. This calculator focuses on a single
           course and the final exam inside it.
         </P>
@@ -379,7 +379,7 @@ export default function FinalGradeCalculatorFaqSection() {
         <P>
           There is no universal rule. Rounding is set by the instructor, department or school, and practices vary. Some instructors round 89.5%
           up to 90%, so it becomes an A. Others use strict cutoffs and treat 89.9% as a B+. Some use a rounding rule only for borderline cases,
-          or look at overall improvement and participation. GPA is a separate matter, since schools handle rounding of the cumulative GPA in
+          or look at overall improvement and participation. GPA is a separate matter, since schools handle rounding of the <Link to="/tools/college-gpa-calculator" className="inline-home-link">cumulative GPA</Link> in
           their own way.
         </P>
         <P>
@@ -441,7 +441,7 @@ export default function FinalGradeCalculatorFaqSection() {
         </P>
         <P>
           Some students think negotiating is acceptable for understandable reasons. Grades carry high stakes for scholarships and graduation.
-          Tuition is expensive, which makes some feel they are paying for a result. And some instructors have been flexible in the past, which
+          {" "}<Link to="/tools/college-cost-calculator" className="inline-home-link">Tuition</Link> is expensive, which makes some feel they are paying for a result. And some instructors have been flexible in the past, which
           sets an expectation.
         </P>
         <P>

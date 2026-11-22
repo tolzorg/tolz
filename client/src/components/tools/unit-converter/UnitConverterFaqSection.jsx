@@ -170,7 +170,7 @@ export default function UnitConverterFaqSection() {
             scientific or industrial settings.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Area:</strong> Convert square meters, square feet, square kilometers, acres, and hectares.
+            <strong>Area:</strong> Convert square meters, <Link to="/tools/square-footage-calculator" className="inline-home-link">square feet</Link>, square kilometers, acres, and hectares.
             Useful for real estate, land measurement, construction planning, and agricultural calculations.
           </li>
           <li style={{ marginBottom: 8 }}>
@@ -188,7 +188,7 @@ export default function UnitConverterFaqSection() {
             comparing plan sizes, or understanding how much space a download actually needs.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Energy:</strong> Convert joules, calories, kilocalories, watt-hours, and kilowatt-hours.
+            <strong>Energy:</strong> Convert joules, calories, kilocalories, <Link to="/tools/battery-capacity-calculator" className="inline-home-link">watt-hours</Link>, and kilowatt-hours.
             Common uses include comparing nutritional energy values, reading appliance energy labels, and
             working through physics or engineering problems that mix unit systems.
           </li>

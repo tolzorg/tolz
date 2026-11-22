@@ -116,7 +116,7 @@ export default function RetainingWallCalculatorFaqSection() {
         <p style={pStyle}>
           The calculator estimates the core materials needed to build a retaining wall based on the dimensions
           and wall type you enter. It accounts for footing requirements, backfill volume, drainage material,
-          and, where structurally relevant, a conceptual rebar estimate. You enter your wall's length, height,
+          and, where structurally relevant, a conceptual <Link to="/calculators/construction/rebar" className="inline-home-link">rebar</Link> estimate. You enter your wall's length, height,
           and preferred construction method, and the tool returns a breakdown you can use for budgeting,
           comparing material options, or preparing a supply list before you start digging.
         </p>
@@ -140,7 +140,7 @@ export default function RetainingWallCalculatorFaqSection() {
         <p style={pStyle}>
           Poured concrete retaining walls require calculating concrete volume based on wall thickness, height,
           and length, along with formwork considerations and rebar for reinforcement. The calculator converts
-          your wall dimensions into cubic yards of concrete and estimates rebar length based on standard
+          your wall dimensions into <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link> of concrete and estimates rebar length based on standard
           spacing assumptions for a wall of that scale.
         </p>
         <p style={pStyle}>
@@ -154,7 +154,7 @@ export default function RetainingWallCalculatorFaqSection() {
           which changes the material list significantly. Instead of mortar and grout, segmental walls rely more
           heavily on compacted base material, geogrid reinforcement at intervals, and drainage aggregate behind
           the wall face. The calculator adjusts its estimate accordingly, giving you a base rock volume, unit
-          count, and gravel backfill quantity.
+          count, and <Link to="/calculators/construction/river-rock" className="inline-home-link">gravel</Link> backfill quantity.
         </p>
         <p style={pStyle}>
           Mortared stone retaining walls combine natural or manufactured stone with mortar joints, so the

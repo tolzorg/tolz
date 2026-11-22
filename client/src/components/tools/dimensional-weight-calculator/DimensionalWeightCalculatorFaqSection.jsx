@@ -145,7 +145,7 @@ export default function DimensionalWeightCalculatorFaqSection() {
           Think about a floor lamp packed in a long, wide carton. It might weigh 8 pounds, but it fills as much space in a truck as a much heavier
           box. If carriers charged only by scale weight, that lamp would cost about the same to ship as a dense 8-pound box of books, even though
           it takes up several times the room. Starting around 2015, UPS and FedEx began applying dimensional pricing to ground packages of all
-          sizes, and it has been a normal part of shipping costs ever since.
+          sizes, and it has been a normal part of <Link to="/tools/freight-class-calculator" className="inline-home-link">shipping</Link> costs ever since.
         </P>
         <P>
           The carrier compares two numbers for every package: the actual weight and the DIM weight. The larger one becomes the billable weight,
@@ -158,7 +158,7 @@ export default function DimensionalWeightCalculatorFaqSection() {
           Carriers don’t really choose one or the other. They charge for both, and the dimensional weight formula is how they combine them.
           Weight matters because heavier packages burn more fuel, strain equipment and need more labor to handle. Size matters because every
           vehicle, container and sorting belt has a fixed amount of space. A truck can be completely full while still being well under its
-          weight limit if it’s loaded with bulky, light boxes.
+          weight limit if it’s loaded with bulky, light <Link to="/tools/pallet-calculator" className="inline-home-link">boxes</Link>.
         </P>
         <P>
           Billing the greater of actual weight and DIM weight protects the carrier in both cases. Dense, heavy boxes pay for their weight. Large,
@@ -175,7 +175,7 @@ export default function DimensionalWeightCalculatorFaqSection() {
         <P>
           The results show your shipping weight and whether it’s the actual or the dimensional weight. A table below lists each carrier, the
           divisor it uses, the dimensional weight, and the weight you’ll be charged for. As an example, a 10 × 30 × 10 cm box weighing 20 kg has
-          a volume of 3,000 cubic centimeters. Divided by 5,000, that’s 0.6 kg, which the table shows as 1 kg. The actual weight of 20 kg is
+          a volume of 3,000 <Link to="/tools/cbm-calculator" className="inline-home-link">cubic</Link> centimeters. Divided by 5,000, that’s 0.6 kg, which the table shows as 1 kg. The actual weight of 20 kg is
           higher, so you’re charged for 20 kg with both UPS and FedEx.
         </P>
         <P>

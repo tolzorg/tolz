@@ -242,7 +242,7 @@ export default function PaceCalculatorFaqSection() {
         <P>
           Improve three things together: aerobic base, speed work and recovery. Run most of your miles at an easy effort so you can build
           volume safely. Add one faster session per week, such as intervals or a tempo run. Include short strides after easy runs to
-          practice good form at higher speed. Strength training for the legs and core also helps, and so do sleep and fueling. Most people
+          practice good form at higher speed. <Link to="/tools/one-rep-max-calculator" className="inline-home-link">Strength training</Link> for the legs and core also helps, and so do sleep and fueling. Most people
           get slower results from training harder, not smarter, so protect your easy days.
         </P>
         <H3>What Is Better for Pace: Intervals or Long Distance?</H3>
@@ -255,7 +255,7 @@ export default function PaceCalculatorFaqSection() {
         <H3>How Do You Increase an Easy Run Pace?</H3>
         <P>
           Easy pace improves as a side effect of aerobic fitness, so you should not force it. Run consistently for several weeks, increase
-          weekly mileage gradually, and keep most runs conversational. Over time, the same heart rate and effort will produce a faster
+          weekly mileage gradually, and keep most runs conversational. Over time, the same <Link to="/tools/target-heart-rate-calculator" className="inline-home-link">heart rate</Link> and effort will produce a faster
           pace. Adding strides, hill work and strength training speeds up that process. If you rush easy runs to look faster on paper, you
           tend to arrive at harder workouts tired and slow.
         </P>
@@ -457,7 +457,7 @@ export default function PaceCalculatorFaqSection() {
         <P>
           Carrying less body weight usually makes running easier, because your legs move less mass with every step. A commonly cited rule of
           thumb is a couple of seconds per mile for each pound lost, though results vary by person. This only holds when the weight loss is
-          gradual and you keep eating enough to fuel training. Cutting calories too hard can cost you muscle and energy, and your pace will
+          gradual and you keep eating enough to fuel training. Cutting <Link to="/tools/calorie-tracker" className="inline-home-link">calories</Link> too hard can cost you muscle and energy, and your pace will
           drop instead of improving.
         </P>
         <H3>What Is a Good Running Pace to Lose Belly Fat?</H3>

@@ -140,11 +140,11 @@ export default function SquareYardsCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How Many Square Feet Are in a Square Yard?</h2>
         <p style={pStyle}>
-          One square yard equals 9 square feet. The reason is simple: a yard is 3 feet long, and the area multiplies two
+          One square yard equals 9 <Link to="/tools/square-footage-calculator" className="inline-home-link">square feet</Link>. The reason is simple: a yard is 3 feet long, and the area multiplies two
           sides together, so 3 × 3 = 9.
         </p>
         <p style={last}>
-          You may see “27” mentioned in this context, but that number belongs to cubic measurements. A cubic yard holds
+          You may see “27” mentioned in this context, but that number belongs to cubic measurements. A <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yard</Link> holds
           27 cubic feet (3 × 3 × 3). Square yards measure flat surfaces, and cubic yards measure volume, so the two are
           not interchangeable.
         </p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -150,7 +151,7 @@ export default function CarbohydrateCalculatorFaqSection() {
 
       <Card title="What Are Carbohydrates?">
         <P>
-          Carbohydrates, or carbs, are one of the three macronutrients, along with protein and fat. They are your body’s main and
+          Carbohydrates, or carbs, are one of the three <Link to="/tools/macro-calculator" className="inline-home-link">macronutrients</Link>, along with protein and fat. They are your body’s main and
           fastest source of fuel. When you eat them, your body breaks most of them down into glucose, a simple sugar that your cells
           use for energy. Your brain, red blood cells and muscles all rely heavily on it.
         </P>
@@ -243,7 +244,7 @@ export default function CarbohydrateCalculatorFaqSection() {
       </Card>
 
       <Card title="What 40%, 55%, 65% and 75% of Calories Actually Mean">
-        <P>Each percentage describes how much of your total calorie intake comes from carbohydrates. They map onto familiar eating styles.</P>
+        <P>Each percentage describes how much of your total <Link to="/tools/calorie-tracker" className="inline-home-link">calorie intake</Link> comes from carbohydrates. They map onto familiar eating styles.</P>
         <List items={[
           ["40% of calories", "is a lower-carb, moderate approach. It leaves more room for protein and fat, which some people find more filling. It suits people who feel better with fewer starches, or who want to cut back on refined carbs without going strict low-carb."],
           ["55% of calories", "sits in the middle of the range most health authorities consider typical. For most healthy people, it’s a sensible default."],
@@ -303,8 +304,8 @@ export default function CarbohydrateCalculatorFaqSection() {
       <Card title="How Your Daily Calories Are Estimated">
         <P>
           Behind every carb target is a calorie estimate, and understanding it explains why your inputs matter. Nutrition calculators
-          generally estimate your basal metabolic rate (BMR), the energy your body burns at rest, from your age, gender, height and
-          weight. They then multiply it by an activity factor to approximate your total daily energy expenditure (TDEE).
+          generally estimate your <Link to="/tools/bmr-calculator" className="inline-home-link">basal metabolic rate</Link> (BMR), the energy your body burns at rest, from your age, gender, height and
+          weight. They then multiply it by an activity factor to approximate your <Link to="/tools/tdee-calculator" className="inline-home-link">total daily energy expenditure</Link> (TDEE).
         </P>
         <P>
           Each input pulls the estimate in a predictable direction. Taller and heavier people burn more. Energy needs typically

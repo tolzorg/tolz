@@ -220,7 +220,7 @@ export default function PcbTraceWidthCalculatorFaqSection() {
           rated temperature. In the worst case the trace opens like a fuse and the board fails.
         </P>
         <P>
-          Width also controls voltage drop. A narrow trace has higher resistance, so some voltage is lost before it reaches the load. On a
+          Width also controls <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage drop</Link>. A narrow trace has higher resistance, so some voltage is lost before it reaches the load. On a
           low-voltage rail such as 1.8 V or 3.3 V, even a small loss can cause resets, noisy behavior or weak performance.
         </P>
         <P>
@@ -246,7 +246,7 @@ export default function PcbTraceWidthCalculatorFaqSection() {
 
       <Card title="How Much Current Can a PCB Trace Carry?">
         <P>
-          Current capacity depends on the trace’s cross-sectional area, its location and how much temperature rise you allow. A common question is
+          {" "}<Link to="/tools/pcb-trace-current-calculator" className="inline-home-link">Current capacity</Link> depends on the trace’s cross-sectional area, its location and how much temperature rise you allow. A common question is
           whether a smaller trace width limits the current. It does. A narrower trace has less copper, higher resistance and less surface to shed
           heat, so it reaches the temperature limit at a lower current. Width is, in practice, what sets the current limit of a trace.
         </P>
@@ -315,7 +315,7 @@ export default function PcbTraceWidthCalculatorFaqSection() {
           Current capacity is only part of the picture. PCB traces also have resistance, which can cause voltage drop and power loss, especially in
           long or narrow traces.
         </P>
-        <P>Trace resistance is calculated using:</P>
+        <P>{" "}<Link to="/tools/pcb-trace-resistance-calculator" className="inline-home-link">Trace resistance</Link> is calculated using:</P>
         <Formula>R = ρ × L ÷ A</Formula>
         <P>Where ρ is copper resistivity, L is trace length, and A is its cross-sectional area.</P>
         <P>The resulting voltage drop and power loss are:</P>

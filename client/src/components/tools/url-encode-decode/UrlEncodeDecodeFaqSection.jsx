@@ -148,7 +148,7 @@ export default function UrlEncodeDecodeFaqSection() {
         </P>
         <P>
           The reason it's necessary comes down to how URLs are read. Browsers and servers treat certain characters as instructions. A question mark
-          starts the query string, an ampersand separates parameters, and a hash begins a fragment. If your data contains one of those characters
+          starts the query string, an ampersand separates parameters, and a <Link to="/tools/hash-identifier-calculator" className="inline-home-link">hash</Link> begins a fragment. If your data contains one of those characters
           and you leave it raw, the receiving system will read it as part of the URL's structure instead of as your data. A search term like salt
           &amp; pepper would be cut off at the ampersand. Encoding turns each unsafe character into a literal, unambiguous form so the data arrives
           exactly as you wrote it.
@@ -261,7 +261,7 @@ export default function UrlEncodeDecodeFaqSection() {
           don't cut them off midway.
         </Lead>
         <Lead lead="Embedding data in forms and templates.">
-          Developers and content editors who build mailto links, deep links, or QR code payloads often need to encode subject lines and body text.
+          Developers and content editors who build mailto links, deep links, or <Link to="/tools/qr-generator" className="inline-home-link">QR code</Link> payloads often need to encode subject lines and body text.
         </Lead>
       </Card>
 

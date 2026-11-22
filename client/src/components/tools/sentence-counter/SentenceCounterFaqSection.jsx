@@ -171,7 +171,7 @@ export default function SentenceCounterFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Average sentence length, calculated automatically from your total word and sentence counts, is
           often more informative than either number on its own. Two documents can have the same total
-          sentence count and still read completely differently if one averages 12 words per sentence and
+          sentence count and still read completely differently if one averages 12 <Link to="/tools/word-counter" className="inline-home-link">words</Link> per sentence and
           the other averages 28. Tracking this figure over the course of a draft, and rechecking it after
           each editing pass, is one of the simplest ways to see whether your revisions are actually
           making the text easier to follow.

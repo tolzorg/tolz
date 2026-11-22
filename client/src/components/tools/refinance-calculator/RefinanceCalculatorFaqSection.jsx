@@ -180,8 +180,8 @@ export default function RefinanceCalculatorFaqSection() {
         <h2 style={h2Style}>What This Refinance Calculator Does</h2>
         <p style={pStyle}>
           Refinancing means taking out a new loan to pay off an old one. The new loan usually has a different rate, a
-          different term, or both. People do it with mortgages most often, but the same idea applies to car loans, student
-          loans, personal loans, and even credit card balances.
+          different term, or both. People do it with mortgages most often, but the same idea applies to <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loans</Link>, student
+          loans, <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>, and even <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link> balances.
         </p>
         <p style={pStyle}>
           The calculator compares two futures side by side. First, you keep your current loan exactly as it is. In the
@@ -191,14 +191,14 @@ export default function RefinanceCalculatorFaqSection() {
         <p style={pStyle}>You’ll need these numbers:</p>
         <ul style={listGapStyle}>
           <li style={liStyle}>Your current loan balance (what you owe today, not what you originally borrowed)</li>
-          <li style={liStyle}>Your current interest rate and how much time is left on the loan</li>
+          <li style={liStyle}>Your current <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> and how much time is left on the loan</li>
           <li style={liStyle}>The new interest rate and new term</li>
           <li style={liStyle}>Discount points and closing costs from the lender’s estimate</li>
           <li style={lastLi}>Any cash you want to take out</li>
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Because the math behind a fixed-rate loan is the same no matter what the loan is for, you can use this as a
-          mortgage refinance calculator, and also for an auto loan, a personal loan, or a student loan. Just plug in that
+          mortgage refinance calculator, and also for an auto loan, a personal loan, or a <Link to="/tools/student-loan-calculator" className="inline-home-link">student loan</Link>. Just plug in that
           loan’s balance, rate, and term.
         </p>
       </div>

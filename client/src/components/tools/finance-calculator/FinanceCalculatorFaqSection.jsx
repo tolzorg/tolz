@@ -139,7 +139,7 @@ export default function FinanceCalculatorFaqSection() {
           "time value of money." This financial calculator, part of the free tool lineup on{" "}
           <Link to="/" className="inline-home-link">Tolz</Link>, works exactly like a 5-key TVM calculator,
           the same kind of logic you'd find on a BA II Plus or HP 12C. You plug in four of the five values
-          (future value, present value, payment, interest rate, or number of periods), leave the one you're
+          (<Link to="/tools/future-value-calculator" className="inline-home-link">future value</Link>, <Link to="/tools/present-value-calculator" className="inline-home-link">present value</Link>, payment, <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, or number of periods), leave the one you're
           trying to find blank, and it does the math for you. No app to download, no account to make, just
           numbers in and an answer out.
         </p>
@@ -155,7 +155,7 @@ export default function FinanceCalculatorFaqSection() {
           Say somebody owes you $500. Would you rather get it all right now, or spread out over the next
           year in four payments? Most people would take the money now, and there's a good reason for that,
           money in your hand today can actually do something for you. You could invest it, throw it at a
-          loan you're carrying, or just stick it in a savings account where it starts earning interest.
+          loan you're carrying, or just stick it in a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link> where it starts earning interest.
           Money you're promised later can't do any of that until it actually shows up. That gap in
           usefulness is what "time value of money" is really describing: a dollar today is worth more than
           a dollar you're told you'll get next year, even if it's technically the same dollar amount.
@@ -193,7 +193,7 @@ export default function FinanceCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           If you break that $121 down, it's actually made up of four separate pieces: your original $100
           principal, the $10 you earned in year one, the $10 you earned in year two, and one extra dollar,
-          interest earned on the interest from year one ($10 × 0.10 = $1). That last dollar is compounding
+          {" "}<Link to="/tools/interest-calculator" className="inline-home-link">interest earned</Link> on the interest from year one ($10 × 0.10 = $1). That last dollar is compounding
           in action, and it's a small example, but stretch this out over 20 or 30 years and that compounding
           effect is the difference between a decent retirement account and a great one.
         </p>

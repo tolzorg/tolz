@@ -197,14 +197,14 @@ export default function RoiCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How to Use the ROI Calculator</h2>
         <ol style={listGapStyle}>
-          <li style={liStyle}><strong>Enter the amount invested.</strong> Count everything you paid to get in: the purchase price, plus commissions, closing costs, setup fees, or ad creative. If it came out of your pocket to start the thing, it belongs here.</li>
+          <li style={liStyle}><strong>Enter the amount invested.</strong> Count everything you paid to get in: the purchase price, plus <Link to="/tools/commission-calculator" className="inline-home-link">commissions</Link>, closing costs, setup fees, or ad creative. If it came out of your pocket to start the thing, it belongs here.</li>
           <li style={liStyle}><strong>Enter the amount returned.</strong> That’s what you sold for, what it’s worth now, or what it brought in. If you got money along the way (dividends, rent, interest), add it to this number so you’re not shortchanging the result.</li>
           <li style={liStyle}><strong>Set the time period.</strong> Pick start and end dates if you know them, or type in the investment length if you’re just running a scenario. The calculator turns the gap into years for you, so odd stretches like 14 months and 12 days aren’t a problem.</li>
           <li style={lastLi}><strong>Read your results.</strong> You’ll see gain or loss, total ROI, and annualized ROI.</li>
         </ol>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           One thing worth knowing: the time period doesn’t change total ROI at all. It only changes the annualized figure. If
-          you’re comparing two investments, lean on the annualized number.
+          you’re comparing two <Link to="/tools/investment-calculator" className="inline-home-link">investments</Link>, lean on the annualized number.
         </p>
       </div>
 
@@ -321,7 +321,7 @@ export default function RoiCalculatorFaqSection() {
         <h2 style={h2Style}>What Counts as “Cost” and “Gain”?</h2>
         <p style={pStyle}>The formula is easy. The hard part is deciding what goes into it.</p>
         <p style={pStyle}>
-          Say two investors look at the same rental property. One counts the purchase price only. The other adds closing
+          Say two investors look at the same <Link to="/tools/rental-property-calculator" className="inline-home-link">rental property</Link>. One counts the purchase price only. The other adds closing
           costs, repairs, property taxes, insurance, and years of maintenance. They’ll get two different ROIs from the same
           house, and both think they’re right.
         </p>
@@ -412,10 +412,10 @@ export default function RoiCalculatorFaqSection() {
         <p style={pStyle}>The disadvantages above are the headline version. Here are the limitations that actually bite in real decisions:</p>
         <ul style={listGapStyle}>
           <li style={liStyle}><strong>Risk gets ignored.</strong> ROI tells you what a result was, not how bumpy the ride was or how likely a wipeout was. If you’re comparing a stable bond with a speculative small-cap stock, the same ROI doesn’t mean the same quality of outcome.</li>
-          <li style={liStyle}><strong>Cash flow timing is invisible.</strong> Suppose you put in money at different times or took money out along the way. One ROI number can’t capture that. Metrics like IRR and NPV exist for this reason.</li>
+          <li style={liStyle}><strong>Cash flow timing is invisible.</strong> Suppose you put in money at different times or took money out along the way. One ROI number can’t capture that. Metrics like <Link to="/tools/irr-calculator" className="inline-home-link">IRR</Link> and NPV exist for this reason.</li>
           <li style={liStyle}><strong>It’s backward-looking, and forecasts are only as good as their assumptions.</strong> A projected ROI is built on guesses about future revenue and costs. Small changes to those guesses can swing the number a lot.</li>
           <li style={liStyle}><strong>It doesn’t account for opportunity cost.</strong> If your 6% return came from tying up money that could’ve earned 9% somewhere similar, you didn’t really win.</li>
-          <li style={liStyle}><strong>Inflation and taxes shrink real returns.</strong> A 3% return in a year with 4% inflation means you lost buying power.</li>
+          <li style={liStyle}><strong>Inflation and taxes shrink real returns.</strong> A 3% return in a year with 4% <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link> means you lost buying power.</li>
           <li style={lastLi}><strong>It doesn’t capture non-financial value.</strong> Plenty of worthwhile things, such as safety upgrades, training, or customer goodwill, are hard to fit into an ROI.</li>
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>None of this means you should skip ROI. It means you shouldn’t stop there.</p>

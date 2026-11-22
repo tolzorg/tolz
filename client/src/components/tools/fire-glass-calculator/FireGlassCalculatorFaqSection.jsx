@@ -93,7 +93,7 @@ export default function FireGlassCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Fire Glass Calculator: Find the Exact Amount of Fire Glass You Need</h2>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Figuring out how much fire glass to buy is one of those small details that can throw off an entire
+          Figuring out how much fire <Link to="/calculators/construction/glass-weight" className="inline-home-link">glass</Link> to buy is one of those small details that can throw off an entire
           fire pit project, order too little and you're stuck with a dull, uneven flame bed; order too much
           and you've overspent on glass you didn't need. The fire glass calculator on{" "}
           <Link to="/" className="inline-home-link">Tolz</Link> removes that guesswork. Enter your fire pit's
@@ -134,7 +134,7 @@ export default function FireGlassCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>Reflective fire glass</strong> is tempered glass with a metallic coating that catches and
           amplifies light from the flame, giving it a brighter, more dramatic look. It tends to be slightly
-          heavier per cubic foot than untreated glass because of the coating and manufacturing process, and
+          heavier per <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic</Link> foot than untreated glass because of the coating and manufacturing process, and
           it's the most common choice for gas fire pits and fire tables where visual effect matters.
         </p>
         <p style={pStyle}>
@@ -162,7 +162,7 @@ export default function FireGlassCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>Round fire pits</strong> are the most common residential shape. The calculator uses the
-          radius (half the diameter) to determine the circular area, then multiplies by your chosen fill depth
+          radius (half the diameter) to determine the circular <Link to="/tools/square-footage-calculator" className="inline-home-link">area</Link>, then multiplies by your chosen fill depth
           to get volume. Because round pits are symmetrical, this is usually the most forgiving shape to
           measure accurately at home, a single diameter reading is often all you need.
         </p>

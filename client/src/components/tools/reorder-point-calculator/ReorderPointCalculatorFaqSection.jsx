@@ -335,7 +335,7 @@ export default function ReorderPointCalculatorFaqSection() {
           Perishables make over-ordering costly, but missing a key ingredient stops service. Short lead times and daily usage make the
           calculation quick and frequent.
         </Lead>
-        <Lead lead="Manufacturers.">A missing part can halt a production line. Reorder points keep raw material supply in step with the schedule.</Lead>
+        <Lead lead="Manufacturers.">A missing part can halt a <Link to="/tools/takt-time-calculator" className="inline-home-link">production</Link> line. Reorder points keep raw material supply in step with the schedule.</Lead>
         <Lead lead="Warehouse and purchasing teams.">A consistent trigger across SKUs creates purchasing rules that are easy to audit.</Lead>
         <Lead lead="Seasonal planning.">Before a peak season, enter higher unit sales to see how much earlier you need to order.</Lead>
         <Lead lead="Supplier changes.">Switching to a cheaper but slower supplier lengthens lead time, and the reorder point must rise with it.</Lead>

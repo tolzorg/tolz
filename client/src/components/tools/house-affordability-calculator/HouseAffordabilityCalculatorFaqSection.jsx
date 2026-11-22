@@ -248,7 +248,7 @@ export default function HouseAffordabilityCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What a House Affordability Calculator Actually Does</h2>
         <p style={pStyle}>
-          A regular mortgage calculator starts with a home price and spits out a payment. An affordability calculator
+          A regular <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage calculator</Link> starts with a home price and spits out a payment. An affordability calculator
           works the other way. It starts with your money, figures out the biggest monthly housing payment you can carry,
           and then converts that into a loan amount and a purchase price.
         </p>
@@ -259,7 +259,7 @@ export default function HouseAffordabilityCalculatorFaqSection() {
         <p style={pStyle}>
           The tool offers two ways to get there. One is the <strong>income-and-debt method</strong>, which mirrors how
           lenders think. You enter what you earn and owe, pick a loan type, and the calculator applies that program's
-          debt-to-income limits. The other is the <strong>fixed monthly budget method</strong>, where you decide what you
+          {" "}<Link to="/tools/debt-to-income-calculator" className="inline-home-link">debt-to-income</Link> limits. The other is the <strong>fixed monthly budget method</strong>, where you decide what you
           want to pay each month and the calculator works out the price that payment supports. Both are useful, and they
           often give you different answers. We'll get to why that matters.
         </p>
@@ -279,11 +279,11 @@ export default function HouseAffordabilityCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>Your income or debts just changed.</strong> A raise, a new job, a spouse joining the loan, a paid-off
-          car, or a new student loan payment all move the number. It's worth rerunning.
+          car, or a new student <Link to="/tools/loan-calculator" className="inline-home-link">loan payment</Link> all move the number. It's worth rerunning.
         </p>
         <p style={pStyle}>
           <strong>You're choosing between loan types.</strong> If you've got a middling credit score and a small down
-          payment, FHA might beat Conventional. If you served in the military, VA could beat both. Switching the
+          payment, <Link to="/tools/fha-loan-calculator" className="inline-home-link">FHA</Link> might beat Conventional. If you served in the military, VA could beat both. Switching the
           guideline in the calculator shows you how each one treats your situation.
         </p>
         <p style={pStyle}>
@@ -311,7 +311,7 @@ export default function HouseAffordabilityCalculatorFaqSection() {
         <h2 style={h2Style}>What You'll Enter, and Why Each Number Matters</h2>
         <p style={pStyle}>Garbage in, garbage out applies here. Honest numbers beat optimistic ones.</p>
         <p style={pStyle}>
-          <strong>Annual household income.</strong> Lenders use gross income, meaning before taxes and paycheck
+          <strong>Annual household income.</strong> Lenders use gross income, meaning before taxes and <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link>{" "}
           deductions. If you're buying with a partner, combine both incomes. You can usually find your number on a W-2.
           Count salary, regular overtime, and bonuses or commissions you've been earning consistently. Lenders typically
           want a two-year history on variable income, so one huge year won't carry your whole application. If you're

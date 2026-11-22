@@ -141,7 +141,7 @@ export default function FreightClassCalculatorFaqSection() {
           since the class reflects how easily the goods can be damaged.
         </P>
         <P>
-          The class matters because it directly affects what you pay. Two pallets can weigh the same and still cost very different amounts to
+          The class matters because it directly affects what you pay. Two <Link to="/tools/pallet-calculator" className="inline-home-link">pallets</Link> can weigh the same and still cost very different amounts to
           ship, because a compact pallet of metal parts uses far less trailer space than a tall pallet of foam. A freight class calculator takes
           the guesswork out of this first step, so your quote starts from the right number.
         </P>
@@ -175,7 +175,7 @@ export default function FreightClassCalculatorFaqSection() {
           the top is billed as 52 inches wide, even if the base is 48.
         </P>
         <P>
-          Click Calculate and the tool shows the NMFC freight class based on the U.S. standard. It also shows the density in pounds per cubic foot
+          Click Calculate and the tool shows the NMFC freight class based on the U.S. standard. It also shows the density in pounds per <Link to="/tools/cbm-calculator" className="inline-home-link">cubic</Link> foot
           (lb/ft³) and in kilograms per cubic meter (kg/m³). To see the cost, fill in the total freight cost fields, which are covered below.
         </P>
       </Card>
@@ -313,7 +313,7 @@ export default function FreightClassCalculatorFaqSection() {
         <P>
           Freight moves in several ways, and not all of them use freight class. LTL shipping combines freight from several customers on one truck
           and uses the NMFC class system. Full truckload (FTL) moves one shipper’s freight on a whole trailer and is usually priced by lane and
-          truck, not by class. Parcel carriers handle small packages and price by dimensional weight, which compares actual weight with the space
+          truck, not by class. Parcel carriers handle small packages and price by <Link to="/tools/dimensional-weight-calculator" className="inline-home-link">dimensional weight</Link>, which compares actual weight with the space
           a box takes up. Other modes, like air, ocean, and intermodal, use their own pricing rules.
         </P>
         <P>If you are sending one or more pallets within the United States on an LTL carrier, freight class is the number you need.</P>

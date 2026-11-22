@@ -289,8 +289,8 @@ export default function ColorPickerFaqSection() {
           Even with an accurate tool, a few habits can lead to inconsistent results. Screen calibration varies
           between monitors, so a color that looks correct on one display might appear slightly different on
           another, for critical brand work, it's worth cross-checking the extracted code against a known
-          reference. Compression artifacts in low-quality images can also distort colors slightly, especially
-          in JPEG files with heavy compression; picking colors from a higher-resolution or uncompressed image
+          reference. <Link to="/tools/image-compressor" className="inline-home-link">Compression</Link> artifacts in low-quality images can also distort colors slightly, especially
+          in <Link to="/tools/image-converter" className="inline-home-link">JPEG</Link> files with heavy compression; picking colors from a higher-resolution or uncompressed image
           source tends to give more reliable results. Finally, mixing color formats inconsistently across a
           single project, such as using HEX in some places and RGB in others, can create confusion during
           development; it's generally best to standardize on one format per project unless there's a specific

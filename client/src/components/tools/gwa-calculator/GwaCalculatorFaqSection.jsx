@@ -198,7 +198,7 @@ export default function GwaCalculatorFaqSection() {
           ["Physical Education,", "2 units, grade 1.25: 1.25 × 2 = 2.50"],
         ]} />
         <P>
-          The weighted grade points add up to 20.00, and the total units are 12. Dividing 20.00 by 12 gives 1.6667, which rounds to a GWA of
+          The <Link to="/tools/grade-calculator" className="inline-home-link">weighted grade</Link> points add up to 20.00, and the total units are 12. Dividing 20.00 by 12 gives 1.6667, which rounds to a GWA of
           1.67. The simple average of the four grades would be 1.625. The gap looks small here, but it grows when unit loads differ sharply, and
           a few hundredths can decide whether you reach a cutoff. The same steps work on any grading scale, which is why the GWA calculator can
           handle all of them.
@@ -284,7 +284,7 @@ export default function GwaCalculatorFaqSection() {
 
       <Card title="GWA vs GPA, QPI and CGPA">
         <P>
-          Students often search for a GWA calculator and a GPA calculator as if they were different tools. In practice, GWA, GPA, QPI and CGPA are
+          Students often search for a GWA calculator and a <Link to="/tools/gpa-calculator" className="inline-home-link">GPA calculator</Link> as if they were different tools. In practice, GWA, GPA, QPI and <Link to="/tools/gpa-calculator-pakistan" className="inline-home-link">CGPA</Link> are
           all weighted averages of grades by units. The differences are mostly about naming and scale. GWA is the standard term in many
           Philippine colleges and is usually reported on the 1.00–5.00 scale. GPA is the common term elsewhere and is almost always on a 4.00
           scale. QPI (quality point index) and CGPA (cumulative grade point average) are the labels certain universities use for their own

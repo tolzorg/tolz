@@ -217,7 +217,7 @@ export default function PaybackPeriodCalculatorFaqSection() {
         <P>
           First, make sure the inflow is net. If a machine brings in $40,000 a year in extra sales but costs $12,000 a year to
           run and maintain, your inflow is $28,000, not $40,000. Second, make sure the cash flow really is level. A “steady”
-          rental income usually isn’t, since rents go up, vacancies happen, and the roof leaks eventually. If you know the
+          {" "}<Link to="/tools/rental-property-calculator" className="inline-home-link">rental income</Link> usually isn’t, since rents go up, vacancies happen, and the roof leaks eventually. If you know the
           number will drift, use the growing or irregular option instead.
         </P>
         <P>
@@ -299,7 +299,7 @@ export default function PaybackPeriodCalculatorFaqSection() {
           Payback is $40,000 ÷ $13,000 ≈ 3.08 years.
         </P>
         <P>
-          For bigger purchases, use after-tax cash flows. Depreciation isn’t cash, but it does lower your taxes, and that tax
+          For bigger purchases, use after-tax cash flows. <Link to="/tools/depreciation-calculator" className="inline-home-link">Depreciation</Link> isn’t cash, but it does lower your taxes, and that tax
           savings is real money that belongs in the cash flow.
         </P>
 
@@ -333,7 +333,7 @@ export default function PaybackPeriodCalculatorFaqSection() {
         <H3>What is an undiscounted payback period?</H3>
         <P>
           It’s just the regular, simple payback period. “Undiscounted” means nobody has adjusted the future cash flows for the
-          time value of money. A dollar in year six counts as a full dollar. People add the word “undiscounted” when they want
+          {" "}<Link to="/tools/finance-calculator" className="inline-home-link">time value of money</Link>. A dollar in year six counts as a full dollar. People add the word “undiscounted” when they want
           to make the contrast with the discounted version clear.
         </P>
       </Card>
@@ -341,8 +341,8 @@ export default function PaybackPeriodCalculatorFaqSection() {
       <Card title="Discounted Payback Period">
         <H3>What is the discounted payback period?</H3>
         <P>
-          Money today is worth more than the same money later, because you can invest it, and because inflation chips away at
-          what it buys. The discounted payback period handles this by shrinking each future cash flow to its present value
+          Money today is worth more than the same money later, because you can invest it, and because <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link> chips away at
+          what it buys. The discounted payback period handles this by shrinking each future cash flow to its <Link to="/tools/present-value-calculator" className="inline-home-link">present value</Link>{" "}
           before adding it up. It tells you how long it takes for the present value of your inflows to cover your investment.
         </P>
         <P>The present value of a cash flow is:</P>

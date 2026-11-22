@@ -168,7 +168,7 @@ export default function ApLangScoreCalculatorFaqSection() {
 
       <Card title="What Is AP Lang, and What Is It For?">
         <P>
-          AP Lang is the common name for AP English Language and Composition, a college-level course and exam in the College Board’s Advanced
+          AP Lang is the common name for AP English Language and Composition, a college-level course and <Link to="/tools/test-grade-calculator" className="inline-home-link">exam</Link> in the <Link to="/tools/college-gpa-calculator" className="inline-home-link">College</Link> Board’s Advanced
           Placement program. The course focuses on nonfiction. You read essays, speeches, articles, letters, and other real-world texts, then
           learn how writers use language to inform, persuade, and argue. You also practice making strong arguments of your own.
         </P>
@@ -243,7 +243,7 @@ export default function ApLangScoreCalculatorFaqSection() {
         <P>
           Neither is clearly easier. The 2025 results were nearly identical: about 74 percent of students earned a 3 or higher on each exam.
           The better fit depends on your strengths. Students who like debating ideas and analyzing speeches or articles tend to prefer Lang,
-          while students who love novels and poetry often prefer Lit. Many schools offer Lang in 11th grade and Lit in 12th. If you are choosing
+          while students who love novels and poetry often prefer Lit. Many schools offer Lang in 11th <Link to="/tools/grade-calculator" className="inline-home-link">grade</Link> and Lit in 12th. If you are choosing
           an order, Lang is a common first step because its argument and analysis skills carry over to literary writing.
         </P>
       </Card>

@@ -175,7 +175,7 @@ export default function BusinessLoanCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           That last number matters most. Two loans can both say &quot;8%&quot; and still be very different deals once fees come
           into play. A calculator that only handles interest can&apos;t show you that. This one can, so it works as a business
-          loan payment calculator and a business loan APR calculator at the same time.
+          loan <Link to="/tools/payment-calculator" className="inline-home-link">payment calculator</Link> and a business loan <Link to="/tools/apr-calculator" className="inline-home-link">APR calculator</Link> at the same time.
         </p>
       </div>
 
@@ -210,7 +210,7 @@ export default function BusinessLoanCalculatorFaqSection() {
         </p>
         <div style={formulaStyle}>Payment = P × r ÷ (1 − (1 + r)^−n)</div>
         <p style={pStyle}>
-          P is the amount you borrow, r is the interest rate per payment period (the annual rate divided by the number of
+          P is the amount you borrow, r is the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> per payment period (the annual rate divided by the number of
           payments per year), and n is the total number of payments.
         </p>
         <p style={pStyle}>
@@ -303,7 +303,7 @@ export default function BusinessLoanCalculatorFaqSection() {
           that won&apos;t earn anything until it&apos;s finished.
         </p>
         <p style={pStyle}>
-          The catch is that you owe the full $100,000 at the end. You&apos;ll either need to pay it all off, refinance, or get
+          The catch is that you owe the full $100,000 at the end. You&apos;ll either need to pay it all off, <Link to="/tools/refinance-calculator" className="inline-home-link">refinance</Link>, or get
           approved for a new loan, and approval isn&apos;t guaranteed. So interest-only is really a bet on your future cash
           flow. Use the calculator to see the total interest and the real APR before you take that bet.
         </p>
@@ -387,7 +387,7 @@ export default function BusinessLoanCalculatorFaqSection() {
 
         <h3 style={h3Style}>Personal loans for business use</h3>
         <p style={pStyle}>
-          Some new business owners, especially those without a track record, use a personal loan to avoid the higher rates on
+          Some new business owners, especially those without a track record, use a <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loan</Link> to avoid the higher rates on
           business loans. It can work, but there are downsides. You&apos;re personally on the hook, personal loan limits are
           usually smaller, and some lenders don&apos;t allow business use. Make sure the loan terms allow it before you borrow.
         </p>

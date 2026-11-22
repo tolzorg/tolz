@@ -138,8 +138,8 @@ export default function RentVsBuyCalculatorFaqSection() {
       <Card title="How the Rent vs Buy Calculator Works">
         <P>
           Behind the scenes, the tool runs two versions of your life side by side. In one, you buy: you put money down, pay
-          closing costs, make mortgage payments, and cover property tax, insurance, and repairs. In the other, you rent a
-          comparable place and invest the cash you didn’t spend on a down payment and ownership costs.
+          closing costs, make <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage payments</Link>, and cover property tax, insurance, and repairs. In the other, you rent a
+          comparable place and invest the cash you didn’t spend on a <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link> and ownership costs.
         </P>
         <P>
           For every year from 1 to 30, it adds up what each path costs and what you’d walk away with if you left that year. For
@@ -163,7 +163,7 @@ export default function RentVsBuyCalculatorFaqSection() {
           as an estimate built from your inputs, not a forecast.
         </P>
         <P>
-          It also assumes you can afford either option. If a down payment would wipe out your emergency fund, no calculator can
+          It also assumes you can afford either option. If a down payment would wipe out your <Link to="/tools/savings-calculator" className="inline-home-link">emergency fund</Link>, no calculator can
           tell you that’s fine. And it only measures money. It can’t put a price on painting your living room whatever color you
           want, or on never having to call a landlord about a broken water heater.
         </P>
@@ -183,7 +183,7 @@ export default function RentVsBuyCalculatorFaqSection() {
         </P>
         <P>
           <strong>How long will you actually stay?</strong> This is probably the most important variable. Buying and selling a
-          home costs a lot, often 8% to 10% of the home’s value combined once you add up closing costs, agent commissions, and
+          home costs a lot, often 8% to 10% of the home’s value combined once you add up closing costs, agent <Link to="/tools/commission-calculator" className="inline-home-link">commissions</Link>, and
           moving expenses. You need enough years of ownership for the savings (and any equity growth) to cover that hit. Stay a
           short time and the transaction costs eat you alive. Stay a long time and they get spread thin. The break-even year the
           calculator shows is your minimum stay. If you’re confident you’ll live there longer than that, buying looks better. If
@@ -280,7 +280,7 @@ export default function RentVsBuyCalculatorFaqSection() {
       <Card title="Does a Mortgage Really Build Wealth?">
         <P>
           It does, but less than people think. A lot of buyers assume the home will be a great investment, and sometimes it is.
-          But economist Robert Shiller’s long-run research on U.S. home prices found that after adjusting for inflation, prices
+          But economist Robert Shiller’s long-run research on U.S. home prices found that after adjusting for <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link>, prices
           were almost flat over the twentieth century, with real appreciation averaging only a fraction of a percent per year.
           After you subtract taxes, repairs, and insurance, many owners end up roughly breaking even on the house as an
           investment.

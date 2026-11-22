@@ -160,7 +160,7 @@ export default function GradeCalculatorFaqSection() {
         </P>
         <P>
           Canada has no national system. Each province and territory sets its own rules, and individual schools add their own. Many high schools
-          report percentages, some use letters, and many universities convert marks to a 4.0 scale or a similar GPA scale. Always check your
+          report percentages, some use letters, and many universities convert marks to a 4.0 scale or a similar <Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link> scale. Always check your
           school’s grading policy before you rely on a conversion chart.
         </P>
         <P>
@@ -291,7 +291,7 @@ export default function GradeCalculatorFaqSection() {
           that falls short or runs over will distort the result.
         </P>
         <P>
-          Weighted scoring is also different from the weighted GPA some high schools use, where honors and AP classes earn extra grade points.
+          Weighted scoring is also different from the <Link to="/tools/high-school-gpa-calculator" className="inline-home-link">weighted GPA</Link> some high schools use, where honors and AP classes earn extra grade points.
           That system is applied to the final course grade, after the course grade has been calculated.
         </P>
         <P>
@@ -353,7 +353,7 @@ export default function GradeCalculatorFaqSection() {
         </Lead>
         <Lead lead="Planning your effort before finals.">
           When the final is worth 30 or 40 percent of the course, your current standing tells you whether to protect a strong grade or recover a
-          weak one. Adjust the final exam score in the calculator to see which outcomes keep you above a threshold.
+          weak one. Adjust the <Link to="/tools/final-grade-calculator" className="inline-home-link">final exam score</Link> in the calculator to see which outcomes keep you above a threshold.
         </Lead>
         <Lead lead="Scholarship, program and eligibility thresholds.">
           Scholarships, sports eligibility, honors programs and graduate admissions often set minimum grades. Checking the likely result ahead of

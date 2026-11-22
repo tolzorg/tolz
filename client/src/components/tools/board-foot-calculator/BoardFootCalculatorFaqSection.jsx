@@ -121,14 +121,14 @@ export default function BoardFootCalculatorFaqSection() {
           A board foot is the standard unit of volume used across the lumber industry in the United States and
           several other markets to price and measure wood. One board foot equals a piece of lumber measuring 1
           inch thick, 12 inches wide, and 12 inches long, or any combination of dimensions that produces the
-          same total volume, which is 144 cubic inches.
+          same total volume, which is 144 <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic</Link> inches.
         </p>
         <p style={pStyle}>The board foot formula is straightforward once you know the three inputs:</p>
         <div style={formulaStyle}>Board Feet = (Thickness in inches × Width in inches × Length in inches) ÷ 144</div>
         <p style={pStyle}>For lumber measured in feet rather than inches, the formula adjusts to:</p>
         <div style={formulaStyle}>Board Feet = Thickness (in) × Width (in) × Length (ft) ÷ 12</div>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          This matters because lumber is rarely sold by a simple length or area measurement the way drywall or
+          This matters because lumber is rarely sold by a simple length or <Link to="/tools/square-footage-calculator" className="inline-home-link">area</Link> measurement the way <Link to="/calculators/construction/drywall" className="inline-home-link">drywall</Link> or
           flooring might be. A thick slab and a thin board of the same width and length contain very different
           amounts of wood, and board feet account for that volume directly. It's why lumberyards, sawmills, and
           hardwood suppliers price by the board foot rather than by the linear foot for anything other than
@@ -150,7 +150,7 @@ export default function BoardFootCalculatorFaqSection() {
           Because it supports both imperial and metric units, the tool works equally well whether you're
           reading dimensions off a U.S. lumberyard price sheet in inches and feet, or working from a metric spec
           sheet in millimeters or meters, which is common in international sourcing, European hardwood
-          suppliers, and metric-based building projects. There's no need to convert units manually before
+          suppliers, and metric-based building projects. There's no need to <Link to="/tools/unit-converter" className="inline-home-link">convert units</Link> manually before
           entering your numbers, the calculator handles the conversion internally and gives you a result in
           board feet regardless of which measurement system you started with.
         </p>

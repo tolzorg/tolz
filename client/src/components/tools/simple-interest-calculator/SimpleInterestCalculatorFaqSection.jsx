@@ -287,8 +287,8 @@ export default function SimpleInterestCalculatorFaqSection() {
         <h2 style={h2Style}>What Is Simple Interest?</h2>
         <p style={pStyle}>
           Interest is just the price of using someone else's money. If you borrow, you pay it. If you lend, or put money
-          in a bank (which is really lending to the bank), you earn it. Car loans, credit cards, savings accounts, CDs,
-          and bonds all work this way. What differs is how the interest gets calculated.
+          in a bank (which is really lending to the bank), you earn it. <Link to="/tools/auto-loan-calculator" className="inline-home-link">Car loans</Link>, credit cards, savings accounts, <Link to="/tools/cd-calculator" className="inline-home-link">CDs</Link>,
+          and <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link> all work this way. What differs is how the interest gets calculated.
         </p>
         <p style={pStyle}>
           With simple interest, the rate is applied to the original principal and nothing else. In most cases the rate is
@@ -491,7 +491,7 @@ export default function SimpleInterestCalculatorFaqSection() {
           That's covered in the next section, because it affects how you use the calculator.
         </p>
         <p style={pStyle}>
-          <strong>Federal student loans.</strong> In the U.S., federal student loans accrue simple daily interest: you
+          <strong>Federal student loans.</strong> In the U.S., federal <Link to="/tools/student-loan-calculator" className="inline-home-link">student loans</Link> accrue simple daily interest: you
           divide the annual rate by the number of days in the year to get a daily rate, then apply it to your outstanding
           principal. On $30,000 at 6%, that's about $4.93 a day. The catch is that unpaid interest can be added to the
           principal in certain situations (that's called capitalization), and after that you're paying interest on a
@@ -530,7 +530,7 @@ export default function SimpleInterestCalculatorFaqSection() {
           Here's why it matters. Say a lender offers $10,000 at a "flat 5%" for three years, repaid monthly. Interest
           calculated on the full $10,000 for 3 years is $1,500, so you'd repay $11,500, or about $319.44 a month. That
           sounds like 5%. But you're making payments every month, so you're not holding $10,000 for three years; you're
-          holding less and less of it. The actual annual percentage rate on that deal works out to roughly 9.3%.
+          holding less and less of it. The actual <Link to="/tools/apr-calculator" className="inline-home-link">annual percentage rate</Link> on that deal works out to roughly 9.3%.
         </p>
         <p style={pStyle}>So there are two situations:</p>
         <ul style={listGapStyle}>

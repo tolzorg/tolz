@@ -166,7 +166,7 @@ export default function GfrCalculatorFaqSection() {
         </P>
         <P>
           GFR is reported in milliliters per minute per 1.73 square meters (mL/min/1.73 m²). The 1.73 m² figure is the average adult
-          body surface area. Adjusting for it lets doctors compare a small person and a large person on the same scale, so the result
+          {" "}<Link to="/tools/body-surface-area-calculator" className="inline-home-link">body surface area</Link>. Adjusting for it lets doctors compare a small person and a large person on the same scale, so the result
           reflects how well the kidneys are working rather than how big the body is.
         </P>
         <P>
@@ -471,7 +471,7 @@ export default function GfrCalculatorFaqSection() {
         <P>
           You can still do a lot without medication, and most of it protects the kidneys over time. Keep blood pressure in the range your
           doctor recommends. Manage blood sugar if you have diabetes. Cut back on salt, eat a balanced diet with plenty of vegetables, and
-          talk to your doctor about how much protein is right for you. Stay active, keep a healthy weight, stop smoking, limit alcohol and
+          talk to your doctor about how much protein is right for you. Stay active, keep a <Link to="/tools/healthy-weight-calculator" className="inline-home-link">healthy weight</Link>, stop smoking, limit alcohol and
           avoid regular use of anti-inflammatory painkillers. No supplement, juice or detox product has been proven to raise GFR, and some
           herbal products can harm the kidneys.
         </P>
@@ -512,7 +512,7 @@ export default function GfrCalculatorFaqSection() {
 
       <Card title="Creatinine Units and Input Tips">
         <P>
-          Unit conversion trips up more users than the formulas do. To convert µmol/L to mg/dL, divide by 88.4. To go the other way,
+          {" "}<Link to="/tools/unit-converter" className="inline-home-link">Unit conversion</Link> trips up more users than the formulas do. To convert µmol/L to mg/dL, divide by 88.4. To go the other way,
           multiply by 88.4. A creatinine of 88 µmol/L is roughly 1.0 mg/dL, which is a typical value for a healthy adult.
         </P>
         <P>

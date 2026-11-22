@@ -117,7 +117,7 @@ export default function Base64EncodeDecodeFaqSection() {
         <P>
           Base64 is a way to write binary data as plain text. Computers store files such as images, PDFs, and ZIP archives as raw bytes. Many
           systems, especially older ones, were built to handle text and can damage or reject raw bytes. Base64 solves this by converting any data
-          into a string made of 64 safe, printable characters. Once the data is in that form, it can travel through email, JSON, XML, HTML, and URLs
+          into a string made of 64 safe, printable characters. Once the data is in that form, it can travel through email, JSON, XML, HTML, and <Link to="/tools/url-encode-decode" className="inline-home-link">URLs</Link>{" "}
           without being changed along the way. Decoding reverses the process and gives you back the exact original data.
         </P>
         <P>
@@ -205,7 +205,7 @@ export default function Base64EncodeDecodeFaqSection() {
 
       <Card title="How to Convert an Image to Base64 (or a PNG File to Text)">
         <P>
-          An image is just bytes, so Base64 can turn it into a long text string. That is how you convert a PNG, JPG, or any other image to text.
+          An image is just bytes, so Base64 can turn it into a long text string. That is how you convert a <Link to="/tools/image-converter" className="inline-home-link">PNG</Link>, JPG, or any other image to text.
           Switch to the file section, choose encode a file, add your image, and click Encode. The Base64 text appears in a box where you can copy it
           or download it as a file.
         </P>
@@ -354,7 +354,7 @@ export default function Base64EncodeDecodeFaqSection() {
           sees an encoded string can decode it in seconds, and this decoder does exactly that.
         </P>
         <P>
-          This is why "decrypting" a Base64 password is really just decoding it, and why encoding a password in Base64 doesn't protect it.
+          This is why "decrypting" a Base64 <Link to="/tools/password-generator" className="inline-home-link">password</Link> is really just decoding it, and why encoding a password in Base64 doesn't protect it.
           Passwords should be hashed with a modern password-hashing method, and sensitive data should be encrypted and sent over HTTPS. If you find
           passwords, keys, or personal data stored only as Base64 in a codebase or response, treat them as exposed.
         </P>

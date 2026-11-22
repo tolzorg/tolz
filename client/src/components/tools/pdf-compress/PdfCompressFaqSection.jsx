@@ -141,7 +141,7 @@ export default function PdfCompressFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How Do PDF Compression Tools Work, and What Makes PDF Special?</h2>
         <p style={pStyle}>
-          A PDF is not one block of data. It is a container holding text, fonts, vector graphics, images, metadata, and
+          A PDF is not one block of data. It is a container holding text, fonts, vector graphics, <Link to="/tools/image-compressor" className="inline-home-link">images</Link>, metadata, and
           an internal structure, and each part compresses differently. This is what makes PDF compression more
           interesting than zipping a file. A compressor can treat each component on its own terms:
         </p>
@@ -342,7 +342,7 @@ export default function PdfCompressFaqSection() {
           </li>
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          If the file will not reach your target, try these in order: compress again with Tolz and compare sizes; split
+          If the file will not reach your target, try these in order: compress again with Tolz and compare sizes; <Link to="/tools/pdf-split" className="inline-home-link">split</Link>{" "}
           the document into parts; remove unneeded pages, attachments, or embedded media; or re-scan at a lower
           resolution (150 to 200 dpi is enough for most documents). Always check the final size before submitting to a
           portal with a strict limit.

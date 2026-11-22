@@ -130,7 +130,7 @@ export default function GlassWeightCalculatorFaqSection() {
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>Choose a shape</strong> — Rectangular, square, triangular, circular, semi-circular,
-            elliptical, round rod, or Other shapes (for anything not listed, where you can type the area
+            elliptical, round rod, or Other shapes (for anything not listed, where you can type the <Link to="/tools/square-footage-calculator" className="inline-home-link">area</Link>{" "}
             directly).
           </li>
           <li style={{ marginBottom: 8 }}>
@@ -218,11 +218,11 @@ export default function GlassWeightCalculatorFaqSection() {
             is rated to support the finished glass panel's weight.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Fabrication and glazing quotes</strong> — Estimating material weight before cutting glass
+            <strong>Fabrication and glazing quotes</strong> — Estimating <Link to="/tools/size-to-weight-calculator" className="inline-home-link">material weight</Link> before cutting glass
             to size, useful for pricing jobs and planning safe handling.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Fire pits and landscaping</strong> — Working out how much decorative or fire glass a
+            <strong>Fire pits and landscaping</strong> — Working out how much decorative or <Link to="/calculators/construction/fire-glass" className="inline-home-link">fire glass</Link> a
             project needs by volume and weight.
           </li>
           <li>

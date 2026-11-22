@@ -144,7 +144,7 @@ export default function InvestmentCalculatorFaqSection() {
           <Link to="/" className="inline-home-link">Tolz</Link>, lets you project how a lump sum or ongoing
           contributions will grow over time, or work in the opposite direction, starting from a target
           amount and solving for the contribution, rate of return, or time needed to reach it. Whether
-          you're mapping out a retirement fund, a house down payment, or a child's education savings, this
+          you're mapping out a <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> fund, a house <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>, or a child's education savings, this
           tool turns a vague goal into a concrete number.
         </p>
       </div>
@@ -177,7 +177,7 @@ export default function InvestmentCalculatorFaqSection() {
           the base the rest of the calculation grows from.
         </p>
         <p style={pStyle}>
-          <strong>Additional contribution.</strong> In financial terms this is sometimes called an annuity
+          <strong>Additional contribution.</strong> In financial terms this is sometimes called an <Link to="/tools/annuity-calculator" className="inline-home-link">annuity</Link>{" "}
           payment, and it simply refers to money added to the investment on a recurring basis after the
           starting amount. An investment doesn't need ongoing contributions to grow, a single lump sum left
           alone will still compound, but any regular contribution added on top accelerates the end result,
@@ -186,8 +186,8 @@ export default function InvestmentCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>Return rate.</strong> This is the percentage gain the investment produces, and for most
           people comparing options, it's the number that matters most. It's a simple percentage on the
-          surface, but it's the figure that lets you weigh a savings account against a stock fund against a
-          rental property, even though the underlying assets have nothing in common.
+          surface, but it's the figure that lets you weigh a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link> against a stock fund against a
+          {" "}<Link to="/tools/rental-property-calculator" className="inline-home-link">rental property</Link>, even though the underlying assets have nothing in common.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           <strong>Investment length.</strong> This is how long the money stays invested before you need the

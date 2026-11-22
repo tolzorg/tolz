@@ -235,7 +235,7 @@ export default function MarriageTaxCalculatorFaqSection() {
         <p style={pStyle}>
           A marriage bonus is the opposite, the couple pays less filing jointly than they would've as two
           singles. This tends to happen when there's a big income gap between spouses, like one person
-          earning a strong salary and the other earning little or nothing. In that setup, joint filing
+          earning a strong <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> and the other earning little or nothing. In that setup, joint filing
           effectively lets the higher earner's income spread out across the wider joint brackets, which can
           pull a chunk of it into a lower rate than it would've hit as a single filer.
         </p>
@@ -268,7 +268,7 @@ export default function MarriageTaxCalculatorFaqSection() {
           <li style={{ marginBottom: 8 }}>
             <strong>Credits and deductions that single filers often can't touch.</strong> Things like the
             Earned Income Tax Credit, education credits (the American Opportunity Credit and Lifetime
-            Learning Credit), the student loan interest deduction, and the credit for the elderly or
+            Learning Credit), the <Link to="/tools/student-loan-calculator" className="inline-home-link">student loan</Link> interest deduction, and the credit for the elderly or
             disabled all come with income and eligibility rules that are generally more favorable, or only
             available at all, under joint filing. Single filers can miss out on these entirely, or qualify
             for a smaller version of them.
@@ -281,7 +281,7 @@ export default function MarriageTaxCalculatorFaqSection() {
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>A spousal IRA for a non-working or lower-earning spouse.</strong> Normally, you need
-            earned income to contribute to an IRA. But once you're married and filing jointly, a spouse who
+            earned income to contribute to an <Link to="/tools/ira-calculator" className="inline-home-link">IRA</Link>. But once you're married and filing jointly, a spouse who
             isn't working, or who works but earns very little, can still contribute to their own IRA based
             on the working spouse's income. That's a real retirement-savings opportunity that doesn't exist
             for single filers or for a stay-at-home spouse filing separately.
@@ -289,7 +289,7 @@ export default function MarriageTaxCalculatorFaqSection() {
           <li>
             <strong>Protection for a surviving spouse's inherited assets.</strong> Federal tax law lets a
             spouse inherit assets from their deceased partner without those assets being hit by the federal
-            estate tax, thanks to what's called the unlimited marital deduction. This is a big deal for
+            {" "}<Link to="/tools/estate-tax-calculator" className="inline-home-link">estate tax</Link>, thanks to what's called the unlimited marital deduction. This is a big deal for
             couples with meaningful assets, because it means a surviving spouse isn't forced to deal with
             estate tax on what their partner leaves behind, that protection only exists because they were
             legally married.
@@ -314,7 +314,7 @@ export default function MarriageTaxCalculatorFaqSection() {
           one spouse has heavy medical expenses that only clear the deduction threshold against their
           individual income, when a couple wants to keep their tax liability legally distinct from each
           other (sometimes relevant with student loans or legal exposure), or in certain income-driven
-          student loan repayment plans that calculate payments off individual rather than household income.
+          student <Link to="/tools/repayment-calculator" className="inline-home-link">loan repayment</Link> plans that calculate payments off individual rather than household income.
           Outside of those specific cases, joint filing is almost always the more financially sound choice.
         </p>
       </div>

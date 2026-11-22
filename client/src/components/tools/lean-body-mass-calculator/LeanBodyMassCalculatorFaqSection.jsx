@@ -150,7 +150,7 @@ export default function LeanBodyMassCalculatorFaqSection() {
       <Card title="What Is Lean Body Mass?">
         <P>
           Lean body mass is everything in your body except stored fat. That includes skeletal muscle, bones, organs, blood, skin,
-          connective tissue and body water. Another way to think about it is what you would weigh if you had no body fat at all.
+          connective tissue and body water. Another way to think about it is what you would weigh if you had no <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link> at all.
         </P>
         <P>
           For most people, LBM makes up about 60% to 90% of total body weight. Men usually carry a higher share than women, mainly
@@ -365,7 +365,7 @@ export default function LeanBodyMassCalculatorFaqSection() {
         <P>
           On the other hand, there is no health problem with having a high lean mass. The concern is mainly the loss of lean tissue,
           not how much you carry. If you are losing weight and your lean mass is dropping with it, adjust your approach with more
-          protein, strength training and a smaller calorie deficit.
+          protein, strength training and a smaller <Link to="/tools/calorie-tracker" className="inline-home-link">calorie deficit</Link>.
         </P>
       </Card>
 
@@ -455,7 +455,7 @@ export default function LeanBodyMassCalculatorFaqSection() {
           Here is how it works. Suppose the calculator gives you 61.4 kg of LBM, which is about 135 pounds. Multiply by 0.8 to 1.0,
           and your daily target is about 108 to 135 grams of protein. Spread it over three or four meals, roughly 25 to 40 grams each.
         </P>
-        <P>People with kidney disease or other medical conditions should check with a doctor before raising protein intake.</P>
+        <P>People with kidney disease or other medical conditions should check with a doctor before raising <Link to="/tools/protein-calculator" className="inline-home-link">protein intake</Link>.</P>
       </Card>
 
       <Card title="What Is the Micro and Macro Nutrient Requirement per Pound of Lean Body Mass?">
@@ -488,7 +488,7 @@ export default function LeanBodyMassCalculatorFaqSection() {
           ["", "Nuts, seeds and nut butters"],
         ]} />
         <P>
-          Pair these with whole grains, fruit and vegetables so you get the carbohydrates, fiber and micronutrients your training
+          Pair these with whole grains, fruit and vegetables so you get the <Link to="/tools/carbohydrate-calculator" className="inline-home-link">carbohydrates</Link>, fiber and micronutrients your training
           needs.
         </P>
       </Card>

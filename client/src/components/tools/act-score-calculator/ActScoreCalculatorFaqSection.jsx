@@ -103,7 +103,7 @@ export default function ActScoreCalculatorFaqSection() {
 
       <Card title="What Is the ACT Exam?">
         <P>
-          The ACT, short for American College Testing, is a standardized exam used in college admissions across the United States. It
+          The ACT, short for American <Link to="/tools/college-cost-calculator" className="inline-home-link">College</Link> Testing, is a standardized <Link to="/tools/test-grade-calculator" className="inline-home-link">exam</Link> used in college admissions across the United States. It
           measures the skills students build in high school and gives colleges a common yardstick for comparing applicants from different
           schools, states and grading systems. The ACT is run by ACT, Inc., a nonprofit organization, and is accepted by virtually every
           four-year college in the country.
@@ -205,13 +205,13 @@ export default function ActScoreCalculatorFaqSection() {
         </P>
         <Lead lead="Top-tier schools.">
           Applicants who submit scores to universities like Harvard, Stanford and Brown typically sit between 34 and 36. No single score
-          guarantees admission anywhere, because grades, coursework, essays and activities matter too, but scores in that range keep you
+          guarantees admission anywhere, because <Link to="/tools/grade-calculator" className="inline-home-link">grades</Link>, coursework, essays and activities matter too, but scores in that range keep you
           competitive. Colleges that report only a middle-50% range are telling you that a quarter of admitted students scored below the bottom
           number, so a score slightly under it isn’t automatically disqualifying.
         </Lead>
         <Lead lead="Scholarships and full rides.">
           There’s no universal ACT score that earns a full ride. Merit awards are set school by school, and many pair a score cutoff with a
-          minimum GPA. Some scholarships start at a composite in the low 20s, while the most generous full-tuition awards often ask for 30 or
+          minimum <Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link>. Some scholarships start at a composite in the low 20s, while the most generous full-tuition awards often ask for 30 or
           higher. A cutoff of 28 for one tier and 30 for the next is common, which makes the exact composite matter more than most people
           expect. Always check the published requirements for the specific award.
         </Lead>

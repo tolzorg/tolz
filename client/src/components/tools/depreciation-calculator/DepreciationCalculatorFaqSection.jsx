@@ -120,7 +120,7 @@ export default function DepreciationCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What Is Depreciation?</h2>
         <p style={pStyle}>
-          In accounting, depreciation spreads the cost of a long-lived asset, like a machine, vehicle, or computer, over
+          In accounting, depreciation spreads the cost of a long-lived asset, like a machine, <Link to="/tools/auto-lease-calculator" className="inline-home-link">vehicle</Link>, or computer, over
           the years it's expected to be useful. Instead of recording the whole purchase as an expense in the year you buy
           it, you expense a portion each year, which gives a truer picture of profit over time. In the U.S., depreciation
           of business assets is generally tax-deductible.

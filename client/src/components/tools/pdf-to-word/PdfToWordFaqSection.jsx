@@ -117,7 +117,7 @@ export default function PdfToWordFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Converting PDF to Word reverses that. The tool reads the structure of your document — paragraphs,
-          headings, lists, tables, and images — and reconstructs each element inside a Word file. The result
+          headings, lists, tables, and <Link to="/tools/image-converter" className="inline-home-link">images</Link> — and reconstructs each element inside a Word file. The result
           is a .docx (or DOC-compatible) document where your cursor behaves normally: you can select a
           sentence, fix a typo, change a font, or delete a whole page. Instead of fighting a locked file, you
           get a clean starting point you fully control. This is the difference between a screenshot of a

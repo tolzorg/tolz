@@ -207,7 +207,7 @@ export default function IdPhotoGeneratorFaqSection() {
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           If you need a file for online submission, remember the digital specification for U.S. applications: a
-          square JPEG between 600 x 600 and 1200 x 1200 pixels, in colour, and under the file-size limit stated on the
+          square <Link to="/tools/image-converter" className="inline-home-link">JPEG</Link> between 600 x 600 and 1200 x 1200 pixels, in colour, and under the file-size limit stated on the
           official site.
         </p>
       </div>
@@ -277,7 +277,7 @@ export default function IdPhotoGeneratorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Ask a retail photo service</strong> (many pharmacies and print shops offer a digital copy,
-            sometimes by email or QR code) when you have your picture taken.
+            sometimes by email or <Link to="/tools/qr-generator" className="inline-home-link">QR code</Link>) when you have your picture taken.
           </li>
           <li>
             <strong>Use a professional studio</strong>, which can supply both prints and a digital file.
@@ -446,7 +446,7 @@ export default function IdPhotoGeneratorFaqSection() {
           To get a visa photo online, you take or choose a picture, select the correct visa template, and download a
           file in the format the application requires. For U.S. visa applications such as the DS-160, the photo must
           be a digital image with the following characteristics: square, 600 x 600 to 1200 x 1200 pixels, JPEG format,
-          in colour, with a plain white or off-white background, and a file size within the limit shown on the
+          in colour, with a plain white or off-white background, and a <Link to="/tools/image-compressor" className="inline-home-link">file size</Link> within the limit shown on the
           application. Many other embassies use different sizes, so choose your template based on the country you are
           applying to, not your country of residence.
         </p>

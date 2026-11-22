@@ -160,7 +160,7 @@ export default function PresentValueCalculatorFaqSection() {
 
       <Card title="How Do You Calculate the Present Value of an Annuity?">
         <P>
-          An annuity is just a series of equal payments made at regular intervals, like rent, a car loan, or monthly deposits
+          An <Link to="/tools/annuity-calculator" className="inline-home-link">annuity</Link> is just a series of equal payments made at regular intervals, like rent, a <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loan</Link>, or monthly deposits
           into a savings plan. To get its present value, you discount each payment back to today and add them up. Doing that
           one payment at a time is a pain, so there’s a shortcut formula for an ordinary annuity (payments at the end of each
           period):
@@ -203,7 +203,7 @@ export default function PresentValueCalculatorFaqSection() {
           period too many. If the payments fall on specific dates instead of neat intervals, XNPV handles that.
         </P>
         <P>
-          If the payments grow at a steady rate, say a salary share that rises 3% a year, there’s a growing-annuity formula,
+          If the payments grow at a steady rate, say a <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> share that rises 3% a year, there’s a growing-annuity formula,
           which we’ll use further down.
         </P>
       </Card>
@@ -227,7 +227,7 @@ export default function PresentValueCalculatorFaqSection() {
         <P>
           A few details trip people up. Use the after-tax salvage amount if selling the asset creates a taxable gain or a
           deductible loss. If you’ll have to pay to remove or dispose of the asset, that’s a cash outflow and it reduces salvage
-          value, sometimes below zero. And depreciation by itself isn’t a cash flow, so it doesn’t go into the NPV. What does
+          value, sometimes below zero. And <Link to="/tools/depreciation-calculator" className="inline-home-link">depreciation</Link> by itself isn’t a cash flow, so it doesn’t go into the NPV. What does
           count is the tax savings depreciation creates.
         </P>
       </Card>
@@ -244,7 +244,7 @@ export default function PresentValueCalculatorFaqSection() {
           the same cash flows, one measured today and one measured at the end of year 10. Multiply $7,721.73 by 1.05¹⁰ and you
           land right back at $12,577.89.
         </P>
-        <P>That’s the reason this tool shows present value and future value side by side.</P>
+        <P>That’s the reason this tool shows present value and <Link to="/tools/future-value-calculator" className="inline-home-link">future value</Link> side by side.</P>
       </Card>
 
       <Card title="What Is the Difference Between PVIFA and PVIF?">

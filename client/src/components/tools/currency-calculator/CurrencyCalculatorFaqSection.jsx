@@ -192,7 +192,7 @@ export default function CurrencyCalculatorFaqSection() {
         <p style={pStyle}>
           Live rate conversion is the default and most commonly used mode. It reflects the current market
           exchange rate between two currencies at the time you run the calculation. This is the right choice
-          when you want an accurate, real-world figure, for example, checking how much your salary in one
+          when you want an accurate, real-world figure, for example, checking how much your <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> in one
           currency translates to in another, or estimating the cost of a purchase from an international
           retailer.
         </p>
@@ -284,7 +284,7 @@ export default function CurrencyCalculatorFaqSection() {
             <strong>Bid-ask spread</strong> — the gap between the bid and ask price. Banks, brokers, and
             currency exchange counters routinely widen this spread beyond the true market gap, and the
             difference functions as their profit, often labeled as a fee or commission rather than called a
-            markup outright.
+            {" "}<Link to="/tools/margin-calculator" className="inline-home-link">markup</Link> outright.
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>Pip</strong> — the smallest standard unit of movement in an exchange rate quote. If
@@ -347,13 +347,13 @@ export default function CurrencyCalculatorFaqSection() {
         <p style={pStyle}>Exchange rates respond to an enormous number of variables, but a handful of forces do most of the work:</p>
         <ul style={ulStyle}>
           <li style={{ marginBottom: 8 }}>
-            <strong>Inflation differences</strong> — a country with comparatively low inflation tends to see
+            <strong>Inflation differences</strong> — a country with comparatively low <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link> tends to see
             its currency strengthen over time as purchasing power holds up better, while a country with
             persistently higher inflation typically sees its currency lose value against currencies with
             steadier prices.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Interest rate differences</strong> — interest rates shape both the appeal of holding a
+            <strong>Interest rate differences</strong> — <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rates</Link> shape both the appeal of holding a
             given currency and the inflation outlook for that economy, and shifts in rates can push exchange
             rates up or down as capital moves toward better returns.
           </li>
@@ -401,7 +401,7 @@ export default function CurrencyCalculatorFaqSection() {
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>Studying or relocating abroad.</strong> Students and people relocating for work often
-            need to convert tuition fees, rent, or living costs into their home currency to plan a realistic
+            need to convert <Link to="/tools/college-cost-calculator" className="inline-home-link">tuition</Link> fees, rent, or living costs into their home currency to plan a realistic
             budget, especially when comparing offers or scholarships quoted in a different currency.
           </li>
           <li style={{ marginBottom: 8 }}>

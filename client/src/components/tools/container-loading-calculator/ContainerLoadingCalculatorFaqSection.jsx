@@ -190,7 +190,7 @@ export default function ContainerLoadingCalculatorFaqSection() {
         <P>A container is basically a big rectangular box, so its volume is length times width times height. In plain form:</P>
         <Formula>Volume = Length × Width × Height</Formula>
         <P>
-          Use the internal dimensions from the chart above and keep all three in the same unit. Shipping volume is usually quoted in cubic meters,
+          Use the internal dimensions from the chart above and keep all three in the same unit. Shipping volume is usually quoted in <Link to="/tools/cbm-calculator" className="inline-home-link">cubic meters</Link>,
           or CBM.
         </P>
         <P>
@@ -414,14 +414,14 @@ export default function ContainerLoadingCalculatorFaqSection() {
         <P>This tool is most useful where space turns directly into money.</P>
         <Lead lead="Exporters and manufacturers.">
           Before you confirm a purchase order, find out whether it fills one 40ft container, fits a 20ft with room to spare or spills into a
-          second container. That decision affects freight cost, delivery time and your quote to the buyer.
+          second container. That decision affects <Link to="/tools/freight-class-calculator" className="inline-home-link">freight</Link> cost, delivery time and your quote to the buyer.
         </Lead>
         <Lead lead="Importers and buyers.">
           Knowing container capacity helps you set order quantities. Rounding an order up to fill a container often lowers the freight cost per
           unit.
         </Lead>
         <Lead lead="E-commerce sellers.">
-          If you send inventory to a fulfillment network, you need to know how many cartons a container holds so you can plan production runs and
+          If you send <Link to="/tools/reorder-point-calculator" className="inline-home-link">inventory</Link> to a fulfillment network, you need to know how many cartons a container holds so you can plan production runs and
           inbound dates.
         </Lead>
         <Lead lead="Warehouse and logistics teams.">

@@ -116,7 +116,7 @@ export default function TaktTimeCalculatorFaqSection() {
           which a new unit, or a new batch, needs to be finished or started.
         </P>
         <P>
-          The purpose is to keep production in step with demand. Overproduction ties up cash in inventory, takes up floor space and hides quality
+          The purpose is to keep production in step with demand. Overproduction ties up cash in <Link to="/tools/reorder-point-calculator" className="inline-home-link">inventory</Link>, takes up floor space and hides quality
           problems. Underproduction means late orders and unhappy customers. Takt time gives everyone on the floor one number to work toward, so
           the pace is set by what customers want rather than by whatever the machines or people can do at the moment. The{" "}
           <Ext href="https://www.lean.org/lexicon-terms/takt-time">Lean Enterprise Institute</Ext> describes it as the rate of customer demand
@@ -182,7 +182,7 @@ export default function TaktTimeCalculatorFaqSection() {
           manufacturing. It answers the question: how often must one unit be completed?
         </Lead>
         <Lead lead="Batch production takt time">
-          applies when products move in groups, such as trays, pallets, oven loads or lots. The question becomes: how often must one batch be
+          applies when products move in groups, such as trays, <Link to="/tools/pallet-calculator" className="inline-home-link">pallets</Link>, oven loads or lots. The question becomes: how often must one batch be
           started or finished? The batch takt time equals the single-unit takt time multiplied by the batch size. If takt is 2 minutes per unit and
           you move batches of 10, a batch is due every 20 minutes. Lean practitioners often call this interval pitch, and it is useful for
           scheduling material handlers and replenishment runs.

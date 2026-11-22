@@ -169,7 +169,7 @@ export default function AnnuityPayoutCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What an Annuity Payout Calculator Actually Does</h2>
         <p style={pStyle}>
-          An annuity payout calculator takes a pool of money and spreads it out into equal payments. Each payment
+          An <Link to="/tools/annuity-calculator" className="inline-home-link">annuity</Link> payout calculator takes a pool of money and spreads it out into equal payments. Each payment
           pulls some cash out, and whatever's left keeps earning interest until the balance hits zero at the end.
           That's the whole idea.
         </p>
@@ -180,7 +180,7 @@ export default function AnnuityPayoutCalculatorFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Even though it's called an annuity calculator, the math isn't limited to insurance contracts. It fits
-          retirement withdrawals, structured settlements, an inheritance you want to stretch out, or a college fund
+          {" "}<Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> withdrawals, structured settlements, an inheritance you want to stretch out, or a college fund
           you're drawing down. Anywhere a balance gets paid out on a schedule, this is the calculation.
         </p>
       </div>
@@ -198,7 +198,7 @@ export default function AnnuityPayoutCalculatorFaqSection() {
             <strong>Annual interest rate.</strong> This is the return you assume the remaining balance earns. With a
             fixed annuity, the insurer tells you the rate. With an investment account, you're guessing, so be a
             little conservative. The effect is bigger than people expect. On a $500,000 balance paid over 20 years,
-            going from 4% to 6% moves the monthly payment from about $3,030 to about $3,580.
+            going from 4% to 6% moves the <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> from about $3,030 to about $3,580.
           </li>
           <li style={liStyle}>
             <strong>Payment frequency.</strong> Monthly, quarterly, semiannual, or annual. Paying less often leaves
@@ -217,7 +217,7 @@ export default function AnnuityPayoutCalculatorFaqSection() {
         <h2 style={h2Style}>Fixed Length vs. Fixed Payment: Which Mode to Use</h2>
         <p style={pStyle}>
           <strong>Fixed length.</strong> Use this when you know your time horizon. Maybe you need 15 years of income
-          to bridge the gap until a pension kicks in, or you want a payout that finishes when your kid graduates.
+          to bridge the gap until a <Link to="/tools/pension-calculator" className="inline-home-link">pension</Link> kicks in, or you want a payout that finishes when your kid graduates.
           Enter the years and the calculator gives you the payment that drains the balance right on schedule.
         </p>
         <p style={pStyle}>
@@ -243,7 +243,7 @@ export default function AnnuityPayoutCalculatorFaqSection() {
         <h2 style={h2Style}>The Formula Behind the Numbers</h2>
         <p style={pStyle}>
           You don't need the math to use the tool, but it helps to know there's nothing mysterious going on. This
-          is the standard level-payment formula, the same one behind a mortgage or car loan, just flipped around.
+          is the standard level-payment formula, the same one behind a mortgage or <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loan</Link>, just flipped around.
           You're the lender and the account is the borrower.
         </p>
         <p style={pStyle}>For payments at the end of each period:</p>

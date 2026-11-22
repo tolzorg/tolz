@@ -128,7 +128,7 @@ export default function LoanCalculatorFaqSection() {
         <p style={pStyle}>
           A loan is money that one party (the lender) gives to another (the borrower) with the understanding that it
           will be paid back, usually with interest, over an agreed period. The agreement spells out the amount
-          borrowed, the interest rate, the repayment schedule, and what happens if payments are missed.
+          borrowed, the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, the <Link to="/tools/repayment-calculator" className="inline-home-link">repayment schedule</Link>, and what happens if payments are missed.
         </p>
         <p style={last}>
           Lenders can be banks, credit unions, online lenders, businesses, or even individuals. Borrowers can be
@@ -158,11 +158,11 @@ export default function LoanCalculatorFaqSection() {
         <p style={pStyle}>Both put money in your hands before you would normally have it, but they work differently.</p>
         <p style={pStyle}>
           A <strong>loan</strong> is a set amount of money you repay over time, with interest, on a fixed schedule.
-          Mortgages, auto loans, and personal loans all fit this description.
+          Mortgages, auto loans, and <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link> all fit this description.
         </p>
         <p style={pStyle}>
           An <strong>advance</strong> is money paid ahead of something you're already expecting to receive or earn.
-          Common examples are a paycheck advance from an employer, a cash advance on a credit card, or a merchant cash
+          Common examples are a <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> advance from an employer, a cash advance on a <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link>, or a merchant cash
           advance, where a business gets money upfront and repays it from future card sales. Advances are usually
           smaller and shorter, and the repayment often comes straight out of your next paycheck or daily sales rather
           than from a payment schedule. They can still be expensive. A merchant cash advance and a credit card cash

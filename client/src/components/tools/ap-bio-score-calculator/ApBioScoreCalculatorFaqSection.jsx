@@ -168,12 +168,12 @@ export default function ApBioScoreCalculatorFaqSection() {
       <Card title="What Is the AP Bio Course?">
         <P>
           AP Bio stands for Advanced Placement Biology. It is a college-level biology course offered in high schools, built to match a
-          first-year college biology class. The course is organized into eight units, covering topics such as the chemistry of life, cell
+          first-year <Link to="/tools/college-gpa-calculator" className="inline-home-link">college</Link> biology class. The course is organized into eight units, covering topics such as the chemistry of life, cell
           structure and energy, cell communication, heredity, gene expression, natural selection, and ecology. Along the way, students
           practice reading data, designing experiments, and supporting claims with evidence.
         </P>
         <P>
-          At the end of the year, students can take the AP Biology exam in May. The exam score is separate from your class grade. Your
+          At the end of the year, students can take the AP Biology <Link to="/tools/test-grade-calculator" className="inline-home-link">exam</Link> in May. The exam score is separate from your class <Link to="/tools/grade-calculator" className="inline-home-link">grade</Link>. Your
           teacher decides your report card grade, while the College Board scores the exam. The calculator on this page estimates the second
           one. You can read the official course outline on the{" "}
           <Ext href="https://apstudents.collegeboard.org/courses/ap-biology">College Board’s AP Biology page</Ext>.
@@ -304,7 +304,7 @@ export default function ApBioScoreCalculatorFaqSection() {
       <Card title="AP Bio or AP Chemistry: Which Should You Take?">
         <P>
           Choose based on your interests and your plans. AP Biology leans toward understanding systems, reading experiments, and writing
-          explanations. AP Chemistry leans toward math, problem-solving, and calculation. If you plan to study biology, health, or
+          explanations. <Link to="/tools/ap-chem-score-calculator" className="inline-home-link">AP Chemistry</Link> leans toward math, problem-solving, and calculation. If you plan to study biology, health, or
           environmental science, AP Bio is usually the more direct fit. If you’re headed toward chemistry, engineering, or chemical
           engineering, AP Chem makes more sense.
         </P>

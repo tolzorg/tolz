@@ -187,7 +187,7 @@ export default function ArmyBodyFatCalculatorFaqSection() {
           36-inch waist gives a ratio of about 0.51, which passes. A 39-inch waist gives about 0.557, which does not.
         </P>
         <P>
-          Because WHtR is a ratio, this Army body fat calculator won’t show a body fat percentage. You’ll see a number like 0.51 or
+          Because WHtR is a ratio, this Army <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat calculator</Link> won’t show a body fat percentage. You’ll see a number like 0.51 or
           0.56. A result of 0.55 or higher does not meet the standard.
         </P>
         <H3>How Do You Calculate Body Fat Without Instruments?</H3>
@@ -197,7 +197,7 @@ export default function ArmyBodyFatCalculatorFaqSection() {
         </P>
         <P>
           If you want a body fat percentage specifically, the old Army tape method estimated it from a belly-button measurement and
-          body weight. That method is no longer used to decide compliance, so a percentage estimate won’t tell you whether you meet
+          {" "}<Link to="/tools/healthy-weight-calculator" className="inline-home-link">body weight</Link>. That method is no longer used to decide compliance, so a percentage estimate won’t tell you whether you meet
           today’s standard.
         </P>
       </Card>
@@ -308,7 +308,7 @@ export default function ArmyBodyFatCalculatorFaqSection() {
           ["", "A flag generally puts favorable personnel actions on hold, such as promotions and some schools, until it’s lifted. Ask your chain of command how it applies to your situation."],
         ]} />
         <P>
-          The Army is running an initial 180-day assessment of the new standard. No separation actions for failing the WHtR will
+          The Army is <Link to="/tools/pace-calculator" className="inline-home-link">running</Link> an initial 180-day assessment of the new standard. No separation actions for failing the WHtR will
           happen during that period. The standard still applies, though, and flagging and ABCP enrollment continue. The Army may
           adjust the policy after the review, so check current guidance from your unit.
         </P>
@@ -417,7 +417,7 @@ export default function ArmyBodyFatCalculatorFaqSection() {
         <P>
           Many people carry fat in one area, often the midsection, while the rest of the body looks lean. Where your body stores fat
           depends largely on genetics, age, hormones, and lifestyle, and you can’t choose where fat comes off. Losing fat overall is
-          what reduces the waist over time, and the belly often responds as total body fat drops. Strength training can improve
+          what reduces the waist over time, and the belly often responds as total body fat drops. <Link to="/tools/one-rep-max-calculator" className="inline-home-link">Strength training</Link> can improve
           shape and muscle tone. Because the Army standard looks at your waist directly, steady fat loss paired with regular exercise
           is the most reliable approach.
         </P>

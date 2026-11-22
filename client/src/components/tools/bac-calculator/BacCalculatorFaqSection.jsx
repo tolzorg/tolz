@@ -220,7 +220,7 @@ export default function BacCalculatorFaqSection() {
       <Card title="How to Use This BAC Calculator">
         <P>
           Start by choosing your drinks. Pick beer, wine or liquor, or enter a custom drink if you know its size and strength. Set the
-          volume and the alcohol by volume (ABV) for each one, then add how many you had. Next, enter your body weight and select your
+          volume and the alcohol by volume (ABV) for each one, then add how many you had. Next, enter your <Link to="/tools/healthy-weight-calculator" className="inline-home-link">body weight</Link> and select your
           gender, since both change how alcohol is distributed in your body. Finally, enter the time since your first drink. The tool then
           returns your estimated BAC, draws a chart of how it rises and falls, and shows the hours left until 0%.
         </P>
@@ -236,7 +236,7 @@ export default function BacCalculatorFaqSection() {
           Most blood alcohol calculators rely on the Widmark formula, developed by Swedish scientist Erik Widmark in the 1930s. It compares
           the grams of pure alcohol you consumed with your body weight and a distribution ratio that reflects how much of your body is
           water, because alcohol dissolves in body water rather than fat. Commonly cited ratios are about 0.68 for men and 0.55 for women,
-          since men on average carry more lean tissue and less body fat. The result is then reduced by an elimination rate, usually around
+          since men on average carry more lean tissue and less <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link>. The result is then reduced by an elimination rate, usually around
           0.015% per hour, to account for your liver breaking alcohol down.
         </P>
         <P>
@@ -325,7 +325,7 @@ export default function BacCalculatorFaqSection() {
         </P>
         <P>
           Nothing speeds this up. Coffee, cold showers, fresh air and sports drinks may make you feel more alert, but they do not change how
-          fast your liver works. Reaching 0.00% also does not always mean you feel normal, because poor sleep and hangover effects can
+          fast your liver works. Reaching 0.00% also does not always mean you feel normal, because poor <Link to="/tools/sleep-calculator" className="inline-home-link">sleep</Link> and hangover effects can
           linger after alcohol has left your blood.
         </P>
       </Card>

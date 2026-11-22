@@ -127,7 +127,7 @@ export default function ImageConverterFaqSection() {
         <p style={pStyle}>The real differences between the formats are in how they store data:</p>
         <ul style={ulStyle}>
           <li style={liStyle}>
-            <strong>JPG/JPEG</strong> uses lossy compression. It discards detail the eye barely notices, which gives
+            <strong>JPG/JPEG</strong> uses lossy <Link to="/tools/image-compressor" className="inline-home-link">compression</Link>. It discards detail the eye barely notices, which gives
             small files but means repeated re-saving gradually degrades quality.
           </li>
           <li style={liStyle}>
@@ -216,7 +216,7 @@ export default function ImageConverterFaqSection() {
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           If your source files are images, such as scanned pages or photos of paperwork, you can convert them directly
-          into one PDF with Tolz, which skips the separate merge step entirely.
+          into one PDF with Tolz, which skips the separate <Link to="/tools/pdf-merge" className="inline-home-link">merge</Link> step entirely.
         </p>
       </div>
 
@@ -396,7 +396,7 @@ export default function ImageConverterFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Printing photos or designs.</strong> Print services frequently require specific formats and
-            resolutions. Converting an image to a print-ready format prevents color shifts, blurring, or rejected print
+            resolutions. Converting an image to a print-ready format prevents <Link to="/tools/color-picker" className="inline-home-link">color</Link> shifts, blurring, or rejected print
             jobs.
           </li>
           <li style={liStyle}>

@@ -163,7 +163,7 @@ export default function ResistorCalculatorFaqSection() {
 
       <Card title="What Is a Resistor and What Does Color Coding Mean?">
         <P>
-          A resistor is a small component that limits the flow of electric current in a circuit. It is used to protect LEDs, set voltage levels,
+          A resistor is a small component that limits the flow of electric current in a circuit. It is used to protect LEDs, set <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage</Link> levels,
           control signals, and divide voltage. Its strength is measured in ohms (Ω). Larger values like kilohms (kΩ) and megohms (MΩ) are common.
         </P>
         <P>
@@ -227,7 +227,7 @@ export default function ResistorCalculatorFaqSection() {
         <DataTable headers={CHART_HEADERS} rows={CHART_ROWS} />
         <P>
           To use the chart, hold the resistor with the tolerance band on the right. The tolerance band is usually gold or silver and often sits a
-          little apart from the rest. Read the bands from left to right, convert each color to its meaning for that position, then combine them.
+          little apart from the rest. Read the bands from left to right, <Link to="/tools/unit-converter" className="inline-home-link">convert</Link> each color to its meaning for that position, then combine them.
         </P>
       </Card>
 
@@ -307,7 +307,7 @@ export default function ResistorCalculatorFaqSection() {
       <Card title="Why Are Some Resistors Not Color Coded?">
         <P>
           Not every resistor has bands, and there are a few reasons. SMD resistors are too small for painted bands, so they carry printed numbers or
-          no marking at all. Large power resistors, such as wirewound types, have enough surface area to print the value and wattage directly on the
+          no marking at all. Large power resistors, such as wirewound types, have enough surface area to print the value and <Link to="/tools/electricity-calculator" className="inline-home-link">wattage</Link> directly on the
           body. Some specialty parts are marked with part numbers instead. In each case, the manufacturer picks whatever marking is most practical
           for the size and use.
         </P>

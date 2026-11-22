@@ -155,7 +155,7 @@ export default function LeaseCalculatorFaqSection() {
         <h2 style={h2Style}>How to Use This Lease Calculator</h2>
         <p style={pStyle}>The tool has two modes, and which one you want depends on what you already know.</p>
         <ul style={listGapStyle}>
-          <li style={liStyle}><strong>Payment mode.</strong> You know the interest rate and want the monthly payment. Enter the asset value, the residual value, the lease term in months and the annual interest rate. The tool gives you the payment.</li>
+          <li style={liStyle}><strong>Payment mode.</strong> You know the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> and want the <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>. Enter the asset value, the residual value, the lease term in months and the annual interest rate. The tool gives you the payment.</li>
           <li style={lastLi}><strong>Rate mode.</strong> You know the monthly payment (from a dealer, a lessor or a contract draft) and want the interest rate it implies. Enter the asset value, residual value, term and monthly payment. The tool solves for the effective annual rate.</li>
         </ul>
         <p style={pStyle}>A quick rundown of the inputs:</p>
@@ -166,7 +166,7 @@ export default function LeaseCalculatorFaqSection() {
           <li style={lastLi}><strong>Interest rate</strong> is the yearly cost of financing, entered as a percentage.</li>
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The tool doesn’t have a separate down payment field. If you’re putting money down, subtract it from the asset value
+          The tool doesn’t have a separate <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link> field. If you’re putting money down, subtract it from the asset value
           before you enter it. If fees are being rolled into the lease, add them. The worked example below shows how.
         </p>
       </div>
@@ -185,7 +185,7 @@ export default function LeaseCalculatorFaqSection() {
           hardware, software licenses, medical devices, delivery vans, farm machinery and even aircraft.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The contract usually does more than set a price. It also spells out how the asset can be used. A car lease might
+          The contract usually does more than set a price. It also spells out how the asset can be used. A <Link to="/tools/auto-lease-calculator" className="inline-home-link">car lease</Link> might
           prohibit commercial use. An apartment lease might ban pets. An equipment lease might require specific maintenance
           or insurance. Those rules matter because breaking them can cost you money, sometimes more than a few missed
           payments would.
@@ -194,7 +194,7 @@ export default function LeaseCalculatorFaqSection() {
 
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How a Monthly Lease Payment Is Calculated</h2>
-        <p style={pStyle}>Every lease payment is built from two pieces: depreciation and a finance charge.</p>
+        <p style={pStyle}>Every lease payment is built from two pieces: <Link to="/tools/depreciation-calculator" className="inline-home-link">depreciation</Link> and a finance charge.</p>
         <p style={pStyle}>
           Depreciation is the gap between what the asset is worth today and what it’ll be worth at the end. That’s the value
           you actually use up, so that’s the part you pay for. The finance charge is the lessor’s return for tying up their

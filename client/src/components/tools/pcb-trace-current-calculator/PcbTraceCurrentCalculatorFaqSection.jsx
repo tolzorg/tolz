@@ -149,7 +149,7 @@ export default function PcbTraceCurrentCalculatorFaqSection() {
           input might carry several amps for as long as the device is on.
         </P>
         <P>
-          Copper has resistance, so any current flowing through it turns into heat. The higher the current, the more the trace heats up. If the
+          Copper has <Link to="/tools/pcb-trace-resistance-calculator" className="inline-home-link">resistance</Link>, so any current flowing through it turns into heat. The higher the current, the more the trace heats up. If the
           trace is too narrow or the copper too thin, it can get hot enough to damage the board, lift off the laminate or burn open like a fuse.
           That is why designers check current before they finalize a layout.
         </P>
@@ -184,7 +184,7 @@ export default function PcbTraceCurrentCalculatorFaqSection() {
           air. Internal traces are buried between layers and run hotter at the same current.
         </P>
         <P>
-          Next, enter the trace width. The calculator accepts nanometers, micrometers, millimeters, centimeters, mils (thousandths of an inch) and
+          Next, enter the <Link to="/tools/pcb-trace-width-calculator" className="inline-home-link">trace width</Link>. The calculator accepts nanometers, micrometers, millimeters, centimeters, mils (thousandths of an inch) and
           inches, so you can use whichever unit your layout software shows. Then enter the trace thickness. You can type it as a length or as
           copper weight in ounces per square foot (oz/ft²). For reference, 1 oz copper is the standard finish on most boards and equals about 1.37
           mil, or 35 µm.
@@ -195,7 +195,7 @@ export default function PcbTraceCurrentCalculatorFaqSection() {
         </P>
         <P>
           The additional inputs are optional but useful. Enter the ambient temperature to see the actual trace temperature, and enter the trace
-          length to get resistance, voltage drop and power dissipation. Click Calculate, and the outputs show:
+          length to get resistance, <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage drop</Link> and power dissipation. Click Calculate, and the outputs show:
         </P>
         <List items={[
           ["Maximum current:", "the most current the trace can carry continuously under your conditions, shown in amps, milliamps or microamps."],

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import JsonLd from "../../JsonLd";
 
 const FAQ_ITEMS = [
@@ -113,8 +114,8 @@ export default function SagCalculatorFaqSection() {
           Sagitta is a foundational measurement in circular geometry because it links three values that are
           otherwise awkward to calculate by hand: the radius of curvature, the chord length, and the height of
           the arc itself. Anyone working with curved forms — a mason setting out an arch, an electrician
-          calculating cable droop between poles, a fabricator bending sheet metal to a specific curvature —
-          eventually needs to convert between these three figures. Knowing any two lets you solve for the
+          calculating <Link to="/tools/voltage-drop-calculator" className="inline-home-link">cable</Link> droop between poles, a fabricator bending sheet metal to a specific curvature —
+          eventually needs to <Link to="/tools/unit-converter" className="inline-home-link">convert</Link> between these three figures. Knowing any two lets you solve for the
           third, which is exactly what this calculator automates.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>

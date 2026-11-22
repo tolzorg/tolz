@@ -145,7 +145,7 @@ export default function PaymentCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>Solving for the monthly payment (fixed term).</strong> This is the more familiar approach, and it fits
           loans like mortgages and auto loans where the repayment period is set up front. Enter the loan amount, the
-          interest rate, and the number of months or years, and the calculator shows your fixed monthly payment.
+          {" "}<Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, and the number of months or years, and the calculator shows your fixed monthly payment.
         </p>
         <p style={pStyle}>
           The term you pick matters more than most people expect. With a mortgage, a 15-year loan has a higher monthly
@@ -173,7 +173,7 @@ export default function PaymentCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How Your Monthly Payment Is Calculated</h2>
         <p style={pStyle}>
-          Fixed-rate loan payments use a standard amortization formula based on three things: the loan amount, the
+          Fixed-rate <Link to="/tools/loan-calculator" className="inline-home-link">loan payments</Link> use a standard <Link to="/tools/amortization-calculator" className="inline-home-link">amortization</Link> formula based on three things: the loan amount, the
           monthly interest rate (the annual rate divided by 12), and the total number of payments. The payment stays the
           same every month, but what it is made of changes. In the early months, most of it goes to interest because
           your balance is still high. As the balance drops, more of each payment goes to principal.
@@ -191,7 +191,7 @@ export default function PaymentCalculatorFaqSection() {
           above.
         </p>
         <p style={pStyle}>
-          Keep in mind that a mortgage payment from your lender usually includes more than principal and interest.
+          Keep in mind that a <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage payment</Link> from your lender usually includes more than principal and interest.
           Property taxes, homeowners insurance, and sometimes mortgage insurance are often added to the monthly bill, so
           your actual payment will likely be higher than the figure above.
         </p>
@@ -244,7 +244,7 @@ export default function PaymentCalculatorFaqSection() {
         <h2 style={h2Style}>Interest Rate vs. APR: Why the Difference Matters</h2>
         <p style={pStyle}>
           People often use these two terms as if they mean the same thing, but they don't. The interest rate is the cost
-          of borrowing the principal, shown as a percentage of your balance. The APR (annual percentage rate) includes
+          of borrowing the principal, shown as a percentage of your balance. The <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> (annual percentage rate) includes
           the interest rate plus certain other costs, such as lender fees, discount points, and some closing costs,
           spread over the life of the loan. If a loan has no extra fees, the two numbers are the same.
         </p>

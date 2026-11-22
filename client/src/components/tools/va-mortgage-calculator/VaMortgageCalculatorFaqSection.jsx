@@ -162,19 +162,19 @@ export default function VaMortgageCalculatorFaqSection() {
         <h2 style={h2Style}>What a VA Mortgage Calculator Does Differently</h2>
         <p style={pStyle}>
           A standard calculator takes a loan amount, a rate and a term, and spits out principal and interest. That’s it. A VA
-          home loan calculator has to handle a few more things.
+          home <Link to="/tools/loan-calculator" className="inline-home-link">loan calculator</Link> has to handle a few more things.
         </p>
         <p style={pStyle}>
-          First, there’s the VA funding fee, a one-time charge that depends on your down payment and whether you’ve used the
+          First, there’s the VA funding fee, a one-time charge that depends on your <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link> and whether you’ve used the
           benefit before. Second, there’s the choice of paying that fee at closing or rolling it into the loan, which changes
-          both your balance and your payment. Third, there’s what’s missing: VA loans don’t have monthly mortgage insurance.
+          both your balance and your payment. Third, there’s what’s missing: VA loans don’t have <Link to="/tools/mortgage-calculator" className="inline-home-link">monthly mortgage</Link> insurance.
           Plenty of calculators add it automatically, which makes a VA payment look higher than it really is.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           If a calculator skips the fee, your balance will be too low. If it adds mortgage insurance, your payment will be too
-          high. This VA loan payment calculator avoids both mistakes, and it goes further than the basics. You can layer in
+          high. This VA loan <Link to="/tools/payment-calculator" className="inline-home-link">payment calculator</Link> avoids both mistakes, and it goes further than the basics. You can layer in
           property taxes, homeowners insurance, HOA dues and other monthly costs, test extra payments, compare a bi-weekly
-          schedule against regular monthly payments, and pull up a full amortization schedule.
+          schedule against regular monthly payments, and pull up a full <Link to="/tools/amortization-calculator" className="inline-home-link">amortization schedule</Link>.
         </p>
       </div>
 

@@ -127,7 +127,7 @@ export default function DrywallCalculatorFaqSection() {
         <h2 style={h2Style}>How Much Drywall Do I Need? Understanding the Calculation</h2>
         <p style={pStyle}>
           The core of any drywall estimate is straightforward in theory: multiply the height and width of each
-          wall (and ceiling, if applicable) to get square footage, add those figures together, then subtract
+          wall (and ceiling, if applicable) to get <Link to="/tools/square-footage-calculator" className="inline-home-link">square footage</Link>, add those figures together, then subtract
           the area taken up by doors and windows since those sections don't need board. In practice, most
           people get tripped up by three things, sloped walls that don't have a single consistent height,
           openings that are easy to forget or miscount, and the leftover waste that comes from cutting sheets

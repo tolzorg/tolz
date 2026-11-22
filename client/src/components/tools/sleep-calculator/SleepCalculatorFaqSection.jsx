@@ -482,7 +482,7 @@ export default function SleepCalculatorFaqSection() {
 
         <h3 style={h3Style}>How can I sleep without waking up in the middle of the night?</h3>
         <p style={pStyle}>
-          Address the most common triggers: alcohol (it helps you fall asleep but fragments the second half of the
+          Address the most common triggers: <Link to="/tools/bac-calculator" className="inline-home-link">alcohol</Link> (it helps you fall asleep but fragments the second half of the
           night), late caffeine, heavy late meals, a warm or noisy bedroom, large evening drinks that send you to the
           bathroom, and unmanaged stress. A cool, dark, quiet room and a regular schedule help most. If you snore
           loudly, gasp, or wake with a dry mouth or headache, ask a doctor about sleep apnea, a common and treatable
@@ -645,7 +645,7 @@ export default function SleepCalculatorFaqSection() {
         <p style={last}>
           Natural waking is gradual. Hormones, temperature, and brain activity rise together over a period of time.
           An alarm produces an abrupt arousal, often out of deep sleep, which can cause heavier sleep inertia and a
-          short spike in heart rate and blood pressure. Gentler alarms (rising volume, sunrise lights) and
+          short spike in <Link to="/tools/target-heart-rate-calculator" className="inline-home-link">heart rate</Link> and blood pressure. Gentler alarms (rising volume, sunrise lights) and
           cycle-aligned timing soften this. Splashing water is simply a strong sensory shock that wakes you faster,
           but it doesn't improve sleep quality, and there is no good evidence that it helps your body wake up more
           healthily. Cool water on the face after you are already awake can feel refreshing and is harmless.
@@ -816,7 +816,7 @@ export default function SleepCalculatorFaqSection() {
         <h3 style={h3Style}>What is the best time to sleep and wake up for weight loss?</h3>
         <p style={pStyle}>
           There is no magic bedtime for weight loss, but sleep affects it. Short sleep is associated with higher
-          hunger hormones, stronger cravings, lower activity, and higher calorie intake. Aim for 7 to 9 hours, keep a
+          hunger hormones, stronger cravings, lower activity, and higher <Link to="/tools/calorie-tracker" className="inline-home-link">calorie intake</Link>. Aim for 7 to 9 hours, keep a
           regular schedule, and finish your last substantial meal two to three hours before bed. Eating later in the
           evening and a late body clock are both associated with weight gain, so shifting earlier in a healthy way
           can help.

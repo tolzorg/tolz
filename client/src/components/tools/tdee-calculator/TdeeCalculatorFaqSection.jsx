@@ -170,7 +170,7 @@ export default function TdeeCalculatorFaqSection() {
       </Card>
 
       <Card title="How Do You Calculate Your BMR and TDEE?">
-        <P>Any reliable TDEE calculator works in two steps. It first estimates your BMR, then multiplies it by an activity factor.</P>
+        <P>Any reliable TDEE calculator works in two steps. It first estimates your <Link to="/tools/bmr-calculator" className="inline-home-link">BMR</Link>, then multiplies it by an activity factor.</P>
         <P>
           For step one, the Mifflin-St Jeor equation is one of the most widely used and best-tested formulas for healthy adults (
           <Ext href="https://pubmed.ncbi.nlm.nih.gov/2305711/">original study</Ext>):
@@ -181,7 +181,7 @@ export default function TdeeCalculatorFaqSection() {
         </Formula>
         <P>
           Other equations exist. The Harris-Benedict formula is older and gives similar results. The Katch-McArdle formula uses lean
-          body mass instead of total weight, so it can be more accurate for very lean or muscular people, but it requires a body fat
+          body mass instead of total weight, so it can be more accurate for very lean or muscular people, but it requires a <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link>{" "}
           measurement.
         </P>
         <P>For step two, multiply your BMR by an activity factor:</P>
@@ -198,7 +198,7 @@ export default function TdeeCalculatorFaqSection() {
         </P>
         <H3>How Do You Calculate Your TDEE if Your BMR Is 1,300 Calories and You’re Moderately Active?</H3>
         <P>
-          Multiply 1,300 by 1.55. That gives you a TDEE of about 2,015 calories per day. If you ate around 2,015 calories daily, your
+          Multiply 1,300 by 1.55. That gives you a TDEE of about 2,015 <Link to="/tools/calorie-tracker" className="inline-home-link">calories per day</Link>. If you ate around 2,015 calories daily, your
           weight should stay roughly the same.
         </P>
         <H3>How Do You Estimate Your BMR and TDEE Without Lab Tests?</H3>

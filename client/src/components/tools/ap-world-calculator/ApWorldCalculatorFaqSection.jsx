@@ -158,14 +158,14 @@ export default function ApWorldCalculatorFaqSection() {
 
       <Card title="What Is AP World History and What Is Its Purpose?">
         <P>
-          AP World History: Modern is a College Board course that works like an introductory college class in modern world history. It
+          AP World History: Modern is a <Link to="/tools/college-gpa-calculator" className="inline-home-link">College</Link> Board course that works like an introductory college class in modern world history. It
           follows the story of the world from about 1200 CE to the present. You learn how empires rose and fell, how trade and technology
           connected distant regions, how revolutions reshaped societies, and how wars and globalization built the world we live in now.
         </P>
         <P>
           The course has two goals. The first is knowledge: understanding the major developments, causes and effects of the last 800 years.
           The second is skill. You practice building an argument, analyzing sources, comparing events across regions, and explaining change
-          over time. The exam in May tests both, and a strong score can earn college credit or let you skip an entry-level history course.
+          over time. The <Link to="/tools/test-grade-calculator" className="inline-home-link">exam</Link> in May tests both, and a strong score can earn college credit or let you skip an entry-level history course.
           The College Board lists no prerequisites, which is why many students take it as their first AP class, often in sophomore year.
         </P>
       </Card>
@@ -328,7 +328,7 @@ export default function ApWorldCalculatorFaqSection() {
       </Card>
 
       <Card title="How to Get an A in AP World History">
-        <P>Your class grade and your AP exam score are different things, and what works for one helps the other. Here’s what tends to work:</P>
+        <P>Your class <Link to="/tools/grade-calculator" className="inline-home-link">grade</Link> and your AP exam score are different things, and what works for one helps the other. Here’s what tends to work:</P>
         <List items={[
           ["Read before class.", "Even a quick skim of the chapter makes lectures easier to follow."],
           ["Keep a running timeline.", "Write down major events from 1200 to today, with dates and regions. Seeing everything in one place helps you spot patterns."],

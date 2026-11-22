@@ -149,8 +149,8 @@ export default function IraCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           Taxes decide how much of that pile is really yours, and that's where a lot of simple calculators fall short.
-          They spit out one balance and leave it there. But a Traditional IRA balance hasn't been taxed yet, and a Roth IRA
-          balance mostly has. Comparing those two raw numbers is like comparing a pre-tax salary to a take-home paycheck.
+          They spit out one balance and leave it there. But a Traditional IRA balance hasn't been taxed yet, and a <Link to="/tools/roth-ira-calculator" className="inline-home-link">Roth IRA</Link>{" "}
+          balance mostly has. Comparing those two raw numbers is like comparing a pre-tax <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> to a take-home <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link>.
           To make the comparison fair, this IRA calculator puts everything on a before-tax and after-tax basis.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
@@ -163,8 +163,8 @@ export default function IraCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What Is an IRA?</h2>
         <p style={pStyle}>
-          An IRA, or individual retirement account, is a tax-advantaged account you open yourself to save for retirement.
-          You don't need an employer to sponsor it, which is the big difference from a 401(k) or 403(b). Congress created
+          An IRA, or individual <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> account, is a tax-advantaged account you open yourself to save for retirement.
+          You don't need an employer to sponsor it, which is the big difference from a <Link to="/tools/401k-calculator" className="inline-home-link">401(k)</Link> or 403(b). Congress created
           IRAs to nudge people into saving, and the tax break is the nudge.
         </p>
         <p style={pStyle}>

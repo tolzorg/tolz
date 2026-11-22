@@ -466,7 +466,7 @@ export default function TargetHeartRateCalculatorFaqSection() {
           repeat consistently.
         </P>
         <P>
-          At lower intensities, such as Zones 1 and 2, a higher share of your calories comes from fat. At higher intensities, a smaller share
+          At lower intensities, such as Zones 1 and 2, a higher share of your <Link to="/tools/calorie-tracker" className="inline-home-link">calories</Link> comes from fat. At higher intensities, a smaller share
           comes from fat, but you burn more calories per minute overall. Neither is better on its own. A good weekly plan mixes both: longer
           steady sessions in Zone 2, plus one or two harder sessions in Zones 3 and 4.
         </P>
@@ -482,7 +482,7 @@ export default function TargetHeartRateCalculatorFaqSection() {
         ]} />
         <P>
           On a treadmill, staying in moderate zones will not by itself make you lose muscle. Muscle loss is more closely tied to a large
-          calorie deficit, low protein intake and no resistance training. If you want to keep muscle, lift weights regularly, eat enough
+          calorie deficit, low <Link to="/tools/protein-calculator" className="inline-home-link">protein intake</Link> and no resistance training. If you want to keep muscle, lift weights regularly, eat enough
           protein, and use cardio at a moderate intensity to support your goals.
         </P>
       </Card>

@@ -155,7 +155,7 @@ export default function HashIdentifierCalculatorFaqSection() {
         ]} />
         <P>
           Hash functions also show up outside security. A hash table is a data structure that uses a hash to jump straight to stored data instead of
-          searching through it. That is a different job from checking file integrity or storing passwords, but the core idea is the same: turn data
+          searching through it. That is a different job from checking file integrity or storing <Link to="/tools/password-generator" className="inline-home-link">passwords</Link>, but the core idea is the same: turn data
           into a short, predictable value.
         </P>
       </Card>
@@ -287,7 +287,7 @@ export default function HashIdentifierCalculatorFaqSection() {
         </P>
         <P>
           Clean the input before pasting. A trailing space or line break copied from a terminal adds a character and can point you to the wrong
-          algorithm family. If the string contains letters beyond f, or characters such as + or =, you are probably looking at Base64 or another
+          algorithm family. If the string contains letters beyond f, or characters such as + or =, you are probably looking at <Link to="/tools/base64-encode-decode" className="inline-home-link">Base64</Link> or another
           encoding, not a raw hex digest. If it begins with a prefix such as 2b or argon2id, it is a password-hashing format whose structure names
           the scheme itself, so check that prefix against the scheme’s documentation instead of treating it as a bare digest.
         </P>

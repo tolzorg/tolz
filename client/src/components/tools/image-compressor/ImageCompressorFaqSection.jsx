@@ -155,7 +155,7 @@ export default function ImageCompressorFaqSection() {
         <h2 style={h2Style}>How Do Image Compressors Work?</h2>
         <p style={pStyle}>
           An image compressor takes the pixel data of a picture and re-encodes it in a way that needs fewer bytes to
-          store. Every digital image is, at its core, a grid of pixels, and each pixel holds color values. A raw
+          store. Every digital image is, at its core, a grid of pixels, and each pixel holds <Link to="/tools/color-picker" className="inline-home-link">color</Link> values. A raw
           12-megapixel photo contains 12 million of those pixels, which is why an uncompressed file can reach 30 to 36
           MB. Compression exploits the fact that this data is full of redundancy and detail that humans barely notice.
         </p>
@@ -186,7 +186,7 @@ export default function ImageCompressorFaqSection() {
           </li>
         </ol>
         <p style={pStyle}>
-          Lossless formats like PNG skip quantization entirely and rely on prediction filters plus DEFLATE
+          Lossless formats like <Link to="/tools/image-converter" className="inline-home-link">PNG</Link> skip quantization entirely and rely on prediction filters plus DEFLATE
           compression, so the decoded image is identical to the original. For a deeper technical overview, see the
           general explanation of{" "}
           <Ext href="https://en.wikipedia.org/wiki/Image_compression">image compression on Wikipedia</Ext> and

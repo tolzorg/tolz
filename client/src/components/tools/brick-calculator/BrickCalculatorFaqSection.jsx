@@ -97,7 +97,7 @@ export default function BrickCalculatorFaqSection() {
           Planning a construction project starts with knowing exactly what materials you need, and that's
           precisely what this brick calculator is built for. Whether you're a homeowner budgeting for a garden
           wall, a contractor quoting a client, or a student working through a masonry assignment, this tool
-          from <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork from brickwork estimation. Instead of manually working through area
+          from <Link to="/" className="inline-home-link">Tolz</Link> removes the guesswork from brickwork estimation. Instead of manually working through <Link to="/tools/square-footage-calculator" className="inline-home-link">area</Link>{" "}
           formulas and mortar ratios, you enter your wall dimensions and get an instant, accurate breakdown of
           bricks, cement, sand, and water, along with an estimated total cost.
         </p>
@@ -186,7 +186,7 @@ export default function BrickCalculatorFaqSection() {
           The process works like this: once the tool knows how many bricks are needed and the joint thickness
           between them, it calculates the total volume of mortar required to fill those joints across the
           entire wall. That volume is then converted into practical quantities, how many bags of cement, how
-          much sand (usually measured in cubic feet or cubic meters), and how much water is needed to mix a
+          much sand (usually measured in <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic</Link> feet or <Link to="/tools/cbm-calculator" className="inline-home-link">cubic meters</Link>), and how much water is needed to mix a
           workable batch. Water quantity is typically estimated as a percentage of the cement weight, since
           too much water weakens the mortar's bonding strength while too little makes it unworkable.
         </p>

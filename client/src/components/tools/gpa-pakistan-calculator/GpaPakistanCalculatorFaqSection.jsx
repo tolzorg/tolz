@@ -155,9 +155,9 @@ export default function GpaPakistanCalculatorFaqSection() {
 
       <Card title="What the GPA Calculator Pakistan Students Use Actually Does">
         <P>
-          The tool follows the standard weighted method that universities use. Each letter grade is converted to grade points on your chosen
+          The tool follows the standard weighted method that universities use. Each <Link to="/tools/grade-calculator" className="inline-home-link">letter grade</Link> is converted to grade points on your chosen
           scale, and those points are multiplied by the course’s credit hours. The products are called quality points. Add up all the quality
-          points, divide by total credit hours, and you have your GPA.
+          points, divide by total credit hours, and you have your <Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link>.
         </P>
         <P>
           That weighting is why a plain average of your grades gives the wrong answer. A 4-credit course affects your GPA more than a 1-credit
@@ -410,7 +410,7 @@ export default function GpaPakistanCalculatorFaqSection() {
           courses and grades, and the result appears on the page.
         </P>
         <P>
-          On accuracy, the calculator applies the standard weighted GPA formula to the scale you select. The result is only as correct as your
+          On accuracy, the calculator applies the standard <Link to="/tools/high-school-gpa-calculator" className="inline-home-link">weighted GPA</Link> formula to the scale you select. The result is only as correct as your
           inputs. Wrong credit hours or a mistyped grade will produce a wrong GPA, so compare your entries with your result card before relying
           on the figure.
         </P>

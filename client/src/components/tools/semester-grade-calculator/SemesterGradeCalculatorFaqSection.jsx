@@ -180,7 +180,7 @@ export default function SemesterGradeCalculatorFaqSection() {
 
       <Card title="Find the Grade You Need on Your Final Exam">
         <P>
-          For many students, the most useful feature of a semester grade calculator is the reverse calculation. When the final is still coming,
+          For many students, the most useful feature of a semester <Link to="/tools/grade-calculator" className="inline-home-link">grade calculator</Link> is the reverse calculation. When the final is still coming,
           you can set a target and work backward.
         </P>
         <P>The formula is:</P>
@@ -220,7 +220,7 @@ export default function SemesterGradeCalculatorFaqSection() {
 
       <Card title="Do Semester Grades Affect GPA?">
         <P>
-          Yes. Your semester grades are the course grades that feed into your GPA. The semester grade is the percentage for one course, while GPA
+          Yes. Your semester grades are the course grades that feed into your <Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link>. The semester grade is the percentage for one course, while GPA
           turns the letter grades from all your courses into one point average.
         </P>
         <P>
@@ -271,7 +271,7 @@ export default function SemesterGradeCalculatorFaqSection() {
           minimum GPA to renew, so check the terms of any award you receive.
         </P>
         <P>
-          First semester grades are also not permanent damage. Your cumulative GPA is an average, and it becomes harder to move as you take more
+          First semester grades are also not permanent damage. Your <Link to="/tools/college-gpa-calculator" className="inline-home-link">cumulative GPA</Link> is an average, and it becomes harder to move as you take more
           courses. That means a low first semester has the most room to be recovered early, while you still have many courses ahead.
         </P>
         <H3>I’m a Freshman and My First Semester Grades Are Bad. What Should I Do?</H3>

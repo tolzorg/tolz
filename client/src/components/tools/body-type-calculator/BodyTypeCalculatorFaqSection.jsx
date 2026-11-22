@@ -188,11 +188,11 @@ export default function BodyTypeCalculatorFaqSection() {
         <P>
           Body shape refers to the outline described above: where your bust, waist, and hips sit in relation to each other. Body type is
           more often used in fitness circles to describe build and composition, such as ectomorph, mesomorph, and endomorph. Those labels
-          describe things like frame size, muscle tendency, and how easily you gain or lose weight.
+          describe things like frame size, <Link to="/tools/lean-body-mass-calculator" className="inline-home-link">muscle</Link> tendency, and how easily you gain or <Link to="/tools/calorie-tracker" className="inline-home-link">lose weight</Link>.
         </P>
         <P>
           This body type calculator works with shape. It measures four circumferences and compares them. It does not estimate muscle,
-          body fat, or metabolism, so it will not tell you whether you are an ectomorph or an endomorph.
+          {" "}<Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link>, or metabolism, so it will not tell you whether you are an ectomorph or an endomorph.
         </P>
       </Card>
 
@@ -337,7 +337,7 @@ export default function BodyTypeCalculatorFaqSection() {
           ["", "The National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) points to higher health risks for women above 0.8 and men above 1.0."],
         ]} />
         <P>
-          WHR has some real strengths. Research has found it to be a better predictor of cardiovascular disease than BMI or waist size
+          WHR has some real strengths. Research has found it to be a better predictor of cardiovascular disease than <Link to="/tools/bmi-calculator" className="inline-home-link">BMI</Link> or waist size
           alone, and in adults over 75 it has predicted mortality better than either of those measures. A large international heart
           attack study led by Yusuf and colleagues estimated that if obesity were defined by WHR instead of BMI, the share of people
           flagged as at risk of heart attack would roughly triple.
@@ -455,7 +455,7 @@ export default function BodyTypeCalculatorFaqSection() {
       <Card title="What a Body Type Calculator Cannot Tell You">
         <P>
           Being clear about limits makes any tool more useful. This calculator classifies proportions from four measurements. It does not
-          assess your health, body fat, fitness level, or ideal weight, and it does not suggest that one shape is better than another. The
+          assess your health, body fat, fitness level, or <Link to="/tools/ideal-weight-calculator" className="inline-home-link">ideal weight</Link>, and it does not suggest that one shape is better than another. The
           waist-hip ratio it shows is a screening figure, not a medical result.
         </P>
         <P>

@@ -230,7 +230,7 @@ export default function SocialSecurityCalculatorFaqSection() {
           monthly check, the yearly total, and the running lifetime total for each.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          It's a retirement benefits calculator, not a full financial plan. It won't tell you how much to save, and it
+          It's a <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> benefits calculator, not a full financial plan. It won't tell you how much to save, and it
           doesn't estimate disability (SSDI) or Supplemental Security Income (SSI) payments. Those programs have their
           own rules, and a retirement calculator isn't built for them. What it does is handle the part that's tedious
           to do by hand: the monthly reduction for claiming early, the monthly bonus for waiting, and the break-even
@@ -303,7 +303,7 @@ export default function SocialSecurityCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>Step 4: Cost-of-living adjustments.</strong> Once you're collecting, your check gets a COLA each year
-          to keep up with inflation. The 2026 bump was 2.8%. The next one is typically announced in October. COLAs also
+          to keep up with <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link>. The 2026 bump was 2.8%. The next one is typically announced in October. COLAs also
           apply to the benefit you're eligible for before you claim, which is why waiting doesn't mean losing ground to
           inflation.
         </p>
@@ -398,7 +398,7 @@ export default function SocialSecurityCalculatorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>You're still working and healthy.</strong> Compare 67 to 70 to see if the extra 24% is worth the
-            wait, especially if your paycheck covers the bills in the meantime.
+            wait, especially if your <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> covers the bills in the meantime.
           </li>
           <li style={liStyle}>
             <strong>You're married and one spouse earned a lot more.</strong> The higher earner's claiming age sets the
@@ -433,7 +433,7 @@ export default function SocialSecurityCalculatorFaqSection() {
           62 and working full time, so plan around it.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Also, only wages and net self-employment income count. Pension income, investment returns, and Social
+          Also, only wages and net self-employment income count. <Link to="/tools/pension-calculator" className="inline-home-link">Pension</Link> income, investment returns, and Social
           Security itself don't.
         </p>
       </div>
@@ -522,7 +522,7 @@ export default function SocialSecurityCalculatorFaqSection() {
           of the sting out. And a handful of states tax benefits too, so check yours.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Planning tip: pulling money out of a traditional IRA or 401(k) increases your combined income and can make
+          Planning tip: pulling money out of a <Link to="/tools/ira-calculator" className="inline-home-link">traditional IRA</Link> or 401(k) increases your combined income and can make
           more of your Social Security taxable. Some people reduce that by timing withdrawals, doing Roth conversions in
           lower-income years, or using Roth money later.
         </p>

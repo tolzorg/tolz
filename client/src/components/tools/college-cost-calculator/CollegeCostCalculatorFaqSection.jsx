@@ -257,7 +257,7 @@ export default function CollegeCostCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Why Tuition Keeps Rising, and Why That Changes Your Number</h2>
         <p style={pStyle}>
-          College prices have gone up faster than general inflation for decades, and that's the reason a flat estimate
+          College prices have gone up faster than general <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link> for decades, and that's the reason a flat estimate
           doesn't work. The pace changes by year, by state, and by type of school. Public schools tend to jump when
           state funding drops, since the shortfall lands on tuition. Private schools raise sticker prices but often
           give back more in aid.
@@ -284,7 +284,7 @@ export default function CollegeCostCalculatorFaqSection() {
         <h2 style={h2Style}>Future Dollars vs. Today's Money</h2>
         <p style={pStyle}>
           That $157,000 figure is real, but it's hard to judge on its own. A dollar in ten years buys less than a
-          dollar today, so the calculator also shows the value in today's money, sometimes called present value.
+          dollar today, so the calculator also shows the value in today's money, sometimes called <Link to="/tools/present-value-calculator" className="inline-home-link">present value</Link>.
         </p>
         <p style={pStyle}>
           Using a 3% inflation assumption, that same $157,000 is worth about $112,000 in current purchasing power.
@@ -307,7 +307,7 @@ export default function CollegeCostCalculatorFaqSection() {
         <p style={pStyle}>
           U.S. law requires every college and university to post a net price calculator on its website. They all do
           the same basic job, which is estimating what you would pay at that school. Some take a few minutes and ask
-          only for basics. Others want tax return details, W-2 info, GPA, or test scores.
+          only for basics. Others want tax return details, W-2 info, <Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link>, or test scores.
         </p>
         <p style={pStyle}>A few honest warnings about them:</p>
         <ul style={listGapStyle}>
@@ -460,7 +460,7 @@ export default function CollegeCostCalculatorFaqSection() {
           subtracts what you've already saved, and spreads the rest over the months you have left.
         </p>
         <p style={pStyle}>
-          Going back to our example, covering the full $157,000 over 120 months with zero investment growth means about
+          Going back to our example, covering the full $157,000 over 120 months with zero <Link to="/tools/investment-calculator" className="inline-home-link">investment growth</Link> means about
           $1,310 a month. That's a hard number for most households, so it helps to see which dials you can turn.
         </p>
         <ul style={ulStyle}>
@@ -499,7 +499,7 @@ export default function CollegeCostCalculatorFaqSection() {
 
         <h3 style={h3Style}>529 savings plans</h3>
         <p style={pStyle}>
-          You put money into investments, usually mutual funds or similar portfolios, and the account grows
+          You put money into investments, usually <Link to="/tools/mutual-fund-calculator" className="inline-home-link">mutual funds</Link> or similar portfolios, and the account grows
           tax-deferred. When you use the money for qualified education expenses, the withdrawals are free of federal
           income tax, and usually state income tax too.
         </p>

@@ -138,7 +138,7 @@ export default function PrintingCostCalculatorFaqSection() {
 
       <Card title="What the 3D Printing Cost Calculator Measures">
         <P>
-          The calculator estimates your total printing cost by combining material cost and labor cost, then applying a markup to calculate the
+          The calculator estimates your total printing cost by combining material cost and labor cost, then applying a <Link to="/tools/margin-calculator" className="inline-home-link">markup</Link> to calculate the
           selling price.
         </P>
         <P>
@@ -233,8 +233,8 @@ export default function PrintingCostCalculatorFaqSection() {
           result, professional 3D printing services in India are often more affordable than those in the USA, UK, Canada or Australia.
         </P>
         <P>
-          Taxes can also affect the final cost. For example, the UK, Italy and Germany apply VAT, while Australia charges GST. In Canada, the
-          applicable sales tax depends on the province.
+          Taxes can also affect the final cost. For example, the UK, Italy and Germany apply <Link to="/tools/vat-calculator" className="inline-home-link">VAT</Link>, while Australia charges GST. In Canada, the
+          applicable <Link to="/tools/sales-tax-calculator" className="inline-home-link">sales tax</Link> depends on the province.
         </P>
         <P>
           Use this calculator to estimate costs in your local market. Select your currency, enter the price of your filament spool and set your

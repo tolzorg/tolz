@@ -194,15 +194,15 @@ export default function RothIraCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What a Roth IRA Actually Is</h2>
         <p style={pStyle}>
-          A Roth IRA is an individual retirement account where you put in money you've already paid income tax on. You
+          A Roth <Link to="/tools/ira-calculator" className="inline-home-link">IRA</Link> is an individual <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> account where you put in money you've already paid income tax on. You
           don't get a deduction up front. In exchange, everything the account earns grows tax-free, and qualified
           withdrawals in retirement come out tax-free too. Congress created it in the Taxpayer Relief Act of 1997, and
           it's named after Senator William Roth of Delaware, who pushed it through.
         </p>
         <p style={pStyle}>
           It's an account type, not an investment. Think of it as a container with special tax rules. You open one at a
-          brokerage, a robo-advisor, a bank, or a mutual fund company, and then you choose what goes inside: index funds,
-          ETFs, individual stocks, bonds, CDs, and so on. The IRS regulates all these providers the same way, so the real
+          brokerage, a robo-advisor, a bank, or a <Link to="/tools/mutual-fund-calculator" className="inline-home-link">mutual fund</Link> company, and then you choose what goes inside: index funds,
+          ETFs, individual stocks, <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link>, <Link to="/tools/cd-calculator" className="inline-home-link">CDs</Link>, and so on. The IRS regulates all these providers the same way, so the real
           differences are fees, fund selection, and how easy the app is to use. The IRS does bar a few things, like life
           insurance and most collectibles (art, antiques, gems, most coins).
         </p>

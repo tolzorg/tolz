@@ -191,7 +191,7 @@ export default function PensionCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What This Pension Calculator Does</h2>
         <p style={pStyle}>
-          Most retirement tools ask how much you're saving and guess where you'll end up. This one starts
+          Most <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> tools ask how much you're saving and guess where you'll end up. This one starts
           later in the story. You already have a pension, or you're about to get an offer, and you need to
           know which version of it makes the most sense.
         </p>
@@ -239,9 +239,9 @@ export default function PensionCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           Defined-contribution (DC) plans work the other way around. Money goes into an account for you,
-          often your own paycheck contributions plus an employer match, and you decide how to invest it.
+          often your own <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> contributions plus an employer match, and you decide how to invest it.
           What you end up with depends on how much went in and how the markets treated it. Nobody promises
-          you a number. The 401(k), 403(b), 457 plan, IRA, and Roth IRA all fall in this bucket, and most
+          you a number. The <Link to="/tools/401k-calculator" className="inline-home-link">401(k)</Link>, 403(b), 457 plan, <Link to="/tools/ira-calculator" className="inline-home-link">IRA</Link>, and <Link to="/tools/roth-ira-calculator" className="inline-home-link">Roth IRA</Link> all fall in this bucket, and most
           people call them by those names rather than "DC plans."
         </p>
         <p style={pStyle}>

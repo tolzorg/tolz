@@ -164,7 +164,7 @@ export default function DebtConsolidationCalculatorFaqSection() {
         <h2 style={h2Style}>What a Debt Consolidation Calculator Actually Tells You</h2>
         <p style={pStyle}>
           Debt consolidation just means swapping several debts for one new loan. People do it to get a lower interest
-          rate, a lower monthly payment, or simply to stop juggling five due dates. With a good loan you can sometimes
+          rate, a lower <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>, or simply to stop juggling five due dates. With a good loan you can sometimes
           get all three. With a bad one, you get a smaller payment and a bigger bill later.
         </p>
         <p style={pStyle}>
@@ -195,18 +195,18 @@ export default function DebtConsolidationCalculatorFaqSection() {
           Grab your most recent statements and the loan offer you're looking at. It takes about five minutes.
         </p>
         <p style={pStyle}>
-          <strong>Step 1: Enter your credit card debts.</strong> For each card, add the current balance, the APR, and
+          <strong>Step 1: Enter your credit card debts.</strong> For each card, add the current balance, the <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link>, and
           the monthly payment you actually make. If you have more than one card, add each as its own entry. Don't lump
           them together, because the calculator needs each rate to work out your real starting point.
         </p>
         <p style={pStyle}>
           <strong>Step 2: Enter your installment debts.</strong> These are loans with a fixed payment and end date,
-          like personal loans, auto loans, or a medical payment plan. Same three numbers: balance, APR, monthly
+          like <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>, auto loans, or a medical payment plan. Same three numbers: balance, APR, monthly
           payment.
         </p>
         <p style={pStyle}>
           <strong>Step 3: Enter the consolidation loan.</strong> Add the loan term in months (36 for a three-year
-          loan, 60 for five years), the interest rate, and any upfront fee the lender charges. If you only have a
+          loan, 60 for five years), the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, and any upfront fee the lender charges. If you only have a
           rough quote, use it for now and rerun it when the real offer comes in.
         </p>
         <p style={pStyle}>
@@ -236,7 +236,7 @@ export default function DebtConsolidationCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           That's why comparing APR to APR matters, and why the calculator factors in fees. If you compared the 11%
-          headline rate to a credit card charging 13%, the loan would look like a win. At 14.5% real cost, it isn't.
+          headline rate to a <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link> charging 13%, the loan would look like a win. At 14.5% real cost, it isn't.
         </p>
         <p style={pStyle}>
           The same thing works in reverse on the debts you already have. Your cards probably carry different APRs, so

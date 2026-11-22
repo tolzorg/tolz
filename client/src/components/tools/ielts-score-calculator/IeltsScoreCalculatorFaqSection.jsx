@@ -369,7 +369,7 @@ export default function IeltsScoreCalculatorFaqSection() {
         <Lead lead="Universities.">
           Most undergraduate programs ask for about 6.0 to 6.5 overall, and many graduate programs ask for 6.5 to 7.5. Medicine, law, and
           nursing programs often set higher minimums, and many programs add a minimum for each skill. Some universities waive the requirement
-          if you studied in English or hold a degree from an English-speaking country, and some accept other tests such as TOEFL, PTE, or
+          if you studied in English or hold a degree from an English-speaking country, and some accept other tests such as TOEFL, <Link to="/tools/pte-score-calculator" className="inline-home-link">PTE</Link>, or
           Duolingo instead. Check each school’s admissions page.
         </Lead>
         <Lead lead="Canada.">
@@ -427,7 +427,7 @@ export default function IeltsScoreCalculatorFaqSection() {
           In Listening and Reading, you need about 33 to 36 correct answers out of 40. That means very few careless errors, so focus on
           spelling, plural forms, word limits, and reading instructions carefully. In Writing, higher bands require a clear position,
           well-developed ideas with specific support, natural linking, a wide range of vocabulary used accurately, and a mix of complex and
-          simple sentences with few errors. In Speaking, aim for fluent, relaxed answers that go beyond one-sentence replies, using precise
+          simple <Link to="/tools/sentence-counter" className="inline-home-link">sentences</Link> with few errors. In Speaking, aim for fluent, relaxed answers that go beyond one-sentence replies, using precise
           vocabulary and natural expressions without sounding memorized.
         </P>
         <P>Don’t memorize model answers. Examiners are trained to spot prepared scripts, and they score them lower.</P>
@@ -532,7 +532,7 @@ export default function IeltsScoreCalculatorFaqSection() {
         <P>
           Build your reading speed and accuracy together. Read a variety of long English texts every day, and then practice timed passages of
           about 20 minutes each. Learn to skim for the main idea, scan for names, dates, and numbers, and match paraphrased wording, since the
-          questions rarely use the exact words from the text. Don’t spend too long on one question. Skip it and return later.
+          questions rarely use the exact <Link to="/tools/word-counter" className="inline-home-link">words</Link> from the text. Don’t spend too long on one question. Skip it and return later.
         </P>
         <P>
           A few tips for specific question types: True/False/Not Given questions require you to decide whether the text states something,

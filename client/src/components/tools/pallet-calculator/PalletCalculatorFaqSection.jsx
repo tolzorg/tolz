@@ -218,7 +218,7 @@ export default function PalletCalculatorFaqSection() {
       <Card title="Understanding Pallet Utilization">
         <P>
           Utilization shows how well your boxes fill the pallet space. In this tool it compares the total volume of the packages with the pallet
-          volume, which is the pallet's length times its width times the maximum load height. In the example above, 48 boxes of 1,485 cubic
+          volume, which is the pallet's length times its width times the maximum load height. In the example above, 48 boxes of 1,485 <Link to="/tools/cbm-calculator" className="inline-home-link">cubic</Link>{" "}
           inches each fill 71,280 cubic inches of a 96,000 cubic inch space, so utilization is about 74 percent.
         </P>
         <P>
@@ -289,7 +289,7 @@ export default function PalletCalculatorFaqSection() {
         </P>
         <P>
           One detail matters here. The pallet volume in the calculator uses the maximum load height and does not include the pallet's own height,
-          because that is how utilization is measured. For freight CBM, use the real height of the finished stack and add the pallet height.
+          because that is how utilization is measured. For <Link to="/tools/freight-class-calculator" className="inline-home-link">freight</Link> CBM, use the real height of the finished stack and add the pallet height.
         </P>
       </Card>
 

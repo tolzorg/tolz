@@ -138,7 +138,7 @@ export default function DebtPayoffCalculatorFaqSection() {
           the next one.
         </p>
         <p style={pStyle}>
-          For every debt, you enter the current balance, the annual interest rate (APR), and the minimum monthly
+          For every debt, you enter the current balance, the annual <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> (<Link to="/tools/apr-calculator" className="inline-home-link">APR</Link>), and the minimum monthly
           payment. The calculator pays the minimum on everything, puts all leftover money on the debt with the
           highest rate, and keeps repeating that until nothing's left.
         </p>
@@ -160,8 +160,8 @@ export default function DebtPayoffCalculatorFaqSection() {
         <ol style={listGapStyle}>
           <li style={liStyle}>
             <strong>Add each debt.</strong> Give it a name (like "Chase card" or "Truck loan"), the current balance,
-            the APR, and the minimum payment. Add as many as you've got: credit cards, auto loans, student loans,
-            personal loans, a mortgage, whatever applies.
+            the APR, and the minimum payment. Add as many as you've got: credit cards, auto loans, <Link to="/tools/student-loan-calculator" className="inline-home-link">student loans</Link>,
+            {" "}<Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>, a mortgage, whatever applies.
           </li>
           <li style={liStyle}>
             <strong>Add extra payments if you want them.</strong> You can set a fixed extra amount every month, a
@@ -191,7 +191,7 @@ export default function DebtPayoffCalculatorFaqSection() {
         </p>
         <p style={pStyle}>Let's use real numbers. Say you have:</p>
         <ul style={listGapStyle}>
-          <li style={liStyle}>A credit card: $4,000 at 24% APR, $120 minimum</li>
+          <li style={liStyle}>A <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link>: $4,000 at 24% APR, $120 minimum</li>
           <li style={liStyle}>A personal loan: $9,000 at 9% APR, $250 minimum</li>
           <li>A car loan: $6,000 at 6% APR, $200 minimum</li>
         </ul>

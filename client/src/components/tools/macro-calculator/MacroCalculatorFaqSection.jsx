@@ -186,7 +186,7 @@ export default function MacroCalculatorFaqSection() {
 
       <Card title="What This Macro Calculator Does and What You Get">
         <P>
-          Macros, short for macronutrients, are the three nutrients that supply most of your calories: protein, carbohydrates and
+          Macros, short for macronutrients, are the three nutrients that supply most of your calories: protein, <Link to="/tools/carbohydrate-calculator" className="inline-home-link">carbohydrates</Link> and
           fat. Calories tell you how much you eat. Macros tell you what that food is made of. Two people can eat 2,000 calories a day
           and get very different results depending on how those calories are split.
         </P>
@@ -297,11 +297,11 @@ export default function MacroCalculatorFaqSection() {
         <Lead lead="Stage one: basal metabolic rate (BMR).">
           This is the energy your body uses at rest to keep you alive. It is estimated from age, gender, height and weight using a
           published prediction equation. The Mifflin-St Jeor equation is the most widely used in current practice. Another equation,
-          Katch-McArdle, uses lean body mass and works best for people who know their body fat percentage. Because this macro
+          Katch-McArdle, uses <Link to="/tools/lean-body-mass-calculator" className="inline-home-link">lean body mass</Link> and works best for people who know their <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat percentage</Link>. Because this macro
           calculator asks for the basics only, it doesn’t require a body fat measurement.
         </Lead>
         <Lead lead="Stage two: total daily energy expenditure (TDEE).">
-          Your BMR is multiplied by an activity factor, from mostly sedentary through very active. The result is roughly how many
+          Your <Link to="/tools/bmr-calculator" className="inline-home-link">BMR</Link> is multiplied by an activity factor, from mostly sedentary through very active. The result is roughly how many
           calories you burn in a typical day. Eating at that level maintains your weight. Eating below it creates a deficit, and
           eating above it creates a surplus. For reference, the Dietary Guidelines estimate that adult women need roughly 1,600 to
           2,400 calories a day and adult men roughly 2,000 to 3,000, depending on age and activity.
@@ -396,7 +396,7 @@ export default function MacroCalculatorFaqSection() {
 
       <Card title="Macros for Weight Loss and Maintenance">
         <Lead lead="Weight loss.">
-          Fat loss requires eating below your TDEE. A moderate deficit of about 300 to 500 calories a day is a common starting point
+          Fat loss requires eating below your <Link to="/tools/tdee-calculator" className="inline-home-link">TDEE</Link>. A moderate deficit of about 300 to 500 calories a day is a common starting point
           and usually produces steady loss without extreme hunger. A deficit larger than that tends to cost muscle and be harder to
           keep up. The high protein or balanced setting is usually the most practical place to start.
         </Lead>

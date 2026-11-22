@@ -138,13 +138,13 @@ export default function FutureValueCalculatorFaqSection() {
           $10.60. That $10.60 is the future value of your $10.
         </P>
         <P>
-          It’s the “what will this grow into?” number. Cash in a savings account, a CD or a bond usually earns compound
+          It’s the “what will this grow into?” number. Cash in a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link>, a CD or a bond usually earns compound
           interest, so the balance keeps changing over time, and FV tells you where it’ll land. The same idea applies to any
           asset where you can reasonably estimate a growth rate.
         </P>
         <P>
-          Formally, future value equals the present value multiplied by an accumulation factor. That factor just expresses how
-          much one dollar grows over the period. For compound interest, it’s (1 + r)^n.
+          Formally, future value equals the <Link to="/tools/present-value-calculator" className="inline-home-link">present value</Link> multiplied by an accumulation factor. That factor just expresses how
+          much one dollar grows over the period. For <Link to="/tools/compound-interest-calculator" className="inline-home-link">compound interest</Link>, it’s (1 + r)^n.
         </P>
         <H3>The Five Variables Behind Every Time Value Calculation</H3>
         <P>Finance calculators and textbooks describe every one of these problems with the same five pieces:</P>
@@ -165,7 +165,7 @@ export default function FutureValueCalculatorFaqSection() {
       <Card title="The Time Value of Money: Why $100 Today Beats $100 Next Year">
         <P>
           Here’s a quick gut check. Would you rather have $100 today or $100 a year from now? If you said today, you already
-          understand the time value of money. It’s the idea that money you can use now is worth more than the same amount
+          understand the <Link to="/tools/finance-calculator" className="inline-home-link">time value of money</Link>. It’s the idea that money you can use now is worth more than the same amount
           later, and it’s the foundation of nearly everything in finance.
         </P>
         <H3>Why Money Today Is Worth More</H3>
@@ -185,7 +185,7 @@ export default function FutureValueCalculatorFaqSection() {
         <P>The basic formula is:</P>
         <Formula>FV = PV × (1 + r)^n</Formula>
         <P>
-          PV is your starting amount, r is the interest rate per period, and n is the number of periods. It works as written
+          PV is your starting amount, r is the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> per period, and n is the number of periods. It works as written
           when the compounding period matches the rate’s period, like annual compounding with an annual rate.
         </P>
         <P>Try it: $1,000 at 4% compounded yearly for 3 years gives $1,000 × 1.04³ = $1,124.86.</P>

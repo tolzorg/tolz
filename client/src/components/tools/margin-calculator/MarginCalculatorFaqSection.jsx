@@ -438,11 +438,11 @@ export default function MarginCalculatorFaqSection() {
           fee built in: (25 + 0.30) ÷ (1 − 0.30 − 0.029) = $37.71. That&apos;s a price you can check in the calculator.
         </p>
         <p style={pStyle}>
-          The same goes for marketplace commissions, shipping you absorb, returns, and packaging. If you sell on a platform
+          The same goes for marketplace <Link to="/tools/commission-calculator" className="inline-home-link">commissions</Link>, shipping you absorb, returns, and packaging. If you sell on a platform
           that takes 15%, treat that as part of the cost side or your numbers are fantasy.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          One more small thing. Use revenue before sales tax. Tax isn&apos;t your money; you just collect it, so including it
+          One more small thing. Use revenue before <Link to="/tools/sales-tax-calculator" className="inline-home-link">sales tax</Link>. Tax isn&apos;t your money; you just collect it, so including it
           inflates your margin.
         </p>
       </div>
@@ -545,7 +545,7 @@ export default function MarginCalculatorFaqSection() {
           <li style={liStyle}><strong>Units:</strong> how much currency you&apos;re buying.</li>
           <li style={liStyle}><strong>Amount required:</strong> the result, in your home currency.</li>
         </ul>
-        <div style={formulaStyle}>Amount required = Units × Exchange rate × Margin ratio</div>
+        <div style={formulaStyle}>Amount required = Units × <Link to="/tools/currency-calculator" className="inline-home-link">Exchange rate</Link> × Margin ratio</div>
         <p style={pStyle}>
           Example: you want to buy 10,000 EUR at 1.10 with a 2% margin ratio. The position is worth 10,000 × 1.10 =
           $11,000, and the deposit is 11,000 × 0.02 = $220.

@@ -172,7 +172,7 @@ export default function PercentOffCalculatorFaqSection() {
       <Card title="What This Percent Off Calculator Does">
         <P>
           A percent off calculator answers one of four questions, depending on which two numbers you already have. Enter an
-          original price and a discount percentage, and you get the sale price plus the money you keep. Enter an original price
+          original price and a <Link to="/tools/discount-calculator" className="inline-home-link">discount</Link> percentage, and you get the sale price plus the money you keep. Enter an original price
           and a sale price, and you learn how deep the discount really is. Enter a sale price and the percentage taken off, and
           you can work backward to what the item cost before the markdown.
         </P>
@@ -388,7 +388,7 @@ export default function PercentOffCalculatorFaqSection() {
 
       <Card title="Discounts, Sales Tax, and What You’ll Actually Pay at Checkout">
         <P>
-          In most places in the U.S., sales tax is charged on the price after the discount. That works in your favor, since a
+          In most places in the U.S., <Link to="/tools/sales-tax-calculator" className="inline-home-link">sales tax</Link> is charged on the price after the discount. That works in your favor, since a
           cheaper price also means less tax. A $60 sale price with 8% tax comes to $60 × 1.08 = $64.80.
         </P>
         <P>

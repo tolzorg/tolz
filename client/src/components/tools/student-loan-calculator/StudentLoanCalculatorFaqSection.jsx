@@ -128,8 +128,8 @@ export default function StudentLoanCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What the Student Loan Calculator Does</h2>
         <p style={pStyle}>
-          Every loan comes down to four numbers: balance, interest rate, term, and monthly payment. If you know three,
-          the fourth is just math. This student loan calculator lets you choose which one to solve for, so you can use
+          Every loan comes down to four numbers: balance, <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, term, and <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>. If you know three,
+          the fourth is just math. This student <Link to="/tools/loan-calculator" className="inline-home-link">loan calculator</Link> lets you choose which one to solve for, so you can use
           it a few different ways:
         </p>
         <ul style={listGapStyle}>
@@ -141,7 +141,7 @@ export default function StudentLoanCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           It also handles extra payments, so you can see how much sooner you'd finish and how much interest you'd
           skip. And it projects your balance after school. So it works as a payment calculator, a payoff calculator,
-          and an interest calculator without bouncing between pages.
+          and an <Link to="/tools/interest-calculator" className="inline-home-link">interest calculator</Link> without bouncing between pages.
         </p>
       </div>
 
@@ -150,7 +150,7 @@ export default function StudentLoanCalculatorFaqSection() {
         <p style={pStyle}>
           Grab three things first, either from your servicer's dashboard or the loan paperwork. For the balance, use
           today's principal if you're already paying, not the amount you originally borrowed. For the rate, use the
-          APR. For the term, use what's left, in months or years.
+          {" "}<Link to="/tools/apr-calculator" className="inline-home-link">APR</Link>. For the term, use what's left, in months or years.
         </p>
         <p style={pStyle}>
           If you've got more than one loan, run them one at a time. Rates are almost never identical across loans,

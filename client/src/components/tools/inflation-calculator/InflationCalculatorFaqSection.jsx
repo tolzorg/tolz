@@ -282,8 +282,8 @@ export default function InflationCalculatorFaqSection() {
         <ul style={ulStyle}>
           <li style={{ marginBottom: 8 }}>
             <strong>Figuring out if a salary kept up with the cost of living.</strong> This is probably one
-            of the most common uses, an inflation calculator by year salary search usually means someone's
-            comparing an old paycheck to a current one, or checking whether a raise actually grew their real
+            of the most common uses, an inflation calculator by year <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> search usually means someone's
+            comparing an old <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> to a current one, or checking whether a raise actually grew their real
             income or just matched inflation. If your salary went from $45,000 to $60,000 over ten years but
             inflation ate up most of that gain, you'll see it here.
           </li>
@@ -350,7 +350,7 @@ export default function InflationCalculatorFaqSection() {
           much money is circulating in an economy relative to how much stuff there actually is to buy. When a
           central bank or government increases the money supply faster than the economy grows, each dollar
           (or pound, or euro) ends up worth a bit less. Most developed countries, including the U.S., aim to
-          keep inflation somewhere around 2-3% a year through interest rate policy and other tools, since a
+          keep inflation somewhere around 2-3% a year through <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> policy and other tools, since a
           small, steady amount of inflation tends to keep an economy moving rather than stalling out.
         </p>
 
@@ -458,7 +458,7 @@ export default function InflationCalculatorFaqSection() {
           <li>
             <strong>There's more than one version of the index.</strong> Beyond the standard CPI, you'll run
             into variations like CPIH (which factors in housing costs such as mortgage interest), CPIY (CPI
-            stripped of taxes like VAT, useful for isolating price changes that aren't just tax hikes), and
+            stripped of taxes like <Link to="/tools/vat-calculator" className="inline-home-link">VAT</Link>, useful for isolating price changes that aren't just tax hikes), and
             CPILFENS, the "core" measure that excludes food and energy for a steadier read on underlying
             inflation trends.
           </li>
@@ -536,7 +536,7 @@ export default function InflationCalculatorFaqSection() {
             inflation hedge because it's limited in supply and easy to store.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Treasury Inflation-Protected Securities (TIPS)</strong> — U.S. government bonds where the
+            <strong>Treasury Inflation-Protected Securities (TIPS)</strong> — U.S. government <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link> where the
             principal adjusts directly with CPI, so they're built specifically to track inflation rather than
             just hoping to outpace it. Other countries have similar instruments, like UK index-linked gilts
             or Mexican Udibonos.

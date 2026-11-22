@@ -257,14 +257,14 @@ export default function SalaryCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What a Salary Calculator Does (and What It Doesn't)</h2>
         <p style={pStyle}>
-          At its core, a salary calculator is a unit converter for money. One person says "$30 an hour," another says
+          At its core, a salary calculator is a <Link to="/tools/unit-converter" className="inline-home-link">unit converter</Link> for money. One person says "$30 an hour," another says
           "$5,200 a month," and a job ad says "$62,400 a year." Those are the same income described three ways, and the
           calculator shows how they line up.
         </p>
         <p style={pStyle}>
           The tool works with gross pay, which is what you earn before taxes and deductions. It doesn't subtract income
-          tax, Social Security, Medicare, health premiums or retirement contributions, so the numbers aren't your
-          take-home pay. That's on purpose. Gross figures are the fair way to compare offers, since your tax situation
+          tax, <Link to="/tools/social-security-calculator" className="inline-home-link">Social Security</Link>, Medicare, health premiums or <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> contributions, so the numbers aren't your
+          {" "}<Link to="/tools/take-home-pay-calculator" className="inline-home-link">take-home pay</Link>. That's on purpose. Gross figures are the fair way to compare offers, since your tax situation
           depends on where you live, how you file and what benefits you pick. We'll cover the gross-to-net gap further
           down so you know what to expect.
         </p>
@@ -499,7 +499,7 @@ export default function SalaryCalculatorFaqSection() {
           quietly assume full-time.
         </p>
         <p style={pStyle}>
-          <strong>Raises and cost-of-living checks.</strong> A 4% raise sounds good until inflation is 4%. Convert old
+          <strong>Raises and cost-of-living checks.</strong> A 4% raise sounds good until <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link> is 4%. Convert old
           and new salaries to the same unit and compare.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>

@@ -155,7 +155,7 @@ export default function UrlShortenerFaqSection() {
             URLs carry long UTM tags.
           </li>
           <li style={liStyle}>
-            <strong>QR codes.</strong> A shorter URL produces a simpler QR code with larger squares, which scans more
+            <strong>QR codes.</strong> A shorter URL produces a simpler <Link to="/tools/qr-generator" className="inline-home-link">QR code</Link> with larger squares, which scans more
             reliably at small sizes.
           </li>
           <li style={liStyle}>
@@ -226,7 +226,7 @@ export default function UrlShortenerFaqSection() {
         </p>
         <p style={pStyle}>
           The code itself is usually created in one of two ways. Some services keep a running counter and convert each
-          number into a short string using letters and digits (known as base62 encoding). Others generate a random
+          number into a short string using letters and digits (known as base62 <Link to="/tools/url-encode-decode" className="inline-home-link">encoding</Link>). Others generate a random
           string and check that it hasn’t been used before. With seven characters from a 62-character set (a–z, A–Z,
           0–9), there are over 3.5 trillion possible codes, so there’s plenty of room.
         </p>

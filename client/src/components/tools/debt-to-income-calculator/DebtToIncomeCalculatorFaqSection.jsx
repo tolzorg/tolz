@@ -203,8 +203,8 @@ export default function DebtToIncomeCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What This Debt-to-Income Ratio Calculator Does</h2>
         <p style={pStyle}>
-          You can enter income and debts as monthly or yearly amounts, and that’s more useful than it sounds. Your salary is
-          probably an annual number, but your rent, car payment, and credit card minimums all show up monthly. Instead of
+          You can enter income and debts as monthly or yearly amounts, and that’s more useful than it sounds. Your <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> is
+          probably an annual number, but your rent, car payment, and <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link> minimums all show up monthly. Instead of
           converting everything in your head, you just enter each figure the way you already have it.
         </p>
         <p style={pStyle}>
@@ -228,11 +228,11 @@ export default function DebtToIncomeCalculatorFaqSection() {
           debt payments, your DTI is 48%. If you owe nothing, it’s 0%.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Lenders use it as a quick read on risk. Credit card issuers, auto lenders, personal loan companies, and mortgage
+          Lenders use it as a quick read on risk. Credit card issuers, auto lenders, <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loan</Link> companies, and mortgage
           underwriters all look at it, because someone with a high ratio has less room to absorb a surprise, like a car repair
           or a few slow months at work. A lender might think a 45% ratio is fine for a credit card and still say no to a
           personal loan. Every company has its own comfort zone, and DTI is only one piece of the picture. Your credit
-          history, income stability, savings, and down payment all matter too. All else being equal, though, lower is better.
+          history, income stability, savings, and <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link> all matter too. All else being equal, though, lower is better.
         </p>
       </div>
 
@@ -257,7 +257,7 @@ export default function DebtToIncomeCalculatorFaqSection() {
         </p>
         <p style={pStyle}>Say someone earns $6,000 a month before taxes. Here’s what they owe each month:</p>
         <ul style={listGapStyle}>
-          <li style={liStyle}>Mortgage payment: $1,500</li>
+          <li style={liStyle}>{" "}<Link to="/tools/mortgage-calculator" className="inline-home-link">Mortgage payment</Link>: $1,500</li>
           <li style={liStyle}>Car loan: $350</li>
           <li style={liStyle}>Student loan: $300</li>
           <li style={lastLi}>Credit card minimums: $150</li>

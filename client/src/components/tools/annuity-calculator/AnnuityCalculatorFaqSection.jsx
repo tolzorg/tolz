@@ -281,7 +281,7 @@ export default function AnnuityCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           With an <strong>ordinary annuity</strong>, you pay at the end of each period. A deposit made on the last
-          day of the month hasn't earned anything yet for that month. Loan payments work this way, and so do plenty
+          day of the month hasn't earned anything yet for that month. <Link to="/tools/loan-calculator" className="inline-home-link">Loan payments</Link> work this way, and so do plenty
           of standard savings setups.
         </p>
         <p style={pStyle}>
@@ -290,7 +290,7 @@ export default function AnnuityCalculatorFaqSection() {
           pull money right after payday fit this pattern.
         </p>
         <p style={pStyle}>
-          The math is simple. The future value of an annuity due equals the future value of the same ordinary
+          The math is simple. The <Link to="/tools/future-value-calculator" className="inline-home-link">future value</Link> of an annuity due equals the future value of the same ordinary
           annuity multiplied by (1 + the periodic rate). So each deposit basically gets one extra period of growth.
           Early on, the gap looks tiny. Over decades, with bigger balances, it turns into real money.
         </p>
@@ -311,7 +311,7 @@ export default function AnnuityCalculatorFaqSection() {
         <p style={pStyle}>For an ordinary annuity, the recurring payments grow to:</p>
         <div style={formulaStyle}>FV = PMT × [((1 + r)ⁿ − 1) / r]</div>
         <p style={pStyle}>
-          PMT is the payment per period, r is the interest rate per period, and n is the number of periods. Your
+          PMT is the payment per period, r is the <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> per period, and n is the number of periods. Your
           starting principal grows on its own as P × (1 + r)ⁿ, and the two pieces get added together. For an
           annuity due, multiply the payment portion by (1 + r).
         </p>
@@ -339,7 +339,7 @@ export default function AnnuityCalculatorFaqSection() {
           <li>You contributed $108,000, so about $258,000 is interest, more than twice what you put in.</li>
         </ul>
         <p style={pStyle}>
-          That second example is why time matters so much. Interest earned in the last decade is bigger than
+          That second example is why time matters so much. <Link to="/tools/interest-calculator" className="inline-home-link">Interest earned</Link> in the last decade is bigger than
           interest earned in the first two decades combined. If you're weighing "start now with less" against
           "start later with more," run both. Starting earlier almost always wins by more than people guess.
         </p>
@@ -383,7 +383,7 @@ export default function AnnuityCalculatorFaqSection() {
         <p style={pStyle}>
           In the U.S., an annuity is a contract, usually with an insurance company. You hand over money, either all
           at once or over time, and in exchange the company agrees to pay you back later, often as regular income.
-          People mostly use them to fund retirement.
+          People mostly use them to fund <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link>.
         </p>
         <p style={pStyle}>
           There are a few roles in the contract. The <strong>owner</strong> is the person who controls it: they can

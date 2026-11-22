@@ -99,7 +99,7 @@ export default function BalusterCalculatorFaqSection() {
           that are too wide, spindles that look uneven, or a wasted trip back to the hardware store. This
           baluster calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes that guesswork entirely, it takes your railing length, baluster
           width, and spacing preference, then returns the exact count, spacing, and layout you need, whether
-          you're working on a straight deck railing or an angled stair run.
+          you're working on a straight <Link to="/calculators/construction/decking" className="inline-home-link">deck</Link> railing or an angled stair run.
         </p>
       </div>
 
@@ -202,7 +202,7 @@ export default function BalusterCalculatorFaqSection() {
             shipment and buying too much wastes money on materials that can't always be returned.
           </li>
           <li style={{ marginBottom: 8 }}>
-            <strong>Replacing a damaged or outdated railing.</strong> If you're swapping wood balusters for
+            <strong>Replacing a damaged or outdated railing.</strong> If you're swapping <Link to="/tools/board-foot-calculator" className="inline-home-link">wood</Link> balusters for
             metal or composite ones, spacing often needs to be recalculated because the new material's width
             differs from the original.
           </li>
@@ -253,7 +253,7 @@ export default function BalusterCalculatorFaqSection() {
           sell balusters in fixed quantities that rarely match your exact need; you'll often have to round up
           to the next full pack. Seeing that total cost immediately, rather than calculating it separately
           after getting your spacing numbers, helps you compare suppliers or material types (wood, metal,
-          composite, glass) on a true apples-to-apples basis before you commit to an order.
+          composite, <Link to="/calculators/construction/glass-weight" className="inline-home-link">glass</Link>) on a true apples-to-apples basis before you commit to an order.
         </p>
       </div>
 

@@ -182,7 +182,7 @@ export default function BoatLoanCalculatorFaqSection() {
         <h2 style={h2Style}>What This Boat Loan Calculator Does</h2>
         <p style={pStyle}>
           The tool works two ways. In the first, you enter the boat price and the loan terms. It gives you the estimated
-          monthly payment, total interest, and total cost, including your down payment and the other amounts you put in. In
+          {" "}<Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>, total interest, and total cost, including your <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link> and the other amounts you put in. In
           the second, you enter the payment you want and the calculator backs into a boat price, using your rate, term, down
           payment, trade-in, tax, and fees. That second mode is the reverse boat loan calculation, and it’s the one a lot of
           people should start with. Most buyers know what they can spend each month long before they know which boat they
@@ -200,8 +200,8 @@ export default function BoatLoanCalculatorFaqSection() {
         <p style={pStyle}>Pick whether you want to calculate a payment or find a price. Then fill in the fields.</p>
         <p style={pStyle}>
           Enter the boat price the way it appears on the purchase agreement, before tax and fees. Add your down payment, and
-          a trade-in value if you’re handing over a boat, trailer, or tow vehicle. Put in your sales tax rate as a percentage
-          and any dealer or documentation fees as a dollar amount. Last, enter the APR and the loan term.
+          a trade-in value if you’re handing over a boat, trailer, or tow vehicle. Put in your <Link to="/tools/sales-tax-calculator" className="inline-home-link">sales tax</Link> rate as a percentage
+          and any dealer or documentation fees as a dollar amount. Last, enter the <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> and the loan term.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Hit calculate, then change one thing at a time. Bump the down payment by $2,000. Drop the term from 15 years to 10.
@@ -283,7 +283,7 @@ export default function BoatLoanCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How a Boat Loan Works</h2>
         <p style={pStyle}>
-          A boat loan is money you borrow specifically to buy a boat. It works a lot like a car loan. You get the money from
+          A boat loan is money you borrow specifically to buy a boat. It works a lot like a <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loan</Link>. You get the money from
           a lender, and you pay it back in fixed monthly installments that include interest. In most cases the boat itself is
           collateral, which means if you stop paying, the lender can repossess it. Some lenders offer unsecured loans for
           boats, but that’s less common and usually means a higher rate, and it’s more likely to be used for smaller

@@ -173,11 +173,11 @@ export default function CreditCardPayoffCalculatorFaqSection() {
         <p style={pStyle}>
           Think of it as a month-by-month simulation of your debt. Every month, the calculator adds interest to each
           card, pays the minimum on all of them, and then sends whatever's left of your budget to the card with the
-          highest interest rate. When that card hits zero, the money that was going to it rolls over to the
+          highest <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>. When that card hits zero, the money that was going to it rolls over to the
           next-highest-rate card. And so on, until you're done.
         </p>
         <p style={pStyle}>
-          The reason that rolling effect matters is simple. Your total monthly payment stays the same the whole way
+          The reason that rolling effect matters is simple. Your total <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> stays the same the whole way
           through, but the amount aimed at your most expensive debt keeps growing as each card disappears. That's why
           the last few cards tend to go fast, and why people call it an avalanche.
         </p>
@@ -195,7 +195,7 @@ export default function CreditCardPayoffCalculatorFaqSection() {
             <strong>Current balance.</strong> What you owe right now, not your credit limit.
           </li>
           <li style={liStyle}>
-            <strong>APR.</strong> The purchase APR listed on your statement. If a promotional rate is running, use
+            <strong>APR.</strong> The purchase <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> listed on your statement. If a promotional rate is running, use
             whatever's actually being charged at the moment.
           </li>
           <li>
@@ -203,7 +203,7 @@ export default function CreditCardPayoffCalculatorFaqSection() {
           </li>
         </ul>
         <p style={pStyle}>
-          Then you set your total monthly budget for credit cards. That's the full amount, minimums included. It has
+          Then you set your total <Link to="/tools/budget-calculator" className="inline-home-link">monthly budget</Link> for credit cards. That's the full amount, minimums included. It has
           to be at least as much as all your minimums added together. Whatever's above that total is your "extra,"
           and the extra is what makes the avalanche work.
         </p>
@@ -426,7 +426,7 @@ export default function CreditCardPayoffCalculatorFaqSection() {
             exactly how much sooner it'd wipe out your debt.
           </li>
           <li style={liStyle}>
-            <strong>You're planning a big purchase.</strong> If you're thinking about a mortgage, car loan, or
+            <strong>You're planning a big purchase.</strong> If you're thinking about a mortgage, <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loan</Link>, or
             apartment lease, a lender will look at your debts. Knowing your debt-free date helps with timing.
           </li>
           <li style={liStyle}>

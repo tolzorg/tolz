@@ -115,8 +115,8 @@ export default function SandCalculatorFaqSection() {
           A sand calculator is a purpose-built estimating tool that converts the physical dimensions of a space
           into the exact amount of sand needed to fill it. Instead of manually working through volume formulas
           and density conversions, you simply enter the length, width, and depth of the area, in whatever unit
-          you're already measuring in, and the calculator returns the volume in cubic feet, cubic yards, or
-          cubic meters, along with the corresponding weight in kilograms, pounds, or tons.
+          you're already measuring in, and the calculator returns the volume in cubic feet, <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link>, or
+          {" "}<Link to="/tools/cbm-calculator" className="inline-home-link">cubic meters</Link>, along with the corresponding weight in kilograms, pounds, or tons.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           The weight conversion is where most manual estimates fall apart, because sand isn't a fixed-weight
@@ -148,7 +148,7 @@ export default function SandCalculatorFaqSection() {
           wrong, since it's usually specified in inches for construction projects but needs to be converted to
           feet (divide by 12) before it's plugged into the formula. Skipping this conversion is the single most
           common reason manual sand estimates come out significantly too high or too low, and it's exactly the
-          kind of error an automated calculator eliminates by handling the unit conversion internally.
+          kind of error an automated calculator eliminates by handling the <Link to="/tools/unit-converter" className="inline-home-link">unit conversion</Link> internally.
         </p>
       </div>
 
@@ -195,7 +195,7 @@ export default function SandCalculatorFaqSection() {
           conversion, since these are typically ordered by the bag or by weight rather than by the yard.
           Drainage and pipe-bedding work uses sand as a cushioning layer around pipes to prevent shifting and
           damage, where consistent depth matters more than in most other applications. Landscaping projects,
-          leveling uneven ground, building a beach-style yard feature, or backfilling around a retaining wall,
+          leveling uneven ground, building a beach-style yard feature, or backfilling around a <Link to="/calculators/construction/retaining-wall" className="inline-home-link">retaining wall</Link>,
           also depend on accurate volume figures to avoid ordering multiple deliveries. In every one of these
           cases, calculating the volume and weight in advance means you can place a single, correctly sized
           order instead of guessing and adjusting mid-project.

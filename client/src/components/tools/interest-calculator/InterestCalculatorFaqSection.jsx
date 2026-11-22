@@ -136,7 +136,7 @@ export default function InterestCalculatorFaqSection() {
         <p style={pStyle}>
           Interest is the price of using someone else’s money. A bank pays you interest on your deposit because it
           lends that money to other people. A borrower pays interest because they get money now instead of waiting
-          years to save it. The same idea sits behind savings accounts, CDs, mortgages, credit cards, bonds, and car
+          years to save it. The same idea sits behind savings accounts, <Link to="/tools/cd-calculator" className="inline-home-link">CDs</Link>, mortgages, credit cards, <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link>, and car
           loans.
         </p>
         <h3 style={h3Style}>Who Invented Interest on Loans?</h3>
@@ -159,7 +159,7 @@ export default function InterestCalculatorFaqSection() {
         </p>
         <p style={formulaStyle}>interest = principal × rate × years</p>
         <p style={pStyle}>
-          After three years, that’s $300 in interest and a $2,300 balance. Simple interest is common on short-term loans
+          After three years, that’s $300 in interest and a $2,300 balance. <Link to="/tools/simple-interest-calculator" className="inline-home-link">Simple interest</Link> is common on short-term loans
           and some auto loans.
         </p>
         <p style={pStyle}>
@@ -174,7 +174,7 @@ export default function InterestCalculatorFaqSection() {
         <p style={pStyle}>
           That’s $15.25 more than simple interest after three years. It looks small, but over 25 or 30 years it becomes
           the biggest factor in how much your money grows. Savings accounts, CDs, credit cards, most bonds, and nearly
-          every investment projection use compound interest.
+          every investment projection use <Link to="/tools/compound-interest-calculator" className="inline-home-link">compound interest</Link>.
         </p>
         <p style={last}>
           The calculator does this math period by period and adds your contributions as they happen. That’s more
@@ -193,7 +193,7 @@ export default function InterestCalculatorFaqSection() {
             contributions alone.
           </li>
           <li style={liStyle}>
-            <strong>Interest rate.</strong> Use the advertised APY for a savings account, or a long-term average return
+            <strong>Interest rate.</strong> Use the advertised APY for a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link>, or a long-term average return
             for an investment.
           </li>
           <li style={liStyle}>

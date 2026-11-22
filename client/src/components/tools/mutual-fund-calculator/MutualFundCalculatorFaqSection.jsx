@@ -159,8 +159,8 @@ export default function MutualFundCalculatorFaqSection() {
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           What's left is your real result. The calculator gives you the ending balance, the net return over the whole
-          holding period, and the net IRR, a single yearly rate you can compare directly against the fund's advertised
-          performance, a no-load alternative, or even a savings account.
+          holding period, and the net <Link to="/tools/irr-calculator" className="inline-home-link">IRR</Link>, a single yearly rate you can compare directly against the fund's advertised
+          performance, a no-load alternative, or even a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link>.
         </p>
       </div>
 
@@ -221,7 +221,7 @@ export default function MutualFundCalculatorFaqSection() {
           gains started earning gains of their own.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          You may see this called a lump sum mutual fund calculator or a lumpsum investment calculator. Same idea: one
+          You may see this called a lump sum mutual fund calculator or a lumpsum <Link to="/tools/investment-calculator" className="inline-home-link">investment calculator</Link>. Same idea: one
           deposit, left alone to grow.
         </p>
       </div>
@@ -253,7 +253,7 @@ export default function MutualFundCalculatorFaqSection() {
         <h2 style={h2Style}>A Quick Primer on How Mutual Funds Work</h2>
         <p style={pStyle}>You don't need this to use the calculator, but it helps explain why the fee inputs exist.</p>
         <p style={pStyle}>
-          A mutual fund pools money from lots of investors and uses it to buy stocks, bonds, or other securities. Each
+          A mutual fund pools money from lots of investors and uses it to buy stocks, <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link>, or other securities. Each
           investor owns shares of the fund, and each share represents a slice of everything the fund holds. A
           professional manager or team makes the buying and selling decisions based on the fund's stated objective,
           whether that's growth, income, preserving capital, or some mix.
@@ -282,7 +282,7 @@ export default function MutualFundCalculatorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Bond (fixed income) funds</strong> hold debt issued by governments or corporations. They tend to be
-            steadier than stock funds with less upside, though they're not risk-free. Interest rate changes and credit
+            steadier than stock funds with less upside, though they're not risk-free. <Link to="/tools/interest-rate-calculator" className="inline-home-link">Interest rate</Link> changes and credit
             problems can hurt them.
           </li>
           <li style={liStyle}>

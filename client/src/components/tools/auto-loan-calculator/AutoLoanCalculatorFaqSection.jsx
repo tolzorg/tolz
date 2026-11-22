@@ -135,21 +135,21 @@ export default function AutoLoanCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What Is an Auto Loan, and How Do You Calculate It?</h2>
         <p style={pStyle}>
-          An auto loan is money you borrow to buy a vehicle and pay back in fixed monthly payments over a set term,
+          An auto loan is money you borrow to buy a vehicle and pay back in fixed <Link to="/tools/payment-calculator" className="inline-home-link">monthly payments</Link> over a set term,
           usually 36 to 84 months. The car itself secures the loan. That means the lender holds a lien on the title
           until you pay it off, and it can repossess the vehicle if you stop making payments.
         </p>
-        <p style={pStyle}>Lenders figure your monthly payment with the standard amortization formula:</p>
+        <p style={pStyle}>Lenders figure your monthly payment with the standard <Link to="/tools/amortization-calculator" className="inline-home-link">amortization</Link> formula:</p>
         <p style={{ ...pStyle, fontWeight: 700, color: "var(--text-primary)", textAlign: "center" }}>
           Payment = P × r ÷ (1 − (1 + r)⁻ⁿ)
         </p>
         <p style={pStyle}>
-          In that formula, P is the amount you borrow, r is your monthly interest rate (your APR divided by 12), and n
+          In that formula, P is the amount you borrow, r is your monthly <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> (your <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> divided by 12), and n
           is the number of monthly payments. For example, a $30,000 loan at 7% APR over 60 months works out to about
           $594 a month. You'd pay roughly $35,640 in total, which includes about $5,640 in interest.
         </p>
         <p style={pStyle}>
-          You don't need to do that math by hand. Enter your vehicle price, down payment, trade-in value, loan term, and
+          You don't need to do that math by hand. Enter your vehicle price, <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>, trade-in value, loan term, and
           APR, and the calculator does the rest. It also lets you add sales tax and title or registration fees to the
           loan, and subtract any manufacturer rebate you qualify for. Those extras are often rolled into the financed
           amount, which quietly raises both your payment and the total interest you pay.

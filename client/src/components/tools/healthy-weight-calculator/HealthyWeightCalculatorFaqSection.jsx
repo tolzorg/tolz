@@ -159,7 +159,7 @@ export default function HealthyWeightCalculatorFaqSection() {
       <Card title="What Is a Healthy Weight?">
         <P>
           A healthy weight is a weight at which your body works well and your risk of weight-related health problems is low. Doctors
-          usually measure it with body mass index (BMI), a number that compares your weight to your height. For adults, a BMI from
+          usually measure it with <Link to="/tools/bmi-calculator" className="inline-home-link">body mass index</Link> (BMI), a number that compares your weight to your height. For adults, a BMI from
           18.5 to 24.9 is called a healthy weight. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or higher is obesity.
         </P>
         <P>
@@ -205,7 +205,7 @@ export default function HealthyWeightCalculatorFaqSection() {
 
       <Card title="What Is the Healthy Weight BMI Range for a Pear Body Type?">
         <P>
-          A pear body type carries more weight in the hips, thighs and buttocks than in the belly. The healthy BMI range for a pear
+          A pear <Link to="/tools/body-type-calculator" className="inline-home-link">body type</Link> carries more weight in the hips, thighs and buttocks than in the belly. The healthy BMI range for a pear
           shape is the same as for everyone else: 18.5 to 24.9. BMI only uses height and weight, so it can’t tell where your body
           stores fat, and there is no separate chart for pear, apple or hourglass shapes.
         </P>
@@ -291,7 +291,7 @@ export default function HealthyWeightCalculatorFaqSection() {
       <Card title="Limits of BMI: Healthy Weight but Still Looking Soft or Heavy">
         <P>
           BMI is a screening tool, not a diagnosis. It can’t tell muscle from fat, which is why a very muscular athlete can land in the
-          overweight range with low body fat. It also can’t tell where fat is stored.
+          overweight range with low <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link>. It also can’t tell where fat is stored.
         </P>
         <P>
           The reverse happens too. It is completely possible to have a healthy BMI and still look soft or carry extra fat, especially

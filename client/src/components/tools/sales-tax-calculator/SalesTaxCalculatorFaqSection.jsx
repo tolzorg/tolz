@@ -196,7 +196,7 @@ export default function SalesTaxCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What This Sales Tax Calculator Does</h2>
         <p style={pStyle}>
-          Most online calculators only go one way: you type a price and a rate, and you get a total. This one handles
+          Most online calculators only go one way: you type a <Link to="/tools/discount-calculator" className="inline-home-link">price</Link> and a rate, and you get a total. This one handles
           three jobs.
         </p>
         <ul style={listGapStyle}>
@@ -323,7 +323,7 @@ export default function SalesTaxCalculatorFaqSection() {
           eight percent is $3.20. At 7% on a $60 item, 10% is $6.00 and 1% is $0.60, so 7% is $4.20.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          It's good enough for deciding whether something fits your budget. When the exact figure matters, like
+          It's good enough for deciding whether something fits your <Link to="/tools/budget-calculator" className="inline-home-link">budget</Link>. When the exact figure matters, like
           invoices, expense reports, and anything you'll be filing, use the calculator.
         </p>
       </div>
@@ -364,7 +364,7 @@ export default function SalesTaxCalculatorFaqSection() {
           sensible totals.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          <strong>Comparing prices abroad.</strong> Many countries display prices with VAT already included. Using the
+          <strong>Comparing prices abroad.</strong> Many countries display prices with <Link to="/tools/vat-calculator" className="inline-home-link">VAT</Link> already included. Using the
           reverse mode, you can see the net price and the tax portion of any price tag.
         </p>
       </div>

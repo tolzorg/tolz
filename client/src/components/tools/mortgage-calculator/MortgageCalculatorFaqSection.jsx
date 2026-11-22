@@ -146,7 +146,7 @@ export default function MortgageCalculatorFaqSection() {
           The Tolz mortgage calculator above adds up your principal, interest, property taxes, homeowners insurance,
           PMI, and HOA fees to give you one realistic monthly number. You can then test extra payments or a biweekly
           schedule to see how much sooner you'd pay off the loan and how much interest you'd skip. It also builds a full
-          amortization schedule that shows how every payment splits between principal and interest.
+          {" "}<Link to="/tools/amortization-calculator" className="inline-home-link">amortization schedule</Link> that shows how every payment splits between principal and interest.
         </p>
       </div>
 
@@ -161,7 +161,7 @@ export default function MortgageCalculatorFaqSection() {
         <p style={pStyle}>Here's how the process works in practice:</p>
         <ul style={ulStyle}>
           <li style={liStyle}>
-            You make a down payment, and the lender covers the rest of the purchase price. That remaining amount is your
+            You make a <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>, and the lender covers the rest of the purchase price. That remaining amount is your
             loan principal.
           </li>
           <li style={liStyle}>
@@ -177,13 +177,13 @@ export default function MortgageCalculatorFaqSection() {
           </li>
         </ul>
         <p style={pStyle}>
-          Most lenders collect property taxes and homeowners insurance along with your monthly payment and hold them in
+          Most lenders collect property taxes and homeowners insurance along with your <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> and hold them in
           an escrow account. When the bills come due, the lender pays them for you.
         </p>
         <h3 style={h3Style}>What's the difference between a loan and a mortgage?</h3>
         <p style={pStyle}>
           A mortgage is one specific kind of loan. A loan is any borrowed money you repay with interest, and it can be
-          unsecured (like most credit cards and personal loans) or secured. A mortgage is always secured by real estate.
+          unsecured (like most credit cards and <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>) or secured. A mortgage is always secured by real estate.
           That collateral is why mortgage rates are usually lower than rates on unsecured loans, and it's also why
           missing payments can cost you your home rather than just your credit score.
         </p>
@@ -219,7 +219,7 @@ export default function MortgageCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>Interest rate</strong> is the price of borrowing, shown as a yearly percentage. A small difference
           adds up over decades. On a $300,000 loan, a rate of 7.25% instead of 6.25% means a payment about $200 higher
-          every month. When you compare offers, look at the APR as well as the rate. The APR folds in certain lender
+          every month. When you compare offers, look at the <Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> as well as the rate. The APR folds in certain lender
           fees, so it gives you a fairer side-by-side comparison.
         </p>
         <p style={pStyle}>Mortgages also come in two main styles.</p>

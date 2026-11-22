@@ -165,7 +165,7 @@ export default function CidrCalculatorFaqSection() {
         <H3>How Does CIDR Notation for IP Addresses Work?</H3>
         <P>
           CIDR notation has three parts: an IP address, a slash, and a number between 0 and 32. The number is the count of consecutive 1-bits at
-          the start of the 32-bit subnet mask. In 10.4.0.0/16, the first 16 bits are the network portion and the remaining 16 bits identify hosts.
+          the start of the 32-bit <Link to="/tools/ip-subnet-calculator" className="inline-home-link">subnet mask</Link>. In 10.4.0.0/16, the first 16 bits are the network portion and the remaining 16 bits identify hosts.
           The longer the prefix, the smaller the block. A /8 is huge, a /24 is a typical LAN, and a /32 is a single address.
         </P>
         <P>

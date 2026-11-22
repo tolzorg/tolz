@@ -141,7 +141,7 @@ export default function ElectricityCalculatorFaqSection() {
       </Card>
 
       <Card title="Electricity Units Explained: Watts, Kilowatts, kWh, BTU, Horsepower and Tons">
-        <P>Appliance labels use different units, so it helps to know how they convert. The calculator takes watts, so convert anything else first.</P>
+        <P>Appliance labels use different units, so it helps to know how they <Link to="/tools/unit-converter" className="inline-home-link">convert</Link>. The calculator takes watts, so convert anything else first.</P>
         <List items={[
           ["Watt (W):", "the basic unit of power, equal to one joule per second."],
           ["Kilowatt (kW):", "1,000 watts."],
@@ -360,7 +360,7 @@ export default function ElectricityCalculatorFaqSection() {
 
       <Card title="How Much Does 1 Volt of Electricity Cost?">
         <P>
-          Nothing, because volts are not what you pay for. Voltage is the electrical “pressure” pushing current through a wire. Your utility bills
+          Nothing, because volts are not what you pay for. <Link to="/tools/voltage-drop-calculator" className="inline-home-link">Voltage</Link> is the electrical “pressure” pushing current through a wire. Your utility bills
           you for energy in kilowatt-hours, which depends on watts and time.
         </P>
         <P>

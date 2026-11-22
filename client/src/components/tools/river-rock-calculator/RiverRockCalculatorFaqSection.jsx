@@ -115,7 +115,7 @@ export default function RiverRockCalculatorFaqSection() {
         <p style={pStyle}>
           The calculator uses a straightforward but often-overlooked formula: it multiplies the length, width,
           and depth of your project area to determine cubic volume, then converts that volume into weight
-          using the bulk density of the specific rock type you select. Bulk density varies noticeably between
+          using the bulk <Link to="/tools/size-to-weight-calculator" className="inline-home-link">density</Link> of the specific rock type you select. Bulk density varies noticeably between
           rock types, a smaller, more angular rock packs differently than a large, rounded river stone, which
           is why generic gravel calculators that use a single fixed density often produce inaccurate results.
         </p>
@@ -128,7 +128,7 @@ export default function RiverRockCalculatorFaqSection() {
           reasons DIY landscaping projects run short on material.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The final output includes total volume in cubic feet and cubic yards, total weight in pounds and
+          The final output includes total volume in cubic feet and <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link>, total weight in pounds and
           tons, and an estimated cost based on the price per unit you enter. You can adjust any input and see
           the numbers update instantly, which makes it easy to compare scenarios, for example, checking how
           much a 3-inch depth costs versus a 4-inch depth before committing to an order.
@@ -203,7 +203,7 @@ export default function RiverRockCalculatorFaqSection() {
             <strong>Xeriscaping and drought-tolerant landscaping.</strong> As more homeowners replace grass
             lawns with low-water landscaping, river rock has become a common ground cover choice. Calculating
             coverage for larger areas like this is where estimation errors get expensive, since these projects
-            can involve hundreds of square feet.
+            can involve hundreds of <Link to="/tools/square-footage-calculator" className="inline-home-link">square feet</Link>.
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>Garden bed mulching alternatives.</strong> Unlike organic mulch, river rock doesn't need

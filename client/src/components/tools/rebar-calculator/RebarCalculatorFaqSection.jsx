@@ -113,7 +113,7 @@ export default function RebarCalculatorFaqSection() {
         <h2 style={h2Style}>How the Rebar Calculator Works</h2>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           The tool is built around three calculation modes, so you can work from whichever information you
-          already have on hand. In the first mode, you enter the dimensions of your concrete element, length,
+          already have on hand. In the first mode, you enter the dimensions of your <Link to="/calculators/construction/sonotube" className="inline-home-link">concrete</Link> element, length,
           width or depth, and bar spacing, and the calculator determines how many rebar pieces are required
           and their total combined length. In the second mode, you can calculate directly from a known
           quantity of bars and their individual lengths, useful when you're verifying a materials list a
@@ -163,7 +163,7 @@ export default function RebarCalculatorFaqSection() {
           </li>
           <li>
             <strong>Learning and DIY projects.</strong> Homeowners and students working on smaller pours, a
-            shed foundation, a small retaining wall, often need a way to translate basic dimensions into a
+            shed foundation, a small <Link to="/calculators/construction/retaining-wall" className="inline-home-link">retaining wall</Link>, often need a way to translate basic dimensions into a
             materials list without prior estimating experience.
           </li>
         </ul>
@@ -182,7 +182,7 @@ export default function RebarCalculatorFaqSection() {
           instantly displays the number of bars required, total linear length, total weight, and estimated
           cost, all recalculated in real time as you adjust any input. This live recalculation is particularly
           useful for comparing scenarios, such as seeing how switching from 16" to 12" spacing changes both
-          material weight and price before committing to an order.
+          {" "}<Link to="/tools/size-to-weight-calculator" className="inline-home-link">material weight</Link> and price before committing to an order.
         </p>
       </div>
 

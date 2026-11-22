@@ -333,7 +333,7 @@ export default function SquareFootageCalculatorFaqSection() {
         <p style={pStyle}>
           It doesn't change the area itself, because square footage only measures the floor. It can still change what
           gets counted: space with a ceiling under about 7 feet usually doesn't qualify as a living area. Ceiling height
-          does affect volume (cubic feet), which matters for heating, cooling, and the feel of a room.
+          does affect <Link to="/tools/cubic-yard-calculator" className="inline-home-link">volume</Link> (cubic feet), which matters for heating, cooling, and the feel of a room.
         </p>
         <h3 style={h3Style}>Why Are Houses Valued by Square Footage and Not Volume?</h3>
         <p style={pStyle}>
@@ -478,7 +478,7 @@ export default function SquareFootageCalculatorFaqSection() {
           Lot size is different from house size. Check your deed, survey, or plat map. Your county assessor's website
           often lists lot size in square feet or acres, and many counties offer an online map. One acre equals 43,560
           square feet. If you need to measure an irregular lot yourself, split it into simple shapes, add their areas,
-          and enter the total in the polygon option to convert units.
+          and enter the total in the polygon option to <Link to="/tools/unit-converter" className="inline-home-link">convert units</Link>.
         </p>
         <h3 style={h3Style}>What Is the Square Footage of a Hectare?</h3>
         <p style={pStyle}>
@@ -600,7 +600,7 @@ export default function SquareFootageCalculatorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Landscaping.</strong> Garden beds, patios, and lawns are often round, curved, or irregular. Area tells
-            you how much sod, mulch, gravel, or paving you need.
+            you how much sod, mulch, <Link to="/calculators/construction/river-rock" className="inline-home-link">gravel</Link>, or paving you need.
           </li>
           <li style={liStyle}>
             <strong>Construction and remodeling.</strong> Contractors use square footage to estimate materials, labor,

@@ -184,7 +184,7 @@ export default function CompoundInterestFaqSection() {
           built around the rate itself. It does two things.
         </p>
         <p style={pStyle}>
-          <strong>It compares.</strong> Enter an interest rate and see how that same number behaves under annual,
+          <strong>It compares.</strong> Enter an <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> and see how that same number behaves under annual,
           semiannual, quarterly, monthly, semi-monthly, bi-weekly, daily, and continuous compounding.
         </p>
         <p style={pStyle}>
@@ -236,7 +236,7 @@ export default function CompoundInterestFaqSection() {
 
         <h3 style={h3Style}>Simple interest vs. compound interest</h3>
         <p style={pStyle}>
-          Simple interest only ever applies to the original amount. Say you put $5,000 in an account paying 8% simple
+          {" "}<Link to="/tools/simple-interest-calculator" className="inline-home-link">Simple interest</Link> only ever applies to the original amount. Say you put $5,000 in an account paying 8% simple
           interest for three years. You earn $400 a year, so you end up with $6,200.
         </p>
         <p style={pStyle}>
@@ -246,7 +246,7 @@ export default function CompoundInterestFaqSection() {
           or 30 years and the gap is huge.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Simple interest still shows up in some short-term loans, certain bonds, and a few auto loans. Most of the
+          Simple interest still shows up in some short-term loans, certain <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link>, and a few auto loans. Most of the
           time, though, if money is sitting in an account or a balance is carrying over, compounding is involved.
         </p>
       </div>
@@ -256,7 +256,7 @@ export default function CompoundInterestFaqSection() {
         <p style={pStyle}>Interest can compound on pretty much any schedule. The common ones are below.</p>
         <ul style={listGapStyle}>
           <li style={liStyle}>
-            <strong>Annual (1 time a year).</strong> The simplest case. Some CDs and bonds work this way, and it's the
+            <strong>Annual (1 time a year).</strong> The simplest case. Some <Link to="/tools/cd-calculator" className="inline-home-link">CDs</Link> and bonds work this way, and it's the
             baseline for most comparisons.
           </li>
           <li style={liStyle}>
@@ -267,7 +267,7 @@ export default function CompoundInterestFaqSection() {
             <strong>Quarterly (4).</strong> You'll see this on some CDs and certain corporate or municipal products.
           </li>
           <li style={liStyle}>
-            <strong>Monthly (12).</strong> The usual schedule for mortgages, personal loans, auto loans, and many credit
+            <strong>Monthly (12).</strong> The usual schedule for mortgages, <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>, auto loans, and many credit
             cards. Plenty of savings accounts also credit interest monthly.
           </li>
           <li style={liStyle}>

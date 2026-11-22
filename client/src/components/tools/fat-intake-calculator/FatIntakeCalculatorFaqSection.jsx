@@ -205,7 +205,7 @@ export default function FatIntakeCalculatorFaqSection() {
       <Card title="What Is Fat Intake, and Why Does It Matter?">
         <P>
           Fat intake is the amount of dietary fat you eat in a day, from sources like cooking oils, butter, meat, dairy, eggs, nuts,
-          seeds, avocados and fish. Along with protein and carbohydrates, fat is one of the three macronutrients that supply the energy
+          seeds, avocados and fish. Along with protein and <Link to="/tools/carbohydrate-calculator" className="inline-home-link">carbohydrates</Link>, fat is one of the three <Link to="/tools/macro-calculator" className="inline-home-link">macronutrients</Link> that supply the energy
           your body runs on. It is also the most concentrated source of that energy, with 9 calories in every gram.
         </P>
         <P>
@@ -229,7 +229,7 @@ export default function FatIntakeCalculatorFaqSection() {
           Organization uses a slightly lower ceiling of 30% for total fat, so staying in the lower half of the range is a reasonable
           choice if you want to be conservative.
         </P>
-        <P>In grams, the range grows with your calorie intake:</P>
+        <P>In grams, the range grows with your <Link to="/tools/calorie-tracker" className="inline-home-link">calorie intake</Link>:</P>
         <List items={[
           ["1,500 calories:", "about 33 to 58 grams"],
           ["2,000 calories:", "about 44 to 78 grams"],
@@ -361,7 +361,7 @@ export default function FatIntakeCalculatorFaqSection() {
         </P>
         <H3>Losing Belly Fat</H3>
         <P>
-          You cannot choose where your body loses fat. Belly fat comes down as overall body fat comes down, and that takes a steady
+          You cannot choose where your body loses fat. Belly fat comes down as overall <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link> comes down, and that takes a steady
           calorie deficit. Cutting back on added sugar, staying within your fat range, eating enough protein and combining cardio with
           strength training all help. Reducing only one of these usually isn’t enough.
         </P>
@@ -568,7 +568,7 @@ export default function FatIntakeCalculatorFaqSection() {
           type 2 diabetes. When it comes to cancer, the evidence for fat itself is mixed. The clearest link is with processed meat, which
           the International Agency for Research on Cancer classifies as carcinogenic, and with excess body weight, which raises the risk
           of several cancers. No specific fat target has been proven to prevent cancer. The safest approach is to follow a balanced
-          pattern, keep a healthy weight and favor unsaturated fats. If you have a specific health concern, a doctor or registered
+          pattern, keep a <Link to="/tools/healthy-weight-calculator" className="inline-home-link">healthy weight</Link> and favor unsaturated fats. If you have a specific health concern, a doctor or registered
           dietitian can give guidance that fits you.
         </P>
         <P>

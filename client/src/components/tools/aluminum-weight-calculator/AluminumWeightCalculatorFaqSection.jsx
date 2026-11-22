@@ -103,7 +103,7 @@ export default function AluminumWeightCalculatorFaqSection() {
       {/* Intro */}
       <div className="card" style={cardStyle}>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Calculating the exact weight of aluminum stock used to mean digging up a density chart, converting
+          Calculating the exact weight of aluminum stock used to mean digging up a <Link to="/tools/size-to-weight-calculator" className="inline-home-link">density</Link> chart, converting
           units by hand, and hoping the math held up once the material reached the shop floor. The aluminum
           weight calculator on <Link to="/" className="inline-home-link">Tolz</Link> removes that guesswork by handling the entire calculation for you,
           instantly, accurately, and for free. Whether you're pricing out a fabrication job, ordering raw
@@ -128,7 +128,7 @@ export default function AluminumWeightCalculatorFaqSection() {
           weights even at identical dimensions.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Beyond raw weight, the calculator includes instant price estimation, letting you convert a
+          Beyond raw weight, the calculator includes instant price estimation, letting you <Link to="/tools/unit-converter" className="inline-home-link">convert</Link> a
           calculated weight into an approximate cost figure. This is particularly useful when you're comparing
           suppliers, budgeting a project, or trying to determine whether a custom-cut piece is priced fairly
           relative to its actual material weight.
@@ -173,7 +173,7 @@ export default function AluminumWeightCalculatorFaqSection() {
         <h2 style={h2Style}>Supported Shapes and Alloys Explained</h2>
         <p style={pStyle}>
           Aluminum stock comes in a wide range of profiles, and each one requires a different cross-sectional
-          area formula to calculate weight correctly. This calculator accounts for that automatically:
+          {" "}<Link to="/tools/square-footage-calculator" className="inline-home-link">area</Link> formula to calculate weight correctly. This calculator accounts for that automatically:
         </p>
         <ul style={ulStyle}>
           <li style={{ marginBottom: 6 }}>
@@ -291,7 +291,7 @@ export default function AluminumWeightCalculatorFaqSection() {
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>Shipping and freight calculations</strong> — Determining accurate weight figures for
-            freight quotes, since shipping costs are often based on weight brackets.
+            {" "}<Link to="/tools/freight-class-calculator" className="inline-home-link">freight</Link> quotes, since shipping costs are often based on weight brackets.
           </li>
           <li style={{ marginBottom: 8 }}>
             <strong>Scrap and recycling valuation</strong> — Estimating the weight of aluminum scrap to get a

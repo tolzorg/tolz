@@ -413,7 +413,7 @@ export default function VatCalculatorFaqSection() {
         <h2 style={h2Style}>VAT vs. Sales Tax</h2>
         <p style={pStyle}>
           Both are consumption taxes expressed as a percentage of the price, but they work differently under the hood.
-          Sales tax is a single-stage tax. Nobody collects anything until the final sale, when the retailer adds it to the
+          {" "}<Link to="/tools/sales-tax-calculator" className="inline-home-link">Sales tax</Link> is a single-stage tax. Nobody collects anything until the final sale, when the retailer adds it to the
           bill. VAT is a multi-stage tax, charged at every step of the chain, with each business subtracting what it
           already paid.
         </p>
@@ -545,8 +545,8 @@ export default function VatCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>The VAT Margin Scheme</h2>
         <p style={pStyle}>
-          Some businesses can use a different method called the margin scheme, where VAT is paid only on the profit margin
-          rather than on the full sale price. It's common for second-hand goods, antiques, art and used cars. The tradeoff
+          Some businesses can use a different method called the margin scheme, where VAT is paid only on the <Link to="/tools/margin-calculator" className="inline-home-link">profit margin</Link>{" "}
+          rather than on the full <Link to="/tools/discount-calculator" className="inline-home-link">sale price</Link>. It's common for second-hand goods, antiques, art and used cars. The tradeoff
           is that the seller can't reclaim VAT on the goods bought under the scheme, and the invoice doesn't show VAT
           separately.
         </p>

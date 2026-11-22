@@ -168,7 +168,7 @@ export default function HighSchoolGpaCalculatorFaqSection() {
 
       <Card title="What Is a High School GPA, and Why Does It Matter?">
         <P>
-          GPA stands for grade point average. It turns the letter grades on your report card into numbers and averages them, so your whole
+          {" "}<Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link> stands for grade point average. It turns the letter grades on your report card into numbers and averages them, so your whole
           academic record fits into a single figure. Most U.S. high schools use a 4.0 scale, where an A is worth 4.0 points and an F is worth
           zero.
         </P>
@@ -188,7 +188,7 @@ export default function HighSchoolGpaCalculatorFaqSection() {
       <Card title="High School GPA Scale">
         <P>
           Most schools use a scale like the one below to turn percentages and letter grades into grade points. The unweighted column applies to
-          every class. The Honors and AP/IB/College columns show what the same letter grade is worth when a school adds the common weighting of
+          every class. The Honors and AP/IB/College columns show what the same <Link to="/tools/grade-calculator" className="inline-home-link">letter grade</Link> is worth when a school adds the common weighting of
           0.5 and 1.0 points.
         </P>
         <DataTable headers={SCALE_HEADERS} rows={SCALE_ROWS} />
@@ -225,7 +225,7 @@ export default function HighSchoolGpaCalculatorFaqSection() {
       <Card title="Honors, AP, IB and College Courses: How Weighting Changes Your GPA">
         <P>
           Most schools add a fixed bonus to the grade points for advanced courses. The most common pattern is +0.5 for Honors and +1.0 for AP, IB
-          and college-level courses such as dual enrollment. Under that system, an A in AP Biology is worth 5.0 points, an A in Honors Geometry is
+          and college-level courses such as dual enrollment. Under that system, an A in <Link to="/tools/ap-bio-score-calculator" className="inline-home-link">AP Biology</Link> is worth 5.0 points, an A in Honors Geometry is
           worth 4.5, and an A in a regular class is worth 4.0.
         </P>
         <P>
@@ -290,7 +290,7 @@ export default function HighSchoolGpaCalculatorFaqSection() {
 
       <Card title="How to Calculate Your Cumulative GPA">
         <P>
-          Your cumulative GPA is the running average across every term you have completed, and it is the number colleges, scholarship committees
+          Your <Link to="/tools/college-gpa-calculator" className="inline-home-link">cumulative GPA</Link> is the running average across every term you have completed, and it is the number colleges, scholarship committees
           and eligibility offices care about most. It is different from a semester GPA, which only covers one grading period.
         </P>
         <P>
@@ -316,7 +316,7 @@ export default function HighSchoolGpaCalculatorFaqSection() {
         <P>
           There are three common ways to use it. The first is a quick unweighted GPA for a single semester. The second is a weighted GPA that
           reflects the difficulty of your schedule. The third is a cumulative GPA that combines every term from freshman year onward. Because you
-          can change a grade and recalculate, you can also test scenarios, such as how a B+ instead of a B in AP Chemistry would change your
+          can change a grade and recalculate, you can also test scenarios, such as how a B+ instead of a B in <Link to="/tools/ap-chem-score-calculator" className="inline-home-link">AP Chemistry</Link> would change your
           overall number.
         </P>
       </Card>

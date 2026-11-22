@@ -125,15 +125,15 @@ export default function RepaymentCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What This Repayment Calculator Does</h2>
         <p style={pStyle}>
-          It works for pretty much any debt that gets paid down over time: mortgages, auto loans, personal loans,
-          student loans, and credit card balances. You can use it on a loan you haven't taken yet (to see if the deal
+          It works for pretty much any debt that gets paid down over time: mortgages, auto loans, <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>,
+          {" "}<Link to="/tools/student-loan-calculator" className="inline-home-link">student loans</Link>, and <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link> balances. You can use it on a loan you haven't taken yet (to see if the deal
           makes sense) or on one you've been paying on for years (to see where you stand and what a change would do).
         </p>
         <p style={pStyle}>There are two ways to run it, and they answer two different questions.</p>
         <p style={pStyle}>
           <strong>Fixed loan term.</strong> You pick how long you want to take, and the calculator tells you the
           payment needed to finish on time. This is the right mode when the term is set by a lender or by your own
-          goal, like a 60-month car loan or deciding between a 15-year and 30-year mortgage.
+          goal, like a 60-month <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loan</Link> or deciding between a 15-year and 30-year mortgage.
         </p>
         <p style={pStyle}>
           <strong>Fixed payment.</strong> You pick how much you can pay each period, and the calculator tells you how
@@ -160,7 +160,7 @@ export default function RepaymentCalculatorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Enter the annual interest rate.</strong> Use the rate on your loan agreement. (There's a note on
-            APR vs. interest rate further down, since it trips people up.)
+            {" "}<Link to="/tools/apr-calculator" className="inline-home-link">APR</Link> vs. interest rate further down, since it trips people up.)
           </li>
           <li style={liStyle}>
             <strong>Choose the compounding frequency.</strong> This is how often the lender adds interest to your

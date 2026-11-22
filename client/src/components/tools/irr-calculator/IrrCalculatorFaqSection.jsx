@@ -163,7 +163,7 @@ export default function IrrCalculatorFaqSection() {
         <h2 style={h2Style}>What Is IRR (Internal Rate of Return)?</h2>
         <p style={pStyle}>
           IRR is the annual rate that makes an investment break even once you account for timing. Technically, it’s the
-          discount rate that sets the net present value (NPV) of all your cash flows to zero. In plain English, it’s the
+          discount rate that sets the net <Link to="/tools/present-value-calculator" className="inline-home-link">present value</Link> (NPV) of all your cash flows to zero. In plain English, it’s the
           yearly return your money earned, given when it went out and when it came back.
         </p>
         <p style={pStyle}>
@@ -192,7 +192,7 @@ export default function IrrCalculatorFaqSection() {
         <h2 style={h2Style}>How to Use the IRR Calculator</h2>
         <p style={pStyle}>Pick the mode that fits what you’ve got.</p>
         <ul style={listGapStyle}>
-          <li style={liStyle}><strong>Recurring deposit or withdrawal with an ending balance.</strong> Enter the fixed amount you add or take out each year, the number of years, and the balance at the end. This is the one for savings plans, retirement contributions, or any steady habit where you know where you ended up but not what rate you earned.</li>
+          <li style={liStyle}><strong>Recurring deposit or withdrawal with an ending balance.</strong> Enter the fixed amount you add or take out each year, the number of years, and the balance at the end. This is the one for savings plans, <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> contributions, or any steady habit where you know where you ended up but not what rate you earned.</li>
           <li style={lastLi}><strong>Irregular yearly cash flows.</strong> Enter your starting investment first as money going out, then a figure for each following year. Inflows like rent, dividends, or sale proceeds are positive. Extra money you put in later is negative. If nothing happened in a given year, enter zero. Don’t skip it, because skipping a year slides every later payment one year closer and changes the answer.</li>
         </ul>
         <p style={pStyle}>
@@ -252,7 +252,7 @@ export default function IrrCalculatorFaqSection() {
           Say you deposit $1,000 at the end of each year for ten years and finish with $13,000. You put in $10,000 and made
           $3,000, which is a 30% total return. Sounds good, but 30% over ten years says nothing about the pace. The IRR here
           comes out to about 5.7% a year (assuming year-end deposits), and that’s the figure you’d compare to a savings
-          account, a bond yield, or inflation.
+          account, a <Link to="/tools/bond-calculator" className="inline-home-link">bond yield</Link>, or <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link>.
         </p>
         <p style={pStyle}>
           Withdrawals work in reverse. If you pull a fixed amount out each year and still have a balance left, the calculator
@@ -269,7 +269,7 @@ export default function IrrCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Calculating IRR for Irregular Cash Flows</h2>
         <p style={pStyle}>
-          Real investments are messy. A rental might cost $200,000, need a $15,000 repair in year two, bring in uneven rent,
+          Real <Link to="/tools/investment-calculator" className="inline-home-link">investments</Link> are messy. A rental might cost $200,000, need a $15,000 repair in year two, bring in uneven rent,
           and sell at the end. A small business might lose money for two years before it turns a profit. For cases like these,
           you enter each year as its own line.
         </p>

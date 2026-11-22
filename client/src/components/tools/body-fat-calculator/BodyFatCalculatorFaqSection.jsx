@@ -308,7 +308,7 @@ export default function BodyFatCalculatorFaqSection() {
         ]} />
         <P>
           Ultrasound can also estimate the layer of fat under the skin, but that’s clinic equipment. BMI-based formulas are the
-          least reliable, since two people with the same BMI can have totally different amounts of fat.
+          least reliable, since two people with the same <Link to="/tools/bmi-calculator" className="inline-home-link">BMI</Link> can have totally different amounts of fat.
         </P>
       </Card>
 
@@ -497,7 +497,7 @@ export default function BodyFatCalculatorFaqSection() {
 
       <Card title="How Do I Reduce Body Fat Properly?">
         <P>
-          The boring answer is also the right one: a modest, steady calorie deficit, enough protein, strength training, regular
+          The boring answer is also the right one: a modest, steady <Link to="/tools/calorie-tracker" className="inline-home-link">calorie deficit</Link>, enough protein, strength training, regular
           movement, and enough sleep. Here’s how to do each without wrecking yourself.
         </P>
         <H3>What’s the Fastest and Healthiest Way to Lose Body Fat?</H3>
@@ -508,7 +508,7 @@ export default function BodyFatCalculatorFaqSection() {
         </P>
         <H3>How Many Calories Are in a Gram of Body Fat?</H3>
         <P>
-          Dietary fat has 9 calories per gram. Body fat tissue isn’t pure fat, since it also has some water and protein, so it works
+          {" "}<Link to="/tools/fat-intake-calculator" className="inline-home-link">Dietary fat</Link> has 9 calories per gram. Body fat tissue isn’t pure fat, since it also has some water and protein, so it works
           out to roughly 7 calories per gram, or about 7,700 calories per kilogram (the familiar “3,500 per pound”). Treat that as a
           rough guide. The old rule oversimplifies, because your metabolism slows a bit as you lose weight, so the real-world rate
           drops over time.

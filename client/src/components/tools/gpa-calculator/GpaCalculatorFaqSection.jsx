@@ -136,13 +136,13 @@ export default function GpaCalculatorFaqSection() {
 
       <Card title="What Is GPA? What Is CGPA? And Why Do They Matter?">
         <P>
-          GPA stands for grade point average. It is the average of the grades you earn, with each letter grade converted to a number and each
+          GPA stands for grade point average. It is the average of the grades you earn, with each <Link to="/tools/grade-calculator" className="inline-home-link">letter grade</Link> converted to a number and each
           course counted according to its credit value. Instead of reading through a full transcript, a school, scholarship committee, or
           employer can look at one figure, such as 3.4 or 3.9, to get a quick sense of how a student has performed.
         </P>
         <P>
-          CGPA stands for cumulative grade point average. It covers every graded course you have taken, not just one term. In the United
-          States, “cumulative GPA” and “CGPA” mean the same thing. In India and some other countries, CGPA usually refers to an average on a
+          {" "}<Link to="/tools/gpa-calculator-pakistan" className="inline-home-link">CGPA</Link> stands for cumulative grade point average. It covers every graded course you have taken, not just one term. In the United
+          States, “<Link to="/tools/college-gpa-calculator" className="inline-home-link">cumulative GPA</Link>” and “CGPA” mean the same thing. In India and some other countries, CGPA usually refers to an average on a
           10-point scale across all semesters, so a CGPA of 8.4 is a different number from a 3.4 GPA in the U.S. Both measure the same idea,
           which is your overall academic performance, but the scales are not interchangeable.
         </P>
@@ -205,11 +205,11 @@ export default function GpaCalculatorFaqSection() {
       <Card title="Weighted vs. Unweighted GPA">
         <P>
           Most high school students deal with two GPAs. The unweighted GPA uses the plain 4.0 scale, so an A in any class is worth 4.0. The
-          weighted GPA adds extra points for more demanding courses, which is why students in advanced programs can have a GPA above 4.0.
+          {" "}<Link to="/tools/high-school-gpa-calculator" className="inline-home-link">weighted GPA</Link> adds extra points for more demanding courses, which is why students in advanced programs can have a GPA above 4.0.
         </P>
         <P>
           The most common weighting system adds 0.5 points for honors classes and 1.0 point for AP, IB, and dual-enrollment courses. Under that
-          system, a B in AP Biology counts as 4.0 instead of 3.0, and an A in an honors course counts as 4.5. Some districts use a 5.0 maximum,
+          system, a B in <Link to="/tools/ap-bio-score-calculator" className="inline-home-link">AP Biology</Link> counts as 4.0 instead of 3.0, and an A in an honors course counts as 4.5. Some districts use a 5.0 maximum,
           some use different increments, and a few don’t weight grades at all. The course-level selector in this high school GPA calculator
           lets you apply the common weights so you can see both versions side by side.
         </P>

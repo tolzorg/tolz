@@ -143,7 +143,7 @@ export default function AverageReturnCalculatorFaqSection() {
           Adding up yearly returns and dividing by the number of years (an arithmetic mean) ignores compounding. An
           investment that gains 50% and then loses 50% has an arithmetic average of 0%, but $100 becomes $150 and then
           $75. The annualized (geometric) return these calculators report reflects what actually happened to your money,
-          which makes it the better number for comparing investments.
+          which makes it the better number for comparing <Link to="/tools/investment-calculator" className="inline-home-link">investments</Link>.
         </p>
       </div>
 

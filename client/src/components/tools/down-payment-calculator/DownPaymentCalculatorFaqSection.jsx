@@ -181,7 +181,7 @@ export default function DownPaymentCalculatorFaqSection() {
         </P>
         <P>
           Lenders almost always talk about down payments as a percentage, because that percentage decides a lot of things:
-          which loan programs you qualify for, whether you’ll pay mortgage insurance, and how your interest rate gets priced.
+          which loan programs you qualify for, whether you’ll pay mortgage insurance, and how your <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> gets priced.
           Your earnest money deposit, the good-faith deposit you put down when your offer is accepted, usually counts toward
           the down payment. It isn’t extra money on top.
         </P>
@@ -215,7 +215,7 @@ export default function DownPaymentCalculatorFaqSection() {
         <P>
           One more thing: don’t forget moving costs, immediate repairs, and the cash cushion you’ll want left over after
           closing. Most advisors suggest keeping at least a few months of living expenses in the bank after you buy. Empty
-          accounts on day one are how people end up putting a furnace repair on a credit card.
+          accounts on day one are how people end up putting a furnace repair on a <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link>.
         </P>
       </Card>
 
@@ -231,7 +231,7 @@ export default function DownPaymentCalculatorFaqSection() {
         ]} />
         <P>
           These are program minimums, not guarantees. Lenders also look at your credit score, income, job history and
-          debt-to-income ratio, and some add their own stricter rules. Use the percentage mode in the calculator to see exactly
+          {" "}<Link to="/tools/debt-to-income-calculator" className="inline-home-link">debt-to-income ratio</Link>, and some add their own stricter rules. Use the percentage mode in the calculator to see exactly
           where your number lands against each threshold.
         </P>
       </Card>
@@ -251,7 +251,7 @@ export default function DownPaymentCalculatorFaqSection() {
         <P>
           Your rate is also affected. Lenders price loans based on a mix of credit score and LTV, so a larger down payment often
           earns a lower interest rate, especially if your credit is on the weaker side. A lower rate on a smaller loan is a
-          double win: less interest over time and a lower monthly payment.
+          double win: less interest over time and a lower <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link>.
         </P>
         <P>
           This is why a down payment and monthly payment calculator beats a percentage tool alone. When you can watch the
@@ -276,7 +276,7 @@ export default function DownPaymentCalculatorFaqSection() {
           compared to $32,000 at 5% down.
         </P>
         <P>
-          Here’s an FHA example. A $300,000 house with 3.5% down means a $10,500 down payment and a base loan of $289,500. The
+          Here’s an <Link to="/tools/fha-loan-calculator" className="inline-home-link">FHA</Link> example. A $300,000 house with 3.5% down means a $10,500 down payment and a base loan of $289,500. The
           upfront mortgage insurance premium of 1.75% adds roughly $5,066 if you roll it into the loan, and the annual premium
           on top of that might add around $130 a month. Low down payment, yes, but not low cost. It’s worth running the numbers
           both ways before you pick a program.

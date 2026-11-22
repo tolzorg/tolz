@@ -249,7 +249,7 @@ export default function BmiCalculatorFaqSection() {
         <P>
           The idea goes back to the Belgian mathematician Adolphe Quetelet in the 1830s, which is why you’ll sometimes see it
           called the Quetelet index. The name “Body Mass Index” came in 1972, when researcher Ancel Keys compared several
-          height-weight formulas and found this one tracked body fat best across large groups. It stuck because it takes two
+          height-weight formulas and found this one tracked <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat</Link> best across large groups. It stuck because it takes two
           measurements anyone can get.
         </P>
       </Card>
@@ -257,7 +257,7 @@ export default function BmiCalculatorFaqSection() {
       <Card title="What Is the Best Way to Calculate Body Mass Index?">
         <P>
           For a quick check, an online BMI calculator is the best option because it removes the arithmetic mistakes people make
-          when squaring height by hand. It also handles unit conversion, which is where most errors creep in when someone mixes
+          when squaring height by hand. It also handles <Link to="/tools/unit-converter" className="inline-home-link">unit conversion</Link>, which is where most errors creep in when someone mixes
           pounds with centimeters.
         </P>
         <P>The best way to get an accurate number, though, comes down to your inputs, not the math:</P>
@@ -407,7 +407,7 @@ export default function BmiCalculatorFaqSection() {
         <H3>Is BMI a Useful Metric for Fitness?</H3>
         <P>
           Not really. BMI says nothing about strength, endurance, mobility or heart health. You can have a normal BMI and be winded
-          climbing one flight of stairs. Better fitness markers include resting heart rate, how fast your heart rate recovers after
+          climbing one flight of stairs. Better fitness markers include resting <Link to="/tools/target-heart-rate-calculator" className="inline-home-link">heart rate</Link>, how fast your heart rate recovers after
           exercise, a timed mile or 1.5-mile run, grip strength, push-up count, and how easily you can get up from the floor.
         </P>
         <H3>Which Bodybuilder Has the Highest BMI?</H3>
@@ -448,7 +448,7 @@ export default function BmiCalculatorFaqSection() {
         ]} />
         <P>
           The pattern: a U-shaped or J-shaped curve, with the low point in the low-to-mid 20s, and higher risk at both extremes. The
-          “overweight is fine” findings are partly explained by smokers and sick people who lose weight dragging down the low end,
+          “overweight is fine” findings are partly explained by smokers and sick people who <Link to="/tools/calorie-tracker" className="inline-home-link">lose weight</Link> dragging down the low end,
           which is why the never-smoker analyses are the cleaner ones.
         </P>
       </Card>
@@ -528,7 +528,7 @@ export default function BmiCalculatorFaqSection() {
           You can’t, technically. The number won’t move unless your weight does. What you can do is improve your body composition:
           build muscle, lose some fat, and end up with the same scale weight but a smaller waist, a better waist-to-height ratio and
           better health markers. This is called body recomposition. It’s slower than regular fat loss, but it works well for
-          beginners to strength training. If your goal is health rather than a number, this is often the smarter approach.
+          beginners to <Link to="/tools/one-rep-max-calculator" className="inline-home-link">strength training</Link>. If your goal is health rather than a number, this is often the smarter approach.
         </P>
         <H3>At What BMI Should You Lose Weight?</H3>
         <P>General guidance:</P>

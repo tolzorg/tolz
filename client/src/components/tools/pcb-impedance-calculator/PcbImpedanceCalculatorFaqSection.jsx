@@ -190,7 +190,7 @@ export default function PcbImpedanceCalculatorFaqSection() {
         <P>
           Usually not. A board that carries only DC or very slow signals, like a simple LED driver, a sensor on a slow ADC, or a basic relay
           circuit, does not need controlled impedance. The trace is electrically short compared with the signal’s edge rate, so reflections are not
-          a concern. In those designs, trace current capacity and voltage drop are the more useful things to check.
+          a concern. In those designs, trace <Link to="/tools/pcb-trace-current-calculator" className="inline-home-link">current capacity</Link> and <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage drop</Link> are the more useful things to check.
         </P>
         <P>
           The picture changes if a “DC” board also carries fast edges. A switching regulator, a microcontroller with a fast clock, or an SPI bus
@@ -289,7 +289,7 @@ export default function PcbImpedanceCalculatorFaqSection() {
           matching for DDR byte lanes, differential skew budgets, and timing on high-speed buses.
         </P>
         <P>
-          For microstrip, ε_eff depends on the ratio of trace width to substrate height, because that ratio controls how much of the field sits in
+          For microstrip, ε_eff depends on the ratio of <Link to="/tools/pcb-trace-width-calculator" className="inline-home-link">trace width</Link> to substrate height, because that ratio controls how much of the field sits in
           the laminate versus the air. Stripline avoids this complication because the field stays in the dielectric. Seeing ε_eff next to the
           impedance lets you check timing and impedance in one pass.
         </P>
@@ -319,7 +319,7 @@ export default function PcbImpedanceCalculatorFaqSection() {
           matches the driver, connector, and receiver.
         </Lead>
         <Lead lead="Terminate the line.">
-          A series resistor placed near the driver adds to its output impedance, so the total equals the trace impedance. A parallel resistor to a
+          A series <Link to="/tools/resistor-calculator" className="inline-home-link">resistor</Link> placed near the driver adds to its output impedance, so the total equals the trace impedance. A parallel resistor to a
           reference voltage at the receiver absorbs the arriving signal instead of reflecting it. Differential links often use a resistor across
           the pair at the receiver.
         </Lead>

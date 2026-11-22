@@ -100,7 +100,7 @@ export default function SizeToWeightCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Figuring out how much a piece of material will weigh before you order it, ship it, or build with it
           saves time, money, and guesswork. Whether you're a fabricator quoting a steel plate, a hobbyist
-          calculating lumber weight for a project, or a logistics coordinator estimating shipping costs,
+          calculating <Link to="/tools/board-foot-calculator" className="inline-home-link">lumber</Link> weight for a project, or a logistics coordinator estimating shipping costs,
           knowing the exact weight of a rectangular solid before it arrives on-site changes how you plan. The
           size to weight calculator on <Link to="/" className="inline-home-link">Tolz</Link> was built exactly for this, enter the dimensions of your material,
           pick the substance it's made from, and get an accurate weight in seconds, without needing a scale, a
@@ -128,7 +128,7 @@ export default function SizeToWeightCalculatorFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           As a size to weight calculator, this tool supports more than 20 materials, spanning common metals
-          like steel, aluminum, and copper, construction materials like concrete and various wood species, and
+          like steel, <Link to="/calculators/construction/aluminum-weight" className="inline-home-link">aluminum</Link>, and copper, construction materials like concrete and various wood species, and
           everyday plastics. Each material carries its own standardized density value, so switching from "mild
           steel" to "aluminum" in the dropdown recalculates the weight immediately without any extra input
           from you.
@@ -266,7 +266,7 @@ export default function SizeToWeightCalculatorFaqSection() {
           alloy.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Unit conversion is another area where manual calculations commonly go wrong, particularly when
+          {" "}<Link to="/tools/unit-converter" className="inline-home-link">Unit conversion</Link> is another area where manual calculations commonly go wrong, particularly when
           switching between metric and imperial systems mid-project. Because this tool handles unit conversion
           internally, there's no risk of a misplaced decimal point or an incorrect conversion factor throwing
           off your final number.
@@ -279,7 +279,7 @@ export default function SizeToWeightCalculatorFaqSection() {
         <p style={pStyle}>
           To see how the math plays out in practice, consider a steel plate measuring 1 meter long, 0.5 meters
           wide, and 0.02 meters (20mm) thick. The volume is calculated as 1 × 0.5 × 0.02, which equals 0.01
-          cubic meters. Mild steel has a density of roughly 7,850 kg per cubic meter, so multiplying the
+          {" "}<Link to="/tools/cbm-calculator" className="inline-home-link">cubic meters</Link>. Mild steel has a density of roughly 7,850 kg per cubic meter, so multiplying the
           volume by the density gives a weight of approximately 78.5 kilograms.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>

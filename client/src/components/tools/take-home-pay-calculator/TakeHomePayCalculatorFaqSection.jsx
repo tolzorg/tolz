@@ -193,7 +193,7 @@ export default function TakeHomePayCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Gross Pay vs. Take-Home Pay: Why the Difference Matters</h2>
         <p style={pStyle}>
-          When people talk about salary in the U.S., they almost always mean gross pay, the amount before anything gets taken
+          When people talk about <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> in the U.S., they almost always mean gross pay, the amount before anything gets taken
           out. That’s the number on a job offer, the one lenders look at for a mortgage, and the one you use to compare jobs.
           It makes sense, because it’s the raw figure before things that differ from person to person, like taxes and health
           insurance, come into play.
@@ -219,12 +219,12 @@ export default function TakeHomePayCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           After that, add your deductions. The calculator separates them into pre-tax deductions your employer withholds
-          (like 401(k) and health premiums), deductions that aren’t withheld (like IRA contributions or student loan
+          (like <Link to="/tools/401k-calculator" className="inline-home-link">401(k)</Link> and health premiums), deductions that aren’t withheld (like <Link to="/tools/ira-calculator" className="inline-home-link">IRA</Link> contributions or <Link to="/tools/student-loan-calculator" className="inline-home-link">student loan</Link>{" "}
           interest), and itemized deductions. If you don’t itemize, leave that blank and the standard deduction applies.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           You’ll get your net pay per paycheck, plus monthly and annual versions, with a breakdown of federal tax, state and
-          local tax, Social Security and Medicare. The best way to learn from it is to change one thing at a time. Bump your
+          local tax, <Link to="/tools/social-security-calculator" className="inline-home-link">Social Security</Link> and Medicare. The best way to learn from it is to change one thing at a time. Bump your
           401(k) from 3% to 8%, or switch from single to head of household, and watch what moves.
         </p>
       </div>

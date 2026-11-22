@@ -192,7 +192,7 @@ export default function IdealWeightCalculatorFaqSection() {
         </P>
         <H3>Start With the Formulas and the BMI Range</H3>
         <P>
-          The four ideal body weight (IBW) formulas each give you one number based on height and sex. The healthy BMI range gives
+          The four ideal body weight (IBW) formulas each give you one number based on height and sex. The healthy <Link to="/tools/bmi-calculator" className="inline-home-link">BMI</Link> range gives
           you a band instead. Put them side by side and you’ll usually see the formula results sitting somewhere in the middle of
           that band. That’s your starting estimate.
         </P>
@@ -266,7 +266,7 @@ export default function IdealWeightCalculatorFaqSection() {
 
       <Card title="What Is the Ideal Weight for Having Six Pack Abs?">
         <P>
-          Here’s the thing: there isn’t one. Abs show up based on body fat percentage, not body weight. Two men can both be 5'10"
+          Here’s the thing: there isn’t one. Abs show up based on <Link to="/tools/body-fat-calculator" className="inline-home-link">body fat percentage</Link>, not body weight. Two men can both be 5'10"
           and 175 pounds, and one has a visible six pack while the other doesn’t, because they carry different amounts of muscle
           and fat.
         </P>
@@ -453,7 +453,7 @@ export default function IdealWeightCalculatorFaqSection() {
       <Card title="Ideal Weight for Children and Teens (Ages 2 to 20)">
         <P>
           Adult formulas don’t apply to growing bodies, so for ages 2 to 20 the calculator uses BMI-for-age percentiles. These
-          compare a child’s BMI to other children of the same age and sex. On the CDC growth charts, a healthy weight falls from the
+          compare a child’s BMI to other children of the same age and sex. On the CDC growth charts, a <Link to="/tools/healthy-weight-calculator" className="inline-home-link">healthy weight</Link> falls from the
           5th percentile up to (but not including) the 85th. You can read more in the <Ext href="https://www.cdc.gov/bmi/child-teen-calculator/index.html">CDC’s guide to BMI for children and teens</Ext>.
         </P>
         <P>
@@ -582,7 +582,7 @@ export default function IdealWeightCalculatorFaqSection() {
         </P>
         <H3>What Is the Most Effective Weight Loss Method or Program?</H3>
         <P>
-          The programs with the strongest evidence share a few things: a moderate calorie deficit, regular physical activity,
+          The programs with the strongest evidence share a few things: a moderate <Link to="/tools/calorie-tracker" className="inline-home-link">calorie deficit</Link>, regular physical activity,
           ongoing behavioral support, and a way to track progress. The CDC’s National Diabetes Prevention Program is a good example.
           In the research behind it, people who lost 5 to 7 percent of their body weight and got about 150 minutes of activity a
           week cut their risk of developing type 2 diabetes by 58 percent. No special foods or gadgets were involved. Pick whatever

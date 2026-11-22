@@ -146,7 +146,7 @@ export default function SavingsCalculatorFaqSection() {
           Let's be honest, most people have a vague idea of what they want to save for, but almost nobody
           sits down and does the actual math. This free savings calculator from{" "}
           <Link to="/" className="inline-home-link">Tolz</Link> does that math for you. Plug in what you're
-          starting with, what you plan to add each month or year, your interest rate, and your tax rate, and
+          starting with, what you plan to add each month or year, your <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, and your tax rate, and
           it'll show you exactly where you'll land after however many years you choose. No spreadsheet, no
           guessing, no "I'll figure it out later."
         </p>
@@ -174,7 +174,7 @@ export default function SavingsCalculatorFaqSection() {
           <li style={{ marginBottom: 8 }}>
             <strong>Initial deposit:</strong> Whatever you're starting with, whether that's $100 you had
             sitting around or $10,000 you're moving over from another account, put it here. It matters more
-            than people think, because that starting chunk earns interest from day one, and interest earned
+            than people think, because that starting chunk earns interest from day one, and <Link to="/tools/interest-calculator" className="inline-home-link">interest earned</Link>{" "}
             on interest is basically the whole point of compounding.
           </li>
           <li style={{ marginBottom: 8 }}>
@@ -201,7 +201,7 @@ export default function SavingsCalculatorFaqSection() {
           <li style={{ marginBottom: 8 }}>
             <strong>Tax rate on interest:</strong> This is the percentage of your interest earnings that
             goes to taxes. It depends on your country, your tax bracket, and the type of account you're
-            using. Some retirement or tax-sheltered accounts don't tax interest at all, while a regular
+            using. Some <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> or tax-sheltered accounts don't tax interest at all, while a regular
             savings account usually gets taxed at your normal income rate.
           </li>
           <li>
@@ -219,7 +219,7 @@ export default function SavingsCalculatorFaqSection() {
           actually works, here's the plain-English version.
         </p>
         <p style={pStyle}>
-          The tool is essentially solving for future value, meaning, given what you put in today and what
+          The tool is essentially solving for <Link to="/tools/future-value-calculator" className="inline-home-link">future value</Link>, meaning, given what you put in today and what
           you keep adding, plus a given rate of return, what will the total be worth down the road? The
           calculation has two moving parts that get combined:
         </p>
@@ -326,7 +326,7 @@ export default function SavingsCalculatorFaqSection() {
           a month before charging a fee, and some require you to maintain a minimum balance. That's actually
           not a bad thing. It nudges savings accounts into being the place you park money you don't need to
           touch constantly, like an emergency fund or savings for a future goal, rather than money for daily
-          spending. And compared to other places you might stash money long-term, like cashing in bonds,
+          spending. And compared to other places you might stash money long-term, like cashing in <Link to="/tools/bond-calculator" className="inline-home-link">bonds</Link>,
           pulling from a retirement account early, or selling off investments, a savings account is about as
           easy as it gets to access when you actually need the cash.
         </p>

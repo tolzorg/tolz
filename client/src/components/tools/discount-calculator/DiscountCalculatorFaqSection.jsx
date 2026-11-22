@@ -216,7 +216,7 @@ export default function DiscountCalculatorFaqSection() {
         <h2 style={h2Style}>How to Use the Discount Calculator</h2>
         <p style={pStyle}>It takes less than a minute.</p>
         <ol style={olStyle}>
-          <li style={liStyle}>Pick the deal type: percent off or fixed amount off.</li>
+          <li style={liStyle}>Pick the deal type: <Link to="/tools/percent-off-calculator" className="inline-home-link">percent off</Link> or fixed amount off.</li>
           <li style={liStyle}>Enter the two numbers you already have, like the original price and the discount.</li>
           <li style={liStyle}>Read the results. The other values show up right away, including your total savings.</li>
           <li style={liStyle}>
@@ -445,13 +445,13 @@ export default function DiscountCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Does the Discount Come Before or After Tax?</h2>
         <p style={pStyle}>
-          In most places, sales tax gets calculated on the discounted price, so a discount shrinks your tax too. A $80 item at
+          In most places, <Link to="/tools/sales-tax-calculator" className="inline-home-link">sales tax</Link> gets calculated on the discounted price, so a discount shrinks your tax too. A $80 item at
           25% off comes to $60. With 8% sales tax, you pay $60 × 1.08 = $64.80.
         </p>
         <p style={pStyle}>Two things to watch for:</p>
         <ul style={listGapStyle}>
           <li style={liStyle}>
-            <strong>Tax-inclusive prices.</strong> In many countries with VAT, the sticker price already includes tax. A
+            <strong>Tax-inclusive prices.</strong> In many countries with <Link to="/tools/vat-calculator" className="inline-home-link">VAT</Link>, the sticker price already includes tax. A
             percentage discount on a tax-inclusive price reduces the total by that same percentage, so you can run the
             calculator on the sticker price directly.
           </li>
@@ -607,7 +607,7 @@ export default function DiscountCalculatorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Confusing discount with markup.</strong> Undoing a 25% discount means dividing by 0.75, not adding 25%. A
-            markup is calculated on a different base.
+            {" "}<Link to="/tools/margin-calculator" className="inline-home-link">markup</Link> is calculated on a different base.
           </li>
           <li style={liStyle}><strong>Forgetting tax and shipping.</strong> Compare the final checkout total.</li>
           <li style={liStyle}><strong>Falling for &quot;up to&quot; claims.</strong> Calculate the discount on the product you actually want.</li>

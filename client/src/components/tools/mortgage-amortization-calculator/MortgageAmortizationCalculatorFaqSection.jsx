@@ -249,7 +249,7 @@ export default function MortgageAmortizationCalculatorFaqSection() {
       <Card title="Amortization Basics: Definitions and Real-Life Meaning">
         <H3>What Does Amortization Mean?</H3>
         <P>
-          Amortization means gradually paying off or writing down a balance over time through scheduled installments. The word
+          {" "}<Link to="/tools/amortization-calculator" className="inline-home-link">Amortization</Link> means gradually paying off or writing down a balance over time through scheduled installments. The word
           comes from the old French amortir, “to deaden,” and the idea is that a debt is slowly “killed off” by regular payments.
           In everyday finance, it usually refers to a loan being repaid in fixed installments that cover both interest and
           principal, so the balance reaches zero on a set date. In accounting, the same word describes spreading the cost of an
@@ -259,11 +259,11 @@ export default function MortgageAmortizationCalculatorFaqSection() {
 
         <H3>What Is Amortization, and How Is It Related to You?</H3>
         <P>
-          If you’ve ever financed a home, a car, a personal loan or student loans, you’ve been on an amortizing loan. Your required
+          If you’ve ever financed a home, a car, a <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loan</Link> or <Link to="/tools/student-loan-calculator" className="inline-home-link">student loans</Link>, you’ve been on an amortizing loan. Your required
           payment is the same each period, but the split between interest and principal changes behind the scenes, and that split
           determines how fast you build equity and how much the loan costs you overall. Credit cards are different: they are
           revolving debt without a fixed payoff schedule. Understanding amortization helps you answer practical questions, such
-          as how much of your payment is working for you, what an extra payment saves, and whether a refinance makes sense.
+          as how much of your payment is working for you, what an extra payment saves, and whether a <Link to="/tools/refinance-calculator" className="inline-home-link">refinance</Link> makes sense.
         </P>
 
         <H3>Where Does Amortization Apply in Real Life?</H3>
@@ -322,7 +322,7 @@ export default function MortgageAmortizationCalculatorFaqSection() {
         <P>
           Lenders often describe a payment as PITI: principal, interest, taxes and insurance. Principal reduces what you owe.
           Interest is the lender’s charge for the loan. Property taxes and homeowners insurance are frequently collected monthly
-          into an escrow account and paid on your behalf. A mortgage payment calculator that stops at principal and interest
+          into an escrow account and paid on your behalf. A mortgage <Link to="/tools/payment-calculator" className="inline-home-link">payment calculator</Link> that stops at principal and interest
           understates your true monthly cost, sometimes by several hundred dollars.
         </P>
         <P>

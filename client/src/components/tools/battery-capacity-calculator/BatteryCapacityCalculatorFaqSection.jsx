@@ -127,7 +127,7 @@ export default function BatteryCapacityCalculatorFaqSection() {
         </Lead>
         <Lead lead="Watt-hour (Wh)">
           measures energy. One watt-hour is one watt of power sustained for one hour. Energy is what actually runs your devices, which is why
-          watt-hours tell you more about a battery than amp-hours do. A larger unit, the kilowatt-hour (kWh), equals 1,000Wh and is what you see on
+          watt-hours tell you more about a battery than amp-hours do. A larger unit, the kilowatt-hour (<Link to="/tools/electricity-calculator" className="inline-home-link">kWh</Link>), equals 1,000Wh and is what you see on
           electricity bills and in electric vehicle specs.
         </Lead>
       </Card>
@@ -139,7 +139,7 @@ export default function BatteryCapacityCalculatorFaqSection() {
           deliver, and that is the amp-hour rating.
         </P>
         <P>
-          Two things then decide how the battery performs. The chemistry sets the voltage, for example about 3.6–3.7V per lithium-ion cell, 3.2V
+          Two things then decide how the battery performs. The chemistry sets the <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage</Link>, for example about 3.6–3.7V per lithium-ion cell, 3.2V
           per LiFePO4 cell, and 2V per lead-acid cell. The number of cells wired in series sets the total pack voltage. More active material, or
           more cells in parallel, raises the capacity. As the battery discharges, the reaction consumes its active material, the voltage slowly
           falls, and eventually the battery can’t supply the load anymore.
@@ -294,7 +294,7 @@ export default function BatteryCapacityCalculatorFaqSection() {
           ["Lithium-ion:", "commonly 0.5C to 1C, depending on the cell."],
           ["LiFePO4:", "typically 0.2C to 0.5C, with some cells rated higher."],
         ]} />
-        <P>Always check the manufacturer’s maximum charge rate. Charging too fast heats the cells and shortens battery life.</P>
+        <P>Always check the manufacturer’s maximum charge rate. Charging too fast heats the cells and shortens <Link to="/tools/battery-life-calculator" className="inline-home-link">battery life</Link>.</P>
         <H3>How Do You Determine the Amperage Needed to Charge a Battery?</H3>
         <P>
           Start with the capacity and your target charge time. To charge a 100Ah battery in about 5 hours, you need 100 ÷ 5 = 20A, which is 0.2C.

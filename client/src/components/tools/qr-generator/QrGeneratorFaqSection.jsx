@@ -147,7 +147,7 @@ export default function QrGeneratorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>Personal and everyday use.</strong> People generate a QR code to quickly share a Wi-Fi
-          password with visitors, put contact details on a resume, or attach a code to a gift that links to a
+          {" "}<Link to="/tools/password-generator" className="inline-home-link">password</Link> with visitors, put contact details on a resume, or attach a code to a gift that links to a
           video message or playlist. Students and professionals also use QR codes to share portfolio links or
           documents during presentations.
         </p>
@@ -168,7 +168,7 @@ export default function QrGeneratorFaqSection() {
         <p style={pStyle}>Generating a QR code with this tool takes only a few steps:</p>
         <ol style={olStyle}>
           <li style={{ marginBottom: 8 }}>
-            <strong>Choose your content type.</strong> Decide what the code should point to, a website URL,
+            <strong>Choose your content type.</strong> Decide what the code should point to, a website <Link to="/tools/url-shortener" className="inline-home-link">URL</Link>,
             plain text, an email address, a phone number, Wi-Fi details, or contact information.
           </li>
           <li style={{ marginBottom: 8 }}>
@@ -278,7 +278,7 @@ export default function QrGeneratorFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           It's worth noting that once a QR code is generated and downloaded, the resulting image itself
-          contains the data you entered, so if you're encoding sensitive information like a personal phone
+          contains the data you entered, so if you're <Link to="/tools/url-encode-decode" className="inline-home-link">encoding</Link> sensitive information like a personal phone
           number or private link, treat the printed or shared code the same way you'd treat that information
           in any other public-facing format, since anyone who scans it can access what's encoded.
         </p>

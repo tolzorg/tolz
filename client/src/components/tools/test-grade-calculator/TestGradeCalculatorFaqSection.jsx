@@ -131,8 +131,8 @@ export default function TestGradeCalculatorFaqSection() {
 
       <Card title="What Is a Test Grade? Purpose and Grading Table">
         <P>
-          A test grade is the score a student receives for a single test, quiz, or exam. It is usually shown in two ways: a percentage, which
-          tells you what share of the available points you earned, and a letter grade, which places that percentage on a scale such as A through
+          A test grade is the score a student receives for a single test, quiz, or <Link to="/tools/final-grade-calculator" className="inline-home-link">exam</Link>. It is usually shown in two ways: a percentage, which
+          tells you what share of the available points you earned, and a <Link to="/tools/grade-calculator" className="inline-home-link">letter grade</Link>, which places that percentage on a scale such as A through
           F. A score of 42 out of 50 is 84%, and on most scales that is a B.
         </P>
         <P>

@@ -240,8 +240,8 @@ export default function Four01kCalculatorFaqSection() {
           This is really four calculators in one, because a 401(k) raises four different questions.
         </p>
         <p style={pStyle}>
-          The first is the big one: what will my balance be at retirement? The tool looks at your age, salary,
-          contribution percentage, expected salary increases, and investment return, then compounds everything year by
+          The first is the big one: what will my balance be at <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link>? The tool looks at your age, <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link>,
+          contribution percentage, expected salary increases, and <Link to="/tools/investment-calculator" className="inline-home-link">investment return</Link>, then compounds everything year by
           year.
         </p>
         <p style={pStyle}>
@@ -277,7 +277,7 @@ export default function Four01kCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>Getting a raise.</strong> Most people leave their contribution rate alone for years while their pay
           goes up. A common trick is to bump your deferral by 1% (or half your raise) each time you get one. You barely
-          notice it in your paycheck, but the calculator will show it adds up.
+          notice it in your <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link>, but the calculator will show it adds up.
         </p>
         <p style={pStyle}>
           <strong>Checking if you're on track.</strong> If you're in your 30s or 40s and wondering whether your balance
@@ -315,7 +315,7 @@ export default function Four01kCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           After that, you'll pick a salary increase and an expected rate of return. For salary growth, 2% to 3% is a
-          sensible default, since that's roughly in line with long-run inflation and modest raises. For returns, a lot of
+          sensible default, since that's roughly in line with long-run <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link> and modest raises. For returns, a lot of
           planners use somewhere around 5% to 7% for a diversified portfolio. If you want to be conservative, go lower.
           If your money is mostly in bonds or a stable value fund, go lower still.
         </p>

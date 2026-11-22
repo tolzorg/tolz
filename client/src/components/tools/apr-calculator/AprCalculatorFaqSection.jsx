@@ -155,7 +155,7 @@ export default function AprCalculatorFaqSection() {
           deal costs compared to the money you actually walk away with.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          There are two modes here. Loan mode covers personal loans, auto loans, business loans and most other installment
+          There are two modes here. Loan mode covers <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link>, auto loans, <Link to="/tools/business-loan-calculator" className="inline-home-link">business loans</Link> and most other installment
           borrowing. You enter the amount, nominal rate, term, upfront fees, compounding frequency and payment frequency.
           Mortgage mode is for U.S. home loans, and it adds discount points and private mortgage insurance on top of the
           basics. Both give you the real APR, the periodic payment, total interest, total cost and a payment-by-payment
@@ -166,7 +166,7 @@ export default function AprCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>APR vs Interest Rate: Why the Two Numbers Don’t Match</h2>
         <p style={pStyle}>
-          The interest rate is the price of borrowing the principal. That’s it. It sets how much interest builds up each
+          The <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> is the price of borrowing the principal. That’s it. It sets how much interest builds up each
           period and doesn’t say anything about the fees you pay to get the loan.
         </p>
         <p style={pStyle}>
@@ -213,7 +213,7 @@ export default function AprCalculatorFaqSection() {
           <li style={liStyle}>Mortgage broker fees</li>
           <li style={liStyle}>Mortgage insurance</li>
           <li style={liStyle}>Escrow and certain closing fees</li>
-          <li style={lastLi}>Refinance fees</li>
+          <li style={lastLi}>{" "}<Link to="/tools/refinance-calculator" className="inline-home-link">Refinance</Link> fees</li>
         </ul>
         <p style={{ ...pStyle, marginBottom: 6 }}><strong>Fees that are usually left out:</strong></p>
         <ul style={listGapStyle}>
@@ -257,7 +257,7 @@ export default function AprCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>PMI</strong> (private mortgage insurance) usually kicks in when you put less than 20% down on a conventional
-          loan. Cost varies with credit score and down payment, but it commonly runs somewhere between roughly 0.3% and 1.5% of
+          loan. Cost varies with credit score and <Link to="/tools/down-payment-calculator" className="inline-home-link">down payment</Link>, but it commonly runs somewhere between roughly 0.3% and 1.5% of
           the loan per year. You can generally ask your lender to drop it once you hit 80% loan-to-value, and it’s supposed to
           end automatically at 78% under federal law. FHA loans use a different charge called mortgage insurance premium
           (MIP), with its own rules, so don’t assume PMI math carries over.

@@ -191,7 +191,7 @@ export default function AnniversaryFaqSection() {
           There's no single way. Common choices include dinner at the restaurant where you had a first date, a weekend
           trip, a family gathering, or a quiet evening at home with a favorite movie. Many couples exchange cards or
           small gifts, look through wedding photos, or recreate something from their wedding day. Milestone years like
-          the 25th or 50th often bring a party with family and friends. Pick whatever fits your budget and your
+          the 25th or 50th often bring a party with family and friends. Pick whatever fits your <Link to="/tools/budget-calculator" className="inline-home-link">budget</Link> and your
           personality.
         </p>
         <h3 style={h3Style}>Should You Renew Your Vows on Your 4th Anniversary?</h3>

@@ -113,7 +113,7 @@ export default function DeckingCalculatorFaqSection() {
         <h2 style={h2Style}>How the Decking Calculator Works</h2>
         <p style={pStyle}>
           The calculator uses your deck's length and width, along with the dimensions of the decking boards you
-          plan to use, to determine the total square footage of your project and how many individual boards are
+          plan to use, to determine the total <Link to="/tools/square-footage-calculator" className="inline-home-link">square footage</Link> of your project and how many individual boards are
           required to cover it. It accounts for standard board coverage width, so gaps between boards used for
           drainage and expansion are already factored into the layout, rather than being an afterthought you
           have to calculate separately. Once the board count is established, the tool moves to fasteners,
@@ -185,7 +185,7 @@ export default function DeckingCalculatorFaqSection() {
           applying the unit prices you provide for boards and fasteners. This is intentionally left as a user
           input rather than a fixed price, since decking material costs vary significantly by region, supplier,
           and material type, timber, composite, and PVC decking all sit in different price brackets, and prices
-          shift with lumber markets and seasonal demand. By entering your actual quoted prices, the output
+          shift with <Link to="/tools/board-foot-calculator" className="inline-home-link">lumber</Link> markets and seasonal demand. By entering your actual quoted prices, the output
           reflects a realistic budget for your specific project rather than a generic national average that may
           not match what you'll actually pay.
         </p>
@@ -253,7 +253,7 @@ export default function DeckingCalculatorFaqSection() {
           multiple jobs can also use it to quickly generate consistent, defensible material estimates for
           clients, rather than relying on rough mental math that can vary from quote to quote. And for anyone
           comparing material options, timber versus composite, screws versus hidden clips, running each scenario
-          through the calculator turns an abstract cost comparison into concrete numbers.
+          through the calculator turns an abstract cost comparison into <Link to="/calculators/construction/sonotube" className="inline-home-link">concrete</Link> numbers.
         </p>
       </div>
 

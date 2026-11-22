@@ -155,7 +155,7 @@ export default function WordCounterFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What Is a Word Counter and Why Does It Matter?</h2>
         <p style={pStyle}>
-          A word counter tells you how many words, characters, sentences, and paragraphs are in a piece of text. You
+          A word counter tells you how many words, characters, <Link to="/tools/sentence-counter" className="inline-home-link">sentences</Link>, and paragraphs are in a piece of text. You
           paste or type your content into the box, and the numbers show up right away. The Tolz Word Counter runs in
           your browser and updates as you type, so there is nothing to click and no page to refresh.
         </p>

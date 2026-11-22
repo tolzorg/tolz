@@ -112,7 +112,7 @@ export default function SqftToCubicYardsFaqSection() {
       <div className="card" style={cardStyle}>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Figuring out how much concrete, gravel, or topsoil to order shouldn't require a math textbook. This
-          sq ft to cubic yards calculator takes your square footage and depth and instantly converts them into
+          sq ft to <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link> calculator takes your <Link to="/tools/square-footage-calculator" className="inline-home-link">square footage</Link> and depth and instantly converts them into
           cubic yards, so you can order the right amount of material the first time. It's built for
           homeowners, contractors, and landscapers alike, and it's part of the free suite of construction and
           measurement tools available on <Link to="/" className="inline-home-link">Tolz</Link>, where every calculator is designed to give you a fast, accurate
@@ -184,7 +184,7 @@ export default function SqftToCubicYardsFaqSection() {
           Volume alone doesn't tell the whole story when you're ordering material, because different materials
           have very different densities. A cubic yard of gravel weighs significantly more than a cubic yard
           of mulch, and suppliers often price or deliver material by weight as well as volume. That's why this
-          calculator includes a built-in material weight estimator covering five of the most commonly ordered
+          calculator includes a built-in <Link to="/tools/size-to-weight-calculator" className="inline-home-link">material weight</Link> estimator covering five of the most commonly ordered
           materials:
         </p>
         <p style={pStyle}>
@@ -271,7 +271,7 @@ export default function SqftToCubicYardsFaqSection() {
           type, there's no waiting, no file uploads, and nothing to install.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          The formula and unit conversions used in this calculator follow standard construction industry
+          The formula and <Link to="/tools/unit-converter" className="inline-home-link">unit conversions</Link> used in this calculator follow standard construction industry
           measurement conventions, and the material weight estimates are based on commonly referenced density
           figures for concrete, gravel, sand, topsoil, and mulch. As with any estimating tool, actual material
           density can vary slightly by supplier and product type, so it's worth confirming exact figures with

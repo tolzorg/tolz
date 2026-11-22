@@ -132,7 +132,7 @@ export default function VoltageDropCalculatorFaqSection() {
       <Card title="What Is Voltage Drop?">
         <P>
           Voltage drop is the reduction in voltage as electric current flows through a conductor, such as a wire. This happens because the
-          conductor opposes the flow of current. In a DC circuit, this opposition is called resistance, while in an AC circuit, it is called
+          conductor opposes the flow of current. In a DC circuit, this opposition is called <Link to="/tools/resistor-calculator" className="inline-home-link">resistance</Link>, while in an AC circuit, it is called
           impedance, which includes both resistance and reactance.
         </P>
         <P>
@@ -151,7 +151,7 @@ export default function VoltageDropCalculatorFaqSection() {
         </P>
         <P>
           Voltage drop is usually expressed as a positive value to represent the amount of voltage lost. In contrast, a voltage rise occurs when
-          voltage increases across a source, such as a battery or generator. According to Kirchhoff's Voltage Law (KVL), the total voltage rise in a
+          voltage increases across a source, such as a <Link to="/tools/battery-capacity-calculator" className="inline-home-link">battery</Link> or generator. According to Kirchhoff's Voltage Law (KVL), the total voltage rise in a
           closed circuit equals the total voltage drop.
         </P>
       </Card>

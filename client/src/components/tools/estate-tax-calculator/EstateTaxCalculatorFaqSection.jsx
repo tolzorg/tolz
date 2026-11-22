@@ -198,7 +198,7 @@ export default function EstateTaxCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Most people who run the numbers find out they're nowhere near the limit. That's good news, but
           it's worth confirming rather than assuming. The people who do end up owing tend to be business
-          owners, folks with lots of real estate, or families whose investments quietly grew for thirty
+          owners, folks with lots of real estate, or families whose <Link to="/tools/investment-calculator" className="inline-home-link">investments</Link> quietly grew for thirty
           years.
         </p>
       </div>
@@ -219,7 +219,7 @@ export default function EstateTaxCalculatorFaqSection() {
         <p style={pStyle}>
           One quick note on the word "estate." In this context it doesn't mean a big house on a piece of
           land. It just means everything a person owns, minus what they owe. A one-bedroom condo with a car
-          and a savings account is an estate, and so is a ten-figure business empire.
+          and a <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link> is an estate, and so is a ten-figure business empire.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           This tool is built for U.S. taxpayers. It doesn't calculate state estate or inheritance taxes,
@@ -236,8 +236,8 @@ export default function EstateTaxCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           <strong>Assets.</strong> Add up everything you own or control: your home and other real estate,
-          checking and savings, brokerage accounts, retirement accounts like 401(k)s and IRAs, business
-          interests, vehicles, art, jewelry, collectibles, annuities, and life insurance. The insurance part
+          checking and savings, brokerage accounts, <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> accounts like 401(k)s and IRAs, business
+          interests, vehicles, art, jewelry, collectibles, <Link to="/tools/annuity-calculator" className="inline-home-link">annuities</Link>, and life insurance. The insurance part
           trips people up. If you own the policy, or held any control over it when you died, the payout
           counts as part of your estate even though it goes straight to a beneficiary.
         </p>
@@ -248,7 +248,7 @@ export default function EstateTaxCalculatorFaqSection() {
           needle on tax.
         </p>
         <p style={pStyle}>
-          <strong>Liabilities.</strong> Enter mortgages, car loans, credit card balances, business debts,
+          <strong>Liabilities.</strong> Enter mortgages, <Link to="/tools/auto-loan-calculator" className="inline-home-link">car loans</Link>, credit card balances, business debts,
           and anything else you owe. Add a realistic amount for funeral costs and estate administration
           expenses like legal and court fees. Those are deductible.
         </p>

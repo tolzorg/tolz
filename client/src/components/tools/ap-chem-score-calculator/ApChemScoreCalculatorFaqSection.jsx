@@ -170,7 +170,7 @@ export default function ApChemScoreCalculatorFaqSection() {
 
       <Card title="What Is AP Chemistry, and What Is Its Purpose?">
         <P>
-          AP Chemistry is a college-level course and exam for high school students. The College Board designed it to match a first-year
+          AP Chemistry is a college-level course and <Link to="/tools/test-grade-calculator" className="inline-home-link">exam</Link> for high school students. The <Link to="/tools/college-gpa-calculator" className="inline-home-link">College</Link> Board designed it to match a first-year
           college general chemistry class. The course is organized into nine units: atomic structure and properties, compound structure and
           properties, properties of substances and mixtures, chemical reactions, kinetics, thermochemistry, equilibrium, acids and bases, and
           thermodynamics and electrochemistry. It also builds lab skills, such as designing experiments, analyzing data, and explaining
@@ -257,7 +257,7 @@ export default function ApChemScoreCalculatorFaqSection() {
         <P>
           Second, enter your free-response points. There are seven questions: three long questions worth 10 points each and four short
           questions worth 4 points each, for 46 points total. Add up the points from all seven questions using the official scoring
-          guidelines, and grade yourself strictly. Partial credit exists, but only for steps the rubric actually rewards.
+          guidelines, and <Link to="/tools/grade-calculator" className="inline-home-link">grade</Link> yourself strictly. Partial credit exists, but only for steps the rubric actually rewards.
         </P>
         <P>
           After you enter both numbers, the calculator returns three results: your composite score from 0 to 100, your estimated AP score from

@@ -216,7 +216,7 @@ export default function RentCalculatorFaqSection() {
           Figuring out how much rent you can afford shouldn't come down to a gut feeling, but that's how a
           lot of people do it. This rent calculator from <Link to="/" className="inline-home-link">Tolz</Link>{" "}
           takes your gross monthly income and your existing monthly debt, then shows the most rent you can
-          carry using the same 28% and 36% debt-to-income guidelines lenders use for mortgages. Enter two
+          carry using the same 28% and 36% <Link to="/tools/debt-to-income-calculator" className="inline-home-link">debt-to-income</Link> guidelines lenders use for mortgages. Enter two
           numbers and you'll know your ceiling before you look at a single listing.
         </p>
       </div>
@@ -231,13 +231,13 @@ export default function RentCalculatorFaqSection() {
         <p style={pStyle}>
           The second is the back-end ratio. It says your total monthly debt payments, rent included,
           shouldn't go past 36% of your gross income. That's where your existing obligations come in. Car
-          payments, student loans, credit card minimums and the like get subtracted from that 36% before
+          payments, <Link to="/tools/student-loan-calculator" className="inline-home-link">student loans</Link>, <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link> minimums and the like get subtracted from that 36% before
           rent gets a dime.
         </p>
         <p style={pStyle}>
           Whichever limit is lower becomes your maximum rent. With little debt, the 28% test usually decides
           the answer. With a lot of debt, the 36% test takes over and your number drops. That's why two
-          people with the same paycheck can get very different results.
+          people with the same <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> can get very different results.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Here's a useful way to think about it. Once the back-end ratio is the one in charge, every $100 of
@@ -252,7 +252,7 @@ export default function RentCalculatorFaqSection() {
           <li style={{ marginBottom: 8 }}>
             <strong>Enter your gross income.</strong> Use the amount before taxes and deductions, straight
             off your pay stub or offer letter. Landlords and lenders screen on gross pay, so the calculator
-            does too. If you only know your yearly salary, divide by 12. If you're paid hourly, multiply
+            does too. If you only know your yearly <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link>, divide by 12. If you're paid hourly, multiply
             your hourly rate by the hours you work in a week, then by 52, then divide by 12. For example,
             $20 an hour at 40 hours a week comes to about $3,467 a month.
           </li>

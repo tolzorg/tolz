@@ -299,7 +299,7 @@ export default function OneRepMaxCalculatorFaqSection() {
         <H3>What Percent of Your 1RM Builds Muscle?</H3>
         <P>
           For building mass, most lifters do well between 65% and 80% of their 1RM for sets of roughly 6 to 12 reps. What matters most is
-          that each set gets close to failure, meaning you could only do a rep or two more with good form. Lighter weights can build muscle
+          that each set gets close to failure, meaning you could only do a rep or two more with good form. Lighter weights can build <Link to="/tools/lean-body-mass-calculator" className="inline-home-link">muscle</Link>{" "}
           too if the sets are hard enough, which is part of why many bodybuilders don’t bother with heavy singles.
         </P>
         <H3>What Percent Should You Use for a 3-Day, Full-Body, 4x4 Program?</H3>
@@ -492,7 +492,7 @@ export default function OneRepMaxCalculatorFaqSection() {
         ]} />
         <H3>How to Break Through a One Rep Max Plateau</H3>
         <P>
-          When your 1RM stops moving, first check the basics: sleep, calories, protein and recent training stress. Then change something.
+          When your 1RM stops moving, first check the basics: sleep, <Link to="/tools/calorie-tracker" className="inline-home-link">calories</Link>, <Link to="/tools/protein-calculator" className="inline-home-link">protein</Link> and recent training stress. Then change something.
           Try a different rep range for a few weeks, add pause reps to fix a weak point, build up your assistance exercises, or take a deload
           week and come back fresh. Many plateaus break after a short period of lower-intensity work, because accumulated fatigue was the
           real problem, not a lack of strength.

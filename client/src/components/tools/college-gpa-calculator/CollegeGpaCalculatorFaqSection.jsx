@@ -141,7 +141,7 @@ export default function CollegeGpaCalculatorFaqSection() {
 
       <Card title="What Is College GPA?">
         <P>
-          GPA stands for grade point average. In college, it is a number from 0.0 to 4.0 that summarizes your grades across all your courses. It
+          {" "}<Link to="/tools/gpa-calculator" className="inline-home-link">GPA</Link> stands for grade point average. In college, it is a number from 0.0 to 4.0 that summarizes your grades across all your courses. It
           is not a plain average of your letter grades. Each course is weighted by its credit hours, so a 4-credit chemistry class affects your
           GPA more than a 1-credit seminar. That weighting is what registrars use, and it is the step people most often miss when they calculate
           by hand.
@@ -152,7 +152,7 @@ export default function CollegeGpaCalculatorFaqSection() {
           at it alongside your coursework and your grade trend.
         </P>
         <P>
-          A college GPA calculator does the math for you. You enter each course, its letter grade, and its credits. The tool multiplies, adds,
+          A college GPA calculator does the math for you. You enter each course, its <Link to="/tools/grade-calculator" className="inline-home-link">letter grade</Link>, and its credits. The tool multiplies, adds,
           and divides, then shows your result. Because it supports up to 30 courses, you can calculate a single semester, a full year, or most of
           a four-year degree in one session.
         </P>
@@ -316,7 +316,7 @@ export default function CollegeGpaCalculatorFaqSection() {
           3.5, but there is no single cutoff, and the average is only an average.
         </P>
         <P>
-          A lower GPA is not the end of the road. A strong test score, steady career progress, and a clear story can balance it out. Many programs
+          A lower GPA is not the end of the road. A strong <Link to="/tools/test-grade-calculator" className="inline-home-link">test score</Link>, steady career progress, and a clear story can balance it out. Many programs
           also allow an optional essay where you can explain a rough semester or a weak start, as long as you keep it brief and honest. Admissions
           teams also notice upward trends and the difficulty of your major.
         </P>
@@ -376,7 +376,7 @@ export default function CollegeGpaCalculatorFaqSection() {
           struggle.
         </P>
         <P>
-          Research on college admissions has also found that high school GPA is a strong predictor of college GPA, and that using both together
+          Research on college admissions has also found that <Link to="/tools/high-school-gpa-calculator" className="inline-home-link">high school GPA</Link> is a strong predictor of college GPA, and that using both together
           predicts better than either alone. Habits like attendance, time management, and asking for help matter a lot once you are in college,
           and no test score captures them. Many schools are now test-optional, so your high school record and your college grades carry more
           weight for you than a single exam.

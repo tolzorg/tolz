@@ -238,7 +238,7 @@ export default function CommissionCalculatorFaqSection() {
           mid-quarter.
         </P>
         <P>
-          Keep it simple enough that a rep can estimate their own paycheck on a napkin. If people need a spreadsheet and a
+          Keep it simple enough that a rep can estimate their own <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link> on a napkin. If people need a spreadsheet and a
           meeting to figure out what they earned, the plan is doing less motivating than you think.
         </P>
 
@@ -410,7 +410,7 @@ export default function CommissionCalculatorFaqSection() {
           of that can look odd to investors and can drain scarce cash.
         </P>
         <P>
-          There are exceptions. If you’re a founder drawing little or no salary and also acting as the full-time seller, some
+          There are exceptions. If you’re a founder drawing little or no <Link to="/tools/salary-calculator" className="inline-home-link">salary</Link> and also acting as the full-time seller, some
           companies set up a modest commission to formalize the arrangement. If you do that, document it, keep the rate
           reasonable, and make sure the board or investors know about it.
         </P>
@@ -494,7 +494,7 @@ export default function CommissionCalculatorFaqSection() {
         <H3>Commission rates in online marketplaces and ecommerce</H3>
         <P>
           Marketplaces typically charge sellers a referral fee that varies by product category, often roughly 8% to 20% of the
-          sale price, plus separate fees for fulfillment, payments, and advertising. Rates differ by platform, country, and
+          {" "}<Link to="/tools/discount-calculator" className="inline-home-link">sale price</Link>, plus separate fees for fulfillment, payments, and advertising. Rates differ by platform, country, and
           seller type, so look at the current fee schedule instead of guessing.
         </P>
         <P>
@@ -559,7 +559,7 @@ export default function CommissionCalculatorFaqSection() {
         <P>
           Yes, you can negotiate with financial advisors, particularly on fees. Advisors paid by commission have an incentive to
           recommend products that pay them more, while fee-only advisors charge you directly and don’t earn product
-          commissions. For mutual funds, distributors may earn sales charges, ongoing trailing commissions, or both, depending on
+          commissions. For <Link to="/tools/mutual-fund-calculator" className="inline-home-link">mutual funds</Link>, distributors may earn sales charges, ongoing trailing commissions, or both, depending on
           the fund and the country. Comparing the share class or plan types (those with and without distributor commissions)
           shows you what you’re paying for.
         </P>

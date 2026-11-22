@@ -95,8 +95,8 @@ export default function SonotubeCalculatorFaqSection() {
           calculator on <Link to="/" className="inline-home-link">Tolz</Link> takes that guesswork out of the
           process entirely. Enter the diameter, height, and number of tubes you're pouring, and the tool
           instantly returns the concrete volume you need, along with either a pre-mixed bag count or a full
-          cement, sand, and gravel breakdown, plus an estimated cost. It's built for anyone setting fence
-          posts, deck footings, or structural columns who wants a number they can trust before they start
+          cement, <Link to="/calculators/construction/sand" className="inline-home-link">sand</Link>, and gravel breakdown, plus an estimated cost. It's built for anyone setting fence
+          posts, <Link to="/calculators/construction/decking" className="inline-home-link">deck</Link> footings, or structural columns who wants a number they can trust before they start
           mixing.
         </p>
       </div>
@@ -108,7 +108,7 @@ export default function SonotubeCalculatorFaqSection() {
           A Sonotube (and similar cylindrical forms from other manufacturers) is a cardboard or fiber tube used
           to pour round concrete footings and columns. Because the shape is a cylinder, the volume math is
           straightforward in theory, but manual calculations get error-prone once you're converting cubic
-          inches to cubic feet, then to cubic yards, then to bag counts, especially when pouring multiple tubes
+          inches to cubic feet, then to <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic yards</Link>, then to bag counts, especially when pouring multiple tubes
           of different sizes on the same job.
         </p>
         <p style={pStyle}>

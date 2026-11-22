@@ -146,7 +146,7 @@ export default function RentalPropertyCalculatorFaqSection() {
           all of them.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          This one is built for deal analysis, not just a monthly payment estimate. It answers three questions in order. Does
+          This one is built for deal analysis, not just a <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> estimate. It answers three questions in order. Does
           the property produce positive income now? How efficiently does it use your cash? And what is the total return once
           appreciation, loan paydown and a sale are included? Running two or three properties through the same calculator
           lets you compare them on identical assumptions, which is the only fair way to rank them.
@@ -156,7 +156,7 @@ export default function RentalPropertyCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What a Rental Property Calculator Does (and Why “Rent Minus Mortgage” Isn’t Enough)</h2>
         <p style={pStyle}>
-          Everybody starts with the same quick check: monthly rent minus the mortgage payment. If it’s positive, the deal
+          Everybody starts with the same quick check: monthly rent minus the <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage payment</Link>. If it’s positive, the deal
           looks fine. The problem is everything that the check leaves out: property tax, insurance, repairs, vacancy,
           management, HOA fees, closing costs, and what it costs to sell later.
         </p>
@@ -187,7 +187,7 @@ export default function RentalPropertyCalculatorFaqSection() {
         <p style={{ ...pStyle, marginBottom: 0 }}>
           On the downside, rentals are capital-intensive, they depend on steady cash flow, and they’re hard to turn into cash
           fast. You can’t sell a bathroom to cover a surprise bill. Compared with stocks, though, rentals tend to be steadier,
-          they carry tax advantages, and rents have a track record of rising with inflation. With a solid analysis behind
+          they carry tax advantages, and rents have a track record of rising with <Link to="/tools/inflation-calculator" className="inline-home-link">inflation</Link>. With a solid analysis behind
           them, they can be a good use of money. That’s what the calculator is for.
         </p>
       </div>
@@ -206,8 +206,8 @@ export default function RentalPropertyCalculatorFaqSection() {
         <ul style={listGapStyle}>
           <li style={liStyle}><strong>Price discipline.</strong> Buying at a discount, from a motivated seller or a property that needs work, matters more when financing is expensive.</li>
           <li style={liStyle}><strong>Rent growth.</strong> Break-even today can turn into a good deal if rents rise while your payment stays fixed. Check whether your local market has the demand to support that.</li>
-          <li style={liStyle}><strong>Refinance risk.</strong> Some investors plan to refinance if rates drop. That’s a bet, not a plan. Make sure the deal works at today’s rate so a refinance is a bonus and not a requirement.</li>
-          <li style={lastLi}><strong>Cash reserves.</strong> Higher costs mean thinner cushions, which makes an emergency fund more important.</li>
+          <li style={liStyle}><strong>Refinance risk.</strong> Some investors plan to <Link to="/tools/refinance-calculator" className="inline-home-link">refinance</Link> if rates drop. That’s a bet, not a plan. Make sure the deal works at today’s rate so a refinance is a bonus and not a requirement.</li>
+          <li style={lastLi}><strong>Cash reserves.</strong> Higher costs mean thinner cushions, which makes an <Link to="/tools/savings-calculator" className="inline-home-link">emergency fund</Link> more important.</li>
         </ul>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           The way to answer it for your situation is to run the actual numbers at today’s rates, then at a rate one point

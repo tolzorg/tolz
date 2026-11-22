@@ -176,7 +176,7 @@ export default function PcbTraceResistanceCalculatorFaqSection() {
           10⁻⁸ Ω·m. Actual PCB copper values are generally close to these figures.
         </P>
         <P>
-          Once the trace resistance is known, Ohm's law (V = I × R) can be used to estimate voltage drop at a given current. This helps designers
+          Once the trace resistance is known, Ohm's law (V = I × R) can be used to estimate <Link to="/tools/voltage-drop-calculator" className="inline-home-link">voltage drop</Link> at a given current. This helps designers
           evaluate power losses and ensure reliable power delivery across the PCB.
         </P>
       </Card>
@@ -294,8 +294,8 @@ export default function PcbTraceResistanceCalculatorFaqSection() {
         <P>At 85 °C, the resistance increases to approximately 0.241 Ω, resulting in a 0.241 V drop.</P>
         <P>Widening the trace to 1 mm reduces its resistance to one-quarter, bringing the voltage drop down to approximately 48 mV at 1 A.</P>
         <P>
-          This shows how trace width and temperature affect voltage drop and power loss. However, resistance alone does not determine the safe
-          current capacity of a trace. You must also consider its allowable temperature rise when designing your PCB.
+          This shows how <Link to="/tools/pcb-trace-width-calculator" className="inline-home-link">trace width</Link> and temperature affect voltage drop and power loss. However, resistance alone does not determine the safe
+          {" "}<Link to="/tools/pcb-trace-current-calculator" className="inline-home-link">current capacity</Link> of a trace. You must also consider its allowable temperature rise when designing your PCB.
         </P>
       </Card>
 

@@ -300,7 +300,7 @@ export default function BondCalculatorFaqSection() {
           maturity" in the calculator, you're entering the time remaining, not the original term.
         </p>
         <p style={pStyle}>
-          <strong>Coupon rate.</strong> The yearly interest rate the issuer pays, applied to face value. A 5% coupon on a
+          <strong>Coupon rate.</strong> The yearly <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link> the issuer pays, applied to face value. A 5% coupon on a
           $1,000 bond is $50 a year regardless of what the bond's trading for. Coupons can be fixed, floating or zero.
           This calculator is for fixed.
         </p>
@@ -314,7 +314,7 @@ export default function BondCalculatorFaqSection() {
           because "yield" can mean several different numbers. We'll sort those out in a minute.
         </p>
         <p style={pStyle}>
-          <strong>Price.</strong> What the bond sells for in the market. In theory, it's the present value of every
+          <strong>Price.</strong> What the bond sells for in the market. In theory, it's the <Link to="/tools/present-value-calculator" className="inline-home-link">present value</Link> of every
           future payment, discounted at the yield investors demand. In practice, it's also pushed around by credit risk,
           supply and demand and the interest rate environment.
         </p>
@@ -478,7 +478,7 @@ export default function BondCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Clean Price, Dirty Price and Accrued Interest</h2>
         <p style={pStyle}>
-          Here's why these exist. Bondholders earn interest every day, but the issuer only pays on coupon dates. If
+          Here's why these exist. Bondholders <Link to="/tools/interest-calculator" className="inline-home-link">earn interest</Link> every day, but the issuer only pays on coupon dates. If
           someone sold a bond the day before a payment, they'd lose nearly a full period of interest to the new owner. So
           the buyer pays the seller their share of that interest when the trade settles. That payment is the accrued
           interest.
@@ -522,7 +522,7 @@ export default function BondCalculatorFaqSection() {
           </li>
           <li style={liStyle}>
             <strong>Actual/360:</strong> real days in the period, 360-day year. Common in money market instruments like
-            commercial paper and short-term CDs.
+            commercial paper and short-term <Link to="/tools/cd-calculator" className="inline-home-link">CDs</Link>.
           </li>
           <li style={liStyle}>
             <strong>Actual/365:</strong> real days in the period, fixed 365-day year. Used by some non-U.S. government
@@ -634,7 +634,7 @@ export default function BondCalculatorFaqSection() {
             all change your after-tax return.
           </li>
           <li style={liStyle}>
-            <strong>Inflation.</strong> A fixed coupon loses purchasing power when inflation runs high. Reinvestment risk
+            <strong>Inflation.</strong> A fixed coupon loses <Link to="/tools/inflation-calculator" className="inline-home-link">purchasing power</Link> when inflation runs high. Reinvestment risk
             is the flip side: if rates fall, you may not be able to reinvest your coupons at the original yield.
           </li>
         </ul>

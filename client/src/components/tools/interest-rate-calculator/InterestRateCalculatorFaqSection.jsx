@@ -201,7 +201,7 @@ export default function InterestRateCalculatorFaqSection() {
           give it the payment, and it gives you the rate.
         </p>
         <p style={pStyle}>
-          That's useful because the monthly payment is the number lenders like to talk about. A payment can look
+          That's useful because the <Link to="/tools/payment-calculator" className="inline-home-link">monthly payment</Link> is the number lenders like to talk about. A payment can look
           friendly while the rate behind it isn't. Stretch a loan out long enough and almost any payment will look
           affordable, so the payment alone tells you very little about what the loan costs.
         </p>
@@ -290,13 +290,13 @@ export default function InterestRateCalculatorFaqSection() {
         </p>
         <p style={pStyle}>
           Borrowers want it low. Lenders and investors want it higher. Most rates are quoted per year, but they can also
-          be stated monthly or daily, which is why you'll sometimes see a credit card quote a daily periodic rate in the
+          be stated monthly or daily, which is why you'll sometimes see a <Link to="/tools/credit-card-calculator" className="inline-home-link">credit card</Link> quote a daily periodic rate in the
           fine print.
         </p>
         <p style={pStyle}>
-          Rates show up in almost every kind of lending: mortgages, auto loans, credit cards, business loans, student
+          Rates show up in almost every kind of lending: mortgages, auto loans, credit cards, <Link to="/tools/business-loan-calculator" className="inline-home-link">business loans</Link>, student
           loans, even the early-payment discount a supplier offers on an invoice. They also work on the other side of
-          the table. Your savings account and retirement funds grow because someone else is paying interest to you.
+          the table. Your <Link to="/tools/savings-calculator" className="inline-home-link">savings account</Link> and <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> funds grow because someone else is paying interest to you.
         </p>
 
         <h3 style={h3Style}>Simple vs. compound interest</h3>

@@ -190,7 +190,7 @@ export default function MortgageCalculatorUkFaqSection() {
         <P>
           A mortgage is a loan that’s secured against the property you’re buying. If you stop paying and can’t sort it out with
           the lender, they can take the home back through the courts. That security is why mortgage rates are so much lower than
-          rates on personal loans or credit cards.
+          rates on <Link to="/tools/personal-loan-calculator" className="inline-home-link">personal loans</Link> or credit cards.
         </P>
         <P>
           Most people borrow somewhere between 75% and 95% of the purchase price and cover the rest with a deposit. The loan runs
@@ -243,7 +243,7 @@ export default function MortgageCalculatorUkFaqSection() {
         </P>
         <P>
           That said, “everyone should get a mortgage” isn’t a universal rule. If you might move in two years, can’t cover a rate
-          rise, or don’t have a decent emergency fund, buying can be the wrong call. The mortgage calculator on this page is a
+          rise, or don’t have a decent <Link to="/tools/savings-calculator" className="inline-home-link">emergency fund</Link>, buying can be the wrong call. The <Link to="/tools/mortgage-calculator" className="inline-home-link">mortgage calculator</Link> on this page is a
           good way to test how tight things would feel before you commit.
         </P>
 
@@ -293,7 +293,7 @@ export default function MortgageCalculatorUkFaqSection() {
           doesn’t grow. Providers who belong to the Equity Release Council follow standards that include a no-negative-equity
           guarantee, so you can never owe more than the home’s value when it’s sold, and a right to stay in the home for life.
           You’re also required to get advice from a qualified equity release adviser first. It’s a big decision, so compare it
-          against downsizing, a retirement interest-only mortgage, or using savings.
+          against downsizing, a <Link to="/tools/retirement-calculator" className="inline-home-link">retirement</Link> interest-only mortgage, or using savings.
         </P>
 
         <H3>What is a let-to-buy mortgage in the UK?</H3>
@@ -308,7 +308,7 @@ export default function MortgageCalculatorUkFaqSection() {
 
         <H3>What is a tracker mortgage?</H3>
         <P>
-          A tracker mortgage follows another interest rate, most often the Bank of England base rate, plus a set margin. If the
+          A tracker mortgage follows another <Link to="/tools/interest-rate-calculator" className="inline-home-link">interest rate</Link>, most often the Bank of England base rate, plus a set margin. If the
           base rate is 3.75% and your tracker is base plus 1%, you pay 4.75%. When the base rate changes, your rate changes with
           it, usually within a month. That means you can benefit quickly from cuts, but you’re exposed to rises too. UK banks
           lean heavily on variable-rate products, so there’s a wide choice of trackers. Some start as trackers for a couple of

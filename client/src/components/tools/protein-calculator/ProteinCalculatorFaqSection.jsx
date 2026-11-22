@@ -183,7 +183,7 @@ export default function ProteinCalculatorFaqSection() {
 
       <Card title="What Is Protein and Why Does Your Body Need It?">
         <P>
-          Protein is one of the three macronutrients, along with carbohydrates and fat. Like carbs, it provides 4 calories per gram,
+          Protein is one of the three <Link to="/tools/macro-calculator" className="inline-home-link">macronutrients</Link>, along with <Link to="/tools/carbohydrate-calculator" className="inline-home-link">carbohydrates</Link> and fat. Like carbs, it provides 4 calories per gram,
           but its main job is not energy. Protein is the material your body uses to build and repair itself.
         </P>
         <P>
@@ -278,7 +278,7 @@ export default function ProteinCalculatorFaqSection() {
         <P>
           When calories drop, the body can burn muscle along with fat. Keeping protein toward the upper half of your range, often 1.2
           to 1.6 g/kg, helps preserve lean mass. Protein also keeps you fuller between meals than carbs or fat do, and your body uses
-          more energy to digest it. That is why a higher-protein diet often makes a calorie deficit easier to stick with. It is the
+          more energy to digest it. That is why a higher-protein diet often makes a <Link to="/tools/calorie-tracker" className="inline-home-link">calorie deficit</Link> easier to stick with. It is the
           most common reason people look for a protein calculator for weight loss.
         </P>
         <H3>Protein Calculator for Muscle Gain</H3>

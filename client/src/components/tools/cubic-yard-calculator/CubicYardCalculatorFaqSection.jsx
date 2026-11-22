@@ -100,7 +100,7 @@ export default function CubicYardCalculatorFaqSection() {
           mistakes in any construction or landscaping project. Too little material means a second delivery
           and wasted labor; too much means paying for a product you'll never use. The cubic yard calculator
           above solves this problem in seconds by converting your project's length, width, and depth into an
-          exact volume in cubic yards, along with an estimated material weight. Built by <Link to="/" className="inline-home-link">Tolz</Link>, it's designed
+          exact volume in cubic yards, along with an estimated <Link to="/tools/size-to-weight-calculator" className="inline-home-link">material weight</Link>. Built by <Link to="/" className="inline-home-link">Tolz</Link>, it's designed
           for homeowners, contractors, and landscapers who need dependable numbers before they call a supplier
           or place an order.
         </p>
@@ -136,7 +136,7 @@ export default function CubicYardCalculatorFaqSection() {
         <h2 style={h2Style}>How the Cubic Yard Calculator Works</h2>
         <p style={pStyle}>
           The tool asks for three basic dimensions of your project area: length, width, and depth (or height,
-          for retaining walls and raised beds). You can enter these measurements in feet, inches, yards,
+          for <Link to="/calculators/construction/retaining-wall" className="inline-home-link">retaining walls</Link> and raised beds). You can enter these measurements in feet, inches, yards,
           meters, or centimeters, whichever unit matches your tape measure or site plan, and the calculator
           automatically converts everything into a single, accurate cubic yard figure. There's no need to
           manually convert inches to feet or meters to yards beforehand; the tool handles mixed units
@@ -191,7 +191,7 @@ export default function CubicYardCalculatorFaqSection() {
         <p style={pStyle}>
           <strong>Mulch.</strong> Mulch is by far the lightest material this calculator handles, typically
           weighing between 400 and 800 pounds per cubic yard depending on whether it's bark, wood chips, or a
-          compost blend. A single cubic yard of mulch covers about 100 square feet at a 3-inch depth, making
+          compost blend. A single cubic yard of mulch covers about 100 <Link to="/tools/square-footage-calculator" className="inline-home-link">square feet</Link> at a 3-inch depth, making
           it one of the more forgiving materials to estimate for.
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
@@ -210,7 +210,7 @@ export default function CubicYardCalculatorFaqSection() {
         </p>
         <ul style={ulStyle}>
           <li style={{ marginBottom: 6 }}>Pouring a concrete driveway, patio, or foundation and needing an exact order quantity before calling a ready-mix supplier.</li>
-          <li style={{ marginBottom: 6 }}>Building a gravel driveway or French drain, where under-ordering means a visibly incomplete surface and a second delivery fee.</li>
+          <li style={{ marginBottom: 6 }}>Building a gravel driveway or <Link to="/calculators/construction/french-drain" className="inline-home-link">French drain</Link>, where under-ordering means a visibly incomplete surface and a second delivery fee.</li>
           <li style={{ marginBottom: 6 }}>Filling raised garden beds or planter boxes with topsoil, where precision keeps costs proportional to a small project.</li>
           <li style={{ marginBottom: 6 }}>Spreading mulch across landscaping beds before a seasonal refresh, where knowing the exact yardage prevents leftover bags going to waste.</li>
           <li style={{ marginBottom: 6 }}>Leveling a yard or filling a low spot with dirt before laying sod or building a structure.</li>

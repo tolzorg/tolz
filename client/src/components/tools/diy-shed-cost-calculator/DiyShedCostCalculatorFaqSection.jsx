@@ -94,7 +94,7 @@ export default function DiyShedCostCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>DIY Shed Cost Calculator: Estimate Your Shed's Material Costs Instantly</h2>
         <p style={{ ...pStyle, marginBottom: 0 }}>
-          Planning a backyard shed doesn't have to start with guesswork on lumber runs and material invoices.
+          Planning a backyard shed doesn't have to start with guesswork on <Link to="/tools/board-foot-calculator" className="inline-home-link">lumber</Link> runs and material invoices.
           This DIY shed cost calculator, available free on <Link to="/" className="inline-home-link">Tolz</Link>,
           gives you an instant breakdown of your shed's floor, wall, and roof area along with an estimated total
           material cost, before you buy a single board. Whether you're sketching plans for a garden shed, a
@@ -202,12 +202,12 @@ export default function DiyShedCostCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>What Affects Your Total Shed Material Cost</h2>
         <p style={pStyle}>
-          Several variables influence the final number beyond square footage alone. Understanding them helps
+          Several variables influence the final number beyond <Link to="/tools/square-footage-calculator" className="inline-home-link">square footage</Link> alone. Understanding them helps
           you interpret the calculator's output and adjust your plans if needed.
         </p>
         <ul style={ulStyle}>
           <li style={{ marginBottom: 8 }}>
-            <strong>Framing lumber</strong> forms the skeleton of the shed, wall studs, top and bottom plates,
+            <strong>Framing lumber</strong> forms the skeleton of the shed, wall <Link to="/calculators/construction/framing" className="inline-home-link">studs</Link>, top and bottom plates,
             and roof rafters. Larger sheds or taller walls require more linear feet of framing, which scales
             with your wall area input.
           </li>

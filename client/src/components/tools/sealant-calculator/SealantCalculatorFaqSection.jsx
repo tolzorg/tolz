@@ -126,7 +126,7 @@ export default function SealantCalculatorFaqSection() {
           than a theoretical minimum.
         </p>
         <p style={pStyle}>
-          Second, it converts that adjusted volume into purchasable units. Sealant isn't sold by the cubic inch,
+          Second, it converts that adjusted volume into purchasable units. Sealant isn't sold by the <Link to="/tools/cubic-yard-calculator" className="inline-home-link">cubic</Link> inch,
           it's sold in tubes, cartridges, sausages, and pails, each with a fixed volume. The calculator supports
           ten standard package sizes covering the most common cartridge, sausage, and pail formats used across
           the sealant industry, plus a custom option where you can enter the exact volume of a tube that isn't

@@ -127,9 +127,9 @@ export default function RetirementCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>Why Is Retirement Planning Important?</h2>
         <p style={pStyle}>
-          Retirement can last 25 to 30 years or more, and you'll need money for every one of them without a paycheck.
-          For most Americans, there are fewer safety nets than there used to be. Social Security is designed to replace
-          only about 40% of the average worker's pre-retirement income. Traditional pensions have mostly disappeared from
+          Retirement can last 25 to 30 years or more, and you'll need money for every one of them without a <Link to="/tools/take-home-pay-calculator" className="inline-home-link">paycheck</Link>.
+          For most Americans, there are fewer safety nets than there used to be. <Link to="/tools/social-security-calculator" className="inline-home-link">Social Security</Link> is designed to replace
+          only about 40% of the average worker's pre-retirement income. Traditional <Link to="/tools/pension-calculator" className="inline-home-link">pensions</Link> have mostly disappeared from
           the private sector, which means your own savings carry most of the weight. People are also living longer, and
           healthcare costs keep rising.
         </p>
@@ -144,12 +144,12 @@ export default function RetirementCalculatorFaqSection() {
       <div className="card" style={cardStyle}>
         <h2 style={h2Style}>How Do Retirement Plans Work?</h2>
         <p style={pStyle}>
-          Every retirement plan has two phases. In the saving phase, you put money into accounts and investments, and it
+          Every retirement plan has two phases. In the saving phase, you put money into accounts and <Link to="/tools/investment-calculator" className="inline-home-link">investments</Link>, and it
           grows over time through returns and compounding. In the spending phase, you start drawing that money down to
           cover living costs, ideally without running out.
         </p>
         <p style={last}>
-          Most U.S. retirement accounts come with tax benefits. With a traditional 401(k) or IRA, you contribute before
+          Most U.S. retirement accounts come with tax benefits. With a traditional <Link to="/tools/401k-calculator" className="inline-home-link">401(k)</Link> or IRA, you contribute before
           taxes and pay income tax when you withdraw. With a Roth 401(k) or Roth IRA, you contribute after-tax money and
           generally pay no tax on qualified withdrawals. Employer plans may also include a matching contribution, which is
           extra money added to your account when you contribute.
