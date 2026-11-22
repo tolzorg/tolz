@@ -17,6 +17,8 @@ const resultBanner = { background: "var(--accent)", color: "#fff", padding: "11p
 const fieldWrap = { display: "flex", flexDirection: "column", gap: 5, marginBottom: 12, minWidth: 0 };
 const help = { ...muted, fontSize: 12, marginTop: -2 };
 const summary = { cursor: "pointer", fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-primary)" };
+// Bold hint at the top of each input card telling users how many values they need.
+const inputHint = { margin: "0 0 12px", fontSize: 13, fontWeight: 700, color: "var(--warning)" };
 const groupHead = { fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 13.5, color: "var(--text-primary)", margin: "16px 0 0" };
 const exampleBtn = {
   textAlign: "left", padding: "9px 12px", borderRadius: "var(--radius-sm)", border: "1px solid var(--border)", background: "var(--bg-white)",
@@ -140,11 +142,13 @@ export default function BatteryCapacityCalculatorTool() {
       <div style={{ display: "flex", gap: 20, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div style={{ flex: "1 1 340px", minWidth: 260, maxWidth: 480, display: "flex", flexDirection: "column", gap: 20 }}>
           <section className="card" style={{ padding: 18 }} aria-label="Battery">
+            <p style={inputHint}>Any two values are enough to get the result</p>
             {MAIN_KEYS.map(field)}
           </section>
 
           <details className="card" style={{ padding: "14px 18px" }} open={otherOpen} onToggle={(e) => setOtherOpen(e.currentTarget.open)}>
             <summary style={summary}>Other battery parameters</summary>
+            <p style={{ ...inputHint, marginTop: 8 }}>Any one value is enough to get the result</p>
             <div style={{ marginTop: 12 }}>{OTHER_KEYS.map(field)}</div>
           </details>
 
