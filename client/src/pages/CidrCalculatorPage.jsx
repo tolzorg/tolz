@@ -8,8 +8,8 @@ export default function CidrCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="CIDR Calculator - CIDR to IP Range & IP Range to CIDR"
-      seoDescription="Free CIDR calculator: convert CIDR notation to an IPv4 range with subnet mask, wildcard bits, network and broadcast addresses and host count, or an IP range to CIDR blocks."
+      seoTitle="Free CIDR Calculator Online – IPv4 Subnet & Range Tool"
+      seoDescription="Use this free CIDR calculator to get the subnet mask, wildcard, network and broadcast address, and usable hosts, or convert an IP range to CIDR. Try it now."
       footer={<CidrCalculatorFaqSection />}
       wide
     >

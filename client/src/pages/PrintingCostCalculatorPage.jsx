@@ -8,8 +8,8 @@ export default function PrintingCostCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="3D Printing Cost Calculator - Filament, Labor & Final Price"
-      seoDescription="Free 3D printing cost calculator: filament weight and material cost (ABS, PLA, PETG and more), labor cost from printing time, and the final price with your markup."
+      seoTitle="3D Printing Cost Calculator – Free Print Price Estimator"
+      seoDescription="Free 3D printing cost calculator. Estimate filament cost, labor, and final price with markup for PLA, ABS, PETG and more. No signup needed."
       footer={<PrintingCostCalculatorFaqSection />}
       wide
     >

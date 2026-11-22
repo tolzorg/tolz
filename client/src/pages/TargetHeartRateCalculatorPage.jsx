@@ -8,8 +8,8 @@ export default function TargetHeartRateCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Target Heart Rate Calculator - Heart Rate Zones (Karvonen & Borg)"
-      seoDescription="Free target heart rate calculator: find your heart rate training zones from your age or tested maximum heart rate, with the Karvonen method (heart rate reserve), Borg RPE or CR10 scales and three max heart rate formulas."
+      seoTitle="Target Heart Rate Calculator - Free HR Zones Online"
+      seoDescription="Free target heart rate calculator. Find your training zones from age or max heart rate using Karvonen, Borg RPE or CR10 and three formulas. No signup."
       footer={<TargetHeartRateCalculatorFaqSection />}
       wide
     >

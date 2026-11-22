@@ -11,8 +11,8 @@ export default function ApChemScoreCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="AP® Chem Score Calculator - AP Chemistry Score (1-5)"
-      seoDescription="Free AP® Chemistry score calculator: enter your multiple-choice and free-response points to estimate your composite score (0-100), AP® score (1-5) and College Board recommendation."
+      seoTitle="AP Chem Score Calculator - Estimate Your 1-5 AP Score"
+      seoDescription="Free AP Chem score calculator. Enter your multiple-choice and free-response points to estimate your composite score, AP score (1-5), and credit outlook."
       footer={<ApChemScoreCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function FinalGradeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Final Grade Calculator - What Grade Do I Need on My Final?"
-      seoDescription="Free final grade calculator: find the grade you need on your final exam from your current grade or previous exams, in numbers, percentages or letter grades."
+      seoTitle="Final Grade Calculator - What Do I Need on My Final?"
+      seoDescription="Free final grade calculator: enter your current grade, final exam weight and target to see the score you need. Works with percentages, points and letters."
       footer={<FinalGradeCalculatorFaqSection />}
       wide
     >

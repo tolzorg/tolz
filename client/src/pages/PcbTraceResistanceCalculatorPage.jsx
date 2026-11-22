@@ -8,8 +8,8 @@ export default function PcbTraceResistanceCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="PCB Trace Resistance Calculator - Resistance & Voltage Drop"
-      seoDescription="Free PCB trace resistance calculator: find a copper (or any metal) trace's resistance from its width, length, thickness and temperature, and its voltage drop."
+      seoTitle="PCB Trace Resistance Calculator – Free Online Tool"
+      seoDescription="Free PCB trace resistance calculator. Enter width, length, copper thickness and temperature to get resistance and voltage drop instantly. No signup needed."
       footer={<PcbTraceResistanceCalculatorFaqSection />}
       wide
     >

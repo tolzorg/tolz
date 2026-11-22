@@ -8,8 +8,8 @@ export default function GwaCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="GWA Calculator - General Weighted Average"
-      seoDescription="Free GWA calculator: compute your general weighted average in college from your grades and units, on the 1.00-5.00 or 4.00-1.00 grade point scale or a letter grading system, with its letter grade equivalent."
+      seoTitle="GWA Calculator - Free Online GWA Computation Tool"
+      seoDescription="Compute your general weighted average in seconds. Free GWA calculator for 1.00–5.00, 4.00–1.00 and letter grades. Add subjects, units and see your GWA."
       footer={<GwaCalculatorFaqSection />}
       wide
     >

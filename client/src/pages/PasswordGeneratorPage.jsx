@@ -8,8 +8,8 @@ export default function PasswordGeneratorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Password Generator - Strong Random Passwords with Entropy"
-      seoDescription="Free random password generator: create strong, secure passwords with lower case, upper case, numbers and symbols, exclude ambiguous characters, and see strength and entropy. Generated in your browser."
+      seoTitle="Free Password Generator - Strong Random Passwords"
+      seoDescription="Use Tolz’s free password generator to create strong, random passwords with custom length, symbols, and entropy score. Generated privately in your browser."
       footer={<PasswordGeneratorFaqSection />}
       wide
     >

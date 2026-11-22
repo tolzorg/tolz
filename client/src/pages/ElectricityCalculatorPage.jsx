@@ -8,8 +8,8 @@ export default function ElectricityCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Electricity Calculator - Appliance kWh & Electricity Cost"
-      seoDescription="Free electricity calculator: estimate the electricity usage (kWh) and cost of an appliance per day, week, month and year from its power, usage and your price per kWh."
+      seoTitle="Electricity Calculator - Free kWh & Cost Estimator"
+      seoDescription="Use this free electricity calculator to estimate any appliance’s kWh usage and cost per day, week, month and year from watts, hours and your price per unit."
       footer={<ElectricityCalculatorFaqSection />}
       wide
     >

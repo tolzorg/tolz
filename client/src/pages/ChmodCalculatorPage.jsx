@@ -8,8 +8,8 @@ export default function ChmodCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Chmod Calculator - Linux File Permissions (755, 644, 4755)"
-      seoDescription="Free chmod calculator: build the chmod command for read, write and execute permissions, or decode octal modes like 755, 644 and 4755 into symbolic form."
+      seoTitle="Chmod Calculator - Free Online Linux Permissions Tool"
+      seoDescription="Use this free chmod calculator to build chmod commands, decode octal modes like 755 or 4755, and set setuid, setgid and sticky bit with confidence."
       footer={<ChmodCalculatorFaqSection />}
       wide
     >

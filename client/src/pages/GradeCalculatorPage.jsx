@@ -8,8 +8,8 @@ export default function GradeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Grade Calculator - Weighted Letter, Percentage & Points"
-      seoDescription="Free grade calculator: estimate your overall grade from letter grades, percentages or points, unweighted or weighted, with an adjustable grading scale."
+      seoTitle="Grade Calculator - Free Weighted & Unweighted Grades"
+      seoDescription="Use our free grade calculator to work out your overall grade from letter grades, percentages or points. Weighted or unweighted, with a custom grading scale."
       footer={<GradeCalculatorFaqSection />}
       wide
     >

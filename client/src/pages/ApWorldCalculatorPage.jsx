@@ -11,8 +11,8 @@ export default function ApWorldCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="AP® World Calculator - AP World History Score (1-5)"
-      seoDescription="Free AP® World History calculator: enter your multiple-choice, short-answer, DBQ and long essay points to estimate your composite score (0-130), AP® score (1-5) and College Board recommendation."
+      seoTitle="AP World History Score Calculator - Free AP Estimator"
+      seoDescription="Use our free AP World History score calculator to turn your MCQ, SAQ, DBQ and LEQ points into a composite score, a 1–5 AP score and credit guidance."
       footer={<ApWorldCalculatorFaqSection />}
       wide
     >

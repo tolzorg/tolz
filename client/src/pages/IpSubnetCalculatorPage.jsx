@@ -8,8 +8,8 @@ export default function IpSubnetCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="IP Subnet Calculator - IPv4 & IPv6 Subnet Mask, Network & Host Range"
-      seoDescription="Free IP subnet calculator for IPv4 and IPv6: find the network and broadcast address, usable host range, subnet and wildcard mask, IP class, CIDR notation and all possible subnets."
+      seoTitle="IP Subnet Calculator - Free IPv4 & IPv6 CIDR Tool"
+      seoDescription="Use this free IP subnet calculator to find the network address, broadcast address, usable hosts, wildcard mask and subnets for IPv4 and IPv6 instantly."
       footer={<IpSubnetCalculatorFaqSection />}
       wide
     >

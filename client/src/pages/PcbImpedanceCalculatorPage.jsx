@@ -8,8 +8,8 @@ export default function PcbImpedanceCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="PCB Impedance Calculator - Microstrip & Stripline Impedance"
-      seoDescription="Free PCB impedance calculator: microstrip, edge-coupled, wire and embedded microstrip, and stripline impedance (symmetric, asymmetric, coupled), with ε_eff."
+      seoTitle="PCB Impedance Calculator: Microstrip & Stripline"
+      seoDescription="Free PCB impedance calculator for microstrip and stripline traces. Find characteristic impedance and effective dielectric constant (ε_eff) in seconds."
       footer={<PcbImpedanceCalculatorFaqSection />}
       wide
     >

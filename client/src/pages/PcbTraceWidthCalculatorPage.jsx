@@ -8,8 +8,8 @@ export default function PcbTraceWidthCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="PCB Trace Width Calculator - IPC-2221 Internal & External Traces"
-      seoDescription="Free PCB trace width calculator (IPC-2221): find the trace width and cross section for a current and temperature rise, plus resistance, voltage drop and power."
+      seoTitle="PCB Trace Width Calculator (IPC-2221) – Free Online Tool"
+      seoDescription="Free PCB trace width calculator (IPC-2221). Enter current and temperature rise to get trace width, resistance, voltage drop and power for any layer."
       footer={<PcbTraceWidthCalculatorFaqSection />}
       wide
     >

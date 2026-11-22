@@ -8,8 +8,8 @@ export default function ActScoreCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="ACT Score Calculator - Composite Score & Percentile"
-      seoDescription="Free ACT score calculator: choose your English, Math, Reading and Science raw scores to see your section scores (1-36), composite ACT score and percentile."
+      seoTitle="ACT Score Calculator: Raw to Scaled Score & Composite"
+      seoDescription="Free ACT score calculator: enter your English, Math, Reading and Science raw scores to get section scores (1–36), your composite score and percentile."
       footer={<ActScoreCalculatorFaqSection />}
       wide
     >

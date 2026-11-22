@@ -8,8 +8,8 @@ export default function FreightClassCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Freight Class Calculator - NMFC Class from Density & Freight Cost"
-      seoDescription="Free freight class calculator: find your shipment's NMFC freight class from the pallet's dimensions and weight, its density and the total freight cost."
+      seoTitle="Freight Class Calculator – Free NMFC Class & Cost Tool"
+      seoDescription="Use our free freight class calculator to find your NMFC class from pallet dimensions and weight, check density in lb/ft³, and estimate total freight cost."
       footer={<FreightClassCalculatorFaqSection />}
       wide
     >

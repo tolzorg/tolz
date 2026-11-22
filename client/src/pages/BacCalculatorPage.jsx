@@ -8,8 +8,8 @@ export default function BacCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="BAC Calculator - Blood Alcohol Concentration"
-      seoDescription="Free blood alcohol concentration (BAC) calculator: estimate your BAC from beer, wine, liquor or any drink, your weight, gender and time since your first drink, with a chart of BAC over time and the hours until 0%."
+      seoTitle="BAC Calculator - Free Blood Alcohol Estimator"
+      seoDescription="Estimate your blood alcohol concentration with our free BAC calculator. Enter drinks, weight, gender and time to see a BAC chart and hours until 0%."
       footer={<BacCalculatorFaqSection />}
       wide
     >

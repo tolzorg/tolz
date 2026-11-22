@@ -523,7 +523,7 @@ export default function BmrCalculatorFaqSection() {
         <P>
           BMR tends to decline with age, partly because people lose muscle. Interestingly, a large 2021 study published in Science
           found that, once body size is accounted for, metabolism stays remarkably stable from your 20s through your 50s and only
-          starts to decline gradually after about age 60 (Pontzer et al., 2021). That challenges the idea that your metabolism
+          starts to decline gradually after about age 60 (<Ext href="https://www.science.org/doi/10.1126/science.abe5017">Pontzer et al., 2021</Ext>). That challenges the idea that your metabolism
           crashes at 30 or 40. Keeping muscle matters more than the calendar.
         </P>
         <H3>Genetics</H3>

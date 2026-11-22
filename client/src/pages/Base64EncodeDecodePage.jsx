@@ -8,8 +8,8 @@ export default function Base64EncodeDecodePage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Base64 Encoder & Decoder - Encode or Decode Text, Images & Files"
-      seoDescription="Free Base64 encoder and decoder: convert text, images and files to and from Base64 in your browser, with 40 character sets, copy and download. Nothing is uploaded."
+      seoTitle="Base64 Encoder & Decoder - Free Online Tool"
+      seoDescription="Free Base64 encoder and decoder. Convert text in 40 character sets, plus images and files up to 25 MB. Run in your browser, nothing is uploaded."
       footer={<Base64EncodeDecodeFaqSection />}
       wide
     >

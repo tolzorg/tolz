@@ -8,8 +8,8 @@ export default function TestGradeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Test Grade Calculator - Score, Percentage & Letter Grade"
-      seoDescription="Free test grade calculator (teacher grader): get the percentage and letter grade from points and wrong or correct answers, with a full grading table."
+      seoTitle="Test Grade Calculator - Percentage & Letter Grade"
+      seoDescription="Free test grade calculator. Enter points or correct and wrong answers to get your percentage and letter grade, with a full grading table and custom scale."
       footer={<TestGradeCalculatorFaqSection />}
       wide
     >

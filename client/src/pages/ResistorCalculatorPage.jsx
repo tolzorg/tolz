@@ -8,8 +8,8 @@ export default function ResistorCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Resistor Calculator - Color Code, Parallel, Series & Wire Resistance"
-      seoDescription="Free resistor calculator: decode 3, 4, 5 and 6-band resistor color codes, add resistors in parallel and in series, and find the resistance of a conductor."
+      seoTitle="Free Resistor Calculator: Color Code, Series & Parallel"
+      seoDescription="Use our free resistor calculator to decode 3–6 band color codes, find series and parallel resistance, and calculate conductor resistance. No signup needed."
       footer={<ResistorCalculatorFaqSection />}
       wide
     >

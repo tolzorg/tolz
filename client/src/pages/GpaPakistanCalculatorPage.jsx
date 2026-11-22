@@ -8,8 +8,8 @@ export default function GpaPakistanCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="GPA Calculator Pakistan - University GPA & cGPA"
-      seoDescription="Free GPA calculator for Pakistan: calculate your university GPA and cGPA on the 4-point or 5-point scale or the Quaid-e-Azam University (MPhil) scale from your grades and credit hours."
+      seoTitle="GPA Calculator Pakistan - Free CGPA Calculator Online"
+      seoDescription="Use our free GPA calculator Pakistan to work out semester GPA and CGPA on the 4.0 or 5.0 scale, or the QAU MPhil scale. No signup, instant results."
       footer={<GpaPakistanCalculatorFaqSection />}
       wide
     >

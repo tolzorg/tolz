@@ -8,8 +8,8 @@ export default function CollegeGpaCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="College GPA Calculator - Semester & Cumulative GPA"
-      seoDescription="Free college GPA calculator: enter your course grades and credits (up to 30 courses) to find your college GPA on the 4.0 scale and your cumulative GPA."
+      seoTitle="College GPA Calculator - Free GPA & Cumulative GPA Tool"
+      seoDescription="Free college GPA calculator: enter grades and credits for up to 30 courses to get your semester and cumulative GPA on the 4.0 scale instantly."
       footer={<CollegeGpaCalculatorFaqSection />}
       wide
     >

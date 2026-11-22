@@ -8,8 +8,8 @@ export default function BodyTypeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Body Type Calculator - Find Your Body Shape"
-      seoDescription="Free body type calculator for women: find your body shape (hourglass, bottom or top hourglass, spoon, triangle, inverted triangle or rectangle) from bust, waist, high hip and hip sizes, plus your waist-hip ratio."
+      seoTitle="Free Body Type Calculator: Body, Bust, Waist and Hip Shape"
+      seoDescription="Use our free body type calculator to find your body shape from bust, waist, high hip and hip measurements, and get your waist-hip ratio instantly."
       footer={<BodyTypeCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function FatIntakeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Fat Intake Calculator - Daily Fat & Saturated Fat"
-      seoDescription="Free fat intake calculator: find how many grams of fat (20-35% of Calories) and saturated fat (under 10%, or 7% for heart health) to eat each day to maintain, lose or gain weight, from your age, gender, height, weight and activity."
+      seoTitle="Fat Intake Calculator – Daily Fat & Saturated Fat Grams"
+      seoDescription="Free Fat Intake Calculator: find your daily grams of total and saturated fat to lose, maintain or gain weight, based on age, height, weight and activity."
       footer={<FatIntakeCalculatorFaqSection />}
       wide
     >

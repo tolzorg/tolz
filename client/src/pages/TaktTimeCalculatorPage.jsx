@@ -8,8 +8,8 @@ export default function TaktTimeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Takt Time Calculator - Simple, Batch & Weekly Takt Time"
-      seoDescription="Free takt time calculator: find how fast each product must be made to meet demand, with simple, batch production and weekly takt time from working hours and breaks."
+      seoTitle="Takt Time Calculator - Free Online Tool"
+      seoDescription="Free takt time calculator to find how fast each unit must be made. Calculate simple, batch or weekly takt time from working hours, breaks and demand."
       footer={<TaktTimeCalculatorFaqSection />}
       wide
     >

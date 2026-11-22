@@ -8,8 +8,8 @@ export default function PalletCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Pallet Calculator - How Many Boxes Fit on a Pallet"
-      seoDescription="Free pallet calculator: find how many boxes fit on a 48×40, 1200×1000, 1200×800 or custom pallet, with layers, utilization, weight limit and arrangement."
+      seoTitle="Free Pallet Calculator - Boxes Per Pallet & Layers"
+      seoDescription="Use our free pallet calculator to find how many boxes fit on a standard or custom pallet, plus layers, utilization, and weight limits. No signup needed."
       footer={<PalletCalculatorFaqSection />}
       wide
     >

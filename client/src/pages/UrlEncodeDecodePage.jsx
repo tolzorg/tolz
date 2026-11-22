@@ -8,8 +8,8 @@ export default function UrlEncodeDecodePage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="URL Encode / Decode - Percent-Encode or Decode Text Online"
-      seoDescription="Free URL encoder and decoder: percent-encode text for safe use in a URL or decode %XX sequences back to text, with UTF-8 support. Runs in your browser; nothing is uploaded."
+      seoTitle="URL Encode Decode Online - Free Percent Encoder Tool"
+      seoDescription="Free URL encode decode tool. Convert text to percent-encoded format or decode %XX back to readable text with full UTF-8 support. Runs in your browser."
       footer={<UrlEncodeDecodeFaqSection />}
       wide
     >

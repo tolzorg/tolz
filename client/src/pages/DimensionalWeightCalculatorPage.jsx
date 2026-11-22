@@ -8,8 +8,8 @@ export default function DimensionalWeightCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Dimensional Weight Calculator - UPS, FedEx & USPS DIM Weight"
-      seoDescription="Free dimensional weight calculator: find the UPS, FedEx and USPS DIM weight of a package in in/lb or cm/kg and whether you're charged for the dimensional or actual weight."
+      seoTitle="Dimensional Weight Calculator - UPS, FedEx & USPS (Free)"
+      seoDescription="Free dimensional weight calculator for UPS, FedEx & USPS. Enter package size, get DIM weight, and see whether you’re billed on actual or dimensional weight."
       footer={<DimensionalWeightCalculatorFaqSection />}
       wide
     >

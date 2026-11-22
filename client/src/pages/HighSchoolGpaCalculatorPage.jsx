@@ -10,8 +10,8 @@ export default function HighSchoolGpaCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="High School GPA Calculator - Weighted & Unweighted GPA"
-      seoDescription="Free high school GPA calculator: find your unweighted, weighted (Honors / AP / IB) and cumulative GPA, with or without course credits, for up to 20 courses."
+      seoTitle="High School GPA Calculator - Weighted & Unweighted"
+      seoDescription="Free high school GPA calculator for weighted, unweighted & cumulative GPA. Add Honors, AP, IB or college courses, with or without credits."
       footer={<HighSchoolGpaCalculatorFaqSection />}
       wide
     >

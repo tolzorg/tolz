@@ -8,8 +8,8 @@ export default function LeanBodyMassCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Lean Body Mass Calculator - Boer, James, Hume & Peters Formulas"
-      seoDescription="Free lean body mass calculator: estimate your lean body mass (LBM) and body fat from height, weight, gender and age with the Boer, James and Hume formulas, plus the Peters formula for children."
+      seoTitle="Lean Body Mass Calculator – Free LBM & Body Fat Tool"
+      seoDescription="Use our free lean body mass calculator to estimate LBM and body fat with Boer, James and Hume formulas. Enter height, weight, age and gender. No signup."
       footer={<LeanBodyMassCalculatorFaqSection />}
       wide
     >

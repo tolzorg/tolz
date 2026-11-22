@@ -8,8 +8,8 @@ export default function CarbohydrateCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Carbohydrate Calculator - Daily Carbs in Grams"
-      seoDescription="Free carb calculator: find how many grams of carbohydrates to eat each day (40-75% of your Calories) to maintain, lose or gain weight, from your age, gender, height, weight and activity level."
+      seoTitle="Carbohydrate Calculator: Daily Carbs for Your Goal"
+      seoDescription="Use our free carbohydrate calculator to find your daily carbs in grams at 40%, 55%, 65% and 75% of calories to lose, maintain or gain weight."
       footer={<CarbohydrateCalculatorFaqSection />}
       wide
     >

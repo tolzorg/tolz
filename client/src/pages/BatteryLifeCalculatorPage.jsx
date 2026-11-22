@@ -8,8 +8,8 @@ export default function BatteryLifeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Battery Life Calculator - Runtime from mAh, Current Draw or Watts"
-      seoDescription="Free battery life calculator: estimate how long a battery lasts from its capacity (mAh), discharge safety and the device current draw or wattage, with optional sleep mode."
+      seoTitle="Battery Life Calculator - Estimate Runtime Free Online"
+      seoDescription="Free battery life calculator to estimate runtime from capacity, discharge safety, and current draw or watts, with optional awake and sleep modes."
       footer={<BatteryLifeCalculatorFaqSection />}
       wide
     >

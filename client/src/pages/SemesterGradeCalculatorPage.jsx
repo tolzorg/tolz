@@ -8,8 +8,8 @@ export default function SemesterGradeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Semester Grade Calculator - Quarters, Final Exam & Weights"
-      seoDescription="Free semester grade calculator: combine your quarter grades and final exam by their weights, or find the grade you need on your final exam."
+      seoTitle="Semester Grade Calculator - Free Weighted Final Grade Tool"
+      seoDescription="Use this free semester grade calculator to combine quarter grades and your final exam by weight, or find the score you need on the final to hit your goal."
       footer={<SemesterGradeCalculatorFaqSection />}
       wide
     >

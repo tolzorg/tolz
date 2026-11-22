@@ -8,8 +8,8 @@ export default function MacroCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Macro Calculator - Daily Protein, Carbs & Fat"
-      seoDescription="Free macro calculator: find your daily protein, carbs, fat, sugar and saturated fat with healthy ranges, from your age, gender, height, weight, activity and goal. Balanced, low fat, low carb, high protein or your own plan."
+      seoTitle="Macro Calculator: Free Daily Macro Targets"
+      seoDescription="Use this free macro calculator to find your daily protein, carbs, fat, sugar and saturated fat from your age, weight, activity and goal. Instant results."
       footer={<MacroCalculatorFaqSection />}
       wide
     >

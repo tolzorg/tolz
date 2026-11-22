@@ -8,8 +8,8 @@ export default function VoltageDropCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Voltage Drop Calculator - NEC, Wire Size & Custom Resistance"
-      seoDescription="Free voltage drop calculator: voltage drop, drop percentage and voltage at the end for DC, single-phase and 3-phase circuits, from NEC data, AWG wire size or your own resistance."
+      seoTitle="Voltage Drop Calculator - Free DC, 1-Phase & 3-Phase"
+      seoDescription="Free voltage drop calculator for DC, single-phase and 3-phase circuits. Enter wire size, length and current to get drop, percentage and end voltage."
       footer={<VoltageDropCalculatorFaqSection />}
       wide
     >

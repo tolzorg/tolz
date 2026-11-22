@@ -11,8 +11,8 @@ export default function ApBioScoreCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="AP® Bio Score Calculator - AP Biology Score (1-5)"
-      seoDescription="Free AP® Biology score calculator: enter your multiple-choice and free-response points to estimate your composite score (0-120), AP® score (1-5) and College Board recommendation."
+      seoTitle="AP Bio Score Calculator - Estimate Your 1-5 AP Score"
+      seoDescription="Free AP Bio score calculator: enter your multiple-choice and free-response points to estimate your composite score, AP score (1-5) and credit outlook."
       footer={<ApBioScoreCalculatorFaqSection />}
       wide
     >

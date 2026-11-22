@@ -8,8 +8,8 @@ export default function ContainerLoadingCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Container Loading Calculator - How Many Boxes Fit in a Container"
-      seoDescription="Free container loading calculator: how many boxes fit in a 10ft, 20ft, 40ft, 45ft or custom container, with utilization, layers and arrangement instructions."
+      seoTitle="Container Loading Calculator – Free Box Fit Tool Online"
+      seoDescription="Free container loading calculator to find how many boxes fit in a 10ft, 20ft, 40ft, 45ft or custom container, with utilization, layers and layout."
       footer={<ContainerLoadingCalculatorFaqSection />}
       wide
     >

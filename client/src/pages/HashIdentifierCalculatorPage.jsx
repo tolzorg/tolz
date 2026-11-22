@@ -8,8 +8,8 @@ export default function HashIdentifierCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Hash Identifier - Identify MD5, SHA-1, SHA-256 & More"
-      seoDescription="Free hash identifier: paste a hash to see which hash functions could have produced it (MD5, SHA-1, SHA-256, SHA-512, RIPEMD, Tiger, CRC, FNV), by digest length."
+      seoTitle="Hash Identifier: Identify Hash Type Online Free"
+      seoDescription="Use our free hash identifier to find which algorithm made a hash. Paste an MD5, SHA-1, SHA-256, SHA-512, RIPEMD, Tiger, CRC or FNV digest and see matches."
       footer={<HashIdentifierCalculatorFaqSection />}
       wide
     >

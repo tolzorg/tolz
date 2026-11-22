@@ -8,8 +8,8 @@ export default function BodySurfaceAreaCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Body Surface Area Calculator - BSA by 8 Formulas"
-      seoDescription="Free body surface area (BSA) calculator: Du Bois, Mosteller, Haycock, Gehan & George, Boyd, Fujimoto, Takahira and Schlich formulas in m², ft² and in², from your weight, height and gender, plus your BMI."
+      seoTitle="Body Surface Area Calculator - BSA in m², ft² & in²"
+      seoDescription="Free body surface area calculator using Du Bois, Mosteller, Haycock, Boyd and 4 more formulas. Get BSA in m², ft² and in² from height, weight and gender."
       footer={<BodySurfaceAreaCalculatorFaqSection />}
       wide
     >

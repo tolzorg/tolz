@@ -8,8 +8,8 @@ export default function ReorderPointCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Reorder Point Calculator - ROP Formula for Inventory"
-      seoDescription="Free reorder point calculator: find when to reorder inventory from your basic stock, safety stock, lead time and unit sales, or solve for any one of them."
+      seoTitle="Reorder Point Calculator - Free ROP & Safety Stock Tool"
+      seoDescription="Free reorder point calculator. Find when to restock from basic stock, safety stock, lead time and unit sales, or solve for any one value. Instant results."
       footer={<ReorderPointCalculatorFaqSection />}
       wide
     >

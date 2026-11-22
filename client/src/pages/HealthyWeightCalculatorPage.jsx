@@ -8,8 +8,8 @@ export default function HealthyWeightCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Healthy Weight Calculator - Healthy Weight Range for Your Height"
-      seoDescription="Free healthy weight calculator: find the healthy weight range for your height (BMI 18.5-25), plus the weights for underweight, overweight and each obesity class, in pounds or kilograms."
+      seoTitle="Healthy Weight Calculator – Find Your Weight Range by Height"
+      seoDescription="Free healthy weight calculator: find your healthy weight range for your height (BMI 18.5–25) in kg or lbs, plus underweight and obesity class ranges."
       footer={<HealthyWeightCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function TdeeCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="TDEE Calculator - Total Daily Energy Expenditure"
-      seoDescription="Free TDEE calculator: estimate your total daily energy expenditure (maintenance Calories or kJ) from your age, gender, height, weight and activity, plus Calories to lose or gain weight and your BMI."
+      seoTitle="TDEE Calculator - Free Maintenance Calories Estimator"
+      seoDescription="Use our free TDEE calculator to find your maintenance calories, BMI, and daily Calorie targets to lose or gain weight. Fast, with no signup needed."
       footer={<TdeeCalculatorFaqSection />}
       wide
     >

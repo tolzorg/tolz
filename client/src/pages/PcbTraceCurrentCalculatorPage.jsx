@@ -8,8 +8,8 @@ export default function PcbTraceCurrentCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="PCB Trace Current Calculator - Max Current Capacity (IPC-2221)"
-      seoDescription="Free PCB trace current calculator (IPC-2221): find how much current a trace can carry from its width, thickness and temperature rise, plus resistance and voltage drop."
+      seoTitle="PCB Trace Current Calculator (IPC-2221) - Free"
+      seoDescription="Free PCB trace current calculator using IPC-2221. Enter trace width, copper thickness and temperature rise to get max current, resistance and voltage drop."
       footer={<PcbTraceCurrentCalculatorFaqSection />}
       wide
     >

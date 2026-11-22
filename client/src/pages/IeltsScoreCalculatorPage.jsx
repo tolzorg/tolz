@@ -8,8 +8,8 @@ export default function IeltsScoreCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="IELTS Score Calculator - Overall Band Score"
-      seoDescription="Free IELTS score calculator: work out your overall IELTS band score from listening, reading, speaking and writing, find the score you need for a target average, and convert listening and reading correct answers to band scores."
+      seoTitle="IELTS Score Calculator – Free Overall Band Score Tool"
+      seoDescription="Use the free IELTS score calculator to find your overall band, convert listening and reading raw scores, and see what you need to hit your target band."
       footer={<IeltsScoreCalculatorFaqSection />}
       wide
     >

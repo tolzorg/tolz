@@ -8,8 +8,8 @@ export default function ArmyBodyFatCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Army Body Fat Calculator - Army Waist-to-Height Ratio Standard (2026)"
-      seoDescription="Free Army body fat calculator using the Army's current body composition test: your waist-to-height ratio (waist at the navel ÷ height) must be below 0.55. See your ratio, whether you pass and the waist you need."
+      seoTitle="Army Body Fat Calculator – Free WHtR Check (0.55 Rule)"
+      seoDescription="Use our free Army body fat calculator to check your waist-to-height ratio against the 0.55 standard and see the exact waist size you need to pass. No signup."
       footer={<ArmyBodyFatCalculatorFaqSection />}
       wide
     >

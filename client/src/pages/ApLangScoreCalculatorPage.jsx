@@ -11,8 +11,8 @@ export default function ApLangScoreCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="AP® Lang Score Calculator - AP English Language Score (1-5)"
-      seoDescription="Free AP® Lang score calculator: enter your multiple-choice and essay points to estimate your AP® English Language and Composition composite score (0-100), AP® score (1-5) and College Board recommendation."
+      seoTitle="AP Lang Score Calculator - Free AP Exam Score Estimator"
+      seoDescription="Free AP Lang score calculator: enter multiple-choice and essay points to get a composite score, an AP score (1–5), and the College Board recommendation."
       footer={<ApLangScoreCalculatorFaqSection />}
       wide
     >

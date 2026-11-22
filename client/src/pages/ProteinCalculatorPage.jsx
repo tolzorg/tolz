@@ -8,8 +8,8 @@ export default function ProteinCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Protein Calculator - How Much Protein Do I Need?"
-      seoDescription="Free protein calculator: find how many grams of protein you need each day by the American Dietetic Association, CDC (10-35% of Calories) and WHO guidelines, from your age, gender, height, weight and activity level."
+      seoTitle="Protein Calculator – Daily Protein Intake in Grams"
+      seoDescription="Free protein calculator to find how many grams of protein you need daily. Based on ADA, CDC and WHO guidelines, using your age, weight, height and activity."
       footer={<ProteinCalculatorFaqSection />}
       wide
     >

@@ -8,8 +8,8 @@ export default function PteScoreCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="PTE Score Calculator - CEFR, IELTS & TOEFL Equivalents"
-      seoDescription="Free PTE score calculator: enter your overall PTE score (10-90) to see the university courses it may qualify you for and its CEFR level, IELTS band and TOEFL score equivalents."
+      seoTitle="Free PTE Score Calculator: IELTS, TOEFL & CEFR Equivalent"
+      seoDescription="Enter your overall PTE score to see its IELTS band, TOEFL equivalent, CEFR level and the university courses you may qualify for. Free and instant."
       footer={<PteScoreCalculatorFaqSection />}
       wide
     >

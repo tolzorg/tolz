@@ -8,8 +8,8 @@ export default function OneRepMaxCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="One Rep Max Calculator - 1RM with Epley, Brzycki & Lombardi"
-      seoDescription="Free one rep max calculator: estimate your 1RM from the weight and reps you can lift, with the Epley, Brzycki or Lombardi formula, plus weights for 1-20 reps and 50-100% of your 1RM, in kg or lb."
+      seoTitle="One Rep Max Calculator - Free 1RM Calculator & Chart"
+      seoDescription="Free one rep max calculator. Estimate your 1RM with Epley, Brzycki or Lombardi and get weights for 1-20 reps and 50-100% of your max. No signup needed."
       footer={<OneRepMaxCalculatorFaqSection />}
       wide
     >

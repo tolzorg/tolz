@@ -8,8 +8,8 @@ export default function RaidCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="RAID Calculator - Capacity, Speed, Fault Tolerance & Cost"
-      seoDescription="Free RAID calculator: usable capacity, read and write speed gain, fault tolerance and cost per TB for RAID 0, 1, 1E, 10, 5, 50, 5E, 5EE, 6 and 60."
+      seoTitle="RAID Calculator - Capacity, Speed & Fault Tolerance"
+      seoDescription="Free RAID calculator for RAID 0, 1, 1E, 10, 5, 50, 5E, 5EE, 6 and 60. Check usable capacity, speed gain, fault tolerance and cost per TB in seconds."
       footer={<RaidCalculatorFaqSection />}
       wide
     >

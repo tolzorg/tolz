@@ -8,8 +8,8 @@ export default function GfrCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="GFR Calculator - eGFR by CKD-EPI, MDRD & Mayo"
-      seoDescription="Free GFR calculator: estimate glomerular filtration rate from serum creatinine, age, gender and race with the CKD-EPI, MDRD and Mayo Quadratic formulas, plus the bedside Schwartz formula for children."
+      seoTitle="GFR Calculator - Free eGFR Calculator (CKD-EPI, MDRD)"
+      seoDescription="Use Tolz's free GFR calculator to estimate eGFR from creatinine, age and gender with CKD-EPI, MDRD, Mayo Quadratic or Schwartz formulas. No signup needed."
       footer={<GfrCalculatorFaqSection />}
       wide
     >

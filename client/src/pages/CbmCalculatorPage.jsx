@@ -8,8 +8,8 @@ export default function CbmCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="CBM Calculator - Cubic Meters, Volumetric Weight & Container Fit"
-      seoDescription="Free CBM calculator for shipping: find carton cubic meters, total volume, total and volumetric weight, and how many cartons fit in a 20′, 40′ or 45′ container."
+      seoTitle="CBM Calculator - Free Cubic Meter & Container Loading Tool"
+      seoDescription="Use our free CBM calculator to find carton volume, total CBM, volumetric weight, and how many cartons fit in a 20ft or 40ft container. No signup needed."
       footer={<CbmCalculatorFaqSection />}
       wide
     >

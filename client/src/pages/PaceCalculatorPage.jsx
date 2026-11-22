@@ -8,8 +8,8 @@ export default function PaceCalculatorPage() {
   return (
     <ToolPageWrapper
       tool={tool}
-      seoTitle="Pace Calculator - Running Pace, Finish Time, Splits & Converter"
-      seoDescription="Free pace calculator for running, walking and cycling: find pace, time or distance, race times and splits, multipoint section paces, a pace converter and a finish-time estimate."
+      seoTitle="Free Pace Calculator: Running, Walking & Cycling Pace"
+      seoDescription="Use our free pace calculator to find running, walking or cycling pace, time or distance. Get race splits, pace conversion and finish-time estimates."
       footer={<PaceCalculatorFaqSection />}
       wide
     >
