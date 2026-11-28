@@ -104,8 +104,8 @@ export default function SemesterGradeCalculatorTool() {
         <div style={{ flex: "1 1 340px", minWidth: 260, maxWidth: 480, display: "flex", flexDirection: "column", gap: 20 }}>
           <p style={tip}>
             🛠️ Want to add more grades or use a different grading system? Use the{" "}
-            <Link to="/calculators/education/grade-calculator" style={{ color: "var(--accent)", fontWeight: 700 }}>grade calculator</Link> or the{" "}
-            <Link to="/calculators/education/final-grade-calculator" style={{ color: "var(--accent)", fontWeight: 700 }}>final grade calculator</Link>.
+            <Link to="/tools/grade-calculator" style={{ color: "var(--accent)", fontWeight: 700 }}>grade calculator</Link> or the{" "}
+            <Link to="/tools/final-grade-calculator" style={{ color: "var(--accent)", fontWeight: 700 }}>final grade calculator</Link>.
           </p>
 
           {PARTS.map((p) => (

@@ -134,7 +134,7 @@ export default function DebtToIncomeCalculatorTool() {
             <p style={{ fontSize: 12.5, color: "var(--text-secondary)", lineHeight: 1.5, margin: 0 }}>
               * The calculation is based on the assumption of using 30 years conventional loans with {MORTGAGE_RATE}% interest
               rate containing a 20% down payment and estimation of 2% spent on property tax and insurance. Please use our{" "}
-              <Link to="/calculators/financial/house-affordability-calculator" style={{ color: "var(--accent)" }}>House Affordability Calculator</Link> for other variations.
+              <Link to="/tools/house-affordability-calculator" style={{ color: "var(--accent)" }}>House Affordability Calculator</Link> for other variations.
             </p>
           </>
         )}

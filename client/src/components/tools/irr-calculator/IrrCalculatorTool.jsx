@@ -208,7 +208,7 @@ function IrregularCashFlowCalculator() {
       <p style={sectionText}>
         This calculator computes the IRR based on the initial investment and subsequent annual cash flows. If you want to
         calculate the IRR for cash flows that are not annual, please use our{" "}
-        <Link to="/calculators/financial/average-return-calculator" style={{ color: "var(--accent)" }}>Average Return Calculator</Link>.
+        <Link to="/tools/average-return-calculator" style={{ color: "var(--accent)" }}>Average Return Calculator</Link>.
       </p>
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <div className="card" style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 420, padding: 16 }}>

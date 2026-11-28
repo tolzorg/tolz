@@ -239,7 +239,7 @@ export default function MacroCalculatorTool() {
                   <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
                     <RadioOption checked={katch} onChange={() => set("formula")("katch")} label="Katch-McArdle" />
                     <label style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10, fontSize: 13 }}>
-                      <Link to="/calculators/health/body-fat-calculator" style={{ color: "var(--accent)" }} title="Find your body fat % with the Body Fat Calculator">Body Fat:</Link>
+                      <Link to="/tools/body-fat-calculator" style={{ color: "var(--accent)" }} title="Find your body fat % with the Body Fat Calculator">Body Fat:</Link>
                       <div style={{ position: "relative", width: 76 }}>
                         <Req name="bodyFat"><TextField value={v.bodyFat} onChange={set("bodyFat")} placeholder={ph.bodyFat} style={{ paddingRight: 22 }} /></Req>
                         <span style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", fontSize: 12.5, color: "var(--text-muted)", pointerEvents: "none" }}>%</span>

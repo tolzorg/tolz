@@ -69,7 +69,7 @@ function ResultBody({ result }) {
       )}
       <p style={{ ...muted, fontSize: 12.5, marginTop: 10 }}>
         Values the calculator worked out are highlighted in blue. To see how long a device will run on this battery, try the{" "}
-        <Link to="/calculators/tech-electronics/battery-life-calculator" style={{ color: "var(--accent)" }}>battery life calculator</Link>.
+        <Link to="/tools/battery-life-calculator" style={{ color: "var(--accent)" }}>battery life calculator</Link>.
       </p>
     </>
   );

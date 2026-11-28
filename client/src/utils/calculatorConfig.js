@@ -24,7 +24,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🥗",
         iconBg: "#f0fdf4",
         iconColor: "#22c55e",
-        path: "/calculators/health/calorie-tracker",
+        path: "/tools/calorie-tracker",
         legacyPath: "/tools/calorie-tracker",
         keywords: ["calorie", "bmi", "tdee", "macros", "nutrition", "diet", "weight loss"],
         available: true,
@@ -41,7 +41,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🌙",
         iconBg: "#eef2ff",
         iconColor: "#6366f1",
-        path: "/calculators/health/sleep-calculator",
+        path: "/tools/sleep-calculator",
         legacyPath: "/tools/sleep-calculator",
         keywords: ["sleep", "wake up", "sleep cycle", "rest", "insomnia", "REM"],
         available: true,
@@ -58,7 +58,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚖️",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/health/bmi-calculator",
+        path: "/tools/bmi-calculator",
         legacyPath: "/tools/bmi-calculator",
         keywords: [
           "bmi calculator", "body mass index calculator", "bmi calculator for women", "bmi calculator for men",
@@ -78,7 +78,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📏",
         iconBg: "#fef2f2",
         iconColor: "#dc2626",
-        path: "/calculators/health/body-fat-calculator",
+        path: "/tools/body-fat-calculator",
         legacyPath: "/tools/body-fat-calculator",
         keywords: [
           "body fat calculator", "body fat percentage calculator", "navy body fat calculator", "us navy method",
@@ -98,7 +98,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🪖",
         iconBg: "#f0fdf4",
         iconColor: "#4d7c0f",
-        path: "/calculators/health/army-body-fat-calculator",
+        path: "/tools/army-body-fat-calculator",
         legacyPath: "/tools/army-body-fat-calculator",
         keywords: [
           "army body fat calculator", "army waist to height ratio", "army whtr calculator", "army body composition program",
@@ -118,7 +118,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💪",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/health/lean-body-mass-calculator",
+        path: "/tools/lean-body-mass-calculator",
         legacyPath: "/tools/lean-body-mass-calculator",
         keywords: [
           "lean body mass calculator", "lbm calculator", "lean mass calculator", "boer formula",
@@ -138,7 +138,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚖️",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/health/healthy-weight-calculator",
+        path: "/tools/healthy-weight-calculator",
         legacyPath: "/tools/healthy-weight-calculator",
         keywords: [
           "healthy weight calculator", "healthy weight range", "healthy weight for my height", "normal weight range",
@@ -158,7 +158,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🥑",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/health/macro-calculator",
+        path: "/tools/macro-calculator",
         legacyPath: "/tools/macro-calculator",
         keywords: [
           "macro calculator", "macronutrient calculator", "iifym calculator", "macros calculator",
@@ -178,7 +178,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🍞",
         iconBg: "#fff7ed",
         iconColor: "#ea580c",
-        path: "/calculators/health/carbohydrate-calculator",
+        path: "/tools/carbohydrate-calculator",
         legacyPath: "/tools/carbohydrate-calculator",
         keywords: [
           "carbohydrate calculator", "carb calculator", "carbs per day calculator", "how many carbs should i eat",
@@ -198,7 +198,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🥚",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/health/protein-calculator",
+        path: "/tools/protein-calculator",
         legacyPath: "/tools/protein-calculator",
         keywords: [
           "protein calculator", "how much protein do i need", "daily protein intake", "protein intake calculator",
@@ -218,7 +218,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧈",
         iconBg: "#fefce8",
         iconColor: "#ca8a04",
-        path: "/calculators/health/fat-intake-calculator",
+        path: "/tools/fat-intake-calculator",
         legacyPath: "/tools/fat-intake-calculator",
         keywords: [
           "fat intake calculator", "daily fat intake", "how much fat should i eat", "fat calculator",
@@ -238,7 +238,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔥",
         iconBg: "#fff7ed",
         iconColor: "#ea580c",
-        path: "/calculators/health/tdee-calculator",
+        path: "/tools/tdee-calculator",
         legacyPath: "/tools/tdee-calculator",
         keywords: [
           "tdee calculator", "total daily energy expenditure", "maintenance calories calculator", "tdee",
@@ -258,7 +258,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🫘",
         iconBg: "#fef2f2",
         iconColor: "#dc2626",
-        path: "/calculators/health/gfr-calculator",
+        path: "/tools/gfr-calculator",
         legacyPath: "/tools/gfr-calculator",
         keywords: [
           "gfr calculator", "egfr calculator", "glomerular filtration rate", "ckd-epi calculator",
@@ -278,7 +278,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⏳",
         iconBg: "#fdf2f8",
         iconColor: "#db2777",
-        path: "/calculators/health/body-type-calculator",
+        path: "/tools/body-type-calculator",
         legacyPath: "/tools/body-type-calculator",
         keywords: [
           "body type calculator", "body shape calculator", "what is my body shape", "hourglass calculator",
@@ -298,7 +298,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📐",
         iconBg: "#ecfeff",
         iconColor: "#0891b2",
-        path: "/calculators/health/body-surface-area-calculator",
+        path: "/tools/body-surface-area-calculator",
         legacyPath: "/tools/body-surface-area-calculator",
         keywords: [
           "body surface area calculator", "bsa calculator", "mosteller formula", "du bois formula",
@@ -318,7 +318,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🍺",
         iconBg: "#fffbeb",
         iconColor: "#d97706",
-        path: "/calculators/health/bac-calculator",
+        path: "/tools/bac-calculator",
         legacyPath: "/tools/bac-calculator",
         keywords: [
           "bac calculator", "blood alcohol calculator", "blood alcohol concentration", "am i drunk calculator",
@@ -338,7 +338,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔥",
         iconBg: "#fff7ed",
         iconColor: "#ea580c",
-        path: "/calculators/health/bmr-calculator",
+        path: "/tools/bmr-calculator",
         legacyPath: "/tools/bmr-calculator",
         keywords: [
           "bmr calculator", "basal metabolic rate calculator", "mifflin st jeor calculator", "harris benedict calculator",
@@ -358,7 +358,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎯",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/health/ideal-weight-calculator",
+        path: "/tools/ideal-weight-calculator",
         legacyPath: "/tools/ideal-weight-calculator",
         keywords: [
           "ideal weight calculator", "ideal body weight calculator", "how much should i weigh", "devine formula",
@@ -392,7 +392,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏃",
         iconBg: "#ecfeff",
         iconColor: "#0891b2",
-        path: "/calculators/sports/pace-calculator",
+        path: "/tools/pace-calculator",
         legacyPath: "/tools/pace-calculator",
         keywords: [
           "pace calculator", "running pace calculator", "marathon pace calculator", "min per mile calculator",
@@ -412,7 +412,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏋️",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/sports/one-rep-max-calculator",
+        path: "/tools/one-rep-max-calculator",
         legacyPath: "/tools/one-rep-max-calculator",
         keywords: [
           "one rep max calculator", "1rm calculator", "max lift calculator", "bench press max calculator",
@@ -432,7 +432,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "❤️",
         iconBg: "#fef2f2",
         iconColor: "#dc2626",
-        path: "/calculators/sports/target-heart-rate-calculator",
+        path: "/tools/target-heart-rate-calculator",
         legacyPath: "/tools/target-heart-rate-calculator",
         keywords: [
           "target heart rate calculator", "heart rate zone calculator", "karvonen formula", "max heart rate calculator",
@@ -466,7 +466,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎓",
         iconBg: "#e8f0fe",
         iconColor: "#3b7bfc",
-        path: "/calculators/education/ielts-score-calculator",
+        path: "/tools/ielts-score-calculator",
         legacyPath: "/tools/ielts-score-calculator",
         keywords: [
           "ielts score calculator", "ielts band score calculator", "ielts calculator", "ielts overall score", "ielts listening score", "ielts reading score", "ielts band score", "how is ielts calculated",
@@ -485,7 +485,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📝",
         iconBg: "#ecfeff",
         iconColor: "#0891b2",
-        path: "/calculators/education/pte-score-calculator",
+        path: "/tools/pte-score-calculator",
         legacyPath: "/tools/pte-score-calculator",
         keywords: [
           "pte score calculator", "pte to ielts", "pte to toefl", "pte cefr level", "pte score chart", "pte academic score", "pte score for australia pr", "pte score for canada",
@@ -504,7 +504,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧬",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/education/ap-bio-score-calculator",
+        path: "/tools/ap-bio-score-calculator",
         legacyPath: "/tools/ap-bio-score-calculator",
         keywords: [
           "ap bio score calculator", "ap biology score calculator", "ap bio calculator", "ap biology composite score", "ap bio score chart", "ap biology grade calculator", "ap bio curve", "ap exam score calculator",
@@ -523,7 +523,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚗️",
         iconBg: "#f3f0ff",
         iconColor: "#8b5cf6",
-        path: "/calculators/education/ap-chem-score-calculator",
+        path: "/tools/ap-chem-score-calculator",
         legacyPath: "/tools/ap-chem-score-calculator",
         keywords: [
           "ap chem score calculator", "ap chemistry score calculator", "ap chem calculator", "ap chemistry composite score", "ap chem score chart", "ap chemistry grade calculator", "ap chem curve", "ap chem score breakdown",
@@ -542,7 +542,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "✍️",
         iconBg: "#fffbeb",
         iconColor: "#d97706",
-        path: "/calculators/education/ap-lang-score-calculator",
+        path: "/tools/ap-lang-score-calculator",
         legacyPath: "/tools/ap-lang-score-calculator",
         keywords: [
           "ap lang score calculator", "ap english language score calculator", "ap lang calculator", "ap lang composite score", "ap lang score chart", "ap english language and composition", "ap lang curve", "ap lang score breakdown",
@@ -561,7 +561,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🌍",
         iconBg: "#ecfeff",
         iconColor: "#0891b2",
-        path: "/calculators/education/ap-world-calculator",
+        path: "/tools/ap-world-calculator",
         legacyPath: "/tools/ap-world-calculator",
         keywords: [
           "ap world calculator", "ap world history score calculator", "ap world score calculator", "ap world history composite score", "ap world score chart", "ap world history modern", "ap world curve", "ap world dbq leq score",
@@ -580,7 +580,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📊",
         iconBg: "#fff0f0",
         iconColor: "#ff5a5f",
-        path: "/calculators/education/act-score-calculator",
+        path: "/tools/act-score-calculator",
         legacyPath: "/tools/act-score-calculator",
         keywords: [
           "act score calculator", "act composite score", "act raw score conversion", "act percentile", "act score chart", "act english score", "act math score", "act science score",
@@ -599,7 +599,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📚",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/education/gpa-calculator",
+        path: "/tools/gpa-calculator",
         legacyPath: "/tools/gpa-calculator",
         keywords: [
           "gpa calculator", "grade point average calculator", "high school gpa calculator", "college gpa calculator", "weighted gpa calculator", "cumulative gpa calculator", "gpa with credits", "unweighted gpa",
@@ -618,7 +618,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎓",
         iconBg: "#eef2ff",
         iconColor: "#6366f1",
-        path: "/calculators/education/college-gpa-calculator",
+        path: "/tools/college-gpa-calculator",
         legacyPath: "/tools/college-gpa-calculator",
         keywords: [
           "college gpa calculator", "college gpa", "semester gpa calculator", "cumulative college gpa", "gpa with credits", "4.0 gpa scale", "university gpa calculator", "credit hours gpa",
@@ -637,7 +637,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏫",
         iconBg: "#fffbeb",
         iconColor: "#d97706",
-        path: "/calculators/education/high-school-gpa-calculator",
+        path: "/tools/high-school-gpa-calculator",
         legacyPath: "/tools/high-school-gpa-calculator",
         keywords: [
           "high school gpa calculator", "weighted gpa calculator", "unweighted gpa calculator", "hs gpa", "ap honors gpa", "cumulative high school gpa", "weighted vs unweighted gpa", "gpa for college admission",
@@ -656,7 +656,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📘",
         iconBg: "#f0fdf4",
         iconColor: "#15803d",
-        path: "/calculators/education/gpa-calculator-pakistan",
+        path: "/tools/gpa-calculator-pakistan",
         legacyPath: "/tools/gpa-calculator-pakistan",
         keywords: [
           "gpa calculator pakistan", "cgpa calculator pakistan", "university gpa calculator", "4 point gpa scale", "5 point gpa scale", "quaid e azam university gpa", "credit hours gpa", "gpa to percentage pakistan",
@@ -675,7 +675,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📒",
         iconBg: "#fff0f0",
         iconColor: "#ff5a5f",
-        path: "/calculators/education/gwa-calculator",
+        path: "/tools/gwa-calculator",
         legacyPath: "/tools/gwa-calculator",
         keywords: [
           "gwa calculator", "general weighted average calculator", "how to compute gwa", "gwa philippines", "general weighted average in college", "gwa formula", "gwa to letter grade", "passing gwa",
@@ -694,7 +694,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🅰️",
         iconBg: "#e8f0fe",
         iconColor: "#3b7bfc",
-        path: "/calculators/education/grade-calculator",
+        path: "/tools/grade-calculator",
         legacyPath: "/tools/grade-calculator",
         keywords: [
           "grade calculator", "weighted grade calculator", "letter grade calculator", "grade percentage calculator", "points grade calculator", "overall grade calculator", "class grade calculator", "average grade calculator",
@@ -713,7 +713,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎯",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/education/final-grade-calculator",
+        path: "/tools/final-grade-calculator",
         legacyPath: "/tools/final-grade-calculator",
         keywords: [
           "final grade calculator", "what grade do i need on my final", "final exam grade calculator", "finals calculator", "semester grade calculator", "final exam calculator", "grade needed on final", "final grade percentage calculator",
@@ -732,7 +732,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📚",
         iconBg: "#fffbeb",
         iconColor: "#d97706",
-        path: "/calculators/education/semester-grade-calculator",
+        path: "/tools/semester-grade-calculator",
         legacyPath: "/tools/semester-grade-calculator",
         keywords: [
           "semester grade calculator", "how to calculate semester grade", "semester average calculator", "quarter grade calculator", "midterm calculator", "grade average calculator", "what do i need on my final to pass", "weighted semester grade",
@@ -751,7 +751,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📝",
         iconBg: "#f5f3ff",
         iconColor: "#7c3aed",
-        path: "/calculators/education/test-grade-calculator",
+        path: "/tools/test-grade-calculator",
         legacyPath: "/tools/test-grade-calculator",
         keywords: [
           "test grade calculator", "test score calculator", "teacher grader", "test percentage calculator", "quiz grade calculator", "grading scale calculator", "how many wrong to get an a", "points to percentage grade",
@@ -784,7 +784,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📦",
         iconBg: "#fff7ed",
         iconColor: "#ea580c",
-        path: "/calculators/logistics/cbm-calculator",
+        path: "/tools/cbm-calculator",
         legacyPath: "/tools/cbm-calculator",
         keywords: [
           "cbm calculator", "cubic meter calculator", "shipping cbm calculator", "carton cbm calculator", "volumetric weight calculator", "container loading calculator", "how many cartons fit in a container", "cbm to kg",
@@ -803,7 +803,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🚢",
         iconBg: "#e8f0fe",
         iconColor: "#3b7bfc",
-        path: "/calculators/logistics/container-loading-calculator",
+        path: "/tools/container-loading-calculator",
         legacyPath: "/tools/container-loading-calculator",
         keywords: [
           "container loading calculator", "how many boxes fit in a container", "container load calculator", "20ft container loading", "40ft container capacity boxes", "container utilization calculator", "box stacking calculator", "shipping container calculator",
@@ -822,7 +822,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧱",
         iconBg: "#fef3c7",
         iconColor: "#b45309",
-        path: "/calculators/logistics/pallet-calculator",
+        path: "/tools/pallet-calculator",
         legacyPath: "/tools/pallet-calculator",
         keywords: [
           "pallet calculator", "how many boxes fit on a pallet", "pallet loading calculator", "pallet stacking calculator", "boxes per pallet", "pallet volume calculator", "euro pallet calculator", "how many bricks on a pallet",
@@ -841,7 +841,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚖️",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/logistics/dimensional-weight-calculator",
+        path: "/tools/dimensional-weight-calculator",
         legacyPath: "/tools/dimensional-weight-calculator",
         keywords: [
           "dimensional weight calculator", "dim weight calculator", "volumetric weight calculator", "ups dimensional weight", "fedex dimensional weight", "usps dimensional weight", "billable weight calculator", "dim factor 139 166 5000",
@@ -860,7 +860,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🚛",
         iconBg: "#fff0f0",
         iconColor: "#ff5a5f",
-        path: "/calculators/logistics/freight-class-calculator",
+        path: "/tools/freight-class-calculator",
         legacyPath: "/tools/freight-class-calculator",
         keywords: [
           "freight class calculator", "nmfc freight class", "how to calculate freight class", "freight density calculator", "ltl freight class", "freight class chart", "pallet density calculator", "freight cost calculator",
@@ -879,7 +879,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔁",
         iconBg: "#f5f3ff",
         iconColor: "#7c3aed",
-        path: "/calculators/logistics/reorder-point-calculator",
+        path: "/tools/reorder-point-calculator",
         legacyPath: "/tools/reorder-point-calculator",
         keywords: [
           "reorder point calculator", "rop calculator", "reorder level calculator", "reorder point formula", "inventory reorder point", "safety stock reorder point", "when to reorder inventory", "lead time demand calculator",
@@ -898,7 +898,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⏱️",
         iconBg: "#e8f0fe",
         iconColor: "#3b7bfc",
-        path: "/calculators/logistics/takt-time-calculator",
+        path: "/tools/takt-time-calculator",
         legacyPath: "/tools/takt-time-calculator",
         keywords: [
           "takt time calculator", "how to calculate takt time", "takt time formula", "batch takt time", "weekly takt time", "production pace calculator", "lean manufacturing takt", "takt time per unit",
@@ -931,7 +931,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔌",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/tech-electronics/pcb-trace-width-calculator",
+        path: "/tools/pcb-trace-width-calculator",
         legacyPath: "/tools/pcb-trace-width-calculator",
         keywords: [
           "pcb trace width calculator", "trace width calculator", "ipc-2221 calculator", "pcb current capacity", "pcb trace current", "copper trace width", "pcb trace resistance", "pcb trace temperature rise",
@@ -950,7 +950,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚡",
         iconBg: "#fffbeb",
         iconColor: "#d97706",
-        path: "/calculators/tech-electronics/pcb-trace-current-calculator",
+        path: "/tools/pcb-trace-current-calculator",
         legacyPath: "/tools/pcb-trace-current-calculator",
         keywords: [
           "pcb trace current calculator", "pcb current capacity calculator", "trace current capacity", "how much current can a pcb trace carry", "ipc-2221 current", "pcb trace ampacity", "pcb voltage drop calculator", "copper trace current",
@@ -969,7 +969,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "Ω",
         iconBg: "#f5f3ff",
         iconColor: "#7c3aed",
-        path: "/calculators/tech-electronics/pcb-trace-resistance-calculator",
+        path: "/tools/pcb-trace-resistance-calculator",
         legacyPath: "/tools/pcb-trace-resistance-calculator",
         keywords: [
           "pcb trace resistance calculator", "trace resistance calculator", "copper trace resistance", "pcb trace voltage drop", "pcb resistance formula", "trace resistance temperature", "copper resistivity calculator", "pcb trace ohms",
@@ -988,7 +988,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📶",
         iconBg: "#e8f0fe",
         iconColor: "#3b7bfc",
-        path: "/calculators/tech-electronics/pcb-impedance-calculator",
+        path: "/tools/pcb-impedance-calculator",
         legacyPath: "/tools/pcb-impedance-calculator",
         keywords: [
           "pcb impedance calculator", "microstrip impedance calculator", "stripline impedance calculator", "differential impedance calculator", "edge coupled microstrip", "controlled impedance pcb", "50 ohm trace width", "effective dielectric constant",
@@ -1007,7 +1007,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔐",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/tech-electronics/chmod-calculator",
+        path: "/tools/chmod-calculator",
         legacyPath: "/tools/chmod-calculator",
         keywords: [
           "chmod calculator", "chmod 755", "linux file permissions calculator", "chmod command generator", "unix permissions calculator", "chmod 644", "octal permissions", "setuid setgid sticky bit",
@@ -1026,7 +1026,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🌐",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/tech-electronics/cidr-calculator",
+        path: "/tools/cidr-calculator",
         legacyPath: "/tools/cidr-calculator",
         keywords: [
           "cidr calculator", "cidr to ip range", "ip range to cidr", "subnet calculator", "cidr notation calculator", "subnet mask calculator", "wildcard mask calculator", "ipv4 cidr block",
@@ -1045,7 +1045,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💽",
         iconBg: "#faf5ff",
         iconColor: "#9333ea",
-        path: "/calculators/tech-electronics/raid-calculator",
+        path: "/tools/raid-calculator",
         legacyPath: "/tools/raid-calculator",
         keywords: [
           "raid calculator", "raid capacity calculator", "raid 5 calculator", "raid 10 calculator", "raid 6 calculator", "raid storage calculator", "usable capacity raid", "raid fault tolerance",
@@ -1064,7 +1064,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔋",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/tech-electronics/battery-life-calculator",
+        path: "/tools/battery-life-calculator",
         legacyPath: "/tools/battery-life-calculator",
         keywords: [
           "battery life calculator", "battery runtime calculator", "mah battery life", "how long will a battery last", "battery capacity calculator", "battery sleep mode calculator", "current draw battery", "discharge safety",
@@ -1083,7 +1083,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🪫",
         iconBg: "#fefce8",
         iconColor: "#ca8a04",
-        path: "/calculators/tech-electronics/battery-capacity-calculator",
+        path: "/tools/battery-capacity-calculator",
         legacyPath: "/tools/battery-capacity-calculator",
         keywords: [
           "battery capacity calculator", "amp hours to watt hours", "ah to wh", "wh to ah", "battery c-rate calculator", "mah to wh", "battery energy calculator", "discharge current",
@@ -1102,7 +1102,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🖨️",
         iconBg: "#fdf2f8",
         iconColor: "#db2777",
-        path: "/calculators/tech-electronics/3d-printing-cost-calculator",
+        path: "/tools/3d-printing-cost-calculator",
         legacyPath: "/tools/3d-printing-cost-calculator",
         keywords: [
           "3d printing cost calculator", "3d print cost calculator", "filament cost calculator", "3d printer filament weight", "pla cost calculator", "3d printing price calculator", "3d printing labor cost", "filament length to weight",
@@ -1121,7 +1121,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔑",
         iconBg: "#f1f5f9",
         iconColor: "#475569",
-        path: "/calculators/tech-electronics/hash-identifier-calculator",
+        path: "/tools/hash-identifier-calculator",
         legacyPath: "/tools/hash-identifier-calculator",
         keywords: [
           "hash identifier", "hash type identifier", "identify hash type", "hash analyzer", "md5 or sha1", "what hash is this", "hash length", "sha256 identifier",
@@ -1140,7 +1140,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚡",
         iconBg: "#fef3c7",
         iconColor: "#d97706",
-        path: "/calculators/tech-electronics/voltage-drop-calculator",
+        path: "/tools/voltage-drop-calculator",
         legacyPath: "/tools/voltage-drop-calculator",
         keywords: [
           "voltage drop calculator", "wire voltage drop", "nec voltage drop", "awg voltage drop", "3 phase voltage drop calculator", "cable voltage drop", "voltage drop percentage", "wire size voltage drop",
@@ -1159,7 +1159,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎚️",
         iconBg: "#ecfeff",
         iconColor: "#0891b2",
-        path: "/calculators/tech-electronics/resistor-calculator",
+        path: "/tools/resistor-calculator",
         legacyPath: "/tools/resistor-calculator",
         keywords: [
           "resistor calculator", "resistor color code calculator", "parallel resistor calculator", "series resistor calculator", "4 band resistor", "5 band resistor color code", "wire resistance calculator", "resistance of a conductor",
@@ -1178,7 +1178,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💡",
         iconBg: "#fefce8",
         iconColor: "#ca8a04",
-        path: "/calculators/tech-electronics/electricity-calculator",
+        path: "/tools/electricity-calculator",
         legacyPath: "/tools/electricity-calculator",
         keywords: [
           "electricity calculator", "electricity cost calculator", "appliance energy calculator", "kwh calculator", "electricity usage calculator", "power consumption calculator", "cost per kwh", "appliance wattage",
@@ -1211,7 +1211,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🌐",
         iconBg: "#e0f2fe",
         iconColor: "#0284c7",
-        path: "/calculators/internet-network/ip-subnet-calculator",
+        path: "/tools/ip-subnet-calculator",
         legacyPath: "/tools/ip-subnet-calculator",
         keywords: [
           "ip subnet calculator", "subnet calculator", "subnet mask calculator", "ipv4 subnet calculator", "ipv6 subnet calculator", "network address calculator", "broadcast address calculator", "usable host range",
@@ -1230,7 +1230,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔤",
         iconBg: "#e0f2fe",
         iconColor: "#0284c7",
-        path: "/calculators/internet-network/base64-encode-decode",
+        path: "/tools/base64-encode-decode",
         legacyPath: "/tools/base64-encode-decode",
         keywords: [
           "base64 encoder", "base64 decoder", "base64 encode", "base64 decode", "base64 converter", "image to base64", "file to base64", "base64 to image", "base64 to text",
@@ -1249,7 +1249,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔗",
         iconBg: "#e0f2fe",
         iconColor: "#0284c7",
-        path: "/calculators/internet-network/url-encode-decode",
+        path: "/tools/url-encode-decode",
         legacyPath: "/tools/url-encode-decode",
         keywords: [
           "url encode", "url decode", "url encoder", "url decoder", "percent encoding", "percent encode", "encodeuricomponent", "urlencode online", "decode url",
@@ -1268,7 +1268,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔑",
         iconBg: "#e0f2fe",
         iconColor: "#0284c7",
-        path: "/calculators/internet-network/password-generator",
+        path: "/tools/password-generator",
         legacyPath: "/tools/password-generator",
         keywords: [
           "password generator", "random password generator", "strong password generator", "secure password", "password strength", "password entropy", "generate password", "random password",
@@ -1306,7 +1306,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "📐",
             iconBg: "#eff6ff",
             iconColor: "#3b7bfc",
-            path: "/calculators/construction/square-footage",
+            path: "/tools/square-footage-calculator",
             legacyPath: "/tools/square-footage-calculator",
             keywords: ["square footage", "area", "floor", "roof", "land", "square feet"],
             available: true,
@@ -1323,7 +1323,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "🌿",
             iconBg: "#f0fdf4",
             iconColor: "#16a34a",
-            path: "/calculators/construction/square-yards",
+            path: "/tools/square-yards-calculator",
             legacyPath: "/tools/square-yards-calculator",
             keywords: ["square yards", "sod", "carpet", "tile", "flooring", "landscaping"],
             available: true,
@@ -1340,7 +1340,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "📐",
             iconBg: "#f0fdf4",
             iconColor: "#16a34a",
-            path: "/calculators/construction/cubic-yard",
+            path: "/tools/cubic-yard-calculator",
             legacyPath: "/tools/cubic-yard-calculator",
             keywords: ["cubic yard", "concrete", "gravel", "sand", "soil", "mulch", "volume"],
             available: true,
@@ -1357,7 +1357,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "🧱",
             iconBg: "#f0fdf4",
             iconColor: "#16a34a",
-            path: "/calculators/construction/sqft-to-cubic-yards",
+            path: "/tools/sqft-to-cubic-yards",
             legacyPath: "/tools/sqft-to-cubic-yards",
             keywords: ["sq ft to cubic yards", "square feet", "depth", "volume conversion"],
             available: true,
@@ -1374,7 +1374,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "🪣",
             iconBg: "#eff6ff",
             iconColor: "#3b7bfc",
-            path: "/calculators/construction/gallons",
+            path: "/tools/gallons-calculator",
             legacyPath: "/tools/gallons-calculator",
             keywords: ["gallons", "paint", "coverage", "sealer", "epoxy", "coating"],
             available: true,
@@ -1391,7 +1391,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "🪵",
             iconBg: "#fef3c7",
             iconColor: "#d97706",
-            path: "/calculators/construction/board-foot",
+            path: "/tools/board-foot-calculator",
             legacyPath: "/tools/board-foot-calculator",
             keywords: ["board foot", "lumber", "wood", "timber", "board feet"],
             available: true,
@@ -1408,7 +1408,7 @@ export const CALCULATOR_CATEGORIES = [
             icon: "⚖️",
             iconBg: "#fef3c7",
             iconColor: "#d97706",
-            path: "/calculators/construction/size-to-weight",
+            path: "/tools/size-to-weight-calculator",
             legacyPath: "/tools/size-to-weight-calculator",
             keywords: ["weight", "steel", "aluminum", "concrete", "density", "material"],
             available: true,
@@ -1846,7 +1846,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💑",
         iconBg: "#fff0f5",
         iconColor: "#e11d48",
-        path: "/calculators/everyday-life/anniversary",
+        path: "/tools/anniversary-calculator",
         legacyPath: "/tools/anniversary-calculator",
         keywords: ["anniversary", "wedding anniversary calculator", "relationship anniversary calculator", "days together calculator", "years together calculator", "milestone", "countdown", "calendar"],
         available: true,
@@ -1863,7 +1863,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "✦",
         iconBg: "#eef2ff",
         iconColor: "#6366f1",
-        path: "/calculators/everyday-life/destiny-matrix",
+        path: "/tools/destiny-matrix",
         legacyPath: "/tools/destiny-matrix",
         keywords: ["destiny matrix", "numerology", "life path", "karmic", "pythagoras"],
         available: true,
@@ -1894,7 +1894,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏠",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/mortgage-calculator",
+        path: "/tools/mortgage-calculator",
         legacyPath: "/tools/mortgage-calculator",
         keywords: [
           "mortgage calculator", "monthly mortgage payment", "amortization schedule",
@@ -1915,7 +1915,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💵",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/loan-calculator",
+        path: "/tools/loan-calculator",
         legacyPath: "/tools/loan-calculator",
         keywords: [
           "loan calculator", "amortized loan calculator", "loan payment calculator",
@@ -1936,7 +1936,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🚗",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/auto-loan-calculator",
+        path: "/tools/auto-loan-calculator",
         legacyPath: "/tools/auto-loan-calculator",
         keywords: [
           "auto loan calculator", "car loan calculator", "car payment calculator",
@@ -1957,7 +1957,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📈",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/interest-calculator",
+        path: "/tools/interest-calculator",
         legacyPath: "/tools/interest-calculator",
         keywords: [
           "interest calculator", "compound interest calculator", "investment growth calculator",
@@ -1978,7 +1978,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💳",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/payment-calculator",
+        path: "/tools/payment-calculator",
         legacyPath: "/tools/payment-calculator",
         keywords: [
           "payment calculator", "loan payment calculator", "fixed payment calculator",
@@ -1999,7 +1999,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏖️",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/retirement-calculator",
+        path: "/tools/retirement-calculator",
         legacyPath: "/tools/retirement-calculator",
         keywords: [
           "retirement calculator", "retirement savings calculator", "how much to retire calculator",
@@ -2020,7 +2020,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📆",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/amortization-calculator",
+        path: "/tools/amortization-calculator",
         legacyPath: "/tools/amortization-calculator",
         keywords: [
           "amortization calculator", "loan amortization schedule", "monthly payment calculator",
@@ -2041,7 +2041,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📈",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/investment-calculator",
+        path: "/tools/investment-calculator",
         legacyPath: "/tools/investment-calculator",
         keywords: [
           "investment calculator", "compound growth calculator", "investment return calculator",
@@ -2062,7 +2062,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏦",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/savings-calculator",
+        path: "/tools/savings-calculator",
         legacyPath: "/tools/savings-calculator",
         keywords: [
           "savings calculator", "savings account calculator", "savings growth calculator",
@@ -2083,7 +2083,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⏳",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/annuity-calculator",
+        path: "/tools/annuity-calculator",
         legacyPath: "/tools/annuity-calculator",
         keywords: [
           "annuity calculator", "annuity due calculator", "ordinary annuity calculator",
@@ -2104,7 +2104,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📤",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/annuity-payout-calculator",
+        path: "/tools/annuity-payout-calculator",
         legacyPath: "/tools/annuity-payout-calculator",
         keywords: [
           "annuity payout calculator", "annuity withdrawal calculator", "fixed length annuity calculator",
@@ -2125,7 +2125,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💳",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/credit-card-calculator",
+        path: "/tools/credit-card-calculator",
         legacyPath: "/tools/credit-card-calculator",
         keywords: [
           "credit card calculator", "credit card payoff calculator", "credit card interest calculator",
@@ -2146,7 +2146,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧾",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/credit-card-payoff-calculator",
+        path: "/tools/credit-card-payoff-calculator",
         legacyPath: "/tools/credit-card-payoff-calculator",
         keywords: [
           "credit card payoff calculator", "debt avalanche calculator", "multiple credit card calculator",
@@ -2167,7 +2167,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📉",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/debt-payoff-calculator",
+        path: "/tools/debt-payoff-calculator",
         legacyPath: "/tools/debt-payoff-calculator",
         keywords: [
           "debt payoff calculator", "debt avalanche calculator", "debt snowball calculator",
@@ -2188,7 +2188,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏦",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/debt-consolidation-calculator",
+        path: "/tools/debt-consolidation-calculator",
         legacyPath: "/tools/debt-consolidation-calculator",
         keywords: [
           "debt consolidation calculator", "consolidation loan calculator", "debt consolidation APR",
@@ -2209,7 +2209,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧮",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/repayment-calculator",
+        path: "/tools/repayment-calculator",
         legacyPath: "/tools/repayment-calculator",
         keywords: [
           "repayment calculator", "loan repayment calculator", "loan payoff time calculator",
@@ -2230,7 +2230,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎓",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/student-loan-calculator",
+        path: "/tools/student-loan-calculator",
         legacyPath: "/tools/student-loan-calculator",
         keywords: [
           "student loan calculator", "student loan payment calculator", "student loan payoff calculator",
@@ -2251,7 +2251,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏫",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/college-cost-calculator",
+        path: "/tools/college-cost-calculator",
         legacyPath: "/tools/college-cost-calculator",
         keywords: [
           "college cost calculator", "college savings calculator", "tuition cost calculator",
@@ -2272,7 +2272,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "➗",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/simple-interest-calculator",
+        path: "/tools/simple-interest-calculator",
         legacyPath: "/tools/simple-interest-calculator",
         keywords: [
           "simple interest calculator", "simple interest formula", "i = prt calculator",
@@ -2293,7 +2293,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏦",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/cd-calculator",
+        path: "/tools/cd-calculator",
         legacyPath: "/tools/cd-calculator",
         keywords: [
           "cd calculator", "certificate of deposit calculator", "cd interest calculator",
@@ -2314,7 +2314,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📜",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/bond-calculator",
+        path: "/tools/bond-calculator",
         legacyPath: "/tools/bond-calculator",
         keywords: [
           "bond calculator", "bond price calculator", "bond yield calculator",
@@ -2335,7 +2335,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📊",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/mutual-fund-calculator",
+        path: "/tools/mutual-fund-calculator",
         legacyPath: "/tools/mutual-fund-calculator",
         keywords: [
           "mutual fund calculator", "mutual fund return calculator", "mutual fund fee calculator",
@@ -2356,7 +2356,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🌱",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/roth-ira-calculator",
+        path: "/tools/roth-ira-calculator",
         legacyPath: "/tools/roth-ira-calculator",
         keywords: [
           "roth ira calculator", "roth ira growth calculator", "roth vs taxable account",
@@ -2377,7 +2377,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏛️",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/ira-calculator",
+        path: "/tools/ira-calculator",
         legacyPath: "/tools/ira-calculator",
         keywords: [
           "ira calculator", "traditional ira calculator", "traditional vs roth ira",
@@ -2398,7 +2398,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📅",
         iconBg: "#fef3c7",
         iconColor: "#d97706",
-        path: "/calculators/financial/rmd-calculator",
+        path: "/tools/rmd-calculator",
         legacyPath: "/tools/rmd-calculator",
         keywords: [
           "rmd calculator", "required minimum distribution calculator", "ira rmd calculator",
@@ -2419,7 +2419,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧾",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/vat-calculator",
+        path: "/tools/vat-calculator",
         legacyPath: "/tools/vat-calculator",
         keywords: [
           "vat calculator", "add vat calculator", "remove vat calculator",
@@ -2440,7 +2440,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🚘",
         iconBg: "#fef2f2",
         iconColor: "#dc2626",
-        path: "/calculators/financial/cash-back-or-low-interest-calculator",
+        path: "/tools/cash-back-or-low-interest-calculator",
         legacyPath: "/tools/cash-back-or-low-interest-calculator",
         keywords: [
           "cash back or low interest calculator", "rebate vs low apr calculator", "car rebate calculator",
@@ -2461,7 +2461,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🚙",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/auto-lease-calculator",
+        path: "/tools/auto-lease-calculator",
         legacyPath: "/tools/auto-lease-calculator",
         keywords: [
           "auto lease calculator", "car lease calculator", "lease payment calculator",
@@ -2482,7 +2482,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📉",
         iconBg: "#fff7ed",
         iconColor: "#ea580c",
-        path: "/calculators/financial/depreciation-calculator",
+        path: "/tools/depreciation-calculator",
         legacyPath: "/tools/depreciation-calculator",
         keywords: [
           "depreciation calculator", "straight line depreciation calculator", "declining balance calculator",
@@ -2503,7 +2503,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📊",
         iconBg: "#ecfdf5",
         iconColor: "#059669",
-        path: "/calculators/financial/average-return-calculator",
+        path: "/tools/average-return-calculator",
         legacyPath: "/tools/average-return-calculator",
         keywords: [
           "average return calculator", "annualized return calculator", "cumulative return calculator",
@@ -2524,7 +2524,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💹",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/margin-calculator",
+        path: "/tools/margin-calculator",
         legacyPath: "/tools/margin-calculator",
         keywords: [
           "margin calculator", "profit margin calculator", "markup calculator",
@@ -2545,7 +2545,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏷️",
         iconBg: "#fff7ed",
         iconColor: "#ea580c",
-        path: "/calculators/financial/discount-calculator",
+        path: "/tools/discount-calculator",
         legacyPath: "/tools/discount-calculator",
         keywords: [
           "discount calculator", "sale price calculator", "percent off calculator",
@@ -2566,7 +2566,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏢",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/business-loan-calculator",
+        path: "/tools/business-loan-calculator",
         legacyPath: "/tools/business-loan-calculator",
         keywords: [
           "business loan calculator", "small business loan calculator", "sba loan calculator",
@@ -2587,7 +2587,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚖️",
         iconBg: "#fef2f2",
         iconColor: "#dc2626",
-        path: "/calculators/financial/debt-to-income-calculator",
+        path: "/tools/debt-to-income-calculator",
         legacyPath: "/tools/debt-to-income-calculator",
         keywords: [
           "debt to income ratio calculator", "dti calculator", "debt ratio calculator",
@@ -2608,7 +2608,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💵",
         iconBg: "#ecfdf5",
         iconColor: "#059669",
-        path: "/calculators/financial/take-home-pay-calculator",
+        path: "/tools/take-home-pay-calculator",
         legacyPath: "/tools/take-home-pay-calculator",
         keywords: [
           "take home pay calculator", "paycheck calculator", "net pay calculator", "salary after tax calculator",
@@ -2628,7 +2628,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🤝",
         iconBg: "#eef2ff",
         iconColor: "#4f46e5",
-        path: "/calculators/financial/personal-loan-calculator",
+        path: "/tools/personal-loan-calculator",
         legacyPath: "/tools/personal-loan-calculator",
         keywords: [
           "personal loan calculator", "personal loan payment calculator", "loan apr calculator",
@@ -2649,7 +2649,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⛵",
         iconBg: "#e0f2fe",
         iconColor: "#0284c7",
-        path: "/calculators/financial/boat-loan-calculator",
+        path: "/tools/boat-loan-calculator",
         legacyPath: "/tools/boat-loan-calculator",
         keywords: [
           "boat loan calculator", "boat payment calculator", "marine loan calculator", "yacht loan calculator",
@@ -2669,7 +2669,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📝",
         iconBg: "#fefce8",
         iconColor: "#ca8a04",
-        path: "/calculators/financial/lease-calculator",
+        path: "/tools/lease-calculator",
         legacyPath: "/tools/lease-calculator",
         keywords: [
           "lease calculator", "lease payment calculator", "residual value calculator", "equipment lease calculator",
@@ -2689,7 +2689,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔁",
         iconBg: "#f0f9ff",
         iconColor: "#0369a1",
-        path: "/calculators/financial/refinance-calculator",
+        path: "/tools/refinance-calculator",
         legacyPath: "/tools/refinance-calculator",
         keywords: [
           "refinance calculator", "mortgage refinance calculator", "refinance break even calculator", "cash out refinance calculator",
@@ -2709,7 +2709,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📊",
         iconBg: "#f0fdf4",
         iconColor: "#15803d",
-        path: "/calculators/financial/budget-calculator",
+        path: "/tools/budget-calculator",
         legacyPath: "/tools/budget-calculator",
         keywords: [
           "budget calculator", "monthly budget calculator", "personal budget calculator", "household budget calculator",
@@ -2729,7 +2729,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏘️",
         iconBg: "#fff7ed",
         iconColor: "#c2410c",
-        path: "/calculators/financial/rental-property-calculator",
+        path: "/tools/rental-property-calculator",
         legacyPath: "/tools/rental-property-calculator",
         keywords: [
           "rental property calculator", "rental property roi calculator", "cap rate calculator", "cash on cash return calculator",
@@ -2749,7 +2749,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📈",
         iconBg: "#ecfdf5",
         iconColor: "#047857",
-        path: "/calculators/financial/irr-calculator",
+        path: "/tools/irr-calculator",
         legacyPath: "/tools/irr-calculator",
         keywords: [
           "irr calculator", "internal rate of return calculator", "irr formula", "calculate irr",
@@ -2769,7 +2769,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💹",
         iconBg: "#eff6ff",
         iconColor: "#1d4ed8",
-        path: "/calculators/financial/roi-calculator",
+        path: "/tools/roi-calculator",
         legacyPath: "/tools/roi-calculator",
         keywords: [
           "roi calculator", "return on investment calculator", "annualized roi calculator", "roi formula",
@@ -2789,7 +2789,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏷️",
         iconBg: "#fef2f2",
         iconColor: "#b91c1c",
-        path: "/calculators/financial/apr-calculator",
+        path: "/tools/apr-calculator",
         legacyPath: "/tools/apr-calculator",
         keywords: [
           "apr calculator", "real apr calculator", "annual percentage rate calculator", "mortgage apr calculator",
@@ -2809,7 +2809,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏡",
         iconBg: "#eff6ff",
         iconColor: "#1d4ed8",
-        path: "/calculators/financial/fha-loan-calculator",
+        path: "/tools/fha-loan-calculator",
         legacyPath: "/tools/fha-loan-calculator",
         keywords: [
           "fha loan calculator", "fha mortgage calculator", "fha mip calculator", "fha payment calculator",
@@ -2829,7 +2829,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🎖️",
         iconBg: "#f0fdf4",
         iconColor: "#15803d",
-        path: "/calculators/financial/va-mortgage-calculator",
+        path: "/tools/va-mortgage-calculator",
         legacyPath: "/tools/va-mortgage-calculator",
         keywords: [
           "va mortgage calculator", "va loan calculator", "va funding fee calculator", "va home loan calculator",
@@ -2849,7 +2849,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏘️",
         iconBg: "#fff7ed",
         iconColor: "#c2410c",
-        path: "/calculators/financial/home-equity-loan-calculator",
+        path: "/tools/home-equity-loan-calculator",
         legacyPath: "/tools/home-equity-loan-calculator",
         keywords: [
           "home equity loan calculator", "home equity loan payment", "second mortgage calculator", "home equity loan apr",
@@ -2869,7 +2869,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔑",
         iconBg: "#fefce8",
         iconColor: "#a16207",
-        path: "/calculators/financial/heloc-calculator",
+        path: "/tools/heloc-calculator",
         legacyPath: "/tools/heloc-calculator",
         keywords: [
           "heloc calculator", "home equity line of credit calculator", "heloc payment calculator", "heloc apr",
@@ -2889,7 +2889,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💵",
         iconBg: "#ecfdf5",
         iconColor: "#047857",
-        path: "/calculators/financial/down-payment-calculator",
+        path: "/tools/down-payment-calculator",
         legacyPath: "/tools/down-payment-calculator",
         keywords: [
           "down payment calculator", "how much down payment", "home down payment calculator", "cash needed to buy a house",
@@ -2909,7 +2909,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⚖️",
         iconBg: "#f5f3ff",
         iconColor: "#6d28d9",
-        path: "/calculators/financial/rent-vs-buy-calculator",
+        path: "/tools/rent-vs-buy-calculator",
         legacyPath: "/tools/rent-vs-buy-calculator",
         keywords: [
           "rent vs buy calculator", "rent or buy calculator", "should i rent or buy", "buy vs rent home",
@@ -2929,7 +2929,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "⏳",
         iconBg: "#ecfeff",
         iconColor: "#0e7490",
-        path: "/calculators/financial/payback-period-calculator",
+        path: "/tools/payback-period-calculator",
         legacyPath: "/tools/payback-period-calculator",
         keywords: [
           "payback period calculator", "discounted payback period calculator", "payback period formula", "investment payback",
@@ -2949,7 +2949,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💲",
         iconBg: "#eef2ff",
         iconColor: "#4338ca",
-        path: "/calculators/financial/present-value-calculator",
+        path: "/tools/present-value-calculator",
         legacyPath: "/tools/present-value-calculator",
         keywords: [
           "present value calculator", "pv calculator", "present value of annuity", "discount future value",
@@ -2969,7 +2969,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📈",
         iconBg: "#f0fdfa",
         iconColor: "#0f766e",
-        path: "/calculators/financial/future-value-calculator",
+        path: "/tools/future-value-calculator",
         legacyPath: "/tools/future-value-calculator",
         keywords: [
           "future value calculator", "fv calculator", "future value of annuity", "future value with deposits",
@@ -2989,7 +2989,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🤝",
         iconBg: "#fef3c7",
         iconColor: "#b45309",
-        path: "/calculators/financial/commission-calculator",
+        path: "/tools/commission-calculator",
         legacyPath: "/tools/commission-calculator",
         keywords: [
           "commission calculator", "sales commission calculator", "tiered commission calculator", "commission rate calculator",
@@ -3009,7 +3009,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏡",
         iconBg: "#eff6ff",
         iconColor: "#1d4ed8",
-        path: "/calculators/financial/mortgage-calculator-uk",
+        path: "/tools/mortgage-calculator-uk",
         legacyPath: "/tools/mortgage-calculator-uk",
         keywords: [
           "mortgage calculator uk", "uk mortgage calculator", "mortgage repayment calculator", "interest only mortgage calculator",
@@ -3029,7 +3029,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🍁",
         iconBg: "#fef2f2",
         iconColor: "#b91c1c",
-        path: "/calculators/financial/canadian-mortgage-calculator",
+        path: "/tools/canadian-mortgage-calculator",
         legacyPath: "/tools/canadian-mortgage-calculator",
         keywords: [
           "canadian mortgage calculator", "mortgage calculator canada", "semi-annual compounding mortgage", "canada mortgage payment",
@@ -3049,7 +3049,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📉",
         iconBg: "#f5f3ff",
         iconColor: "#6d28d9",
-        path: "/calculators/financial/mortgage-amortization-calculator",
+        path: "/tools/mortgage-amortization-calculator",
         legacyPath: "/tools/mortgage-amortization-calculator",
         keywords: [
           "mortgage amortization calculator", "mortgage amortization schedule", "amortization table mortgage", "mortgage payment breakdown",
@@ -3069,7 +3069,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏷️",
         iconBg: "#fdf2f8",
         iconColor: "#be185d",
-        path: "/calculators/financial/percent-off-calculator",
+        path: "/tools/percent-off-calculator",
         legacyPath: "/tools/percent-off-calculator",
         keywords: [
           "percent off calculator", "percentage off calculator", "percent off price", "sale price calculator",
@@ -3089,7 +3089,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏠",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/rent-calculator",
+        path: "/tools/rent-calculator",
         legacyPath: "/tools/rent-calculator",
         keywords: [
           "rent calculator", "how much rent can i afford", "rent affordability calculator",
@@ -3110,7 +3110,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💍",
         iconBg: "#fdf2f8",
         iconColor: "#db2777",
-        path: "/calculators/financial/marriage-tax-calculator",
+        path: "/tools/marriage-tax-calculator",
         legacyPath: "/tools/marriage-tax-calculator",
         keywords: [
           "marriage tax calculator", "marriage penalty calculator", "marriage bonus calculator",
@@ -3131,7 +3131,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏛️",
         iconBg: "#f5f3ff",
         iconColor: "#7c3aed",
-        path: "/calculators/financial/estate-tax-calculator",
+        path: "/tools/estate-tax-calculator",
         legacyPath: "/tools/estate-tax-calculator",
         keywords: [
           "estate tax calculator", "federal estate tax calculator", "death tax calculator",
@@ -3152,7 +3152,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏦",
         iconBg: "#eef2ff",
         iconColor: "#4f46e5",
-        path: "/calculators/financial/pension-calculator",
+        path: "/tools/pension-calculator",
         legacyPath: "/tools/pension-calculator",
         keywords: [
           "pension calculator", "pension lump sum calculator", "lump sum vs pension calculator",
@@ -3173,7 +3173,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🪪",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/social-security-calculator",
+        path: "/tools/social-security-calculator",
         legacyPath: "/tools/social-security-calculator",
         keywords: [
           "social security calculator", "social security benefits calculator", "when to apply for social security",
@@ -3194,7 +3194,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💱",
         iconBg: "#eff6ff",
         iconColor: "#2563eb",
-        path: "/calculators/financial/currency-calculator",
+        path: "/tools/currency-calculator",
         legacyPath: "/tools/currency-calculator",
         keywords: [
           "currency calculator", "currency converter", "exchange rate calculator",
@@ -3215,7 +3215,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📉",
         iconBg: "#fef2f2",
         iconColor: "#b91c1c",
-        path: "/calculators/financial/inflation-calculator",
+        path: "/tools/inflation-calculator",
         legacyPath: "/tools/inflation-calculator",
         keywords: [
           "inflation calculator", "cpi calculator", "consumer price index calculator",
@@ -3236,7 +3236,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧮",
         iconBg: "#fdf4ff",
         iconColor: "#a21caf",
-        path: "/calculators/financial/finance-calculator",
+        path: "/tools/finance-calculator",
         legacyPath: "/tools/finance-calculator",
         keywords: [
           "finance calculator", "tvm calculator", "time value of money calculator",
@@ -3257,7 +3257,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏁",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/mortgage-payoff-calculator",
+        path: "/tools/mortgage-payoff-calculator",
         legacyPath: "/tools/mortgage-payoff-calculator",
         keywords: [
           "mortgage payoff calculator", "extra payment calculator", "biweekly mortgage calculator",
@@ -3278,7 +3278,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🔁",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/compound-interest-calculator",
+        path: "/tools/compound-interest-calculator",
         legacyPath: "/tools/compound-interest-calculator",
         keywords: [
           "compound interest calculator", "apr to apy calculator", "apy to apr calculator",
@@ -3299,7 +3299,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "💵",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/salary-calculator",
+        path: "/tools/salary-calculator",
         legacyPath: "/tools/salary-calculator",
         keywords: [
           "salary calculator", "hourly to salary calculator", "salary to hourly calculator",
@@ -3320,7 +3320,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏦",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/401k-calculator",
+        path: "/tools/401k-calculator",
         legacyPath: "/tools/401k-calculator",
         keywords: [
           "401k calculator", "401(k) calculator", "retirement balance calculator",
@@ -3341,7 +3341,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "📈",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/interest-rate-calculator",
+        path: "/tools/interest-rate-calculator",
         legacyPath: "/tools/interest-rate-calculator",
         keywords: [
           "interest rate calculator", "loan interest rate calculator", "find interest rate calculator",
@@ -3361,7 +3361,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🧾",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/sales-tax-calculator",
+        path: "/tools/sales-tax-calculator",
         legacyPath: "/tools/sales-tax-calculator",
         keywords: [
           "sales tax calculator", "before tax price calculator", "after tax price calculator",
@@ -3381,7 +3381,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🏠",
         iconBg: "#f0fdf4",
         iconColor: "#16a34a",
-        path: "/calculators/financial/house-affordability-calculator",
+        path: "/tools/house-affordability-calculator",
         legacyPath: "/tools/house-affordability-calculator",
         keywords: [
           "house affordability calculator", "home affordability calculator", "how much house can i afford",
@@ -3415,7 +3415,7 @@ export const CALCULATOR_CATEGORIES = [
         icon: "🌾",
         iconBg: "#f0fdf4",
         iconColor: "#22c55e",
-        path: "/calculators/garden/grow-a-garden-calculator",
+        path: "/tools/grow-a-garden-calculator",
         legacyPath: "/tools/grow-a-garden-calculator",
         keywords: ["grow a garden calculator", "grow a garden value calculator", "grow a garden mutations", "grow a garden pet xp", "grow a garden egg hatch", "roblox grow a garden"],
         available: true,

@@ -37,6 +37,444 @@ services:
       - key: VITE_API_URL
         sync: false   # set to your backend URL after deploy
     routes:
+      # 301s: duplicate /calculators/<category>/<tool> URLs -> their /tools/ twin.
+      # Explicit list (no wildcards). Must stay ABOVE the /* rewrite below.
+      # See deploy/REDIRECTS.md.
+      - type: redirect
+        source: /calculators/construction/board-foot
+        destination: /tools/board-foot-calculator
+      - type: redirect
+        source: /calculators/construction/cubic-yard
+        destination: /tools/cubic-yard-calculator
+      - type: redirect
+        source: /calculators/construction/gallons
+        destination: /tools/gallons-calculator
+      - type: redirect
+        source: /calculators/construction/size-to-weight
+        destination: /tools/size-to-weight-calculator
+      - type: redirect
+        source: /calculators/construction/sqft-to-cubic-yards
+        destination: /tools/sqft-to-cubic-yards
+      - type: redirect
+        source: /calculators/construction/square-footage
+        destination: /tools/square-footage-calculator
+      - type: redirect
+        source: /calculators/construction/square-yards
+        destination: /tools/square-yards-calculator
+      - type: redirect
+        source: /calculators/education/act-score-calculator
+        destination: /tools/act-score-calculator
+      - type: redirect
+        source: /calculators/education/ap-bio-score-calculator
+        destination: /tools/ap-bio-score-calculator
+      - type: redirect
+        source: /calculators/education/ap-chem-score-calculator
+        destination: /tools/ap-chem-score-calculator
+      - type: redirect
+        source: /calculators/education/ap-lang-score-calculator
+        destination: /tools/ap-lang-score-calculator
+      - type: redirect
+        source: /calculators/education/ap-world-calculator
+        destination: /tools/ap-world-calculator
+      - type: redirect
+        source: /calculators/education/college-gpa-calculator
+        destination: /tools/college-gpa-calculator
+      - type: redirect
+        source: /calculators/education/final-grade-calculator
+        destination: /tools/final-grade-calculator
+      - type: redirect
+        source: /calculators/education/gpa-calculator
+        destination: /tools/gpa-calculator
+      - type: redirect
+        source: /calculators/education/gpa-calculator-pakistan
+        destination: /tools/gpa-calculator-pakistan
+      - type: redirect
+        source: /calculators/education/grade-calculator
+        destination: /tools/grade-calculator
+      - type: redirect
+        source: /calculators/education/gwa-calculator
+        destination: /tools/gwa-calculator
+      - type: redirect
+        source: /calculators/education/high-school-gpa-calculator
+        destination: /tools/high-school-gpa-calculator
+      - type: redirect
+        source: /calculators/education/ielts-score-calculator
+        destination: /tools/ielts-score-calculator
+      - type: redirect
+        source: /calculators/education/pte-score-calculator
+        destination: /tools/pte-score-calculator
+      - type: redirect
+        source: /calculators/education/semester-grade-calculator
+        destination: /tools/semester-grade-calculator
+      - type: redirect
+        source: /calculators/education/test-grade-calculator
+        destination: /tools/test-grade-calculator
+      - type: redirect
+        source: /calculators/everyday-life/anniversary
+        destination: /tools/anniversary-calculator
+      - type: redirect
+        source: /calculators/everyday-life/destiny-matrix
+        destination: /tools/destiny-matrix
+      - type: redirect
+        source: /calculators/financial/401k-calculator
+        destination: /tools/401k-calculator
+      - type: redirect
+        source: /calculators/financial/amortization-calculator
+        destination: /tools/amortization-calculator
+      - type: redirect
+        source: /calculators/financial/annuity-calculator
+        destination: /tools/annuity-calculator
+      - type: redirect
+        source: /calculators/financial/annuity-payout-calculator
+        destination: /tools/annuity-payout-calculator
+      - type: redirect
+        source: /calculators/financial/apr-calculator
+        destination: /tools/apr-calculator
+      - type: redirect
+        source: /calculators/financial/auto-lease-calculator
+        destination: /tools/auto-lease-calculator
+      - type: redirect
+        source: /calculators/financial/auto-loan-calculator
+        destination: /tools/auto-loan-calculator
+      - type: redirect
+        source: /calculators/financial/average-return-calculator
+        destination: /tools/average-return-calculator
+      - type: redirect
+        source: /calculators/financial/boat-loan-calculator
+        destination: /tools/boat-loan-calculator
+      - type: redirect
+        source: /calculators/financial/bond-calculator
+        destination: /tools/bond-calculator
+      - type: redirect
+        source: /calculators/financial/budget-calculator
+        destination: /tools/budget-calculator
+      - type: redirect
+        source: /calculators/financial/business-loan-calculator
+        destination: /tools/business-loan-calculator
+      - type: redirect
+        source: /calculators/financial/canadian-mortgage-calculator
+        destination: /tools/canadian-mortgage-calculator
+      - type: redirect
+        source: /calculators/financial/cash-back-or-low-interest-calculator
+        destination: /tools/cash-back-or-low-interest-calculator
+      - type: redirect
+        source: /calculators/financial/cd-calculator
+        destination: /tools/cd-calculator
+      - type: redirect
+        source: /calculators/financial/college-cost-calculator
+        destination: /tools/college-cost-calculator
+      - type: redirect
+        source: /calculators/financial/commission-calculator
+        destination: /tools/commission-calculator
+      - type: redirect
+        source: /calculators/financial/compound-interest-calculator
+        destination: /tools/compound-interest-calculator
+      - type: redirect
+        source: /calculators/financial/credit-card-calculator
+        destination: /tools/credit-card-calculator
+      - type: redirect
+        source: /calculators/financial/credit-card-payoff-calculator
+        destination: /tools/credit-card-payoff-calculator
+      - type: redirect
+        source: /calculators/financial/currency-calculator
+        destination: /tools/currency-calculator
+      - type: redirect
+        source: /calculators/financial/debt-consolidation-calculator
+        destination: /tools/debt-consolidation-calculator
+      - type: redirect
+        source: /calculators/financial/debt-payoff-calculator
+        destination: /tools/debt-payoff-calculator
+      - type: redirect
+        source: /calculators/financial/debt-to-income-calculator
+        destination: /tools/debt-to-income-calculator
+      - type: redirect
+        source: /calculators/financial/depreciation-calculator
+        destination: /tools/depreciation-calculator
+      - type: redirect
+        source: /calculators/financial/discount-calculator
+        destination: /tools/discount-calculator
+      - type: redirect
+        source: /calculators/financial/down-payment-calculator
+        destination: /tools/down-payment-calculator
+      - type: redirect
+        source: /calculators/financial/estate-tax-calculator
+        destination: /tools/estate-tax-calculator
+      - type: redirect
+        source: /calculators/financial/fha-loan-calculator
+        destination: /tools/fha-loan-calculator
+      - type: redirect
+        source: /calculators/financial/finance-calculator
+        destination: /tools/finance-calculator
+      - type: redirect
+        source: /calculators/financial/future-value-calculator
+        destination: /tools/future-value-calculator
+      - type: redirect
+        source: /calculators/financial/heloc-calculator
+        destination: /tools/heloc-calculator
+      - type: redirect
+        source: /calculators/financial/home-equity-loan-calculator
+        destination: /tools/home-equity-loan-calculator
+      - type: redirect
+        source: /calculators/financial/house-affordability-calculator
+        destination: /tools/house-affordability-calculator
+      - type: redirect
+        source: /calculators/financial/inflation-calculator
+        destination: /tools/inflation-calculator
+      - type: redirect
+        source: /calculators/financial/interest-calculator
+        destination: /tools/interest-calculator
+      - type: redirect
+        source: /calculators/financial/interest-rate-calculator
+        destination: /tools/interest-rate-calculator
+      - type: redirect
+        source: /calculators/financial/investment-calculator
+        destination: /tools/investment-calculator
+      - type: redirect
+        source: /calculators/financial/ira-calculator
+        destination: /tools/ira-calculator
+      - type: redirect
+        source: /calculators/financial/irr-calculator
+        destination: /tools/irr-calculator
+      - type: redirect
+        source: /calculators/financial/lease-calculator
+        destination: /tools/lease-calculator
+      - type: redirect
+        source: /calculators/financial/loan-calculator
+        destination: /tools/loan-calculator
+      - type: redirect
+        source: /calculators/financial/margin-calculator
+        destination: /tools/margin-calculator
+      - type: redirect
+        source: /calculators/financial/marriage-tax-calculator
+        destination: /tools/marriage-tax-calculator
+      - type: redirect
+        source: /calculators/financial/mortgage-amortization-calculator
+        destination: /tools/mortgage-amortization-calculator
+      - type: redirect
+        source: /calculators/financial/mortgage-calculator
+        destination: /tools/mortgage-calculator
+      - type: redirect
+        source: /calculators/financial/mortgage-calculator-uk
+        destination: /tools/mortgage-calculator-uk
+      - type: redirect
+        source: /calculators/financial/mortgage-payoff-calculator
+        destination: /tools/mortgage-payoff-calculator
+      - type: redirect
+        source: /calculators/financial/mutual-fund-calculator
+        destination: /tools/mutual-fund-calculator
+      - type: redirect
+        source: /calculators/financial/payback-period-calculator
+        destination: /tools/payback-period-calculator
+      - type: redirect
+        source: /calculators/financial/payment-calculator
+        destination: /tools/payment-calculator
+      - type: redirect
+        source: /calculators/financial/pension-calculator
+        destination: /tools/pension-calculator
+      - type: redirect
+        source: /calculators/financial/percent-off-calculator
+        destination: /tools/percent-off-calculator
+      - type: redirect
+        source: /calculators/financial/personal-loan-calculator
+        destination: /tools/personal-loan-calculator
+      - type: redirect
+        source: /calculators/financial/present-value-calculator
+        destination: /tools/present-value-calculator
+      - type: redirect
+        source: /calculators/financial/refinance-calculator
+        destination: /tools/refinance-calculator
+      - type: redirect
+        source: /calculators/financial/rent-calculator
+        destination: /tools/rent-calculator
+      - type: redirect
+        source: /calculators/financial/rent-vs-buy-calculator
+        destination: /tools/rent-vs-buy-calculator
+      - type: redirect
+        source: /calculators/financial/rental-property-calculator
+        destination: /tools/rental-property-calculator
+      - type: redirect
+        source: /calculators/financial/repayment-calculator
+        destination: /tools/repayment-calculator
+      - type: redirect
+        source: /calculators/financial/retirement-calculator
+        destination: /tools/retirement-calculator
+      - type: redirect
+        source: /calculators/financial/rmd-calculator
+        destination: /tools/rmd-calculator
+      - type: redirect
+        source: /calculators/financial/roi-calculator
+        destination: /tools/roi-calculator
+      - type: redirect
+        source: /calculators/financial/roth-ira-calculator
+        destination: /tools/roth-ira-calculator
+      - type: redirect
+        source: /calculators/financial/salary-calculator
+        destination: /tools/salary-calculator
+      - type: redirect
+        source: /calculators/financial/sales-tax-calculator
+        destination: /tools/sales-tax-calculator
+      - type: redirect
+        source: /calculators/financial/savings-calculator
+        destination: /tools/savings-calculator
+      - type: redirect
+        source: /calculators/financial/simple-interest-calculator
+        destination: /tools/simple-interest-calculator
+      - type: redirect
+        source: /calculators/financial/social-security-calculator
+        destination: /tools/social-security-calculator
+      - type: redirect
+        source: /calculators/financial/student-loan-calculator
+        destination: /tools/student-loan-calculator
+      - type: redirect
+        source: /calculators/financial/take-home-pay-calculator
+        destination: /tools/take-home-pay-calculator
+      - type: redirect
+        source: /calculators/financial/va-mortgage-calculator
+        destination: /tools/va-mortgage-calculator
+      - type: redirect
+        source: /calculators/financial/vat-calculator
+        destination: /tools/vat-calculator
+      - type: redirect
+        source: /calculators/garden/grow-a-garden-calculator
+        destination: /tools/grow-a-garden-calculator
+      - type: redirect
+        source: /calculators/health/army-body-fat-calculator
+        destination: /tools/army-body-fat-calculator
+      - type: redirect
+        source: /calculators/health/bac-calculator
+        destination: /tools/bac-calculator
+      - type: redirect
+        source: /calculators/health/bmi-calculator
+        destination: /tools/bmi-calculator
+      - type: redirect
+        source: /calculators/health/bmr-calculator
+        destination: /tools/bmr-calculator
+      - type: redirect
+        source: /calculators/health/body-fat-calculator
+        destination: /tools/body-fat-calculator
+      - type: redirect
+        source: /calculators/health/body-surface-area-calculator
+        destination: /tools/body-surface-area-calculator
+      - type: redirect
+        source: /calculators/health/body-type-calculator
+        destination: /tools/body-type-calculator
+      - type: redirect
+        source: /calculators/health/calorie-tracker
+        destination: /tools/calorie-tracker
+      - type: redirect
+        source: /calculators/health/carbohydrate-calculator
+        destination: /tools/carbohydrate-calculator
+      - type: redirect
+        source: /calculators/health/fat-intake-calculator
+        destination: /tools/fat-intake-calculator
+      - type: redirect
+        source: /calculators/health/gfr-calculator
+        destination: /tools/gfr-calculator
+      - type: redirect
+        source: /calculators/health/healthy-weight-calculator
+        destination: /tools/healthy-weight-calculator
+      - type: redirect
+        source: /calculators/health/ideal-weight-calculator
+        destination: /tools/ideal-weight-calculator
+      - type: redirect
+        source: /calculators/health/lean-body-mass-calculator
+        destination: /tools/lean-body-mass-calculator
+      - type: redirect
+        source: /calculators/health/macro-calculator
+        destination: /tools/macro-calculator
+      - type: redirect
+        source: /calculators/health/protein-calculator
+        destination: /tools/protein-calculator
+      - type: redirect
+        source: /calculators/health/sleep-calculator
+        destination: /tools/sleep-calculator
+      - type: redirect
+        source: /calculators/health/tdee-calculator
+        destination: /tools/tdee-calculator
+      - type: redirect
+        source: /calculators/internet-network/base64-encode-decode
+        destination: /tools/base64-encode-decode
+      - type: redirect
+        source: /calculators/internet-network/ip-subnet-calculator
+        destination: /tools/ip-subnet-calculator
+      - type: redirect
+        source: /calculators/internet-network/password-generator
+        destination: /tools/password-generator
+      - type: redirect
+        source: /calculators/internet-network/url-encode-decode
+        destination: /tools/url-encode-decode
+      - type: redirect
+        source: /calculators/logistics/cbm-calculator
+        destination: /tools/cbm-calculator
+      - type: redirect
+        source: /calculators/logistics/container-loading-calculator
+        destination: /tools/container-loading-calculator
+      - type: redirect
+        source: /calculators/logistics/dimensional-weight-calculator
+        destination: /tools/dimensional-weight-calculator
+      - type: redirect
+        source: /calculators/logistics/freight-class-calculator
+        destination: /tools/freight-class-calculator
+      - type: redirect
+        source: /calculators/logistics/pallet-calculator
+        destination: /tools/pallet-calculator
+      - type: redirect
+        source: /calculators/logistics/reorder-point-calculator
+        destination: /tools/reorder-point-calculator
+      - type: redirect
+        source: /calculators/logistics/takt-time-calculator
+        destination: /tools/takt-time-calculator
+      - type: redirect
+        source: /calculators/sports/one-rep-max-calculator
+        destination: /tools/one-rep-max-calculator
+      - type: redirect
+        source: /calculators/sports/pace-calculator
+        destination: /tools/pace-calculator
+      - type: redirect
+        source: /calculators/sports/target-heart-rate-calculator
+        destination: /tools/target-heart-rate-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/3d-printing-cost-calculator
+        destination: /tools/3d-printing-cost-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/battery-capacity-calculator
+        destination: /tools/battery-capacity-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/battery-life-calculator
+        destination: /tools/battery-life-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/chmod-calculator
+        destination: /tools/chmod-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/cidr-calculator
+        destination: /tools/cidr-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/electricity-calculator
+        destination: /tools/electricity-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/hash-identifier-calculator
+        destination: /tools/hash-identifier-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/pcb-impedance-calculator
+        destination: /tools/pcb-impedance-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/pcb-trace-current-calculator
+        destination: /tools/pcb-trace-current-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/pcb-trace-resistance-calculator
+        destination: /tools/pcb-trace-resistance-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/pcb-trace-width-calculator
+        destination: /tools/pcb-trace-width-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/raid-calculator
+        destination: /tools/raid-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/resistor-calculator
+        destination: /tools/resistor-calculator
+      - type: redirect
+        source: /calculators/tech-electronics/voltage-drop-calculator
+        destination: /tools/voltage-drop-calculator
       # Rewrite all paths to index.html for client-side routing
       - type: rewrite
         source: /*

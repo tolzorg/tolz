@@ -516,11 +516,11 @@ export default function App() {
                 <Route path="/calculators/internet-network/base64-encode-decode" element={<Base64EncodeDecodePage />} />
                 <Route path="/calculators/internet-network/url-encode-decode" element={<UrlEncodeDecodePage />} />
                 <Route path="/calculators/internet-network/password-generator" element={<PasswordGeneratorPage />} />
-                <Route path="/calculators/health/one-rep-max-calculator" element={<Navigate to="/calculators/sports/one-rep-max-calculator" replace />} />
+                <Route path="/calculators/health/one-rep-max-calculator" element={<Navigate to="/tools/one-rep-max-calculator" replace />} />
                 <Route path="/calculators/health/bmr-calculator" element={<BmrCalculatorPage />} />
                 <Route path="/calculators/health/ideal-weight-calculator" element={<IdealWeightCalculatorPage />} />
                 <Route path="/calculators/sports/pace-calculator" element={<PaceCalculatorPage />} />
-                <Route path="/calculators/health/pace-calculator" element={<Navigate to="/calculators/sports/pace-calculator" replace />} />
+                <Route path="/calculators/health/pace-calculator" element={<Navigate to="/tools/pace-calculator" replace />} />
                 <Route path="/calculators/everyday-life/anniversary"               element={<AnniversaryCalculatorPage />} />
                 <Route path="/calculators/everyday-life/destiny-matrix"            element={<DestinyMatrixPage />} />
                 <Route path="/calculators/garden/grow-a-garden-calculator"          element={<GrowAGardenCalculatorPage />} />

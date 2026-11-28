@@ -123,7 +123,7 @@ export default function FreightClassCalculatorTool() {
               </div>
               <p style={{ ...muted, fontSize: 12.5 }}>
                 Enter the rate to see the total freight cost (rate × mass × number of pallets) in the result. To convert
-                between currencies, use the <Link to="/calculators/financial/currency-calculator" style={{ color: "var(--accent)" }}>currency calculator</Link>.
+                between currencies, use the <Link to="/tools/currency-calculator" style={{ color: "var(--accent)" }}>currency calculator</Link>.
               </p>
             </div>
           </details>

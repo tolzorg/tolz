@@ -153,7 +153,7 @@ export default function BmrCalculatorTool() {
                 <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
                   <RadioOption checked={v.formula === "katch"} onChange={() => set("formula")("katch")} label="Katch-McArdle" />
                   <label style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 10 }}>
-                    <Link to="/calculators/health/body-fat-calculator" style={{ color: "var(--accent)" }} title="Find your body fat % with the Body Fat Calculator">
+                    <Link to="/tools/body-fat-calculator" style={{ color: "var(--accent)" }} title="Find your body fat % with the Body Fat Calculator">
                       Body Fat:
                     </Link>
                     <span style={{ width: 80, display: "flex" }}><Req name="bodyFat"><PercentField value={v.bodyFat} onChange={set("bodyFat")} placeholder={ph.bodyFat} /></Req></span>

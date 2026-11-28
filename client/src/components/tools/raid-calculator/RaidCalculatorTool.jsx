@@ -179,7 +179,7 @@ export default function RaidCalculatorTool() {
             </label>
             <p style={{ ...muted, fontSize: 12.5 }}>
               Gives the cost per usable TB and the total disk cost. To convert between currencies, use the{" "}
-              <Link to="/calculators/financial/currency-calculator" style={{ color: "var(--accent)" }}>currency calculator</Link>.
+              <Link to="/tools/currency-calculator" style={{ color: "var(--accent)" }}>currency calculator</Link>.
             </p>
           </section>
           <ButtonRow onCalculate={calculate} onClear={clear} />

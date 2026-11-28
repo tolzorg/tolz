@@ -121,7 +121,7 @@ export default function CashBackOrLowInterestFaqSection() {
         </p>
         <p style={{ ...pStyle, marginBottom: 0 }}>
           Both offers lower the total cost of the car; the question is which lowers it more. Plan a single loan in
-          detail with the <Link to="/calculators/financial/auto-loan-calculator" className="inline-home-link">Auto Loan Calculator</Link>.
+          detail with the <Link to="/tools/auto-loan-calculator" className="inline-home-link">Auto Loan Calculator</Link>.
         </p>
       </div>
 
